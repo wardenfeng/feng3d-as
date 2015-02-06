@@ -17,8 +17,4 @@ feng3d
 
  
 
-feng3d实例
-http://www.feng3d.me/?page_id=30
-
-获取相关代码途径
-http://pan.baidu.com/s/1o6ypULs
+相关信息请查看 www.feng3d.me
