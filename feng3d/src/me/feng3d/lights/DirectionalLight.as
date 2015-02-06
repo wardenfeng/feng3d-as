@@ -12,10 +12,11 @@ package me.feng3d.lights
 		private var _tmpLookAt:Vector3D;
 		private var _sceneDirection:Vector3D;
 
-		public function DirectionalLight()
+		public function DirectionalLight(xDir:Number = 0, yDir:Number = -1, zDir:Number = 1)
 		{
 			super();
 
+			direction = new Vector3D(xDir, yDir, zDir);
 			_sceneDirection = new Vector3D();
 		}
 

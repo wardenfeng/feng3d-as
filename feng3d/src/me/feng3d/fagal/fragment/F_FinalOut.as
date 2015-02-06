@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 最终颜色输出函数
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_FinalOut extends FagalMethod
+	public class F_FinalOut extends FagalFragmentMethod
 	{
 		[Register(regName = "finalColor_ft_4", regType = "in", description = "最终颜色寄存器（输出到oc寄存器的颜色）")]
 		public var finalColorReg:Register;

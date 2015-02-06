@@ -7,7 +7,6 @@ package me.feng3d.fagal.fragment.light
 	 * 方向光渲染函数
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "fragment")]
 	public class F_DirectionalLight extends F_BaseLight
 	{
 		[Register(regName = "dirLightDiffuse_fc_vector", regType = "uniform", regNum = "numDirectionalLights", description = "方向光源漫反射光颜色")]

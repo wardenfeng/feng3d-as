@@ -3,14 +3,13 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.fragment.F_DiffuseColor;
 	import me.feng3d.fagal.fragment.F_DiffuseTexure;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 发布漫反射光
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_DiffusePostLighting extends FagalMethod
+	public class F_DiffusePostLighting extends FagalFragmentMethod
 	{
 		[Register(regName = "totalDiffuseLightColor_ft_4", regType = "in", description = "总漫反射颜色寄存器")]
 		public var totalLightColorReg:Register;

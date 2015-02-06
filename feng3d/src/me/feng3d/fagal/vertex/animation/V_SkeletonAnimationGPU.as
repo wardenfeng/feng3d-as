@@ -2,14 +2,13 @@ package me.feng3d.fagal.vertex.animation
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterVector;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalVertexMethod;
 
 	/**
 	 * 骨骼动画渲染程序(GPU)
 	 * @author warden_feng 2014-11-3
 	 */
-	[FagalMethod(methodType = "vertex")]
-	public class V_SkeletonAnimationGPU extends FagalMethod
+	public class V_SkeletonAnimationGPU extends FagalVertexMethod
 	{
 		[Register(regName = "position_va_3", regType = "in", description = "顶点坐标数据")]
 		public var positionReg:Register;

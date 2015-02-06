@@ -2,17 +2,20 @@ package me.feng3d.passes
 {
 	import flash.display3D.Context3DCompareMode;
 	import flash.geom.Matrix3D;
-	
+	import flash.geom.Vector3D;
+
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.IRenderable;
 	import me.feng3d.core.buffer.Context3DBufferTypeID;
+	import me.feng3d.core.buffer.context3d.DepthTestBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
+	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
-	import me.feng3d.core.proxy.Context3DCache;
+	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.debug.Debug;
-	import me.feng3d.fagal.ShaderParams;
+	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.runFagalMethod;
 	import me.feng3d.fagal.fragment.F_SkyBox;
 	import me.feng3d.fagal.vertex.V_SkyBox;
@@ -26,13 +29,11 @@ package me.feng3d.passes
 	 */
 	public class SkyBoxPass extends MaterialPassBase
 	{
-		protected var textureBuffer:FSBuffer;
-
-		protected var projectionBuffer:VCMatrixBuffer;
+		private const cameraPos:Vector.<Number> = new Vector.<Number>(4);
+		private const scaleSkybox:Vector.<Number> = new Vector.<Number>(4);
+		private const modelViewProjection:Matrix3D = new Matrix3D();
 
 		private var _cubeTexture:CubeTextureBase;
-
-		private var _modelViewProjection:Matrix3D
 
 		public function SkyBoxPass()
 		{
@@ -42,41 +43,37 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			textureBuffer = new FSBuffer(Context3DBufferTypeID.TEXTURE_FS, updateTextureBuffer);
-			projectionBuffer = new VCMatrixBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.TEXTURE_FS, FSBuffer, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, VCMatrixBuffer, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR, VCVectorBuffer, updateCameraPosBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SCALESKYBOX_VC_VECTOR, VCVectorBuffer, updateScaleSkyboxBuffer);
 		}
 
-		private function updateProjectionBuffer():void
+		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
 		{
-			projectionBuffer.update(_modelViewProjection, true);
+			projectionBuffer.update(modelViewProjection, true);
 		}
 
-		private function updateTextureBuffer():void
+		private function updateCameraPosBuffer(cameraPosBuffer:VCVectorBuffer):void
+		{
+			cameraPosBuffer.update(cameraPos);
+		}
+
+		private function updateScaleSkyboxBuffer(scaleSkyboxBuffer:VCVectorBuffer):void
+		{
+			scaleSkyboxBuffer.update(scaleSkybox);
+		}
+
+		private function updateTextureBuffer(textureBuffer:FSBuffer):void
 		{
 			textureBuffer.update(_cubeTexture);
 		}
 
-		override protected function updateDepthTestBuffer():void
+		override protected function updateDepthTestBuffer(depthTestBuffer:DepthTestBuffer):void
 		{
-			super.updateDepthTestBuffer();
+			super.updateDepthTestBuffer(depthTestBuffer);
 
 			depthTestBuffer.update(false, Context3DCompareMode.LESS);
-		}
-
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-
-			context3dCache.addDataBuffer(textureBuffer);
-			context3dCache.addDataBuffer(projectionBuffer);
-		}
-
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-
-			context3dCache.removeDataBuffer(textureBuffer);
-			context3dCache.removeDataBuffer(projectionBuffer);
 		}
 
 		public function get cubeTexture():CubeTextureBase
@@ -87,14 +84,14 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureBase):void
 		{
 			_cubeTexture = value;
-			textureBuffer.invalid();
+			markBufferDirty(Context3DBufferTypeID.TEXTURE_FS);
 		}
 
-		override arcane function updateProgramBuffer():void
+		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
 			var vertexCode:String = runFagalMethod(V_SkyBox);
 			var fragmentCode:String = runFagalMethod(F_SkyBox);
-			
+
 			if (Debug.agalDebug)
 			{
 				trace("Compiling AGAL Code:");
@@ -103,26 +100,31 @@ package me.feng3d.passes
 				trace("--------------------");
 				trace(fragmentCode);
 			}
-			
+
 			//上传程序
 			programBuffer.update(vertexCode, fragmentCode);
 		}
-		
+
 		override arcane function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
-			var mtx:Matrix3D = new Matrix3D();
-			mtx.identity();
-			mtx.append(renderable.sourceEntity.sceneTransform);
-			mtx.append(camera.viewProjection);
-
-			_modelViewProjection = mtx;
-			projectionBuffer.invalid();
+			modelViewProjection.identity();
+			modelViewProjection.append(renderable.sourceEntity.sceneTransform);
+			modelViewProjection.append(camera.viewProjection);
 		}
-		
+
 		override arcane function activate(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
 			super.activate(shaderParams, stage3DProxy, camera);
-			
+
+			var pos:Vector3D = camera.scenePosition;
+			cameraPos[0] = pos.x;
+			cameraPos[1] = pos.y;
+			cameraPos[2] = pos.z;
+			cameraPos[3] = 0;
+
+			scaleSkybox[0] = scaleSkybox[1] = scaleSkybox[2] = camera.lens.far / Math.sqrt(4);
+			scaleSkybox[3] = 1;
+
 			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _cubeTexture);
 		}
 	}

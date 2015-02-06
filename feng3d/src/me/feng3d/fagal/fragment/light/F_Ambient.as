@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 环境光片段渲染程序
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType="fragment")]
-	public class F_Ambient extends FagalMethod
+	public class F_Ambient extends FagalFragmentMethod
 	{
 		[Register(regName = "ambientInput_fc_vector", regType = "uniform", description = "环境输入静态数据")]
 		public var ambientInputReg:Register;

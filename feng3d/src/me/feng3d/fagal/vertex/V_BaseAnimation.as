@@ -1,14 +1,13 @@
 package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalVertexMethod;
 
 	/**
 	 * 基础动画顶点渲染函数(无动画)
 	 * @author warden_feng 2014-11-3
 	 */
-	[FagalMethod(methodType = "vertex")]
-	public class V_BaseAnimation extends FagalMethod
+	public class V_BaseAnimation extends FagalVertexMethod
 	{
 		[Register(regName = "position_va_3", regType = "in", description = "顶点坐标数据")]
 		public var position:Register;

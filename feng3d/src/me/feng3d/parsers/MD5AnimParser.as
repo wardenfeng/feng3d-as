@@ -3,9 +3,9 @@ package me.feng3d.parsers
 	import flash.geom.Vector3D;
 	
 	import me.feng3d.arcane;
-	import me.feng3d.animators.data.JointPose;
-	import me.feng3d.animators.data.SkeletonPose;
-	import me.feng3d.animators.nodes.SkeletonClipNode;
+	import me.feng3d.animators.skeleton.data.JointPose;
+	import me.feng3d.animators.skeleton.data.SkeletonPose;
+	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.core.math.Quaternion;
 
 	use namespace arcane;

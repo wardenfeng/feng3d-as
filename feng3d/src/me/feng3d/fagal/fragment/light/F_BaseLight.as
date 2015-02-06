@@ -1,19 +1,22 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 光照基本计算所需函数
 	 * @author warden_feng 2014-11-8
 	 */
-	public class F_BaseLight extends FagalMethod
+	public class F_BaseLight extends FagalFragmentMethod
 	{
 		[Register(regName = "commonsData_fc_vector", regType = "uniform", description = "公用数据片段常量数据")]
 		public var commonsReg:Register;
 
-		[Register(regName = "textureSpecular_fc_vector", regType = "uniform", description = "材质镜面反射光数据")]
+		[Register(regName = "specularData_fc_vector", regType = "uniform", description = "材质镜面反射光数据")]
 		public var _specularDataRegister:Register;
+
+		[Register(regName = "specularTexData_ft_4", regType = "in", description = "光泽纹理数据片段临时寄存器")]
+		public var specularTexData:Register;
 
 		[Register(regName = "normal_ft_4", regType = "in", description = "法线临时片段寄存器")]
 		public var normalFragmentReg:Register;
@@ -86,8 +89,17 @@ package me.feng3d.fagal.fragment.light
 			//镜面反射光强度 锁定在0-1之间
 			sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
 
-			//镜面反射光强度 = 镜面反射光强度 pow 光泽度
-			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _specularDataRegister.w);
+			if (shaderParams.hasSpecularTexture)
+			{
+				//使用光照图调整高光
+				mul(specularTexData.w, specularTexData.y, _specularDataRegister.w);
+				pow(singleSpecularColorReg.w, singleSpecularColorReg.w, specularTexData.w);
+			}
+			else
+			{
+				//镜面反射光强度 = 镜面反射光强度 pow 光泽度
+				pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _specularDataRegister.w);
+			}
 
 			if (shaderParams.useLightFallOff)
 			{

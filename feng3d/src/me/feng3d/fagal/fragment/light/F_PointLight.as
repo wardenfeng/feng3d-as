@@ -7,7 +7,6 @@ package me.feng3d.fagal.fragment.light
 	 * 点光源渲染
 	 * @author warden_feng 2014-11-8
 	 */
-	[FagalMethod(methodType = "fragment")]
 	public class F_PointLight extends F_BaseLight
 	{
 		[Register(regName = "pointLightDiffuse_fc_vector", regType = "uniform", regNum = "numPointLights", description = "点光源漫反射光颜色")]

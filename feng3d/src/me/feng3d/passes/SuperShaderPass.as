@@ -1,17 +1,15 @@
 package me.feng3d.passes
 {
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	import me.feng3d.core.proxy.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.fagal.ShaderParams;
+	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
-	import me.feng3d.materials.MaterialBase;
 
 	use namespace arcane;
 
@@ -21,112 +19,66 @@ package me.feng3d.passes
 	 */
 	public class SuperShaderPass extends CompiledPass
 	{
-		/** 方向光源场景方向数据缓冲 */
-		protected var dirLightSceneDirBuffer:FCVectorBuffer;
-
 		/** 方向光源场景方向数据 */
-		private var dirLightSceneDirData:Vector.<Number> = new Vector.<Number>(4);
-
-		/** 方向光源漫反射光颜色数据缓冲 */
-		protected var dirLightDiffuseBuffer:FCVectorBuffer;
+		private const dirLightSceneDirData:Vector.<Number> = new Vector.<Number>();
 
 		/** 方向光源漫反射光颜色数据 */
-		private var dirLightDiffuseData:Vector.<Number> = new Vector.<Number>(4);
-
-		/** 方向光源镜面反射颜色数据缓冲 */
-		protected var dirLightSpecularBuffer:FCVectorBuffer;
+		private const dirLightDiffuseData:Vector.<Number> = new Vector.<Number>();
 
 		/** 方向光源镜面反射颜色数据 */
-		private var dirLightSpecularData:Vector.<Number> = new Vector.<Number>(4);
-
-		/** 点光源场景方向数据缓冲 */
-		protected var pointLightSceneDirBuffer:FCVectorBuffer;
+		private const dirLightSpecularData:Vector.<Number> = new Vector.<Number>();
 
 		/** 点光源场景方向数据 */
-		private var pointLightSceneDirData:Vector.<Number> = new Vector.<Number>(4);
-
-		/** 点光源漫反射光颜色数据缓冲 */
-		protected var pointLightDiffuseBuffer:FCVectorBuffer;
+		private const pointLightSceneDirData:Vector.<Number> = new Vector.<Number>();
 
 		/** 点光源漫反射光颜色数据 */
-		private var pointLightDiffuseData:Vector.<Number> = new Vector.<Number>(4);
-
-		/** 点光源镜面反射颜色数据缓冲 */
-		protected var pointLightSpecularBuffer:FCVectorBuffer;
+		private const pointLightDiffuseData:Vector.<Number> = new Vector.<Number>();
 
 		/** 点光源镜面反射颜色数据 */
-		private var pointLightSpecularData:Vector.<Number> = new Vector.<Number>(4);
+		private const pointLightSpecularData:Vector.<Number> = new Vector.<Number>();
 
-		public function SuperShaderPass(material:MaterialBase)
+		public function SuperShaderPass()
 		{
-			super(material);
+			super();
 		}
 
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-
-			dirLightSceneDirBuffer = new FCVectorBuffer(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, updateDirLightSceneDirBuffer);
-			dirLightDiffuseBuffer = new FCVectorBuffer(Context3DBufferTypeID.DIRLIGHTDIFFUSE_FC_VECTOR, updateDirLightDiffuseReg);
-			dirLightSpecularBuffer = new FCVectorBuffer(Context3DBufferTypeID.DIRLIGHTSPECULAR_FC_VECTOR, updateDirLightSpecularBuffer);
-
-			pointLightSceneDirBuffer = new FCVectorBuffer(Context3DBufferTypeID.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightSceneDirBuffer);
-			pointLightDiffuseBuffer = new FCVectorBuffer(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, updatePointLightDiffuseReg);
-			pointLightSpecularBuffer = new FCVectorBuffer(Context3DBufferTypeID.POINTLIGHTSPECULAR_FC_VECTOR, updatePointLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, FCVectorBuffer, updateDirLightSceneDirBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTDIFFUSE_FC_VECTOR, FCVectorBuffer, updateDirLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSPECULAR_FC_VECTOR, FCVectorBuffer, updateDirLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSCENEPOS_FC_VECTOR, FCVectorBuffer, updatePointLightSceneDirBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, FCVectorBuffer, updatePointLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSPECULAR_FC_VECTOR, FCVectorBuffer, updatePointLightSpecularBuffer);
 		}
 
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-
-			context3dCache.addDataBuffer(dirLightSceneDirBuffer);
-			context3dCache.addDataBuffer(dirLightDiffuseBuffer);
-			context3dCache.addDataBuffer(dirLightSpecularBuffer);
-
-			context3dCache.addDataBuffer(pointLightSceneDirBuffer);
-			context3dCache.addDataBuffer(pointLightDiffuseBuffer);
-			context3dCache.addDataBuffer(pointLightSpecularBuffer);
-		}
-
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-
-			context3dCache.removeDataBuffer(dirLightSceneDirBuffer);
-			context3dCache.removeDataBuffer(dirLightDiffuseBuffer);
-			context3dCache.removeDataBuffer(dirLightSpecularBuffer);
-
-			context3dCache.removeDataBuffer(pointLightSceneDirBuffer);
-			context3dCache.removeDataBuffer(pointLightDiffuseBuffer);
-			context3dCache.removeDataBuffer(pointLightSpecularBuffer);
-		}
-
-		private function updateDirLightSpecularBuffer():void
+		private function updateDirLightSpecularBuffer(dirLightSpecularBuffer:FCVectorBuffer):void
 		{
 			dirLightSpecularBuffer.update(dirLightSpecularData);
 		}
 
-		private function updateDirLightDiffuseReg():void
+		private function updateDirLightDiffuseReg(dirLightDiffuseBuffer:FCVectorBuffer):void
 		{
 			dirLightDiffuseBuffer.update(dirLightDiffuseData);
 		}
 
-		private function updateDirLightSceneDirBuffer():void
+		private function updateDirLightSceneDirBuffer(dirLightSceneDirBuffer:FCVectorBuffer):void
 		{
 			dirLightSceneDirBuffer.update(dirLightSceneDirData);
 		}
 
-		private function updatePointLightSpecularBuffer():void
+		private function updatePointLightSpecularBuffer(pointLightSpecularBuffer:FCVectorBuffer):void
 		{
 			pointLightSpecularBuffer.update(pointLightSpecularData);
 		}
 
-		private function updatePointLightDiffuseReg():void
+		private function updatePointLightDiffuseReg(pointLightDiffuseBuffer:FCVectorBuffer):void
 		{
 			pointLightDiffuseBuffer.update(pointLightDiffuseData);
 		}
 
-		private function updatePointLightSceneDirBuffer():void
+		private function updatePointLightSceneDirBuffer(pointLightSceneDirBuffer:FCVectorBuffer):void
 		{
 			pointLightSceneDirBuffer.update(pointLightSceneDirData);
 		}
@@ -134,8 +86,10 @@ package me.feng3d.passes
 		override arcane function activate(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
 			if (_lightPicker)
-				_lightPicker.activate(shaderParams, stage3DProxy, camera);
-
+			{
+				shaderParams.numPointLights = _lightPicker.numPointLights;
+				shaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
+			}
 			super.activate(shaderParams, stage3DProxy, camera);
 		}
 
@@ -163,20 +117,16 @@ package me.feng3d.passes
 				dirLightSceneDirData[i * 4 + 1] = -sceneDirection.y;
 				dirLightSceneDirData[i * 4 + 2] = -sceneDirection.z;
 				dirLightSceneDirData[i * 4 + 3] = 1;
-				dirLightSceneDirBuffer.invalid();
 
 				dirLightDiffuseData[i * 4 + 0] = dirLight._diffuseR;
 				dirLightDiffuseData[i * 4 + 1] = dirLight._diffuseG;
 				dirLightDiffuseData[i * 4 + 2] = dirLight._diffuseB;
 				dirLightDiffuseData[i * 4 + 3] = 1;
-				dirLightDiffuseBuffer.invalid();
 
 				dirLightSpecularData[i * 4 + 0] = dirLight._specularR;
 				dirLightSpecularData[i * 4 + 1] = dirLight._specularG;
 				dirLightSpecularData[i * 4 + 2] = dirLight._specularB;
 				dirLightSpecularData[i * 4 + 3] = 1;
-				dirLightSpecularBuffer.invalid();
-
 			}
 
 			var pointLights:Vector.<PointLight> = _lightPicker.pointLights;
@@ -194,19 +144,16 @@ package me.feng3d.passes
 				pointLightSceneDirData[i * 4 + 1] = scenePosition.y;
 				pointLightSceneDirData[i * 4 + 2] = scenePosition.z;
 				pointLightSceneDirData[i * 4 + 3] = 1;
-				pointLightSceneDirBuffer.invalid();
 
 				pointLightDiffuseData[i * 4 + 0] = pointLight._diffuseR;
 				pointLightDiffuseData[i * 4 + 1] = pointLight._diffuseG;
 				pointLightDiffuseData[i * 4 + 2] = pointLight._diffuseB;
 				pointLightDiffuseData[i * 4 + 3] = pointLight._radius * pointLight._radius;
-				pointLightDiffuseBuffer.invalid();
 
 				pointLightSpecularData[i * 4 + 0] = pointLight._specularR;
 				pointLightSpecularData[i * 4 + 1] = pointLight._specularG;
 				pointLightSpecularData[i * 4 + 2] = pointLight._specularB;
 				pointLightSpecularData[i * 4 + 3] = pointLight._fallOffFactor;
-				pointLightSpecularBuffer.invalid();
 			}
 
 		}

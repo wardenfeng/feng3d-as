@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 视线片段渲染函数
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_ViewDir extends FagalMethod
+	public class F_ViewDir extends FagalFragmentMethod
 	{
 		[Register(regName = "viewDir_v", regType = "in", description = "视线变量寄存器")]
 		public var viewDirVaryingReg:Register;

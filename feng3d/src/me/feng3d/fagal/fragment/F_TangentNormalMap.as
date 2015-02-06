@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 编译切线法线贴图片段程序
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_TangentNormalMap extends FagalMethod
+	public class F_TangentNormalMap extends FagalFragmentMethod
 	{
 		[Register(regName = "tangent_v", regType = "in", description = "切线变量寄存器")]
 		public var tangentVarying:Register;
@@ -27,6 +26,7 @@ package me.feng3d.fagal.fragment
 
 		override public function runFunc():void
 		{
+			//t、b、n 法线所在顶点的变换矩阵
 			var t:Register = getFreeTemp("切线片段临时寄存器");
 			var b:Register = getFreeTemp("双切线片段临时寄存器");
 			var n:Register = getFreeTemp("法线片段临时寄存器");
@@ -44,6 +44,7 @@ package me.feng3d.fagal.fragment
 
 			//标准化法线纹理数据
 			m33(normalFragment.xyz, normalTexData, t);
+//			mov(normalFragment.xyz, normalTexData);
 			//保存w不变
 			mov(normalFragment.w, normalVarying.w);
 			

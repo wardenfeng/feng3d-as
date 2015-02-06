@@ -1,14 +1,13 @@
 package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalVertexMethod;
 
 	/**
 	 * 编译切线顶点程序
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "vertex")]
-	public class V_TangentNormalMap extends FagalMethod
+	public class V_TangentNormalMap extends FagalVertexMethod
 	{
 		[Register(regName = "normal_va_3", regType = "in", description = "法线数据")]
 		public var normalInput:Register;

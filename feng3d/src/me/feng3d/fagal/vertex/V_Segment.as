@@ -2,14 +2,13 @@ package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterMatrix;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalVertexMethod;
 
 	/**
 	 * 线段顶点渲染程序
 	 * @author warden_feng 2014-10-28
 	 */
-	[FagalMethod(methodType = "vertex")]
-	public class V_Segment extends FagalMethod
+	public class V_Segment extends FagalVertexMethod
 	{
 		[Register(regName = "segmentStart_va_3", regType = "in", description = "起点坐标寄存器")]
 		public var startPositionReg:Register;

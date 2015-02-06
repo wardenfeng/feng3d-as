@@ -1,12 +1,12 @@
 package me.feng3d.parsers
 {
 	import flash.net.URLRequest;
-
+	
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.base.ISubGeometry;
 	import me.feng3d.core.base.data.UV;
 	import me.feng3d.core.base.data.Vertex;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
@@ -372,7 +372,7 @@ package me.feng3d.parsers
 			var face:FaceData;
 			var numFaces:uint = faces.length;
 			var numVerts:uint;
-			var subs:Vector.<ISubGeometry>;
+			var subs:Vector.<SubGeometry>;
 
 			var vertices:Vector.<Number> = new Vector.<Number>();
 			var uvs:Vector.<Number> = new Vector.<Number>();
@@ -733,7 +733,7 @@ package me.feng3d.parsers
 					if (useSpecular)
 					{
 
-						basicSpecularMethod = new BasicSpecularMethod(null);
+						basicSpecularMethod = new BasicSpecularMethod();
 						basicSpecularMethod.specularColor = specularColor;
 						basicSpecularMethod.specular = specular;
 

@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 法线取样函数
 	 * @author warden_feng 2014-10-23
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_NormalSample extends FagalMethod
+	public class F_NormalSample extends FagalFragmentMethod
 	{
 		[Register(regName = "normalTexture_fs", regType = "in", description = "法线纹理寄存器")]
 		public var normalTexture:Register;

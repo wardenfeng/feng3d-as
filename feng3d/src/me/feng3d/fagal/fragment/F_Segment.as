@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 线段片段渲染程序
 	 * @author warden_feng 2014-10-28
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_Segment extends FagalMethod
+	public class F_Segment extends FagalFragmentMethod
 	{
 		[Register(regName = "color_v", regType = "in", description = "颜色变量寄存器")]
 		public var color_v:Register;

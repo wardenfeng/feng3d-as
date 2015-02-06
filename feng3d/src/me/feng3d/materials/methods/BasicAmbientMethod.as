@@ -5,9 +5,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.base.IRenderable;
 	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	import me.feng3d.core.proxy.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
 
@@ -31,35 +29,16 @@ package me.feng3d.materials.methods
 		arcane var _lightAmbientG:Number = 0;
 		arcane var _lightAmbientB:Number = 0;
 
-		/** 环境光分量缓冲 */
-		protected var ambientInputBuffer:FCVectorBuffer;
 		/** 环境光分量数据 */
-		private var ambientInputData:Vector.<Number> = new Vector.<Number>(4);
-
-		public function BasicAmbientMethod(pass:MaterialPassBase)
-		{
-			super(pass);
-		}
+		private const ambientInputData:Vector.<Number> = new Vector.<Number>(4);
 
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			ambientInputBuffer = new FCVectorBuffer(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR, updateAmbientInputBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR, FCVectorBuffer, updateAmbientInputBuffer);
 		}
 
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-			context3dCache.addDataBuffer(ambientInputBuffer);
-		}
-		
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-			context3dCache.removeDataBuffer(ambientInputBuffer);
-		}
-		
-		private function updateAmbientInputBuffer():void
+		private function updateAmbientInputBuffer(ambientInputBuffer:FCVectorBuffer):void
 		{
 			ambientInputBuffer.update(ambientInputData);
 		}
@@ -73,7 +52,6 @@ package me.feng3d.materials.methods
 			ambientInputData[1] = ((_ambientColor >> 8) & 0xff) / 0xff * _ambient * _lightAmbientG;
 			ambientInputData[2] = (_ambientColor & 0xff) / 0xff * _ambient * _lightAmbientB;
 			ambientInputData[3] = 1;
-			ambientInputBuffer.invalid();
 		}
 
 		/**

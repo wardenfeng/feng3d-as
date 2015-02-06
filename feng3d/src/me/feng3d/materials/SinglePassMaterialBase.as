@@ -13,7 +13,7 @@ package me.feng3d.materials
 	use namespace arcane;
 	
 	/**
-	 *
+	 * 单通道纹理
 	 * @author warden_feng 2014-6-5
 	 */
 	public class SinglePassMaterialBase extends MaterialBase
@@ -24,7 +24,7 @@ package me.feng3d.materials
 		public function SinglePassMaterialBase()
 		{
 			super();
-			addPass(_screenPass = new SuperShaderPass(this));
+			addPass(_screenPass = new SuperShaderPass());
 		}
 
 		override public function set blendMode(value:String):void
@@ -33,13 +33,16 @@ package me.feng3d.materials
 			_screenPass.setBlendMode(blendMode == BlendMode.NORMAL && requiresBlending ? BlendMode.LAYER : blendMode);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function get requiresBlending():Boolean
 		{
 			return super.requiresBlending || _alphaBlending;
 		}
 
 		/**
-		 * The colour of the ambient reflection.
+		 * 环境光反射颜色
 		 */
 		public function get ambientColor():uint
 		{
@@ -52,7 +55,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * The colour of the specular reflection.
+		 * 镜面反射光反射颜色
 		 */
 		public function get specularColor():uint
 		{
@@ -65,7 +68,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * The overall strength of the specular reflection.
+		 * 镜面反射光反射强度
 		 */
 		public function get specular():Number
 		{
@@ -79,7 +82,7 @@ package me.feng3d.materials
 		}
 		
 		/**
-		 * The strength of the ambient reflection.
+		 * 环境光反射强度
 		 */
 		public function get ambient():Number
 		{
@@ -92,7 +95,7 @@ package me.feng3d.materials
 		}
 		
 		/**
-		 * The method that provides the diffuse lighting contribution. Defaults to BasicDiffuseMethod.
+		 * 漫反射函数
 		 */
 		public function get diffuseMethod():BasicDiffuseMethod
 		{
@@ -105,7 +108,7 @@ package me.feng3d.materials
 		}
 		
 		/**
-		 * The method that provides the ambient lighting contribution. Defaults to BasicAmbientMethod.
+		 * 环境光函数
 		 */
 		public function get ambientMethod():BasicAmbientMethod
 		{
@@ -118,7 +121,7 @@ package me.feng3d.materials
 		}
 		
 		/**
-		 * The method that provides the specular lighting contribution. Defaults to BasicSpecularMethod.
+		 * 镜面反射函数
 		 */
 		public function get specularMethod():BasicSpecularMethod
 		{
@@ -131,8 +134,7 @@ package me.feng3d.materials
 		}
 		
 		/**
-		 * The normal map to modulate the direction of the surface for each texel. The default normal method expects
-		 * tangent-space normal maps, but others could expect object-space maps.
+		 * 法线贴图
 		 */
 		public function get normalMap():Texture2DBase
 		{
@@ -142,6 +144,22 @@ package me.feng3d.materials
 		public function set normalMap(value:Texture2DBase):void
 		{
 			_screenPass.normalMap = value;
+		}
+		
+		/**
+		 * 镜面反射光泽图
+		 */
+		public function get specularMap():Texture2DBase
+		{
+			return _screenPass.specularMethod.texture;
+		}
+		
+		public function set specularMap(value:Texture2DBase):void
+		{
+			if (_screenPass.specularMethod)
+				_screenPass.specularMethod.texture = value;
+			else
+				throw new Error("No specular method was set to assign the specularGlossMap to");
 		}
 		
 		/**

@@ -3,12 +3,12 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	import me.feng3d.core.proxy.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.fagal.ShaderParams;
-	import me.feng3d.passes.MaterialPassBase;
+	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
+	use namespace arcane;
+	
 	/**
 	 *
 	 * @author warden_feng 2014-7-16
@@ -17,36 +17,13 @@ package me.feng3d.materials.methods
 	{
 		private var _texture:Texture2DBase;
 
-		/** 法线纹理数据缓冲 */
-		protected var normalTextureBuffer:FSBuffer;
-
-		public function BasicNormalMethod(pass:MaterialPassBase)
-		{
-			super(pass);
-		}
-
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-
-			normalTextureBuffer = new FSBuffer(Context3DBufferTypeID.NORMALTEXTURE_FS, updateNormalTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.NORMALTEXTURE_FS, FSBuffer, updateNormalTextureBuffer);
 		}
 
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-
-			context3dCache.addDataBuffer(normalTextureBuffer);
-		}
-
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-
-			context3dCache.removeDataBuffer(normalTextureBuffer);
-		}
-
-		private function updateNormalTextureBuffer():void
+		private function updateNormalTextureBuffer(normalTextureBuffer:FSBuffer):void
 		{
 			normalTextureBuffer.update(_texture);
 		}
@@ -69,7 +46,7 @@ package me.feng3d.materials.methods
 
 			_texture = value;
 
-			normalTextureBuffer.invalid();
+			markBufferDirty(Context3DBufferTypeID.NORMALTEXTURE_FS);
 		}
 
 		/**
@@ -91,7 +68,7 @@ package me.feng3d.materials.methods
 
 		override arcane function activate(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy):void
 		{
-			shaderParams.hasNormalTexture = _texture;
+			shaderParams.hasNormalTexture = _texture != null;
 
 			shaderParams.addSampleFlags(Context3DBufferTypeID.NORMALTEXTURE_FS, _texture);
 		}

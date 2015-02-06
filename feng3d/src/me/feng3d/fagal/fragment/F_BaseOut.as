@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 基本颜色输出渲染程序
 	 * @author warden_feng 2014-10-30
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_BaseOut extends FagalMethod
+	public class F_BaseOut extends FagalFragmentMethod
 	{
 		[Register(regName = "texture_fs", regType = "in", description = "片段程序的纹理")]
 		public var texture:Register;

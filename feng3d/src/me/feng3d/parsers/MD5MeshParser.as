@@ -4,9 +4,9 @@ package me.feng3d.parsers
 	import flash.geom.Vector3D;
 
 	import me.feng3d.arcane;
-	import me.feng3d.animators.SkeletonAnimationSet;
-	import me.feng3d.animators.data.Skeleton;
-	import me.feng3d.animators.data.SkeletonJoint;
+	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
+	import me.feng3d.animators.skeleton.data.Skeleton;
+	import me.feng3d.animators.skeleton.data.SkeletonJoint;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.math.Quaternion;
@@ -433,6 +433,7 @@ package me.feng3d.parsers
 
 			//更新索引数据
 			subGeom.updateIndexData(indices);
+			subGeom.numVertices = vertices.length / 3;
 			//更新顶点坐标与uv数据
 			subGeom.fromVectors(vertices, uvs);
 			//更新关节索引与权重索引

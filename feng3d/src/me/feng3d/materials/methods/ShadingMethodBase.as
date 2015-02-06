@@ -2,13 +2,11 @@ package me.feng3d.materials.methods
 {
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.IRenderable;
-	import me.feng3d.core.proxy.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.events.ShadingMethodEvent;
-	import me.feng3d.fagal.ShaderParams;
-	import me.feng3d.library.assets.NamedAssetBase;
-	import me.feng3d.passes.MaterialPassBase;
+	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
 
@@ -16,42 +14,12 @@ package me.feng3d.materials.methods
 	 * 渲染寄存器基类
 	 * @author warden_feng 2014-7-1
 	 */
-	public class ShadingMethodBase extends NamedAssetBase
+	public class ShadingMethodBase extends Context3DBufferOwner
 	{
-		protected var pass:MaterialPassBase;
 
-		public function ShadingMethodBase(pass:MaterialPassBase)
+		public function ShadingMethodBase()
 		{
 			super();
-			this.pass = pass;
-
-			initBuffers();
-		}
-
-		/**
-		 * 初始化context3d数据缓冲
-		 */
-		protected function initBuffers():void
-		{
-
-		}
-
-		/**
-		 * 收集context3d数据缓冲
-		 * @param context3dCache context3d缓存
-		 */
-		public function collectCache(context3dCache:Context3DCache):void
-		{
-
-		}
-
-		/**
-		 * 释放context3d数据缓冲
-		 * @param context3dCache context3d缓存
-		 */
-		public function releaseCache(context3dCache:Context3DCache):void
-		{
-
 		}
 
 		/**

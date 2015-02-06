@@ -15,6 +15,8 @@ package me.feng3d.parsers
 	import me.feng3d.library.assets.IAsset;
 	import me.feng3d.parsers.utils.ParserUtil;
 
+	use namespace arcane;
+	
 	/**
 	 * 解析基类
 	 * @author warden_feng 2014-5-16

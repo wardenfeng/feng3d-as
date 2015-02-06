@@ -2,14 +2,13 @@ package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterMatrix;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalVertexMethod;
 
 	/**
 	 * 顶点世界坐标渲染函数
 	 * @author warden_feng 2014-11-7
 	 */
-	[FagalMethod(methodType = "vertex")]
-	public class V_WorldPosition extends FagalMethod
+	public class V_WorldPosition extends FagalVertexMethod
 	{
 		[Register(regName = "position_va_3", regType = "in", description = "顶点坐标数据")]
 		public var localPositionReg:Register;

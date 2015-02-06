@@ -3,10 +3,10 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	import me.feng3d.core.proxy.Context3DCache;
+	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.fagal.ShaderParams;
-	import me.feng3d.passes.MaterialPassBase;
+	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
 
@@ -16,56 +16,19 @@ package me.feng3d.materials.methods
 	 */
 	public class BasicSpecularMethod extends LightingMethodBase
 	{
-		protected var _useTexture:Boolean;
-
 		private var _gloss:int = 50;
 		private var _specular:Number = 1;
 		private var _specularColor:uint = 0xffffff;
 
-		protected var textureSpecularData:Vector.<Number> = new Vector.<Number>(4);
-		protected var textureSpecularBuffer:FCVectorBuffer;
+		/** 镜面反射数据 */
+		protected const _specularData:Vector.<Number> = new Vector.<Number>(4);
 
+		private var _texture:Texture2DBase;
 
-		private var _isFirstLight:Boolean;
-
-		public function BasicSpecularMethod(pass:MaterialPassBase)
+		public function BasicSpecularMethod()
 		{
-			super(pass);
+			super();
 			updateSpecular();
-		}
-
-		override protected function initBuffers():void
-		{
-			super.initBuffers();
-			textureSpecularBuffer = new FCVectorBuffer(Context3DBufferTypeID.TEXTURESPECULAR_FC_VECTOR, updateTextureSpecularBuffer);
-		}
-
-		private function updateTextureSpecularBuffer():void
-		{
-			textureSpecularBuffer.update(textureSpecularData);
-		}
-
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-
-			context3dCache.addDataBuffer(textureSpecularBuffer);
-		}
-
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-
-			context3dCache.removeDataBuffer(textureSpecularBuffer);
-		}
-
-		override arcane function activate(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy):void
-		{
-			shaderParams.needsUV += _useTexture ? 1 : 0;
-			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
-			shaderParams.needsViewDir += shaderParams.numLights > 0 ? 1 : 0;
-			
-			shaderParams.usingSpecularMethod += 1;
 		}
 
 		/**
@@ -88,17 +51,26 @@ package me.feng3d.materials.methods
 			updateSpecular();
 		}
 
-		private function updateSpecular():void
+		/**
+		 * 镜面反射光泽图
+		 */
+		public function get texture():Texture2DBase
 		{
-			textureSpecularData[0] = ((_specularColor >> 16) & 0xff) / 0xff * _specular;
-			textureSpecularData[1] = ((_specularColor >> 8) & 0xff) / 0xff * _specular;
-			textureSpecularData[2] = (_specularColor & 0xff) / 0xff * _specular;
-			textureSpecularData[3] = _gloss;
-			textureSpecularBuffer.invalid();
+			return _texture;
+		}
+
+		public function set texture(value:Texture2DBase):void
+		{
+			if (Boolean(value) != Boolean(_texture) || (value && _texture && (value.hasMipMaps != _texture.hasMipMaps || value.format != _texture.format)))
+			{
+				invalidateShaderProgram();
+			}
+			_texture = value;
+			markBufferDirty(Context3DBufferTypeID.SPECULARTEXTURE_FS);
 		}
 
 		/**
-		 * 镜面反射光强
+		 * 镜面反射光反射强度
 		 */
 		public function get specular():Number
 		{
@@ -112,6 +84,50 @@ package me.feng3d.materials.methods
 
 			_specular = value;
 			updateSpecular();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function initBuffers():void
+		{
+			super.initBuffers();
+			mapContext3DBuffer(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR, FCVectorBuffer, updateSpecularDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SPECULARTEXTURE_FS, FSBuffer, updateSpecularTextureBuffer);
+		}
+
+		private function updateSpecularDataBuffer(_specularDataBuffer:FCVectorBuffer):void
+		{
+			_specularDataBuffer.update(_specularData);
+		}
+
+		private function updateSpecularTextureBuffer(_specularTextureBuffer:FSBuffer):void
+		{
+			_specularTextureBuffer.update(_texture);
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override arcane function activate(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy):void
+		{
+			shaderParams.needsUV += _texture != null ? 1 : 0;
+			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
+			shaderParams.needsViewDir += shaderParams.numLights > 0 ? 1 : 0;
+
+			shaderParams.usingSpecularMethod += 1;
+
+			shaderParams.hasSpecularTexture = _texture != null;
+
+			shaderParams.addSampleFlags(Context3DBufferTypeID.SPECULARTEXTURE_FS, _texture);
+		}
+
+		private function updateSpecular():void
+		{
+			_specularData[0] = ((_specularColor >> 16) & 0xff) / 0xff * _specular;
+			_specularData[1] = ((_specularColor >> 8) & 0xff) / 0xff * _specular;
+			_specularData[2] = (_specularColor & 0xff) / 0xff * _specular;
+			_specularData[3] = _gloss;
 		}
 	}
 }

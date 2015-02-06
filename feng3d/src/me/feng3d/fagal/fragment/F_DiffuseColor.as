@@ -1,14 +1,13 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 漫反射材质颜色
 	 * @author warden_feng 2014-11-6
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_DiffuseColor extends FagalMethod
+	public class F_DiffuseColor extends FagalFragmentMethod
 	{
 		[Register(regName = "diffuseInput_fc_vector", regType = "in", description = "漫射输入静态数据")]
 		public var _diffuseInputRegister:Register;

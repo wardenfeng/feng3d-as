@@ -2,14 +2,13 @@ package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterVector;
-	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.methods.FagalFragmentMethod;
 
 	/**
 	 * 地形渲染函数
 	 * @author warden_feng 2014-11-6
 	 */
-	[FagalMethod(methodType = "fragment")]
-	public class F_TerrainDiffusePostLighting extends FagalMethod
+	public class F_TerrainDiffusePostLighting extends FagalFragmentMethod
 	{
 		[Register(regName = "terrainTextures_fs", regType = "in", regNum = "numSplattingLayers", description = "土壤纹理列表")]
 		public var splatFsarr:RegisterVector;

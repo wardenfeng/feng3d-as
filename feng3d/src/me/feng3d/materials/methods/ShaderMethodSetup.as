@@ -1,14 +1,12 @@
 package me.feng3d.materials.methods
 {
-	import me.feng.events.FEventDispatcher;
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.IRenderable;
-	import me.feng3d.core.proxy.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.events.ShadingMethodEvent;
-	import me.feng3d.fagal.ShaderParams;
-	import me.feng3d.passes.MaterialPassBase;
+	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
 
@@ -16,23 +14,19 @@ package me.feng3d.materials.methods
 	 * 渲染函数设置
 	 * @author warden_feng 2014-7-1
 	 */
-	public class ShaderMethodSetup extends FEventDispatcher
+	public class ShaderMethodSetup extends Context3DBufferOwner
 	{
 		arcane var _normalMethod:BasicNormalMethod;
 		arcane var _ambientMethod:BasicAmbientMethod;
 		arcane var _diffuseMethod:BasicDiffuseMethod;
 		arcane var _specularMethod:BasicSpecularMethod;
 
-		protected var pass:MaterialPassBase;
-
-		public function ShaderMethodSetup(pass:MaterialPassBase)
+		public function ShaderMethodSetup()
 		{
-			this.pass = pass;
-
-			normalMethod = new BasicNormalMethod(pass);
-			ambientMethod = new BasicAmbientMethod(pass);
-			diffuseMethod = new BasicDiffuseMethod(pass);
-			specularMethod = new BasicSpecularMethod(pass);
+			normalMethod = new BasicNormalMethod();
+			ambientMethod = new BasicAmbientMethod();
+			diffuseMethod = new BasicDiffuseMethod();
+			specularMethod = new BasicSpecularMethod();
 		}
 
 		/**
@@ -50,6 +44,7 @@ package me.feng3d.materials.methods
 				_diffuseMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
 				if (value)
 					value.copyFrom(_diffuseMethod);
+				removeChildBufferOwner(_diffuseMethod);
 			}
 
 			_diffuseMethod = value;
@@ -57,6 +52,7 @@ package me.feng3d.materials.methods
 			if (_diffuseMethod)
 			{
 				_diffuseMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+				addChildBufferOwner(_diffuseMethod);
 			}
 
 			invalidateShaderProgram();
@@ -77,6 +73,7 @@ package me.feng3d.materials.methods
 				_specularMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
 				if (value)
 					value.copyFrom(_specularMethod);
+				removeChildBufferOwner(_specularMethod);
 			}
 
 			_specularMethod = value;
@@ -84,6 +81,7 @@ package me.feng3d.materials.methods
 			if (_specularMethod)
 			{
 				_specularMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+				addChildBufferOwner(_specularMethod);
 			}
 
 			invalidateShaderProgram();
@@ -104,6 +102,8 @@ package me.feng3d.materials.methods
 				_normalMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
 				if (value)
 					value.copyFrom(_normalMethod);
+				
+				removeChildBufferOwner(_normalMethod);
 			}
 
 			_normalMethod = value;
@@ -111,6 +111,7 @@ package me.feng3d.materials.methods
 			if (_normalMethod)
 			{
 				_normalMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+				addChildBufferOwner(_normalMethod);
 			}
 
 			invalidateShaderProgram();
@@ -147,6 +148,7 @@ package me.feng3d.materials.methods
 				_ambientMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
 				if (value)
 					value.copyFrom(_ambientMethod);
+				removeChildBufferOwner(_ambientMethod);
 			}
 
 			_ambientMethod = value;
@@ -154,25 +156,10 @@ package me.feng3d.materials.methods
 			if (_ambientMethod)
 			{
 				_ambientMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+				addChildBufferOwner(_ambientMethod);
 			}
 
 			invalidateShaderProgram();
-		}
-
-		public function collectCache(context3dCache:Context3DCache):void
-		{
-			normalMethod.collectCache(context3dCache);
-			ambientMethod.collectCache(context3dCache);
-			diffuseMethod.collectCache(context3dCache);
-			specularMethod.collectCache(context3dCache);
-		}
-
-		public function releaseCache(context3dCache:Context3DCache):void
-		{
-			normalMethod.releaseCache(context3dCache);
-			ambientMethod.releaseCache(context3dCache);
-			diffuseMethod.releaseCache(context3dCache);
-			specularMethod.releaseCache(context3dCache);
 		}
 
 		public function setRenderState(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
