@@ -1,25 +1,19 @@
 package me.feng3d.entities.segment
 {
 
-	import flash.display3D.Context3DVertexBufferFormat;
-
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.core.buffer.context3d.VABuffer;
-	import me.feng3d.core.proxy.Context3DCache;
 
 	/**
-	 * 线段渲染数据缓冲
+	 * 线段渲染数据缓存
 	 * @author warden_feng 2014-5-9
 	 */
 	public class SegmentSubGeometry extends SubGeometry
 	{
-		protected var _seg0Buffer:VABuffer;
-		protected var _seg1Buffer:VABuffer;
-		protected var _seg2Buffer:VABuffer;
-		protected var _seg3Buffer:VABuffer;
-
 		/** 更新回调函数 */
 		protected var _updateFunc:Function;
+
+		/** 线段数据是否脏了 */
+		private var _segmentDataDirty:Boolean = true;
 
 		public function SegmentSubGeometry(updateFunc:Function)
 		{
@@ -29,81 +23,96 @@ package me.feng3d.entities.segment
 
 		override protected function initBuffers():void
 		{
-			// TODO Auto Generated method stub
 			super.initBuffers();
 
-			_seg0Buffer = new VABuffer(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3, updateSegment0);
-			_seg1Buffer = new VABuffer(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3, updateSegment1);
-			_seg2Buffer = new VABuffer(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1, updateSegment2);
-			_seg3Buffer = new VABuffer(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4, updateSegment3);
-
-			_seg0Buffer.dataBuffer = _seg1Buffer.dataBuffer = _seg2Buffer.dataBuffer = _seg3Buffer.dataBuffer = _vertexBuffer.dataBuffer;
+			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3, 3);
+			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3, 3);
+			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1, 1);
+			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4, 4);
 		}
 
-		override public function collectCache(context3dCache:Context3DCache):void
-		{
-			super.collectCache(context3dCache);
-
-			context3dCache.addDataBuffer(_seg0Buffer);
-			context3dCache.addDataBuffer(_seg1Buffer);
-			context3dCache.addDataBuffer(_seg2Buffer);
-			context3dCache.addDataBuffer(_seg3Buffer);
-		}
-
-		override public function releaseCache(context3dCache:Context3DCache):void
-		{
-			super.releaseCache(context3dCache);
-
-			context3dCache.removeDataBuffer(_seg0Buffer);
-			context3dCache.removeDataBuffer(_seg1Buffer);
-			context3dCache.removeDataBuffer(_seg2Buffer);
-			context3dCache.removeDataBuffer(_seg3Buffer);
-		}
-
-		override protected function updateIndexBuffer():void
+		override public function get indices():Vector.<uint>
 		{
 			doUpdateFunc();
-			super.updateIndexBuffer();
+			return _indices;
 		}
 
-		protected function updateSegment0():void
+		public function get pointData0():Vector.<Number>
+		{
+			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3);
+			return data;
+		}
+
+		public function get pointData1():Vector.<Number>
+		{
+			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3);
+			return data;
+		}
+
+		public function get thicknessData():Vector.<Number>
+		{
+			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
+			return data;
+		}
+
+		public function get colorData():Vector.<Number>
+		{
+			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4);
+			return data;
+		}
+
+		public function get pointData0Stride():int
+		{
+			return 3;
+		}
+
+		public function get pointData1Stride():int
+		{
+			return 3;
+		}
+
+		public function get thicknessDataStride():int
+		{
+			return 1;
+		}
+
+		public function get colorDataStride():int
+		{
+			return 4;
+		}
+
+		public function updatePointData0(value:Vector.<Number>):void
+		{
+			setVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3, value);
+		}
+
+		public function updatePointData1(value:Vector.<Number>):void
+		{
+			setVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3, value);
+		}
+
+		public function updateThicknessData(value:Vector.<Number>):void
+		{
+			setVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1, value);
+		}
+
+		public function updateColorData(value:Vector.<Number>):void
+		{
+			setVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4, value);
+		}
+
+		override protected function updateVAdata(dataTypeId:String):void
 		{
 			doUpdateFunc();
-			_seg0Buffer.update(vertexData, numVertices, vertexStride, 0, Context3DVertexBufferFormat.FLOAT_3);
+			super.updateVAdata(dataTypeId);
 		}
-
-		protected function updateSegment1():void
-		{
-			doUpdateFunc();
-			_seg1Buffer.update(vertexData, numVertices, vertexStride, 3, Context3DVertexBufferFormat.FLOAT_3);
-		}
-
-		protected function updateSegment2():void
-		{
-			doUpdateFunc();
-			_seg2Buffer.update(vertexData, numVertices, vertexStride, 6, Context3DVertexBufferFormat.FLOAT_1);
-		}
-
-		protected function updateSegment3():void
-		{
-			doUpdateFunc();
-			_seg3Buffer.update(vertexData, numVertices, vertexStride, 7, Context3DVertexBufferFormat.FLOAT_4);
-		}
-
-		override public function get vertexStride():uint
-		{
-			return 11;
-		}
-
-		/** 线段数据是否脏了 */
-		private var _segmentDataDirty:Boolean = true;
 
 		protected function doUpdateFunc():void
 		{
-			if (_updateFunc && _segmentDataDirty)
+			if (_updateFunc != null && _segmentDataDirty)
 			{
-				_updateFunc();
 				_segmentDataDirty = false;
+				_updateFunc();
 			}
 		}
 
@@ -111,11 +120,10 @@ package me.feng3d.entities.segment
 		{
 			_segmentDataDirty = true;
 
-			_indexBuffer.invalid();
-			_seg0Buffer.invalid();
-			_seg1Buffer.invalid();
-			_seg2Buffer.invalid();
-			_seg3Buffer.invalid();
+			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3);
+			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3);
+			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
+			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4);
 		}
 	}
 }

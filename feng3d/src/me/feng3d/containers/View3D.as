@@ -3,6 +3,7 @@ package me.feng3d.containers
 	import flash.display.Sprite;
 	import flash.display3D.Context3D;
 	import flash.events.Event;
+	import flash.geom.Point;
 	import flash.geom.Vector3D;
 	
 	import me.feng3d.arcane;
@@ -48,7 +49,7 @@ package me.feng3d.containers
 		 * @param scene 场景
 		 * @param camera 照相机
 		 * @param stage3DProxy
-		 */		
+		 */
 		public function View3D(scene:Scene3D = null, camera:Camera3D = null, stage3DProxy:Stage3DProxy = null)
 		{
 			_scene = scene || new Scene3D();
@@ -68,7 +69,7 @@ package me.feng3d.containers
 
 		/**
 		 * 照相机
-		 */		
+		 */
 		public function get camera():Camera3D
 		{
 			return _camera;
@@ -124,6 +125,11 @@ package me.feng3d.containers
 			render();
 		}
 
+		public function addSourceURL(url:String):void
+		{
+
+		}
+
 		public function render():void
 		{
 			var context3D:Context3D = stage3DProxy.context3D;
@@ -142,7 +148,7 @@ package me.feng3d.containers
 
 			//收集场景显示对象
 			_scene.collectMouseCollisionEntitys();
-			
+
 			//获取鼠标射线
 			var mouseRay3D:Ray3D = getMouseRay3D();
 			//更新鼠标碰撞
@@ -225,6 +231,14 @@ package me.feng3d.containers
 		}
 
 		/**
+		 * 渲染面数
+		 */
+		public function get renderedFacesCount():uint
+		{
+			return 0;
+		}
+
+		/**
 		 * Updates the backbuffer dimensions.
 		 */
 		protected function updateBackBuffer():void
@@ -303,16 +317,45 @@ package me.feng3d.containers
 		}
 
 		/**
+		 * 投影坐标（世界坐标转换为场景坐标）
+		 * @param point3d 世界坐标
+		 * @return 屏幕的绝对坐标
+		 */
+		public function project(point3d:Vector3D):Vector3D
+		{
+			var v:Vector3D = _camera.project(point3d);
+
+			v.x = (v.x + 1.0) * _width / 2.0;
+			v.y = (v.y + 1.0) * _height / 2.0;
+
+			return v;
+		}
+
+		/**
 		 * 屏幕坐标投影到场景坐标
-		 * @param nX 屏幕坐标X -1（左） -> 1（右）
-		 * @param nY 屏幕坐标Y -1（上） -> 1（下）
+		 * @param nX 屏幕坐标X ([0-width])
+		 * @param nY 屏幕坐标Y ([0-height])
 		 * @param sZ 到屏幕的距离
 		 * @param v 场景坐标（输出）
 		 * @return 场景坐标
 		 */
 		public function unproject(sX:Number, sY:Number, sZ:Number, v:Vector3D = null):Vector3D
 		{
-			return _camera.unproject((sX * 2 - _width) / _stage3DProxy.width, (sY * 2 - _height) / _stage3DProxy.height, sZ, v);
+			var gpuPos:Point = screenToGpuPosition(new Point(sX, sY));
+			return _camera.unproject(gpuPos.x, gpuPos.y, sZ, v);
+		}
+
+		/**
+		 * 屏幕坐标转GPU坐标
+		 * @param screenPos 屏幕坐标 (x:[0-width],y:[0-height])
+		 * @return GPU坐标 (x:[-1,1],y:[-1-1])
+		 */
+		public function screenToGpuPosition(screenPos:Point):Point
+		{
+			var gpuPos:Point = new Point();
+			gpuPos.x = (screenPos.x * 2 - _width) / _stage3DProxy.width;
+			gpuPos.y = (screenPos.y * 2 - _height) / _stage3DProxy.height;
+			return gpuPos;
 		}
 
 		private static const tempRayPosition:Vector3D = new Vector3D();
@@ -339,8 +382,20 @@ package me.feng3d.containers
 			rayDirection.x = rayDirection.x - rayPosition.x;
 			rayDirection.y = rayDirection.y - rayPosition.y;
 			rayDirection.z = rayDirection.z - rayPosition.z;
+			rayDirection.normalize();
 			var ray3D:Ray3D = new Ray3D(rayPosition, rayDirection);
 			return ray3D;
 		}
+
+		public function get renderer():Renderer
+		{
+			return _renderer;
+		}
+
+		public function set renderer(value:Renderer):void
+		{
+			_renderer = value;
+		}
+
 	}
 }

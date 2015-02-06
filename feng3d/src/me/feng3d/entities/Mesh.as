@@ -1,15 +1,15 @@
 package me.feng3d.entities
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.Animator;
-	import me.feng3d.animators.VertexAnimator;
+	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.vertex.VertexAnimator;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.IMaterialOwner;
-	import me.feng3d.core.base.ISubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.events.GeometryEvent;
 	import me.feng3d.library.assets.AssetType;
@@ -31,7 +31,7 @@ package me.feng3d.entities
 
 		protected var _material:MaterialBase;
 
-		protected var _animator:Animator;
+		protected var _animator:IAnimator;
 
 		/**
 		 * 新建网格
@@ -54,7 +54,7 @@ package me.feng3d.entities
 
 			if (_geometry)
 			{
-				_geometry.removeEventListener(GeometryEvent.BOUNDS_INVALID, onGeometryBoundsInvalid);
+				_geometry.removeEventListener(GeometryEvent.SHAPE_CHANGE, onGeometryBoundsInvalid);
 				_geometry.removeEventListener(GeometryEvent.SUB_GEOMETRY_ADDED, onSubGeometryAdded);
 				_geometry.removeEventListener(GeometryEvent.SUB_GEOMETRY_REMOVED, onSubGeometryRemoved);
 
@@ -67,11 +67,11 @@ package me.feng3d.entities
 
 			if (_geometry)
 			{
-				_geometry.addEventListener(GeometryEvent.BOUNDS_INVALID, onGeometryBoundsInvalid);
+				_geometry.addEventListener(GeometryEvent.SHAPE_CHANGE, onGeometryBoundsInvalid);
 				_geometry.addEventListener(GeometryEvent.SUB_GEOMETRY_ADDED, onSubGeometryAdded);
 				_geometry.addEventListener(GeometryEvent.SUB_GEOMETRY_REMOVED, onSubGeometryRemoved);
 
-				var subGeoms:Vector.<ISubGeometry> = _geometry.subGeometries;
+				var subGeoms:Vector.<SubGeometry> = _geometry.subGeometries;
 
 				for (i = 0; i < subGeoms.length; ++i)
 					addSubMesh(subGeoms[i]);
@@ -136,12 +136,12 @@ package me.feng3d.entities
 			return _pickingCollisionVO.renderable != null;
 		}
 
-		public function get animator():Animator
+		public function get animator():IAnimator
 		{
 			return _animator;
 		}
 
-		public function set animator(value:Animator):void
+		public function set animator(value:IAnimator):void
 		{
 			_animator = value;
 			
@@ -158,8 +158,8 @@ package me.feng3d.entities
 					oldSubGeometry = oldGeometry.subGeometries[i] as SubGeometry;
 					newSubGeometry = new VertexSubGeometry();
 					GeomUtil.copyDataSubGeom(oldSubGeometry, newSubGeometry);
-					newSubGeometry.updateVertexData0(oldSubGeometry.vertexData.concat());
-					newSubGeometry.updateVertexData1(oldSubGeometry.vertexData.concat());
+					newSubGeometry.updateVertexData0(oldSubGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
+					newSubGeometry.updateVertexData1(oldSubGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
 					geometry.addSubGeometry(newSubGeometry);
 				}
 			}
@@ -176,13 +176,12 @@ package me.feng3d.entities
 			return _subMeshes;
 		}
 
-		protected function addSubMesh(subGeometry:ISubGeometry):void
+		protected function addSubMesh(subGeometry:SubGeometry):void
 		{
 			var subMesh:SubMesh = new SubMesh(subGeometry, this, null);
 			var len:uint = _subMeshes.length;
 			subMesh._index = len;
 			_subMeshes[len] = subMesh;
-			invalidateBounds();
 		}
 		
 		private function onGeometryBoundsInvalid(event:GeometryEvent):void
@@ -193,12 +192,13 @@ package me.feng3d.entities
 		private function onSubGeometryAdded(event:GeometryEvent):void
 		{
 			addSubMesh(event.subGeometry);
+			invalidateBounds();
 		}
 
 		private function onSubGeometryRemoved(event:GeometryEvent):void
 		{
 			var subMesh:SubMesh;
-			var subGeom:ISubGeometry = event.subGeometry;
+			var subGeom:SubGeometry = event.subGeometry;
 			var len:int = _subMeshes.length;
 			var i:uint;
 
@@ -221,6 +221,8 @@ package me.feng3d.entities
 			--len;
 			for (; i < len; ++i)
 				_subMeshes[i]._index = i;
+			
+			invalidateBounds();
 		}
 
 		public override function get assetType():String
@@ -232,6 +234,7 @@ package me.feng3d.entities
 		{
 			if (subMeshes == null)
 				return;
+//			trace("渲染"+name);
 			for (var i:int = 0; i < subMeshes.length; i++)
 			{
 				var subMesh:SubMesh = subMeshes[i];

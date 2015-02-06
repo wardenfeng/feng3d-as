@@ -43,9 +43,9 @@ package me.feng3d.core.base
 			//处理3D鼠标事件禁用
 			if (event is MouseEvent3D && !mouseEnabled)
 			{
-				if (parentDispatcher)
+				if (parent)
 				{
-					return parentDispatcher.dispatchEvent(event);
+					return parent.dispatchEvent(event);
 				}
 				return false;
 			}

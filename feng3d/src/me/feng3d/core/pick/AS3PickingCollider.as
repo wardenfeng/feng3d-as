@@ -2,9 +2,9 @@ package me.feng3d.core.pick
 {
 	import flash.geom.Vector3D;
 	
-	import me.feng3d.core.base.ISubGeometry;
-	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.base.submesh.SubMesh;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 
 	/**
 	 * 使用纯AS3计算与实体相交
@@ -39,17 +39,16 @@ package me.feng3d.core.pick
 			var nl:Number, nDotV:Number, D:Number, disToPlane:Number;
 			var Q1Q2:Number, Q1Q1:Number, Q2Q2:Number, RQ1:Number, RQ2:Number;
 			
-			var subGeom:ISubGeometry = subMesh.subGeometry;
+			var subGeom:SubGeometry = subMesh.subGeometry as SubGeometry;
 			
 			var indexData:Vector.<uint> = subGeom.indexData;
-			var vertexData:Vector.<Number> = subGeom.vertexData;
-			var uvData:Vector.<Number> = subGeom.UVData;
+			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+			var uvData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.UV_VA_2);
 			var collisionTriangleIndex:int = -1;
 
-			var vertexStride:uint = subGeom.vertexStride;
-			var vertexOffset:uint = subGeom.vertexOffset;
-			var uvStride:uint = subGeom.UVStride;
-			var uvOffset:uint = subGeom.UVOffset;
+			var vertexStride:uint = subGeom.getVALen(Context3DBufferTypeID.POSITION_VA_3);
+			var vertexOffset:uint = 0;
+			var uvStride:uint = subGeom.getVALen(Context3DBufferTypeID.UV_VA_2);
 			var numIndices:int = indexData.length;
 
 			//遍历每个三角形 检测碰撞
@@ -128,7 +127,7 @@ package me.feng3d.core.pick
 						pickingCollisionVO.rayEntryDistance = t;
 						pickingCollisionVO.localPosition = new Vector3D(cx, cy, cz);
 						pickingCollisionVO.localNormal = new Vector3D(nx, ny, nz);
-						pickingCollisionVO.uv = getCollisionUV(indexData, uvData, index, v, w, u, uvOffset, uvStride);
+						pickingCollisionVO.uv = getCollisionUV(indexData, uvData, index, v, w, u, 0, uvStride);
 						pickingCollisionVO.index = index;
 
 						//是否继续寻找最优解

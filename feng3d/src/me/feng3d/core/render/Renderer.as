@@ -54,7 +54,7 @@ package me.feng3d.core.render
 		{
 			var context3D:Context3D = stage3DProxy.context3D;
 			context3D.clear(_backgroundR, _backgroundG, _backgroundB, _backgroundAlpha, 1, 0);
-			
+//			trace("开始渲染");
 			for each (var entity:Entity in displayEntityDic) 
 			{
 				if (entity is Mesh || entity is IRenderable)

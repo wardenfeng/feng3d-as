@@ -1,34 +1,38 @@
 package me.feng3d.core.base.submesh
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.Animator;
+	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.data.AnimationSubGeometry;
 	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.IRenderable;
-	import me.feng3d.core.base.ISubGeometry;
-	import me.feng3d.core.proxy.Context3DCache;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.events.MaterialEvent;
 	import me.feng3d.materials.MaterialBase;
-	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
 
 	/**
 	 * 子网格，可渲染对象
 	 */
-	public class SubMesh implements IRenderable
+	public class SubMesh extends Context3DBufferOwner implements IRenderable
 	{
 		protected var _material:MaterialBase;
 		protected var _parentMaterial:MaterialBase;
 		protected var _parentMesh:Mesh;
-		protected var _subGeometry:ISubGeometry;
+		protected var _subGeometry:SubGeometry;
 		arcane var _index:uint;
 
 		private var _materialUsed:MaterialBase;
 
-		private var _animator:Animator;
+		private var _animator:IAnimator;
+
+		private var _animationSubGeometry:AnimationSubGeometry;
+
+		private var _context3dCache:Context3DCache;
 
 		/**
 		 * 创建一个子网格
@@ -36,11 +40,19 @@ package me.feng3d.core.base.submesh
 		 * @param parentMesh 父网格
 		 * @param material 材质
 		 */
-		public function SubMesh(subGeometry:ISubGeometry, parentMesh:Mesh, material:MaterialBase = null)
+		public function SubMesh(subGeometry:SubGeometry, parentMesh:Mesh, material:MaterialBase = null)
 		{
 			this.parentMesh = parentMesh;
 			this.subGeometry = subGeometry;
 			this.material = material;
+
+			_context3dCache = new Context3DCache()
+			activateContext3DBuffer(_context3dCache);
+		}
+
+		public function get context3dCache():Context3DCache
+		{
+			return _context3dCache;
 		}
 
 		/**
@@ -55,29 +67,13 @@ package me.feng3d.core.base.submesh
 		{
 			if (_materialUsed)
 			{
-				_materialUsed.releaseCache(context3dCache);
-				_materialUsed.removeEventListener(MaterialEvent.PASS_ADDED, onPassAdded);
-				_materialUsed.removeEventListener(MaterialEvent.PASS_REMOVED, onPassRemoved);
+				removeChildBufferOwner(_materialUsed);
 			}
 			_materialUsed = value;
 			if (_materialUsed)
 			{
-				_materialUsed.collectCache(context3dCache);
-				_materialUsed.addEventListener(MaterialEvent.PASS_ADDED, onPassAdded);
-				_materialUsed.addEventListener(MaterialEvent.PASS_REMOVED, onPassRemoved);
+				addChildBufferOwner(_materialUsed);
 			}
-		}
-
-		private function onPassRemoved(event:MaterialEvent):void
-		{
-			var pass:MaterialPassBase = event.data;
-			pass.releaseCache(context3dCache);
-		}
-
-		private function onPassAdded(event:MaterialEvent):void
-		{
-			var pass:MaterialPassBase = event.data;
-			pass.collectCache(context3dCache);
 		}
 
 		/**
@@ -131,44 +127,73 @@ package me.feng3d.core.base.submesh
 		}
 
 		/**
-		 * The SubGeometry object which provides the geometry data for this SubMesh.
+		 * 子网格
 		 */
-		public function get subGeometry():ISubGeometry
+		public function get subGeometry():SubGeometry
 		{
 			return _subGeometry;
 		}
 
-		public function set subGeometry(value:ISubGeometry):void
+		public function set subGeometry(value:SubGeometry):void
 		{
 			if (_subGeometry)
 			{
-				_subGeometry.releaseCache(context3dCache);
+				removeChildBufferOwner(_subGeometry);
 			}
 			_subGeometry = value;
 			if (_subGeometry)
 			{
-				_subGeometry.collectCache(context3dCache);
+				addChildBufferOwner(_subGeometry);
 			}
 		}
 
-		public function get animator():Animator
+		/**
+		 * 动画顶点数据(例如粒子特效的时间、位置偏移、速度等等)
+		 */
+		public function get animationSubGeometry():AnimationSubGeometry
+		{
+			return _animationSubGeometry;
+		}
+
+		public function set animationSubGeometry(value:AnimationSubGeometry):void
+		{
+			if (_animationSubGeometry)
+			{
+				removeChildBufferOwner(_animationSubGeometry);
+			}
+			_animationSubGeometry = value;
+			if (_animationSubGeometry)
+			{
+				addChildBufferOwner(_animationSubGeometry);
+			}
+		}
+
+		public function get animator():IAnimator
 		{
 			return _animator;
 		}
 
-		public function set animator(value:Animator):void
+		public function set animator(value:IAnimator):void
 		{
 			if (_animator)
 			{
-				_animator.releaseCache(context3dCache);
+				removeChildBufferOwner(_animator);
 				materialUsed.animationSet = null;
 			}
 			_animator = value;
 			if (_animator)
 			{
-				_animator.collectCache(context3dCache);
+				addChildBufferOwner(_animator);
 				materialUsed.animationSet = _animator.animationSet;
 			}
+		}
+
+		/**
+		 * 父网格
+		 */
+		arcane function get parentMesh():Mesh
+		{
+			return _parentMesh;
 		}
 
 		arcane function set parentMesh(value:Mesh):void
@@ -177,11 +202,11 @@ package me.feng3d.core.base.submesh
 			parentMaterial = _parentMesh.material;
 		}
 
-		public function dispose():void
-		{
-			material = null;
-		}
-
+		/**
+		 * 渲染子网格
+		 * @param stage3DProxy 
+		 * @param camera			摄像机
+		 */		
 		public function render(stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
 			if (!_parentMesh.visible)
@@ -198,11 +223,9 @@ package me.feng3d.core.base.submesh
 			context3dCache.render(stage3DProxy.context3D);
 		}
 
-		private var _context3dCache:Context3DCache;
-
-		public function get context3dCache():Context3DCache
+		public function dispose():void
 		{
-			return _context3dCache ||= new Context3DCache();
+			material = null;
 		}
 	}
 }

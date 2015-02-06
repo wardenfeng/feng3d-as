@@ -145,18 +145,6 @@ package me.feng3d.containers
 			return mouseChildren && (parent ? parent.ancestorsAllowMouseEnabled : true);
 		}
 
-		override protected function notifySceneTransformChange():void
-		{
-			super.notifySceneTransformChange();
-
-			var i:uint;
-			var len:uint = _children.length;
-
-			//act recursively on child objects
-			while (i < len)
-				_children[i++].notifySceneTransformChange();
-		}
-
 		public function get assetType():String
 		{
 			return AssetType.CONTAINER;

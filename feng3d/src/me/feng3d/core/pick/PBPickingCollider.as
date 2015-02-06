@@ -5,8 +5,9 @@ package me.feng3d.core.pick
 	import flash.geom.Point;
 	import flash.utils.ByteArray;
 	
-	import me.feng3d.core.base.ISubGeometry;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.math.Ray3D;
 
 	/**
@@ -52,13 +53,13 @@ package me.feng3d.core.pick
 
 		public function testSubMeshCollision(subMesh:SubMesh, pickingCollisionVO:PickingCollisionVO, shortestCollisionDistance:Number, bothSides:Boolean = true):Boolean
 		{
-			var subGeom:ISubGeometry = subMesh.subGeometry;
-			
+			var subGeom:SubGeometry = subMesh.subGeometry;
+
 			var cx:Number, cy:Number, cz:Number;
 			var u:Number, v:Number, w:Number;
 			var indexData:Vector.<uint> = subGeom.indexData;
-			var vertexData:Vector.<Number> = subGeom.vertexData;
-			var uvData:Vector.<Number> = subGeom.UVData;
+			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+			var uvData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.UV_VA_2);
 			var numericIndexData:Vector.<Number> = Vector.<Number>(indexData);
 			var indexBufferDims:Point = evaluateArrayAsGrid(numericIndexData);
 

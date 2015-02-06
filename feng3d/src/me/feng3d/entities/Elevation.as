@@ -1,9 +1,10 @@
 package me.feng3d.entities
 {
 	import flash.display.BitmapData;
-	
+
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.materials.MaterialBase;
 
 	/**
@@ -52,6 +53,8 @@ package me.feng3d.entities
 			_maxElevation = maxElevation;
 			_minElevation = minElevation;
 
+			_subGeometry.numVertices = (_segmentsH + 1) * (_segmentsW + 1);
+
 			buildUVs();
 			buildGeometry();
 		}
@@ -59,7 +62,7 @@ package me.feng3d.entities
 
 		/**
 		 * 创建顶点坐标
-		 */		
+		 */
 		private function buildGeometry():void
 		{
 			var vertices:Vector.<Number>;
@@ -78,16 +81,8 @@ package me.feng3d.entities
 			var u:Number, v:Number;
 			var y:Number;
 
-			if (numVerts == _subGeometry.numVertices)
-			{
-				vertices = _subGeometry.vertexData;
-				indices = _subGeometry.indexData;
-			}
-			else
-			{
-				vertices = new Vector.<Number>(numVerts * 3, true);
-				indices = new Vector.<uint>(_segmentsH * _segmentsW * 6, true);
-			}
+			vertices = _subGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3) || new Vector.<Number>(numVerts * 3, true);
+			indices = _subGeometry.indexData || new Vector.<uint>(_segmentsH * _segmentsW * 6, true);
 
 			numVerts = 0;
 			var col:uint;
@@ -127,7 +122,7 @@ package me.feng3d.entities
 				}
 			}
 
-			_subGeometry.updateVertexData(vertices);
+			_subGeometry.updateVertexPositionData(vertices);
 			_subGeometry.updateIndexData(indices);
 		}
 
@@ -139,9 +134,8 @@ package me.feng3d.entities
 			var uvs:Vector.<Number> = new Vector.<Number>();
 			var numUvs:uint = (_segmentsH + 1) * (_segmentsW + 1) * 2;
 
-			if (_subGeometry.UVData && numUvs == _subGeometry.UVData.length)
-				uvs = _subGeometry.UVData;
-			else
+			uvs = _subGeometry.getVAData(Context3DBufferTypeID.UV_VA_2);
+			if (uvs == null || numUvs != uvs.length)
 				uvs = new Vector.<Number>(numUvs, true);
 
 			numUvs = 0;
@@ -155,7 +149,7 @@ package me.feng3d.entities
 				}
 			}
 
-			_subGeometry.updateUVData(uvs);
+			_subGeometry.setVAData(Context3DBufferTypeID.UV_VA_2, uvs);
 		}
 
 		/**
@@ -169,15 +163,15 @@ package me.feng3d.entities
 			//得到高度图中的值
 			var u:uint = (x / _width + .5) * (_heightMap.width - 1);
 			var v:uint = (-z / _depth + .5) * (_heightMap.height - 1);
-			
+
 			var col:uint = _heightMap.getPixel(u, v) & 0xff;
-			
+
 			var h:Number;
-			if(col > _maxElevation)
+			if (col > _maxElevation)
 			{
 				h = (_maxElevation / 0xff) * _height;
 			}
-			else if(col < _minElevation)
+			else if (col < _minElevation)
 			{
 				h = (_minElevation / 0xff) * _height;
 			}
@@ -185,7 +179,7 @@ package me.feng3d.entities
 			{
 				h = (col / 0xff) * _height;
 			}
-			
+
 			return h;
 		}
 	}

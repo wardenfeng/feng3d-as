@@ -1,13 +1,8 @@
 package me.feng3d.entities
 {
-	import flash.geom.Vector3D;
-	
 	import me.feng3d.arcane;
-	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.core.base.ISubGeometry;
-	import me.feng3d.core.base.subgeometry.SkyBoxSubGeometry;
-	import me.feng3d.core.base.submesh.SubMesh;
-	import me.feng3d.core.base.submesh.SubSkyMesh;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.SkyBoxMaterial;
 	import me.feng3d.textures.CubeTextureBase;
 
@@ -21,7 +16,7 @@ package me.feng3d.entities
 	 */
 	public class SkyBox extends Mesh
 	{
-		private var subGeometry:SkyBoxSubGeometry;
+		private var subGeometry:SubGeometry;
 
 		public function SkyBox(cubeMap:CubeTextureBase)
 		{
@@ -29,7 +24,7 @@ package me.feng3d.entities
 
 			material = new SkyBoxMaterial(cubeMap);
 
-			subGeometry = new SkyBoxSubGeometry();
+			subGeometry = new SubGeometry();
 			geometry.addSubGeometry(subGeometry);
 			
 			buildGeometry();
@@ -40,6 +35,7 @@ package me.feng3d.entities
 		 */
 		private function buildGeometry():void
 		{
+			subGeometry.numVertices = 8;
 			//八个顶点，32个number
 			var vertexData:Vector.<Number> = new <Number>[ //
 				-1, 1, -1, 1, 1, -1, //
@@ -47,7 +43,7 @@ package me.feng3d.entities
 				-1, -1, -1, 1, -1, -1, //
 				1, -1, 1, -1, -1, 1 //
 				];
-			subGeometry.updateVertexData(vertexData);
+			subGeometry.updateVertexPositionData(vertexData);
 
 			//6个面，12个三角形，36个顶点索引
 			var indexData:Vector.<uint> = new <uint>[ //
@@ -62,35 +58,9 @@ package me.feng3d.entities
 			subGeometry.updateIndexData(indexData);
 		}
 
-		public function updateSkyBox(camera:Camera3D):void
+		public override function get assetType():String
 		{
-			// 已知：
-			// 1、边长为2的立方体				-----------------1（引用编号）
-			// 2、照相机在中心					-----------------2
-			// 3、照相机最远观察距离zfar			-----------------3
-			// 4、无论从哪个角度看天空盒都必须完整	-----------------4
-			// 求：
-			// 1、天空盒相对1中的立方体的缩放比例scale
-			// 推导：
-			// 1、1&2 --> 天空盒边长 2*scale		-----------------6
-			// 2、6 --> 天空盒对角线长度  2 * sqrt(3) * scale	-----------------7
-			// 3、2&3&4&7 --> 方程 2*zfar >= 2 * sqrt(3) * scale	-----------------8
-			// 4、8 --> scale <= zfar / sqrt(3)
-			var pos:Vector3D = camera.scenePosition;
-			x = pos.x;
-			y = pos.y;
-			z = pos.z;
-
-			scaleX = scaleY = scaleZ = camera.lens.far / Math.sqrt(3);
-		}
-		
-		override protected function addSubMesh(subGeometry:ISubGeometry):void
-		{
-			var subMesh:SubMesh = new SubSkyMesh(subGeometry, this, null);
-			var len:uint = _subMeshes.length;
-			subMesh._index = len;
-			_subMeshes[len] = subMesh;
-			invalidateBounds();
+			return AssetType.SKYBOX;
 		}
 	}
 }

@@ -3,6 +3,7 @@ package me.feng3d.cameras
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 	
+	import me.feng3d.arcane;
 	import me.feng3d.cameras.lenses.LensBase;
 	import me.feng3d.cameras.lenses.PerspectiveLens;
 	import me.feng3d.core.math.Matrix3DUtils;

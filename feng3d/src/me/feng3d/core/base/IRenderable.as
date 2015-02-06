@@ -1,7 +1,7 @@
 package me.feng3d.core.base
 {
 	
-	import me.feng3d.core.proxy.Context3DCache;
+	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.Entity;
 
 	/**
@@ -11,7 +11,7 @@ package me.feng3d.core.base
 	public interface IRenderable extends IMaterialOwner
 	{
 		/**
-		 * 渲染缓冲
+		 * 渲染缓存
 		 */
 		function get context3dCache():Context3DCache;
 		

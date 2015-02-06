@@ -2,11 +2,12 @@ package me.feng3d.entities
 {
 
 	import flash.geom.Vector3D;
-
+	
 	import me.feng3d.arcane;
-	import me.feng3d.primitives.data.Segment;
-	import me.feng3d.materials.SegmentMaterial;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.entities.segment.SegmentSubGeometry;
+	import me.feng3d.materials.SegmentMaterial;
+	import me.feng3d.primitives.data.Segment;
 
 	use namespace arcane;
 
@@ -17,12 +18,18 @@ package me.feng3d.entities
 	public class SegmentSet extends Mesh
 	{
 		/**
-		 * 数据缓冲
+		 * 数据缓存
 		 */
 		protected var _segmentSubGeometry:SegmentSubGeometry;
 
 		private var _segments:Vector.<Segment> = new Vector.<Segment>();
 
+		private var _indices:Vector.<uint>;
+		private var _pointData0:Vector.<Number>;
+		private var _pointData1:Vector.<Number>;
+		private var _thicknessData:Vector.<Number>;
+		private var _colorData:Vector.<Number>;
+		
 		public function SegmentSet()
 		{
 			super();
@@ -42,16 +49,25 @@ package me.feng3d.entities
 		 */
 		protected function updateSegmentData():void
 		{
-			var _vertices:Vector.<Number> = new Vector.<Number>();
-			var _indices:Vector.<uint> = new Vector.<uint>();
+			_indices = new Vector.<uint>();
+			_pointData0 = new Vector.<Number>();
+			_pointData1 = new Vector.<Number>();
+			_thicknessData = new Vector.<Number>();
+			_colorData = new Vector.<Number>();
 
 			for (var i:int = 0; i < _segments.length; i++)
 			{
-				computeSegment(_segments[i], _vertices, _indices, i);
+				computeSegment(_segments[i], i);
 			}
 
-			_segmentSubGeometry.updateVertexData(_vertices);
+			//一条线段由4个顶点组成
+			_segmentSubGeometry.numVertices = _segments.length * 4;
+			
 			_segmentSubGeometry.updateIndexData(_indices);
+			_segmentSubGeometry.updatePointData0(_pointData0);
+			_segmentSubGeometry.updatePointData1(_pointData1);
+			_segmentSubGeometry.updateThicknessData(_thicknessData);
+			_segmentSubGeometry.updateColorData(_colorData);
 		}
 
 		/**
@@ -61,7 +77,7 @@ package me.feng3d.entities
 		 * @param indices 顶点索引
 		 * @param segmentIndex 线段编号
 		 */
-		private function computeSegment(segment:Segment, vertices:Vector.<Number>, indices:Vector.<uint>, segmentIndex:int):void
+		private function computeSegment(segment:Segment, segmentIndex:int):void
 		{
 			//to do: add support for curve segment
 			var start:Vector3D = segment.start;
@@ -71,61 +87,65 @@ package me.feng3d.entities
 			var startR:Number = segment.startR, startG:Number = segment.startG, startB:Number = segment.startB;
 			var endR:Number = segment.endR, endG:Number = segment.endG, endB:Number = segment.endB;
 
-			var verticeIndex:uint = segmentIndex * 4 * _segmentSubGeometry.vertexStride;
+			var point0Index:uint = segmentIndex * 4 * _segmentSubGeometry.pointData0Stride;
+			var point1Index:uint = segmentIndex * 4 * _segmentSubGeometry.pointData1Stride;
+			var thicknessIndex:uint = segmentIndex * 4 * _segmentSubGeometry.thicknessDataStride;
+			var colorIndex:uint = segmentIndex * 4 * _segmentSubGeometry.colorDataStride;
+
 			var t:Number = segment.thickness;
 
 			//生成线段顶点数据
-			vertices[verticeIndex++] = startX;
-			vertices[verticeIndex++] = startY;
-			vertices[verticeIndex++] = startZ;
-			vertices[verticeIndex++] = endX;
-			vertices[verticeIndex++] = endY;
-			vertices[verticeIndex++] = endZ;
-			vertices[verticeIndex++] = t;
-			vertices[verticeIndex++] = startR;
-			vertices[verticeIndex++] = startG;
-			vertices[verticeIndex++] = startB;
-			vertices[verticeIndex++] = 1;
+			_pointData0[point0Index++] = startX;
+			_pointData0[point0Index++] = startY;
+			_pointData0[point0Index++] = startZ;
+			_pointData1[point1Index++] = endX;
+			_pointData1[point1Index++] = endY;
+			_pointData1[point1Index++] = endZ;
+			_thicknessData[thicknessIndex++] = t;
+			_colorData[colorIndex++] = startR;
+			_colorData[colorIndex++] = startG;
+			_colorData[colorIndex++] = startB;
+			_colorData[colorIndex++] = 1;
 
-			vertices[verticeIndex++] = endX;
-			vertices[verticeIndex++] = endY;
-			vertices[verticeIndex++] = endZ;
-			vertices[verticeIndex++] = startX;
-			vertices[verticeIndex++] = startY;
-			vertices[verticeIndex++] = startZ;
-			vertices[verticeIndex++] = -t;
-			vertices[verticeIndex++] = endR;
-			vertices[verticeIndex++] = endG;
-			vertices[verticeIndex++] = endB;
-			vertices[verticeIndex++] = 1;
+			_pointData0[point0Index++] = endX;
+			_pointData0[point0Index++] = endY;
+			_pointData0[point0Index++] = endZ;
+			_pointData1[point1Index++] = startX;
+			_pointData1[point1Index++] = startY;
+			_pointData1[point1Index++] = startZ;
+			_thicknessData[thicknessIndex++] = -t;
+			_colorData[colorIndex++] = endR;
+			_colorData[colorIndex++] = endG;
+			_colorData[colorIndex++] = endB;
+			_colorData[colorIndex++] = 1;
 
-			vertices[verticeIndex++] = startX;
-			vertices[verticeIndex++] = startY;
-			vertices[verticeIndex++] = startZ;
-			vertices[verticeIndex++] = endX;
-			vertices[verticeIndex++] = endY;
-			vertices[verticeIndex++] = endZ;
-			vertices[verticeIndex++] = -t;
-			vertices[verticeIndex++] = startR;
-			vertices[verticeIndex++] = startG;
-			vertices[verticeIndex++] = startB;
-			vertices[verticeIndex++] = 1;
+			_pointData0[point0Index++] = startX;
+			_pointData0[point0Index++] = startY;
+			_pointData0[point0Index++] = startZ;
+			_pointData1[point1Index++] = endX;
+			_pointData1[point1Index++] = endY;
+			_pointData1[point1Index++] = endZ;
+			_thicknessData[thicknessIndex++] = -t;
+			_colorData[colorIndex++] = startR;
+			_colorData[colorIndex++] = startG;
+			_colorData[colorIndex++] = startB;
+			_colorData[colorIndex++] = 1;
 
-			vertices[verticeIndex++] = endX;
-			vertices[verticeIndex++] = endY;
-			vertices[verticeIndex++] = endZ;
-			vertices[verticeIndex++] = startX;
-			vertices[verticeIndex++] = startY;
-			vertices[verticeIndex++] = startZ;
-			vertices[verticeIndex++] = t;
-			vertices[verticeIndex++] = endR;
-			vertices[verticeIndex++] = endG;
-			vertices[verticeIndex++] = endB;
-			vertices[verticeIndex++] = 1;
+			_pointData0[point0Index++] = endX;
+			_pointData0[point0Index++] = endY;
+			_pointData0[point0Index++] = endZ;
+			_pointData1[point1Index++] = startX;
+			_pointData1[point1Index++] = startY;
+			_pointData1[point1Index++] = startZ;
+			_thicknessData[thicknessIndex++] = t;
+			_colorData[colorIndex++] = endR;
+			_colorData[colorIndex++] = endG;
+			_colorData[colorIndex++] = endB;
+			_colorData[colorIndex++] = 1;
 
 			//生成顶点索引数据
 			var indexIndex:int = segmentIndex * 4;
-			indices.push(indexIndex, indexIndex + 1, indexIndex + 2, indexIndex + 3, indexIndex + 2, indexIndex + 1);
+			_indices.push(indexIndex, indexIndex + 1, indexIndex + 2, indexIndex + 3, indexIndex + 2, indexIndex + 1);
 		}
 
 		/**
@@ -152,7 +172,7 @@ package me.feng3d.entities
 			var maxX:Number = -Infinity;
 			var maxY:Number = -Infinity;
 			var maxZ:Number = -Infinity;
-			var vertice0:Vector.<Number> = _segmentSubGeometry.vertexData;
+			var vertice0:Vector.<Number> = _segmentSubGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 
 			index = 0;
 			len = vertice0.length;
@@ -191,7 +211,7 @@ package me.feng3d.entities
 
 			_boundsInvalid = false;
 		}
-		
+
 		public function removeAllSegments():void
 		{
 			segments.length = 0;

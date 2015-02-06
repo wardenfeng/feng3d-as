@@ -151,7 +151,7 @@ package me.feng3d.core.base
 		/**
 		 * 通知场景变换改变
 		 */		
-		protected function notifySceneTransformChange():void
+		private function notifySceneTransformChange():void
 		{
 			if (_sceneTransformDirty)
 				return;
@@ -249,9 +249,9 @@ package me.feng3d.core.base
 		{
 			if (event is MouseEvent3D && parent && !parent.ancestorsAllowMouseEnabled)
 			{
-				if (parentDispatcher)
+				if (parent)
 				{
-					return parentDispatcher.dispatchEvent(event);
+					return parent.dispatchEvent(event);
 				}
 				return false;
 			}

@@ -1,9 +1,10 @@
 package me.feng3d.bounds
 {
 	import flash.geom.Vector3D;
-
+	
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.base.ISubGeometry;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.errors.AbstractMethodError;
 	import me.feng3d.primitives.WireframePrimitiveBase;
@@ -70,16 +71,16 @@ package me.feng3d.bounds
 		 */
 		public function fromGeometry(geometry:Geometry):void
 		{
-			var subGeoms:Vector.<ISubGeometry> = geometry.subGeometries;
+			var subGeoms:Vector.<SubGeometry> = geometry.subGeometries;
 			var numSubGeoms:uint = subGeoms.length;
 			var minX:Number, minY:Number, minZ:Number;
 			var maxX:Number, maxY:Number, maxZ:Number;
 
 			if (numSubGeoms > 0)
 			{
-				var subGeom:ISubGeometry = subGeoms[0];
-				var vertices:Vector.<Number> = subGeom.vertexData;
-				var i:uint = subGeom.vertexOffset;
+				var subGeom:SubGeometry = subGeoms[0];
+				var vertices:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+				var i:uint = 0;
 				minX = maxX = vertices[i];
 				minY = maxY = vertices[i + 1];
 				minZ = maxZ = vertices[i + 2];
@@ -88,10 +89,10 @@ package me.feng3d.bounds
 				while (j < numSubGeoms)
 				{
 					subGeom = subGeoms[j++];
-					vertices = subGeom.vertexData;
+					vertices = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 					var vertexDataLen:uint = vertices.length;
-					i = subGeom.vertexOffset;
-					var stride:uint = subGeom.vertexStride;
+					i = 0;
+					var stride:uint = subGeom.getVALen(Context3DBufferTypeID.POSITION_VA_3);
 
 					while (i < vertexDataLen)
 					{
