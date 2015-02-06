@@ -1,9 +1,12 @@
 package me.feng3d.utils
 {
+	import flash.utils.Dictionary;
+
 	import me.feng3d.arcane;
-	import me.feng3d.core.base.ISubGeometry;
 	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
+	import me.feng3d.debug.assert;
 
 	use namespace arcane;
 
@@ -13,6 +16,9 @@ package me.feng3d.utils
 	 */
 	public class GeomUtil
 	{
+		/** stage3d单次渲染支持的最大顶点数 */
+		public static const MAX_VERTEX:int = 65535;
+
 		/**
 		 * 根据数据数组创建子网格
 		 * @param verts
@@ -25,12 +31,12 @@ package me.feng3d.utils
 		 * @param triangleOffset
 		 * @return
 		 */
-		public static function fromVectors(verts:Vector.<Number>, indices:Vector.<uint>, uvs:Vector.<Number>, weights:Vector.<Number>, jointIndices:Vector.<Number>, triangleOffset:int = 0):Vector.<ISubGeometry>
+		public static function fromVectors(verts:Vector.<Number>, indices:Vector.<uint>, uvs:Vector.<Number>, weights:Vector.<Number>, jointIndices:Vector.<Number>, triangleOffset:int = 0):Vector.<SubGeometry>
 		{
 			const LIMIT_VERTS:uint = 3 * 0xffff;
 			const LIMIT_INDICES:uint = 15 * 0xffff;
 
-			var subs:Vector.<ISubGeometry> = new Vector.<ISubGeometry>();
+			var subs:Vector.<SubGeometry> = new Vector.<SubGeometry>();
 
 			if (uvs && !uvs.length)
 				uvs = null;
@@ -176,6 +182,7 @@ package me.feng3d.utils
 			else
 				sub = new SubGeometry();
 
+			sub.numVertices = verts.length / 3;
 			sub.updateIndexData(indices);
 			sub.fromVectors(verts, uvs);
 			return sub;
@@ -188,9 +195,57 @@ package me.feng3d.utils
 		 */
 		public static function copyDataSubGeom(source:SubGeometry, target:SubGeometry):void
 		{
-			target.updateVertexData(source.vertexData.concat());
-			target.updateUVData(source.UVData.concat());
+			target.numVertices = source.numVertices;
+			target.updateVertexPositionData(source.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
+			target.setVAData(Context3DBufferTypeID.UV_VA_2, source.getVAData(Context3DBufferTypeID.UV_VA_2).concat());
 			target.updateIndexData(source.indices.concat());
 		}
+
+		/**
+		 * source添加到target中
+		 * @param source 源自几何体
+		 * @param target 目标子几何体
+		 * @return true：添加成功；false：添加失败，应该是顶点个数超出最大值65535
+		 */
+		public static function addSubGeometry(source:SubGeometry, target:SubGeometry):Boolean
+		{
+			if (source.numVertices + target.numVertices > MAX_VERTEX)
+				return false;
+
+			//顶点属性编号列表
+			var vaIdList:Vector.<String> = source.vaIdList;
+			var vaId:String;
+
+			/** 顶点数据字典 */
+			var sourceVertexDataDic:Dictionary = new Dictionary();
+			var targetVertexDataDic:Dictionary = new Dictionary();
+			for each (vaId in vaIdList)
+			{
+				sourceVertexDataDic[vaId] = source.getVAData(vaId);
+				assert(sourceVertexDataDic[vaId].length == source.getVALen(vaId) * source.numVertices);
+
+				targetVertexDataDic[vaId] = target.getVAData(vaId);
+				assert(targetVertexDataDic[vaId].length == target.getVALen(vaId) * target.numVertices);
+			}
+
+			//添加索引数据
+			var indices:Vector.<uint> = VectorUtils.add1(source.indices, target.indices, target.numVertices);
+			target.updateIndexData(indices);
+
+			//更改顶点数量
+			target.numVertices = source.numVertices + target.numVertices;
+
+			var vertexData:Vector.<Number>;
+			//添加顶点数据
+			for each (vaId in vaIdList)
+			{
+				//
+				vertexData = VectorUtils.add(sourceVertexDataDic[vaId], targetVertexDataDic[vaId]);
+				target.setVAData(vaId, vertexData);
+			}
+
+			return true;
+		}
+
 	}
 }

@@ -1,13 +1,14 @@
 package me.feng3d.primitives
 {
 	import flash.geom.Matrix3D;
-
+	
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.base.ISubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.errors.AbstractMethodError;
 
+	use namespace arcane;
+	
 	/**
 	 * 基础网格
 	 * @author warden_feng 2014-10-11
@@ -29,7 +30,7 @@ package me.feng3d.primitives
 		/**
 		 * @inheritDoc
 		 */
-		override public function get subGeometries():Vector.<ISubGeometry>
+		override public function get subGeometries():Vector.<SubGeometry>
 		{
 			if (_geomDirty)
 				updateGeometry();
@@ -85,8 +86,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Builds the primitive's geometry when invalid. This method should not be called directly. The calling should
-		 * be triggered by the invalidateGeometry method (and in turn by updateGeometry).
+		 * 创建几何体
 		 */
 		protected function buildGeometry(target:SubGeometry):void
 		{
@@ -94,8 +94,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Builds the primitive's uv coordinates when invalid. This method should not be called directly. The calling
-		 * should be triggered by the invalidateUVs method (and in turn by updateUVs).
+		 * 创建uv
 		 */
 		protected function buildUVs(target:SubGeometry):void
 		{
@@ -103,7 +102,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Invalidates the primitive's geometry, causing it to be updated when requested.
+		 * 几何体失效
 		 */
 		protected function invalidateGeometry():void
 		{
@@ -111,7 +110,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Invalidates the primitive's uv coordinates, causing them to be updated when requested.
+		 * uv失效
 		 */
 		protected function invalidateUVs():void
 		{
@@ -119,7 +118,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Updates the geometry when invalid.
+		 * 更新几何体
 		 */
 		private function updateGeometry():void
 		{
@@ -128,7 +127,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Updates the uv coordinates when invalid.
+		 * 更新uv
 		 */
 		private function updateUVs():void
 		{

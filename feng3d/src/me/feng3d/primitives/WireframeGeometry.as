@@ -4,7 +4,8 @@ package me.feng3d.primitives
 	import flash.utils.Dictionary;
 	
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.base.ISubGeometry;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 
 	/**
 	* 线框几何体
@@ -47,8 +48,8 @@ package me.feng3d.primitives
 			//避免重复绘制同一条线段
 			var segmentDic:Dictionary = new Dictionary();
 
-			var subGeometries:Vector.<ISubGeometry> = drawGeometry.subGeometries;
-			var subGeometry:ISubGeometry;
+			var subGeometries:Vector.<SubGeometry> = drawGeometry.subGeometries;
+			var subGeometry:SubGeometry;
 			for (var j:int = 0; j < subGeometries.length; j++)
 			{
 				subGeometry = subGeometries[j];
@@ -56,7 +57,7 @@ package me.feng3d.primitives
 				//顶点索引
 				var _vertexIndices:Vector.<uint> = subGeometry.indexData;
 				//顶点位置
-				var _vertices:Vector.<Number> = subGeometry.vertexData;
+				var _vertices:Vector.<Number> = subGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 
 				var numTriangle:uint = _vertexIndices.length / 3;
 				var indexA:uint;

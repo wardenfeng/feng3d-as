@@ -1,6 +1,7 @@
 package me.feng3d.primitives
 {
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
 
 	/**
 	 * 平面网格（四边形）
@@ -15,6 +16,15 @@ package me.feng3d.primitives
 		private var _height:Number;
 		private var _doubleSided:Boolean;
 
+		/**
+		 * 创建一个平面
+		 * @param width 宽度
+		 * @param height 高度
+		 * @param segmentsW 横向分割数
+		 * @param segmentsH 纵向分割数
+		 * @param yUp 正面朝向 true:Y+ false:Z+
+		 * @param doubleSided 是否双面
+		 */
 		public function PlaneGeometry(width:Number = 100, height:Number = 100, segmentsW:uint = 1, segmentsH:uint = 1, yUp:Boolean = true, doubleSided:Boolean = false)
 		{
 			super();
@@ -28,7 +38,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * The number of segments that make up the plane along the X-axis. Defaults to 1.
+		 * 横向分割数
 		 */
 		public function get segmentsW():uint
 		{
@@ -43,8 +53,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * The number of segments that make up the plane along the Y or Z-axis, depending on whether yUp is true or
-		 * false, respectively. Defaults to 1.
+		 * 纵向分割数
 		 */
 		public function get segmentsH():uint
 		{
@@ -59,7 +68,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 *  Defines whether the normal vector of the plane should point along the Y-axis (true) or Z-axis (false). Defaults to true.
+		 * 正面朝向 true:Y+ false:Z+
 		 */
 		public function get yUp():Boolean
 		{
@@ -73,7 +82,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Defines whether the plane will be visible from both sides, with correct vertex normals (as opposed to bothSides on Material). Defaults to false.
+		 * 是否双面
 		 */
 		public function get doubleSided():Boolean
 		{
@@ -87,7 +96,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * The width of the plane.
+		 * 宽度
 		 */
 		public function get width():Number
 		{
@@ -101,7 +110,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * The height of the plane.
+		 * 高度
 		 */
 		public function get height():Number
 		{
@@ -121,14 +130,16 @@ package me.feng3d.primitives
 		{
 			var vertexPositionData:Vector.<Number>;
 			var vertexNormalData:Vector.<Number>;
+			var vertexTangentData:Vector.<Number>;
 			var indices:Vector.<uint>;
 			var x:Number, y:Number;
 			var numIndices:uint;
 			var base:uint;
 			var tw:uint = _segmentsW + 1;
 			var numVertices:uint = (_segmentsH + 1) * tw;
-			var vertexPositionStride:uint = target.vertexStride;
-			var vertexNormalStride:uint = target.vertexNormalStride;
+			var vertexPositionStride:uint = target.getVALen(Context3DBufferTypeID.POSITION_VA_3);
+			var vertexNormalStride:uint = target.getVALen(Context3DBufferTypeID.NORMAL_VA_3);
+			var vertexTangentStride:uint = target.getVALen(Context3DBufferTypeID.TANGENT_VA_3);
 			if (_doubleSided)
 				numVertices *= 2;
 
@@ -138,21 +149,25 @@ package me.feng3d.primitives
 
 			if (numVertices == target.numVertices)
 			{
-				vertexPositionData = target.vertexPositionData;
-				vertexNormalData = target.vertexNormalData;
+				vertexPositionData = target.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+				vertexNormalData = target.getVAData(Context3DBufferTypeID.NORMAL_VA_3);
+				vertexTangentData = target.getVAData(Context3DBufferTypeID.TANGENT_VA_3);
 				indices = target.indexData || new Vector.<uint>(numIndices, true);
 			}
 			else
 			{
 				vertexPositionData = new Vector.<Number>(numVertices * vertexPositionStride, true);
 				vertexNormalData = new Vector.<Number>(numVertices * vertexNormalStride, true);
+				vertexTangentData = new Vector.<Number>(numVertices * vertexTangentStride, true);
 				indices = new Vector.<uint>(numIndices, true);
 				invalidateUVs();
 			}
+			target.numVertices = numVertices;
 
 			numIndices = 0;
-			var positionIndex:uint = target.vertexOffset;
-			var normalIndex:uint = target.vertexNormalOffset;
+			var positionIndex:uint = 0;
+			var normalIndex:uint = 0;
+			var tangentIndex:uint = 0;
 			for (var yi:uint = 0; yi <= _segmentsH; ++yi)
 			{
 				for (var xi:uint = 0; xi <= _segmentsW; ++xi)
@@ -186,6 +201,10 @@ package me.feng3d.primitives
 						vertexNormalData[normalIndex++] = -1;
 					}
 
+					vertexTangentData[tangentIndex++] = 1;
+					vertexTangentData[tangentIndex++] = 0;
+					vertexTangentData[tangentIndex++] = 0;
+
 					//复制反面数据
 					if (_doubleSided)
 					{
@@ -198,6 +217,11 @@ package me.feng3d.primitives
 						{
 							vertexPositionData[normalIndex] = -vertexPositionData[normalIndex - vertexNormalStride];
 							++normalIndex;
+						}
+						for (i = 0; i < 3; ++i)
+						{
+							vertexTangentData[tangentIndex] = -vertexTangentData[tangentIndex - vertexTangentStride];
+							++tangentIndex;
 						}
 					}
 
@@ -228,33 +252,29 @@ package me.feng3d.primitives
 				}
 			}
 
-			target.updateVertexData(vertexPositionData);
-			
-			target.updateNormalData(vertexNormalData);
+			target.updateVertexPositionData(vertexPositionData);
+			target.setVAData(Context3DBufferTypeID.NORMAL_VA_3, vertexNormalData);
+			target.setVAData(Context3DBufferTypeID.TANGENT_VA_3, vertexTangentData);
 			target.updateIndexData(indices);
 		}
 
-		/**
-		 * @inheritDoc
-		 */
 		override protected function buildUVs(target:SubGeometry):void
 		{
 			var data:Vector.<Number>;
-			var stride:uint = target.UVStride;
+			var stride:uint = target.getVALen(Context3DBufferTypeID.UV_VA_2);
 			var numUvs:uint = (_segmentsH + 1) * (_segmentsW + 1) * stride;
 
 			if (_doubleSided)
 				numUvs *= 2;
 
-			if (target.UVData && numUvs == target.UVData.length)
-				data = target.UVData;
-			else
+			data = target.getVAData(Context3DBufferTypeID.UV_VA_2);
+			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
 				invalidateGeometry();
 			}
 
-			var index:uint = target.UVOffset;
+			var index:uint = 0;
 
 			for (var yi:uint = 0; yi <= _segmentsH; ++yi)
 			{
@@ -271,7 +291,7 @@ package me.feng3d.primitives
 				}
 			}
 
-			target.updateUVData(data);
+			target.setVAData(Context3DBufferTypeID.UV_VA_2, data);
 		}
 	}
 }
