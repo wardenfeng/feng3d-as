@@ -1,0 +1,22 @@
+package me.feng3d.materials.methods
+{
+	import me.feng3d.lights.DirectionalLight;
+
+	/**
+	 * DitheredShadowMapMethod provides a softened shadowing technique by bilinearly interpolating shadow comparison
+	 * results of neighbouring pixels.
+	 * @author warden_feng 2015-2-28
+	 */
+	public class FilteredShadowMapMethod extends SimpleShadowMapMethodBase
+	{
+		/**
+		 * Creates a new BasicDiffuseMethod object.
+		 *
+		 * @param castingLight The light casting the shadow
+		 */
+		public function FilteredShadowMapMethod(castingLight:DirectionalLight)
+		{
+			super(castingLight);
+		}
+	}
+}

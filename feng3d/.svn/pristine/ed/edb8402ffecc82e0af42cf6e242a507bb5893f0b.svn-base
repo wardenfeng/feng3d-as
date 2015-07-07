@@ -1,0 +1,14 @@
+package me.feng3d.core.partition
+{
+	
+	/**
+	 * 
+	 * @author warden_feng 2015-3-5
+	 */
+	public class Partition3D
+	{
+		public function Partition3D()
+		{
+		}
+	}
+}

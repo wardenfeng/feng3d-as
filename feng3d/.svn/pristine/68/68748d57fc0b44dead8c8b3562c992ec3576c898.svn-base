@@ -1,0 +1,18 @@
+package me.feng3d.core.data
+{
+	import me.feng3d.core.base.IRenderable;
+
+	/**
+	 *
+	 * @author warden_feng 2015-3-6
+	 */
+	public class RenderableListItem
+	{
+		public var next:RenderableListItem;
+		public var renderable:IRenderable;
+
+		public function RenderableListItem()
+		{
+		}
+	}
+}

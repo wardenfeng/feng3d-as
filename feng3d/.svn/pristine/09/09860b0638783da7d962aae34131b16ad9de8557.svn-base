@@ -1,0 +1,54 @@
+package me.feng3d.core.traverse
+{
+	import flash.geom.Vector3D;
+
+	import me.feng.error.AbstractMethodError;
+	import me.feng3d.arcane;
+	import me.feng3d.containers.Scene3D;
+	import me.feng3d.core.base.IRenderable;
+	import me.feng3d.core.partition.NodeBase;
+
+	use namespace arcane;
+
+	/**
+	 * IPartitionTraverser is a hierarchical visitor pattern that traverses through a Partition3D data structure.
+	 * @author warden_feng 2015-3-1
+	 */
+	public class PartitionTraverser
+	{
+		/**
+		 * The scene being traversed.
+		 */
+		public var scene:Scene3D;
+
+		arcane var _entryPoint:Vector3D;
+
+		/**
+		 * A property that can be used to avoid processing a partition more than once.
+		 */
+		arcane static var _collectionMark:uint;
+
+		public function PartitionTraverser()
+		{
+		}
+
+		/**
+		 * Called when the traversers enters a node. At minimum, it notifies the currently visited Partition3DNode whether or not further recursion is necessary.
+		 * @param node The currently entered node.
+		 * @return true if further recursion down children is necessary, false if not.
+		 */
+		public function enterNode(node:NodeBase):Boolean
+		{
+			node = node;
+			return true;
+		}
+
+		/**
+		 * Passes an IRenderable object to be processed by the traverser.
+		 */
+		public function applyRenderable(renderable:*):void
+		{
+			throw new AbstractMethodError();
+		}
+	}
+}

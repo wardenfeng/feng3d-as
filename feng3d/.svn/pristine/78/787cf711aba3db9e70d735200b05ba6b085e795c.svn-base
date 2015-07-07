@@ -1,0 +1,21 @@
+package me.feng3d.core.data
+{
+
+	/**
+	 *
+	 * @author warden_feng 2015-3-6
+	 */
+	public class EntityListItemPool
+	{
+		private var _index:int;
+
+		public function EntityListItemPool()
+		{
+		}
+
+		public function freeAll():void
+		{
+			_index = 0;
+		}
+	}
+}

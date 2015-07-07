@@ -1,0 +1,15 @@
+package me.feng3d.lights.shadowmaps
+{
+
+	/**
+	 *
+	 * @author warden_feng 2015-5-28
+	 */
+	public class NearDirectionalShadowMapper extends DirectionalShadowMapper
+	{
+		public function NearDirectionalShadowMapper(coverageRatio:Number = .5)
+		{
+			super();
+		}
+	}
+}

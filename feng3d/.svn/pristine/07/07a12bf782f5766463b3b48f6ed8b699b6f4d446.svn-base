@@ -1,0 +1,19 @@
+package me.feng3d.events
+{
+	import me.feng.events.FEvent;
+	
+	
+	/**
+	 * 灯光事件
+	 * @author warden_feng 2015-2-28
+	 */
+	public class LightEvent extends FEvent
+	{
+		public static const CASTS_SHADOW_CHANGE:String = "castsShadowChange";
+		
+		public function LightEvent(type:String, data:*=null, bubbles:Boolean=false)
+		{
+			super(type, data, bubbles);
+		}
+	}
+}

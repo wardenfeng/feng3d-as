@@ -1,0 +1,46 @@
+package me.feng3d.core.base
+{
+	
+	import flash.geom.Matrix3D;
+	
+	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.buffer.Context3DCache;
+	import me.feng3d.core.proxy.Stage3DProxy;
+	import me.feng3d.entities.Entity;
+
+	/**
+	 * IRenderable为对象提供一个表示可以被渲染的接口
+	 * @author warden_feng 2014-4-9
+	 */
+	public interface IRenderable extends IMaterialOwner
+	{
+		/**
+		 * Indicates whether the IRenderable should trigger mouse events, and hence should be rendered for hit testing.
+		 */
+		function get mouseEnabled():Boolean;
+		
+		/**
+		 * The amount of triangles that comprise the IRenderable geometry.
+		 */
+		function get numTriangles():uint;
+		
+		/**
+		 * The transformation matrix that transforms from model to world space, adapted with any special operations needed to render.
+		 * For example, assuring certain alignedness which is not inherent in the scene transform. By default, this would
+		 * return the scene transform.
+		 */
+		function getRenderSceneTransform(camera:Camera3D):Matrix3D;
+		
+		/**
+		 * 渲染缓存
+		 */
+		function get context3dCache():Context3DCache;
+		
+		/**
+		 * 渲染实体
+		 */
+		function get sourceEntity():Entity;
+		
+		function render(stage3DProxy:Stage3DProxy, camera:Camera3D):void;
+	}
+}

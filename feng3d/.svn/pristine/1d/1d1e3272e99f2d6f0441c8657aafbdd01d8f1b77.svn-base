@@ -1,0 +1,197 @@
+package me.feng3d.core.traverse
+{
+	import flash.geom.Vector3D;
+
+	import me.feng3d.arcane;
+	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.base.IRenderable;
+	import me.feng3d.core.data.EntityListItemPool;
+	import me.feng3d.core.data.RenderableListItem;
+	import me.feng3d.core.data.RenderableListItemPool;
+	import me.feng3d.core.math.Matrix3DUtils;
+	import me.feng3d.core.math.Plane3D;
+	import me.feng3d.core.partition.NodeBase;
+	import me.feng3d.entities.Entity;
+	import me.feng3d.lights.DirectionalLight;
+	import me.feng3d.lights.LightBase;
+	import me.feng3d.materials.MaterialBase;
+
+	use namespace arcane;
+
+	/**
+	 * The EntityCollector class is a traverser for scene partitions that collects all scene graph entities that are
+	 * considered potientially visible.
+	 *
+	 * @author warden_feng 2015-3-1
+	 *
+	 * @see away3d.partition.Partition3D
+	 * @see away3d.partition.Entity
+	 */
+	public class EntityCollector extends PartitionTraverser
+	{
+		protected var _opaqueRenderableHead:RenderableListItem;
+		protected var _blendedRenderableHead:RenderableListItem;
+
+		protected var _renderableListItemPool:RenderableListItemPool;
+		protected var _entityListItemPool:EntityListItemPool;
+		//----------------------------
+		//			灯光
+		//----------------------------
+		protected var _lights:Vector.<LightBase>;
+		private var _directionalLights:Vector.<DirectionalLight>;
+		protected var _numLights:uint;
+		private var _numDirectionalLights:uint;
+
+		protected var _numTriangles:uint;
+		protected var _numMouseEnableds:uint;
+		protected var _camera:Camera3D;
+		protected var _cameraForward:Vector3D;
+		private var _customCullPlanes:Vector.<Plane3D>;
+		private var _cullPlanes:Vector.<Plane3D>;
+		private var _numCullPlanes:uint;
+
+		/**
+		 * Creates a new EntityCollector object.
+		 */
+		public function EntityCollector()
+		{
+			init();
+		}
+
+		private function init():void
+		{
+			_lights = new Vector.<LightBase>();
+			_directionalLights = new Vector.<DirectionalLight>();
+			_renderableListItemPool = new RenderableListItemPool();
+			_entityListItemPool = new EntityListItemPool();
+		}
+
+		/**
+		 * Clears all objects in the entity collector.
+		 */
+		public function clear():void
+		{
+			if (_camera)
+			{
+				_entryPoint = _camera.scenePosition;
+				_cameraForward = Matrix3DUtils.getForward(_camera.transform, _cameraForward);
+			}
+			_cullPlanes = _customCullPlanes ? _customCullPlanes : (_camera ? _camera.frustumPlanes : null);
+			_numCullPlanes = _cullPlanes ? _cullPlanes.length : 0;
+			_numTriangles = _numMouseEnableds = 0;
+			_blendedRenderableHead = null;
+			_opaqueRenderableHead = null;
+			_renderableListItemPool.freeAll();
+			_entityListItemPool.freeAll();
+		}
+
+		/**
+		 * The camera that provides the visible frustum.
+		 */
+		public function get camera():Camera3D
+		{
+			return _camera;
+		}
+
+		public function set camera(value:Camera3D):void
+		{
+			_camera = value;
+			_entryPoint = _camera.scenePosition;
+			_cameraForward = Matrix3DUtils.getForward(_camera.transform, _cameraForward);
+			_cullPlanes = _camera.frustumPlanes;
+		}
+
+		/**
+		 * The list of opaque IRenderable objects that are considered potentially visible.
+		 * @param value
+		 */
+		public function get opaqueRenderableHead():RenderableListItem
+		{
+			return _opaqueRenderableHead;
+		}
+
+		public function set opaqueRenderableHead(value:RenderableListItem):void
+		{
+			_opaqueRenderableHead = value;
+		}
+
+		/**
+		 * The list of IRenderable objects that require blending and are considered potentially visible.
+		 * @param value
+		 */
+		public function get blendedRenderableHead():RenderableListItem
+		{
+			return _blendedRenderableHead;
+		}
+
+		public function set blendedRenderableHead(value:RenderableListItem):void
+		{
+			_blendedRenderableHead = value;
+		}
+
+		/**
+		 * Adds an IRenderable object to the potentially visible objects.
+		 * @param renderable The IRenderable object to add.
+		 */
+		override public function applyRenderable(renderable:IRenderable):void
+		{
+			var material:MaterialBase;
+			var entity:Entity = renderable.sourceEntity;
+			if (renderable.mouseEnabled)
+				++_numMouseEnableds;
+			_numTriangles += renderable.numTriangles;
+
+			material = renderable.material;
+			if (material)
+			{
+				var item:RenderableListItem = _renderableListItemPool.getItem();
+				item.renderable = renderable;
+				item.materialId = material._uniqueId;
+				item.renderOrderId = material._renderOrderId;
+				item.cascaded = false;
+				var entityScenePos:Vector3D = entity.scenePosition;
+				var dx:Number = _entryPoint.x - entityScenePos.x;
+				var dy:Number = _entryPoint.y - entityScenePos.y;
+				var dz:Number = _entryPoint.z - entityScenePos.z;
+				// project onto camera's z-axis
+				item.zIndex = dx * _cameraForward.x + dy * _cameraForward.y + dz * _cameraForward.z + entity.zOffset;
+				item.renderSceneTransform = renderable.getRenderSceneTransform(_camera);
+				if (material.requiresBlending)
+				{
+					item.next = _blendedRenderableHead;
+					_blendedRenderableHead = item;
+				}
+				else
+				{
+					item.next = _opaqueRenderableHead;
+					_opaqueRenderableHead = item;
+				}
+			}
+		}
+
+		/**
+		 * Returns true if the current node is at least partly in the frustum. If so, the partition node knows to pass on the traverser to its children.
+		 *
+		 * @param node The Partition3DNode object to frustum-test.
+		 */
+		override public function enterNode(node:NodeBase):Boolean
+		{
+			var enter:Boolean = _collectionMark != node._collectionMark && node.isInFrustum(_cullPlanes, _numCullPlanes);
+			node._collectionMark = _collectionMark;
+			return enter;
+		}
+
+		override public function applyDirectionalLight(light:DirectionalLight):void
+		{
+			_lights[_numLights++] = light;
+			_directionalLights[_numDirectionalLights++] = light;
+		}
+
+		/**
+		 * Cleans up any data at the end of a frame.
+		 */
+		public function cleanUp():void
+		{
+		}
+	}
+}

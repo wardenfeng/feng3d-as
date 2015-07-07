@@ -1,0 +1,28 @@
+package me.feng3d.core.data
+{
+	import flash.geom.Matrix3D;
+
+	import me.feng3d.core.base.IRenderable;
+
+	/**
+	 *
+	 * @author warden_feng 2015-3-6
+	 */
+	public class RenderableListItem
+	{
+		public var next:RenderableListItem;
+		public var renderable:IRenderable;
+
+		// for faster access while sorting or rendering (cached values)
+		public var materialId:int;
+		public var renderOrderId:int;
+		public var zIndex:Number;
+		public var renderSceneTransform:Matrix3D;
+
+		public var cascaded:Boolean;
+
+		public function RenderableListItem()
+		{
+		}
+	}
+}

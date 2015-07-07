@@ -1,0 +1,249 @@
+package me.feng3d.animators.nodes
+{
+	import flash.geom.ColorTransform;
+	import flash.geom.Vector3D;
+	
+	import me.feng3d.arcane;
+	import me.feng3d.animators.ParticleAnimationSet;
+	import me.feng3d.animators.data.ParticleProperties;
+	import me.feng3d.animators.data.ParticlePropertiesMode;
+	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
+	import me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID;
+	import me.feng3d.fagal.params.ParticleShaderParam;
+
+	use namespace arcane;
+
+	/**
+	 * 粒子颜色节点
+	 * @author warden_feng 2015-1-20
+	 */
+	public class ParticleColorNode extends ParticleNodeBase
+	{
+
+		//default values used when creating states
+		/** @private */
+		arcane var _usesMultiplier:Boolean;
+		/** @private */
+		arcane var _usesOffset:Boolean;
+		/** @private */
+		arcane var _usesCycle:Boolean;
+		/** @private */
+		arcane var _usesPhase:Boolean;
+		/** @private */
+		arcane var _startColor:ColorTransform;
+		/** @private */
+		arcane var _endColor:ColorTransform;
+		/** @private */
+		arcane var _cycleDuration:Number;
+		/** @private */
+		arcane var _cyclePhase:Number;
+		
+		private var _cycleData:Vector3D;
+		private var _startMultiplierData:Vector.<Number>;
+		private var _deltaMultiplierData:Vector.<Number>;
+		private var _startOffsetData:Vector.<Number>;
+		private var _deltaOffsetData:Vector.<Number>;
+
+		/**
+		 * Reference for color node properties on a single particle (when in local property mode).
+		 * Expects a <code>ColorTransform</code> object representing the start color transform applied to the particle.
+		 */
+		public static const COLOR_START_COLORTRANSFORM:String = "ColorStartColorTransform";
+
+		/**
+		 * Reference for color node properties on a single particle (when in local property mode).
+		 * Expects a <code>ColorTransform</code> object representing the end color transform applied to the particle.
+		 */
+		public static const COLOR_END_COLORTRANSFORM:String = "ColorEndColorTransform";
+
+		/**
+		 * 创建一个粒子颜色节点
+		 *
+		 * @param               mode            Defines whether the mode of operation acts on local properties of a particle or global properties of the node.
+		 * @param    [optional] usesMultiplier  Defines whether the node uses multiplier data in the shader for its color transformations. Defaults to true.
+		 * @param    [optional] usesOffset      Defines whether the node uses offset data in the shader for its color transformations. Defaults to true.
+		 * @param    [optional] usesCycle       Defines whether the node uses the <code>cycleDuration</code> property in the shader to calculate the period of the animation independent of particle duration. Defaults to false.
+		 * @param    [optional] usesPhase       Defines whether the node uses the <code>cyclePhase</code> property in the shader to calculate a starting offset to the cycle rotation of the particle. Defaults to false.
+		 * @param    [optional] startColor      Defines the default start color transform of the node, when in global mode.
+		 * @param    [optional] endColor        Defines the default end color transform of the node, when in global mode.
+		 * @param    [optional] cycleDuration   Defines the duration of the animation in seconds, used as a period independent of particle duration when in global mode. Defaults to 1.
+		 * @param    [optional] cyclePhase      Defines the phase of the cycle in degrees, used as the starting offset of the cycle when in global mode. Defaults to 0.
+		 */
+		public function ParticleColorNode(mode:uint, usesMultiplier:Boolean = true, usesOffset:Boolean = true, usesCycle:Boolean = false, usesPhase:Boolean = false, startColor:ColorTransform = null, endColor:ColorTransform = null, cycleDuration:Number = 1, cyclePhase:Number = 0)
+		{
+//			_stateClass = ParticleColorState;
+
+			_usesMultiplier = usesMultiplier;
+			_usesOffset = usesOffset;
+			_usesCycle = usesCycle;
+			_usesPhase = usesPhase;
+
+			_startColor = startColor || new ColorTransform();
+			_endColor = endColor || new ColorTransform();
+			_cycleDuration = cycleDuration;
+			_cyclePhase = cyclePhase;
+
+			super("ParticleColor", mode, (_usesMultiplier && _usesOffset) ? 16 : 8, ParticleAnimationSet.COLOR_PRIORITY);
+			
+			updateColorData();
+		}
+		
+		override protected function initBuffers():void
+		{
+			super.initBuffers();
+			
+			if (mode == ParticlePropertiesMode.GLOBAL)
+			{
+				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLESTARTCOLORMULTIPLIER_VC_VECTOR, VCVectorBuffer, updateStartColorMultiplierConstBuffer);
+				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEDELTACOLORMULTIPLIER_VC_VECTOR, VCVectorBuffer, updateDeltaColorMultiplierConstBuffer);
+				
+				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLESTARTCOLOROFFSET_VC_VECTOR, VCVectorBuffer, updateStartColorOffsetConstBuffer);
+				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEDELTACOLOROFFSET_VC_VECTOR, VCVectorBuffer, updateDeltaColorOffsetConstBuffer);
+			}
+		}
+		
+		private function updateStartColorMultiplierConstBuffer(vcVectorBuffer:VCVectorBuffer):void
+		{
+			vcVectorBuffer.update(_startMultiplierData);
+		}
+		
+		private function updateDeltaColorMultiplierConstBuffer(vcVectorBuffer:VCVectorBuffer):void
+		{
+			vcVectorBuffer.update(_deltaMultiplierData);
+		}
+		
+		private function updateStartColorOffsetConstBuffer(vcVectorBuffer:VCVectorBuffer):void
+		{
+			vcVectorBuffer.update(_startOffsetData);
+		}
+		
+		private function updateDeltaColorOffsetConstBuffer(vcVectorBuffer:VCVectorBuffer):void
+		{
+			vcVectorBuffer.update(_deltaOffsetData);
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override arcane function generatePropertyOfOneParticle(param:ParticleProperties):void
+		{
+			var startColor:ColorTransform = param[COLOR_START_COLORTRANSFORM];
+			if (!startColor)
+				throw(new Error("there is no " + COLOR_START_COLORTRANSFORM + " in param!"));
+
+			var endColor:ColorTransform = param[COLOR_END_COLORTRANSFORM];
+			if (!endColor)
+				throw(new Error("there is no " + COLOR_END_COLORTRANSFORM + " in param!"));
+
+			var i:uint;
+
+			if (!_usesCycle)
+			{
+				//multiplier
+				if (_usesMultiplier)
+				{
+					_oneData[i++] = startColor.redMultiplier;
+					_oneData[i++] = startColor.greenMultiplier;
+					_oneData[i++] = startColor.blueMultiplier;
+					_oneData[i++] = startColor.alphaMultiplier;
+					_oneData[i++] = endColor.redMultiplier - startColor.redMultiplier;
+					_oneData[i++] = endColor.greenMultiplier - startColor.greenMultiplier;
+					_oneData[i++] = endColor.blueMultiplier - startColor.blueMultiplier;
+					_oneData[i++] = endColor.alphaMultiplier - startColor.alphaMultiplier;
+				}
+
+				//offset
+				if (_usesOffset)
+				{
+					_oneData[i++] = startColor.redOffset / 255;
+					_oneData[i++] = startColor.greenOffset / 255;
+					_oneData[i++] = startColor.blueOffset / 255;
+					_oneData[i++] = startColor.alphaOffset / 255;
+					_oneData[i++] = (endColor.redOffset - startColor.redOffset) / 255;
+					_oneData[i++] = (endColor.greenOffset - startColor.greenOffset) / 255;
+					_oneData[i++] = (endColor.blueOffset - startColor.blueOffset) / 255;
+					_oneData[i++] = (endColor.alphaOffset - startColor.alphaOffset) / 255;
+				}
+			}
+			else
+			{
+				//multiplier
+				if (_usesMultiplier)
+				{
+					_oneData[i++] = (startColor.redMultiplier + endColor.redMultiplier) / 2;
+					_oneData[i++] = (startColor.greenMultiplier + endColor.greenMultiplier) / 2;
+					_oneData[i++] = (startColor.blueMultiplier + endColor.blueMultiplier) / 2;
+					_oneData[i++] = (startColor.alphaMultiplier + endColor.alphaMultiplier) / 2;
+					_oneData[i++] = (startColor.redMultiplier - endColor.redMultiplier) / 2;
+					_oneData[i++] = (startColor.greenMultiplier - endColor.greenMultiplier) / 2;
+					_oneData[i++] = (startColor.blueMultiplier - endColor.blueMultiplier) / 2;
+					_oneData[i++] = (startColor.alphaMultiplier - endColor.alphaMultiplier) / 2;
+				}
+
+				//offset
+				if (_usesOffset)
+				{
+					_oneData[i++] = (startColor.redOffset + endColor.redOffset) / (255 * 2);
+					_oneData[i++] = (startColor.greenOffset + endColor.greenOffset) / (255 * 2);
+					_oneData[i++] = (startColor.blueOffset + endColor.blueOffset) / (255 * 2);
+					_oneData[i++] = (startColor.alphaOffset + endColor.alphaOffset) / (255 * 2);
+					_oneData[i++] = (startColor.redOffset - endColor.redOffset) / (255 * 2);
+					_oneData[i++] = (startColor.greenOffset - endColor.greenOffset) / (255 * 2);
+					_oneData[i++] = (startColor.blueOffset - endColor.blueOffset) / (255 * 2);
+					_oneData[i++] = (startColor.alphaOffset - endColor.alphaOffset) / (255 * 2);
+				}
+			}
+
+		}
+		
+		private function updateColorData():void
+		{
+			if (_usesCycle)
+			{
+				if (_cycleDuration <= 0)
+					throw(new Error("the cycle duration must be greater than zero"));
+				_cycleData = new Vector3D(Math.PI * 2 / _cycleDuration, _cyclePhase * Math.PI / 180, 0, 0);
+			}
+			if (mode == ParticlePropertiesMode.GLOBAL)
+			{
+				if (_usesCycle)
+				{
+					if (_usesMultiplier)
+					{
+						_startMultiplierData = Vector.<Number>([(_startColor.redMultiplier + _endColor.redMultiplier) / 2, (_startColor.greenMultiplier + _endColor.greenMultiplier) / 2, (_startColor.blueMultiplier + _endColor.blueMultiplier) / 2, (_startColor.alphaMultiplier + _endColor.alphaMultiplier) / 2]);
+						_deltaMultiplierData = Vector.<Number>([(_endColor.redMultiplier - _startColor.redMultiplier) / 2, (_endColor.greenMultiplier - _startColor.greenMultiplier) / 2, (_endColor.blueMultiplier - _startColor.blueMultiplier) / 2, (_endColor.alphaMultiplier - _startColor.alphaMultiplier) / 2]);
+					}
+					
+					if (_usesOffset)
+					{
+						_startOffsetData = Vector.<Number>([(_startColor.redOffset + _endColor.redOffset) / (255 * 2), (_startColor.greenOffset + _endColor.greenOffset) / (255 * 2), (_startColor.blueOffset + _endColor.blueOffset) / (255 * 2), (_startColor.alphaOffset + _endColor.alphaOffset) / (255 * 2)]);
+						_deltaOffsetData = Vector.<Number>([(_endColor.redOffset - _startColor.redOffset) / (255 * 2), (_endColor.greenOffset - _startColor.greenOffset) / (255 * 2), (_endColor.blueOffset - _startColor.blueOffset) / (255 * 2), (_endColor.alphaOffset - _startColor.alphaOffset) / (255 * 2)]);
+					}
+				}
+				else
+				{
+					if (_usesMultiplier)
+					{
+						_startMultiplierData = Vector.<Number>([_startColor.redMultiplier, _startColor.greenMultiplier, _startColor.blueMultiplier, _startColor.alphaMultiplier]);
+						_deltaMultiplierData = Vector.<Number>([(_endColor.redMultiplier - _startColor.redMultiplier), (_endColor.greenMultiplier - _startColor.greenMultiplier), (_endColor.blueMultiplier - _startColor.blueMultiplier), (_endColor.alphaMultiplier - _startColor.alphaMultiplier)]);
+					}
+					
+					if (_usesOffset)
+					{
+						_startOffsetData = Vector.<Number>([_startColor.redOffset / 255, _startColor.greenOffset / 255, _startColor.blueOffset / 255, _startColor.alphaOffset / 255]);
+						_deltaOffsetData = Vector.<Number>([(_endColor.redOffset - _startColor.redOffset) / 255, (_endColor.greenOffset - _startColor.greenOffset) / 255, (_endColor.blueOffset - _startColor.blueOffset) / 255, (_endColor.alphaOffset - _startColor.alphaOffset) / 255]);
+					}
+				}
+			}
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override arcane function processAnimationSetting(particleShaderParam:ParticleShaderParam):void
+		{
+			particleShaderParam.changeColor++;
+			particleShaderParam[animationName] = true;
+		}
+	}
+}

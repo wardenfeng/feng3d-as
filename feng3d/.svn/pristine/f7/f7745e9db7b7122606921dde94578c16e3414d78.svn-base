@@ -1,0 +1,56 @@
+package me.feng3d.materials.methods
+{
+	import me.feng3d.events.ShadingMethodEvent;
+	import me.feng3d.lights.shadowmaps.NearDirectionalShadowMapper;
+
+	/**
+	 * NearShadowMapMethod provides a shadow map method that restricts the shadowed area near the camera to optimize
+	 * shadow map usage. This method needs to be used in conjunction with a NearDirectionalShadowMapper.
+	 *
+	 * @see away3d.lights.shadowmaps.NearDirectionalShadowMapper
+	 * @author warden_feng 2015-2-28
+	 */
+	public class NearShadowMapMethod extends SimpleShadowMapMethodBase
+	{
+		private var _baseMethod:SimpleShadowMapMethodBase;
+		private var _fadeRatio:Number;
+		private var _nearShadowMapper:NearDirectionalShadowMapper;
+		
+		/**
+		 * Creates a new NearShadowMapMethod object.
+		 * @param baseMethod The shadow map sampling method used to sample individual cascades (fe: HardShadowMapMethod, SoftShadowMapMethod)
+		 * @param fadeRatio The amount of shadow fading to the outer shadow area. A value of 1 would mean the shadows start fading from the camera's near plane.
+		 */
+		public function NearShadowMapMethod(baseMethod:SimpleShadowMapMethodBase, fadeRatio:Number = .1)
+		{
+			super(baseMethod.castingLight);
+			_baseMethod = baseMethod;
+			_fadeRatio = fadeRatio;
+			_nearShadowMapper = _castingLight.shadowMapper as NearDirectionalShadowMapper;
+			if (!_nearShadowMapper)
+				throw new Error("NearShadowMapMethod requires a light that has a NearDirectionalShadowMapper instance assigned to shadowMapper.");
+			_baseMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function get epsilon():Number
+		{
+			return _baseMethod.epsilon;
+		}
+		
+		override public function set epsilon(value:Number):void
+		{
+			_baseMethod.epsilon = value;
+		}
+		
+		/**
+		 * Called when the base method's shader code is invalidated.
+		 */
+		private function onShaderInvalidated(event:ShadingMethodEvent):void
+		{
+			invalidateShaderProgram();
+		}
+	}
+}

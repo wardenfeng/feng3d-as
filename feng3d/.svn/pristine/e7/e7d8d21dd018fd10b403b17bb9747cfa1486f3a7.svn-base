@@ -1,0 +1,25 @@
+package me.feng3d.fagal.vertex
+{
+	import me.feng3d.core.buffer.Context3DBufferTypeID;
+	import me.feng3d.core.register.Register;
+	import me.feng3d.core.register.RegisterMatrix;
+	import me.feng3d.fagal.base.requestRegister;
+	import me.feng3d.fagal.base.requestRegisterMatrix;
+	import me.feng3d.fagal.base.operation.m44;
+
+	/**
+	 * 基本顶点投影渲染
+	 * @author warden_feng 2014-10-30
+	 */
+	public function V_BaseOut():void
+	{
+		//动画后的顶点坐标数据
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
+		//顶点程序投影矩阵静态数据
+		var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.PROJECTION_VC_MATRIX);
+		//位置输出寄存器
+		var out:Register = requestRegister(Context3DBufferTypeID.OP);
+
+		m44(out, animatedPosition, projection);
+	}
+}

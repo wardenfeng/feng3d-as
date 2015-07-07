@@ -1,0 +1,114 @@
+package me.feng3d.core.render
+{
+	import flash.display3D.Context3DBlendFactor;
+	import flash.display3D.Context3DCompareMode;
+	import flash.display3D.textures.TextureBase;
+	import flash.geom.Rectangle;
+
+	import me.feng3d.arcane;
+	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.data.RenderableListItem;
+	import me.feng3d.core.traverse.EntityCollector;
+	import me.feng3d.materials.MaterialBase;
+
+	use namespace arcane;
+
+	/**
+	 * 默认渲染器，使用根据材质渲染场景图
+	 * @author warden_feng 2015-3-5
+	 */
+	public class DefaultRenderer extends RendererBase
+	{
+		private static var SCREEN_PASSES:int = 2;
+		private static var ALL_PASSES:int = 3;
+		private var _activeMaterial:MaterialBase;
+
+		/**
+		 * 创建一个默认渲染器
+		 */
+		public function DefaultRenderer()
+		{
+			super();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		protected override function executeRender(entityCollector:EntityCollector, target:TextureBase = null, scissorRect:Rectangle = null, surfaceSelector:int = 0):void
+		{
+			super.executeRender(entityCollector, target, scissorRect, surfaceSelector);
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function draw(entityCollector:EntityCollector, target:TextureBase):void
+		{
+			_context.setBlendFactors(Context3DBlendFactor.ONE, Context3DBlendFactor.ZERO);
+
+			_context.setDepthTest(true, Context3DCompareMode.LESS_EQUAL);
+
+			var which:int = target ? SCREEN_PASSES : ALL_PASSES;
+			drawRenderables(entityCollector.opaqueRenderableHead, entityCollector, which);
+			drawRenderables(entityCollector.blendedRenderableHead, entityCollector, which);
+
+			_context.setDepthTest(false, Context3DCompareMode.LESS_EQUAL);
+
+			if (_activeMaterial)
+				_activeMaterial.deactivate(_stage3DProxy);
+
+			_activeMaterial = null;
+		}
+
+		/**
+		 * 绘制可渲染列表
+		 * @param renderables 			可渲染列表
+		 * @param entityCollector 		实体收集器，包含所有潜在显示实体信息
+		 */
+		private function drawRenderables(item:RenderableListItem, entityCollector:EntityCollector, which:int):void
+		{
+			var numPasses:uint;
+			var j:uint;
+			var camera:Camera3D = entityCollector.camera;
+			var item2:RenderableListItem;
+
+			while (item)
+			{
+				_activeMaterial = item.renderable.material;
+				_activeMaterial.updateMaterial(_context);
+
+				numPasses = _activeMaterial.numPasses;
+				j = 0;
+
+				do
+				{
+					item2 = item;
+
+					var rttMask:int = _activeMaterial.passRendersToTexture(j) ? 1 : 2;
+
+					if ((rttMask & which) != 0)
+					{
+						do
+						{
+//							_activeMaterial.activatePass(item2.renderable.context3dCache.shaderParams, _stage3DProxy, camera);
+//							_activeMaterial.renderPass(item2.renderable, _stage3DProxy, entityCollector.camera, entityCollector, _rttViewProjectionMatrix);
+							item2.renderable.render(_stage3DProxy, entityCollector.camera);
+							item2 = item2.next;
+						} while (item2 && item2.renderable.material == _activeMaterial);
+						_activeMaterial.deactivatePass(j, _stage3DProxy);
+					}
+					else
+					{
+						do
+							item2 = item2.next;
+						while (item2 && item2.renderable.material == _activeMaterial);
+					}
+
+				} while (++j < numPasses);
+
+				item = item2;
+			}
+		}
+
+	}
+}

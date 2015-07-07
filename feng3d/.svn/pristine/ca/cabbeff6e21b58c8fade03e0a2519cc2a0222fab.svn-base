@@ -1,0 +1,352 @@
+package me.feng3d.materials
+{
+	import flash.display.BlendMode;
+	import flash.display3D.Context3D;
+	import flash.events.Event;
+	import flash.geom.Matrix3D;
+	
+	import me.feng3d.arcane;
+	import me.feng3d.animators.base.AnimationSetBase;
+	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.base.Context3DBufferOwner;
+	import me.feng3d.core.base.IMaterialOwner;
+	import me.feng3d.core.base.IRenderable;
+	import me.feng3d.core.proxy.Stage3DProxy;
+	import me.feng3d.core.traverse.EntityCollector;
+	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.library.assets.AssetType;
+	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.materials.lightpickers.LightPickerBase;
+	import me.feng3d.passes.MaterialPassBase;
+
+	use namespace arcane;
+
+	/**
+	 * 材质基类
+	 * @author warden_feng 2014-4-15
+	 */
+	public class MaterialBase extends Context3DBufferOwner implements IAsset
+	{
+		/**
+		 * An id for this material used to sort the renderables by material, which reduces render state changes across
+		 * materials using the same Program3D.
+		 *
+		 * @private
+		 */
+		arcane var _uniqueId:uint;
+
+		/**
+		 * An id for this material used to sort the renderables by shader program, which reduces Program3D state changes.
+		 *
+		 * @private
+		 */
+		arcane var _renderOrderId:int;
+
+		private var _bothSides:Boolean;
+
+		/**
+		 * A list of material owners, renderables or custom Entities.
+		 */
+		private var _owners:Vector.<IMaterialOwner>;
+
+		private var _blendMode:String = BlendMode.NORMAL;
+
+		protected var _numPasses:uint;
+
+		protected var _mipmap:Boolean = true;
+		protected var _smooth:Boolean = true;
+		protected var _repeat:Boolean;
+
+		protected var _passes:Vector.<MaterialPassBase>;
+
+		protected var _lightPicker:LightPickerBase;
+
+		public function MaterialBase()
+		{
+			_owners = new Vector.<IMaterialOwner>();
+			_passes = new Vector.<MaterialPassBase>();
+		}
+
+		/**
+		 * 是否双面渲染
+		 */
+		public function get bothSides():Boolean
+		{
+			return _bothSides;
+		}
+
+		public function set bothSides(value:Boolean):void
+		{
+			_bothSides = value;
+
+			for (var i:int = 0; i < _numPasses; ++i)
+				_passes[i].bothSides = value;
+		}
+
+		public function get requiresBlending():Boolean
+		{
+			return _blendMode != BlendMode.NORMAL;
+		}
+
+		/**
+		 * 混合模式
+		 */
+		public function get blendMode():String
+		{
+			return _blendMode;
+		}
+
+		public function set blendMode(value:String):void
+		{
+			_blendMode = value;
+		}
+
+		/**
+		 * 激活通道
+		 * @param shaderParams 渲染参数
+		 * @param stage3DProxy
+		 * @param camera
+		 */
+		arcane function activatePass(shaderParams:ShaderParams, stage3DProxy:Stage3DProxy, camera:Camera3D):void
+		{
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				pass.activate(shaderParams, stage3DProxy, camera);
+			}
+		}
+
+		/**
+		 * 渲染通道
+		 * @param renderable 可渲染对象
+		 * @param stage3DProxy stage3d代理
+		 * @param camera 摄像机
+		 */
+		arcane function renderPass(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D, entityCollector:EntityCollector = null, viewProjection:Matrix3D = null):void
+		{
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				if (renderable.animator)
+					pass.updateAnimationState(renderable, stage3DProxy, camera);
+
+				pass.render(renderable, stage3DProxy, camera);
+			}
+		}
+
+		/**
+		 * 是否使用纹理分级细化
+		 */
+		public function get mipmap():Boolean
+		{
+			return _mipmap;
+		}
+
+		public function set mipmap(value:Boolean):void
+		{
+			_mipmap = value;
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				pass.mipmap = value;
+			}
+		}
+
+		/**
+		 * 是否重复
+		 */
+		public function get repeat():Boolean
+		{
+			return _repeat;
+		}
+
+		public function set repeat(value:Boolean):void
+		{
+			_repeat = value;
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				pass.repeat = value;
+			}
+		}
+
+		/**
+		 * 是否平滑
+		 */
+		public function get smooth():Boolean
+		{
+			return _smooth;
+		}
+
+		public function set smooth(value:Boolean):void
+		{
+			_smooth = value;
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				pass.smooth = value;
+			}
+		}
+
+		/**
+		 * 添加通道
+		 * @param pass 通道
+		 */
+		protected function addPass(pass:MaterialPassBase):void
+		{
+			_passes.push(pass);
+			_numPasses = _passes.length;
+			
+			addChildBufferOwner(pass);
+
+			pass.mipmap = _mipmap;
+			pass.smooth = _smooth;
+			pass.repeat = _repeat;
+			pass.bothSides = _bothSides;
+			pass.addEventListener(Event.CHANGE, onPassChange);
+			invalidatePasses(null);
+		}
+
+		/**
+		 * Listener for when a pass's shader code changes. It recalculates the render order id.
+		 */
+		private function onPassChange(event:Event):void
+		{
+			
+		}
+		
+		/**
+		 * 移除通道
+		 * @param pass 通道
+		 */
+		protected function removePass(pass:MaterialPassBase):void
+		{
+			_passes.splice(_passes.indexOf(pass), 1);
+			removeChildBufferOwner(pass);
+		}
+
+		public function set animationSet(value:AnimationSetBase):void
+		{
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				pass.animationSet = value;
+			}
+		}
+
+		public function get assetType():String
+		{
+			return AssetType.MATERIAL;
+		}
+
+		/**
+		 * 灯光采集器
+		 */
+		public function get lightPicker():LightPickerBase
+		{
+			return _lightPicker;
+		}
+
+		public function set lightPicker(value:LightPickerBase):void
+		{
+			if (value != _lightPicker)
+			{
+				_lightPicker = value;
+				var len:uint = _passes.length;
+				for (var i:uint = 0; i < len; ++i)
+					_passes[i].lightPicker = _lightPicker;
+			}
+		}
+
+		/**
+		 * 通道失效
+		 */
+		arcane function invalidatePasses(triggerPass:MaterialPassBase):void
+		{
+			for each (var pass:MaterialPassBase in _passes)
+			{
+				if (pass != triggerPass)
+					pass.invalidateShaderProgram();
+			}
+		}
+
+		/**
+		 * The amount of passes used by the material.
+		 *
+		 * @private
+		 */
+		arcane function get numPasses():uint
+		{
+			return _numPasses;
+		}
+
+		/**
+		 * Performs any processing that needs to occur before any of its passes are used.
+		 *
+		 * @private
+		 */
+		arcane function updateMaterial(context:Context3D):void
+		{
+
+		}
+
+		/**
+		 * Indicates whether or not the pass with the given index renders to texture or not.
+		 * @param index The index of the pass.
+		 * @return True if the pass renders to texture, false otherwise.
+		 *
+		 * @private
+		 */
+		arcane function passRendersToTexture(index:uint):Boolean
+		{
+			return _passes[index].renderToTexture;
+		}
+
+		/**
+		 * Clears the render state for a pass. This needs to be called before activating another pass.
+		 * @param index The index of the pass to deactivate.
+		 * @param stage3DProxy The Stage3DProxy used for rendering
+		 *
+		 * @private
+		 */
+		arcane function deactivatePass(index:uint, stage3DProxy:Stage3DProxy):void
+		{
+			_passes[index].deactivate(stage3DProxy);
+		}
+
+		/**
+		 * Deactivates the last pass of the material.
+		 *
+		 * @private
+		 */
+		arcane function deactivate(stage3DProxy:Stage3DProxy):void
+		{
+			_passes[_numPasses - 1].deactivate(stage3DProxy);
+		}
+
+		//
+		// MATERIAL MANAGEMENT
+		//
+		/**
+		 * Mark an IMaterialOwner as owner of this material.
+		 * Assures we're not using the same material across renderables with different animations, since the
+		 * Program3Ds depend on animation. This method needs to be called when a material is assigned.
+		 *
+		 * @param owner The IMaterialOwner that had this material assigned
+		 *
+		 * @private
+		 */
+		arcane function addOwner(owner:IMaterialOwner):void
+		{
+			_owners.push(owner);
+		}
+
+		/**
+		 * Removes an IMaterialOwner as owner.
+		 * @param owner
+		 * @private
+		 */
+		arcane function removeOwner(owner:IMaterialOwner):void
+		{
+			_owners.splice(_owners.indexOf(owner), 1);
+			if (_owners.length == 0)
+			{
+				invalidatePasses(null);
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+package me.feng3d.core.traverse
+{
+	
+	/**
+	 * 
+	 * @author warden_feng 2015-5-29
+	 */
+	public class ShadowCasterCollector extends EntityCollector
+	{
+		public function ShadowCasterCollector()
+		{
+			super();
+		}
+	}
+}

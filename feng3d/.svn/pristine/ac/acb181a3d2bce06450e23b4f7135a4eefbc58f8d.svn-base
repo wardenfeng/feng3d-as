@@ -1,0 +1,15 @@
+package me.feng3d.materials.methods
+{
+
+	/**
+	 *
+	 * @author warden_feng 2015-5-28
+	 */
+	public class NearShadowMapMethod extends SimpleShadowMapMethodBase
+	{
+		public function NearShadowMapMethod(baseMethod:SimpleShadowMapMethodBase)
+		{
+			super(baseMethod.castingLight);
+		}
+	}
+}

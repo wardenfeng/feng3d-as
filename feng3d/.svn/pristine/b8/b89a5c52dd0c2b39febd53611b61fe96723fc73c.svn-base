@@ -1,0 +1,58 @@
+package me.feng3d.core.traverse
+{
+	import flash.geom.Vector3D;
+	
+	import me.feng3d.arcane;
+	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.core.math.Matrix3DUtils;
+	import me.feng3d.core.math.Plane3D;
+
+	use namespace arcane;
+	
+	/**
+	 * The EntityCollector class is a traverser for scene partitions that collects all scene graph entities that are
+	 * considered potientially visible.
+	 *
+	 * @author warden_feng 2015-3-1
+	 *
+	 * @see away3d.partition.Partition3D
+	 * @see away3d.partition.Entity
+	 */
+	public class EntityCollector extends PartitionTraverser
+	{
+		protected var _camera:Camera3D;
+		protected var _cameraForward:Vector3D;
+		private var _cullPlanes:Vector.<Plane3D>;
+
+		/**
+		 * Creates a new EntityCollector object.
+		 */
+		public function EntityCollector()
+		{
+		}
+
+		/**
+		 * Clears all objects in the entity collector.
+		 */
+		public function clear():void
+		{
+
+		}
+
+		/**
+		 * The camera that provides the visible frustum.
+		 */
+		public function get camera():Camera3D
+		{
+			return _camera;
+		}
+
+		public function set camera(value:Camera3D):void
+		{
+			_camera = value;
+			_entryPoint = _camera.scenePosition;
+			_cameraForward = Matrix3DUtils.getForward(_camera.transform, _cameraForward);
+			_cullPlanes = _camera.frustumPlanes;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+package me.feng3d.core.partition
+{
+	import me.feng3d.core.base.submesh.SubMesh;
+	import me.feng3d.core.traverse.PartitionTraverser;
+	import me.feng3d.entities.Mesh;
+
+
+	/**
+	 * MeshNode is a space partitioning leaf node that contains a Mesh object.
+	 * @author warden_feng 2015-3-8
+	 */
+	public class MeshNode extends EntityNode
+	{
+		private var _mesh:Mesh;
+
+		/**
+		 * Creates a new MeshNode object.
+		 * @param mesh The mesh to be contained in the node.
+		 */
+		public function MeshNode(mesh:Mesh)
+		{
+			super(mesh);
+			_mesh = mesh; // also keep a stronger typed reference
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function acceptTraverser(traverser:PartitionTraverser):void
+		{
+			if (traverser.enterNode(this)) {
+				super.acceptTraverser(traverser);
+				var subs:Vector.<SubMesh> = _mesh.subMeshes;
+				var i:uint;
+				var len:uint = subs.length;
+				while (i < len)
+					traverser.applyRenderable(subs[i++]);
+			}
+		}
+	}
+}
