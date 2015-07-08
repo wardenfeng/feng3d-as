@@ -33,9 +33,7 @@ package me.feng3d.materials.methods
 
 		/**
 		 * 设置渲染状态
-		 * @param vo 函数数据
 		 * @param renderable 渲染对象
-		 * @param stage3DProxy stage3d代理
 		 * @param camera 摄像机
 		 */
 		arcane function setRenderState(renderable:IRenderable, camera:Camera3D):void

@@ -21,7 +21,7 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 *
+	 * 简单阴影映射方法基类
 	 * @author warden_feng 2015-5-28
 	 */
 	public class SimpleShadowMapMethodBase extends ShadowMapMethodBase
@@ -56,6 +56,10 @@ package me.feng3d.materials.methods
 		 */
 		protected var depthProjection:Matrix3D = new Matrix3D();
 
+		/**
+		 * 创建简单阴影映射方法基类
+		 * @param castingLight			投射阴影的灯光
+		 */
 		public function SimpleShadowMapMethodBase(castingLight:LightBase)
 		{
 			_usePoint = castingLight is PointLight;
@@ -63,6 +67,9 @@ package me.feng3d.materials.methods
 			super(castingLight);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -154,6 +161,9 @@ package me.feng3d.materials.methods
 			common.setSampleFlags(Context3DBufferTypeIDShadow.DEPTHMAP_FS, flags);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			if (!_usePoint)

@@ -21,7 +21,7 @@ package me.feng3d.passes
 	use namespace arcane;
 
 	/**
-	 *
+	 * 深度映射通道
 	 * @author warden_feng 2015-5-29
 	 */
 	public class DepthMapPass extends MaterialPassBase
@@ -29,22 +29,23 @@ package me.feng3d.passes
 		/**
 		 * 物体投影变换矩阵（模型空间坐标-->GPU空间坐标）
 		 */
-		protected const modelViewProjection:Matrix3D = new Matrix3D();
-
-		private var _data:Vector.<Number>;
+		private const modelViewProjection:Matrix3D = new Matrix3D();
 
 		/**
 		 * 通用数据
 		 */
-		protected var depthCommonsData0:Vector.<Number> = new Vector.<Number>(4);
+		private var depthCommonsData0:Vector.<Number> = new Vector.<Number>(4);
 
 		/**
 		 * 通用数据
 		 */
-		protected var depthCommonsData1:Vector.<Number> = new Vector.<Number>(4);
+		private var depthCommonsData1:Vector.<Number> = new Vector.<Number>(4);
 
 		private var _depthMap:TextureProxyBase;
 
+		/**
+		 * 创建深度映射通道
+		 */
 		public function DepthMapPass()
 		{
 			super();
@@ -52,6 +53,9 @@ package me.feng3d.passes
 			depthCommonsData1 = Vector.<Number>([1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 0.0]);
 		}
 
+		/**
+		 * 深度图纹理
+		 */
 		public function get depthMap():TextureProxyBase
 		{
 			return _depthMap;
@@ -62,6 +66,9 @@ package me.feng3d.passes
 			_depthMap = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -80,16 +87,28 @@ package me.feng3d.passes
 			projectionBuffer.update(modelViewProjection, true);
 		}
 
+		/**
+		 * 更新深度顶点常数0 (1.0, 255.0, 65025.0, 16581375.0)
+		 * @param fcVectorBuffer
+		 */
 		protected function updateDepthCommonData0Buffer(fcVectorBuffer:FCVectorBuffer):void
 		{
 			fcVectorBuffer.update(depthCommonsData0);
 		}
 
+		/**
+		 * 更新深度顶点常数1 (1.0/255.0, 1.0/255.0, 1.0/255.0, 0.0)
+		 * @param fcVectorBuffer
+		 */
 		protected function updateDepthCommonData1Buffer(fcVectorBuffer:FCVectorBuffer):void
 		{
 			fcVectorBuffer.update(depthCommonsData1);
 		}
 
+		/**
+		 * 更新深度图纹理
+		 * @param textureBuffer
+		 */
 		private function updateTextureBuffer(textureBuffer:OCBuffer):void
 		{
 			textureBuffer.update(_depthMap);
@@ -111,6 +130,9 @@ package me.feng3d.passes
 			modelViewProjection.append(projectionmatrix);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
 			//运行顶点渲染函数
@@ -129,11 +151,6 @@ package me.feng3d.passes
 
 			//上传程序
 			programBuffer.update(vertexCode, fragmentCode);
-		}
-
-		override arcane function activate(camera:Camera3D):void
-		{
-			super.activate(camera);
 		}
 	}
 }
