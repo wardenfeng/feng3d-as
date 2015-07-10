@@ -34,9 +34,6 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="2" path="libs"/>
-      <libraryPathEntry kind="3" linkType="2" path="/Fagal/bin/Fagal.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/FagalFeng3d/bin/FagalFeng3d.swc" useDefaultLinkType="true"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
