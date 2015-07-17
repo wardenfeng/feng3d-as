@@ -14,8 +14,8 @@ package me.feng3d.passes
 	import me.feng3d.fagal.runFagalMethod;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
-	import me.feng3d.fagal.fragment.F_Main_DepthMap;
-	import me.feng3d.fagal.vertex.V_Main_DepthMap;
+	import me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap;
+	import me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
