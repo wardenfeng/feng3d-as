@@ -3,13 +3,17 @@ package me.feng3d.lights.shadowmaps
 	import me.feng3d.cameras.Camera3D;
 
 	/**
-	 *
+	 * 近方向光阴影映射
 	 * @author warden_feng 2015-5-28
 	 */
 	public class NearDirectionalShadowMapper extends DirectionalShadowMapper
 	{
 		private var _coverageRatio:Number;
 
+		/**
+		 * 创建近方向光阴影映射
+		 * @param coverageRatio		覆盖比例
+		 */
 		public function NearDirectionalShadowMapper(coverageRatio:Number = .5)
 		{
 			super();
@@ -17,8 +21,6 @@ package me.feng3d.lights.shadowmaps
 		}
 
 		/**
-		 * A value between 0 and 1 to indicate the ratio of the view frustum that needs to be covered by the shadow map.
-		 *
 		 * 阴影的覆盖视椎体的比例
 		 * <p>0表示视椎体内看不到阴影，0.5表示从近平面到与远平面之间可以看到阴影，1表示视椎体内都可以看到阴影。</p>
 		 * <p><b>注：看到阴影的前提是有阴影产生</b></p>
@@ -38,6 +40,9 @@ package me.feng3d.lights.shadowmaps
 			_coverageRatio = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateDepthProjection(viewCamera:Camera3D):void
 		{
 			var corners:Vector.<Number> = viewCamera.lens.frustumCorners;

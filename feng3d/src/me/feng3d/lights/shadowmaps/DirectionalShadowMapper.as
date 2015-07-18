@@ -17,7 +17,7 @@ package me.feng3d.lights.shadowmaps
 	use namespace arcane;
 
 	/**
-	 *
+	 * 方向光阴影映射
 	 * @author warden_feng 2015-5-28
 	 */
 	public class DirectionalShadowMapper extends ShadowMapperBase
@@ -34,6 +34,9 @@ package me.feng3d.lights.shadowmaps
 		protected var _minZ:Number;
 		protected var _maxZ:Number;
 
+		/**
+		 * 创建方向光阴影映射
+		 */
 		public function DirectionalShadowMapper()
 		{
 			super();
@@ -45,7 +48,8 @@ package me.feng3d.lights.shadowmaps
 		}
 
 		/**
-		 * Depth projection matrix that projects from scene space to depth map.
+		 * 深度投影矩阵
+		 * <p>世界坐标转换为深度图空间</p>
 		 */
 		arcane function get depthProjection():Matrix3D
 		{
@@ -53,6 +57,7 @@ package me.feng3d.lights.shadowmaps
 		}
 
 		/**
+		 * 投影深度
 		 * Depth projection matrix that projects from scene space to depth map.
 		 */
 		arcane function get depth():Number
@@ -60,6 +65,9 @@ package me.feng3d.lights.shadowmaps
 			return _maxZ - _minZ;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function drawDepthMap(target:TextureProxyBase, stage3DProxy:Stage3DProxy, scene:Scene3D, renderer:DepthRenderer):void
 		{
 			_casterCollector.camera = _overallDepthCamera;
@@ -69,6 +77,12 @@ package me.feng3d.lights.shadowmaps
 			renderer.render(stage3DProxy, _casterCollector, target);
 		}
 
+		/**
+		 * 更新投影矩阵
+		 * @param viewCamera		摄像机
+		 * @param corners
+		 * @param matrix
+		 */
 		protected function updateProjectionFromFrustumCorners(viewCamera:Camera3D, corners:Vector.<Number>, matrix:Matrix3D):void
 		{
 			var raw:Vector.<Number> = Matrix3DUtils.RAW_DATA_CONTAINER;

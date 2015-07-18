@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 *
+	 * 阴影映射函数基类
 	 * @author warden_feng 2015-5-28
 	 */
 	public class ShadowMapMethodBase extends ShadingMethodBase implements IAsset
@@ -22,6 +22,10 @@ package me.feng3d.materials.methods
 		protected var _epsilon:Number = .02;
 		protected var _alpha:Number = 1;
 
+		/**
+		 * 创建阴影映射函数基类
+		 * @param castingLight		投射灯光
+		 */
 		public function ShadowMapMethodBase(castingLight:LightBase)
 		{
 			super();
@@ -31,13 +35,16 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The light casting the shadows.
+		 * 投射灯光
 		 */
 		public function get castingLight():LightBase
 		{
 			return _castingLight;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function get assetType():String
 		{
 			return AssetType.SHADOW_MAP_METHOD;
@@ -57,6 +64,9 @@ package me.feng3d.materials.methods
 			_epsilon = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
 			var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);

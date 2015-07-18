@@ -1,6 +1,5 @@
 package me.feng3d.passes
 {
-	import flash.display3D.Context3DCompareMode;
 	import flash.geom.Matrix3D;
 
 	import me.feng3d.arcane;

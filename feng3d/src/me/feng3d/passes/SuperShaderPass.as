@@ -37,11 +37,17 @@ package me.feng3d.passes
 		/** 点光源镜面反射颜色数据 */
 		private const pointLightSpecularData:Vector.<Number> = new Vector.<Number>();
 
+		/**
+		 * 创建超级渲染通道
+		 */
 		public function SuperShaderPass()
 		{
 			super();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -83,6 +89,9 @@ package me.feng3d.passes
 			pointLightSceneDirBuffer.update(pointLightSceneDirData);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function activate(camera:Camera3D):void
 		{
 			if (_lightPicker)
@@ -95,13 +104,9 @@ package me.feng3d.passes
 			super.activate(camera);
 		}
 
-		override protected function updateMethodConstants():void
-		{
-			super.updateMethodConstants();
-
-
-		}
-
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateLightConstants():void
 		{
 			var dirLight:DirectionalLight;

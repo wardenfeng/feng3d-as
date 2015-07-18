@@ -19,11 +19,17 @@ package me.feng3d.core.base.subgeometry
 		protected var _numIndices:uint;
 		protected var _numTriangles:uint;
 
+		/**
+		 * 创建子网格基类
+		 */
 		public function SubGeometryBase()
 		{
 			AbstractClassError.check(this);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -48,6 +54,9 @@ package me.feng3d.core.base.subgeometry
 			return _numTriangles;
 		}
 
+		/**
+		 * 销毁
+		 */
 		public function dispose():void
 		{
 			_indices = null;

@@ -17,7 +17,7 @@ package me.feng3d.core.render
 	use namespace arcane;
 
 	/**
-	 *
+	 * 深度渲染器
 	 * @author warden_feng 2015-5-28
 	 */
 	public class DepthRenderer extends RendererBase
@@ -26,11 +26,9 @@ package me.feng3d.core.render
 		private var _distanceBased:Boolean;
 
 		/**
-		 * Creates a new DepthRenderer object.
-		 * @param renderBlended Indicates whether semi-transparent objects should be rendered.
-		 * @param distanceBased Indicates whether the written depth value is distance-based or projected depth-based
+		 * 创建一个深度渲染器
 		 */
-		public function DepthRenderer(renderBlended:Boolean = false, distanceBased:Boolean = false)
+		public function DepthRenderer()
 		{
 			super();
 			_backgroundR = 1;
@@ -56,9 +54,11 @@ package me.feng3d.core.render
 		}
 
 		/**
-		 * Draw a list of renderables.
-		 * @param renderables The renderables to draw.
-		 * @param entityCollector The EntityCollector containing all potentially visible information.
+		 * 绘制渲染列表
+		 * @param stage3DProxy			3D场景代理
+		 * @param item					渲染对象列表单元
+		 * @param entityCollector		实体集合
+		 * @param target				渲染目标
 		 */
 		private function drawRenderables(stage3DProxy:Stage3DProxy, item:RenderableListItem, entityCollector:EntityCollector, target:TextureProxyBase):void
 		{

@@ -32,7 +32,7 @@ package me.feng3d.core.base.renderable
 		function get sourceEntity():Entity;
 
 		/**
-		 * 渲染对象是否能捕获阴影
+		 * 渲染对象是投射阴影
 		 */
 		function get castsShadows():Boolean;
 	}

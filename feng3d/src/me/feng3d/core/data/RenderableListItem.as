@@ -37,11 +37,6 @@ package me.feng3d.core.data
 		public var renderSceneTransform:Matrix3D;
 
 		/**
-		 *
-		 */
-		public var cascaded:Boolean;
-
-		/**
 		 * 创建一个可渲染列表
 		 */
 		public function RenderableListItem()

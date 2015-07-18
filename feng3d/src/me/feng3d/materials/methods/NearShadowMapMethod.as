@@ -13,7 +13,7 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 *
+	 * 近阴影映射函数
 	 * @author warden_feng 2015-5-28
 	 */
 	public class NearShadowMapMethod extends SimpleShadowMapMethodBase
@@ -27,6 +27,11 @@ package me.feng3d.materials.methods
 		private var _fadeRatio:Number;
 		private var _nearShadowMapper:NearDirectionalShadowMapper;
 
+		/**
+		 * 创建近阴影映射函数
+		 * @param baseMethod		基础映射函数
+		 * @param fadeRatio			消退比率
+		 */
 		public function NearShadowMapMethod(baseMethod:SimpleShadowMapMethodBase, fadeRatio:Number = .1)
 		{
 			super(baseMethod.castingLight);
@@ -38,12 +43,18 @@ package me.feng3d.materials.methods
 			_baseMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
 			mapContext3DBuffer(Context3DBufferTypeIDShadow.SECONDARY_FC_VECTOR, FCVectorBuffer, updateSecondaryCommonData0Buffer);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function initConstants():void
 		{
 			super.initConstants();
@@ -61,6 +72,9 @@ package me.feng3d.materials.methods
 			fcVectorBuffer.update(secondaryFragmentConstants);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var near:Number = camera.lens.near;
@@ -78,6 +92,9 @@ package me.feng3d.materials.methods
 			_baseMethod.setRenderState(renderable, camera);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
 			super.activate(shaderParams);
@@ -88,7 +105,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * Called when the base method's shader code is invalidated.
+		 * 处理渲染程序失效事件
 		 */
 		private function onShaderInvalidated(event:ShadingMethodEvent):void
 		{

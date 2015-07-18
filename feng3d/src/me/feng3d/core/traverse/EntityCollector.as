@@ -113,6 +113,9 @@ package me.feng3d.core.traverse
 			_cullPlanes = _camera.frustumPlanes;
 		}
 
+		/**
+		 * 视椎面
+		 */
 		public function get cullPlanes():Vector.<Plane3D>
 		{
 			return _customCullPlanes;

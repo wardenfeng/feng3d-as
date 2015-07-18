@@ -349,7 +349,7 @@ package me.feng3d.passes
 		}
 
 		/**
-		 * The method used to render shadows cast on this surface, or null if no shadows are to be rendered. Defaults to null.
+		 * 阴影映射函数
 		 */
 		public function get shadowMethod():ShadowMapMethodBase
 		{

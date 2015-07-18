@@ -197,7 +197,6 @@
     <classEntry path="me.feng3d.core.base.renderable.RenderableBase"/>
     <classEntry path="me.feng3d.materials.methods.SimpleShadowMapMethodBase"/>
     <classEntry path="me.feng3d.materials.methods.NearShadowMapMethod"/>
-    <classEntry path="me.feng3d.materials.methods.FilteredShadowMapMethod"/>
     <classEntry path="me.feng3d.events.LightEvent"/>
     <classEntry path="me.feng3d.lights.shadowmaps.DirectionalShadowMapper"/>
     <classEntry path="me.feng3d.core.render.DepthRenderer"/>

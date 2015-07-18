@@ -54,6 +54,9 @@ package me.feng3d.materials.methods
 			updateDiffuse();
 		}
 
+		/**
+		 * 更新漫反射值
+		 */
 		private function updateDiffuse():void
 		{
 			diffuseInputData[0] = ((_diffuseColor >> 16) & 0xff) / 0xff;
@@ -72,11 +75,17 @@ package me.feng3d.materials.methods
 			diffuseInputData[3] = value;
 		}
 
+		/**
+		 * 更新纹理缓冲
+		 */
 		private function updateTextureBuffer(textureBuffer:FSBuffer):void
 		{
 			textureBuffer.update(texture);
 		}
 
+		/**
+		 * 更新漫反射输入片段常量缓冲
+		 */
 		private function updateDiffuseInputBuffer(diffuseInputBuffer:FCVectorBuffer):void
 		{
 			diffuseInputBuffer.update(diffuseInputData);
@@ -102,6 +111,9 @@ package me.feng3d.materials.methods
 			markBufferDirty(Context3DBufferTypeIDCommon.TEXTURE_FS);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
 			//通用渲染参数
@@ -119,6 +131,9 @@ package me.feng3d.materials.methods
 			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, _texture);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function copyFrom(method:ShadingMethodBase):void
 		{
 			var diff:BasicDiffuseMethod = BasicDiffuseMethod(method);

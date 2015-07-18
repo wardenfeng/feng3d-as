@@ -127,6 +127,11 @@ package me.feng3d.core.render
 			}
 		}
 
+		/**
+		 * 更新灯光
+		 * @param stage3DProxy				3D场景代理
+		 * @param entityCollector			实体集合
+		 */
 		private function updateLights(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector):void
 		{
 			var dirLights:Vector.<DirectionalLight> = entityCollector.directionalLights;

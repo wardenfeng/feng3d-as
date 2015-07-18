@@ -16,6 +16,14 @@ package me.feng3d.materials
 
 		arcane var _specularMethod:BasicSpecularMethod;
 
+		/**
+		 * 创建纹理材质
+		 * @param texture		纹理
+		 * @param smooth		是否平滑
+		 * @param repeat		是否重复
+		 * @param mipmap		是否使用mipmap
+		 * @param bothSides		是否为双面
+		 */
 		public function TextureMaterial(texture:Texture2DBase = null, smooth:Boolean = true, repeat:Boolean = false, mipmap:Boolean = true, bothSides:Boolean = true)
 		{
 			super();
@@ -26,6 +34,9 @@ package me.feng3d.materials
 			this.bothSides = bothSides;
 		}
 
+		/**
+		 * 纹理
+		 */
 		public function get texture():Texture2DBase
 		{
 			return _screenPass.diffuseMethod.texture;
@@ -36,6 +47,9 @@ package me.feng3d.materials
 			_screenPass.diffuseMethod.texture = value;
 		}
 
+		/**
+		 * 透明度
+		 */
 		public function get alpha():Number
 		{
 			return _alpha;

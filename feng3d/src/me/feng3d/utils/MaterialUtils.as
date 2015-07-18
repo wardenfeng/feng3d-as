@@ -20,6 +20,11 @@ package me.feng3d.utils
 
 		private static var dispatcher:GlobalDispatcher = GlobalDispatcher.instance;
 
+		/**
+		 * 创建纹理材质
+		 * @param url		贴图路径
+		 * @return			纹理材质
+		 */
 		public static function createTextureMaterial(url:String):TextureMaterial
 		{
 			Load.init();

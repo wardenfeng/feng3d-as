@@ -61,6 +61,9 @@ package me.feng3d.materials
 			_depthPass = new DepthMapPass();
 		}
 
+		/**
+		 * 深度渲染通道
+		 */
 		public function get depthPass():DepthMapPass
 		{
 			return _depthPass;
@@ -119,15 +122,9 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * Renders a renderable using the depth pass.
-		 *
-		 * @param renderable The IRenderable instance that needs to be rendered.
-		 * @param stage3DProxy The Stage3DProxy used for rendering.
-		 * @param camera The camera from which the scene is viewed.
-		 * @param viewProjection The view-projection matrix used to project to the screen. This is not the same as
-		 * camera.viewProjection as it includes the scaling factors when rendering to textures.
-		 *
-		 * @private
+		 * 渲染深度通道
+		 * @param renderable		可渲染对象
+		 * @param camera			摄像机
 		 */
 		arcane function renderDepth(renderable:IRenderable, camera:Camera3D):void
 		{
@@ -314,11 +311,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * Clears the render state for the depth pass.
-		 *
-		 * @param stage3DProxy The Stage3DProxy used for rendering.
-		 *
-		 * @private
+		 * 清除深度渲染状态
 		 */
 		arcane function deactivateForDepth():void
 		{
