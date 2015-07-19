@@ -24,8 +24,7 @@ package me.feng3d.core.base.renderable
 		public function RenderableBase()
 		{
 			_context3dCache = new Context3DCache();
-
-			activateContext3DBuffer(_context3dCache);
+			_context3dCache.addChildBufferOwner(this);
 		}
 
 		/**

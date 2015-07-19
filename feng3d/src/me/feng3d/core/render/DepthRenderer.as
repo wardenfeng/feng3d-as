@@ -82,7 +82,7 @@ package me.feng3d.core.render
 				{
 					var context3dCache:Context3DCache = item2.renderable.context3dCache;
 
-					depthPass.activateContext3DBuffer(context3dCache);
+					context3dCache.addChildBufferOwner(depthPass);
 
 					//设置渲染参数
 					context3dCache.shaderParams = depthPass.shaderParams;
@@ -92,7 +92,7 @@ package me.feng3d.core.render
 					//绘制图形
 					context3dCache.render(stage3DProxy.context3D);
 
-//					depthPass.deActivateContext3DBuffer(context3dCache);
+					context3dCache.removeChildBufferOwner(depthPass);
 
 					item2 = item2.next;
 				} while (item2 && item2.renderable.material == _activeMaterial);

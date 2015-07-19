@@ -1,5 +1,7 @@
 package me.feng3d.materials.methods
 {
+	import flash.display3D.Context3DTextureFilter;
+	import flash.display3D.Context3DWrapMode;
 	import flash.geom.Matrix3D;
 
 	import me.feng3d.arcane;
@@ -9,7 +11,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.TextureFlag;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
@@ -163,7 +164,7 @@ package me.feng3d.materials.methods
 
 			//通用渲染参数
 			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-			var flags:Array = [castingLight.shadowMapper.depthMap.type, TextureFlag.FILTER_NEAREST, TextureFlag.MODE_CLAMP];
+			var flags:Array = [castingLight.shadowMapper.depthMap.type, Context3DTextureFilter.NEAREST, Context3DWrapMode.CLAMP];
 			common.setSampleFlags(Context3DBufferTypeIDShadow.DEPTHMAP_FS, flags);
 		}
 

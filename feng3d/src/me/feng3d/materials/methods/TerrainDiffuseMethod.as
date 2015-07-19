@@ -1,10 +1,11 @@
 package me.feng3d.materials.methods
 {
+	import flash.display3D.Context3DWrapMode;
+
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSArrayBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	import me.feng3d.fagal.TextureFlag;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDTerrain;
 	import me.feng3d.fagal.fragment.F_TerrainDiffusePostLighting;
@@ -100,8 +101,8 @@ package me.feng3d.materials.methods
 
 			shaderParamsTerrain.splatNum = _numSplattingLayers;
 
-			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, texture, TextureFlag.MODE_WRAP);
-			common.addSampleFlags(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS, splats[0], TextureFlag.MODE_WRAP);
+			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, texture, Context3DWrapMode.REPEAT);
+			common.addSampleFlags(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS, splats[0], Context3DWrapMode.REPEAT);
 			common.addSampleFlags(Context3DBufferTypeIDTerrain.BLENDINGTEXTURE_FS, blendingTexture);
 
 			shaderParamsLight.diffuseMethod = F_TerrainDiffusePostLighting;

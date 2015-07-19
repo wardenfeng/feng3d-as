@@ -1,10 +1,9 @@
 package me.feng3d.animators
 {
+	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.IContext3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
-	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.animators.base.AnimationSetBase;
 
 	/**
 	 * 动画接口

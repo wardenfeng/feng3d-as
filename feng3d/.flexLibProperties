@@ -146,8 +146,6 @@
     <classEntry path="me.feng3d.animators.states.ParticleVelocityState"/>
     <classEntry path="me.feng3d.animators.particle.data.ParticleAnimationData"/>
     <classEntry path="me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID"/>
-    <classEntry path="me.feng3d.core.base.IContext3DBufferOwner"/>
-    <classEntry path="me.feng3d.core.base.Context3DBufferOwner"/>
     <classEntry path="me.feng3d.utils.VectorUtils"/>
     <classEntry path="me.feng3d.utils.SubGeomUtil"/>
     <classEntry path="me.feng3d.core.base.subgeometry.SubGeometryAutoBase"/>
@@ -157,7 +155,6 @@
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticleBillboard"/>
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticlePositionEnd"/>
     <classEntry path="me.feng3d.animators.base.data.AnimationSubGeometry"/>
-    <classEntry path="me.feng3d.core.base.VertexBufferOwner"/>
     <classEntry path="me.feng3d.animators.particle.node.ParticleScaleNode"/>
     <classEntry path="me.feng3d.animators.states.ParticleScaleState"/>
     <classEntry path="me.feng3d.animators.particle.node.ParticleColorNode"/>
