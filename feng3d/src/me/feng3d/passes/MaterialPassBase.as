@@ -167,10 +167,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.CULLING, CullingBuffer, updateCullingBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.BLEND_FACTORS, BlendFactorsBuffer, updateBlendFactorsBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.DEPTH_TEST, DepthTestBuffer, updateDepthTestBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROGRAM, ProgramBuffer, updateProgramBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.CULLING, updateCullingBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.BLEND_FACTORS, updateBlendFactorsBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.DEPTH_TEST, updateDepthTestBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROGRAM, updateProgramBuffer);
 		}
 
 		/**

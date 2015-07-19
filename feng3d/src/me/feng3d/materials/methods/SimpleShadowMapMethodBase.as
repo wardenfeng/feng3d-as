@@ -74,13 +74,13 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_VC_VECTOR, VCVectorBuffer, updateShadowCommonVCData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_FC_VECTOR, FCVectorBuffer, updateShadowCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA1_FC_VECTOR, FCVectorBuffer, updateShadowCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA2_FC_VECTOR, FCVectorBuffer, updateShadowCommonData2Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_VC_MATRIX, VCMatrixBuffer, updateDepthProjectionMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_VC_VECTOR, updateShadowCommonVCData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_FC_VECTOR, updateShadowCommonData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA1_FC_VECTOR, updateShadowCommonData1Buffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA2_FC_VECTOR, updateShadowCommonData2Buffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_VC_MATRIX, updateDepthProjectionMatrixBuffer);
 
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_FS, FSBuffer, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_FS, updateTextureBuffer);
 		}
 
 		protected function updateShadowCommonVCData0Buffer(vcVectorBuffer:VCVectorBuffer):void

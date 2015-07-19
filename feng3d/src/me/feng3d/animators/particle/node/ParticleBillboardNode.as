@@ -42,7 +42,7 @@ package me.feng3d.animators.particle.node
 		{
 			super.initBuffers();
 
-			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEBILLBOARD_VC_MATRIX, VCMatrixBuffer, updateBillboardMatrixBuffer);
+			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEBILLBOARD_VC_MATRIX, updateBillboardMatrixBuffer);
 		}
 
 		private function updateBillboardMatrixBuffer(billboardMatrixBuffer:VCMatrixBuffer):void

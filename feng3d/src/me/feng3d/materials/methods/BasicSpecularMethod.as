@@ -93,8 +93,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDLight.SPECULARDATA_FC_VECTOR, FCVectorBuffer, updateSpecularDataBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.SPECULARTEXTURE_FS, FSBuffer, updateSpecularTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDLight.SPECULARDATA_FC_VECTOR, updateSpecularDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDLight.SPECULARTEXTURE_FS, updateSpecularTextureBuffer);
 		}
 
 		private function updateSpecularDataBuffer(_specularDataBuffer:FCVectorBuffer):void

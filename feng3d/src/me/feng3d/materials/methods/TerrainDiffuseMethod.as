@@ -53,7 +53,7 @@ package me.feng3d.materials.methods
 		public function set splats(value:Array):void
 		{
 			_splats = value;
-			markBufferDirty(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS);
+			markBufferDirty(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS_ARRAY);
 		}
 
 		public function get blendingTexture():Texture2DBase
@@ -70,9 +70,9 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDTerrain.BLENDINGTEXTURE_FS, FSBuffer, updateBlendingTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS, FSArrayBuffer, updateTerrainTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDTerrain.TILE_FC_VECTOR, FCVectorBuffer, updateTileDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDTerrain.BLENDINGTEXTURE_FS, updateBlendingTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS_ARRAY, updateTerrainTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDTerrain.TILE_FC_VECTOR, updateTileDataBuffer);
 		}
 
 		private function updateTerrainTextureBuffer(terrainTextureBufferArr:FSArrayBuffer):void
@@ -102,7 +102,7 @@ package me.feng3d.materials.methods
 			shaderParamsTerrain.splatNum = _numSplattingLayers;
 
 			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, texture, Context3DWrapMode.REPEAT);
-			common.addSampleFlags(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS, splats[0], Context3DWrapMode.REPEAT);
+			common.addSampleFlags(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS_ARRAY, splats[0], Context3DWrapMode.REPEAT);
 			common.addSampleFlags(Context3DBufferTypeIDTerrain.BLENDINGTEXTURE_FS, blendingTexture);
 
 			shaderParamsLight.diffuseMethod = F_TerrainDiffusePostLighting;

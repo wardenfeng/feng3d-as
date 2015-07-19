@@ -21,7 +21,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.NORMALTEXTURE_FS, FSBuffer, updateNormalTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.NORMALTEXTURE_FS, updateNormalTextureBuffer);
 		}
 
 		private function updateNormalTextureBuffer(normalTextureBuffer:FSBuffer):void

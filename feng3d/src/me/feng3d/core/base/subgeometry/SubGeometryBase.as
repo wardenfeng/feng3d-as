@@ -33,7 +33,7 @@ package me.feng3d.core.base.subgeometry
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.INDEX, IndexBuffer, updateIndexBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.INDEX, updateIndexBuffer);
 			mapVABuffer(Context3DBufferTypeIDCommon.POSITION_VA_3, 3);
 		}
 

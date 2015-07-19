@@ -68,7 +68,7 @@ package me.feng3d.animators.particle.node
 			super.initBuffers();
 
 			if (mode == ParticlePropertiesMode.GLOBAL)
-				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEVELOCITY_VC_VECTOR, VCVectorBuffer, updateVelocityConstBuffer);
+				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEVELOCITY_VC_VECTOR, updateVelocityConstBuffer);
 		}
 
 		private function updateVelocityConstBuffer(velocityConstBuffer:VCVectorBuffer):void

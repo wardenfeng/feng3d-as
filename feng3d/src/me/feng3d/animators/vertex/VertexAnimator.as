@@ -13,7 +13,6 @@ package me.feng3d.animators.vertex
 	import me.feng3d.core.base.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
 
@@ -56,7 +55,7 @@ package me.feng3d.animators.vertex
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDAnimation.WEIGHTS_VC_VECTOR, VCVectorBuffer, updateWeightsBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDAnimation.WEIGHTS_VC_VECTOR, updateWeightsBuffer);
 		}
 
 		private function updateWeightsBuffer(weightsBuffer:VCVectorBuffer):void

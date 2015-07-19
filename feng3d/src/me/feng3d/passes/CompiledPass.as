@@ -93,12 +93,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.COMMONSDATA_FC_VECTOR, FCVectorBuffer, updateCommonsDataBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOSITION_VC_VECTOR, VCVectorBuffer, updateCameraPositionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX, VCMatrixBuffer, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX, VCMatrixBuffer, updateSceneNormalMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SCENETRANSFORM_VC_MATRIX, VCMatrixBuffer, updateSceneTransformMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.WORDPROJECTION_VC_MATRIX, VCMatrixBuffer, updateWordProjectionMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.COMMONSDATA_FC_VECTOR, updateCommonsDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOSITION_VC_VECTOR, updateCameraPositionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX, updateSceneNormalMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SCENETRANSFORM_VC_MATRIX, updateSceneTransformMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.WORDPROJECTION_VC_MATRIX, updateWordProjectionMatrixBuffer);
 		}
 
 		/**

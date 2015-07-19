@@ -45,8 +45,8 @@ package me.feng3d.animators.particle
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLECOMMON_VC_VECTOR, VCVectorBuffer, updateParticleConstDataBuffer);
-			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLETIME_VC_VECTOR, VCVectorBuffer, updateTimeConstBuffer);
+			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLECOMMON_VC_VECTOR, updateParticleConstDataBuffer);
+			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLETIME_VC_VECTOR, updateTimeConstBuffer);
 		}
 
 		private function updateTimeConstBuffer(timeConstBuffer:VCVectorBuffer):void

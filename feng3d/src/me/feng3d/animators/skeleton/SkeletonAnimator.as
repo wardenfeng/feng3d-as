@@ -108,7 +108,7 @@ package me.feng3d.animators.skeleton
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDAnimation.GLOBALMATRICES_VC_VECTOR, VCVectorBuffer, updateGlobalmatricesBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDAnimation.GLOBALMATRICES_VC_VECTOR, updateGlobalmatricesBuffer);
 		}
 
 		private function updateGlobalmatricesBuffer(globalmatricesBuffer:VCVectorBuffer):void

@@ -38,8 +38,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, FSBuffer, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.DIFFUSEINPUT_FC_VECTOR, FCVectorBuffer, updateDiffuseInputBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDLight.DIFFUSEINPUT_FC_VECTOR, updateDiffuseInputBuffer);
 		}
 
 		/** 漫反射颜色 */

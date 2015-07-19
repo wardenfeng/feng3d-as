@@ -44,10 +44,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, FSBuffer, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX, VCMatrixBuffer, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR, VCVectorBuffer, updateCameraPosBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDSkyBox.SCALESKYBOX_VC_VECTOR, VCVectorBuffer, updateScaleSkyboxBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR, updateCameraPosBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDSkyBox.SCALESKYBOX_VC_VECTOR, updateScaleSkyboxBuffer);
 		}
 
 		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
