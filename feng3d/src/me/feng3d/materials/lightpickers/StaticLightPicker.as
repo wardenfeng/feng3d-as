@@ -1,5 +1,7 @@
 package me.feng3d.materials.lightpickers
 {
+	import flash.events.Event;
+
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -53,8 +55,8 @@ package me.feng3d.materials.lightpickers
 
 			_numDirectionalLights = numDirectionalLights;
 			_numPointLights = numPointLights;
-			
-//			dispatchEvent(new FEvent(FEvent.CHANGE));
+
+			dispatchEvent(new Event(Event.CHANGE));
 		}
 
 	}

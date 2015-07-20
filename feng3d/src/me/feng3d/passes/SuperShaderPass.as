@@ -28,8 +28,8 @@ package me.feng3d.passes
 		/** 方向光源镜面反射颜色数据 */
 		private const dirLightSpecularData:Vector.<Number> = new Vector.<Number>();
 
-		/** 点光源场景方向数据 */
-		private const pointLightSceneDirData:Vector.<Number> = new Vector.<Number>();
+		/** 点光源场景位置数据 */
+		private const pointLightScenePositionData:Vector.<Number> = new Vector.<Number>();
 
 		/** 点光源漫反射光颜色数据 */
 		private const pointLightDiffuseData:Vector.<Number> = new Vector.<Number>();
@@ -54,7 +54,7 @@ package me.feng3d.passes
 			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTSCENEDIR_FC_VECTOR, updateDirLightSceneDirBuffer);
 			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTDIFFUSE_FC_VECTOR, updateDirLightDiffuseReg);
 			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTSPECULAR_FC_VECTOR, updateDirLightSpecularBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightSceneDirBuffer);
+			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightScenePositionBuffer);
 			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTDIFFUSE_FC_VECTOR, updatePointLightDiffuseReg);
 			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTSPECULAR_FC_VECTOR, updatePointLightSpecularBuffer);
 		}
@@ -84,9 +84,9 @@ package me.feng3d.passes
 			pointLightDiffuseBuffer.update(pointLightDiffuseData);
 		}
 
-		private function updatePointLightSceneDirBuffer(pointLightSceneDirBuffer:FCVectorBuffer):void
+		private function updatePointLightScenePositionBuffer(pointLightScenePositionBuffer:FCVectorBuffer):void
 		{
-			pointLightSceneDirBuffer.update(pointLightSceneDirData);
+			pointLightScenePositionBuffer.update(pointLightScenePositionData);
 		}
 
 		/**
@@ -154,10 +154,10 @@ package me.feng3d.passes
 				_ambientLightG += pointLight._ambientG;
 				_ambientLightB += pointLight._ambientB;
 
-				pointLightSceneDirData[i * 4 + 0] = scenePosition.x;
-				pointLightSceneDirData[i * 4 + 1] = scenePosition.y;
-				pointLightSceneDirData[i * 4 + 2] = scenePosition.z;
-				pointLightSceneDirData[i * 4 + 3] = 1;
+				pointLightScenePositionData[i * 4 + 0] = scenePosition.x;
+				pointLightScenePositionData[i * 4 + 1] = scenePosition.y;
+				pointLightScenePositionData[i * 4 + 2] = scenePosition.z;
+				pointLightScenePositionData[i * 4 + 3] = 1;
 
 				pointLightDiffuseData[i * 4 + 0] = pointLight._diffuseR;
 				pointLightDiffuseData[i * 4 + 1] = pointLight._diffuseG;
