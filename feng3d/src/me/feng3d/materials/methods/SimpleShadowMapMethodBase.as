@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
@@ -74,13 +74,13 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_VC_VECTOR, updateShadowCommonVCData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_FC_VECTOR, updateShadowCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA1_FC_VECTOR, updateShadowCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA2_FC_VECTOR, updateShadowCommonData2Buffer);
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_VC_MATRIX, updateDepthProjectionMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA0_VC_VECTOR, updateShadowCommonVCData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA0_FC_VECTOR, updateShadowCommonData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA1_FC_VECTOR, updateShadowCommonData1Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA2_FC_VECTOR, updateShadowCommonData2Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DEPTHMAP_VC_MATRIX, updateDepthProjectionMatrixBuffer);
 
-			mapContext3DBuffer(Context3DBufferTypeIDShadow.DEPTHMAP_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DEPTHMAP_FS, updateTextureBuffer);
 		}
 
 		protected function updateShadowCommonVCData0Buffer(vcVectorBuffer:VCVectorBuffer):void
@@ -165,7 +165,7 @@ package me.feng3d.materials.methods
 			//通用渲染参数
 			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 			var flags:Array = [castingLight.shadowMapper.depthMap.type, Context3DTextureFilter.NEAREST, Context3DWrapMode.CLAMP];
-			common.setSampleFlags(Context3DBufferTypeIDShadow.DEPTHMAP_FS, flags);
+			common.setSampleFlags(Context3DBufferTypeID.DEPTHMAP_FS, flags);
 		}
 
 		/**

@@ -17,8 +17,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.math.Quaternion;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	use namespace arcane;
 
@@ -108,7 +108,7 @@ package me.feng3d.animators.skeleton
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDAnimation.GLOBALMATRICES_VC_VECTOR, updateGlobalmatricesBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.GLOBALMATRICES_VC_VECTOR, updateGlobalmatricesBuffer);
 		}
 
 		private function updateGlobalmatricesBuffer(globalmatricesBuffer:VCVectorBuffer):void
@@ -173,7 +173,7 @@ package me.feng3d.animators.skeleton
 
 			_showSkeletonPoseDirty = true;
 
-			markBufferDirty(Context3DBufferTypeIDAnimation.GLOBALMATRICES_VC_VECTOR);
+			markBufferDirty(Context3DBufferTypeID.GLOBALMATRICES_VC_VECTOR);
 
 			_globalPropertiesDirty = true;
 
@@ -305,7 +305,7 @@ package me.feng3d.animators.skeleton
 		private function morphGeometry(state:SubGeomAnimationState, subGeom:SkinnedSubGeometry):void
 		{
 			//几何体顶点数据
-			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3);
+			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 			//动画顶点数据（目标数据）
 			var targetData:Vector.<Number> = state.animatedVertexData;
 			var jointIndices:Vector.<Number> = subGeom.jointIndexData;
@@ -370,7 +370,7 @@ package me.feng3d.animators.skeleton
 				targetData[uint(index + 2)] = vz;
 
 				//跳到下个顶点的起始位置
-				index = uint(index + subGeom.getVALen(Context3DBufferTypeIDCommon.POSITION_VA_3));
+				index = uint(index + subGeom.getVALen(Context3DBufferTypeID.POSITION_VA_3));
 			}
 		}
 
@@ -584,7 +584,7 @@ package me.feng3d.animators.skeleton
 	}
 }
 import me.feng3d.core.base.subgeometry.SubGeometry;
-import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 /**
  * 动画状态几何体数据
@@ -602,6 +602,6 @@ class SubGeomAnimationState
 	 */
 	public function SubGeomAnimationState(subGeom:SubGeometry)
 	{
-		animatedVertexData = subGeom.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3).concat();
+		animatedVertexData = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat();
 	}
 }

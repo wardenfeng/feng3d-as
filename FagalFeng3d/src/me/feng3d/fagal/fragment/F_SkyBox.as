@@ -5,7 +5,7 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.tex;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	/**
@@ -22,11 +22,11 @@ package me.feng3d.fagal.fragment
 		override public function runFunc():void
 		{
 			//片段程序的纹理
-			var texture:Register = requestRegister(Context3DBufferTypeIDCommon.TEXTURE_FS);
+			var texture:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
 			//uv变量数据
-			var uv_v:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+			var uv_v:Register = requestRegister(Context3DBufferTypeID.UV_V);
 			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeIDCommon.OC);
+			var out:Register = requestRegister(Context3DBufferTypeID.OC);
 
 			//获取纹理数据
 			tex(out, uv_v, texture);

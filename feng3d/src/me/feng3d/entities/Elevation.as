@@ -4,7 +4,7 @@ package me.feng3d.entities
 
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.materials.MaterialBase;
 
 	/**
@@ -81,7 +81,7 @@ package me.feng3d.entities
 			var u:Number, v:Number;
 			var y:Number;
 
-			vertices = _subGeometry.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3) || new Vector.<Number>(numVerts * 3, true);
+			vertices = _subGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3) || new Vector.<Number>(numVerts * 3, true);
 			indices = _subGeometry.indexData || new Vector.<uint>(_segmentsH * _segmentsW * 6, true);
 
 			numVerts = 0;
@@ -134,7 +134,7 @@ package me.feng3d.entities
 			var uvs:Vector.<Number> = new Vector.<Number>();
 			var numUvs:uint = (_segmentsH + 1) * (_segmentsW + 1) * 2;
 
-			uvs = _subGeometry.getVAData(Context3DBufferTypeIDCommon.UV_VA_2);
+			uvs = _subGeometry.getVAData(Context3DBufferTypeID.UV_VA_2);
 			if (uvs == null || numUvs != uvs.length)
 				uvs = new Vector.<Number>(numUvs, true);
 
@@ -149,7 +149,7 @@ package me.feng3d.entities
 				}
 			}
 
-			_subGeometry.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, uvs);
+			_subGeometry.setVAData(Context3DBufferTypeID.UV_VA_2, uvs);
 		}
 
 		/**

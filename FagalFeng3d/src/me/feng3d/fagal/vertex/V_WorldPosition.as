@@ -7,7 +7,7 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.requestRegisterMatrix;
 	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 顶点世界坐标渲染函数
@@ -16,7 +16,7 @@ package me.feng3d.fagal.vertex
 	public function V_WorldPosition():Register
 	{
 		//顶点坐标数据
-		var localPositionReg:Register = requestRegister(Context3DBufferTypeIDCommon.POSITION_VA_3);
+		var localPositionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
 		//顶点世界坐标
 		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
 		//场景变换矩阵(模型空间转世界空间)

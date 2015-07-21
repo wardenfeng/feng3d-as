@@ -1,6 +1,6 @@
 package me.feng3d.core.base.subgeometry
 {
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 顶点动画 子网格
@@ -17,19 +17,19 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(Context3DBufferTypeIDAnimation.POSITION0_VA_3, 3);
-			mapVABuffer(Context3DBufferTypeIDAnimation.POSITION1_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.POSITION0_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.POSITION1_VA_3, 3);
 		}
 
 		public function updateVertexData0(vertices:Vector.<Number>):void
 		{
 			super.updateVertexPositionData(vertices);
-			setVAData(Context3DBufferTypeIDAnimation.POSITION0_VA_3, vertices);
+			setVAData(Context3DBufferTypeID.POSITION0_VA_3, vertices);
 		}
 
 		public function updateVertexData1(vertices:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeIDAnimation.POSITION1_VA_3, vertices);
+			setVAData(Context3DBufferTypeID.POSITION1_VA_3, vertices);
 		}
 	}
 }

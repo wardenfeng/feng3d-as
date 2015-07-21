@@ -12,7 +12,7 @@ package me.feng3d.fagal.fragment.shadowMap
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.base.operation.slt;
 	import me.feng3d.fagal.base.operation.tex;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 阴影图采样比较计算阴影值
@@ -20,12 +20,12 @@ package me.feng3d.fagal.fragment.shadowMap
 	 */
 	public function F_ShadowMapSample(targetReg:Register):void
 	{
-		var depthMapRegister:Register = requestRegister(Context3DBufferTypeIDShadow.DEPTHMAP_FS);
-		var decReg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_FC_VECTOR);
-		var customDataReg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA2_FC_VECTOR);
+		var depthMapRegister:Register = requestRegister(Context3DBufferTypeID.DEPTHMAP_FS);
+		var decReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA0_FC_VECTOR);
+		var customDataReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA2_FC_VECTOR);
 		var depthCol:Register = getFreeTemp("深度值临时寄存器");
 		var uvReg:Register = getFreeTemp("深度图uv临时寄存器");
-		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeIDShadow.DEPTHMAPCOORD_V);
+		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeID.DEPTHMAPCOORD_V);
 
 		mov(uvReg, _depthMapCoordReg); //计算阴影
 

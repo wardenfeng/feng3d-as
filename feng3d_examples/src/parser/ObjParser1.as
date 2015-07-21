@@ -5,7 +5,7 @@ package parser
 
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.parsers.utils.ParserUtil;
 
 	/**
@@ -359,7 +359,7 @@ package parser
 			sub.updateIndexData(rawIndexBuffer);
 			sub.numVertices = rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, rawUvBuffer);
+			sub.setVAData(Context3DBufferTypeID.UV_VA_2, rawUvBuffer);
 
 			return terrainGeometry;
 		}

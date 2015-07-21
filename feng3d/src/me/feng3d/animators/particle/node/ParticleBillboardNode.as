@@ -11,7 +11,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParamsParticle;
 
 	use namespace arcane;
@@ -42,7 +42,7 @@ package me.feng3d.animators.particle.node
 		{
 			super.initBuffers();
 
-			mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEBILLBOARD_VC_MATRIX, updateBillboardMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.PARTICLEBILLBOARD_VC_MATRIX, updateBillboardMatrixBuffer);
 		}
 
 		private function updateBillboardMatrixBuffer(billboardMatrixBuffer:VCMatrixBuffer):void
@@ -85,7 +85,7 @@ package me.feng3d.animators.particle.node
 				_matrix.appendRotation(-comps[1].w * MathConsts.RADIANS_TO_DEGREES, comps[1]);
 			}
 
-			markBufferDirty(ParticleContext3DBufferID.PARTICLEBILLBOARD_VC_MATRIX);
+			markBufferDirty(Context3DBufferTypeID.PARTICLEBILLBOARD_VC_MATRIX);
 		}
 
 		/**

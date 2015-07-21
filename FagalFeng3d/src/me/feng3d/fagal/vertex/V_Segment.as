@@ -19,8 +19,8 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.operation.seq;
 	import me.feng3d.fagal.base.operation.slt;
 	import me.feng3d.fagal.base.operation.sub;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.SegmentContext3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	/**
@@ -37,27 +37,27 @@ package me.feng3d.fagal.vertex
 		override public function runFunc():void
 		{
 			//起点坐标寄存器
-			var startPositionReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3);
+			var startPositionReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTSTART_VA_3);
 			//终点坐标寄存器
-			var endPositionReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3);
+			var endPositionReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTEND_VA_3);
 			//线段厚度寄存器
-			var thicknessReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
+			var thicknessReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
 			//顶点颜色寄存器
-			var colorReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4);
+			var colorReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTCOLOR_VA_4);
 			//摄像机坐标系到投影坐标系变换矩阵寄存器
-			var c2pMatrixReg:RegisterMatrix = requestRegisterMatrix(SegmentContext3DBufferTypeID.SEGMENTC2PMATRIX_VC_MATRIX);
+			var c2pMatrixReg:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.SEGMENTC2PMATRIX_VC_MATRIX);
 			//模型坐标系到摄像机坐标系变换矩阵寄存器
-			var m2cMatrixReg:RegisterMatrix = requestRegisterMatrix(SegmentContext3DBufferTypeID.SEGMENTM2CMATRIX_VC_MATRIX);
+			var m2cMatrixReg:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.SEGMENTM2CMATRIX_VC_MATRIX);
 			//常数1寄存器
-			var oneReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTONE_VC_VECTOR);
+			var oneReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTONE_VC_VECTOR);
 			//常数前向量寄存器
-			var frontReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTFRONT_VC_VECTOR);
+			var frontReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTFRONT_VC_VECTOR);
 			//常数寄存器
-			var constantsReg:Register = requestRegister(SegmentContext3DBufferTypeID.SEGMENTCONSTANTS_VC_VECTOR);
+			var constantsReg:Register = requestRegister(Context3DBufferTypeID.SEGMENTCONSTANTS_VC_VECTOR);
 			//颜色变量寄存器
 			var color_v:Register = requestRegister("color_v");
 			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeIDCommon.OP);
+			var out:Register = requestRegister(Context3DBufferTypeID.OP);
 
 			var cStartPosReg:Register = getFreeTemp("摄像机空间起点坐标");
 			var cEndPosReg:Register = getFreeTemp("摄像机空间终点坐标");

@@ -8,7 +8,7 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.nrm;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 编译切线法线贴图片段程序
@@ -33,9 +33,9 @@ package me.feng3d.fagal.fragment
 		//法线纹理寄存器
 		var normalTexture:Register = requestRegister(Context3DBufferTypeID.NORMALTEXTURE_FS);
 		//uv变量数据
-		var uv:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+		var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
 		//公用数据片段常量数据
-		var commonsData:Register = requestRegister(Context3DBufferTypeIDCommon.COMMONSDATA_FC_VECTOR);
+		var commonsData:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_FC_VECTOR);
 
 		F_NormalSample(normalTexture, uv, normalTexData, commonsData);
 

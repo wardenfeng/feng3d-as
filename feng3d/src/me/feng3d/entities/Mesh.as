@@ -12,7 +12,6 @@ package me.feng3d.entities
 	import me.feng3d.core.partition.node.MeshNode;
 	import me.feng3d.events.GeometryEvent;
 	import me.feng3d.events.MeshEvent;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.MaterialBase;
 	import me.feng3d.utils.DefaultMaterialManager;
@@ -190,8 +189,8 @@ package me.feng3d.entities
 					oldSubGeometry = oldGeometry.subGeometries[i] as SubGeometry;
 					newSubGeometry = new VertexSubGeometry();
 					GeomUtil.copyDataSubGeom(oldSubGeometry, newSubGeometry);
-					newSubGeometry.updateVertexData0(oldSubGeometry.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3).concat());
-					newSubGeometry.updateVertexData1(oldSubGeometry.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3).concat());
+					newSubGeometry.updateVertexData0(oldSubGeometry.vertexPositionData.concat());
+					newSubGeometry.updateVertexData1(oldSubGeometry.vertexPositionData.concat());
 					geometry.addSubGeometry(newSubGeometry);
 				}
 			}

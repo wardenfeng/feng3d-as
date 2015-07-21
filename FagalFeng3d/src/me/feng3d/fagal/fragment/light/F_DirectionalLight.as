@@ -4,7 +4,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.core.register.RegisterVector;
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.requestRegisterVector;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
@@ -28,11 +28,11 @@ package me.feng3d.fagal.fragment.light
 		var specularColorReg:Register;
 
 		//方向光源场景方向
-		var dirLightDirHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeIDLight.DIRLIGHTSCENEDIR_FC_VECTOR, numDirectionalLights);
+		var dirLightDirHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, numDirectionalLights);
 		//方向光源漫反射光颜色
-		var dirLightDiffuseColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeIDLight.DIRLIGHTDIFFUSE_FC_VECTOR, numDirectionalLights);
+		var dirLightDiffuseColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.DIRLIGHTDIFFUSE_FC_VECTOR, numDirectionalLights);
 		//方向光源镜面反射颜色
-		var dirLightSpecularColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeIDLight.DIRLIGHTSPECULAR_FC_VECTOR, numDirectionalLights);
+		var dirLightSpecularColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.DIRLIGHTSPECULAR_FC_VECTOR, numDirectionalLights);
 
 		//遍历处理每个方向光
 		for (var i:uint = 0; i < numDirectionalLights; ++i)

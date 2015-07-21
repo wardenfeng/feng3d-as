@@ -10,8 +10,6 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagal.base.operation.tex;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDTerrain;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsTerrain;
@@ -27,15 +25,15 @@ package me.feng3d.fagal.fragment
 		var numSplattingLayers:int = shaderParamsTerrain.splatNum;
 
 		//土壤纹理列表
-		var splatFsarr:RegisterVector = requestRegisterVector(Context3DBufferTypeIDTerrain.TERRAINTEXTURES_FS_ARRAY, numSplattingLayers);
+		var splatFsarr:RegisterVector = requestRegisterVector(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, numSplattingLayers);
 		//片段程序的纹理
-		var defaultFsReg:Register = requestRegister(Context3DBufferTypeIDCommon.TEXTURE_FS);
+		var defaultFsReg:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
 		//uv变量数据
-		var uvVarying:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+		var uvVarying:Register = requestRegister(Context3DBufferTypeID.UV_V);
 		//混合纹理
-		var blendingFsReg:Register = requestRegister(Context3DBufferTypeIDTerrain.BLENDINGTEXTURE_FS);
+		var blendingFsReg:Register = requestRegister(Context3DBufferTypeID.BLENDINGTEXTURE_FS);
 		//地形常量
-		var scaleRegister:Register = requestRegister(Context3DBufferTypeIDTerrain.TILE_FC_VECTOR);
+		var scaleRegister:Register = requestRegister(Context3DBufferTypeID.TILE_FC_VECTOR);
 		//最终颜色寄存器（输出到oc寄存器的颜色）
 		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
 

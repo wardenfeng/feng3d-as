@@ -4,7 +4,6 @@ package me.feng3d.fagal.params
 
 	import me.feng.component.Component;
 	import me.feng3d.fagal.params.data.SampleFlagsData;
-	import me.feng3d.fagal.register.ShaderRegisterCommon;
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.TextureUtils;
 
@@ -41,25 +40,12 @@ package me.feng3d.fagal.params
 		/** 取样标记字典 */
 		private var sampleFlagsDic:Dictionary;
 
-		//-----------------------------------------
-		//		private
-		//-----------------------------------------
-		private var _registerCommon:ShaderRegisterCommon;
-
 		/**
 		 * 创建一个通用渲染参数
 		 */
 		public function ShaderParamsCommon()
 		{
 			componentName = NAME;
-		}
-
-		/**
-		 * 通用渲染寄存器
-		 */
-		public function get registerCommon():ShaderRegisterCommon
-		{
-			return _registerCommon ||= new ShaderRegisterCommon();
 		}
 
 		/**
@@ -77,8 +63,6 @@ package me.feng3d.fagal.params
 			sampleFlagsDic = new Dictionary();
 
 			addEventListener(ShaderParamsEvent.GET_SAMPLE_FLAGS, onGetSampleFlags);
-
-			registerCommon.init();
 		}
 
 		/**

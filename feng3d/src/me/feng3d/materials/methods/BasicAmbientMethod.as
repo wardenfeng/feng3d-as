@@ -4,7 +4,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	use namespace arcane;
 
@@ -34,7 +34,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDLight.AMBIENTINPUT_FC_VECTOR, updateAmbientInputBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR, updateAmbientInputBuffer);
 		}
 
 		private function updateAmbientInputBuffer(ambientInputBuffer:FCVectorBuffer):void

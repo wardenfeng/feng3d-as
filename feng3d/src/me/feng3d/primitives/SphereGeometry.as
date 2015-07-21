@@ -3,7 +3,7 @@ package me.feng3d.primitives
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	use namespace arcane;
 
@@ -43,13 +43,13 @@ package me.feng3d.primitives
 			var i:uint, j:uint, triIndex:uint;
 			var numVerts:uint = (_segmentsH + 1) * (_segmentsW + 1);
 
-			var vertexPositionStride:uint = target.getVALen(Context3DBufferTypeIDCommon.POSITION_VA_3);
+			var vertexPositionStride:uint = target.getVALen(Context3DBufferTypeID.POSITION_VA_3);
 			var vertexNormalStride:uint = target.getVALen(Context3DBufferTypeID.NORMAL_VA_3);
 			var vertexTangentStride:uint = target.getVALen(Context3DBufferTypeID.TANGENT_VA_3);
 
 			if (numVerts == target.numVertices)
 			{
-				vertexPositionData = target.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3);
+				vertexPositionData = target.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 				vertexNormalData = target.getVAData(Context3DBufferTypeID.NORMAL_VA_3);
 				vertexTangentData = target.getVAData(Context3DBufferTypeID.TANGENT_VA_3);
 				indices = target.indexData || new Vector.<uint>((_segmentsH - 1) * _segmentsW * 6, true);
@@ -175,12 +175,12 @@ package me.feng3d.primitives
 		protected override function buildUVs(target:SubGeometry):void
 		{
 			var i:int, j:int;
-			var stride:uint = target.getVALen(Context3DBufferTypeIDCommon.UV_VA_2);
+			var stride:uint = target.getVALen(Context3DBufferTypeID.UV_VA_2);
 			var numUvs:uint = (_segmentsH + 1) * (_segmentsW + 1) * stride;
 			var data:Vector.<Number>;
 			var skip:uint = stride - 2;
 
-			data = target.getVAData(Context3DBufferTypeIDCommon.UV_VA_2);
+			data = target.getVAData(Context3DBufferTypeID.UV_VA_2);
 			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
@@ -198,7 +198,7 @@ package me.feng3d.primitives
 				}
 			}
 
-			target.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, data);
+			target.setVAData(Context3DBufferTypeID.UV_VA_2, data);
 		}
 
 		/**

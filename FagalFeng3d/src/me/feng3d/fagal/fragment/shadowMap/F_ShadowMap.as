@@ -8,7 +8,7 @@ package me.feng3d.fagal.fragment.shadowMap
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.base.operation.sat;
 	import me.feng3d.fagal.base.operation.sub;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsLight;
@@ -22,18 +22,18 @@ package me.feng3d.fagal.fragment.shadowMap
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
-		var shadowValueReg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWVALUE_FT_4);
+		var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
 
 		F_ShadowMapSample(shadowValueReg);
 
-		var shadowCommondata1Reg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA1_FC_VECTOR);
+		var shadowCommondata1Reg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA1_FC_VECTOR);
 
 		add(shadowValueReg.w, shadowValueReg.w, shadowCommondata1Reg.y); //添加(1-阴影透明度)
 		sat(shadowValueReg.w, shadowValueReg.w); //使阴影值在(0,1)区间内
 
-		var dataReg:Register = requestRegister(Context3DBufferTypeIDShadow.SECONDARY_FC_VECTOR);
+		var dataReg:Register = requestRegister(Context3DBufferTypeID.SECONDARY_FC_VECTOR);
 		var temp:Register = getFreeTemp();
-		var projectionFragment:Register = requestRegister(Context3DBufferTypeIDShadow.POSITIONPROJECTED_V);
+		var projectionFragment:Register = requestRegister(Context3DBufferTypeID.POSITIONPROJECTED_V);
 
 		//根据阴影离摄像机的距离计算阴影的透明度
 		abs(temp, projectionFragment.w); //获取顶点深度正值

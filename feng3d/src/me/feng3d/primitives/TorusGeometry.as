@@ -3,7 +3,7 @@ package me.feng3d.primitives
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	use namespace arcane;
 
@@ -70,7 +70,7 @@ package me.feng3d.primitives
 			_nextVertexIndex = 0;
 			_currentIndex = 0;
 			_currentTriangleIndex = 0;
-			vertexPositionStride = target.getVALen(Context3DBufferTypeIDCommon.POSITION_VA_3);
+			vertexPositionStride = target.getVALen(Context3DBufferTypeID.POSITION_VA_3);
 			vertexNormalStride = target.getVALen(Context3DBufferTypeID.NORMAL_VA_3);
 			vertexTangentStride = target.getVALen(Context3DBufferTypeID.TANGENT_VA_3);
 			_vertexPositionOffset = 0;
@@ -84,7 +84,7 @@ package me.feng3d.primitives
 			// need to initialize raw arrays or can be reused?
 			if (_numVertices == target.numVertices)
 			{
-				vertexPositionData = target.getVAData(Context3DBufferTypeIDCommon.POSITION_VA_3);
+				vertexPositionData = target.getVAData(Context3DBufferTypeID.POSITION_VA_3);
 				vertexNormalData = target.getVAData(Context3DBufferTypeID.NORMAL_VA_3);
 				vertexTangentData = target.getVAData(Context3DBufferTypeID.TANGENT_VA_3);
 				_rawIndices = target.indexData || new Vector.<uint>(numTriangles * 3, true);
@@ -185,15 +185,15 @@ package me.feng3d.primitives
 		{
 			var i:int, j:int;
 			var data:Vector.<Number>;
-			var stride:int = target.getVALen(Context3DBufferTypeIDCommon.UV_VA_2);
+			var stride:int = target.getVALen(Context3DBufferTypeID.UV_VA_2);
 			var offset:int = 0;
-			var skip:int = target.getVALen(Context3DBufferTypeIDCommon.UV_VA_2) - 2;
+			var skip:int = target.getVALen(Context3DBufferTypeID.UV_VA_2) - 2;
 
 			// evaluate num uvs
 			var numUvs:uint = _numVertices * stride;
 
 			// need to initialize raw array or can be reused?
-			data = target.getVAData(Context3DBufferTypeIDCommon.UV_VA_2);
+			data = target.getVAData(Context3DBufferTypeID.UV_VA_2);
 			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
@@ -216,7 +216,7 @@ package me.feng3d.primitives
 			}
 
 			// build real data from raw data
-			target.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, data);
+			target.setVAData(Context3DBufferTypeID.UV_VA_2, data);
 		}
 
 		/**

@@ -12,7 +12,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.operation.pow;
 	import me.feng3d.fagal.base.operation.sat;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsLight;
@@ -27,13 +26,13 @@ package me.feng3d.fagal.fragment.light
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//总镜面反射颜色寄存器
-		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeIDLight.TOTALSPECULARLIGHTCOLOR_FT_4);
+		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
 		//法线临时片段寄存器
 		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
 		//视线方向片段临时数据
 		var viewDirReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_FT_4);
 		//材质镜面反射光数据
-		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeIDLight.SPECULARDATA_FC_VECTOR);
+		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR);
 
 		//镜面反射光原理
 		//法线 = 入射光方向 - 反射光方向------------1

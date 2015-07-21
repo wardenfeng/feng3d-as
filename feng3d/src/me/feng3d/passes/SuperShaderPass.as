@@ -5,7 +5,7 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
@@ -51,12 +51,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTSCENEDIR_FC_VECTOR, updateDirLightSceneDirBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTDIFFUSE_FC_VECTOR, updateDirLightDiffuseReg);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.DIRLIGHTSPECULAR_FC_VECTOR, updateDirLightSpecularBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightScenePositionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTDIFFUSE_FC_VECTOR, updatePointLightDiffuseReg);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.POINTLIGHTSPECULAR_FC_VECTOR, updatePointLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, updateDirLightSceneDirBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTDIFFUSE_FC_VECTOR, updateDirLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSPECULAR_FC_VECTOR, updateDirLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightScenePositionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, updatePointLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSPECULAR_FC_VECTOR, updatePointLightSpecularBuffer);
 		}
 
 		private function updateDirLightSpecularBuffer(dirLightSpecularBuffer:FCVectorBuffer):void

@@ -3,8 +3,8 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.light.F_DiffusePostLighting;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
@@ -38,8 +38,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDLight.DIFFUSEINPUT_FC_VECTOR, updateDiffuseInputBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.TEXTURE_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.DIFFUSEINPUT_FC_VECTOR, updateDiffuseInputBuffer);
 		}
 
 		/** 漫反射颜色 */
@@ -108,7 +108,7 @@ package me.feng3d.materials.methods
 
 			_texture = value;
 
-			markBufferDirty(Context3DBufferTypeIDCommon.TEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.TEXTURE_FS);
 		}
 
 		/**
@@ -128,7 +128,7 @@ package me.feng3d.materials.methods
 
 			shaderParamsLight.diffuseMethod = F_DiffusePostLighting;
 
-			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, _texture);
+			common.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _texture);
 		}
 
 		/**

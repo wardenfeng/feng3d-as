@@ -9,9 +9,9 @@ package me.feng3d.fagal.vertex.shadowMap
 	import me.feng3d.fagal.base.requestRegisterMatrix;
 	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	/**
@@ -33,14 +33,14 @@ package me.feng3d.fagal.vertex.shadowMap
 		 */
 		override public function runFunc():void
 		{
-			var position:Register = requestRegister(Context3DBufferTypeIDCommon.POSITION_VA_3);
-			var animatedPosition:Register = requestRegister(Context3DBufferTypeIDAnimation.ANIMATEDPOSITION_VT_4);
+			var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
+			var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
 			//顶点程序投影矩阵静态数据
-			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX);
+			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.PROJECTION_VC_MATRIX);
 			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeIDCommon.OP);
+			var out:Register = requestRegister(Context3DBufferTypeID.OP);
 			//投影后的顶点坐标 变量数据
-			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeIDShadow.POSITIONPROJECTED_V);
+			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.POSITIONPROJECTED_V);
 
 			//普通动画
 			mov(animatedPosition, position);

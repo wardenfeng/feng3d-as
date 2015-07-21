@@ -13,8 +13,8 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDSkyBox;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	/**
@@ -31,17 +31,17 @@ package me.feng3d.fagal.vertex
 		override public function runFunc():void
 		{
 			//顶点坐标数据
-			var position:Register = requestRegister(Context3DBufferTypeIDCommon.POSITION_VA_3);
+			var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
 			//uv变量数据
-			var uv_v:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+			var uv_v:Register = requestRegister(Context3DBufferTypeID.UV_V);
 			//顶点程序投影矩阵静态数据
-			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX);
+			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.PROJECTION_VC_MATRIX);
 			//摄像机位置静态数据
 			var camerapos:Register = requestRegister(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR);
 			//天空盒缩放静态数据
-			var scaleSkybox:Register = requestRegister(Context3DBufferTypeIDSkyBox.SCALESKYBOX_VC_VECTOR);
+			var scaleSkybox:Register = requestRegister(Context3DBufferTypeID.SCALESKYBOX_VC_VECTOR);
 			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeIDCommon.OP);
+			var out:Register = requestRegister(Context3DBufferTypeID.OP);
 
 			var vt0:Register = getFreeTemp("缩放后的顶点坐标");
 			comment("缩放到天空盒应有的大小");

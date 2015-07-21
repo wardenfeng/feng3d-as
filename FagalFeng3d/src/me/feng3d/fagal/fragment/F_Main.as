@@ -5,8 +5,8 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.light.F_Ambient;
 	import me.feng3d.fagal.fragment.light.F_DirectionalLight;
 	import me.feng3d.fagal.fragment.light.F_PointLight;
@@ -74,9 +74,9 @@ package me.feng3d.fagal.fragment
 			if (shaderParamsLight.hasSpecularTexture)
 			{
 				//光泽纹理寄存器
-				var specularFragmentReg:Register = requestRegister(Context3DBufferTypeIDLight.SPECULARTEXTURE_FS);
+				var specularFragmentReg:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXTURE_FS);
 				//uv变量数据
-				var uv:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+				var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
 				//光泽纹理数据片段临时寄存器
 				var specularTexData:Register = requestRegister("specularTexData_ft_4");
 
@@ -114,8 +114,8 @@ package me.feng3d.fagal.fragment
 			if (shaderParamsLight.numLights > 0)
 			{
 				//环境输入静态数据
-				var ambientInputReg:Register = requestRegister(Context3DBufferTypeIDLight.AMBIENTINPUT_FC_VECTOR);
-				var ambientTempReg:Register = requestRegister(Context3DBufferTypeIDLight.AMBIENT_FT);
+				var ambientInputReg:Register = requestRegister(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR);
+				var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.AMBIENT_FT);
 				F_Ambient(ambientInputReg, ambientTempReg);
 			}
 
@@ -138,9 +138,9 @@ package me.feng3d.fagal.fragment
 			if (shaderParamsLight.numLights > 0 && shaderParamsLight.usingSpecularMethod > 0)
 			{
 				//总漫反射颜色寄存器
-				var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeIDLight.TOTALSPECULARLIGHTCOLOR_FT_4);
+				var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
 				//材质镜面反射光数据 
-				var _specularDataRegister:Register = requestRegister(Context3DBufferTypeIDLight.SPECULARDATA_FC_VECTOR);
+				var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR);
 				F_SpecularPostLighting(totalSpecularColorReg, finalColorReg, specularTexData, _specularDataRegister);
 			}
 
@@ -153,7 +153,7 @@ package me.feng3d.fagal.fragment
 			}
 
 			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeIDCommon.OC);
+			var out:Register = requestRegister(Context3DBufferTypeID.OC);
 			F_FinalOut(finalColorReg, out);
 		}
 	}

@@ -12,7 +12,7 @@ package
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	import model3d.PhotoBox;
 
@@ -70,7 +70,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, objParser.rawUvBuffer);
+			sub.setVAData(Context3DBufferTypeID.UV_VA_2, objParser.rawUvBuffer);
 
 			var obj3d:Mesh = new Mesh();
 			obj3d.name = "obj3d";

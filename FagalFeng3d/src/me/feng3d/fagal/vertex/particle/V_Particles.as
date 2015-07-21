@@ -2,8 +2,8 @@ package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsParticle;
@@ -18,7 +18,7 @@ package me.feng3d.fagal.vertex.particle
 		/** 粒子渲染参数 */
 		var particleShaderParam:ShaderParamsParticle = shaderParams.getComponent(ShaderParamsParticle.NAME);
 		//粒子常数数据[0,1,2,0]
-		var particleCommon:Register = requestRegister(ParticleContext3DBufferID.PARTICLECOMMON_VC_VECTOR);
+		var particleCommon:Register = requestRegister(Context3DBufferTypeID.PARTICLECOMMON_VC_VECTOR);
 		//偏移坐标临时寄存器
 		var positionTemp:Register;
 
@@ -27,7 +27,7 @@ package me.feng3d.fagal.vertex.particle
 		{
 			//顶点坐标数据
 			positionTemp = requestRegister("positionTemp_vt_4");
-			var positionReg:Register = requestRegister(Context3DBufferTypeIDCommon.POSITION_VA_3);
+			var positionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
 			V_ParticlesInit(positionTemp, animatedPosition, positionReg, particleCommon);
 		}
 
@@ -46,9 +46,9 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.ParticleTimeLocalStatic)
 		{
 			//粒子时间属性数据
-			var particleTimeVA:Register = requestRegister(ParticleContext3DBufferID.PARTICLETIME_VA_4);
+			var particleTimeVA:Register = requestRegister(Context3DBufferTypeID.PARTICLETIME_VA_4);
 			//特效当前时间
-			var particleTimeVC:Register = requestRegister(ParticleContext3DBufferID.PARTICLETIME_VC_VECTOR);
+			var particleTimeVC:Register = requestRegister(Context3DBufferTypeID.PARTICLETIME_VC_VECTOR);
 			//粒子周期内时间临时寄存器
 			var inCycleTimeTemp:Register = requestRegister("inCycleTime_vt_4");
 
@@ -59,14 +59,14 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.ParticleVelocityGlobal)
 		{
 			//粒子速度数据
-			var particleConstVelocity:Register = requestRegister(ParticleContext3DBufferID.PARTICLEVELOCITY_VC_VECTOR);
+			var particleConstVelocity:Register = requestRegister(Context3DBufferTypeID.PARTICLEVELOCITY_VC_VECTOR);
 			V_ParticleVelocityGlobal(particleConstVelocity, positionTemp, inCycleTimeTemp);
 		}
 		//计算速度
 		if (particleShaderParam.ParticleVelocityLocalStatic)
 		{
 			//粒子速度数据
-			var particleVelocity:Register = requestRegister(ParticleContext3DBufferID.PARTICLEVELOCITY_VA_3);
+			var particleVelocity:Register = requestRegister(Context3DBufferTypeID.PARTICLEVELOCITY_VA_3);
 			V_ParticleVelocity(particleVelocity, positionTemp, inCycleTimeTemp);
 		}
 
@@ -74,7 +74,7 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.ParticleScaleGlobal)
 		{
 			//粒子缩放数据
-			var scaleRegister:Register = requestRegister(ParticleContext3DBufferID.PARTICLESCALE_VC_VECTOR);
+			var scaleRegister:Register = requestRegister(Context3DBufferTypeID.PARTICLESCALE_VC_VECTOR);
 			V_ParticleScaleGlobal(scaleRegister, inCycleTimeTemp, animatedPosition);
 		}
 
@@ -82,7 +82,7 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.ParticleBillboardGlobal)
 		{
 			//广告牌旋转矩阵(3个长度向量形式)
-			var particleBillboardMtx:Register = requestRegister(ParticleContext3DBufferID.PARTICLEBILLBOARD_VC_MATRIX);
+			var particleBillboardMtx:Register = requestRegister(Context3DBufferTypeID.PARTICLEBILLBOARD_VC_MATRIX);
 			V_ParticleBillboard(particleBillboardMtx, animatedPosition);
 		}
 
@@ -90,13 +90,13 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.changeColor > 0)
 		{
 			//粒子颜色乘数因子增量值，用于计算粒子颜色乘数因子
-			var deltaMultiplierValue:Register = requestRegister(ParticleContext3DBufferID.PARTICLEDELTACOLORMULTIPLIER_VC_VECTOR);
+			var deltaMultiplierValue:Register = requestRegister(Context3DBufferTypeID.PARTICLEDELTACOLORMULTIPLIER_VC_VECTOR);
 			//粒子颜色偏移起始值，用于计算粒子颜色偏移值
-			var startOffsetValue:Register = requestRegister(ParticleContext3DBufferID.PARTICLESTARTCOLOROFFSET_VC_VECTOR);
+			var startOffsetValue:Register = requestRegister(Context3DBufferTypeID.PARTICLESTARTCOLOROFFSET_VC_VECTOR);
 			//粒子颜色偏移增量值，用于计算粒子颜色偏移值
-			var deltaOffsetValue:Register = requestRegister(ParticleContext3DBufferID.PARTICLEDELTACOLOROFFSET_VC_VECTOR);
+			var deltaOffsetValue:Register = requestRegister(Context3DBufferTypeID.PARTICLEDELTACOLOROFFSET_VC_VECTOR);
 			//粒子颜色乘数因子起始值，用于计算粒子颜色乘数因子
-			var startMultiplierValue:Register = requestRegister(ParticleContext3DBufferID.PARTICLESTARTCOLORMULTIPLIER_VC_VECTOR);
+			var startMultiplierValue:Register = requestRegister(Context3DBufferTypeID.PARTICLESTARTCOLORMULTIPLIER_VC_VECTOR);
 
 			V_ParticleColorGlobal(startMultiplierValue, deltaMultiplierValue, startOffsetValue, deltaOffsetValue, inCycleTimeTemp, colorMulTarget, colorAddTarget);
 		}
@@ -111,10 +111,10 @@ package me.feng3d.fagal.vertex.particle
 		if (particleShaderParam.ParticleColorGlobal)
 		{
 			//粒子颜色乘数因子，用于乘以纹理上的颜色值
-			var colorMulVary:Register = requestRegister(ParticleContext3DBufferID.PARTICLECOLORMULTIPLIER_V);
+			var colorMulVary:Register = requestRegister(Context3DBufferTypeID.PARTICLECOLORMULTIPLIER_V);
 
 			//粒子颜色偏移值，在片段渲染的最终颜色值上偏移
-			var colorAddVary:Register = requestRegister(ParticleContext3DBufferID.PARTICLECOLOROFFSET_V);
+			var colorAddVary:Register = requestRegister(Context3DBufferTypeID.PARTICLECOLOROFFSET_V);
 
 			V_ParticleColorEnd(colorMulTarget, colorAddTarget, colorMulVary, colorAddVary);
 		}

@@ -7,7 +7,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParamsParticle;
 
 	use namespace arcane;
@@ -73,11 +73,11 @@ package me.feng3d.animators.particle.node
 
 			if (mode == ParticlePropertiesMode.GLOBAL)
 			{
-				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLESTARTCOLORMULTIPLIER_VC_VECTOR, updateStartColorMultiplierConstBuffer);
-				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEDELTACOLORMULTIPLIER_VC_VECTOR, updateDeltaColorMultiplierConstBuffer);
+				mapContext3DBuffer(Context3DBufferTypeID.PARTICLESTARTCOLORMULTIPLIER_VC_VECTOR, updateStartColorMultiplierConstBuffer);
+				mapContext3DBuffer(Context3DBufferTypeID.PARTICLEDELTACOLORMULTIPLIER_VC_VECTOR, updateDeltaColorMultiplierConstBuffer);
 
-				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLESTARTCOLOROFFSET_VC_VECTOR, updateStartColorOffsetConstBuffer);
-				mapContext3DBuffer(ParticleContext3DBufferID.PARTICLEDELTACOLOROFFSET_VC_VECTOR, updateDeltaColorOffsetConstBuffer);
+				mapContext3DBuffer(Context3DBufferTypeID.PARTICLESTARTCOLOROFFSET_VC_VECTOR, updateStartColorOffsetConstBuffer);
+				mapContext3DBuffer(Context3DBufferTypeID.PARTICLEDELTACOLOROFFSET_VC_VECTOR, updateDeltaColorOffsetConstBuffer);
 			}
 		}
 

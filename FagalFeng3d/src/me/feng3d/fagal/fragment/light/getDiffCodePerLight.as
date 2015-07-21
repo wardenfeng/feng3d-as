@@ -10,8 +10,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.operation.max;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsLight;
@@ -26,11 +24,11 @@ package me.feng3d.fagal.fragment.light
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//总漫反射颜色寄存器
-		var totalDiffLightColorReg:Register = requestRegister(Context3DBufferTypeIDLight.TOTALDIFFUSELIGHTCOLOR_FT_4);
+		var totalDiffLightColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALDIFFUSELIGHTCOLOR_FT_4);
 		//法线临时片段寄存器
 		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
 		//公用数据片段常量数据
-		var commonsReg:Register = requestRegister(Context3DBufferTypeIDCommon.COMMONSDATA_FC_VECTOR);
+		var commonsReg:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_FC_VECTOR);
 
 		var diffuseColorFtReg:Register;
 		if (shaderParamsLight.isFirstDiffLight)

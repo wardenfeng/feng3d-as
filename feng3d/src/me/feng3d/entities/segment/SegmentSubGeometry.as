@@ -2,7 +2,7 @@ package me.feng3d.entities.segment
 {
 
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.SegmentContext3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 线段渲染数据缓存
@@ -26,10 +26,10 @@ package me.feng3d.entities.segment
 		{
 			super.initBuffers();
 
-			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3, 3);
-			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3, 3);
-			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1, 1);
-			mapVABuffer(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4, 4);
+			mapVABuffer(Context3DBufferTypeID.SEGMENTSTART_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.SEGMENTEND_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.SEGMENTTHICKNESS_VA_1, 1);
+			mapVABuffer(Context3DBufferTypeID.SEGMENTCOLOR_VA_4, 4);
 		}
 
 		override public function get indices():Vector.<uint>
@@ -40,25 +40,25 @@ package me.feng3d.entities.segment
 
 		public function get pointData0():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3);
+			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.SEGMENTSTART_VA_3);
 			return data;
 		}
 
 		public function get pointData1():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3);
+			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.SEGMENTEND_VA_3);
 			return data;
 		}
 
 		public function get thicknessData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
+			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
 			return data;
 		}
 
 		public function get colorData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4);
+			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.SEGMENTCOLOR_VA_4);
 			return data;
 		}
 
@@ -84,22 +84,22 @@ package me.feng3d.entities.segment
 
 		public function updatePointData0(value:Vector.<Number>):void
 		{
-			setVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3, value);
+			setVAData(Context3DBufferTypeID.SEGMENTSTART_VA_3, value);
 		}
 
 		public function updatePointData1(value:Vector.<Number>):void
 		{
-			setVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3, value);
+			setVAData(Context3DBufferTypeID.SEGMENTEND_VA_3, value);
 		}
 
 		public function updateThicknessData(value:Vector.<Number>):void
 		{
-			setVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1, value);
+			setVAData(Context3DBufferTypeID.SEGMENTTHICKNESS_VA_1, value);
 		}
 
 		public function updateColorData(value:Vector.<Number>):void
 		{
-			setVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4, value);
+			setVAData(Context3DBufferTypeID.SEGMENTCOLOR_VA_4, value);
 		}
 
 		override protected function updateVAdata(dataTypeId:String):void
@@ -121,10 +121,10 @@ package me.feng3d.entities.segment
 		{
 			_segmentDataDirty = true;
 
-			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTSTART_VA_3);
-			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTEND_VA_3);
-			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
-			invalidVAData(SegmentContext3DBufferTypeID.SEGMENTCOLOR_VA_4);
+			invalidVAData(Context3DBufferTypeID.SEGMENTSTART_VA_3);
+			invalidVAData(Context3DBufferTypeID.SEGMENTEND_VA_3);
+			invalidVAData(Context3DBufferTypeID.SEGMENTTHICKNESS_VA_1);
+			invalidVAData(Context3DBufferTypeID.SEGMENTCOLOR_VA_4);
 		}
 	}
 }

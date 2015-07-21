@@ -7,14 +7,13 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.params.ShaderParamsAnimation;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 	import me.feng3d.fagal.register.ShaderRegisterAnimation;
-	import me.feng3d.fagal.register.ShaderRegisterCommon;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationCPU;
@@ -68,9 +67,9 @@ package me.feng3d.fagal.vertex
 			if (common.needsUV > 0)
 			{
 				//uv数据
-				var uv:Register = requestRegister(Context3DBufferTypeIDCommon.UV_VA_2);
+				var uv:Register = requestRegister(Context3DBufferTypeID.UV_VA_2);
 				//uv变量数据
-				var uv_v:Register = requestRegister(Context3DBufferTypeIDCommon.UV_V);
+				var uv_v:Register = requestRegister(Context3DBufferTypeID.UV_V);
 				mov(uv_v, uv);
 			}
 
@@ -137,16 +136,16 @@ package me.feng3d.fagal.vertex
 			var registerAnimation:ShaderRegisterAnimation = shaderParamsAnimation.registerAnimation;
 			//通用渲染参数
 			var shaderParamsCommon:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-			//通用渲染寄存器
-			var registerCommon:ShaderRegisterCommon = shaderParamsCommon.registerCommon;
+
+			var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
 
 			switch (shaderParamsAnimation.animationType)
 			{
 				case AnimationType.NONE:
-					V_BaseAnimation(registerAnimation.animatedPosition, registerCommon.position);
+					V_BaseAnimation(registerAnimation.animatedPosition, position);
 					break;
 				case AnimationType.VERTEX_CPU:
-					V_VertexAnimationCPU(registerAnimation.animatedPosition, registerCommon.position);
+					V_VertexAnimationCPU(registerAnimation.animatedPosition, position);
 					break;
 				case AnimationType.VERTEX_GPU:
 					V_VertexAnimationGPU(registerAnimation.animatedPosition, registerAnimation.p0, registerAnimation.p1, registerAnimation.weight);

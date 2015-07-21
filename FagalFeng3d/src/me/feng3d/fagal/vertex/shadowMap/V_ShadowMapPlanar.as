@@ -10,7 +10,7 @@ package me.feng3d.fagal.vertex.shadowMap
 	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 方向光阴影映射
@@ -19,9 +19,9 @@ package me.feng3d.fagal.vertex.shadowMap
 	public function V_ShadowMapPlanar():void
 	{
 		var temp:Register = getFreeTemp();
-		var dataReg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWCOMMONDATA0_VC_VECTOR);
-		var depthMapProj:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeIDShadow.DEPTHMAP_VC_MATRIX);
-		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeIDShadow.DEPTHMAPCOORD_V);
+		var dataReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA0_VC_VECTOR);
+		var depthMapProj:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.DEPTHMAP_VC_MATRIX);
+		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeID.DEPTHMAPCOORD_V);
 
 		//顶点世界坐标
 		var globalPositionVertex:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);

@@ -17,7 +17,7 @@
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Elevation;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.methods.TerrainDiffuseMethod;
@@ -218,7 +218,7 @@
 			subGeometry.numVertices = positionsBuffer.length / 3;
 			subGeometry.updateIndexData(indexBuffer);
 			subGeometry.updateVertexPositionData(positionsBuffer);
-			subGeometry.setVAData(Context3DBufferTypeIDCommon.UV_VA_2, uvBuffer);
+			subGeometry.setVAData(Context3DBufferTypeID.UV_VA_2, uvBuffer);
 			geometry.addSubGeometry(subGeometry);
 
 			return geometry;

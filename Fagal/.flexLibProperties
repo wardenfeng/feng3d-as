@@ -42,6 +42,8 @@
     <classEntry path="me.feng3d.events.Context3DBufferOwnerEvent"/>
     <classEntry path="me.feng3d.core.buffer.Context3DBufferCollector"/>
     <classEntry path="me.feng3d.core.base.VertexBufferOwner"/>
+    <classEntry path="me.feng3d.core.base.Context3DBufferID"/>
+    <classEntry path="me.feng3d.core.buffer.id._bId"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

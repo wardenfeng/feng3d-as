@@ -15,8 +15,8 @@ package me.feng3d.passes
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDSkyBox;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.F_SkyBox;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.vertex.V_SkyBox;
@@ -44,10 +44,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.TEXTURE_FS, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDCommon.PROJECTION_VC_MATRIX, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.TEXTURE_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, updateProjectionBuffer);
 			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR, updateCameraPosBuffer);
-			mapContext3DBuffer(Context3DBufferTypeIDSkyBox.SCALESKYBOX_VC_VECTOR, updateScaleSkyboxBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.SCALESKYBOX_VC_VECTOR, updateScaleSkyboxBuffer);
 		}
 
 		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
@@ -85,7 +85,7 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureProxyBase):void
 		{
 			_cubeTexture = value;
-			markBufferDirty(Context3DBufferTypeIDCommon.TEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.TEXTURE_FS);
 		}
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
@@ -129,7 +129,7 @@ package me.feng3d.passes
 			//通用渲染参数
 			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 
-			common.addSampleFlags(Context3DBufferTypeIDCommon.TEXTURE_FS, _cubeTexture);
+			common.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _cubeTexture);
 		}
 	}
 }

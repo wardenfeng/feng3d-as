@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.SegmentContext3DBufferTypeID"/>
     <classEntry path="me.feng3d.animators.AnimationType"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsParticle"/>
     <classEntry path="me.feng3d.core.buffer.Context3DCacheFeng3d"/>
@@ -9,16 +8,9 @@
     <classEntry path="me.feng3d.fagal.params.ShaderParamsLight"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsTerrain"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsWar3"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDCommon"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDLight"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDTerrain"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDSkyBox"/>
     <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsCommon"/>
-    <classEntry path="me.feng3d.fagal.register.ShaderRegisterCommon"/>
     <classEntry path="me.feng3d.fagal.register.ShaderRegisterAnimation"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow"/>
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsShadowMap"/>
@@ -27,6 +19,7 @@
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_ShadowMapPlanar"/>
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_ShadowMapPoint"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_ShadowMapSample"/>
+    <classEntry path="me.feng3d.configs.Context3DBufferIDConfig"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

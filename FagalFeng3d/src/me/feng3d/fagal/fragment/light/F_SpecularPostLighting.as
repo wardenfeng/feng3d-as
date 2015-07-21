@@ -5,7 +5,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.add;
 	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDShadow;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsLight;
@@ -24,7 +24,7 @@ package me.feng3d.fagal.fragment.light
 		//把阴影值使用到镜面反射上
 		if (shaderParamsShadowMap.needsShadowRegister)
 		{
-			var shadowValueReg:Register = requestRegister(Context3DBufferTypeIDShadow.SHADOWVALUE_FT_4);
+			var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
 			mul(totalSpecularColorReg.xyz, totalSpecularColorReg, shadowValueReg.w);
 		}
 

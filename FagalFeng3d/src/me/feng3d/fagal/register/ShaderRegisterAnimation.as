@@ -2,7 +2,7 @@ package me.feng3d.fagal.register
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeIDAnimation;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 动画渲染相关寄存器
@@ -33,7 +33,7 @@ package me.feng3d.fagal.register
 		 */
 		public function get p0():Register
 		{
-			return _p0 ||= requestRegister(Context3DBufferTypeIDAnimation.POSITION0_VA_3);
+			return _p0 ||= requestRegister(Context3DBufferTypeID.POSITION0_VA_3);
 		}
 
 		/**
@@ -41,7 +41,7 @@ package me.feng3d.fagal.register
 		 */
 		public function get p1():Register
 		{
-			return _p1 ||= requestRegister(Context3DBufferTypeIDAnimation.POSITION1_VA_3);
+			return _p1 ||= requestRegister(Context3DBufferTypeID.POSITION1_VA_3);
 		}
 
 		/**
@@ -49,7 +49,7 @@ package me.feng3d.fagal.register
 		 */
 		public function get weight():Register
 		{
-			return _weight ||= requestRegister(Context3DBufferTypeIDAnimation.WEIGHTS_VC_VECTOR);
+			return _weight ||= requestRegister(Context3DBufferTypeID.WEIGHTS_VC_VECTOR);
 		}
 
 		/**
@@ -57,7 +57,7 @@ package me.feng3d.fagal.register
 		 */
 		public function get animatedPosition():Register
 		{
-			return _animatedPosition ||= requestRegister(Context3DBufferTypeIDAnimation.ANIMATEDPOSITION_VT_4);
+			return _animatedPosition ||= requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
 		}
 
 		/**
@@ -73,7 +73,7 @@ package me.feng3d.fagal.register
 		 */
 		public function get animatedReg():Register
 		{
-			return _animatedReg ||= requestRegister(Context3DBufferTypeIDAnimation.ANIMATED_VA_3);
+			return _animatedReg ||= requestRegister(Context3DBufferTypeID.ANIMATED_VA_3);
 		}
 	}
 }
