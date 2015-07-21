@@ -2,7 +2,6 @@ package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterVector;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.requestRegisterVector;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
@@ -20,13 +19,6 @@ package me.feng3d.fagal.fragment.light
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 		var numDirectionalLights:int = shaderParamsLight.numDirectionalLights;
 
-		//灯光方向寄存器
-		var lightDirReg:Register;
-		//漫反射颜色寄存器
-		var diffuseColorReg:Register;
-		//镜面反射颜色寄存器
-		var specularColorReg:Register;
-
 		//方向光源场景方向
 		var dirLightDirHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, numDirectionalLights);
 		//方向光源漫反射光颜色
@@ -37,10 +29,12 @@ package me.feng3d.fagal.fragment.light
 		//遍历处理每个方向光
 		for (var i:uint = 0; i < numDirectionalLights; ++i)
 		{
-
-			lightDirReg = dirLightDirHeadReg.getReg(i);
-			diffuseColorReg = dirLightDiffuseColorHeadReg.getReg(i);
-			specularColorReg = dirLightSpecularColorHeadReg.getReg(i);
+			//灯光方向寄存器
+			var lightDirReg:Register = dirLightDirHeadReg.getReg(i);
+			//漫反射颜色寄存器
+			var diffuseColorReg:Register = dirLightDiffuseColorHeadReg.getReg(i);
+			//镜面反射颜色寄存器
+			var specularColorReg:Register = dirLightSpecularColorHeadReg.getReg(i);
 
 			//通用渲染参数
 			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);

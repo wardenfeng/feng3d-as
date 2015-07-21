@@ -7,13 +7,11 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.params.ShaderParamsAnimation;
 	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
-	import me.feng3d.fagal.register.ShaderRegisterAnimation;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationCPU;
@@ -44,19 +42,15 @@ package me.feng3d.fagal.vertex
 			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 			var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
 
-			//生成动画代码
-			var animatedPosition:Register = buildAnimationAGAL();
-
-			//顶点世界坐标
-			var positionSceneReg:Register;
+			buildAnimationAGAL();
 
 			//计算世界顶点坐标
 			if (shaderParamsLight.needWorldPosition)
-				positionSceneReg = V_WorldPosition();
+				V_WorldPosition();
 
 			//输出世界坐标到片段寄存器
 			if (shaderParamsLight.usesGlobalPosFragment)
-				V_WorldPositionOut(positionSceneReg);
+				V_WorldPositionOut();
 
 			//计算投影坐标
 			V_BaseOut();
@@ -78,44 +72,18 @@ package me.feng3d.fagal.vertex
 			{
 				if (shaderParamsLight.hasNormalTexture)
 				{
-					//法线数据
-					var normalInput:Register = requestRegister(Context3DBufferTypeID.NORMAL_VA_3);
-					//切线数据
-					var tangentInput:Register = requestRegister(Context3DBufferTypeID.TANGENT_VA_3);
-					//法线场景变换矩阵(模型空间转场景空间)
-					var matrix:Register = requestRegister(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX);
-					//切线变量寄存器
-					var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
-					//双切线变量寄存器
-					var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
-					//法线变量寄存器
-					var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
-
-					V_TangentNormalMap(normalInput, tangentInput, matrix, normalVarying, tangentVarying, bitangentVarying);
+					V_TangentNormalMap();
 				}
 				else
 				{
-					//法线数据
-					var animatedNormalReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_VA_3);
-					//法线变量寄存器
-					var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
-					//法线场景变换矩阵(模型空间转场景空间)
-					var normalMatrixReg:Register = requestRegister(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX);
-
-					V_TangentNormalNoMap(animatedNormalReg, normalVaryingReg, normalMatrixReg);
+					V_TangentNormalNoMap();
 				}
 			}
 
 			//计算视线方向
 			if (shaderParamsLight.needsViewDir > 0)
 			{
-				//顶点世界坐标
-				var globalPositionReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
-				//视线变量寄存器
-				var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_V);
-				//摄像机世界坐标
-				var cameraPositionReg:Register = requestRegister(Context3DBufferTypeID.CAMERAPOSITION_VC_VECTOR);
-				V_ViewDir(globalPositionReg, viewDirVaryingReg, cameraPositionReg);
+				V_ViewDir();
 			}
 
 			//计算阴影相关数据
@@ -128,42 +96,37 @@ package me.feng3d.fagal.vertex
 		/**
 		 * 生成动画代码
 		 */
-		protected function buildAnimationAGAL():Register
+		protected function buildAnimationAGAL():void
 		{
 			//动画渲染参数
 			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-			//动画渲染寄存器
-			var registerAnimation:ShaderRegisterAnimation = shaderParamsAnimation.registerAnimation;
 			//通用渲染参数
 			var shaderParamsCommon:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
-			var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
 
 			switch (shaderParamsAnimation.animationType)
 			{
 				case AnimationType.NONE:
-					V_BaseAnimation(registerAnimation.animatedPosition, position);
+					V_BaseAnimation();
 					break;
 				case AnimationType.VERTEX_CPU:
-					V_VertexAnimationCPU(registerAnimation.animatedPosition, position);
+					V_VertexAnimationCPU();
 					break;
 				case AnimationType.VERTEX_GPU:
-					V_VertexAnimationGPU(registerAnimation.animatedPosition, registerAnimation.p0, registerAnimation.p1, registerAnimation.weight);
+					V_VertexAnimationGPU();
 					break;
 				case AnimationType.SKELETON_CPU:
-					V_SkeletonAnimationCPU(registerAnimation.animatedPosition, registerAnimation.animatedReg);
+					V_SkeletonAnimationCPU();
 					break;
 				case AnimationType.SKELETON_GPU:
-					V_SkeletonAnimationGPU(registerAnimation.animatedPosition);
+					V_SkeletonAnimationGPU();
 					break;
 				case AnimationType.PARTICLE:
-					V_Particles(registerAnimation.animatedPosition);
+					V_Particles();
 					break;
 				default:
 					throw new Error(AnimationType.PARTICLE + "类型动画缺少FAGAL代码");
 					break;
 			}
-			return registerAnimation.animatedPosition;
 		}
 	}
 }

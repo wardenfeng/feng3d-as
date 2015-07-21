@@ -9,11 +9,14 @@ package me.feng3d.fagal.vertex
 	 * 世界坐标输出函数
 	 * @author warden_feng 2014-11-7
 	 */
-	public function V_WorldPositionOut(positionSceneReg:Register):void
+	public function V_WorldPositionOut():void
 	{
+		//顶点世界坐标
+		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
+
 		//世界坐标变量
 		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
-		
+
 		mov(globalPosVaryReg, positionSceneReg);
 	}
 }

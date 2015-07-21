@@ -18,8 +18,10 @@ package me.feng3d.fagal.fragment.shadowMap
 	 * 阴影图采样比较计算阴影值
 	 * @author warden_feng 2015-7-17
 	 */
-	public function F_ShadowMapSample(targetReg:Register):void
+	public function F_ShadowMapSample():void
 	{
+		var targetReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
+
 		var depthMapRegister:Register = requestRegister(Context3DBufferTypeID.DEPTHMAP_FS);
 		var decReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA0_FC_VECTOR);
 		var customDataReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA2_FC_VECTOR);

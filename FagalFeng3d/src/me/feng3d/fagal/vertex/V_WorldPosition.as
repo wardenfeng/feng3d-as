@@ -13,7 +13,7 @@ package me.feng3d.fagal.vertex
 	 * 顶点世界坐标渲染函数
 	 * @author warden_feng 2014-11-7
 	 */
-	public function V_WorldPosition():Register
+	public function V_WorldPosition():void
 	{
 		//顶点坐标数据
 		var localPositionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
@@ -24,7 +24,5 @@ package me.feng3d.fagal.vertex
 
 		comment("场景坐标转换");
 		m44(positionSceneReg, localPositionReg, sceneTransformMatrixReg);
-
-		return positionSceneReg;
 	}
 }

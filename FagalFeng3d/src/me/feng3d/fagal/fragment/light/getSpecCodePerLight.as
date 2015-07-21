@@ -63,7 +63,7 @@ package me.feng3d.fagal.fragment.light
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
-			var specularTexData:Register = requestRegister("specularTexData_ft_4");
+			var specularTexData:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXDATA_FT_4);
 			mul(specularTexData.w, specularTexData.y, _specularDataRegister.w);
 			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, specularTexData.w);
 		}

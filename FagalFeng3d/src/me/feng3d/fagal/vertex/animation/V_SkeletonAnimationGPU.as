@@ -18,13 +18,14 @@ package me.feng3d.fagal.vertex.animation
 
 	/**
 	 * 骨骼动画渲染程序(GPU)
-	 * @param animatedPosition			动画后的顶点坐标数据
 	 * @author warden_feng 2014-11-3
 	 */
-	public function V_SkeletonAnimationGPU(animatedPosition:Register):Register
+	public function V_SkeletonAnimationGPU():Register
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
+
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
 
 		//顶点坐标数据
 		var positionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);

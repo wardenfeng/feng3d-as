@@ -47,50 +47,24 @@ package me.feng3d.fagal.fragment
 			{
 				if (shaderParamsLight.hasNormalTexture)
 				{
-					//切线变量寄存器
-					var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
-					//双切线变量寄存器
-					var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
-					//法线变量寄存器
-					var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
-					//法线纹理数据片段临时寄存器
-					var normalTexData:Register = requestRegister("normalTexData_ft_4");
-					//法线临时片段寄存器
-					var normalFragment:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
-
-					F_TangentNormalMap(tangentVarying, bitangentVarying, normalVarying, normalTexData, normalFragment);
+					F_TangentNormalMap();
 				}
 				else
 				{
-					//法线变量寄存器
-					var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
-					//法线临时片段寄存器
-					var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
-					F_TangentNormalNoMap(normalVaryingReg, normalFragmentReg);
+					F_TangentNormalNoMap();
 				}
 			}
 
 			//光泽图采样
 			if (shaderParamsLight.hasSpecularTexture)
 			{
-				//光泽纹理寄存器
-				var specularFragmentReg:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXTURE_FS);
-				//uv变量数据
-				var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
-				//光泽纹理数据片段临时寄存器
-				var specularTexData:Register = requestRegister("specularTexData_ft_4");
-
-				F_SpecularSample(specularFragmentReg, uv, specularTexData);
+				F_SpecularSample();
 			}
 
 			//计算视线
 			if (shaderParamsLight.needsViewDir)
 			{
-				//视线变量寄存器
-				var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_V);
-				//视线方向片段临时数据
-				var viewDirFragmentReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_FT_4);
-				F_ViewDir(viewDirVaryingReg, viewDirFragmentReg);
+				F_ViewDir();
 			}
 
 			//处理方向灯光
@@ -102,9 +76,7 @@ package me.feng3d.fagal.fragment
 			//处理点灯光
 			if (shaderParamsLight.numPointLights > 0)
 			{
-				//世界坐标变量
-				var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
-				F_PointLight(globalPosVaryReg);
+				F_PointLight();
 			}
 
 			//通用渲染参数
@@ -113,10 +85,7 @@ package me.feng3d.fagal.fragment
 			//计算环境光
 			if (shaderParamsLight.numLights > 0)
 			{
-				//环境输入静态数据
-				var ambientInputReg:Register = requestRegister(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR);
-				var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.AMBIENT_FT);
-				F_Ambient(ambientInputReg, ambientTempReg);
+				F_Ambient();
 			}
 
 			//渲染阴影
@@ -132,16 +101,9 @@ package me.feng3d.fagal.fragment
 				shaderParamsLight.diffuseMethod();
 			}
 
-			//最终颜色寄存器（输出到oc寄存器的颜色）
-			var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
-
 			if (shaderParamsLight.numLights > 0 && shaderParamsLight.usingSpecularMethod > 0)
 			{
-				//总漫反射颜色寄存器
-				var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
-				//材质镜面反射光数据 
-				var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR);
-				F_SpecularPostLighting(totalSpecularColorReg, finalColorReg, specularTexData, _specularDataRegister);
+				F_SpecularPostLighting();
 			}
 
 			/** 粒子渲染参数 */
@@ -152,9 +114,7 @@ package me.feng3d.fagal.fragment
 				F_Particles();
 			}
 
-			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OC);
-			F_FinalOut(finalColorReg, out);
+			F_FinalOut();
 		}
 	}
 }

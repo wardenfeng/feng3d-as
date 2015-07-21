@@ -15,11 +15,21 @@ package me.feng3d.fagal.fragment.light
 	 * 结算镜面反射光
 	 * @author warden_feng 2014-11-7
 	 */
-	public function F_SpecularPostLighting(totalSpecularColorReg:Register, finalColorReg:Register, specularTexData:Register, _specularDataRegister:Register):void
+	public function F_SpecularPostLighting():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 		var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
+
+		//最终颜色寄存器（输出到oc寄存器的颜色）
+		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
+		//总漫反射颜色寄存器
+		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
+		//材质镜面反射光数据 
+		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR);
+		//光泽纹理数据片段临时寄存器
+		var specularTexData:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXDATA_FT_4);
+
 
 		//把阴影值使用到镜面反射上
 		if (shaderParamsShadowMap.needsShadowRegister)

@@ -3,23 +3,32 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
 	import me.feng3d.fagal.base.removeTemp;
+	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.crs;
 	import me.feng3d.fagal.base.operation.m33;
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.nrm;
+	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 编译切线顶点程序
-	 * @param normalInput				法线数据
-	 * @param tangentInput				切线数据
-	 * @param matrix					法线场景变换矩阵(模型空间转场景空间)
-	 * @param normalVarying				法线变量寄存器
-	 * @param tangentVarying			切线变量寄存器
-	 * @param bitangentVarying			双切线变量寄存器
 	 * @author warden_feng 2014-11-7
 	 */
-	public function V_TangentNormalMap(normalInput:Register, tangentInput:Register, matrix:Register, normalVarying:Register, tangentVarying:Register, bitangentVarying:Register):void
+	public function V_TangentNormalMap():void
 	{
+		//法线数据
+		var normalInput:Register = requestRegister(Context3DBufferTypeID.NORMAL_VA_3);
+		//切线数据
+		var tangentInput:Register = requestRegister(Context3DBufferTypeID.TANGENT_VA_3);
+		//法线场景变换矩阵(模型空间转场景空间)
+		var matrix:Register = requestRegister(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX);
+		//切线变量寄存器
+		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
+		//双切线变量寄存器
+		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
+		//法线变量寄存器
+		var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+
 		var animatedNormal:Register = getFreeTemp("动画后顶点法线临时寄存器");
 		var animatedTangent:Register = getFreeTemp("动画后顶点切线临时寄存器");
 		var bitanTemp:Register = getFreeTemp("动画后顶点双切线临时寄存器");

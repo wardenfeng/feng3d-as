@@ -2,7 +2,6 @@ package me.feng3d.fagal.params
 {
 	import me.feng.component.Component;
 	import me.feng3d.animators.AnimationType;
-	import me.feng3d.fagal.register.ShaderRegisterAnimation;
 
 	/**
 	 * 动画渲染参数
@@ -27,19 +26,6 @@ package me.feng3d.fagal.params
 		/** 动画Fagal函数类型 */
 		public var animationType:AnimationType;
 
-		//-----------------------------------------
-		//		private
-		//-----------------------------------------
-		private var _registerAnimation:ShaderRegisterAnimation;
-
-		/**
-		 * 动画渲染相关寄存器
-		 */
-		public function get registerAnimation():ShaderRegisterAnimation
-		{
-			return _registerAnimation ||= new ShaderRegisterAnimation();
-		}
-
 		/**
 		 * 创建一个动画渲染参数
 		 */
@@ -56,8 +42,6 @@ package me.feng3d.fagal.params
 			numJoints = 0;
 
 			animationType = AnimationType.NONE;
-
-			registerAnimation.init();
 		}
 	}
 }

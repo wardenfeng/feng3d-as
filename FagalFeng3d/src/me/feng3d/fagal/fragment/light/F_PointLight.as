@@ -5,6 +5,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.comment;
 	import me.feng3d.fagal.base.getFreeTemp;
 	import me.feng3d.fagal.base.removeTemp;
+	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.requestRegisterVector;
 	import me.feng3d.fagal.base.operation.dp3;
 	import me.feng3d.fagal.base.operation.mul;
@@ -21,10 +22,13 @@ package me.feng3d.fagal.fragment.light
 	 * 点光源渲染
 	 * @author warden_feng 2014-11-8
 	 */
-	public function F_PointLight(globalPosVaryReg:Register):void
+	public function F_PointLight():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
+
+		//世界坐标变量
+		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
 
 		var numPointLights:int = shaderParamsLight.numPointLights;
 		//

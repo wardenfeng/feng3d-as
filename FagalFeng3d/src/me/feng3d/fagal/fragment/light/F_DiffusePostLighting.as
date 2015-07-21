@@ -46,17 +46,11 @@ package me.feng3d.fagal.fragment.light
 		//获取漫反射灯光
 		if (common.hasDiffuseTexture)
 		{
-			//片段程序的纹理
-			var diffuseTexReg:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
-			//uv变量数据
-			var uvReg:Register = requestRegister(Context3DBufferTypeID.UV_V);
-			F_DiffuseTexure(diffuseTexReg, uvReg, mdiffReg);
+			F_DiffuseTexure();
 		}
 		else
 		{
-			//漫射输入静态数据
-			var diffColorReg:Register = requestRegister(Context3DBufferTypeID.DIFFUSEINPUT_FC_VECTOR);
-			F_DiffuseColor(diffColorReg, mdiffReg);
+			F_DiffuseColor();
 		}
 
 		if (shaderParamsLight.numLights == 0)

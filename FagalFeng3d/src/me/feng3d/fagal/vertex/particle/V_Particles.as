@@ -12,11 +12,15 @@ package me.feng3d.fagal.vertex.particle
 	 * 粒子顶点渲染程序
 	 * @author warden_feng 2014-11-14
 	 */
-	public function V_Particles(animatedPosition:Register):Register
+	public function V_Particles():Register
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		/** 粒子渲染参数 */
 		var particleShaderParam:ShaderParamsParticle = shaderParams.getComponent(ShaderParamsParticle.NAME);
+
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
+
+
 		//粒子常数数据[0,1,2,0]
 		var particleCommon:Register = requestRegister(Context3DBufferTypeID.PARTICLECOMMON_VC_VECTOR);
 		//偏移坐标临时寄存器

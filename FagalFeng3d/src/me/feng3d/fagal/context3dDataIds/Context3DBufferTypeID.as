@@ -305,5 +305,11 @@ package me.feng3d.fagal.context3dDataIds
 		public static const SEGMENTFRONT_VC_VECTOR:String = "segmentFront_vc_vector";
 		/** 常量数据 */
 		public static const SEGMENTCONSTANTS_VC_VECTOR:String = "segmentConstants_vc_vector";
+
+		/** 临时镜面反射纹理数据 */
+		public static const SPECULARTEXDATA_FT_4:String = "specularTexData_ft_4";
+
+		/** 临时法线纹理数据 */
+		public static const NORMALTEXDATA_FT_4:String = "normalTexData_ft_4";
 	}
 }

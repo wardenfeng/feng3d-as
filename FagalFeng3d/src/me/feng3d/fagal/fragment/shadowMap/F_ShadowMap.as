@@ -24,7 +24,7 @@ package me.feng3d.fagal.fragment.shadowMap
 
 		var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
 
-		F_ShadowMapSample(shadowValueReg);
+		F_ShadowMapSample();
 
 		var shadowCommondata1Reg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA1_FC_VECTOR);
 

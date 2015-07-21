@@ -8,14 +8,25 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.nrm;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 编译切线法线贴图片段程序
 	 * @author warden_feng 2014-11-7
 	 */
-	public function F_TangentNormalMap(tangentVarying:Register, bitangentVarying:Register, normalVarying:Register, normalTexData:Register, normalFragment:Register):void
+	public function F_TangentNormalMap():void
 	{
+		//切线变量寄存器
+		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
+		//双切线变量寄存器
+		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
+		//法线变量寄存器
+		var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+		//法线纹理数据片段临时寄存器
+		var normalTexData:Register = requestRegister(Context3DBufferTypeID.NORMALTEXDATA_FT_4);
+
+		//法线临时片段寄存器
+		var normalFragment:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
+
 		//t、b、n 法线所在顶点的变换矩阵
 		var t:Register = getFreeTemp("切线片段临时寄存器");
 		var b:Register = getFreeTemp("双切线片段临时寄存器");
@@ -30,18 +41,10 @@ package me.feng3d.fagal.fragment
 		//标准化法线
 		nrm(n.xyz, normalVarying);
 
-		//法线纹理寄存器
-		var normalTexture:Register = requestRegister(Context3DBufferTypeID.NORMALTEXTURE_FS);
-		//uv变量数据
-		var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
-		//公用数据片段常量数据
-		var commonsData:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_FC_VECTOR);
-
-		F_NormalSample(normalTexture, uv, normalTexData, commonsData);
+		F_NormalSample();
 
 		//标准化法线纹理数据
 		m33(normalFragment.xyz, normalTexData, t);
-//			mov(normalFragment.xyz, normalTexData);
 		//保存w不变
 		mov(normalFragment.w, normalVarying.w);
 
