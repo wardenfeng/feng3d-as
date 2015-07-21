@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ASDoc Builder"
+		 default="doc"
+		 basedir=".">
+
+	<property name="FLEX_HOME"
+			  value="D:/Program Files/Adobe/Adobe Flash Builder 4.7 (64 Bit)/sdks/4.6.0"/>
+	<property name="OUTPUT_DIR"
+			  value="${basedir}/asdoc"/>
+	<property name="WORKSPACE"
+			  value=".."/>
+	<taskdef resource="flexTasks.tasks"
+			 classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+	<target name="doc">
+		<asdoc output="${OUTPUT_DIR}"
+			   lenient="true"
+			   failonerror="true">
+			<!-- asDoc Infomation -->
+			<window-title>feng3d</window-title>
+			<main-title>feng3d</main-title>
+			<footer>feng3d API 页脚 版权所有feng</footer>
+			<doc-sources path-element="${basedir}/src"/>
+			<compiler.external-library-path dir="${basedir}/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="true"/>
+			<examples-path>${WORKSPACE}/fengCommonExamples/src</examples-path>
+		</asdoc>
+	</target>
+	<target name="clean">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${OUTPUT_DIR}"
+					 includes="**/*"/>
+		</delete>
+	</target>
+</project>

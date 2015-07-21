@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="me.feng.core.NamedBase"/>
+    <classEntry path="me.feng.error.AbstractClassError"/>
+    <classEntry path="me.feng.events.FEvent"/>
+    <classEntry path="me.feng.events.FEventDispatcher"/>
+    <classEntry path="me.feng.load.LoadTaskQueue"/>
+    <classEntry path="me.feng.task.TaskItem"/>
+    <classEntry path="me.feng.task.TaskList"/>
+    <classEntry path="me.feng.utils.formatString"/>
+    <classEntry path="me.feng.component.Component"/>
+    <classEntry path="me.feng.component.ComponentContainer"/>
+    <classEntry path="me.feng.enum.Enum"/>
+    <classEntry path="me.feng.load.LoadEventData"/>
+    <classEntry path="me.feng.load.data.LoadTaskItem"/>
+    <classEntry path="me.feng.task.Task"/>
+    <classEntry path="me.feng.task.TaskCollection"/>
+    <classEntry path="me.feng.task.TaskState"/>
+    <classEntry path="me.feng.task.TaskQueue"/>
+    <classEntry path="me.feng.utils.ClassUtils"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

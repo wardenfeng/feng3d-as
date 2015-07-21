@@ -1,0 +1,206 @@
+[
+    {
+        "constructorParams": [
+            "program",
+            null
+        ],
+        "className": "me.feng3d.core.buffer.context3d::ProgramBuffer",
+        "updateParams": [
+            {
+                "paramValue": "mov vt0, va0\nm44 op, vt0, vc0\n",
+                "paramType": "String"
+            },
+            {
+                "paramValue": "mov ft1, fc0\nmov ft2, ft1\nmov oc, ft2\n",
+                "paramType": "String"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "culling",
+            null
+        ],
+        "className": "me.feng3d.core.buffer.context3d::CullingBuffer",
+        "updateParams": [
+            {
+                "paramValue": "back",
+                "paramType": "String"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "depthTest",
+            null
+        ],
+        "className": "me.feng3d.core.buffer.context3d::DepthTestBuffer",
+        "updateParams": [
+            {
+                "paramValue": true,
+                "paramType": "Boolean"
+            },
+            {
+                "paramValue": "lessEqual",
+                "paramType": "String"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "blendFactors",
+            null
+        ],
+        "className": "me.feng3d.core.buffer.context3d::BlendFactorsBuffer",
+        "updateParams": [
+            {
+                "paramValue": "one",
+                "paramType": "String"
+            },
+            {
+                "paramValue": "zero",
+                "paramType": "String"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "diffuseInput_fc_vector",
+            null
+        ],
+        "shaderRegister": "fc0",
+        "className": "me.feng3d.core.buffer.context3d::FCVectorBuffer",
+        "updateParams": [
+            {
+                "paramValue": [
+                    1,
+                    0,
+                    0,
+                    1
+                ],
+                "paramType": "__AS3__.vec::Vector.<Number>"
+            },
+            {
+                "paramValue": 1,
+                "paramType": "int"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "position_va_3",
+            null
+        ],
+        "shaderRegister": "va0",
+        "className": "me.feng3d.core.buffer.context3d::VABuffer",
+        "updateParams": [
+            {
+                "paramValue": [
+                    -350,
+                    0,
+                    -350,
+                    350,
+                    0,
+                    -350,
+                    -350,
+                    0,
+                    350,
+                    350,
+                    0,
+                    350
+                ],
+                "paramType": "__AS3__.vec::Vector.<Number>"
+            },
+            {
+                "paramValue": 4,
+                "paramType": "int"
+            },
+            {
+                "paramValue": 3,
+                "paramType": "int"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "projection_vc_matrix",
+            null
+        ],
+        "shaderRegister": "vc0",
+        "className": "me.feng3d.core.buffer.context3d::VCMatrixBuffer",
+        "updateParams": [
+            {
+                "paramValue": {
+                    "rawData": [
+                        0.8131471872329712,
+                        -0.9790409207344055,
+                        -0.6828517317771912,
+                        -0.6782994270324707,
+                        0,
+                        1.3305983543395996,
+                        -0.6444808840751648,
+                        -0.6401844024658203,
+                        1.5293108224868774,
+                        0.5205641388893127,
+                        0.36307790875434875,
+                        0.36065739393234253,
+                        0,
+                        -0.0000011462191196187632,
+                        766.1325073242188,
+                        781.0249633789062
+                    ],
+                    "determinant": 60.402549743652344,
+                    "position": {
+                        "w": 0,
+                        "x": 0,
+                        "z": 766.1325073242188,
+                        "y": -0.0000011462191196187632,
+                        "lengthSquared": 586959.0187788941,
+                        "length": 766.1325073242188
+                    }
+                },
+                "paramType": "flash.geom::Matrix3D"
+            },
+            {
+                "paramValue": true,
+                "paramType": "Boolean"
+            }
+        ]
+    },
+    {
+        "constructorParams": [
+            "index",
+            null
+        ],
+        "className": "me.feng3d.core.buffer.context3d::IndexBuffer",
+        "updateParams": [
+            {
+                "paramValue": [
+                    0,
+                    2,
+                    3,
+                    0,
+                    3,
+                    1
+                ],
+                "paramType": "__AS3__.vec::Vector.<uint>"
+            },
+            {
+                "paramValue": 6,
+                "paramType": "int"
+            },
+            {
+                "paramValue": 6,
+                "paramType": "int"
+            },
+            {
+                "paramValue": 0,
+                "paramType": "int"
+            },
+            {
+                "paramValue": -1,
+                "paramType": "int"
+            }
+        ]
+    }
+]
