@@ -7,8 +7,7 @@ package me.feng3d.fagal.base.math
 
 	/**
 	 * 混合数据
-	 * <p>destination = source1 + (source2-source1) &times; factor</p>
-	 * <p>destination = source1 + (source2-source1) * factor</p>
+	 * <p>destination = source1 + (source2-source1) x factor</p>
 	 * @author warden_feng 2015-7-4
 	 */
 	public function blend(destination:IField, source1:IField, source2:IField, factor:IField):void

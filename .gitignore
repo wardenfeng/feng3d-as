@@ -1,5 +1,7 @@
 .svn
 .metadata
+asdoc
+
 # Build and Release Folders
 bin/
 bin-debug/
