@@ -8,11 +8,8 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 
 	/**
 	 * 基本顶点投影渲染
@@ -21,8 +18,6 @@ package me.feng3d.fagal.vertex
 	public function V_BaseOut():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
-
 
 		//动画后的顶点坐标数据
 		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
@@ -32,7 +27,7 @@ package me.feng3d.fagal.vertex
 		var op:Register = requestRegister(Context3DBufferTypeID.OP);
 
 		//阴影渲染需要 投影后的顶点坐标
-		if (shaderParamsShadowMap.needsProjection > 0)
+		if (shaderParams.needsProjection > 0)
 		{
 			var projectionFragment:Register = requestRegister(Context3DBufferTypeID.POSITIONPROJECTED_V);
 

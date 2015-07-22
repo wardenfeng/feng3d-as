@@ -4,7 +4,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
@@ -68,10 +67,7 @@ package me.feng3d.materials.methods
 
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-
-			shaderParamsLight.hasNormalTexture = _texture != null;
-
+			shaderParams.hasNormalTexture = _texture != null;
 			shaderParams.addSampleFlags(Context3DBufferTypeID.NORMALTEXTURE_FS, _texture);
 		}
 	}

@@ -12,7 +12,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
+	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
 
@@ -106,10 +106,10 @@ package me.feng3d.animators.particle.node
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function processAnimationSetting(particleShaderParam:ShaderParamsParticle):void
+		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
 		{
-			particleShaderParam.changePosition++;
-			particleShaderParam[animationName] = true;
+			shaderParam.changePosition++;
+			shaderParam[animationName] = true;
 		}
 	}
 }

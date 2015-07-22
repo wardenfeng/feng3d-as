@@ -8,8 +8,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 
 	/**
 	 * 结算镜面反射光
@@ -18,8 +16,6 @@ package me.feng3d.fagal.fragment.light
 	public function F_SpecularPostLighting():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-		var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
 
 		//最终颜色寄存器（输出到oc寄存器的颜色）
 		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
@@ -32,13 +28,13 @@ package me.feng3d.fagal.fragment.light
 
 
 		//把阴影值使用到镜面反射上
-		if (shaderParamsShadowMap.needsShadowRegister)
+		if (shaderParams.needsShadowRegister)
 		{
 			var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
 			mul(totalSpecularColorReg.xyz, totalSpecularColorReg, shadowValueReg.w);
 		}
 
-		if (shaderParamsLight.hasSpecularTexture)
+		if (shaderParams.hasSpecularTexture)
 		{
 			mul(totalSpecularColorReg.xyz, totalSpecularColorReg, specularTexData.x);
 		}

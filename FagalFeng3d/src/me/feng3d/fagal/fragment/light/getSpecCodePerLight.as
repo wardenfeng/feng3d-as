@@ -14,7 +14,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
 	 * 计算单个镜面反射光
@@ -23,7 +22,6 @@ package me.feng3d.fagal.fragment.light
 	public function getSpecCodePerLight(lightDirReg:Register, specularColorReg:Register):void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//总镜面反射颜色寄存器
 		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
@@ -41,7 +39,7 @@ package me.feng3d.fagal.fragment.light
 		//反射光方向与-视线方向 的 夹角余弦值 == 入射光方向+视线 与 法线 的 夹角余弦值  == 反射光强度
 
 		var singleSpecularColorReg:Register;
-		if (shaderParamsLight.isFirstSpecLight)
+		if (shaderParams.isFirstSpecLight)
 		{
 			singleSpecularColorReg = totalSpecularColorReg;
 		}
@@ -59,7 +57,7 @@ package me.feng3d.fagal.fragment.light
 		//镜面反射光强度 锁定在0-1之间
 		sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
 
-		if (shaderParamsLight.hasSpecularTexture)
+		if (shaderParams.hasSpecularTexture)
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
@@ -73,7 +71,7 @@ package me.feng3d.fagal.fragment.light
 			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _specularDataRegister.w);
 		}
 
-		if (shaderParamsLight.useLightFallOff)
+		if (shaderParams.useLightFallOff)
 		{
 			//镜面反射光强度 = 镜面反射强度  nul (入射光强度？)
 			mul(singleSpecularColorReg.w, singleSpecularColorReg.w, lightDirReg.w);
@@ -83,12 +81,12 @@ package me.feng3d.fagal.fragment.light
 		mul(singleSpecularColorReg.xyz, specularColorReg, singleSpecularColorReg.w);
 
 		//叠加镜面反射光
-		if (!shaderParamsLight.isFirstSpecLight)
+		if (!shaderParams.isFirstSpecLight)
 		{
 			//总镜面反射光 = 总镜面反射光 + 单个镜面反射光
 			add(totalSpecularColorReg.xyz, totalSpecularColorReg, singleSpecularColorReg);
 			removeTemp(singleSpecularColorReg);
 		}
-		shaderParamsLight.isFirstSpecLight = false;
+		shaderParams.isFirstSpecLight = false;
 	}
 }

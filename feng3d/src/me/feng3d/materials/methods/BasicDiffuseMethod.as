@@ -6,7 +6,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.light.F_DiffusePostLighting;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
@@ -114,15 +113,13 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-
 			shaderParams.needsUV += texture ? 1 : 0;
-			shaderParamsLight.needsNormals += shaderParamsLight.numLights > 0 ? 1 : 0;
+			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
 
 			shaderParams.hasDiffuseTexture = _texture != null;
 			shaderParams.usingDiffuseMethod += 1;
 
-			shaderParamsLight.diffuseMethod = F_DiffusePostLighting;
+			shaderParams.diffuseMethod = F_DiffusePostLighting;
 
 			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _texture);
 		}

@@ -12,8 +12,6 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
@@ -108,9 +106,7 @@ package me.feng3d.passes
 		{
 			super.activate(camera);
 
-			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-
-			shaderParamsLight.useLightFallOff = _enableLightFallOff;
+			shaderParams.useLightFallOff = _enableLightFallOff;
 
 			_methodSetup.activate(shaderParams);
 

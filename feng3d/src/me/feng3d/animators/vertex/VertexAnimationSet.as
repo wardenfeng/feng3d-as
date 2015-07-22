@@ -4,7 +4,6 @@ package me.feng3d.animators.vertex
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsAnimation;
 	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
@@ -25,12 +24,10 @@ package me.feng3d.animators.vertex
 
 		override arcane function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-
 			if (usesCPU)
-				shaderParamsAnimation.animationType = AnimationType.VERTEX_CPU;
+				shaderParams.animationType = AnimationType.VERTEX_CPU;
 			else
-				shaderParamsAnimation.animationType = AnimationType.VERTEX_GPU;
+				shaderParams.animationType = AnimationType.VERTEX_GPU;
 		}
 	}
 }

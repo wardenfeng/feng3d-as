@@ -6,7 +6,6 @@ package me.feng3d.passes
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
 
@@ -96,10 +95,8 @@ package me.feng3d.passes
 		{
 			if (_lightPicker)
 			{
-				var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-
-				shaderParamsLight.numPointLights = _lightPicker.numPointLights;
-				shaderParamsLight.numDirectionalLights = _lightPicker.numDirectionalLights;
+				shaderParams.numPointLights = _lightPicker.numPointLights;
+				shaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
 			}
 			super.activate(camera);
 		}

@@ -12,7 +12,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
 	 * 处理
@@ -21,7 +20,6 @@ package me.feng3d.fagal.fragment.light
 	public function getDiffCodePerLight(lightDirReg:Register, diffuseColorReg:Register):void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//总漫反射颜色寄存器
 		var totalDiffLightColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALDIFFUSELIGHTCOLOR_FT_4);
@@ -31,7 +29,7 @@ package me.feng3d.fagal.fragment.light
 		var commonsReg:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_FC_VECTOR);
 
 		var diffuseColorFtReg:Register;
-		if (shaderParamsLight.isFirstDiffLight)
+		if (shaderParams.isFirstDiffLight)
 		{
 			diffuseColorFtReg = totalDiffLightColorReg;
 		}
@@ -46,18 +44,18 @@ package me.feng3d.fagal.fragment.light
 		max(diffuseColorFtReg.w, diffuseColorFtReg.x, commonsReg.y);
 
 		//灯光衰减
-		if (shaderParamsLight.useLightFallOff)
+		if (shaderParams.useLightFallOff)
 			mul(diffuseColorFtReg.w, diffuseColorFtReg.w, lightDirReg.w);
 
 		comment("漫反射光颜色 = 灯光漫反射颜色 mul 漫反射光强度");
 		mul(diffuseColorFtReg, diffuseColorReg, diffuseColorFtReg.w);
 
 		//叠加灯光
-		if (!shaderParamsLight.isFirstDiffLight)
+		if (!shaderParams.isFirstDiffLight)
 		{
 			add(totalDiffLightColorReg.xyz, totalDiffLightColorReg, diffuseColorFtReg);
 			removeTemp(diffuseColorFtReg);
 		}
-		shaderParamsLight.isFirstDiffLight = false;
+		shaderParams.isFirstDiffLight = false;
 	}
 }

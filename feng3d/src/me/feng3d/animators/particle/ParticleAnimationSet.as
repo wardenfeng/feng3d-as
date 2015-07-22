@@ -18,8 +18,6 @@ package me.feng3d.animators.particle
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsAnimation;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
 	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
@@ -47,15 +45,16 @@ package me.feng3d.animators.particle
 		/** 是否为广告牌 */
 		public var hasBillboard:Boolean;
 
-		/** 粒子渲染参数 */
-		private var particleShaderParam:ShaderParamsParticle = new ShaderParamsParticle();
-
 		/** 动画节点列表 */
 		private var _effects:Vector.<ParticleNodeBase> = new Vector.<ParticleNodeBase>();
 		/** 动画名称列表 */
 		private var _effectNames:Vector.<String> = new Vector.<String>();
 		/** 动画字典 */
 		private var _effectDictionary:Dictionary = new Dictionary(true);
+
+		private var _usesDuration:Boolean = false;
+		private var _usesLooping:Boolean = false;
+		private var _usesDelay:Boolean = false;
 
 		/**
 		 * 创建一个粒子动画集合
@@ -65,9 +64,9 @@ package me.feng3d.animators.particle
 		 */
 		public function ParticleAnimationSet(usesDuration:Boolean = false, usesLooping:Boolean = false, usesDelay:Boolean = false)
 		{
-			particleShaderParam.usesDuration = usesDuration;
-			particleShaderParam.usesLooping = usesLooping;
-			particleShaderParam.usesDelay = usesDelay;
+			_usesDuration = usesDuration;
+			_usesLooping = usesLooping;
+			_usesDelay = usesDelay;
 
 			//自动添加一个粒子的时间节点
 			addParticleEffect(_timeNode = new ParticleTimeNode());
@@ -88,7 +87,6 @@ package me.feng3d.animators.particle
 		public function addParticleEffect(node:ParticleNodeBase):void
 		{
 			var i:int;
-			node.processAnimationSetting(particleShaderParam);
 			if (node.mode == ParticlePropertiesMode.LOCAL_STATIC)
 			{
 				_localStaticNodes.push(node);
@@ -112,10 +110,16 @@ package me.feng3d.animators.particle
 
 		arcane override function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			shaderParams.addComponent(particleShaderParam);
+			shaderParams.usesDuration = _usesDuration;
+			shaderParams.usesLooping = _usesLooping;
+			shaderParams.usesDelay = _usesDelay;
 
-			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-			shaderParamsAnimation.animationType = AnimationType.PARTICLE;
+			for (var i:int = 0; i < _effects.length; i++)
+			{
+				_effects[i].processAnimationSetting(shaderParams);
+			}
+
+			shaderParams.animationType = AnimationType.PARTICLE;
 		}
 
 		/**

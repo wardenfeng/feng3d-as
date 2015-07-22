@@ -12,7 +12,6 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsTerrain;
 
 	/**
 	 * 地形渲染函数
@@ -21,8 +20,7 @@ package me.feng3d.fagal.fragment
 	public function F_TerrainDiffusePostLighting():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsTerrain:ShaderParamsTerrain = shaderParams.getComponent(ShaderParamsTerrain.NAME);
-		var numSplattingLayers:int = shaderParamsTerrain.splatNum;
+		var numSplattingLayers:int = shaderParams.splatNum;
 
 		//土壤纹理列表
 		var splatFsarr:RegisterVector = requestRegisterVector(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, numSplattingLayers);

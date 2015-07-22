@@ -22,11 +22,6 @@ package me.feng3d.passes
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsAnimation;
-	import me.feng3d.fagal.params.ShaderParamsLight;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
-	import me.feng3d.fagal.params.ShaderParamsTerrain;
-	import me.feng3d.fagal.params.ShaderParamsWar3;
 	import me.feng3d.fagal.vertex.V_Main;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
@@ -83,17 +78,7 @@ package me.feng3d.passes
 		 */
 		public function get shaderParams():ShaderParams
 		{
-			if (_shaderParams == null)
-			{
-				_shaderParams = new ShaderParams();
-				//在这里添加组件 显然不合适，暂时这样处理，以后整理
-				_shaderParams.addComponent(new ShaderParamsLight());
-				_shaderParams.addComponent(new ShaderParamsShadowMap());
-				_shaderParams.addComponent(new ShaderParamsAnimation());
-				_shaderParams.addComponent(new ShaderParamsTerrain());
-				_shaderParams.addComponent(new ShaderParamsWar3());
-			}
-			return _shaderParams;
+			return _shaderParams ||= new ShaderParams();
 		}
 
 		/**

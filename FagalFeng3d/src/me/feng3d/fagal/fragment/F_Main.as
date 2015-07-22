@@ -9,9 +9,6 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.fragment.particle.F_Particles;
 	import me.feng3d.fagal.fragment.shadowMap.F_ShadowMap;
 	import me.feng3d.fagal.methods.FagalMethod;
-	import me.feng3d.fagal.params.ShaderParamsLight;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 
 	/**
 	 * 片段渲染程序主入口
@@ -32,14 +29,12 @@ package me.feng3d.fagal.fragment
 		 */
 		override public function runFunc():void
 		{
-			shaderParams.preRun();
-
-			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
+			shaderParams.preRunParams();
 
 			//计算法线
-			if (shaderParamsLight.needsNormals > 0)
+			if (shaderParams.needsNormals > 0)
 			{
-				if (shaderParamsLight.hasNormalTexture)
+				if (shaderParams.hasNormalTexture)
 				{
 					F_TangentNormalMap();
 				}
@@ -50,38 +45,37 @@ package me.feng3d.fagal.fragment
 			}
 
 			//光泽图采样
-			if (shaderParamsLight.hasSpecularTexture)
+			if (shaderParams.hasSpecularTexture)
 			{
 				F_SpecularSample();
 			}
 
 			//计算视线
-			if (shaderParamsLight.needsViewDir)
+			if (shaderParams.needsViewDir)
 			{
 				F_ViewDir();
 			}
 
 			//处理方向灯光
-			if (shaderParamsLight.numDirectionalLights > 0)
+			if (shaderParams.numDirectionalLights > 0)
 			{
 				F_DirectionalLight();
 			}
 
 			//处理点灯光
-			if (shaderParamsLight.numPointLights > 0)
+			if (shaderParams.numPointLights > 0)
 			{
 				F_PointLight();
 			}
 
 			//计算环境光
-			if (shaderParamsLight.numLights > 0)
+			if (shaderParams.numLights > 0)
 			{
 				F_Ambient();
 			}
 
 			//渲染阴影
-			var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
-			if (shaderParamsShadowMap.usingShadowMapMethod > 0)
+			if (shaderParams.usingShadowMapMethod > 0)
 			{
 				F_ShadowMap();
 			}
@@ -89,21 +83,16 @@ package me.feng3d.fagal.fragment
 			//计算漫反射
 			if (shaderParams.usingDiffuseMethod)
 			{
-				shaderParamsLight.diffuseMethod();
+				shaderParams.diffuseMethod();
 			}
 
-			if (shaderParamsLight.numLights > 0 && shaderParamsLight.usingSpecularMethod > 0)
+			if (shaderParams.numLights > 0 && shaderParams.usingSpecularMethod > 0)
 			{
 				F_SpecularPostLighting();
 			}
 
-			/** 粒子渲染参数 */
-			var particleShaderParam:ShaderParamsParticle = shaderParams.getComponent(ShaderParamsParticle.NAME);
 			//调用粒子相关片段渲染程序
-			if (particleShaderParam != null)
-			{
-				F_Particles();
-			}
+			F_Particles();
 
 			F_FinalOut();
 		}

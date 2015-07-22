@@ -7,8 +7,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
-	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
+	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
 
@@ -143,7 +142,7 @@ package me.feng3d.animators.particle.node
 		 * 设置粒子渲染参数
 		 * @param particleShaderParam 粒子渲染参数
 		 */
-		arcane function processAnimationSetting(particleShaderParam:ShaderParamsParticle):void
+		arcane function processAnimationSetting(shaderParam:ShaderParams):void
 		{
 			throw new Error("必须设置对应的渲染参数");
 		}

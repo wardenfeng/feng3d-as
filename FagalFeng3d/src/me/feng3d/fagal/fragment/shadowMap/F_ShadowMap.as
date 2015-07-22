@@ -11,7 +11,6 @@ package me.feng3d.fagal.fragment.shadowMap
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
 	 * 编译阴影映射片段程序
@@ -20,7 +19,6 @@ package me.feng3d.fagal.fragment.shadowMap
 	public function F_ShadowMap():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
 

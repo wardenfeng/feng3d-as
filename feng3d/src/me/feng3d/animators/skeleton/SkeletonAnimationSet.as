@@ -4,7 +4,6 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsAnimation;
 	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
@@ -38,15 +37,13 @@ package me.feng3d.animators.skeleton
 
 		arcane override function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-
-			shaderParamsAnimation.numJoints = _numJoints;
-			shaderParamsAnimation.jointsPerVertex = _jointsPerVertex;
+			shaderParams.numJoints = _numJoints;
+			shaderParams.jointsPerVertex = _jointsPerVertex;
 
 			if (usesCPU)
-				shaderParamsAnimation.animationType = AnimationType.SKELETON_CPU;
+				shaderParams.animationType = AnimationType.SKELETON_CPU;
 			else
-				shaderParamsAnimation.animationType = AnimationType.SKELETON_GPU;
+				shaderParams.animationType = AnimationType.SKELETON_GPU;
 		}
 
 		public function set numJoints(value:uint):void

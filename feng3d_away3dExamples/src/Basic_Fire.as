@@ -79,7 +79,7 @@ package
 	import me.feng3d.tools.helpers.ParticleGeometryHelper;
 	import me.feng3d.utils.Cast;
 
-	[SWF(backgroundColor = "#000000", frameRate = "60", quality = "LOW")]
+	[SWF(backgroundColor = "#000000", frameRate = "60", quality = "LOW", width = "644", height = "360")]
 	public class Basic_Fire extends TestBase
 	{
 		private static const NUM_FIRES:uint = 10;

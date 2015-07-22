@@ -2,7 +2,6 @@ package me.feng3d.fagal.fragment.particle
 {
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
 
 	/**
 	 * 粒子片段渲染程序
@@ -12,8 +11,7 @@ package me.feng3d.fagal.fragment.particle
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		/** 粒子渲染参数 */
-		var particleShaderParam:ShaderParamsParticle = shaderParams.getComponent(ShaderParamsParticle.NAME);
-		if (particleShaderParam.ParticleColorGlobal)
+		if (shaderParams.ParticleColorGlobal)
 		{
 			F_ParticleColorCombination();
 		}

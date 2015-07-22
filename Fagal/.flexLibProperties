@@ -33,8 +33,6 @@
     <classEntry path="me.feng3d.fagal.base.operation.sne"/>
     <classEntry path="me.feng3d.fagal.base.operation.sqt"/>
     <classEntry path="me.feng3d.Fagal"/>
-    <classEntry path="me.feng3d.fagal.params.ShaderParamsEvent"/>
-    <classEntry path="me.feng3d.fagal.params.data.SampleFlagsData"/>
     <classEntry path="me.feng3d.core.buffer.context3d.OCBuffer"/>
     <classEntry path="me.feng3d.fagal.base.math.blend"/>
     <classEntry path="me.feng3d.core.base.IContext3DBufferOwner"/>

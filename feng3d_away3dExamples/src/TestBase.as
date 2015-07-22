@@ -11,7 +11,7 @@ package
 	import me.feng3d.ConsoleExtension;
 
 	/**
-	 *
+	 * 测试基类
 	 * @author warden_feng 2014-4-9
 	 */
 	public class TestBase extends Sprite

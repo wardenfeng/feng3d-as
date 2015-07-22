@@ -15,7 +15,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
 	 * 点光源渲染
@@ -24,12 +23,11 @@ package me.feng3d.fagal.fragment.light
 	public function F_PointLight():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//世界坐标变量
 		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
 
-		var numPointLights:int = shaderParamsLight.numPointLights;
+		var numPointLights:int = shaderParams.numPointLights;
 		//
 		//点光源漫反射光颜色
 		var pointLightDiffuseColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, numPointLights);
@@ -77,7 +75,7 @@ package me.feng3d.fagal.fragment.light
 				getDiffCodePerLight(pointLightDirReg, pointLightdiffuseColorReg);
 			}
 			//计算镜面反射
-			if (shaderParamsLight.usingSpecularMethod)
+			if (shaderParams.usingSpecularMethod)
 			{
 				getSpecCodePerLight(pointLightDirReg, pointLightSpecularColorReg);
 			}

@@ -4,7 +4,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.params.ShaderParamsParticle;
+	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
 
@@ -34,7 +34,7 @@ package me.feng3d.animators.particle.node
 		{
 			super("ParticleTime", ParticlePropertiesMode.LOCAL_STATIC, 4, 0);
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
@@ -49,9 +49,9 @@ package me.feng3d.animators.particle.node
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function processAnimationSetting(particleShaderParam:ShaderParamsParticle):void
+		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
 		{
-			particleShaderParam[animationName] = true;
+			shaderParam[animationName] = true;
 		}
 	}
 }

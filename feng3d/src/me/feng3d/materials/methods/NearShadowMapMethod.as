@@ -7,7 +7,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 	import me.feng3d.lights.shadowmaps.NearDirectionalShadowMapper;
 
 	use namespace arcane;
@@ -99,8 +98,7 @@ package me.feng3d.materials.methods
 		{
 			super.activate(shaderParams);
 
-			var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
-			shaderParamsShadowMap.needsProjection = true;
+			shaderParams.needsProjection = true;
 
 		}
 

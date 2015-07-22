@@ -8,9 +8,6 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
-	import me.feng3d.fagal.params.ShaderParamsAnimation;
-	import me.feng3d.fagal.params.ShaderParamsLight;
-	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationCPU;
@@ -38,17 +35,14 @@ package me.feng3d.fagal.vertex
 		 */
 		override public function runFunc():void
 		{
-			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
-			var shaderParamsShadowMap:ShaderParamsShadowMap = shaderParams.getComponent(ShaderParamsShadowMap.NAME);
-
 			buildAnimationAGAL();
 
 			//计算世界顶点坐标
-			if (shaderParamsLight.needWorldPosition)
+			if (shaderParams.needWorldPosition)
 				V_WorldPosition();
 
 			//输出世界坐标到片段寄存器
-			if (shaderParamsLight.usesGlobalPosFragment)
+			if (shaderParams.usesGlobalPosFragment)
 				V_WorldPositionOut();
 
 			//计算投影坐标
@@ -65,9 +59,9 @@ package me.feng3d.fagal.vertex
 			}
 
 			//处理法线相关数据
-			if (shaderParamsLight.needsNormals > 0)
+			if (shaderParams.needsNormals > 0)
 			{
-				if (shaderParamsLight.hasNormalTexture)
+				if (shaderParams.hasNormalTexture)
 				{
 					V_TangentNormalMap();
 				}
@@ -78,13 +72,13 @@ package me.feng3d.fagal.vertex
 			}
 
 			//计算视线方向
-			if (shaderParamsLight.needsViewDir > 0)
+			if (shaderParams.needsViewDir > 0)
 			{
 				V_ViewDir();
 			}
 
 			//计算阴影相关数据
-			if (shaderParamsShadowMap.usingShadowMapMethod > 0)
+			if (shaderParams.usingShadowMapMethod > 0)
 			{
 				V_ShadowMap();
 			}
@@ -95,10 +89,7 @@ package me.feng3d.fagal.vertex
 		 */
 		protected function buildAnimationAGAL():void
 		{
-			//动画渲染参数
-			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-
-			switch (shaderParamsAnimation.animationType)
+			switch (shaderParams.animationType)
 			{
 				case AnimationType.NONE:
 					V_BaseAnimation();

@@ -3,7 +3,7 @@ package me.feng3d.fagal.params
 	import flash.utils.Dictionary;
 
 	import me.feng.component.ComponentContainer;
-	import me.feng3d.fagal.params.data.SampleFlagsData;
+	import me.feng3d.animators.AnimationType;
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.TextureUtils;
 
@@ -35,6 +35,123 @@ package me.feng3d.fagal.params
 		/** 取样标记字典 */
 		private var sampleFlagsDic:Dictionary;
 
+		//-----------------------------------------
+		//		动画渲染参数
+		//-----------------------------------------
+		/** 骨骼动画中的骨骼数量 */
+		public var numJoints:int;
+
+		/** 每个顶点关联关节的数量 */
+		public var jointsPerVertex:int;
+
+		/** 动画Fagal函数类型 */
+		public var animationType:AnimationType;
+
+		//-----------------------------------------
+		//		灯光渲染参数
+		//-----------------------------------------
+		/** 点光源数量 */
+		public var numPointLights:uint;
+		private var _numDirectionalLights:uint;
+		/** 是否使用灯光衰减 */
+		public var useLightFallOff:Boolean = true;
+
+		/** 是否需要视线 */
+		public var needsViewDir:int;
+
+		/** 方向光源数量 */
+		public function get numDirectionalLights():uint
+		{
+			return _numDirectionalLights;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set numDirectionalLights(value:uint):void
+		{
+			_numDirectionalLights = value;
+		}
+
+		/** 漫反射函数 */
+		public var diffuseMethod:Function;
+		/** 是否使用镜面反射函数 */
+		public var usingSpecularMethod:int;
+
+		/** 是否需要法线 */
+		public var needsNormals:int;
+		/** 是否有法线贴图 */
+		public var hasNormalTexture:Boolean;
+		/** 是否有光泽贴图 */
+		public var hasSpecularTexture:Boolean;
+
+		//------------- 渲染过程参数 ---------------
+		/** 是否为第一个渲染的镜面反射灯光 */
+		public var isFirstSpecLight:Boolean;
+
+		/** 是否为第一个渲染的漫反射灯光 */
+		public var isFirstDiffLight:Boolean;
+
+		//-----------------------------------------
+		//		粒子渲染参数
+		//-----------------------------------------
+		/** 是否持续 */
+		public var usesDuration:Boolean;
+		/** 是否延时 */
+		public var usesDelay:Boolean;
+		/** 是否循环 */
+		public var usesLooping:Boolean;
+
+		/** 时间静态 */
+		public var ParticleTimeLocalStatic:Boolean;
+		public var ParticleVelocityGlobal:Boolean;
+		public var ParticleVelocityLocalStatic:Boolean;
+		public var ParticleBillboardGlobal:Boolean;
+		public var ParticleScaleGlobal:Boolean;
+
+		public var ParticleColorGlobal:Boolean;
+
+		/** 是否改变坐标计数 */
+		public var changePosition:int;
+
+		/** 是否改变颜色信息 */
+		public var changeColor:int;
+
+		//-----------------------------------------
+		//		阴影渲染参数
+		//-----------------------------------------
+
+		/**
+		 * 是否使用阴影映射函数
+		 */
+		public var usingShadowMapMethod:int;
+
+		/**
+		 * 是否使用点光源
+		 */
+		public var usePoint:Boolean;
+
+		/**
+		 * 是否需要投影顶点坐标数据
+		 */
+		public var needsProjection:Boolean;
+
+		/**
+		 * 是否需要阴影寄存器
+		 */
+		public var needsShadowRegister:int;
+
+		//-----------------------------------------
+		//		地形渲染参数
+		//-----------------------------------------
+		/** 土壤纹理个数 */
+		public var splatNum:int;
+
+		//-----------------------------------------
+		//		魔兽争霸地形渲染参数
+		//-----------------------------------------
+		/** 土壤纹理个数 */
+		public var splatNum_war3Terrain:int;
 
 		/**
 		 * 创建一个渲染参数
@@ -62,8 +179,10 @@ package me.feng3d.fagal.params
 		/**
 		 * 渲染前初始化
 		 */
-		public function preRun():void
+		public function preRunParams():void
 		{
+			preRun();
+
 			for each (var shaderParam:Object in components)
 			{
 				if (shaderParam.hasOwnProperty("preRun"))
@@ -87,17 +206,31 @@ package me.feng3d.fagal.params
 
 			sampleFlagsDic = new Dictionary();
 
-			addEventListener(ShaderParamsEvent.GET_SAMPLE_FLAGS, onGetSampleFlags);
+			//
+			numJoints = 0;
+			animationType = AnimationType.NONE;
+
+			//
+			numPointLights = 0;
+			numDirectionalLights = 0;
+			needsNormals = 0;
+			needsViewDir = 0;
+
+			//
+			changePosition = 0;
+			changeColor = 0;
+
+			//
+			splatNum = 0;
 		}
 
 		/**
-		 * 处理获取取样标记
-		 * @param event
+		 * 运行渲染程序前
 		 */
-		private function onGetSampleFlags(event:ShaderParamsEvent):void
+		public function preRun():void
 		{
-			var sampleFlagsData:SampleFlagsData = event.data;
-			sampleFlagsData.flags = getFlags(sampleFlagsData.textureRegId);
+			isFirstSpecLight = true;
+			isFirstDiffLight = true;
 		}
 
 		/**
@@ -131,10 +264,29 @@ package me.feng3d.fagal.params
 		 * @param dataTypeId		纹理数据缓冲类型编号
 		 * @return					纹理取样标记
 		 */
-		private function getFlags(dataTypeId:String):Array
+		public function getFlags(dataTypeId:String):Array
 		{
 			return sampleFlagsDic[dataTypeId];
 		}
+
+		/** 灯光数量 */
+		public function get numLights():int
+		{
+			return numPointLights + numDirectionalLights;
+		}
+
+		/** 是否需要世界坐标 */
+		public function get needWorldPosition():Boolean
+		{
+			return needsViewDir || numPointLights > 0;
+		}
+
+		/** 片段程序是否需要世界坐标 */
+		public function get usesGlobalPosFragment():Boolean
+		{
+			return numPointLights > 0;
+		}
+
 
 	}
 }
