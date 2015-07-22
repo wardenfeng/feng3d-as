@@ -7,10 +7,8 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSArrayBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.F_TerrainDiffusePostLighting;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsTerrain;
 	import me.feng3d.textures.Texture2DBase;
@@ -95,15 +93,14 @@ package me.feng3d.materials.methods
 			super.activate(shaderParams);
 
 			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 			var shaderParamsTerrain:ShaderParamsTerrain = shaderParams.getComponent(ShaderParamsTerrain.NAME);
 
 			shaderParamsTerrain.splatNum = _numSplattingLayers;
 
-			common.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, texture, Context3DWrapMode.REPEAT);
-			common.addSampleFlags(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, splats[0], Context3DWrapMode.REPEAT);
-			common.addSampleFlags(Context3DBufferTypeID.BLENDINGTEXTURE_FS, blendingTexture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, texture, Context3DWrapMode.REPEAT);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, splats[0], Context3DWrapMode.REPEAT);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.BLENDINGTEXTURE_FS, blendingTexture);
 
 			shaderParamsLight.diffuseMethod = F_TerrainDiffusePostLighting;
 		}

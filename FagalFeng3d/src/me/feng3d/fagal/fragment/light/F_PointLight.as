@@ -15,7 +15,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
@@ -72,11 +71,8 @@ package me.feng3d.fagal.fragment.light
 			// normalize
 			nrm(pointLightDirReg.xyz, pointLightDirReg); //
 
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
 			//计算漫反射
-			if (common.usingDiffuseMethod)
+			if (shaderParams.usingDiffuseMethod)
 			{
 				getDiffCodePerLight(pointLightDirReg, pointLightdiffuseColorReg);
 			}

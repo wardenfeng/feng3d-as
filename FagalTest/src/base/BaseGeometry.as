@@ -22,7 +22,7 @@ package base
 
 		override protected function initBuffers():void
 		{
-			mapContext3DBuffer(Context3DBufferTypeID.index, updateIndexBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.INDEX, updateIndexBuffer);
 
 			mapVABuffer(Context3DBufferTypeID.POSITION_VA_3, 3);
 			mapVABuffer(Context3DBufferTypeID.COLOR_VA_3, 3);

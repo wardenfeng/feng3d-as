@@ -12,7 +12,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.fragment.F_DiffuseTexure;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 
@@ -24,7 +23,6 @@ package me.feng3d.fagal.fragment.light
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 		//通用渲染参数
-		var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 		var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
 		//总漫反射颜色寄存器
@@ -44,7 +42,7 @@ package me.feng3d.fagal.fragment.light
 		}
 
 		//获取漫反射灯光
-		if (common.hasDiffuseTexture)
+		if (shaderParams.hasDiffuseTexture)
 		{
 			F_DiffuseTexure();
 		}

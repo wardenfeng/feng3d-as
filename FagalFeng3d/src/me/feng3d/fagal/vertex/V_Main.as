@@ -9,7 +9,6 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.params.ShaderParamsAnimation;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
@@ -55,10 +54,8 @@ package me.feng3d.fagal.vertex
 			//计算投影坐标
 			V_BaseOut();
 
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 			//输出数据到片段寄存器
-			if (common.needsUV > 0)
+			if (shaderParams.needsUV > 0)
 			{
 				//uv数据
 				var uv:Register = requestRegister(Context3DBufferTypeID.UV_VA_2);
@@ -100,8 +97,6 @@ package me.feng3d.fagal.vertex
 		{
 			//动画渲染参数
 			var shaderParamsAnimation:ShaderParamsAnimation = shaderParams.getComponent(ShaderParamsAnimation.NAME);
-			//通用渲染参数
-			var shaderParamsCommon:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 
 			switch (shaderParamsAnimation.animationType)
 			{

@@ -5,7 +5,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -112,18 +111,16 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
 			var shaderParamsLight:ShaderParamsLight = shaderParams.getComponent(ShaderParamsLight.NAME);
 
-			common.needsUV += _texture != null ? 1 : 0;
+			shaderParams.needsUV += _texture != null ? 1 : 0;
 			shaderParamsLight.needsNormals += shaderParamsLight.numLights > 0 ? 1 : 0;
 			shaderParamsLight.needsViewDir += shaderParamsLight.numLights > 0 ? 1 : 0;
 
 			shaderParamsLight.usingSpecularMethod += 1;
 			shaderParamsLight.hasSpecularTexture = _texture != null;
 
-			common.addSampleFlags(Context3DBufferTypeID.SPECULARTEXTURE_FS, _texture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.SPECULARTEXTURE_FS, _texture);
 		}
 
 		private function updateSpecular():void

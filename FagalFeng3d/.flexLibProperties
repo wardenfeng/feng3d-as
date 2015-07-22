@@ -9,7 +9,6 @@
     <classEntry path="me.feng3d.fagal.params.ShaderParamsTerrain"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsWar3"/>
     <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID"/>
-    <classEntry path="me.feng3d.fagal.params.ShaderParamsCommon"/>
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParamsShadowMap"/>

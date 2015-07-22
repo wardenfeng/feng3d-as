@@ -4,7 +4,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -73,9 +72,7 @@ package me.feng3d.materials.methods
 
 			shaderParamsLight.hasNormalTexture = _texture != null;
 
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-			common.addSampleFlags(Context3DBufferTypeID.NORMALTEXTURE_FS, _texture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.NORMALTEXTURE_FS, _texture);
 		}
 	}
 }

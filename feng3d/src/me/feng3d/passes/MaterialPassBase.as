@@ -23,7 +23,6 @@ package me.feng3d.passes
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.params.ShaderParamsAnimation;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
 	import me.feng3d.fagal.params.ShaderParamsTerrain;
@@ -88,7 +87,6 @@ package me.feng3d.passes
 			{
 				_shaderParams = new ShaderParams();
 				//在这里添加组件 显然不合适，暂时这样处理，以后整理
-				_shaderParams.addComponent(new ShaderParamsCommon());
 				_shaderParams.addComponent(new ShaderParamsLight());
 				_shaderParams.addComponent(new ShaderParamsShadowMap());
 				_shaderParams.addComponent(new ShaderParamsAnimation());
@@ -199,12 +197,9 @@ package me.feng3d.passes
 		 */
 		arcane function activate(camera:Camera3D):void
 		{
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
-			common.useMipmapping = _mipmap;
-			common.useSmoothTextures = _smooth;
-			common.repeatTextures = _repeat;
+			shaderParams.useMipmapping = _mipmap;
+			shaderParams.useSmoothTextures = _smooth;
+			shaderParams.repeatTextures = _repeat;
 
 			if (_animationSet)
 				_animationSet.activate(shaderParams, this);

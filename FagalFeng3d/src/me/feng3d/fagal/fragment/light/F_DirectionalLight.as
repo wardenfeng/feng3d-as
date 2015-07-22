@@ -6,7 +6,6 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 
 	/**
@@ -36,11 +35,8 @@ package me.feng3d.fagal.fragment.light
 			//镜面反射颜色寄存器
 			var specularColorReg:Register = dirLightSpecularColorHeadReg.getReg(i);
 
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
 			//处理每个光的漫反射
-			if (common.usingDiffuseMethod > 0)
+			if (shaderParams.usingDiffuseMethod > 0)
 			{
 				getDiffCodePerLight(lightDirReg, diffuseColorReg);
 			}

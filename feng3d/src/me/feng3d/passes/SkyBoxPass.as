@@ -15,10 +15,7 @@ package me.feng3d.passes
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.F_SkyBox;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.vertex.V_SkyBox;
 	import me.feng3d.textures.CubeTextureProxyBase;
 
@@ -127,9 +124,7 @@ package me.feng3d.passes
 			scaleSkybox[3] = 1;
 
 			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
-			common.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _cubeTexture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _cubeTexture);
 		}
 	}
 }

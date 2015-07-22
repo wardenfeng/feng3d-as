@@ -2,22 +2,16 @@ package me.feng3d.fagal.fragment
 {
 	import flash.display3D.Context3DProgramType;
 
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.light.F_Ambient;
 	import me.feng3d.fagal.fragment.light.F_DirectionalLight;
 	import me.feng3d.fagal.fragment.light.F_PointLight;
 	import me.feng3d.fagal.fragment.light.F_SpecularPostLighting;
 	import me.feng3d.fagal.fragment.particle.F_Particles;
+	import me.feng3d.fagal.fragment.shadowMap.F_ShadowMap;
 	import me.feng3d.fagal.methods.FagalMethod;
-	import me.feng3d.fagal.params.ShaderParamsCommon;
 	import me.feng3d.fagal.params.ShaderParamsLight;
 	import me.feng3d.fagal.params.ShaderParamsParticle;
 	import me.feng3d.fagal.params.ShaderParamsShadowMap;
-	import me.feng3d.fagal.fragment.shadowMap.F_ShadowMap;
 
 	/**
 	 * 片段渲染程序主入口
@@ -79,9 +73,6 @@ package me.feng3d.fagal.fragment
 				F_PointLight();
 			}
 
-			//通用渲染参数
-			var common:ShaderParamsCommon = shaderParams.getComponent(ShaderParamsCommon.NAME);
-
 			//计算环境光
 			if (shaderParamsLight.numLights > 0)
 			{
@@ -96,7 +87,7 @@ package me.feng3d.fagal.fragment
 			}
 
 			//计算漫反射
-			if (common.usingDiffuseMethod)
+			if (shaderParams.usingDiffuseMethod)
 			{
 				shaderParamsLight.diffuseMethod();
 			}

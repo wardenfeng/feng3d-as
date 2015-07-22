@@ -8,7 +8,7 @@ package fagal
 	public class Context3DBufferTypeID
 	{
 		/** 索引数据 */
-		public static const index:String = "index";
+		public static const INDEX:String = "index";
 
 		/** 渲染程序 */
 		public static const PROGRAM:String = "program";
