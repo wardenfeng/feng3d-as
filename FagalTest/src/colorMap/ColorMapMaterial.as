@@ -1,16 +1,13 @@
 package colorMap
 {
-	import com.junkbyte.console.Cc;
-
 	import base.BaseMaterial;
 
-	import fagal.Context3DBufferTypeID;
 	import fagal.F_colorMap;
 	import fagal.V_colorMap;
 
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.runFagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 *
@@ -30,7 +27,7 @@ package colorMap
 
 		override protected function initBuffers():void
 		{
-			mapContext3DBuffer(Context3DBufferTypeID.COMMONSDATA_VC_VECTOR, updateCommonsDataBuffer);
+			mapContext3DBuffer(_.commonsData_vc_vector, updateCommonsDataBuffer);
 			super.initBuffers();
 		}
 
@@ -48,20 +45,10 @@ package colorMap
 
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			//运行顶点渲染函数
-			var vertexCode:String = runFagalMethod(V_colorMap);
-
-			//运行片段渲染函数
-			var fragmentCode:String = runFagalMethod(F_colorMap);
-
-			Cc.info("Compiling AGAL Code:");
-			Cc.info("--------------------");
-			Cc.info(vertexCode);
-			Cc.info("--------------------");
-			Cc.info(fragmentCode);
+			var result:Object = FagalRE.run(V_colorMap, F_colorMap);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 	}
 }

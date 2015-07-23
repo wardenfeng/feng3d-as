@@ -12,9 +12,9 @@ package me.feng3d.fagal.fragment
 	public function F_DiffuseColor():void
 	{
 		//漫射输入静态数据
-		var diffColorReg:Register = requestRegister(Context3DBufferTypeID.DIFFUSEINPUT_FC_VECTOR);
+		var diffColorReg:Register = requestRegister(Context3DBufferTypeID.diffuseInput_fc_vector);
 		//材质的漫反射颜色
-		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.MDIFF_FT);
+		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.mDiff_ft);
 
 		//漫射输入静态数据 
 		mov(mdiffReg, diffColorReg);

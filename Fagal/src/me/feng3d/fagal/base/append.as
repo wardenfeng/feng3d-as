@@ -1,7 +1,7 @@
 package me.feng3d.fagal.base
 {
 	import me.feng3d.arcanefagal;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 
 	use namespace arcanefagal;
 

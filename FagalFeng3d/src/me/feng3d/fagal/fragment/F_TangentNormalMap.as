@@ -16,16 +16,16 @@ package me.feng3d.fagal.fragment
 	public function F_TangentNormalMap():void
 	{
 		//切线变量寄存器
-		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
+		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.tangent_v);
 		//双切线变量寄存器
-		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
+		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.bitangent_v);
 		//法线变量寄存器
-		var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+		var normalVarying:Register = requestRegister(Context3DBufferTypeID.normal_v);
 		//法线纹理数据片段临时寄存器
-		var normalTexData:Register = requestRegister(Context3DBufferTypeID.NORMALTEXDATA_FT_4);
+		var normalTexData:Register = requestRegister(Context3DBufferTypeID.normalTexData_ft_4);
 
 		//法线临时片段寄存器
-		var normalFragment:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
+		var normalFragment:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
 
 		//t、b、n 法线所在顶点的变换矩阵
 		var t:Register = getFreeTemp("切线片段临时寄存器");

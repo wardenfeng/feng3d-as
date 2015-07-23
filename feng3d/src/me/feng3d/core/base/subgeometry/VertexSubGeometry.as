@@ -17,19 +17,19 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(Context3DBufferTypeID.POSITION0_VA_3, 3);
-			mapVABuffer(Context3DBufferTypeID.POSITION1_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.position0_va_3, 3);
+			mapVABuffer(Context3DBufferTypeID.position1_va_3, 3);
 		}
 
 		public function updateVertexData0(vertices:Vector.<Number>):void
 		{
 			super.updateVertexPositionData(vertices);
-			setVAData(Context3DBufferTypeID.POSITION0_VA_3, vertices);
+			setVAData(Context3DBufferTypeID.position0_va_3, vertices);
 		}
 
 		public function updateVertexData1(vertices:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.POSITION1_VA_3, vertices);
+			setVAData(Context3DBufferTypeID.position1_va_3, vertices);
 		}
 	}
 }

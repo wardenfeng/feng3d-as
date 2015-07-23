@@ -65,7 +65,7 @@ package me.feng3d.materials.methods
 				invalidateShaderProgram();
 			}
 			_texture = value;
-			markBufferDirty(Context3DBufferTypeID.SPECULARTEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.specularTexture_fs);
 		}
 
 		/**
@@ -91,8 +91,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR, updateSpecularDataBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SPECULARTEXTURE_FS, updateSpecularTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.specularData_fc_vector, updateSpecularDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.specularTexture_fs, updateSpecularTextureBuffer);
 		}
 
 		private function updateSpecularDataBuffer(_specularDataBuffer:FCVectorBuffer):void
@@ -117,7 +117,7 @@ package me.feng3d.materials.methods
 			shaderParams.usingSpecularMethod += 1;
 			shaderParams.hasSpecularTexture = _texture != null;
 
-			shaderParams.addSampleFlags(Context3DBufferTypeID.SPECULARTEXTURE_FS, _texture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.specularTexture_fs, _texture);
 		}
 
 		private function updateSpecular():void

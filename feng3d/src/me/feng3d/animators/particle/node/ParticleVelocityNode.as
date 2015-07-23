@@ -32,7 +32,7 @@ package me.feng3d.animators.particle.node
 
 		override public function get vaId():String
 		{
-			return Context3DBufferTypeID.PARTICLEVELOCITY_VA_3;
+			return Context3DBufferTypeID.particleVelocity_va_3;
 		}
 
 		override public function get vaLen():uint
@@ -68,7 +68,7 @@ package me.feng3d.animators.particle.node
 			super.initBuffers();
 
 			if (mode == ParticlePropertiesMode.GLOBAL)
-				mapContext3DBuffer(Context3DBufferTypeID.PARTICLEVELOCITY_VC_VECTOR, updateVelocityConstBuffer);
+				mapContext3DBuffer(Context3DBufferTypeID.particleVelocity_vc_vector, updateVelocityConstBuffer);
 		}
 
 		private function updateVelocityConstBuffer(velocityConstBuffer:VCVectorBuffer):void

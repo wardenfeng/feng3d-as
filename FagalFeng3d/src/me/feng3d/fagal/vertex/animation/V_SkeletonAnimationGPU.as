@@ -11,7 +11,7 @@ package me.feng3d.fagal.vertex.animation
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**
@@ -22,16 +22,16 @@ package me.feng3d.fagal.vertex.animation
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
-		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.animatedPosition_vt_4);
 
 		//顶点坐标数据
-		var positionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
+		var positionReg:Register = requestRegister(Context3DBufferTypeID.position_va_3);
 		//关节索引数据寄存器
-		var jointindexReg:Register = requestRegister(Context3DBufferTypeID.JOINTINDEX_VA_X);
+		var jointindexReg:Register = requestRegister(Context3DBufferTypeID.jointindex_va_x);
 		//关节权重数据寄存器
-		var JointWeightsReg:Register = requestRegister(Context3DBufferTypeID.JOINTWEIGHTS_VA_X);
+		var JointWeightsReg:Register = requestRegister(Context3DBufferTypeID.jointweights_va_x);
 		//骨骼全局变换矩阵静态数据
-		var globalmatricesReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.GLOBALMATRICES_VC_VECTOR, shaderParams.numJoints * 3);
+		var globalmatricesReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.globalmatrices_vc_vector, shaderParams.numJoints * 3);
 
 		//
 		var vt1:Register = getFreeTemp();

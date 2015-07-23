@@ -9,7 +9,6 @@ package me.feng3d.bounds
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.math.Ray3D;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.primitives.WireframePrimitiveBase;
 
 	/**
@@ -88,7 +87,7 @@ package me.feng3d.bounds
 			if (numSubGeoms > 0)
 			{
 				var subGeom:SubGeometry = subGeoms[0];
-				var vertices:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+				var vertices:Vector.<Number> = subGeom.vertexPositionData;
 				var i:uint = 0;
 				minX = maxX = vertices[i];
 				minY = maxY = vertices[i + 1];
@@ -98,10 +97,10 @@ package me.feng3d.bounds
 				while (j < numSubGeoms)
 				{
 					subGeom = subGeoms[j++];
-					vertices = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+					vertices = subGeom.vertexPositionData;
 					var vertexDataLen:uint = vertices.length;
 					i = 0;
-					var stride:uint = subGeom.getVALen(Context3DBufferTypeID.POSITION_VA_3);
+					var stride:uint = subGeom.vertexStride;
 
 					while (i < vertexDataLen)
 					{

@@ -1,10 +1,14 @@
-package me.feng3d.fagal.methods
+package me.feng3d.fagalRE
 {
+	import flash.utils.Dictionary;
+
+	import me.feng.utils.ClassUtils;
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.register.ShaderRegisterCache;
 	import me.feng3d.fagal.FagalToken;
-	import me.feng.utils.ClassUtils;
+	import me.feng3d.fagal.runFagalMethod;
+	import me.feng3d.fagal.methods.FagalMethod;
 
 	use namespace arcanefagal;
 
@@ -22,6 +26,22 @@ package me.feng3d.fagal.methods
 		private var agalCode:String = "";
 		private var _shaderType:String;
 
+		private var _space:FagalRESpace;
+
+		internal static var idDic:Dictionary = new Dictionary();
+
+		/**
+		 * 添加3d缓冲编号配置
+		 * @param configs
+		 */
+		public static function addBufferID(configs:Array):void
+		{
+			for (var i:int = 0; i < configs.length; i++)
+			{
+				idDic[configs[i][0]] = configs[i];
+			}
+		}
+
 		/**
 		 * 创建一个Fagal函数运行环境
 		 */
@@ -30,6 +50,14 @@ package me.feng3d.fagal.methods
 			if (_instance)
 				throw new Error("该类为单例");
 			_instance = this;
+		}
+
+		/**
+		 * Fagal运行环境空间
+		 */
+		public function get space():FagalRESpace
+		{
+			return _space ||= new FagalRESpace();
 		}
 
 		/**
@@ -51,6 +79,29 @@ package me.feng3d.fagal.methods
 		arcanefagal function get regCache():ShaderRegisterCache
 		{
 			return ShaderRegisterCache.instance;
+		}
+
+		/**
+		 * 运行Fagal函数
+		 * @param agalMethod Fagal函数
+		 */
+		public static function run(vertexShader:*, fragmentShader:*):Object
+		{
+			var result:Object = {};
+
+			//运行顶点渲染函数
+			result.vertexCode = runFagalMethod(vertexShader);
+
+			//运行片段渲染函数
+			result.fragmentCode = runFagalMethod(fragmentShader);
+
+			logger("Compiling AGAL Code:");
+			logger("--------------------");
+			logger(result.vertexCode);
+			logger("--------------------");
+			logger(result.fragmentCode);
+
+			return result;
 		}
 
 		/**

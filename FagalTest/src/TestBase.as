@@ -1,13 +1,20 @@
 package
 {
+	import com.junkbyte.console.Cc;
+
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 
+	import configs.Context3DBufferIDConfig;
+
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.debug.DebugCommon;
 	import me.feng.load.Load;
 	import me.feng.load.LoadEvent;
 	import me.feng.load.LoadEventData;
 	import me.feng.load.data.LoadTaskItem;
+	import me.feng3d.debug.Debug;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 *
@@ -17,7 +24,7 @@ package
 	{
 		//资源根路径
 //		protected var rootPath:String = "http://images.feng3d.me/feng3dDemo/assets/";
-		protected var rootPath:String = "";
+		protected var rootPath:String;
 
 		/**
 		 * 资源列表
@@ -30,6 +37,7 @@ package
 		public function TestBase()
 		{
 			MyCC.initFlashConsole(this);
+			DebugCommon.loggerFunc = Cc.log;
 			loadTextures();
 		}
 
@@ -39,6 +47,11 @@ package
 		private function loadTextures():void
 		{
 			resourceDic = new Dictionary();
+
+			if (rootPath == null)
+			{
+				rootPath = "";
+			}
 
 			Load.init();
 
@@ -68,6 +81,8 @@ package
 		 */
 		private function allItemsLoaded(... args):void
 		{
+			//配置3d缓存编号
+			FagalRE.addBufferID(Context3DBufferIDConfig.bufferIdConfigs);
 			this["init"]();
 		}
 	}

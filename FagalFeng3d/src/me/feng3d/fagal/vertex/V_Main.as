@@ -52,9 +52,9 @@ package me.feng3d.fagal.vertex
 			if (shaderParams.needsUV > 0)
 			{
 				//uv数据
-				var uv:Register = requestRegister(Context3DBufferTypeID.UV_VA_2);
+				var uv:Register = requestRegister(Context3DBufferTypeID.uv_va_2);
 				//uv变量数据
-				var uv_v:Register = requestRegister(Context3DBufferTypeID.UV_V);
+				var uv_v:Register = requestRegister(Context3DBufferTypeID.uv_v);
 				mov(uv_v, uv);
 			}
 

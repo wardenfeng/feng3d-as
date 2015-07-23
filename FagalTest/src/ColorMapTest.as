@@ -1,6 +1,5 @@
 package
 {
-	import flash.display.Sprite;
 	import flash.display.Stage3D;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -22,7 +21,7 @@ package
 	 * @author warden_feng 2014-10-24
 	 */
 	[SWF(width = "800", height = "600", frameRate = "60")]
-	public class ColorMapTest extends Sprite
+	public class ColorMapTest extends TestBase
 	{
 		private var context:Context3D;
 		private var stage3D:Stage3D;
@@ -34,6 +33,15 @@ package
 		private const CONTEXT_HEIGHT:Number = 380;
 
 		public function ColorMapTest()
+		{
+			resourceList = [];
+			super();
+		}
+
+		/**
+		 * Global initialise function
+		 */
+		public function init():void
 		{
 			Debug.agalDebug = true;
 			MyCC.initFlashConsole(this);

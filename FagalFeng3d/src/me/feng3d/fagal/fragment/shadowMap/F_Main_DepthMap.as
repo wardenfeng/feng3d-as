@@ -32,18 +32,18 @@ package me.feng3d.fagal.fragment.shadowMap
 		override public function runFunc():void
 		{
 			//投影后的顶点坐标 变量数据
-			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.POSITIONPROJECTED_V);
+			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.positionProjected_v);
 			var positionReg:Register = getFreeTemp("坐标"); //ft2
 			//深度顶点常数0 (1.0, 255.0, 65025.0, 16581375.0)
-			var depthCommonData0Reg:Register = requestRegister(Context3DBufferTypeID.DEPTHCOMMONDATA0_FC_VECTOR);
+			var depthCommonData0Reg:Register = requestRegister(Context3DBufferTypeID.depthCommonData0_fc_vector);
 			//深度的（乘以1,255,255*255,255*255*255后）不同值
 			var depthValueReg:Register = getFreeTemp("深度值");
 			//深度顶点常数1 (1.0/255.0, 1.0/255.0, 1.0/255.0, 0.0)
-			var depthCommonData1Reg:Register = requestRegister(Context3DBufferTypeID.DEPTHCOMMONDATA1_FC_VECTOR);
+			var depthCommonData1Reg:Register = requestRegister(Context3DBufferTypeID.depthCommonData1_fc_vector);
 
 			var ft1:Register = getFreeTemp("");
 			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.DEPTHMAP_OC);
+			var out:Register = requestRegister(Context3DBufferTypeID.depthMap_oc);
 
 			//计算深度值depth属于（0,1）,该范围外的将会被frc处理为0或1
 			div(positionReg, positionProjectedVarying, positionProjectedVarying.w);

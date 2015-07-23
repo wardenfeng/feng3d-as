@@ -49,7 +49,7 @@ package me.feng3d.materials.methods
 		public function set splats(value:Array):void
 		{
 			_splats = value;
-			markBufferDirty(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY);
+			markBufferDirty(Context3DBufferTypeID.terrainTextures_fs_array);
 		}
 
 		public function get blendingTexture():Texture2DBase
@@ -60,15 +60,15 @@ package me.feng3d.materials.methods
 		public function set blendingTexture(value:Texture2DBase):void
 		{
 			_blendingTexture = value;
-			markBufferDirty(Context3DBufferTypeID.BLENDINGTEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.blendingtexture_fs);
 		}
 
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.BLENDINGTEXTURE_FS, updateBlendingTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, updateTerrainTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.TILE_FC_VECTOR, updateTileDataBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.blendingtexture_fs, updateBlendingTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.terrainTextures_fs_array, updateTerrainTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.tile_fc_vector, updateTileDataBuffer);
 		}
 
 		private function updateTerrainTextureBuffer(terrainTextureBufferArr:FSArrayBuffer):void
@@ -93,9 +93,9 @@ package me.feng3d.materials.methods
 			//通用渲染参数
 			shaderParams.splatNum = _numSplattingLayers;
 
-			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, texture, Context3DWrapMode.REPEAT);
-			shaderParams.addSampleFlags(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, splats[0], Context3DWrapMode.REPEAT);
-			shaderParams.addSampleFlags(Context3DBufferTypeID.BLENDINGTEXTURE_FS, blendingTexture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.texture_fs, texture, Context3DWrapMode.REPEAT);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.terrainTextures_fs_array, splats[0], Context3DWrapMode.REPEAT);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.blendingtexture_fs, blendingTexture);
 
 			shaderParams.diffuseMethod = F_TerrainDiffusePostLighting;
 		}

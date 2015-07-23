@@ -25,7 +25,7 @@ package me.feng3d.fagal.fragment
 			//颜色变量寄存器
 			var color_v:Register = requestRegister("color_v");
 			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OC);
+			var out:Register = requestRegister(Context3DBufferTypeID._oc);
 
 			comment("传递顶点颜色数据" + color_v + "到片段寄存器" + out);
 			mov(out, color_v);

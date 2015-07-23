@@ -5,7 +5,7 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
@@ -14,7 +14,7 @@ package
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.textures.BitmapTexture;
-	
+
 	import parser.ObjParser1;
 
 	/**
@@ -76,7 +76,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeID.UV_VA_2, objParser.rawUvBuffer);
+			sub.updateUVData( objParser.rawUvBuffer);
 
 			head = new Mesh();
 			head.name = "head";

@@ -48,7 +48,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.SECONDARY_FC_VECTOR, updateSecondaryCommonData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.secondary_fc_vector, updateSecondaryCommonData0Buffer);
 		}
 
 		/**

@@ -1,8 +1,6 @@
 package me.feng3d.primitives
 {
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 平面网格（四边形）
@@ -138,9 +136,9 @@ package me.feng3d.primitives
 			var base:uint;
 			var tw:uint = _segmentsW + 1;
 			var numVertices:uint = (_segmentsH + 1) * tw;
-			var vertexPositionStride:uint = target.getVALen(Context3DBufferTypeID.POSITION_VA_3);
-			var vertexNormalStride:uint = target.getVALen(Context3DBufferTypeID.NORMAL_VA_3);
-			var vertexTangentStride:uint = target.getVALen(Context3DBufferTypeID.TANGENT_VA_3);
+			var vertexPositionStride:uint = target.vertexStride;
+			var vertexNormalStride:uint = target.vertexNormalStride;
+			var vertexTangentStride:uint = target.vertexTangentStride;
 			if (_doubleSided)
 				numVertices *= 2;
 
@@ -150,9 +148,9 @@ package me.feng3d.primitives
 
 			if (numVertices == target.numVertices)
 			{
-				vertexPositionData = target.getVAData(Context3DBufferTypeID.POSITION_VA_3);
-				vertexNormalData = target.getVAData(Context3DBufferTypeID.NORMAL_VA_3);
-				vertexTangentData = target.getVAData(Context3DBufferTypeID.TANGENT_VA_3);
+				vertexPositionData = target.vertexPositionData;
+				vertexNormalData = target.vertexNormalData;
+				vertexTangentData = target.vertexTangentData;
 				indices = target.indexData || new Vector.<uint>(numIndices, true);
 			}
 			else
@@ -254,21 +252,21 @@ package me.feng3d.primitives
 			}
 
 			target.updateVertexPositionData(vertexPositionData);
-			target.setVAData(Context3DBufferTypeID.NORMAL_VA_3, vertexNormalData);
-			target.setVAData(Context3DBufferTypeID.TANGENT_VA_3, vertexTangentData);
+			target.updateVertexNormalData(vertexNormalData);
+			target.updateVertexTangentData(vertexTangentData);
 			target.updateIndexData(indices);
 		}
 
 		override protected function buildUVs(target:SubGeometry):void
 		{
 			var data:Vector.<Number>;
-			var stride:uint = target.getVALen(Context3DBufferTypeID.UV_VA_2);
+			var stride:uint = target.UVStride;
 			var numUvs:uint = (_segmentsH + 1) * (_segmentsW + 1) * stride;
 
 			if (_doubleSided)
 				numUvs *= 2;
 
-			data = target.getVAData(Context3DBufferTypeID.UV_VA_2);
+			data = target.UVData;
 			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
@@ -292,7 +290,7 @@ package me.feng3d.primitives
 				}
 			}
 
-			target.setVAData(Context3DBufferTypeID.UV_VA_2, data);
+			target.updateUVData(data);
 		}
 	}
 }

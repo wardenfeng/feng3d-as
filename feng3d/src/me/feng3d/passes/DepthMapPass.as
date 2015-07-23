@@ -71,10 +71,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTHCOMMONDATA0_FC_VECTOR, updateDepthCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTHCOMMONDATA1_FC_VECTOR, updateDepthCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTHMAP_OC, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthCommonData0_fc_vector, updateDepthCommonData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthCommonData1_fc_vector, updateDepthCommonData1Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthMap_oc, updateTextureBuffer);
 		}
 
 		/**

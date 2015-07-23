@@ -1,16 +1,13 @@
 package colorTerrain
 {
-	import com.junkbyte.console.Cc;
-
 	import base.BaseMaterial;
 
-	import fagal.Context3DBufferTypeID;
 	import fagal.F_colorTerrain;
 	import fagal.V_colorTerrain;
 
 	import me.feng3d.core.buffer.context3d.FSArrayBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
-	import me.feng3d.fagal.runFagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 *
@@ -28,7 +25,7 @@ package colorTerrain
 
 		override protected function initBuffers():void
 		{
-			mapContext3DBuffer(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, updateTerrainTextureBuffer);
+			mapContext3DBuffer(_.terrainTextures_fs_array, updateTerrainTextureBuffer);
 			super.initBuffers();
 		}
 
@@ -39,20 +36,10 @@ package colorTerrain
 
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			//运行顶点渲染函数
-			var vertexCode:String = runFagalMethod(V_colorTerrain);
-
-			//运行片段渲染函数
-			var fragmentCode:String = runFagalMethod(F_colorTerrain);
-
-			Cc.info("Compiling AGAL Code:");
-			Cc.info("--------------------");
-			Cc.info(vertexCode);
-			Cc.info("--------------------");
-			Cc.info(fragmentCode);
+			var result:Object = FagalRE.run(V_colorTerrain, F_colorTerrain);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 	}
 }

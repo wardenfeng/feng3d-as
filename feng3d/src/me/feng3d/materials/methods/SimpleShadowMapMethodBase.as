@@ -72,13 +72,13 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA0_VC_VECTOR, updateShadowCommonVCData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA0_FC_VECTOR, updateShadowCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA1_FC_VECTOR, updateShadowCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SHADOWCOMMONDATA2_FC_VECTOR, updateShadowCommonData2Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTHMAP_VC_MATRIX, updateDepthProjectionMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata0_vc_vector, updateShadowCommonVCData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata0_fc_vector, updateShadowCommonData0Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata1_fc_vector, updateShadowCommonData1Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata2_fc_vector, updateShadowCommonData2Buffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthMap_vc_matrix, updateDepthProjectionMatrixBuffer);
 
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTHMAP_FS, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthMap_fs, updateTextureBuffer);
 		}
 
 		protected function updateShadowCommonVCData0Buffer(vcVectorBuffer:VCVectorBuffer):void
@@ -160,7 +160,7 @@ package me.feng3d.materials.methods
 
 			//通用渲染参数
 			var flags:Array = [castingLight.shadowMapper.depthMap.type, Context3DTextureFilter.NEAREST, Context3DWrapMode.CLAMP];
-			shaderParams.setSampleFlags(Context3DBufferTypeID.DEPTHMAP_FS, flags);
+			shaderParams.setSampleFlags(Context3DBufferTypeID.depthMap_fs, flags);
 		}
 
 		/**

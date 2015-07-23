@@ -12,8 +12,8 @@ package me.feng3d.fagal.fragment.light
 	public function F_Ambient():void
 	{
 		//环境输入静态数据
-		var ambientInputReg:Register = requestRegister(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR);
-		var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.AMBIENT_FT);
+		var ambientInputReg:Register = requestRegister(Context3DBufferTypeID.ambientInput_fc_vector);
+		var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.ambient_ft);
 
 		mov(ambientTempReg, ambientInputReg);
 	}

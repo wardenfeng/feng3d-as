@@ -34,7 +34,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.AMBIENTINPUT_FC_VECTOR, updateAmbientInputBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.ambientInput_fc_vector, updateAmbientInputBuffer);
 		}
 
 		private function updateAmbientInputBuffer(ambientInputBuffer:FCVectorBuffer):void

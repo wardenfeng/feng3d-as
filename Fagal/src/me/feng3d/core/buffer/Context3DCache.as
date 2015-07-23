@@ -11,7 +11,7 @@ package me.feng3d.core.buffer
 	import me.feng3d.core.buffer.context3d.RegisterBuffer;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterType;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcanefagal;

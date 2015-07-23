@@ -50,12 +50,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSCENEDIR_FC_VECTOR, updateDirLightSceneDirBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTDIFFUSE_FC_VECTOR, updateDirLightDiffuseReg);
-			mapContext3DBuffer(Context3DBufferTypeID.DIRLIGHTSPECULAR_FC_VECTOR, updateDirLightSpecularBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSCENEPOS_FC_VECTOR, updatePointLightScenePositionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, updatePointLightDiffuseReg);
-			mapContext3DBuffer(Context3DBufferTypeID.POINTLIGHTSPECULAR_FC_VECTOR, updatePointLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.dirLightSceneDir_fc_vector, updateDirLightSceneDirBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.dirLightDiffuse_fc_vector, updateDirLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.dirLightSpecular_fc_vector, updateDirLightSpecularBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.pointLightScenePos_fc_vector, updatePointLightScenePositionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.pointLightDiffuse_fc_vector, updatePointLightDiffuseReg);
+			mapContext3DBuffer(Context3DBufferTypeID.pointLightSpecular_fc_vector, updatePointLightSpecularBuffer);
 		}
 
 		private function updateDirLightSpecularBuffer(dirLightSpecularBuffer:FCVectorBuffer):void

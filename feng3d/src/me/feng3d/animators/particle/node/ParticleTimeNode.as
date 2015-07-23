@@ -16,7 +16,7 @@ package me.feng3d.animators.particle.node
 	{
 		override public function get vaId():String
 		{
-			return Context3DBufferTypeID.PARTICLETIME_VA_4;
+			return Context3DBufferTypeID.particleTime_va_4;
 		}
 
 		override public function get vaLen():uint

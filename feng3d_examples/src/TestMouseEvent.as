@@ -56,7 +56,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeID.UV_VA_2, objParser.rawUvBuffer);
+			sub.updateUVData( objParser.rawUvBuffer);
 
 			head = new Mesh();
 			head.name = "head";

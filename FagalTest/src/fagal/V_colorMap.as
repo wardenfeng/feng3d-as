@@ -3,13 +3,9 @@ package fagal
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.comment;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 输出颜色贴图
@@ -24,29 +20,19 @@ package fagal
 
 		override public function runFunc():void
 		{
-			//顶点颜色数据
-			var color:Register = requestRegister(Context3DBufferTypeID.COLOR_VA_3);
-			//uv数据
-			var uv:Register = requestRegister(Context3DBufferTypeID.UV_VA_2);
-
-			//颜色变量寄存器
-			var color_v:Register = requestRegister(Context3DBufferTypeID.COLOR_V);
-			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OP);
+			var _:* = FagalRE.instance.space;
 
 			//公用数据片段常量数据
-			var commonsReg:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_VC_VECTOR);
-
-			comment("传递顶点颜色数据" + color + "到变量寄存器" + color_v);
-			mov(color_v, color);
+			_.comment("传递顶点颜色数据", _.color_va_3, "到变量寄存器", _.color_v);
+			_.mov(_.color_v, _.color_va_3);
 
 			var uvTemp:Register = getFreeTemp("临时uv数据");
-			mov(uvTemp, uv);
-			mul(uvTemp.xy, uvTemp.xy, commonsReg.x);
-			sub(uvTemp.xy, uvTemp.xy, commonsReg.yy);
+			_.mov(uvTemp, _.uv_va_2);
+			_.mul(uvTemp.xy, uvTemp.xy, _.commonsData_vc_vector.x);
+			_.sub(uvTemp.xy, uvTemp.xy, _.commonsData_vc_vector.yy);
 
 			//把uv 作为坐标输出
-			mov(out, uvTemp);
+			_.mov(_._op, uvTemp);
 		}
 	}
 }

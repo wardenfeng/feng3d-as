@@ -42,7 +42,7 @@ package me.feng3d.animators.particle.node
 		{
 			super.initBuffers();
 
-			mapContext3DBuffer(Context3DBufferTypeID.PARTICLEBILLBOARD_VC_MATRIX, updateBillboardMatrixBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.particleBillboard_vc_matrix, updateBillboardMatrixBuffer);
 		}
 
 		private function updateBillboardMatrixBuffer(billboardMatrixBuffer:VCMatrixBuffer):void
@@ -85,7 +85,7 @@ package me.feng3d.animators.particle.node
 				_matrix.appendRotation(-comps[1].w * MathConsts.RADIANS_TO_DEGREES, comps[1]);
 			}
 
-			markBufferDirty(Context3DBufferTypeID.PARTICLEBILLBOARD_VC_MATRIX);
+			markBufferDirty(Context3DBufferTypeID.particleBillboard_vc_matrix);
 		}
 
 		/**

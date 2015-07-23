@@ -11,8 +11,8 @@ package me.feng3d.fagal.vertex
 	 */
 	public function V_BaseAnimation():void
 	{
-		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
-		var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.animatedPosition_vt_4);
+		var position:Register = requestRegister(Context3DBufferTypeID.position_va_3);
 
 		mov(animatedPosition, position);
 	}

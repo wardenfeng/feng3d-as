@@ -17,17 +17,17 @@ package me.feng3d.fagal.vertex
 	public function V_TangentNormalMap():void
 	{
 		//法线数据
-		var normalInput:Register = requestRegister(Context3DBufferTypeID.NORMAL_VA_3);
+		var normalInput:Register = requestRegister(Context3DBufferTypeID.normal_va_3);
 		//切线数据
-		var tangentInput:Register = requestRegister(Context3DBufferTypeID.TANGENT_VA_3);
+		var tangentInput:Register = requestRegister(Context3DBufferTypeID.tangent_va_3);
 		//法线场景变换矩阵(模型空间转场景空间)
-		var matrix:Register = requestRegister(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX);
+		var matrix:Register = requestRegister(Context3DBufferTypeID.normalSceneTransform_vc_matrix);
 		//切线变量寄存器
-		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.TANGENT_V);
+		var tangentVarying:Register = requestRegister(Context3DBufferTypeID.tangent_v);
 		//双切线变量寄存器
-		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.BITANGENT_V);
+		var bitangentVarying:Register = requestRegister(Context3DBufferTypeID.bitangent_v);
 		//法线变量寄存器
-		var normalVarying:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+		var normalVarying:Register = requestRegister(Context3DBufferTypeID.normal_v);
 
 		var animatedNormal:Register = getFreeTemp("动画后顶点法线临时寄存器");
 		var animatedTangent:Register = getFreeTemp("动画后顶点切线临时寄存器");

@@ -12,11 +12,11 @@ package me.feng3d.fagal.fragment
 	public function F_DiffuseTexure():void
 	{
 		//片段程序的纹理
-		var diffuseTexReg:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
+		var diffuseTexReg:Register = requestRegister(Context3DBufferTypeID.texture_fs);
 		//uv变量数据
-		var uvReg:Register = requestRegister(Context3DBufferTypeID.UV_V);
+		var uvReg:Register = requestRegister(Context3DBufferTypeID.uv_v);
 		//材质的漫反射颜色
-		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.MDIFF_FT);
+		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.mDiff_ft);
 
 		tex(mdiffReg, uvReg, diffuseTexReg);
 	}

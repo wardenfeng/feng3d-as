@@ -1,6 +1,6 @@
 package me.feng3d.fagal.fragment.particle
 {
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**

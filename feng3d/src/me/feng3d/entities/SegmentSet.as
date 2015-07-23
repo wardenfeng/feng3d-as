@@ -1,7 +1,6 @@
 package me.feng3d.entities
 {
 
-	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
 	import me.feng3d.arcane;
@@ -184,7 +183,7 @@ package me.feng3d.entities
 			var maxX:Number = -Infinity;
 			var maxY:Number = -Infinity;
 			var maxZ:Number = -Infinity;
-			var vertice0:Vector.<Number> = _segmentSubGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+			var vertice0:Vector.<Number> = _segmentSubGeometry.vertexPositionData;
 
 			index = 0;
 			len = vertice0.length;

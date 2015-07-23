@@ -33,14 +33,14 @@ package me.feng3d.fagal.vertex.shadowMap
 		 */
 		override public function runFunc():void
 		{
-			var position:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
-			var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
+			var position:Register = requestRegister(Context3DBufferTypeID.position_va_3);
+			var animatedPosition:Register = requestRegister(Context3DBufferTypeID.animatedPosition_vt_4);
 			//顶点程序投影矩阵静态数据
-			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.PROJECTION_VC_MATRIX);
+			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.projection_vc_matrix);
 			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OP);
+			var out:Register = requestRegister(Context3DBufferTypeID._op);
 			//投影后的顶点坐标 变量数据
-			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.POSITIONPROJECTED_V);
+			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.positionProjected_v);
 
 			//普通动画
 			mov(animatedPosition, position);

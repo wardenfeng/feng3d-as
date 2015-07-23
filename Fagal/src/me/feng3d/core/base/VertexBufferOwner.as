@@ -24,6 +24,9 @@ package me.feng3d.core.base
 		/** 数据有效(与脏相反)标记字典 */
 		private var dataValidDic:Dictionary = new Dictionary();
 
+		/**
+		 * 创建顶点数据拥有者
+		 */
 		public function VertexBufferOwner()
 		{
 			super();
@@ -77,7 +80,7 @@ package me.feng3d.core.base
 		 * 使顶点数据失效
 		 * @param dataTypeId
 		 */
-		public function invalidVAData(dataTypeId:String):void
+		protected function invalidVAData(dataTypeId:String):void
 		{
 			dataValidDic[dataTypeId] = false;
 			markBufferDirty(dataTypeId);

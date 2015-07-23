@@ -8,7 +8,6 @@ package me.feng3d.core.pick
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.math.Ray3D;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 
 	/**
 	 * 基于PixelBender计算与实体的相交
@@ -58,8 +57,8 @@ package me.feng3d.core.pick
 			var cx:Number, cy:Number, cz:Number;
 			var u:Number, v:Number, w:Number;
 			var indexData:Vector.<uint> = subGeom.indexData;
-			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
-			var uvData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.UV_VA_2);
+			var vertexData:Vector.<Number> = subGeom.vertexPositionData;
+			var uvData:Vector.<Number> = subGeom.UVData;
 			var numericIndexData:Vector.<Number> = Vector.<Number>(indexData);
 			var indexBufferDims:Point = evaluateArrayAsGrid(numericIndexData);
 

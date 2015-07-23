@@ -1,19 +1,15 @@
 package base
 {
-	import com.junkbyte.console.Cc;
-
 	import flash.geom.Matrix3D;
 
-	import fagal.Context3DBufferTypeID;
 	import fagal.F_baseShader;
 	import fagal.V_baseShader;
 
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
-	import me.feng3d.fagal.runFagalMethod;
-	import me.feng3d.fagal.methods.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 *
@@ -39,14 +35,14 @@ package base
 
 		protected override function initBuffers():void
 		{
-			mapContext3DBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.PROGRAM, updateProgramBuffer);
+			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(_.program, updateProgramBuffer);
 		}
 
 		public function render(viewMatrix:Matrix3D):void
 		{
 			modelViewProjection = viewMatrix;
-			markBufferDirty(Context3DBufferTypeID.PROJECTION_VC_MATRIX);
+			markBufferDirty(_.projection_vc_matrix);
 		}
 
 		/**
@@ -62,20 +58,10 @@ package base
 		 */
 		protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			//运行顶点渲染函数
-			var vertexCode:String = runFagalMethod(V_baseShader);
-
-			//运行片段渲染函数
-			var fragmentCode:String = runFagalMethod(F_baseShader);
-
-			Cc.info("Compiling AGAL Code:");
-			Cc.info("--------------------");
-			Cc.info(vertexCode);
-			Cc.info("--------------------");
-			Cc.info(fragmentCode);
+			var result:Object = FagalRE.run(V_baseShader, F_baseShader);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 	}
 }

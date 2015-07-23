@@ -14,13 +14,13 @@ package me.feng3d.fagal.fragment
 	public function F_NormalSample():void
 	{
 		//法线纹理数据片段临时寄存器
-		var normalTexData:Register = requestRegister(Context3DBufferTypeID.NORMALTEXDATA_FT_4);
+		var normalTexData:Register = requestRegister(Context3DBufferTypeID.normalTexData_ft_4);
 		//法线纹理寄存器
-		var normalTexture:Register = requestRegister(Context3DBufferTypeID.NORMALTEXTURE_FS);
+		var normalTexture:Register = requestRegister(Context3DBufferTypeID.normalTexture_fs);
 		//uv变量数据
-		var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
+		var uv:Register = requestRegister(Context3DBufferTypeID.uv_v);
 		//公用数据片段常量数据
-		var commonsData:Register = requestRegister(Context3DBufferTypeID.COMMONSDATA_FC_VECTOR);
+		var commonsData:Register = requestRegister(Context3DBufferTypeID.commonsData_fc_vector);
 
 		//获取纹理数据
 		tex(normalTexData, uv, normalTexture);

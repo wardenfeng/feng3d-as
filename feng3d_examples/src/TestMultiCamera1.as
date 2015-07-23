@@ -70,7 +70,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeID.UV_VA_2, objParser.rawUvBuffer);
+			sub.updateUVData(objParser.rawUvBuffer);
 
 			var obj3d:Mesh = new Mesh();
 			obj3d.name = "obj3d";

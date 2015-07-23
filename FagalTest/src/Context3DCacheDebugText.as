@@ -4,7 +4,6 @@ package
 	import flash.display3D.Context3D;
 	import flash.display3D.Context3DProfile;
 	import flash.display3D.Context3DRenderMode;
-	import flash.display3D.Context3DTriangleFace;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 
@@ -51,7 +50,7 @@ package
 		private function contextCreated(event:Event):void
 		{
 			renderContext = Stage3D(event.target).context3D;
-			trace("3D driver: " + renderContext.driverInfo);
+			logger("3D driver: " + renderContext.driverInfo);
 			setupScene();
 		}
 
@@ -59,7 +58,6 @@ package
 		{
 			renderContext.enableErrorChecking = true; //Can slow rendering - only turn on when developing/testing
 			renderContext.configureBackBuffer(stage.stageWidth, stage.stageHeight, 2, false);
-			renderContext.setCulling(Context3DTriangleFace.BACK);
 
 //			this.stage.addEventListener(Event.ENTER_FRAME, render);
 			render(null);
@@ -77,7 +75,7 @@ package
 
 		private function contextCreationError(error:ErrorEvent):void
 		{
-			trace(error.errorID + ": " + error.text);
+			logger(error.errorID + ": " + error.text);
 		}
 
 	}

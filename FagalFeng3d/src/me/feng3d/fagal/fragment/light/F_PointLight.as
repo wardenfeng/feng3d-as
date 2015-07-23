@@ -13,7 +13,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.operation.sat;
 	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**
@@ -25,16 +25,16 @@ package me.feng3d.fagal.fragment.light
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
 		//世界坐标变量
-		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
+		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.globalPos_v);
 
 		var numPointLights:int = shaderParams.numPointLights;
 		//
 		//点光源漫反射光颜色
-		var pointLightDiffuseColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.POINTLIGHTDIFFUSE_FC_VECTOR, numPointLights);
+		var pointLightDiffuseColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.pointLightDiffuse_fc_vector, numPointLights);
 		//点光源场景位置
-		var pointLightScenePosHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.POINTLIGHTSCENEPOS_FC_VECTOR, numPointLights);
+		var pointLightScenePosHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.pointLightScenePos_fc_vector, numPointLights);
 		//点光源镜面反射颜色
-		var pointLightSpecularColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.POINTLIGHTSPECULAR_FC_VECTOR, numPointLights);
+		var pointLightSpecularColorHeadReg:RegisterVector = requestRegisterVector(Context3DBufferTypeID.pointLightSpecular_fc_vector, numPointLights);
 		//光线方向
 		var pointLightDirReg:Register;
 		//点光源漫反射颜色寄存器

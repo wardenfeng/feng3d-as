@@ -19,6 +19,7 @@
     <classEntry path="me.feng.task.TaskState"/>
     <classEntry path="me.feng.task.TaskQueue"/>
     <classEntry path="me.feng.utils.ClassUtils"/>
+    <classEntry path="me.feng.debug.DebugCommon"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

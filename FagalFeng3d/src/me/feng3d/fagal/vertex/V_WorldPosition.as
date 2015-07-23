@@ -16,11 +16,11 @@ package me.feng3d.fagal.vertex
 	public function V_WorldPosition():void
 	{
 		//顶点坐标数据
-		var localPositionReg:Register = requestRegister(Context3DBufferTypeID.POSITION_VA_3);
+		var localPositionReg:Register = requestRegister(Context3DBufferTypeID.position_va_3);
 		//顶点世界坐标
-		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
+		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.globalPosition_vt_4);
 		//场景变换矩阵(模型空间转世界空间)
-		var sceneTransformMatrixReg:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.SCENETRANSFORM_VC_MATRIX);
+		var sceneTransformMatrixReg:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.sceneTransform_vc_matrix);
 
 		comment("场景坐标转换");
 		m44(positionSceneReg, localPositionReg, sceneTransformMatrixReg);

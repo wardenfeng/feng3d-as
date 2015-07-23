@@ -7,6 +7,7 @@ package me.feng3d.core.base
 	import me.feng3d.core.buffer.context3d.Context3DBuffer;
 	import me.feng3d.debug.assert;
 	import me.feng3d.events.Context3DBufferOwnerEvent;
+	import me.feng3d.fagalRE.FagalIdCenter;
 
 	/**
 	 * 添加3D环境缓冲事件
@@ -55,6 +56,14 @@ package me.feng3d.core.base
 			super(this);
 			childrenBufferOwner = new Vector.<IContext3DBufferOwner>()
 			initBuffers();
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**

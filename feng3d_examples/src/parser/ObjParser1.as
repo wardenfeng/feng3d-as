@@ -359,7 +359,7 @@ package parser
 			sub.updateIndexData(rawIndexBuffer);
 			sub.numVertices = rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(rawPositionsBuffer);
-			sub.setVAData(Context3DBufferTypeID.UV_VA_2, rawUvBuffer);
+			sub.updateUVData( rawUvBuffer);
 
 			return terrainGeometry;
 		}

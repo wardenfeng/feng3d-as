@@ -70,9 +70,9 @@ package me.feng3d.primitives
 			_nextVertexIndex = 0;
 			_currentIndex = 0;
 			_currentTriangleIndex = 0;
-			vertexPositionStride = target.getVALen(Context3DBufferTypeID.POSITION_VA_3);
-			vertexNormalStride = target.getVALen(Context3DBufferTypeID.NORMAL_VA_3);
-			vertexTangentStride = target.getVALen(Context3DBufferTypeID.TANGENT_VA_3);
+			vertexPositionStride = target.vertexStride;
+			vertexNormalStride = target.vertexNormalStride;
+			vertexTangentStride = target.vertexTangentStride;
 			_vertexPositionOffset = 0;
 			_vertexNormalOffset = 0;
 			_vertexTangentOffset = 0;
@@ -84,9 +84,9 @@ package me.feng3d.primitives
 			// need to initialize raw arrays or can be reused?
 			if (_numVertices == target.numVertices)
 			{
-				vertexPositionData = target.getVAData(Context3DBufferTypeID.POSITION_VA_3);
-				vertexNormalData = target.getVAData(Context3DBufferTypeID.NORMAL_VA_3);
-				vertexTangentData = target.getVAData(Context3DBufferTypeID.TANGENT_VA_3);
+				vertexPositionData = target.vertexPositionData;
+				vertexNormalData = target.vertexNormalData;
+				vertexTangentData = target.vertexTangentData;
 				_rawIndices = target.indexData || new Vector.<uint>(numTriangles * 3, true);
 			}
 			else
@@ -173,8 +173,8 @@ package me.feng3d.primitives
 
 			target.numVertices = _numVertices;
 			target.updateVertexPositionData(vertexPositionData);
-			target.setVAData(Context3DBufferTypeID.NORMAL_VA_3, vertexNormalData);
-			target.setVAData(Context3DBufferTypeID.TANGENT_VA_3, vertexTangentData);
+			target.updateVertexNormalData(vertexNormalData);
+			target.updateVertexTangentData( vertexTangentData);
 			target.updateIndexData(_rawIndices);
 		}
 
@@ -185,15 +185,15 @@ package me.feng3d.primitives
 		{
 			var i:int, j:int;
 			var data:Vector.<Number>;
-			var stride:int = target.getVALen(Context3DBufferTypeID.UV_VA_2);
+			var stride:int = target.UVStride;
 			var offset:int = 0;
-			var skip:int = target.getVALen(Context3DBufferTypeID.UV_VA_2) - 2;
+			var skip:int = target.UVStride - 2;
 
 			// evaluate num uvs
 			var numUvs:uint = _numVertices * stride;
 
 			// need to initialize raw array or can be reused?
-			data = target.getVAData(Context3DBufferTypeID.UV_VA_2);
+			data = target.UVData;
 			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
@@ -216,7 +216,7 @@ package me.feng3d.primitives
 			}
 
 			// build real data from raw data
-			target.setVAData(Context3DBufferTypeID.UV_VA_2, data);
+			target.updateUVData( data);
 		}
 
 		/**

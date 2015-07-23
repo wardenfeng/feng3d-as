@@ -2,7 +2,7 @@ package me.feng3d.fagal.base.operation
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.append;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**

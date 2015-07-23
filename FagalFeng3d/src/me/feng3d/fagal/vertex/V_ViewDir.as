@@ -13,11 +13,11 @@ package me.feng3d.fagal.vertex
 	public function V_ViewDir():void
 	{
 		//顶点世界坐标
-		var globalPositionReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
+		var globalPositionReg:Register = requestRegister(Context3DBufferTypeID.globalPosition_vt_4);
 		//视线变量寄存器
-		var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_V);
+		var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.viewDir_v);
 		//摄像机世界坐标
-		var cameraPositionReg:Register = requestRegister(Context3DBufferTypeID.CAMERAPOSITION_VC_VECTOR);
+		var cameraPositionReg:Register = requestRegister(Context3DBufferTypeID.cameraPosition_vc_vector);
 
 		comment("计算视线方向");
 		sub(viewDirVaryingReg, cameraPositionReg, globalPositionReg);

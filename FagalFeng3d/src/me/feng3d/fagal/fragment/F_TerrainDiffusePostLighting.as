@@ -10,7 +10,7 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagal.base.operation.tex;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**
@@ -23,17 +23,17 @@ package me.feng3d.fagal.fragment
 		var numSplattingLayers:int = shaderParams.splatNum;
 
 		//土壤纹理列表
-		var splatFsarr:RegisterVector = requestRegisterVector(Context3DBufferTypeID.TERRAINTEXTURES_FS_ARRAY, numSplattingLayers);
+		var splatFsarr:RegisterVector = requestRegisterVector(Context3DBufferTypeID.terrainTextures_fs_array, numSplattingLayers);
 		//片段程序的纹理
-		var defaultFsReg:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
+		var defaultFsReg:Register = requestRegister(Context3DBufferTypeID.texture_fs);
 		//uv变量数据
-		var uvVarying:Register = requestRegister(Context3DBufferTypeID.UV_V);
+		var uvVarying:Register = requestRegister(Context3DBufferTypeID.uv_v);
 		//混合纹理
-		var blendingFsReg:Register = requestRegister(Context3DBufferTypeID.BLENDINGTEXTURE_FS);
+		var blendingFsReg:Register = requestRegister(Context3DBufferTypeID.blendingtexture_fs);
 		//地形常量
-		var scaleRegister:Register = requestRegister(Context3DBufferTypeID.TILE_FC_VECTOR);
+		var scaleRegister:Register = requestRegister(Context3DBufferTypeID.tile_fc_vector);
 		//最终颜色寄存器（输出到oc寄存器的颜色）
-		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
+		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.finalColor_ft_4);
 
 		//缩放后的uv坐标、uv计算后的颜色值
 		var uvTemp:Register = getFreeTemp("缩放后的uv坐标");

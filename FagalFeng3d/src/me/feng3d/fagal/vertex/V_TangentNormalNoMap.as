@@ -14,11 +14,11 @@ package me.feng3d.fagal.vertex
 	public function V_TangentNormalNoMap():void
 	{
 		//法线数据
-		var animatedNormalReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_VA_3);
+		var animatedNormalReg:Register = requestRegister(Context3DBufferTypeID.normal_va_3);
 		//法线变量寄存器
-		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.normal_v);
 		//法线场景变换矩阵(模型空间转场景空间)
-		var normalMatrixReg:Register = requestRegister(Context3DBufferTypeID.NORMALSCENETRANSFORM_VC_MATRIX);
+		var normalMatrixReg:Register = requestRegister(Context3DBufferTypeID.normalSceneTransform_vc_matrix);
 
 		comment("转换法线到全局");
 		m33(normalVaryingReg.xyz, animatedNormalReg, normalMatrixReg);

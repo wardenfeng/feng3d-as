@@ -12,11 +12,11 @@ package me.feng3d.fagal.fragment
 	public function F_SpecularSample():void
 	{
 		//光泽纹理寄存器
-		var specularFragmentReg:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXTURE_FS);
+		var specularFragmentReg:Register = requestRegister(Context3DBufferTypeID.specularTexture_fs);
 		//uv变量数据
-		var uv:Register = requestRegister(Context3DBufferTypeID.UV_V);
+		var uv:Register = requestRegister(Context3DBufferTypeID.uv_v);
 		//光泽纹理数据片段临时寄存器
-		var specularTexData:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXDATA_FT_4);
+		var specularTexData:Register = requestRegister(Context3DBufferTypeID.specularTexData_ft_4);
 
 		//获取纹理数据
 		tex(specularTexData, uv, specularFragmentReg);

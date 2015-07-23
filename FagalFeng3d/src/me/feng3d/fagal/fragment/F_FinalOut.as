@@ -13,9 +13,9 @@ package me.feng3d.fagal.fragment
 	public function F_FinalOut():void
 	{
 		//最终颜色寄存器（输出到oc寄存器的颜色）
-		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
+		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.finalColor_ft_4);
 		//颜色输出寄存器
-		var out:Register = requestRegister(Context3DBufferTypeID.OC);
+		var out:Register = requestRegister(Context3DBufferTypeID._oc);
 
 		mov(out, finalColorReg);
 

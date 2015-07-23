@@ -22,11 +22,11 @@ package me.feng3d.fagal.fragment
 		override public function runFunc():void
 		{
 			//片段程序的纹理
-			var texture:Register = requestRegister(Context3DBufferTypeID.TEXTURE_FS);
+			var texture:Register = requestRegister(Context3DBufferTypeID.texture_fs);
 			//uv变量数据
-			var uv_v:Register = requestRegister(Context3DBufferTypeID.UV_V);
+			var uv_v:Register = requestRegister(Context3DBufferTypeID.uv_v);
 			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OC);
+			var out:Register = requestRegister(Context3DBufferTypeID._oc);
 
 			//获取纹理数据
 			tex(out, uv_v, texture);

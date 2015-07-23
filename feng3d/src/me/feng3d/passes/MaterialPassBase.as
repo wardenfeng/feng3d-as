@@ -140,8 +140,8 @@ package me.feng3d.passes
 		public function set enableBlending(value:Boolean):void
 		{
 			_enableBlending = value;
-			markBufferDirty(Context3DBufferTypeID.BLEND_FACTORS);
-			markBufferDirty(Context3DBufferTypeID.DEPTH_TEST);
+			markBufferDirty(Context3DBufferTypeID.blendFactors);
+			markBufferDirty(Context3DBufferTypeID.depthTest);
 		}
 
 		/**
@@ -150,10 +150,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.CULLING, updateCullingBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.BLEND_FACTORS, updateBlendFactorsBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.DEPTH_TEST, updateDepthTestBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.PROGRAM, updateProgramBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.culling, updateCullingBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.blendFactors, updateBlendFactorsBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.depthTest, updateDepthTestBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.program, updateProgramBuffer);
 		}
 
 		/**
@@ -224,7 +224,7 @@ package me.feng3d.passes
 		 */
 		arcane function invalidateShaderProgram():void
 		{
-			markBufferDirty(Context3DBufferTypeID.PROGRAM);
+			markBufferDirty(Context3DBufferTypeID.program);
 		}
 
 		/**
@@ -370,7 +370,7 @@ package me.feng3d.passes
 		public function set writeDepth(value:Boolean):void
 		{
 			_writeDepth = value;
-			markBufferDirty(Context3DBufferTypeID.DEPTH_TEST);
+			markBufferDirty(Context3DBufferTypeID.depthTest);
 		}
 
 		/**
@@ -384,7 +384,7 @@ package me.feng3d.passes
 		public function set depthCompareMode(value:String):void
 		{
 			_depthCompareMode = value;
-			markBufferDirty(Context3DBufferTypeID.DEPTH_TEST);
+			markBufferDirty(Context3DBufferTypeID.depthTest);
 		}
 
 		/**
@@ -398,7 +398,7 @@ package me.feng3d.passes
 		public function set bothSides(value:Boolean):void
 		{
 			_bothSides = value;
-			markBufferDirty(Context3DBufferTypeID.CULLING);
+			markBufferDirty(Context3DBufferTypeID.culling);
 		}
 
 		/**

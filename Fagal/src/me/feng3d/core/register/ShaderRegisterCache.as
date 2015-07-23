@@ -227,6 +227,10 @@ package me.feng3d.core.register
 				//获取寄存器矩阵
 				register = getRegisterMatrix(registerType);
 			}
+			else if (bufferType.dataType == ConstantsDataType.ARRAY)
+			{
+				register = getRegisterVector(registerType, numRegister);
+			}
 			else if (numRegister > 1)
 			{
 				//获取寄存器向量

@@ -41,10 +41,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.TEXTURE_FS, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.PROJECTION_VC_MATRIX, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.CAMERAPOS_VC_VECTOR, updateCameraPosBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.SCALESKYBOX_VC_VECTOR, updateScaleSkyboxBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.texture_fs, updateTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.camerapos_vc_vector, updateCameraPosBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
 		}
 
 		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
@@ -82,7 +82,7 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureProxyBase):void
 		{
 			_cubeTexture = value;
-			markBufferDirty(Context3DBufferTypeID.TEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.texture_fs);
 		}
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
@@ -124,7 +124,7 @@ package me.feng3d.passes
 			scaleSkybox[3] = 1;
 
 			//通用渲染参数
-			shaderParams.addSampleFlags(Context3DBufferTypeID.TEXTURE_FS, _cubeTexture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.texture_fs, _cubeTexture);
 		}
 	}
 }

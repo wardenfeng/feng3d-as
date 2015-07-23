@@ -1,6 +1,6 @@
 package me.feng3d.fagal
 {
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 运行Fagal函数

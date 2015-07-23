@@ -1,7 +1,5 @@
 package base
 {
-	import fagal.Context3DBufferTypeID;
-
 	import me.feng3d.core.base.VertexBufferOwner;
 	import me.feng3d.core.buffer.context3d.IndexBuffer;
 
@@ -22,10 +20,10 @@ package base
 
 		override protected function initBuffers():void
 		{
-			mapContext3DBuffer(Context3DBufferTypeID.INDEX, updateIndexBuffer);
+			mapContext3DBuffer(_.index, updateIndexBuffer);
 
-			mapVABuffer(Context3DBufferTypeID.POSITION_VA_3, 3);
-			mapVABuffer(Context3DBufferTypeID.COLOR_VA_3, 3);
+			mapVABuffer(_.position_va_3, 3);
+			mapVABuffer(_.color_va_3, 3);
 		}
 
 		protected function updateIndexBuffer(indexBuffer:IndexBuffer):void
@@ -37,8 +35,8 @@ package base
 		{
 			numVertices = positionData.length / 3;
 
-			setVAData(Context3DBufferTypeID.POSITION_VA_3, positionData);
-			setVAData(Context3DBufferTypeID.COLOR_VA_3, colorData);
+			setVAData(_.position_va_3, positionData);
+			setVAData(_.color_va_3, colorData);
 
 			_indices = indexData;
 

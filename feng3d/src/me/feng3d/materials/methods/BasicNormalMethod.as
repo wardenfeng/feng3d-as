@@ -19,7 +19,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.NORMALTEXTURE_FS, updateNormalTextureBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.normalTexture_fs, updateNormalTextureBuffer);
 		}
 
 		private function updateNormalTextureBuffer(normalTextureBuffer:FSBuffer):void
@@ -45,7 +45,7 @@ package me.feng3d.materials.methods
 
 			_texture = value;
 
-			markBufferDirty(Context3DBufferTypeID.NORMALTEXTURE_FS);
+			markBufferDirty(Context3DBufferTypeID.normalTexture_fs);
 		}
 
 		/**
@@ -68,7 +68,7 @@ package me.feng3d.materials.methods
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
 			shaderParams.hasNormalTexture = _texture != null;
-			shaderParams.addSampleFlags(Context3DBufferTypeID.NORMALTEXTURE_FS, _texture);
+			shaderParams.addSampleFlags(Context3DBufferTypeID.normalTexture_fs, _texture);
 		}
 	}
 }

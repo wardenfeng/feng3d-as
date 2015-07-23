@@ -57,7 +57,7 @@ package me.feng3d.primitives
 				//顶点索引
 				var _vertexIndices:Vector.<uint> = subGeometry.indexData;
 				//顶点位置
-				var _vertices:Vector.<Number> = subGeometry.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+				var _vertices:Vector.<Number> = subGeometry.vertexPositionData;
 
 				var numTriangle:uint = _vertexIndices.length / 3;
 				var indexA:uint;

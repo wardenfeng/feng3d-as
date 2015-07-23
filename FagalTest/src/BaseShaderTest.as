@@ -2,7 +2,6 @@ package
 {
 	import com.adobe.utils.PerspectiveMatrix3D;
 
-	import flash.display.Sprite;
 	import flash.display.Stage3D;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -17,14 +16,12 @@ package
 	import base.BaseGeometry;
 	import base.BaseMesh;
 
-	import me.feng3d.debug.Debug;
-
 	/**
 	 * 测试基础渲染函数
 	 * @author warden_feng 2014-10-24
 	 */
 	[SWF(width = "640", height = "362", frameRate = "60")]
-	public class BaseShaderTest extends Sprite
+	public class BaseShaderTest extends TestBase
 	{
 		private var context:Context3D;
 		private var stage3D:Stage3D;
@@ -39,9 +36,15 @@ package
 
 		public function BaseShaderTest()
 		{
-			Debug.agalDebug = true;
-			MyCC.initFlashConsole(this);
+			resourceList = [];
+			super();
+		}
 
+		/**
+		 * Global initialise function
+		 */
+		public function init():void
+		{
 			// Set the default stage behavior
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
@@ -51,13 +54,13 @@ package
 			stage3D.addEventListener(Event.CONTEXT3D_CREATE, contextReady, false, 0, true);
 			stage3D.requestContext3D(Context3DRenderMode.AUTO, Context3DProfile.STANDARD);
 
-			trace("Awaiting context...");
+			logger("Awaiting context...");
 		}
 
 		private function contextReady(event:Event):void
 		{
 			stage3D.removeEventListener(Event.CONTEXT3D_CREATE, contextReady);
-			trace("Got context!");
+			logger("Got context!");
 
 			// Get the new context
 			context = stage3D.context3D;

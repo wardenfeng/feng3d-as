@@ -37,16 +37,16 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(Context3DBufferTypeID.UV_VA_2, 2);
-			mapVABuffer(Context3DBufferTypeID.NORMAL_VA_3, 3);
-			mapVABuffer(Context3DBufferTypeID.TANGENT_VA_3, 3);
+			mapVABuffer(Context3DBufferTypeID.uv_va_2, 2);
+			mapVABuffer(Context3DBufferTypeID.normal_va_3, 3);
+			mapVABuffer(Context3DBufferTypeID.tangent_va_3, 3);
 		}
 
 		public function fromVectors(vertices:Vector.<Number>, uvs:Vector.<Number>):void
 		{
 			updateVertexPositionData(vertices);
 
-			setVAData(Context3DBufferTypeID.UV_VA_2, uvs);
+			updateUVData(uvs);
 		}
 
 		public function get scaleU():Number
@@ -61,8 +61,8 @@ package me.feng3d.core.base.subgeometry
 
 		public function scaleUV(scaleU:Number = 1, scaleV:Number = 1):void
 		{
-			var stride:int = getVALen(Context3DBufferTypeID.UV_VA_2);
-			var uvs:Vector.<Number> = getVAData(Context3DBufferTypeID.UV_VA_2);
+			var stride:int = getVALen(Context3DBufferTypeID.uv_va_2);
+			var uvs:Vector.<Number> = UVData;
 			var len:int = uvs.length;
 			var ratioU:Number = scaleU / _scaleU;
 			var ratioV:Number = scaleV / _scaleV;
@@ -76,7 +76,7 @@ package me.feng3d.core.base.subgeometry
 			_scaleU = scaleU;
 			_scaleV = scaleV;
 
-			markBufferDirty(Context3DBufferTypeID.UV_VA_2);
+			markBufferDirty(Context3DBufferTypeID.uv_va_2);
 		}
 
 		/**
@@ -85,13 +85,13 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function applyTransformation(transform:Matrix3D):void
 		{
-			var vertices:Vector.<Number> = getVAData(Context3DBufferTypeID.POSITION_VA_3);
-			var normals:Vector.<Number> = getVAData(Context3DBufferTypeID.NORMAL_VA_3);
-			var tangents:Vector.<Number> = getVAData(Context3DBufferTypeID.TANGENT_VA_3);
+			var vertices:Vector.<Number> = vertexPositionData;
+			var normals:Vector.<Number> = vertexNormalData;
+			var tangents:Vector.<Number> = vertexTangentData;
 
-			var posStride:int = getVALen(Context3DBufferTypeID.POSITION_VA_3);
-			var normalStride:int = getVALen(Context3DBufferTypeID.NORMAL_VA_3);
-			var tangentStride:int = getVALen(Context3DBufferTypeID.TANGENT_VA_3);
+			var posStride:int = vertexStride;
+			var normalStride:int = vertexNormalStride;
+			var tangentStride:int = vertexTangentStride;
 
 			var len:uint = vertices.length / posStride;
 			var i:uint, i1:uint, i2:uint;
@@ -160,9 +160,9 @@ package me.feng3d.core.base.subgeometry
 				}
 			}
 
-			markBufferDirty(Context3DBufferTypeID.POSITION_VA_3);
-			markBufferDirty(Context3DBufferTypeID.NORMAL_VA_3);
-			markBufferDirty(Context3DBufferTypeID.TANGENT_VA_3);
+			markBufferDirty(Context3DBufferTypeID.position_va_3);
+			markBufferDirty(Context3DBufferTypeID.normal_va_3);
+			markBufferDirty(Context3DBufferTypeID.tangent_va_3);
 		}
 
 		/**
@@ -171,7 +171,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateUVData(data:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.UV_VA_2, data);
+			setVAData(Context3DBufferTypeID.uv_va_2, data);
 		}
 
 		/**
@@ -179,9 +179,29 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateVertexPositionData(data:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.POSITION_VA_3, data);
+			setVAData(Context3DBufferTypeID.position_va_3, data);
 
 			dispatchEvent(new GeometryEvent(GeometryEvent.SHAPE_CHANGE, this));
+		}
+
+		/**
+		 * Updates the vertex normals of the SubGeometry. When updating the vertex normals like this,
+		 * autoDeriveVertexNormals will be set to false and vertex normals will no longer be calculated automatically.
+		 * @param vertexNormals The vertex normals to upload.
+		 */
+		public function updateVertexNormalData(vertexNormals:Vector.<Number>):void
+		{
+			setVAData(Context3DBufferTypeID.normal_va_3, vertexNormals);
+		}
+
+		/**
+		 * Updates the vertex tangents of the SubGeometry. When updating the vertex tangents like this,
+		 * autoDeriveVertexTangents will be set to false and vertex tangents will no longer be calculated automatically.
+		 * @param vertexTangents The vertex tangents to upload.
+		 */
+		public function updateVertexTangentData(vertexTangents:Vector.<Number>):void
+		{
+			setVAData(Context3DBufferTypeID.tangent_va_3, vertexTangents);
 		}
 
 		/**
@@ -189,7 +209,25 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get vertexPositionData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.POSITION_VA_3);
+			return getVAData(Context3DBufferTypeID.position_va_3);
+		}
+
+		/**
+		 * The raw vertex normal data.
+		 */
+		public function get vertexNormalData():Vector.<Number>
+		{
+			return getVAData(Context3DBufferTypeID.normal_va_3);
+		}
+
+		/**
+		 * The raw vertex tangent data.
+		 *
+		 * @private
+		 */
+		public function get vertexTangentData():Vector.<Number>
+		{
+			return getVAData(Context3DBufferTypeID.tangent_va_3);
 		}
 
 		/**
@@ -197,7 +235,27 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get UVData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.UV_VA_2);
+			return getVAData(Context3DBufferTypeID.uv_va_2);
+		}
+
+		public function get vertexStride():uint
+		{
+			return getVALen(Context3DBufferTypeID.position_va_3);
+		}
+
+		public function get vertexTangentStride():uint
+		{
+			return getVALen(Context3DBufferTypeID.tangent_va_3);
+		}
+
+		public function get vertexNormalStride():uint
+		{
+			return getVALen(Context3DBufferTypeID.normal_va_3);
+		}
+
+		public function get UVStride():uint
+		{
+			return getVALen(Context3DBufferTypeID.uv_va_2);
 		}
 
 		public function clone():SubGeometry

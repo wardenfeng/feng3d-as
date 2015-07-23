@@ -20,14 +20,14 @@ package me.feng3d.fagal.fragment.shadowMap
 	 */
 	public function F_ShadowMapSample():void
 	{
-		var targetReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
+		var targetReg:Register = requestRegister(Context3DBufferTypeID.shadowValue_ft_4);
 
-		var depthMapRegister:Register = requestRegister(Context3DBufferTypeID.DEPTHMAP_FS);
-		var decReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA0_FC_VECTOR);
-		var customDataReg:Register = requestRegister(Context3DBufferTypeID.SHADOWCOMMONDATA2_FC_VECTOR);
+		var depthMapRegister:Register = requestRegister(Context3DBufferTypeID.depthMap_fs);
+		var decReg:Register = requestRegister(Context3DBufferTypeID.shadowCommondata0_fc_vector);
+		var customDataReg:Register = requestRegister(Context3DBufferTypeID.shadowCommondata2_fc_vector);
 		var depthCol:Register = getFreeTemp("深度值临时寄存器");
 		var uvReg:Register = getFreeTemp("深度图uv临时寄存器");
-		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeID.DEPTHMAPCOORD_V);
+		var _depthMapCoordReg:Register = requestRegister(Context3DBufferTypeID.depthMapCoord_v);
 
 		mov(uvReg, _depthMapCoordReg); //计算阴影
 

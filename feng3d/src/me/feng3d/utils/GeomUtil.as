@@ -196,8 +196,8 @@ package me.feng3d.utils
 		public static function copyDataSubGeom(source:SubGeometry, target:SubGeometry):void
 		{
 			target.numVertices = source.numVertices;
-			target.updateVertexPositionData(source.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
-			target.setVAData(Context3DBufferTypeID.UV_VA_2, source.getVAData(Context3DBufferTypeID.UV_VA_2).concat());
+			target.updateVertexPositionData(source.vertexPositionData.concat());
+			target.updateUVData(source.UVData.concat());
 			target.updateIndexData(source.indices.concat());
 		}
 

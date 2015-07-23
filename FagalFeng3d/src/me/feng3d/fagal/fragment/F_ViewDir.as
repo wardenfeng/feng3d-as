@@ -13,9 +13,9 @@ package me.feng3d.fagal.fragment
 	public function F_ViewDir():void
 	{
 		//视线变量寄存器
-		var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_V);
+		var viewDirVaryingReg:Register = requestRegister(Context3DBufferTypeID.viewDir_v);
 		//视线方向片段临时数据
-		var viewDirFragmentReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_FT_4);
+		var viewDirFragmentReg:Register = requestRegister(Context3DBufferTypeID.viewDir_ft_4);
 
 		//标准化视线
 		nrm(viewDirFragmentReg.xyz, viewDirVaryingReg);

@@ -10,7 +10,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.fragment.F_DiffuseColor;
 	import me.feng3d.fagal.fragment.F_DiffuseTexure;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**
@@ -22,16 +22,16 @@ package me.feng3d.fagal.fragment.light
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
 		//总漫反射颜色寄存器
-		var totalLightColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALDIFFUSELIGHTCOLOR_FT_4);
+		var totalLightColorReg:Register = requestRegister(Context3DBufferTypeID.totalDiffuseLightColor_ft_4);
 		//材质的漫反射颜色
-		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.MDIFF_FT);
+		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.mDiff_ft);
 		//最终颜色寄存器（输出到oc寄存器的颜色）
-		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.FINALCOLOR_FT_4);
+		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.finalColor_ft_4);
 
 		//把阴影使用到漫反射光上
 		if (shaderParams.numLights > 0 && shaderParams.needsShadowRegister > 0)
 		{
-			var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.SHADOWVALUE_FT_4);
+			var shadowValueReg:Register = requestRegister(Context3DBufferTypeID.shadowValue_ft_4);
 			mul(totalLightColorReg.xyz, totalLightColorReg, shadowValueReg.w);
 		}
 
@@ -55,7 +55,7 @@ package me.feng3d.fagal.fragment.light
 		sat(totalLightColorReg, totalLightColorReg);
 
 		//漫反射 + 环境光 因子
-		var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.AMBIENT_FT);
+		var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.ambient_ft);
 		add(totalLightColorReg.xyz, totalLightColorReg, ambientTempReg);
 
 		//混合漫反射光

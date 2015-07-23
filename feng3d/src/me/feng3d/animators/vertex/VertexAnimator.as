@@ -55,7 +55,7 @@ package me.feng3d.animators.vertex
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.WEIGHTS_VC_VECTOR, updateWeightsBuffer);
+			mapContext3DBuffer(Context3DBufferTypeID.weights_vc_vector, updateWeightsBuffer);
 		}
 
 		private function updateWeightsBuffer(weightsBuffer:VCVectorBuffer):void
@@ -124,10 +124,10 @@ package me.feng3d.animators.vertex
 				var vertexSubGeom:VertexSubGeometry = VertexSubGeometry(subGeom);
 //				//获取默认姿势几何体数据
 				subGeom = _poses[0].subGeometries[subMesh._index] || subMesh.subGeometry;
-				vertexSubGeom.updateVertexData0(subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
+				vertexSubGeom.updateVertexData0(subGeom.vertexPositionData.concat());
 
 				subGeom = _poses[1].subGeometries[subMesh._index] || subMesh.subGeometry;
-				vertexSubGeom.updateVertexData1(subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat());
+				vertexSubGeom.updateVertexData1(subGeom.vertexPositionData.concat());
 			}
 		}
 
@@ -159,8 +159,8 @@ package me.feng3d.animators.vertex
 		private function morphGeometry(state:SubGeomAnimationState, subGeom:SubGeometry, subGeom1:SubGeometry):void
 		{
 			//几何体顶点数据
-			var vertexData:Vector.<Number> = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3);
-			var vertexData1:Vector.<Number> = subGeom1.getVAData(Context3DBufferTypeID.POSITION_VA_3);
+			var vertexData:Vector.<Number> = subGeom.vertexPositionData;
+			var vertexData1:Vector.<Number> = subGeom1.vertexPositionData;
 			//动画顶点数据（目标数据）
 			var targetData:Vector.<Number> = state.animatedVertexData;
 
@@ -192,6 +192,6 @@ class SubGeomAnimationState
 	 */
 	public function SubGeomAnimationState(subGeom:SubGeometry)
 	{
-		animatedVertexData = subGeom.getVAData(Context3DBufferTypeID.POSITION_VA_3).concat();
+		animatedVertexData = subGeom.vertexPositionData.concat();
 	}
 }

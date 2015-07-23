@@ -13,9 +13,9 @@ package me.feng3d.fagal.fragment
 	public function F_TangentNormalNoMap():void
 	{
 		//法线变量寄存器
-		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_V);
+		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.normal_v);
 		//法线临时片段寄存器
-		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
+		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
 
 		//标准化法线
 		nrm(normalFragmentReg.xyz, normalVaryingReg);

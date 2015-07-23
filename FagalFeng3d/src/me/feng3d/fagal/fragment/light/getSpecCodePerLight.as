@@ -12,7 +12,7 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.operation.pow;
 	import me.feng3d.fagal.base.operation.sat;
 	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.methods.FagalRE;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	/**
@@ -24,13 +24,13 @@ package me.feng3d.fagal.fragment.light
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
 		//总镜面反射颜色寄存器
-		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.TOTALSPECULARLIGHTCOLOR_FT_4);
+		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.totalSpecularLightColor_ft_4);
 		//法线临时片段寄存器
-		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.NORMAL_FT_4);
+		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
 		//视线方向片段临时数据
-		var viewDirReg:Register = requestRegister(Context3DBufferTypeID.VIEWDIR_FT_4);
+		var viewDirReg:Register = requestRegister(Context3DBufferTypeID.viewDir_ft_4);
 		//材质镜面反射光数据
-		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.SPECULARDATA_FC_VECTOR);
+		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.specularData_fc_vector);
 
 		//镜面反射光原理
 		//法线 = 入射光方向 - 反射光方向------------1
@@ -61,7 +61,7 @@ package me.feng3d.fagal.fragment.light
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
-			var specularTexData:Register = requestRegister(Context3DBufferTypeID.SPECULARTEXDATA_FT_4);
+			var specularTexData:Register = requestRegister(Context3DBufferTypeID.specularTexData_ft_4);
 			mul(specularTexData.w, specularTexData.y, _specularDataRegister.w);
 			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, specularTexData.w);
 		}

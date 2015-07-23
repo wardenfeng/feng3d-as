@@ -218,7 +218,7 @@
 			subGeometry.numVertices = positionsBuffer.length / 3;
 			subGeometry.updateIndexData(indexBuffer);
 			subGeometry.updateVertexPositionData(positionsBuffer);
-			subGeometry.setVAData(Context3DBufferTypeID.UV_VA_2, uvBuffer);
+			subGeometry.updateUVData( uvBuffer);
 			geometry.addSubGeometry(subGeometry);
 
 			return geometry;

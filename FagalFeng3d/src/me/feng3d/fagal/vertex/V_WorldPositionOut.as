@@ -12,10 +12,10 @@ package me.feng3d.fagal.vertex
 	public function V_WorldPositionOut():void
 	{
 		//顶点世界坐标
-		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOSITION_VT_4);
+		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.globalPosition_vt_4);
 
 		//世界坐标变量
-		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.GLOBALPOS_V);
+		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.globalPos_v);
 
 		mov(globalPosVaryReg, positionSceneReg);
 	}

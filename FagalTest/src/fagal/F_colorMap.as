@@ -2,10 +2,8 @@ package fagal
 {
 	import flash.display3D.Context3DProgramType;
 
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 输出颜色贴图
@@ -20,12 +18,10 @@ package fagal
 
 		override public function runFunc():void
 		{
-			//颜色变量寄存器 (此处用作为混合值)
-			var color_v:Register = requestRegister(Context3DBufferTypeID.COLOR_V);
-			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.OC);
-			//
-			mov(out, color_v);
+			var _:* = FagalRE.instance.space;
+
+			//颜色输出
+			_.mov(_._oc, _.color_v);
 		}
 	}
 }

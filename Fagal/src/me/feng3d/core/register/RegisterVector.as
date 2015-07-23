@@ -19,7 +19,7 @@ package me.feng3d.core.register
 		public function RegisterVector(regType:String, start:int, num:int)
 		{
 			super(regType, start);
-			_regs = new Vector.<Register>(num, true);
+			_regs = new Vector.<Register>(num);
 		}
 
 		/**
@@ -45,6 +45,11 @@ package me.feng3d.core.register
 		 */
 		public function getReg($index:uint):Register
 		{
+			if (_regs.length < $index + 1)
+			{
+				_regs.length = $index + 1
+			}
+
 			if (!_regs[$index])
 			{
 				var reg:Register = _regs[$index] = new Register(_regType, _index + $index);

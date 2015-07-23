@@ -14,10 +14,10 @@ package me.feng3d.fagal.vertex.animation
 	 */
 	public function V_VertexAnimationGPU():Register
 	{
-		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.ANIMATEDPOSITION_VT_4);
-		var p0:Register = requestRegister(Context3DBufferTypeID.POSITION0_VA_3);
-		var p1:Register = requestRegister(Context3DBufferTypeID.POSITION1_VA_3);
-		var weight:Register = requestRegister(Context3DBufferTypeID.WEIGHTS_VC_VECTOR);
+		var animatedPosition:Register = requestRegister(Context3DBufferTypeID.animatedPosition_vt_4);
+		var p0:Register = requestRegister(Context3DBufferTypeID.position0_va_3);
+		var p1:Register = requestRegister(Context3DBufferTypeID.position1_va_3);
+		var weight:Register = requestRegister(Context3DBufferTypeID.weights_vc_vector);
 
 		//		
 		var tempVts0:Register = getFreeTemp();

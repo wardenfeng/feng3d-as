@@ -4,6 +4,7 @@ package me.feng3d.fagal.methods
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcanefagal;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	use namespace arcanefagal;
 
