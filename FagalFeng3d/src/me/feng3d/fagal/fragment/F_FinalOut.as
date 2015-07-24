@@ -1,10 +1,8 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 最终颜色输出函数
@@ -12,13 +10,10 @@ package me.feng3d.fagal.fragment
 	 */
 	public function F_FinalOut():void
 	{
-		//最终颜色寄存器（输出到oc寄存器的颜色）
-		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.finalColor_ft_4);
-		//颜色输出寄存器
-		var out:Register = requestRegister(Context3DBufferTypeID._oc);
+		var _:* = FagalRE.instance.space;
 
-		mov(out, finalColorReg);
+		mov(_._oc, _.finalColor_ft_4);
 
-		removeTemp(finalColorReg);
+		removeTemp(_.finalColor_ft_4);
 	}
 }

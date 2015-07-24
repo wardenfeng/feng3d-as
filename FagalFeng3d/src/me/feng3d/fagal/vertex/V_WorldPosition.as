@@ -1,13 +1,8 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.core.register.RegisterMatrix;
 	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.base.requestRegisterMatrix;
 	import me.feng3d.fagal.base.operation.m44;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 顶点世界坐标渲染函数
@@ -15,14 +10,9 @@ package me.feng3d.fagal.vertex
 	 */
 	public function V_WorldPosition():void
 	{
-		//顶点坐标数据
-		var localPositionReg:Register = requestRegister(Context3DBufferTypeID.position_va_3);
-		//顶点世界坐标
-		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.globalPosition_vt_4);
-		//场景变换矩阵(模型空间转世界空间)
-		var sceneTransformMatrixReg:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.sceneTransform_vc_matrix);
+		var _:* = FagalRE.instance.space;
 
 		comment("场景坐标转换");
-		m44(positionSceneReg, localPositionReg, sceneTransformMatrixReg);
+		m44(_.globalPosition_vt_4, _.position_va_3, _.sceneTransform_vc_matrix);
 	}
 }

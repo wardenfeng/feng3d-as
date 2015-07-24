@@ -1,9 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 环境光片段渲染程序
@@ -11,10 +9,8 @@ package me.feng3d.fagal.fragment.light
 	 */
 	public function F_Ambient():void
 	{
-		//环境输入静态数据
-		var ambientInputReg:Register = requestRegister(Context3DBufferTypeID.ambientInput_fc_vector);
-		var ambientTempReg:Register = requestRegister(Context3DBufferTypeID.ambient_ft);
+		var _:* = FagalRE.instance.space;
 
-		mov(ambientTempReg, ambientInputReg);
+		_.mov(_.ambient_ft, _.ambientInput_fc_vector);
 	}
 }

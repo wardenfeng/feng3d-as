@@ -8,7 +8,7 @@ package me.feng3d.animators.particle
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 
 	use namespace arcane;
 
@@ -45,8 +45,8 @@ package me.feng3d.animators.particle
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.particleCommon_vc_vector, updateParticleConstDataBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.particleTime_vc_vector, updateTimeConstBuffer);
+			mapContext3DBuffer(_.particleCommon_vc_vector, updateParticleConstDataBuffer);
+			mapContext3DBuffer(_.particleTime_vc_vector, updateTimeConstBuffer);
 		}
 
 		private function updateTimeConstBuffer(timeConstBuffer:VCVectorBuffer):void

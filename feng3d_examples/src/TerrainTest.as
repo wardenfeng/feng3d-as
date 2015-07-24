@@ -17,7 +17,7 @@
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Elevation;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.methods.TerrainDiffuseMethod;

@@ -4,14 +4,12 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.comment;
 	import me.feng3d.fagal.base.getFreeTemp;
 	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.add;
 	import me.feng3d.fagal.base.operation.dp3;
 	import me.feng3d.fagal.base.operation.max;
 	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 处理
@@ -19,19 +17,14 @@ package me.feng3d.fagal.fragment.light
 	 */
 	public function getDiffCodePerLight(lightDirReg:Register, diffuseColorReg:Register):void
 	{
-		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var _:* = FagalRE.instance.space;
 
-		//总漫反射颜色寄存器
-		var totalDiffLightColorReg:Register = requestRegister(Context3DBufferTypeID.totalDiffuseLightColor_ft_4);
-		//法线临时片段寄存器
-		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
-		//公用数据片段常量数据
-		var commonsReg:Register = requestRegister(Context3DBufferTypeID.commonsData_fc_vector);
+		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
 		var diffuseColorFtReg:Register;
 		if (shaderParams.isFirstDiffLight)
 		{
-			diffuseColorFtReg = totalDiffLightColorReg;
+			diffuseColorFtReg = _.totalDiffuseLightColor_ft_4;
 		}
 		else
 		{
@@ -39,9 +32,9 @@ package me.feng3d.fagal.fragment.light
 		}
 
 		//计算灯光方向与法线夹角
-		dp3(diffuseColorFtReg.x, lightDirReg, normalFragmentReg);
+		dp3(diffuseColorFtReg.x, lightDirReg, _.normal_ft_4);
 		//过滤负数
-		max(diffuseColorFtReg.w, diffuseColorFtReg.x, commonsReg.y);
+		max(diffuseColorFtReg.w, diffuseColorFtReg.x, _.commonsData_fc_vector.y);
 
 		//灯光衰减
 		if (shaderParams.useLightFallOff)
@@ -53,7 +46,7 @@ package me.feng3d.fagal.fragment.light
 		//叠加灯光
 		if (!shaderParams.isFirstDiffLight)
 		{
-			add(totalDiffLightColorReg.xyz, totalDiffLightColorReg, diffuseColorFtReg);
+			add(_.totalDiffuseLightColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, diffuseColorFtReg);
 			removeTemp(diffuseColorFtReg);
 		}
 		shaderParams.isFirstDiffLight = false;

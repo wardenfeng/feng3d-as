@@ -1,9 +1,8 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
+
 	import me.feng3d.fagal.base.operation.mov;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 世界坐标输出函数
@@ -11,12 +10,8 @@ package me.feng3d.fagal.vertex
 	 */
 	public function V_WorldPositionOut():void
 	{
-		//顶点世界坐标
-		var positionSceneReg:Register = requestRegister(Context3DBufferTypeID.globalPosition_vt_4);
+		var _:* = FagalRE.instance.space;
 
-		//世界坐标变量
-		var globalPosVaryReg:Register = requestRegister(Context3DBufferTypeID.globalPos_v);
-
-		mov(globalPosVaryReg, positionSceneReg);
+		mov(_.globalPos_v, _.globalPosition_vt_4);
 	}
 }

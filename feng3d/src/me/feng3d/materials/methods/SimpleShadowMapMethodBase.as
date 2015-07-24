@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -72,13 +72,13 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata0_vc_vector, updateShadowCommonVCData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata0_fc_vector, updateShadowCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata1_fc_vector, updateShadowCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.shadowCommondata2_fc_vector, updateShadowCommonData2Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.depthMap_vc_matrix, updateDepthProjectionMatrixBuffer);
+			mapContext3DBuffer(_.shadowCommondata0_vc_vector, updateShadowCommonVCData0Buffer);
+			mapContext3DBuffer(_.shadowCommondata0_fc_vector, updateShadowCommonData0Buffer);
+			mapContext3DBuffer(_.shadowCommondata1_fc_vector, updateShadowCommonData1Buffer);
+			mapContext3DBuffer(_.shadowCommondata2_fc_vector, updateShadowCommonData2Buffer);
+			mapContext3DBuffer(_.depthMap_vc_matrix, updateDepthProjectionMatrixBuffer);
 
-			mapContext3DBuffer(Context3DBufferTypeID.depthMap_fs, updateTextureBuffer);
+			mapContext3DBuffer(_.depthMap_fs, updateTextureBuffer);
 		}
 
 		protected function updateShadowCommonVCData0Buffer(vcVectorBuffer:VCVectorBuffer):void
@@ -160,7 +160,7 @@ package me.feng3d.materials.methods
 
 			//通用渲染参数
 			var flags:Array = [castingLight.shadowMapper.depthMap.type, Context3DTextureFilter.NEAREST, Context3DWrapMode.CLAMP];
-			shaderParams.setSampleFlags(Context3DBufferTypeID.depthMap_fs, flags);
+			shaderParams.setSampleFlags(_.depthMap_fs, flags);
 		}
 
 		/**

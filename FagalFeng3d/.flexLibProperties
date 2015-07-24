@@ -2,7 +2,6 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="me.feng3d.core.buffer.Context3DCacheFeng3d"/>
-    <classEntry path="me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID"/>
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_ShadowMap"/>

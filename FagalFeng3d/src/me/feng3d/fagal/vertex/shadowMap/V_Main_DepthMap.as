@@ -3,16 +3,11 @@ package me.feng3d.fagal.vertex.shadowMap
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.core.register.RegisterMatrix;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.requestRegister;
-	import me.feng3d.fagal.base.requestRegisterMatrix;
 	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 深度图顶点主程序
@@ -33,24 +28,17 @@ package me.feng3d.fagal.vertex.shadowMap
 		 */
 		override public function runFunc():void
 		{
-			var position:Register = requestRegister(Context3DBufferTypeID.position_va_3);
-			var animatedPosition:Register = requestRegister(Context3DBufferTypeID.animatedPosition_vt_4);
-			//顶点程序投影矩阵静态数据
-			var projection:RegisterMatrix = requestRegisterMatrix(Context3DBufferTypeID.projection_vc_matrix);
-			//位置输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID._op);
-			//投影后的顶点坐标 变量数据
-			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.positionProjected_v);
+			var _:* = FagalRE.instance.space;
 
 			//普通动画
-			mov(animatedPosition, position);
+			mov(_.animatedPosition_vt_4, _.position_va_3);
 			var outPosition:Register = getFreeTemp("投影后的坐标");
 			//计算投影
-			m44(outPosition, animatedPosition, projection);
+			m44(outPosition, _.animatedPosition_vt_4, _.projection_vc_matrix);
 			//输出顶点坐标数据			
-			mov(out, outPosition);
+			mov(_._op, outPosition);
 			//把顶点投影坐标输出到片段着色器
-			mov(positionProjectedVarying, outPosition);
+			mov(_.positionProjected_v, outPosition);
 		}
 	}
 }

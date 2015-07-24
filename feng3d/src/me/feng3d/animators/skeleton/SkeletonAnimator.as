@@ -17,8 +17,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.math.Quaternion;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
+	
 
 	use namespace arcane;
 
@@ -108,7 +108,7 @@ package me.feng3d.animators.skeleton
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.globalmatrices_vc_vector, updateGlobalmatricesBuffer);
+			mapContext3DBuffer(_.globalmatrices_vc_vector, updateGlobalmatricesBuffer);
 		}
 
 		private function updateGlobalmatricesBuffer(globalmatricesBuffer:VCVectorBuffer):void
@@ -173,7 +173,7 @@ package me.feng3d.animators.skeleton
 
 			_showSkeletonPoseDirty = true;
 
-			markBufferDirty(Context3DBufferTypeID.globalmatrices_vc_vector);
+			markBufferDirty(_.globalmatrices_vc_vector);
 
 			_globalPropertiesDirty = true;
 
@@ -584,7 +584,7 @@ package me.feng3d.animators.skeleton
 	}
 }
 import me.feng3d.core.base.subgeometry.SubGeometry;
-import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+
 
 /**
  * 动画状态几何体数据

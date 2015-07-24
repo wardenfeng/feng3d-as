@@ -5,7 +5,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.events.ShadingMethodEvent;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.lights.shadowmaps.NearDirectionalShadowMapper;
 
@@ -48,7 +48,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.secondary_fc_vector, updateSecondaryCommonData0Buffer);
+			mapContext3DBuffer(_.secondary_fc_vector, updateSecondaryCommonData0Buffer);
 		}
 
 		/**

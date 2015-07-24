@@ -11,8 +11,8 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
+	
 	import me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap;
 	import me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap;
 	import me.feng3d.textures.TextureProxyBase;
@@ -71,10 +71,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.depthCommonData0_fc_vector, updateDepthCommonData0Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.depthCommonData1_fc_vector, updateDepthCommonData1Buffer);
-			mapContext3DBuffer(Context3DBufferTypeID.depthMap_oc, updateTextureBuffer);
+			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(_.depthCommonData0_fc_vector, updateDepthCommonData0Buffer);
+			mapContext3DBuffer(_.depthCommonData1_fc_vector, updateDepthCommonData1Buffer);
+			mapContext3DBuffer(_.depthMap_oc, updateTextureBuffer);
 		}
 
 		/**

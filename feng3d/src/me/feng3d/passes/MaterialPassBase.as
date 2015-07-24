@@ -19,7 +19,7 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.vertex.V_Main;
@@ -140,8 +140,8 @@ package me.feng3d.passes
 		public function set enableBlending(value:Boolean):void
 		{
 			_enableBlending = value;
-			markBufferDirty(Context3DBufferTypeID.blendFactors);
-			markBufferDirty(Context3DBufferTypeID.depthTest);
+			markBufferDirty(_.blendFactors);
+			markBufferDirty(_.depthTest);
 		}
 
 		/**
@@ -150,10 +150,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.culling, updateCullingBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.blendFactors, updateBlendFactorsBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.depthTest, updateDepthTestBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.program, updateProgramBuffer);
+			mapContext3DBuffer(_.culling, updateCullingBuffer);
+			mapContext3DBuffer(_.blendFactors, updateBlendFactorsBuffer);
+			mapContext3DBuffer(_.depthTest, updateDepthTestBuffer);
+			mapContext3DBuffer(_.program, updateProgramBuffer);
 		}
 
 		/**
@@ -224,7 +224,7 @@ package me.feng3d.passes
 		 */
 		arcane function invalidateShaderProgram():void
 		{
-			markBufferDirty(Context3DBufferTypeID.program);
+			markBufferDirty(_.program);
 		}
 
 		/**
@@ -370,7 +370,7 @@ package me.feng3d.passes
 		public function set writeDepth(value:Boolean):void
 		{
 			_writeDepth = value;
-			markBufferDirty(Context3DBufferTypeID.depthTest);
+			markBufferDirty(_.depthTest);
 		}
 
 		/**
@@ -384,7 +384,7 @@ package me.feng3d.passes
 		public function set depthCompareMode(value:String):void
 		{
 			_depthCompareMode = value;
-			markBufferDirty(Context3DBufferTypeID.depthTest);
+			markBufferDirty(_.depthTest);
 		}
 
 		/**
@@ -398,7 +398,7 @@ package me.feng3d.passes
 		public function set bothSides(value:Boolean):void
 		{
 			_bothSides = value;
-			markBufferDirty(Context3DBufferTypeID.culling);
+			markBufferDirty(_.culling);
 		}
 
 		/**

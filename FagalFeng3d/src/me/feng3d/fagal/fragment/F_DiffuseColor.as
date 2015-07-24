@@ -1,9 +1,8 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
+
 
 	/**
 	 * 漫反射材质颜色
@@ -11,12 +10,9 @@ package me.feng3d.fagal.fragment
 	 */
 	public function F_DiffuseColor():void
 	{
-		//漫射输入静态数据
-		var diffColorReg:Register = requestRegister(Context3DBufferTypeID.diffuseInput_fc_vector);
-		//材质的漫反射颜色
-		var mdiffReg:Register = requestRegister(Context3DBufferTypeID.mDiff_ft);
+		var _:* = FagalRE.instance.space;
 
 		//漫射输入静态数据 
-		mov(mdiffReg, diffColorReg);
+		mov(_.mDiff_ft, _.diffuseInput_fc_vector);
 	}
 }

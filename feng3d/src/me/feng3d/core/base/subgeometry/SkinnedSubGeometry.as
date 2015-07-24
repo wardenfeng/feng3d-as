@@ -1,7 +1,7 @@
 package me.feng3d.core.base.subgeometry
 {
 	import me.feng3d.arcane;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 
 	use namespace arcane;
 
@@ -26,9 +26,9 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(Context3DBufferTypeID.animated_va_3, 3);
-			mapVABuffer(Context3DBufferTypeID.jointweights_va_x, _jointsPerVertex);
-			mapVABuffer(Context3DBufferTypeID.jointindex_va_x, _jointsPerVertex);
+			mapVABuffer(_.animated_va_3, 3);
+			mapVABuffer(_.jointweights_va_x, _jointsPerVertex);
+			mapVABuffer(_.jointindex_va_x, _jointsPerVertex);
 		}
 
 		/**
@@ -36,7 +36,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateAnimatedData(value:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.animated_va_3, value);
+			setVAData(_.animated_va_3, value);
 		}
 
 		/**
@@ -44,7 +44,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		arcane function get jointWeightsData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.jointweights_va_x);
+			var data:Vector.<Number> = getVAData(_.jointweights_va_x);
 			return data;
 		}
 
@@ -53,7 +53,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		arcane function get jointIndexData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(Context3DBufferTypeID.jointindex_va_x);
+			var data:Vector.<Number> = getVAData(_.jointindex_va_x);
 			return data;
 		}
 
@@ -62,7 +62,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		arcane function updateJointWeightsData(value:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.jointweights_va_x, value);
+			setVAData(_.jointweights_va_x, value);
 		}
 
 		/**
@@ -70,7 +70,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		arcane function updateJointIndexData(value:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.jointindex_va_x, value);
+			setVAData(_.jointindex_va_x, value);
 		}
 	}
 }

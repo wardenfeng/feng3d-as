@@ -10,8 +10,8 @@ package me.feng3d.core.base.subgeometry
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.debug.assert;
 	import me.feng3d.events.GeometryEvent;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
+	
 
 	use namespace arcane;
 
@@ -37,9 +37,9 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(Context3DBufferTypeID.uv_va_2, 2);
-			mapVABuffer(Context3DBufferTypeID.normal_va_3, 3);
-			mapVABuffer(Context3DBufferTypeID.tangent_va_3, 3);
+			mapVABuffer(_.uv_va_2, 2);
+			mapVABuffer(_.normal_va_3, 3);
+			mapVABuffer(_.tangent_va_3, 3);
 		}
 
 		public function fromVectors(vertices:Vector.<Number>, uvs:Vector.<Number>):void
@@ -61,7 +61,7 @@ package me.feng3d.core.base.subgeometry
 
 		public function scaleUV(scaleU:Number = 1, scaleV:Number = 1):void
 		{
-			var stride:int = getVALen(Context3DBufferTypeID.uv_va_2);
+			var stride:int = getVALen(_.uv_va_2);
 			var uvs:Vector.<Number> = UVData;
 			var len:int = uvs.length;
 			var ratioU:Number = scaleU / _scaleU;
@@ -76,7 +76,7 @@ package me.feng3d.core.base.subgeometry
 			_scaleU = scaleU;
 			_scaleV = scaleV;
 
-			markBufferDirty(Context3DBufferTypeID.uv_va_2);
+			markBufferDirty(_.uv_va_2);
 		}
 
 		/**
@@ -160,9 +160,9 @@ package me.feng3d.core.base.subgeometry
 				}
 			}
 
-			markBufferDirty(Context3DBufferTypeID.position_va_3);
-			markBufferDirty(Context3DBufferTypeID.normal_va_3);
-			markBufferDirty(Context3DBufferTypeID.tangent_va_3);
+			markBufferDirty(_.position_va_3);
+			markBufferDirty(_.normal_va_3);
+			markBufferDirty(_.tangent_va_3);
 		}
 
 		/**
@@ -171,7 +171,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateUVData(data:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.uv_va_2, data);
+			setVAData(_.uv_va_2, data);
 		}
 
 		/**
@@ -179,7 +179,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateVertexPositionData(data:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.position_va_3, data);
+			setVAData(_.position_va_3, data);
 
 			dispatchEvent(new GeometryEvent(GeometryEvent.SHAPE_CHANGE, this));
 		}
@@ -191,7 +191,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateVertexNormalData(vertexNormals:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.normal_va_3, vertexNormals);
+			setVAData(_.normal_va_3, vertexNormals);
 		}
 
 		/**
@@ -201,7 +201,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function updateVertexTangentData(vertexTangents:Vector.<Number>):void
 		{
-			setVAData(Context3DBufferTypeID.tangent_va_3, vertexTangents);
+			setVAData(_.tangent_va_3, vertexTangents);
 		}
 
 		/**
@@ -209,7 +209,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get vertexPositionData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.position_va_3);
+			return getVAData(_.position_va_3);
 		}
 
 		/**
@@ -217,7 +217,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get vertexNormalData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.normal_va_3);
+			return getVAData(_.normal_va_3);
 		}
 
 		/**
@@ -227,7 +227,7 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get vertexTangentData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.tangent_va_3);
+			return getVAData(_.tangent_va_3);
 		}
 
 		/**
@@ -235,27 +235,27 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function get UVData():Vector.<Number>
 		{
-			return getVAData(Context3DBufferTypeID.uv_va_2);
+			return getVAData(_.uv_va_2);
 		}
 
 		public function get vertexStride():uint
 		{
-			return getVALen(Context3DBufferTypeID.position_va_3);
+			return getVALen(_.position_va_3);
 		}
 
 		public function get vertexTangentStride():uint
 		{
-			return getVALen(Context3DBufferTypeID.tangent_va_3);
+			return getVALen(_.tangent_va_3);
 		}
 
 		public function get vertexNormalStride():uint
 		{
-			return getVALen(Context3DBufferTypeID.normal_va_3);
+			return getVALen(_.normal_va_3);
 		}
 
 		public function get UVStride():uint
 		{
-			return getVALen(Context3DBufferTypeID.uv_va_2);
+			return getVALen(_.uv_va_2);
 		}
 
 		public function clone():SubGeometry

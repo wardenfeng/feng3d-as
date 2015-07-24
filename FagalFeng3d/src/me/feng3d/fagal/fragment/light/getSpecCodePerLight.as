@@ -4,16 +4,14 @@ package me.feng3d.fagal.fragment.light
 	import me.feng3d.fagal.base.comment;
 	import me.feng3d.fagal.base.getFreeTemp;
 	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.add;
 	import me.feng3d.fagal.base.operation.dp3;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.base.operation.nrm;
 	import me.feng3d.fagal.base.operation.pow;
 	import me.feng3d.fagal.base.operation.sat;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 计算单个镜面反射光
@@ -21,16 +19,8 @@ package me.feng3d.fagal.fragment.light
 	 */
 	public function getSpecCodePerLight(lightDirReg:Register, specularColorReg:Register):void
 	{
+		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-
-		//总镜面反射颜色寄存器
-		var totalSpecularColorReg:Register = requestRegister(Context3DBufferTypeID.totalSpecularLightColor_ft_4);
-		//法线临时片段寄存器
-		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
-		//视线方向片段临时数据
-		var viewDirReg:Register = requestRegister(Context3DBufferTypeID.viewDir_ft_4);
-		//材质镜面反射光数据
-		var _specularDataRegister:Register = requestRegister(Context3DBufferTypeID.specularData_fc_vector);
 
 		//镜面反射光原理
 		//法线 = 入射光方向 - 反射光方向------------1
@@ -41,7 +31,7 @@ package me.feng3d.fagal.fragment.light
 		var singleSpecularColorReg:Register;
 		if (shaderParams.isFirstSpecLight)
 		{
-			singleSpecularColorReg = totalSpecularColorReg;
+			singleSpecularColorReg = _.totalSpecularLightColor_ft_4;
 		}
 		else
 		{
@@ -49,11 +39,11 @@ package me.feng3d.fagal.fragment.light
 		}
 
 		//入射光与视线方向的和 = 光照场景方向 add 标准视线方向
-		add(singleSpecularColorReg, lightDirReg, viewDirReg);
+		add(singleSpecularColorReg, lightDirReg, _.viewDir_ft_4);
 		//标准化入射光与视线的和
 		nrm(singleSpecularColorReg.xyz, singleSpecularColorReg);
 		//镜面反射光强度 = 法线 dp3 入射光与视线方向的和
-		dp3(singleSpecularColorReg.w, normalFragmentReg, singleSpecularColorReg);
+		dp3(singleSpecularColorReg.w, _.normal_ft_4, singleSpecularColorReg);
 		//镜面反射光强度 锁定在0-1之间
 		sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
 
@@ -61,14 +51,13 @@ package me.feng3d.fagal.fragment.light
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
-			var specularTexData:Register = requestRegister(Context3DBufferTypeID.specularTexData_ft_4);
-			mul(specularTexData.w, specularTexData.y, _specularDataRegister.w);
-			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, specularTexData.w);
+			mul(_.specularTexData_ft_4.w, _.specularTexData_ft_4.y, _.specularData_fc_vector.w);
+			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularTexData_ft_4.w);
 		}
 		else
 		{
 			//镜面反射光强度 = 镜面反射光强度 pow 光泽度
-			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _specularDataRegister.w);
+			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularData_fc_vector.w);
 		}
 
 		if (shaderParams.useLightFallOff)
@@ -84,7 +73,7 @@ package me.feng3d.fagal.fragment.light
 		if (!shaderParams.isFirstSpecLight)
 		{
 			//总镜面反射光 = 总镜面反射光 + 单个镜面反射光
-			add(totalSpecularColorReg.xyz, totalSpecularColorReg, singleSpecularColorReg);
+			add(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, singleSpecularColorReg);
 			removeTemp(singleSpecularColorReg);
 		}
 		shaderParams.isFirstSpecLight = false;

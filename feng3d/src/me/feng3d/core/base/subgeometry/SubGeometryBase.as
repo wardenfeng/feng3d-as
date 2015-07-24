@@ -4,7 +4,7 @@ package me.feng3d.core.base.subgeometry
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.VertexBufferOwner;
 	import me.feng3d.core.buffer.context3d.IndexBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 
 	use namespace arcane;
 
@@ -33,8 +33,8 @@ package me.feng3d.core.base.subgeometry
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.index, updateIndexBuffer);
-			mapVABuffer(Context3DBufferTypeID.position_va_3, 3);
+			mapContext3DBuffer(_.index, updateIndexBuffer);
+			mapVABuffer(_.position_va_3, 3);
 		}
 
 		/**
@@ -99,7 +99,7 @@ package me.feng3d.core.base.subgeometry
 			var numTriangles:int = _numIndices / 3;
 			_numTriangles = numTriangles;
 
-			markBufferDirty(Context3DBufferTypeID.index);
+			markBufferDirty(_.index);
 		}
 
 		/**
@@ -107,9 +107,9 @@ package me.feng3d.core.base.subgeometry
 		 */
 		public function scale(scale:Number):void
 		{
-			var vertices:Vector.<Number> = getVAData(Context3DBufferTypeID.position_va_3);
+			var vertices:Vector.<Number> = getVAData(_.position_va_3);
 			var len:uint = vertices.length;
-			var stride:int = getVALen(Context3DBufferTypeID.position_va_3);
+			var stride:int = getVALen(_.position_va_3);
 
 			for (var i:uint = 0; i < len; i += stride)
 			{
@@ -117,7 +117,7 @@ package me.feng3d.core.base.subgeometry
 				vertices[i + 1] *= scale;
 				vertices[i + 2] *= scale;
 			}
-			markBufferDirty(Context3DBufferTypeID.position_va_3);
+			markBufferDirty(_.position_va_3);
 		}
 
 	}

@@ -11,7 +11,7 @@ package
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.textures.BitmapTexture;
 

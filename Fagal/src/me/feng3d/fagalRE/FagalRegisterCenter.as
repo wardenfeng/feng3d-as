@@ -3,8 +3,10 @@ package me.feng3d.fagalRE
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 
+	import me.feng3d.arcanefagal;
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
+
+	use namespace arcanefagal;
 
 	/**
 	 * Fagal寄存器中心
@@ -42,7 +44,7 @@ package me.feng3d.fagalRE
 
 			var idData:Array = FagalRE.idDic[attr];
 			//获取寄存器
-			var register:Register = requestRegister(idData[0]);
+			var register:Register = FagalRE.instance.regCache.requestRegister(idData[0]);
 			register.description = idData[1];
 			return register;
 		}

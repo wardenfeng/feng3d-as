@@ -5,7 +5,7 @@ package parser
 
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.parsers.utils.ParserUtil;
 
 	/**

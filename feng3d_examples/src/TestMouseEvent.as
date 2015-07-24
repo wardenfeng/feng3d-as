@@ -11,7 +11,7 @@ package
 	import me.feng3d.core.pick.PickingColliderType;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.MouseEvent3D;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 
 	import parser.ObjParser1;
 

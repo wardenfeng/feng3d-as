@@ -1,10 +1,8 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.base.operation.nrm;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 编译切线片段程序(无法线图)
@@ -12,15 +10,12 @@ package me.feng3d.fagal.fragment
 	 */
 	public function F_TangentNormalNoMap():void
 	{
-		//法线变量寄存器
-		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.normal_v);
-		//法线临时片段寄存器
-		var normalFragmentReg:Register = requestRegister(Context3DBufferTypeID.normal_ft_4);
+		var _:* = FagalRE.instance.space;
 
 		//标准化法线
-		nrm(normalFragmentReg.xyz, normalVaryingReg);
+		nrm(_.normal_ft_4.xyz, _.normal_v);
 		//保存w不变
-		mov(normalFragmentReg.w, normalVaryingReg.w);
+		mov(_.normal_ft_4.w, _.normal_v.w);
 
 	}
 }

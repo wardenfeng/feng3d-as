@@ -6,7 +6,7 @@ package me.feng3d.utils
 	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.debug.assert;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 
 	use namespace arcane;
 

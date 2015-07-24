@@ -3,7 +3,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.arcane;
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -16,7 +16,7 @@ package me.feng3d.animators.particle.node
 	{
 		override public function get vaId():String
 		{
-			return Context3DBufferTypeID.particleTime_va_4;
+			return _.particleTime_va_4;
 		}
 
 		override public function get vaLen():uint

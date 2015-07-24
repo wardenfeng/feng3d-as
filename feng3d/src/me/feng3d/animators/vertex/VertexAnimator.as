@@ -13,8 +13,8 @@ package me.feng3d.animators.vertex
 	import me.feng3d.core.base.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
+	
 
 	use namespace arcane;
 
@@ -55,7 +55,7 @@ package me.feng3d.animators.vertex
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.weights_vc_vector, updateWeightsBuffer);
+			mapContext3DBuffer(_.weights_vc_vector, updateWeightsBuffer);
 		}
 
 		private function updateWeightsBuffer(weightsBuffer:VCVectorBuffer):void
@@ -173,7 +173,7 @@ package me.feng3d.animators.vertex
 	}
 }
 import me.feng3d.core.base.subgeometry.SubGeometry;
-import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+
 
 
 /**

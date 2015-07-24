@@ -11,7 +11,7 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.fragment.F_Segment;
 	import me.feng3d.fagal.vertex.V_Segment;
 
@@ -49,11 +49,11 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.segmentC2pMatrix_vc_matrix, updateC2pMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.segmentM2cMatrix_vc_matrix, updateM2cMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.segmentOne_vc_vector, updateOneBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.segmentFront_vc_vector, updateFrontBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.segmentConstants_vc_vector, updateConstantsBuffer);
+			mapContext3DBuffer(_.segmentC2pMatrix_vc_matrix, updateC2pMatrixBuffer);
+			mapContext3DBuffer(_.segmentM2cMatrix_vc_matrix, updateM2cMatrixBuffer);
+			mapContext3DBuffer(_.segmentOne_vc_vector, updateOneBuffer);
+			mapContext3DBuffer(_.segmentFront_vc_vector, updateFrontBuffer);
+			mapContext3DBuffer(_.segmentConstants_vc_vector, updateConstantsBuffer);
 		}
 
 		private function updateConstantsBuffer(constantsBuffer:VCVectorBuffer):void

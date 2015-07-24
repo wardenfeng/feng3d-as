@@ -4,13 +4,12 @@ package me.feng3d.fagal.fragment.shadowMap
 
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.div;
 	import me.feng3d.fagal.base.operation.frc;
 	import me.feng3d.fagal.base.operation.mul;
 	import me.feng3d.fagal.base.operation.sub;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 深度图片段主程序
@@ -31,30 +30,24 @@ package me.feng3d.fagal.fragment.shadowMap
 		 */
 		override public function runFunc():void
 		{
-			//投影后的顶点坐标 变量数据
-			var positionProjectedVarying:Register = requestRegister(Context3DBufferTypeID.positionProjected_v);
+			var _:* = FagalRE.instance.space;
+
 			var positionReg:Register = getFreeTemp("坐标"); //ft2
-			//深度顶点常数0 (1.0, 255.0, 65025.0, 16581375.0)
-			var depthCommonData0Reg:Register = requestRegister(Context3DBufferTypeID.depthCommonData0_fc_vector);
 			//深度的（乘以1,255,255*255,255*255*255后）不同值
 			var depthValueReg:Register = getFreeTemp("深度值");
-			//深度顶点常数1 (1.0/255.0, 1.0/255.0, 1.0/255.0, 0.0)
-			var depthCommonData1Reg:Register = requestRegister(Context3DBufferTypeID.depthCommonData1_fc_vector);
 
 			var ft1:Register = getFreeTemp("");
-			//颜色输出寄存器
-			var out:Register = requestRegister(Context3DBufferTypeID.depthMap_oc);
 
 			//计算深度值depth属于（0,1）,该范围外的将会被frc处理为0或1
-			div(positionReg, positionProjectedVarying, positionProjectedVarying.w);
+			div(positionReg, _.positionProjected_v, _.positionProjected_v.w);
 			//深度值保存为颜色值
-			mul(depthValueReg, depthCommonData0Reg, positionReg.z);
+			mul(depthValueReg, _.depthCommonData0_fc_vector, positionReg.z);
 			//和上行代码配合，保存了深度的1/255/255/255的精度的值
 			frc(depthValueReg, depthValueReg);
 			//计算多余的值
-			mul(ft1, depthValueReg.yzww, depthCommonData1Reg);
+			mul(ft1, depthValueReg.yzww, _.depthCommonData1_fc_vector);
 			//真正的深度值 = 减去多余的(1/255)值  （精度在1/255/255/255）
-			sub(out, depthValueReg, ft1);
+			sub(_.depthMap_oc, depthValueReg, ft1);
 
 
 		/*
@@ -78,8 +71,8 @@ mul ft0, fc0, ft2.z 		=> depth*(1,255,255*255,255*255*255)=(depth,depth*255,dept
 frc ft0, ft0				=> (frc(depth),frc(depth*255),frc(depth*255*255),frc(depth*255*255*255))
 mul ft1, ft0.yzww, fc1		=>	(frc(depth*255)/255,frc(depth*255*255)/255,frc(depth*255*255*255)/255,0)
 sub oc, ft0, ft1			=>	(frc(depth)-frc(depth*255)/255,frc(depth*255)-frc(depth*255*255)/255,frc(depth*255*255)-frc(depth*255*255*255)/255,frc(depth*255*255*255))
-			=>	(r,g,b,a)
-			*/
+=>	(r,g,b,a)
+*/
 		}
 	}
 }

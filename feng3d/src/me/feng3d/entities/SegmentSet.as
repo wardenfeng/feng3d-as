@@ -7,7 +7,7 @@ package me.feng3d.entities
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.segment.SegmentSubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.materials.SegmentMaterial;
 	import me.feng3d.primitives.data.Segment;
 

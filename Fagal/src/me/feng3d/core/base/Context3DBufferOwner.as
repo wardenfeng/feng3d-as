@@ -139,7 +139,7 @@ package me.feng3d.core.base
 		 * 标记Context3d缓存脏了
 		 * @param dataTypeId
 		 */
-		public function markBufferDirty(dataTypeId:String):void
+		protected function markBufferDirty(dataTypeId:String):void
 		{
 			var context3DBuffer:Context3DBuffer = bufferDic[dataTypeId];
 			context3DBuffer.invalid();

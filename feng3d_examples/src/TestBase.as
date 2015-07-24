@@ -9,6 +9,8 @@ package
 	import me.feng.load.LoadEventData;
 	import me.feng.load.data.LoadTaskItem;
 	import me.feng3d.ConsoleExtension;
+	import me.feng3d.configs.Context3DBufferIDConfig;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 *
@@ -72,6 +74,9 @@ package
 		 */
 		private function allItemsLoaded(... args):void
 		{
+			//配置3d缓存编号
+			FagalRE.addBufferID(Context3DBufferIDConfig.bufferIdConfigs);
+
 			this["init"]();
 		}
 	}

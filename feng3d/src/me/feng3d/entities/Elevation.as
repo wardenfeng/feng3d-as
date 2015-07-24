@@ -4,7 +4,7 @@ package me.feng3d.entities
 
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.materials.MaterialBase;
 
 	/**

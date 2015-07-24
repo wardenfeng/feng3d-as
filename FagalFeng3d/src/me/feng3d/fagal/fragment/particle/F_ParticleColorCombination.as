@@ -1,10 +1,9 @@
 package me.feng3d.fagal.fragment.particle
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.add;
 	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
+
 
 	/**
 	 *
@@ -12,16 +11,11 @@ package me.feng3d.fagal.fragment.particle
 	 */
 	public function F_ParticleColorCombination():void
 	{
-		//粒子颜色乘数因子，用于乘以纹理上的颜色值
-		var colorMulVary:Register = requestRegister(Context3DBufferTypeID.particleColorMultiplier_v);
-		//粒子颜色偏移值，在片段渲染的最终颜色值上偏移
-		var colorAddVary:Register = requestRegister(Context3DBufferTypeID.particleColorOffset_v);
-		//最终颜色寄存器（输出到oc寄存器的颜色）
-		var finalColorReg:Register = requestRegister(Context3DBufferTypeID.finalColor_ft_4);
+		var _:* = FagalRE.instance.space;
 
 //			if (hasColorMulNode)
-		mul(finalColorReg, finalColorReg, colorMulVary);
+		mul(_.finalColor_ft_4, _.finalColor_ft_4, _.particleColorMultiplier_v);
 //			if (hasColorAddNode)
-		add(finalColorReg, finalColorReg, colorAddVary);
+		add(_.finalColor_ft_4, _.finalColor_ft_4, _.particleColorOffset_v);
 	}
 }

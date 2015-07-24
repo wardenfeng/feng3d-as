@@ -2,8 +2,8 @@ package me.feng3d.primitives
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
+	
 
 	use namespace arcane;
 

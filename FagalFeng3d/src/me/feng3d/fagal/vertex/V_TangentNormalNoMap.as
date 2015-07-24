@@ -1,11 +1,9 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.m33;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 编译切线顶点程序(无法线图)
@@ -13,17 +11,12 @@ package me.feng3d.fagal.vertex
 	 */
 	public function V_TangentNormalNoMap():void
 	{
-		//法线数据
-		var animatedNormalReg:Register = requestRegister(Context3DBufferTypeID.normal_va_3);
-		//法线变量寄存器
-		var normalVaryingReg:Register = requestRegister(Context3DBufferTypeID.normal_v);
-		//法线场景变换矩阵(模型空间转场景空间)
-		var normalMatrixReg:Register = requestRegister(Context3DBufferTypeID.normalSceneTransform_vc_matrix);
+		var _:* = FagalRE.instance.space;
 
 		comment("转换法线到全局");
-		m33(normalVaryingReg.xyz, animatedNormalReg, normalMatrixReg);
+		m33(_.normal_v.xyz, _.normal_va_3, _.normalSceneTransform_vc_matrix);
 		//保存w不变
-		mov(normalVaryingReg.w, animatedNormalReg.w);
+		mov(_.normal_v.w, _.normal_va_3.w);
 	}
 
 }

@@ -3,10 +3,7 @@ package me.feng3d.fagal.vertex
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.animators.AnimationType;
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
@@ -14,6 +11,7 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationGPU;
 	import me.feng3d.fagal.vertex.particle.V_Particles;
 	import me.feng3d.fagal.vertex.shadowMap.V_ShadowMap;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 顶点渲染程序主入口
@@ -35,6 +33,8 @@ package me.feng3d.fagal.vertex
 		 */
 		override public function runFunc():void
 		{
+			var _:* = FagalRE.instance.space;
+
 			buildAnimationAGAL();
 
 			//计算世界顶点坐标
@@ -51,11 +51,7 @@ package me.feng3d.fagal.vertex
 			//输出数据到片段寄存器
 			if (shaderParams.needsUV > 0)
 			{
-				//uv数据
-				var uv:Register = requestRegister(Context3DBufferTypeID.uv_va_2);
-				//uv变量数据
-				var uv_v:Register = requestRegister(Context3DBufferTypeID.uv_v);
-				mov(uv_v, uv);
+				mov(_.uv_v, _.uv_va_2);
 			}
 
 			//处理法线相关数据

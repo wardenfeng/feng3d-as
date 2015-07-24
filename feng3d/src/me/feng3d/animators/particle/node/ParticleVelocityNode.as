@@ -6,7 +6,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -32,7 +32,7 @@ package me.feng3d.animators.particle.node
 
 		override public function get vaId():String
 		{
-			return Context3DBufferTypeID.particleVelocity_va_3;
+			return _.particleVelocity_va_3;
 		}
 
 		override public function get vaLen():uint
@@ -68,7 +68,7 @@ package me.feng3d.animators.particle.node
 			super.initBuffers();
 
 			if (mode == ParticlePropertiesMode.GLOBAL)
-				mapContext3DBuffer(Context3DBufferTypeID.particleVelocity_vc_vector, updateVelocityConstBuffer);
+				mapContext3DBuffer(_.particleVelocity_vc_vector, updateVelocityConstBuffer);
 		}
 
 		private function updateVelocityConstBuffer(velocityConstBuffer:VCVectorBuffer):void

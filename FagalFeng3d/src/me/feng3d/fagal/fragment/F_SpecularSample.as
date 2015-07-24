@@ -1,9 +1,7 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.requestRegister;
 	import me.feng3d.fagal.base.operation.tex;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 光泽图取样函数
@@ -11,14 +9,9 @@ package me.feng3d.fagal.fragment
 	 */
 	public function F_SpecularSample():void
 	{
-		//光泽纹理寄存器
-		var specularFragmentReg:Register = requestRegister(Context3DBufferTypeID.specularTexture_fs);
-		//uv变量数据
-		var uv:Register = requestRegister(Context3DBufferTypeID.uv_v);
-		//光泽纹理数据片段临时寄存器
-		var specularTexData:Register = requestRegister(Context3DBufferTypeID.specularTexData_ft_4);
+		var _:* = FagalRE.instance.space;
 
 		//获取纹理数据
-		tex(specularTexData, uv, specularFragmentReg);
+		tex(_.specularTexData_ft_4, _.uv_v, _.specularTexture_fs);
 	}
 }

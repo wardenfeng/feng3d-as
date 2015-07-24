@@ -1,6 +1,8 @@
 package me.feng3d.configs
 {
 
+
+
 	/**
 	 * 3D缓冲编号配置
 	 * @author warden_feng 2015-7-21
@@ -17,7 +19,7 @@ package me.feng3d.configs
 			["wordProjection_vc_matrix", " 世界投影矩阵(世界坐标转context3D的2D坐标) "], //
 			["normal_ft_4", " 法线临时片段寄存器 "], //
 			["globalPosition_vt_4", " 顶点世界坐标 "], //
-			["cameraposition_vc_vector", " 摄像机世界坐标 "], //
+			["cameraPosition_vc_vector", " 摄像机世界坐标 "], //
 			["normal_v", " 法线变量寄存器 "], //
 			["tangent_v", " 切线变量寄存器 "], //
 			["bitangent_v", " 双切线变量寄存器 "], //
@@ -32,6 +34,7 @@ package me.feng3d.configs
 			["index", "索引数据"], //
 			["position_va_3", "顶点坐标数据"], //
 			["color_va_3", "顶点颜色数据"], //
+			["color_v", "颜色变量寄存器"], //
 			["uv_va_2", "uv数据"], //
 			["projection_vc_matrix", "顶点程序投影矩阵静态数据"], //
 			["uv_v", "uv变量数据"], //
@@ -64,7 +67,7 @@ package me.feng3d.configs
 			["pointLightSpecular_fc_vector", "点光源镜面反射颜色"], //
 			["specularData_fc_vector", "材质镜面反射光数据"], //
 			["specularColor_ft_4", "镜面反射光临时片段寄存器"], //
-			["Mdiff_ft", "材质的漫反射颜色"], //
+			["mDiff_ft", "材质的漫反射颜色"], //
 			["ambient_ft", "环境光因子临时变量"], //
 			["totalDiffuseLightColor_ft_4", "总漫反射颜色寄存器"], //
 			["totalSpecularLightColor_ft_4", "总镜面反射颜色寄存器"], //
@@ -103,6 +106,12 @@ package me.feng3d.configs
 			["particleDeltaColorOffset_vc_vector", "粒子颜色偏移增量值，用于计算粒子颜色偏移值"], //
 			["particleColorMultiplier_v", "粒子颜色乘数因子，用于乘以纹理上的颜色值"], //
 			["particleColorOffset_v", "粒子颜色乘数因子，用于乘以纹理上的颜色值"], //
+			["particlePositionTemp_vt_4", "粒子顶点坐标数据"], //
+			["particleColorOffset_vt_4", "粒子颜色偏移值，在片段渲染的最终颜色值上偏移"], //
+			["particleColorMultiplier_vt_4", "粒子颜色乘数因子，用于乘以纹理上的颜色值"], //
+
+			["inCycleTime_vt_4", "粒子周期内时间临时寄存器"], //
+
 			//---------------------------- 线段相关寄存器数据类型 ------------------------------
 			["segmentStart_va_3", "线段起点坐标数据"], //
 			["segmentEnd_va_3", "线段终点坐标数据"], //

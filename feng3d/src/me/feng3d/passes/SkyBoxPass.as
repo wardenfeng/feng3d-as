@@ -14,7 +14,7 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.runFagalMethod;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.fagal.fragment.F_SkyBox;
 	import me.feng3d.fagal.vertex.V_SkyBox;
 	import me.feng3d.textures.CubeTextureProxyBase;
@@ -41,10 +41,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.texture_fs, updateTextureBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.camerapos_vc_vector, updateCameraPosBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
+			mapContext3DBuffer(_.texture_fs, updateTextureBuffer);
+			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(_.camerapos_vc_vector, updateCameraPosBuffer);
+			mapContext3DBuffer(_.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
 		}
 
 		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
@@ -82,7 +82,7 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureProxyBase):void
 		{
 			_cubeTexture = value;
-			markBufferDirty(Context3DBufferTypeID.texture_fs);
+			markBufferDirty(_.texture_fs);
 		}
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
@@ -124,7 +124,7 @@ package me.feng3d.passes
 			scaleSkybox[3] = 1;
 
 			//通用渲染参数
-			shaderParams.addSampleFlags(Context3DBufferTypeID.texture_fs, _cubeTexture);
+			shaderParams.addSampleFlags(_.texture_fs, _cubeTexture);
 		}
 	}
 }

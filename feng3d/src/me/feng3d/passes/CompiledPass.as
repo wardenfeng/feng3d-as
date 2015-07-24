@@ -11,7 +11,7 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.ShadingMethodEvent;
-	import me.feng3d.fagal.context3dDataIds.Context3DBufferTypeID;
+	
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
@@ -91,12 +91,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(Context3DBufferTypeID.commonsData_fc_vector, updateCommonsDataBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.cameraPosition_vc_vector, updateCameraPositionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.normalSceneTransform_vc_matrix, updateSceneNormalMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.sceneTransform_vc_matrix, updateSceneTransformMatrixBuffer);
-			mapContext3DBuffer(Context3DBufferTypeID.wordProjection_vc_matrix, updateWordProjectionMatrixBuffer);
+			mapContext3DBuffer(_.commonsData_fc_vector, updateCommonsDataBuffer);
+			mapContext3DBuffer(_.cameraPosition_vc_vector, updateCameraPositionBuffer);
+			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			mapContext3DBuffer(_.normalSceneTransform_vc_matrix, updateSceneNormalMatrixBuffer);
+			mapContext3DBuffer(_.sceneTransform_vc_matrix, updateSceneTransformMatrixBuffer);
+			mapContext3DBuffer(_.wordProjection_vc_matrix, updateWordProjectionMatrixBuffer);
 		}
 
 		/**
@@ -242,7 +242,7 @@ package me.feng3d.passes
 			commonsData[1] = 0;
 			commonsData[2] = 1 / 255;
 			commonsData[3] = 1;
-			markBufferDirty(Context3DBufferTypeID.commonsData_fc_vector);
+			markBufferDirty(_.commonsData_fc_vector);
 		}
 
 		/**
