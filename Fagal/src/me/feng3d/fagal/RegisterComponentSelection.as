@@ -8,8 +8,25 @@ package me.feng3d.fagal
 	 */
 	public class RegisterComponentSelection implements IField
 	{
-		private var _register:String;
+		private var _register:Register;
+		private var _prop:String;
 		private var _regType:String;
+
+		private var _regId:String;
+
+		/** 寄存器id */
+		public function get regId():String
+		{
+			return _regId;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set regId(value:String):void
+		{
+			_regId = value;
+		}
 
 		/**
 		 * 创建一个寄存器单元组合
@@ -18,8 +35,11 @@ package me.feng3d.fagal
 		 */
 		public function RegisterComponentSelection(register:Register, prop:String)
 		{
-			_register = register + ((prop.length > 0) ? ("." + prop) : "");
+			_register = register;
+			_prop = prop;
 			_regType = register.regType;
+
+			_regId = register.regId;
 
 			// Validate components
 			if (prop.length > 4)
@@ -44,7 +64,7 @@ package me.feng3d.fagal
 		 */
 		public function toString():String
 		{
-			return _register;
+			return _register + ((_prop.length > 0) ? ("." + _prop) : "");
 		}
 
 		/**

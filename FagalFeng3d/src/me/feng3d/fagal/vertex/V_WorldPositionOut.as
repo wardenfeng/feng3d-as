@@ -1,7 +1,6 @@
 package me.feng3d.fagal.vertex
 {
 
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,6 +11,6 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 
-		mov(_.globalPos_v, _.globalPosition_vt_4);
+		_.mov(_.globalPos_v, _.globalPosition_vt_4);
 	}
 }

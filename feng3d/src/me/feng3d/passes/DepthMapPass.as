@@ -9,12 +9,9 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.OCBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
-	import me.feng3d.debug.Debug;
-	import me.feng3d.fagal.runFagalMethod;
-	
-	
 	import me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap;
 	import me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
@@ -134,22 +131,10 @@ package me.feng3d.passes
 		 */
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			//运行顶点渲染函数
-			var vertexCode:String = runFagalMethod(V_Main_DepthMap);
-			//运行片段渲染函数
-			var fragmentCode:String = runFagalMethod(F_Main_DepthMap);
-
-			if (Debug.agalDebug)
-			{
-				trace("Compiling AGAL Code:");
-				trace("--------------------");
-				trace(vertexCode);
-				trace("--------------------");
-				trace(fragmentCode);
-			}
+			var result:Object = FagalRE.runShader(V_Main_DepthMap, F_Main_DepthMap);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 	}
 }

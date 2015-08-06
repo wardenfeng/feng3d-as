@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.operation.mov;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子颜色初始化
@@ -12,9 +12,11 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticlesInitColor(particleCommon:Register, colorMulTarget:Register, colorAddTarget:Register):void
 	{
+		var _:* = FagalRE.instance.space;
+
 		//初始化  粒子颜色乘数因子 为(1,1,1,1)
-		mov(colorMulTarget, particleCommon.y);
+		_.mov(colorMulTarget, particleCommon.y);
 		//初始化 粒子颜色偏移值 为(0,0,0,0)
-		mov(colorAddTarget, particleCommon.x);
+		_.mov(colorAddTarget, particleCommon.x);
 	}
 }

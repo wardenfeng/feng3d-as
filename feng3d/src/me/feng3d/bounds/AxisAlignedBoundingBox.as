@@ -52,7 +52,7 @@ package me.feng3d.bounds
 				var a:Number = plane.a;
 				var b:Number = plane.b;
 				var c:Number = plane.c;
-				//最可能在平面外的点，距离最可能大于0的点
+				//最可能出现在平面内的点，即距离最可能大于0的点 (如果这个点都不在平面内的话，其他的点肯定会不在平面内)
 				var flippedExtentX:Number = a < 0 ? -_halfExtentsX : _halfExtentsX;
 				var flippedExtentY:Number = b < 0 ? -_halfExtentsY : _halfExtentsY;
 				var flippedExtentZ:Number = c < 0 ? -_halfExtentsZ : _halfExtentsZ;

@@ -9,10 +9,10 @@ package me.feng3d.core.buffer
 	import me.feng3d.core.buffer.context3d.OCBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.RegisterBuffer;
-	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterType;
-	import me.feng3d.fagalRE.FagalRE;
+	import me.feng3d.core.register.RegisterValue;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	use namespace arcanefagal;
 
@@ -171,20 +171,20 @@ package me.feng3d.core.buffer
 		{
 			runRegBufferList = [];
 
-			for each (var register:Register in dataRegisterDic)
+			for each (var register:RegisterValue in dataRegisterDic)
 			{
-				var registerBuffer:RegisterBuffer = regBufferDic[register.regId];
+				var registerBuffer:RegisterBuffer = regBufferDic[register.dataTypeId];
 				//输入数据寄存器必须有对应的数据缓存
 				if (RegisterType.isInputDataRegister(register))
 				{
 					if (registerBuffer == null)
 					{
-						throw new Error("缺少【" + register.regId + "】寄存器数据缓存");
+						throw new Error("缺少【" + register.dataTypeId + "】寄存器数据缓存");
 					}
 				}
 				if (registerBuffer != null)
 				{
-					registerBuffer.shaderRegister = register;
+					registerBuffer.firstRegister = register.index;
 					runRegBufferList.push(registerBuffer);
 				}
 			}

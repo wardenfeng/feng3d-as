@@ -39,7 +39,7 @@ package me.feng3d.core.buffer.context3d
 			//从纹理缓存中获取纹理
 			var textureBase:TextureBase = TextureCenter.getTexture(context3D, texture);
 
-			context3D.setTextureAt(shaderRegister.index, textureBase);
+			context3D.setTextureAt(firstRegister, textureBase);
 		}
 
 		/**

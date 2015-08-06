@@ -14,7 +14,7 @@ package
 	 * 测试线框立方体
 	 * @author warden_feng 2014-4-9
 	 */
-	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
+	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class WireframeCubeTest extends TestBase
 	{
 		public var _view:View3D;

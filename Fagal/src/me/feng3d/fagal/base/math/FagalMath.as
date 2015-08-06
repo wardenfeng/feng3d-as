@@ -5,9 +5,8 @@ package me.feng3d.fagal.base.math
 	import me.feng3d.debug.Debug;
 	import me.feng3d.fagal.FagalToken;
 	import me.feng3d.fagal.IField;
-	import me.feng3d.fagal.base.append;
-	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * Fagal数学运算
@@ -360,6 +359,18 @@ package me.feng3d.fagal.base.math
 		}
 
 		/**
+		 * 混合数据
+		 * <p>destination = source1 + (source2-source1) x factor</p>
+		 * @author warden_feng 2015-7-4
+		 */
+		public function blend(destination:IField, source1:IField, source2:IField, factor:IField):void
+		{
+			sub(source2, source2, source1);
+			mul(source2, source2, factor);
+			add(destination, source1, source2);
+		}
+
+		/**
 		 * 添加注释
 		 */
 		public function comment(... remarks):void
@@ -371,6 +382,15 @@ package me.feng3d.fagal.base.math
 //			{
 //				append(FagalToken.COMMENT + remarks[i]);
 //			}
+		}
+
+		/**
+		 * 添加代码
+		 * @author warden_feng 2015-4-24
+		 */
+		public function append(code:String):void
+		{
+			FagalRE.instance.append(code);
 		}
 	}
 }

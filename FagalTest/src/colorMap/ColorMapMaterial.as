@@ -45,7 +45,7 @@ package colorMap
 
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.run(V_colorMap, F_colorMap);
+			var result:Object = FagalRE.runShader(V_colorMap, F_colorMap);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

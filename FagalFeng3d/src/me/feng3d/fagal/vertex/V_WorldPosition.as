@@ -1,7 +1,5 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.operation.m44;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,7 +10,7 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 
-		comment("场景坐标转换");
-		m44(_.globalPosition_vt_4, _.position_va_3, _.sceneTransform_vc_matrix);
+		_.comment("场景坐标转换");
+		_.m44(_.globalPosition_vt_4, _.position_va_3, _.sceneTransform_vc_matrix);
 	}
 }

@@ -26,7 +26,7 @@ package me.feng3d.core.buffer.context3d
 		{
 			doUpdateFunc();
 
-			context3D.setProgramConstantsFromVector(Context3DProgramType.VERTEX, shaderRegister.index, data, numRegisters);
+			context3D.setProgramConstantsFromVector(Context3DProgramType.VERTEX, firstRegister, data, numRegisters);
 		}
 
 		public function update(data:Vector.<Number>, numRegisters:int = -1):void

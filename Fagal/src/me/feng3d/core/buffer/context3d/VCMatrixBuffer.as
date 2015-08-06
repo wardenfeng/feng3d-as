@@ -37,7 +37,7 @@ package me.feng3d.core.buffer.context3d
 		{
 			doUpdateFunc();
 
-			context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, shaderRegister.index, matrix, transposedMatrix);
+			context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, firstRegister, matrix, transposedMatrix);
 		}
 
 		/**

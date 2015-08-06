@@ -1,7 +1,5 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,8 +10,6 @@ package me.feng3d.fagal.fragment
 	{
 		var _:* = FagalRE.instance.space;
 
-		mov(_._oc, _.finalColor_ft_4);
-
-		removeTemp(_.finalColor_ft_4);
+		_.mov(_._oc, _.finalColor_ft_4);
 	}
 }

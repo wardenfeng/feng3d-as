@@ -7,5 +7,9 @@ package me.feng3d.fagal
 	 */
 	public interface IRegister extends IField
 	{
+		/**
+		 * 寄存器长度
+		 */
+		function get regLen():uint;
 	}
 }

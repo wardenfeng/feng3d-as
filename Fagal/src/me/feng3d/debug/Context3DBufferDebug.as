@@ -57,7 +57,7 @@ package me.feng3d.debug
 			for each (var registerBuffer:RegisterBuffer in context3DCache.runRegBufferList)
 			{
 				debugInfoItem = debugInfo(registerBuffer);
-				debugInfoItem.shaderRegister = registerBuffer.shaderRegister.toString();
+				debugInfoItem.shaderRegister = registerBuffer.firstRegister.toString();
 				debugInfos.push(debugInfoItem);
 			}
 
@@ -159,7 +159,8 @@ package me.feng3d.debug
 					var regStr:String = item.shaderRegister
 					var myPattern:RegExp = /([a-z]+)(\d+)/;
 					var result:Array = myPattern.exec(regStr);
-					regBuff.shaderRegister = new Register(result[1], int(result[2]));
+//-------------------
+					regBuff.firstRegister = result[2];
 
 					if (context3DCache.runRegBufferList == null)
 					{

@@ -2,8 +2,6 @@ package me.feng3d.fagal.fragment
 {
 	import flash.display3D.Context3DProgramType;
 
-	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -22,8 +20,8 @@ package me.feng3d.fagal.fragment
 		{
 			var _:* = FagalRE.instance.space;
 
-			comment("传递顶点颜色数据" + _.color_v + "到片段寄存器" + _._oc);
-			mov(_._oc, _.color_v);
+			_.comment("传递顶点颜色数据" + _.color_v + "到片段寄存器" + _._oc);
+			_.mov(_._oc, _.color_v);
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.fagal.base.operation.tex;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,6 +11,6 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		//获取纹理数据
-		tex(_.specularTexData_ft_4, _.uv_v, _.specularTexture_fs);
+		_.tex(_.specularTexData_ft_4, _.uv_v, _.specularTexture_fs);
 	}
 }

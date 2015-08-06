@@ -37,28 +37,27 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="TestCamera.as"/>
-    <application path="WireframeCubeTest.as"/>
-    <application path="TestDirectionalLight.as"/>
-    <application path="TestMaterial.as"/>
-    <application path="SkeletonAnimatorTest.as"/>
-    <application path="TestSegment.as"/>
-    <application path="TestLoadTexture.as"/>
-    <application path="TestObj.as"/>
-    <application path="TerrainTest.as"/>
-    <application path="geometry/GeometryEventTest.as"/>
-    <application path="PointLightTest.as"/>
-    <application path="TestMultiCamera.as"/>
-    <application path="ObjParserTest.as"/>
     <application path="feng3d.as"/>
-    <application path="SkyBoxTest.as"/>
-    <application path="MD5AnimMeshParserTest.as"/>
-    <application path="MD5MeshParserTest.as"/>
-    <application path="TestMultiCamera1.as"/>
-    <application path="ShadowTest.as"/>
-    <application path="TestMouseEvent.as"/>
-    <application path="shader/SegmentShaderTest.as"/>
+    <application path="TestLoadTexture.as"/>
     <application path="EntityShowBoundsTest.as"/>
+    <application path="WireframeCubeTest.as"/>
+    <application path="ObjParserTest.as"/>
+    <application path="TestMouseEvent.as"/>
+    <application path="TestMultiCamera1.as"/>
+    <application path="MD5MeshParserTest.as"/>
+    <application path="TestObj.as"/>
+    <application path="SkyBoxTest.as"/>
+    <application path="TestDirectionalLight.as"/>
+    <application path="SkeletonAnimatorTest.as"/>
+    <application path="ShadowTest.as"/>
+    <application path="PointLightTest.as"/>
+    <application path="TerrainTest.as"/>
+    <application path="TestMaterial.as"/>
+    <application path="geometry/GeometryEventTest.as"/>
+    <application path="TestMultiCamera.as"/>
+    <application path="TestSegment.as"/>
+    <application path="TestCamera.as"/>
+    <application path="MD5AnimMeshParserTest.as"/>
   </applications>
   <modules/>
   <workers/>

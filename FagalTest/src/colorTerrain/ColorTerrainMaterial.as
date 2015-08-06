@@ -36,7 +36,7 @@ package colorTerrain
 
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.run(V_colorTerrain, F_colorTerrain);
+			var result:Object = FagalRE.runShader(V_colorTerrain, F_colorTerrain);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

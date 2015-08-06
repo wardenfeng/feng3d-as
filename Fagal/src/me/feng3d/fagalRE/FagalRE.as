@@ -7,7 +7,6 @@ package me.feng3d.fagalRE
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.register.ShaderRegisterCache;
 	import me.feng3d.fagal.FagalToken;
-	import me.feng3d.fagal.runFagalMethod;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	use namespace arcanefagal;
@@ -20,13 +19,14 @@ package me.feng3d.fagalRE
 	{
 		private static var _instance:FagalRE;
 
-		private var _regCache:ShaderRegisterCache;
 		private var _context3DCache:Context3DCache;
 
 		private var agalCode:String = "";
 		private var _shaderType:String;
 
 		private var _space:FagalRESpace;
+
+		public var runState:String;
 
 		internal static var idDic:Dictionary = new Dictionary();
 
@@ -74,32 +74,59 @@ package me.feng3d.fagalRE
 		}
 
 		/**
-		 * 寄存器缓存
+		 * 运行Fagal函数
+		 * @param agalMethod Fagal函数
 		 */
-		arcanefagal function get regCache():ShaderRegisterCache
+		public static function runShader(vertexShader:*, fragmentShader:*):Object
 		{
-			return ShaderRegisterCache.instance;
+			return instance.runShader(vertexShader, fragmentShader);
+		}
+
+		public static const PRERUN:String = "preRun";
+		public static const RUN:String = "run";
+
+		/**
+		 * Fagal寄存器中心
+		 */
+		private function get registerCenter():FagalRegisterCenter
+		{
+			return FagalRegisterCenter.instance;
 		}
 
 		/**
 		 * 运行Fagal函数
 		 * @param agalMethod Fagal函数
 		 */
-		public static function run(vertexShader:*, fragmentShader:*):Object
+		public function runShader(vertexShader:*, fragmentShader:*):Object
 		{
+			//清理缓存
+			FagalRegisterCenter.clear();
+			ShaderRegisterCache.invalid();
+
 			var result:Object = {};
 
-			//运行顶点渲染函数
-			result.vertexCode = runFagalMethod(vertexShader);
+			FagalRE.instance.runState = FagalRE.PRERUN;
 
+			space.clear();
+			//运行顶点渲染函数
+			result.vertexCode = run(vertexShader);
+			space.clear();
 			//运行片段渲染函数
-			result.fragmentCode = runFagalMethod(fragmentShader);
+			result.fragmentCode = run(fragmentShader);
+
+
+			logger("Compiling AGAL Code:");
+			logger("--------------------");
+			logger(result.debugVertexCode);
+			logger("--------------------");
+			logger(result.debugFragmentCode);
 
 			logger("Compiling AGAL Code:");
 			logger("--------------------");
 			logger(result.vertexCode);
 			logger("--------------------");
 			logger(result.fragmentCode);
+
 
 			return result;
 		}
@@ -118,6 +145,15 @@ package me.feng3d.fagalRE
 			clearCode();
 			//运行Fagal函数
 			agalMethodInstance.runFunc();
+
+			var agalCode1:String = agalCode;
+
+			clearCode();
+			space.requestRegisterValue();
+
+			space.doCallLog();
+
+			var agalCode2:String = agalCode;
 
 			return agalCode;
 		}

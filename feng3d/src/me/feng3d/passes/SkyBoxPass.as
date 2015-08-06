@@ -12,11 +12,9 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.debug.Debug;
-	import me.feng3d.fagal.runFagalMethod;
-	
 	import me.feng3d.fagal.fragment.F_SkyBox;
 	import me.feng3d.fagal.vertex.V_SkyBox;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.textures.CubeTextureProxyBase;
 
 	use namespace arcane;
@@ -87,20 +85,10 @@ package me.feng3d.passes
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var vertexCode:String = runFagalMethod(V_SkyBox);
-			var fragmentCode:String = runFagalMethod(F_SkyBox);
-
-			if (Debug.agalDebug)
-			{
-				trace("Compiling AGAL Code:");
-				trace("--------------------");
-				trace(vertexCode);
-				trace("--------------------");
-				trace(fragmentCode);
-			}
+			var result:Object = FagalRE.runShader(V_SkyBox, F_SkyBox);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 
 		override arcane function render(renderable:IRenderable, camera:Camera3D):void

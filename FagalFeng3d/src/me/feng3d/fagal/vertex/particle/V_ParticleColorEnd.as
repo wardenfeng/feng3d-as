@@ -1,8 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.operation.mov;
-
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子颜色变化结算顶点渲染程序
@@ -14,9 +13,11 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticleColorEnd(colorMulTarget:Register, colorAddTarget:Register, colorMulVary:Register, colorAddVary:Register):void
 	{
+		var _:* = FagalRE.instance.space;
+
 //			if (hasColorMulNode)
-		mov(colorMulVary, colorMulTarget);
+		_.mov(colorMulVary, colorMulTarget);
 //			if (hasColorAddNode)
-		mov(colorAddVary, colorAddTarget);
+		_.mov(colorAddVary, colorAddTarget);
 	}
 }

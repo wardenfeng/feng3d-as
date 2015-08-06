@@ -1,6 +1,5 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.fagal.base.operation.tex;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -11,6 +10,6 @@ package me.feng3d.fagal.fragment
 	{
 		var _:* = FagalRE.instance.space;
 
-		tex(_.mDiff_ft, _.uv_v, _.texture_fs);
+		_.tex(_.mDiff_ft, _.uv_v, _.texture_fs);
 	}
 }

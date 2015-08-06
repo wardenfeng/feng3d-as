@@ -1,7 +1,5 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.base.operation.nrm;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -13,9 +11,9 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		//标准化法线
-		nrm(_.normal_ft_4.xyz, _.normal_v);
+		_.nrm(_.normal_ft_4.xyz, _.normal_v);
 		//保存w不变
-		mov(_.normal_ft_4.w, _.normal_v.w);
+		_.mov(_.normal_ft_4.w, _.normal_v.w);
 
 	}
 }

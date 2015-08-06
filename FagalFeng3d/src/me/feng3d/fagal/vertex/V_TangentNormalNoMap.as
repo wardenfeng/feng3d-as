@@ -1,8 +1,5 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.operation.m33;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -13,10 +10,10 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 
-		comment("转换法线到全局");
-		m33(_.normal_v.xyz, _.normal_va_3, _.normalSceneTransform_vc_matrix);
+		_.comment("转换法线到全局");
+		_.m33(_.normal_v.xyz, _.normal_va_3, _.normalSceneTransform_vc_matrix);
 		//保存w不变
-		mov(_.normal_v.w, _.normal_va_3.w);
+		_.mov(_.normal_v.w, _.normal_va_3.w);
 	}
 
 }

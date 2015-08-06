@@ -1,6 +1,5 @@
 package me.feng3d.fagal.fragment
 {
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagalRE.FagalRE;
 
 
@@ -13,6 +12,6 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		//漫射输入静态数据 
-		mov(_.mDiff_ft, _.diffuseInput_fc_vector);
+		_.mov(_.mDiff_ft, _.diffuseInput_fc_vector);
 	}
 }

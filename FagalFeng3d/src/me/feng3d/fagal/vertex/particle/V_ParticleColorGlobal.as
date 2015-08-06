@@ -2,9 +2,7 @@ package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.add;
-	import me.feng3d.fagal.base.operation.mul;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子颜色节点顶点渲染程序
@@ -12,6 +10,8 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticleColorGlobal(startMultiplierValue:Register, deltaMultiplierValue:Register, startOffsetValue:Register, deltaOffsetValue:Register, inCycleTimeTemp:Register, colorMulTarget:Register, colorAddTarget:Register):void
 	{
+		var _:* = FagalRE.instance.space;
+
 		var temp:Register = getFreeTemp();
 
 //			if (animationRegisterCache.needFragmentAnimation) {
@@ -40,9 +40,9 @@ package me.feng3d.fagal.vertex.particle
 //					animationRegisterCache.setRegisterIndex(this, START_MULTIPLIER_INDEX, startMultiplierValue.index);
 //					animationRegisterCache.setRegisterIndex(this, DELTA_MULTIPLIER_INDEX, deltaMultiplierValue.index);
 
-		mul(temp, deltaMultiplierValue, inCycleTimeTemp.y);
-		add(temp, temp, startMultiplierValue);
-		mul(colorMulTarget, temp, colorMulTarget);
+		_.mul(temp, deltaMultiplierValue, inCycleTimeTemp.y);
+		_.add(temp, temp, startMultiplierValue);
+		_.mul(colorMulTarget, temp, colorMulTarget);
 //				}
 
 //				if (_usesOffset) {
@@ -52,12 +52,11 @@ package me.feng3d.fagal.vertex.particle
 //					animationRegisterCache.setRegisterIndex(this, START_OFFSET_INDEX, startOffsetValue.index);
 //					animationRegisterCache.setRegisterIndex(this, DELTA_OFFSET_INDEX, deltaOffsetValue.index);
 
-		mul(temp, deltaOffsetValue, inCycleTimeTemp.y);
-		add(temp, temp, startOffsetValue);
-		add(colorAddTarget, temp, colorAddTarget);
+		_.mul(temp, deltaOffsetValue, inCycleTimeTemp.y);
+		_.add(temp, temp, startOffsetValue);
+		_.add(colorAddTarget, temp, colorAddTarget);
 //				}
 //			}
 
-		removeTemp(temp);
 	}
 }

@@ -1,15 +1,14 @@
 package
 {
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
-	
+
 	import model3d.PhotoBox;
 
 	/**
@@ -17,7 +16,7 @@ package
 	 * @author warden_feng 2014-3-27
 	 */
 	[SWF(width = "640", height = "640", frameRate = "60", backgroundColor = "#FFFFFF")]
-	public class TestCamera extends Sprite
+	public class TestCamera extends TestBase
 	{
 		private var _view:View3D;
 
@@ -25,17 +24,15 @@ package
 
 		public function TestCamera()
 		{
-			if (stage != null)
-				init();
-			else
-				addEventListener(Event.ADDED_TO_STAGE, init);
+			resourceList = [];
+			super();
 		}
 
-		private function init(e:Event = null):void
+		/**
+		 * Global initialise function
+		 */
+		public function init():void
 		{
-			if (hasEventListener(Event.ADDED_TO_STAGE))
-				removeEventListener(Event.ADDED_TO_STAGE, init);
-
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 
@@ -46,10 +43,10 @@ package
 			_view.camera.z = -300;
 			_view.camera.y = 100;
 			_view.camera.lookAt(new Vector3D());
-			
+
 			container3D = new PhotoBox();
 			_view.scene.addChild(container3D);
-			
+
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
 		}
@@ -57,7 +54,7 @@ package
 		protected function onMouseWheel(event:MouseEvent):void
 		{
 			_view.camera.z += event.delta;
-			trace("摄像机位置",_view.camera.sceneTransform.position)
+			trace("摄像机位置", _view.camera.sceneTransform.position)
 		}
 
 		protected function onEnterFrame(event:Event):void

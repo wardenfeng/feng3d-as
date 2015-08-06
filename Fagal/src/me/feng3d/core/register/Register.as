@@ -3,9 +3,12 @@ package me.feng3d.core.register
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 
+	import me.feng3d.core.buffer.Context3DBufferTypeManager;
+	import me.feng3d.core.buffer.type.Context3DBufferType;
+	import me.feng3d.fagal.IRegister;
 	import me.feng3d.fagal.RegisterComponent;
 	import me.feng3d.fagal.RegisterComponentSelection;
-	import me.feng3d.fagal.IRegister;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 寄存器(链表)
@@ -17,33 +20,11 @@ package me.feng3d.core.register
 
 		protected var _regType:String;
 		protected var _index:int = -1;
-		protected var _toStr:String;
 
-		/** 寄存器id */
-		public var regId:String;
+		private var _regId:String;
 
 		/** 描述 */
 		public var description:String;
-
-		/**
-		 * 创建一个寄存器
-		 * @param regType 寄存器名称
-		 * @param index 寄存器编号
-		 */
-		public function Register(regType:String, index:int)
-		{
-			_regType = regType;
-			_index = index;
-
-			_toStr = _regType;
-			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
-				_toStr += _index;
-		}
-
-		public function get regType():String
-		{
-			return _regType;
-		}
 
 		/**
 		 * 寄存器编号
@@ -53,9 +34,49 @@ package me.feng3d.core.register
 			return _index;
 		}
 
+		public function set index(value:int):void
+		{
+			_index = value;
+		}
+
+		/** 寄存器id */
+		public function get regId():String
+		{
+			return _regId;
+		}
+
+		public function get regType():String
+		{
+			return _regType;
+		}
+
+		/**
+		 * 创建一个寄存器
+		 * @param regType 寄存器名称
+		 * @param index 寄存器编号
+		 */
+		public function Register(regId:String)
+		{
+			_regId = regId;
+
+			init();
+		}
+
+		private function init():void
+		{
+			var bufferType:Context3DBufferType = Context3DBufferTypeManager.getBufferType(_regId);
+			_regType = bufferType.registerType;
+			_index = -1;
+		}
+
 		public function toString():String
 		{
-			return _toStr;
+			if (FagalRE.instance.runState == FagalRE.PRERUN)
+				return "{" + regId + "}";
+
+			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
+				return _regType + _index;
+			return _regType;
 		}
 
 		/**
@@ -113,5 +134,14 @@ package me.feng3d.core.register
 			return toString();
 		}
 
+		public function get regLen():uint
+		{
+			return 1;
+		}
+
+		public function clear():void
+		{
+			index = -1;
+		}
 	}
 }

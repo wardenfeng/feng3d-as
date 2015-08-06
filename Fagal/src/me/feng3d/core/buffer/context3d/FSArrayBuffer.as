@@ -2,7 +2,7 @@ package me.feng3d.core.buffer.context3d
 {
 	import flash.display3D.Context3D;
 	import flash.display3D.textures.TextureBase;
-	
+
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.buffer.TextureCenter;
 
@@ -37,7 +37,7 @@ package me.feng3d.core.buffer.context3d
 				//从纹理缓存中获取纹理
 				var textureBase:TextureBase = TextureCenter.getTexture(context3D, textures[i]);
 
-				context3D.setTextureAt(shaderRegister.index + i, textureBase);
+				context3D.setTextureAt(firstRegister + i, textureBase);
 			}
 		}
 

@@ -4,9 +4,9 @@ package me.feng3d.core.buffer.context3d
 	import flash.display3D.Context3DVertexBufferFormat;
 
 	import me.feng3d.arcanefagal;
+	import me.feng3d.core.buffer.context3d.item.VADataBuffer;
 	import me.feng3d.core.buffer.context3d.item.VertexBufferItem;
 	import me.feng3d.debug.assert;
-	import me.feng3d.core.buffer.context3d.item.VADataBuffer;
 
 	use namespace arcanefagal;
 
@@ -46,7 +46,7 @@ package me.feng3d.core.buffer.context3d
 			doUpdateFunc();
 
 			var vertexBufferItem:VertexBufferItem = dataBuffer.getBufferItem(context3D);
-			vertexBufferItem.setVertexBufferAt(shaderRegister.index, 0, format);
+			vertexBufferItem.setVertexBufferAt(firstRegister, 0, format);
 		}
 
 		/**

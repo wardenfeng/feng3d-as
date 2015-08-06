@@ -1,8 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.operation.mov;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子初始化顶点渲染程序
@@ -14,8 +13,10 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticlesInit(positionTemp:Register, animatedPosition:Register, positionReg:Register, particleCommon:Register):void
 	{
-		comment("初始化粒子");
-		mov(animatedPosition, positionReg); //坐标赋值
-		mov(positionTemp.xyz, particleCommon.x); //初始化偏移位置0
+		var _:* = FagalRE.instance.space;
+
+		_.comment("初始化粒子");
+		_.mov(animatedPosition, positionReg); //坐标赋值
+		_.mov(positionTemp.xyz, particleCommon.x); //初始化偏移位置0
 	}
 }

@@ -2,9 +2,7 @@ package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.add;
-	import me.feng3d.fagal.base.operation.mul;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子速度节点顶点渲染程序
@@ -15,12 +13,12 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticleVelocity(particleVelocity:Register, positionTemp:Register, inCycleTimeTemp:Register):void
 	{
+		var _:* = FagalRE.instance.space;
+
 		var vt3:Register = getFreeTemp();
 
 		//计算速度
-		mul(vt3, inCycleTimeTemp.x, particleVelocity); //时间*速度
-		add(positionTemp.xyz, vt3, positionTemp.xyz); //计算偏移量
-
-		removeTemp(vt3);
+		_.mul(vt3, inCycleTimeTemp.x, particleVelocity); //时间*速度
+		_.add(positionTemp.xyz, vt3, positionTemp.xyz); //计算偏移量
 	}
 }

@@ -2,7 +2,6 @@ package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -64,6 +63,5 @@ package me.feng3d.fagal.fragment.light
 			}
 		}
 
-		removeTemp(pointLightDirReg);
 	}
 }

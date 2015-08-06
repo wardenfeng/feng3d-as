@@ -25,7 +25,7 @@ package me.feng3d.core.buffer.context3d
 		{
 			doUpdateFunc();
 
-			context3D.setProgramConstantsFromByteArray(Context3DProgramType.FRAGMENT, shaderRegister.index, 1, data, data.position);
+			context3D.setProgramConstantsFromByteArray(Context3DProgramType.FRAGMENT, firstRegister, 1, data, data.position);
 		}
 	}
 }

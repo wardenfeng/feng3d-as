@@ -2,9 +2,7 @@ package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.add;
-	import me.feng3d.fagal.base.operation.mul;
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 粒子缩放节点顶点渲染程序
@@ -15,6 +13,8 @@ package me.feng3d.fagal.vertex.particle
 	 */
 	public function V_ParticleScaleGlobal(scaleRegister:Register, inCycleTimeTemp:Register, animatedPosition:Register):void
 	{
+		var _:* = FagalRE.instance.space;
+
 		var temp:Register = getFreeTemp();
 
 //			if (_usesCycle) {
@@ -26,10 +26,9 @@ package me.feng3d.fagal.vertex.particle
 //				code += "sin " + temp + "," + temp + "\n";
 //			}
 
-		mul(temp, scaleRegister.y, inCycleTimeTemp.y); //计算  随时间增量  = 差值 * 本周期比例
-		add(temp, scaleRegister.x, temp); //缩放值 = 最小值 + 随时间增量
-		mul(animatedPosition.xyz, animatedPosition.xyz, temp); //缩放应用到顶点坐标上
+		_.mul(temp, scaleRegister.y, inCycleTimeTemp.y); //计算  随时间增量  = 差值 * 本周期比例
+		_.add(temp, scaleRegister.x, temp); //缩放值 = 最小值 + 随时间增量
+		_.mul(animatedPosition.xyz, animatedPosition.xyz, temp); //缩放应用到顶点坐标上
 
-		removeTemp(temp);
 	}
 }

@@ -4,10 +4,6 @@ package me.feng3d.fagal.fragment.shadowMap
 
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.operation.div;
-	import me.feng3d.fagal.base.operation.frc;
-	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -39,15 +35,15 @@ package me.feng3d.fagal.fragment.shadowMap
 			var ft1:Register = getFreeTemp("");
 
 			//计算深度值depth属于（0,1）,该范围外的将会被frc处理为0或1
-			div(positionReg, _.positionProjected_v, _.positionProjected_v.w);
+			_.div(positionReg, _.positionProjected_v, _.positionProjected_v.w);
 			//深度值保存为颜色值
-			mul(depthValueReg, _.depthCommonData0_fc_vector, positionReg.z);
+			_.mul(depthValueReg, _.depthCommonData0_fc_vector, positionReg.z);
 			//和上行代码配合，保存了深度的1/255/255/255的精度的值
-			frc(depthValueReg, depthValueReg);
+			_.frc(depthValueReg, depthValueReg);
 			//计算多余的值
-			mul(ft1, depthValueReg.yzww, _.depthCommonData1_fc_vector);
+			_.mul(ft1, depthValueReg.yzww, _.depthCommonData1_fc_vector);
 			//真正的深度值 = 减去多余的(1/255)值  （精度在1/255/255/255）
-			sub(_.depthMap_oc, depthValueReg, ft1);
+			_.sub(_.depthMap_oc, depthValueReg, ft1);
 
 
 		/*

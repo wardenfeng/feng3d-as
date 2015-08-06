@@ -3,7 +3,6 @@ package me.feng3d.fagal.vertex
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.animators.AnimationType;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
@@ -51,7 +50,7 @@ package me.feng3d.fagal.vertex
 			//输出数据到片段寄存器
 			if (shaderParams.needsUV > 0)
 			{
-				mov(_.uv_v, _.uv_va_2);
+				_.mov(_.uv_v, _.uv_va_2);
 			}
 
 			//处理法线相关数据

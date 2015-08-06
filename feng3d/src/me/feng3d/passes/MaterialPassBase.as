@@ -17,12 +17,10 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.CullingBuffer;
 	import me.feng3d.core.buffer.context3d.DepthTestBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
-	import me.feng3d.debug.Debug;
-	import me.feng3d.fagal.runFagalMethod;
-	
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.vertex.V_Main;
+	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
 
@@ -259,22 +257,10 @@ package me.feng3d.passes
 		 */
 		arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			//运行顶点渲染函数
-			var vertexCode:String = runFagalMethod(V_Main);
-			//运行片段渲染函数
-			var fragmentCode:String = runFagalMethod(F_Main);
-
-			if (Debug.agalDebug)
-			{
-				trace("Compiling AGAL Code:");
-				trace("--------------------");
-				trace(vertexCode);
-				trace("--------------------");
-				trace(fragmentCode);
-			}
+			var result:Object = FagalRE.runShader(V_Main, F_Main);
 
 			//上传程序
-			programBuffer.update(vertexCode, fragmentCode);
+			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 
 		/**

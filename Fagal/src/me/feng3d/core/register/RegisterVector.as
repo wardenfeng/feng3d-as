@@ -1,6 +1,6 @@
 package me.feng3d.core.register
 {
-	import me.feng3d.fagal.RegisterComponent;
+
 
 	/**
 	 * 寄存器数组
@@ -16,10 +16,11 @@ package me.feng3d.core.register
 		 * @param start				起始编号
 		 * @param num				寄存器个数
 		 */
-		public function RegisterVector(regType:String, start:int, num:int)
+		public function RegisterVector(regId:String)
 		{
-			super(regType, start);
-			_regs = new Vector.<Register>(num);
+			_regs = new Vector.<Register>();
+			_regs.length = 1;
+			super(regId);
 		}
 
 		/**
@@ -52,8 +53,8 @@ package me.feng3d.core.register
 
 			if (!_regs[$index])
 			{
-				var reg:Register = _regs[$index] = new Register(_regType, _index + $index);
-				reg.regId = regId;
+				var reg:RegisterVectorItem = new RegisterVectorItem(this, $index);
+				_regs[$index] = reg;
 			}
 			return _regs[$index];
 		}
@@ -65,30 +66,41 @@ package me.feng3d.core.register
 		 */
 		public function getReg1(... args):Register
 		{
-			var num:int = 0;
-			var numStr:String = "";
+			var index:int = 0;
+
+			var complexArgs:Array = [];
 
 			for (var i:int = 0; i < args.length; i++)
 			{
 				if (args[i] is uint)
 				{
-					num += args[i];
-				}
-				else if (args[i] is RegisterComponent)
-				{
-					if (numStr.length > 0)
-						numStr += "+";
-					numStr += args[i];
+					index += args[i];
 				}
 				else
 				{
-					throw new Error("不支持该类型");
+					complexArgs.push(args[i]);
 				}
 			}
-			if (numStr.length == 0)
-				return getReg(num);
+			if (complexArgs.length == 0)
+				return getReg(index);
 
-			return new RegisterVectorItem(getReg(0), numStr, num);
+			return new RegisterVectorComplexItem(this, complexArgs, index);
+		}
+
+		override public function get regLen():uint
+		{
+			return _regs.length;
+		}
+
+		public function set regLen(value:uint):void
+		{
+			_regs.length = value;
+		}
+
+		override public function clear():void
+		{
+			_regs.length = 1;
+			super.clear();
 		}
 	}
 }

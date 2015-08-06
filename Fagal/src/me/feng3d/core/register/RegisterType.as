@@ -158,15 +158,15 @@ package me.feng3d.core.register
 			}
 			throw new Error("错误寄存器类型");
 		}
-		
+
 		/**
 		 * 是否为输入数据寄存器
 		 * @param register 寄存器
-		 * @return 
-		 */		
-		public static function isInputDataRegister(register:*):Boolean
+		 * @return
+		 */
+		public static function isInputDataRegister(register:RegisterValue):Boolean
 		{
-			switch (getType(register))
+			switch (register.regType)
 			{
 				case VA:
 					return true;

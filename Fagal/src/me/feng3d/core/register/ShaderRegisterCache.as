@@ -3,9 +3,7 @@ package me.feng3d.core.register
 	import flash.utils.Dictionary;
 
 	import me.feng3d.arcanefagal;
-	import me.feng3d.core.buffer.ConstantsDataType;
-	import me.feng3d.core.buffer.Context3DBufferTypeManager;
-	import me.feng3d.core.buffer.type.Context3DBufferType;
+	import me.feng3d.fagalRE.FagalRegisterCenter;
 
 	use namespace arcanefagal;
 
@@ -100,110 +98,21 @@ package me.feng3d.core.register
 		}
 
 		/**
-		 * 获取单个寄存器
-		 * @param registerType 寄存器类型
-		 * @return 第一个寄存器
-		 */
-		private function getSingleRegister(registerType:String):Register
-		{
-			var registerPool:RegisterPool = registerPoolDic[registerType];
-			var result:Register = registerPool.requestFreeRegister();
-			return result;
-		}
-
-		/**
-		 * 获取寄存器向量
-		 * @param registerType 寄存器类型
-		 * @param numRegister 寄存器数目
-		 * @return
-		 */
-		private function getRegisterVector(registerType:String, numRegister:int):RegisterVector
-		{
-			var registerPool:RegisterPool = registerPoolDic[registerType];
-			var result:RegisterVector = registerPool.requestFreeRegisters(numRegister);
-			return result;
-		}
-
-		/**
-		 * 获取寄存器矩阵
-		 * @param registerType 寄存器类型
-		 * @return
-		 */
-		private function getRegisterMatrix(registerType:String):RegisterMatrix
-		{
-			var registerPool:RegisterPool = registerPoolDic[registerType];
-			var result:RegisterMatrix = registerPool.requestRegisterMatrix();
-			return result;
-		}
-
-		/**
-		 * 获取几个空闲的顶点临时寄存器（可重复使用）
-		 * @param num 数量
-		 * @return 寄存器名称数组
-		 */
-		public function getFreeVertexTemps(num:int):Vector.<Register>
-		{
-			var _vertexTempCache:RegisterPool = registerPoolDic[RegisterType.VT];
-			return _vertexTempCache.getFreeTemps(num);
-		}
-
-		/**
-		 * 获取一个空闲的顶点临时寄存器（可重复使用）
-		 * @return 寄存器名称数组
-		 */
-		public function getFreeVertexTemp():Register
-		{
-			var _vertexTempCache:RegisterPool = registerPoolDic[RegisterType.VT];
-			return _vertexTempCache.requestFreeRegister();
-		}
-
-		/**
-		 * 获取几个空闲的片段临时寄存器（可重复使用）
-		 * @param num 数量
-		 * @return 寄存器名称数组
-		 */
-		public function getFreeFragmentTemps(num:int):Vector.<Register>
-		{
-			var _fragmentTempCache:RegisterPool = registerPoolDic[RegisterType.FT];
-			return _fragmentTempCache.getFreeTemps(num);
-		}
-
-		/**
-		 * 获取一个空闲的片段临时寄存器（可重复使用）
-		 * @return 寄存器
-		 */
-		public function getFreeFragmentTemp():Register
-		{
-			var _fragmentTempCache:RegisterPool = registerPoolDic[RegisterType.FT];
-			return _fragmentTempCache.requestFreeRegister();
-		}
-
-		/**
 		 * 回收不需要再使用的临时寄存器
 		 * @param register 不需要再使用的临时寄存器
 		 */
-		arcanefagal function removeTempUsage(register:Register):void
+		arcanefagal function removeTempUsage(dataTypeId:String):void
 		{
+			var register:Register = FagalRegisterCenter.dataRegisterDic[dataTypeId];
+
 			if (!register)
 				return;
 			if (register.regType != RegisterType.FT && register.regType != RegisterType.VT)
 			{
-				throw new Error("非临时寄存器无法被回收");
+				return;
 			}
 			var _fragmentTempCache:RegisterPool = registerPoolDic[register.regType];
 			_fragmentTempCache.removeUsage(register);
-		}
-
-		/**
-		 * 回收不需要再使用的临时寄存器数组
-		 * @param ftTemps 不需要再使用的临时寄存器数组
-		 */
-		public function removeTempUsages(ftTemps:Vector.<Register>):void
-		{
-			for (var i:int = 0; i < ftTemps.length; i++)
-			{
-				removeTempUsage(ftTemps[i]);
-			}
 		}
 
 		/**
@@ -212,91 +121,22 @@ package me.feng3d.core.register
 		 * @param numRegister 寄存器的个数(默认1个)
 		 * @return 数据寄存器
 		 */
-		arcanefagal function requestRegister(dataTypeId:String, numRegister:int = 1):Register
+		arcanefagal function requestRegister(dataTypeId:String):void
 		{
 			if (_dataRegisterDic[dataTypeId])
-				return _dataRegisterDic[dataTypeId];
+				return;
 
-			var bufferType:Context3DBufferType = Context3DBufferTypeManager.getBufferType(dataTypeId);
+			var register:Register = FagalRegisterCenter.dataRegisterDic[dataTypeId];
 
-			var registerType:String = bufferType.registerType;
+			var registerPool:RegisterPool = registerPoolDic[register.regType];
+			var registerValue:RegisterValue = registerPool.requestFreeRegisters(register.regLen);
 
-			var register:Register;
-			if (bufferType.dataType == ConstantsDataType.MATRIX)
-			{
-				//获取寄存器矩阵
-				register = getRegisterMatrix(registerType);
-			}
-			else if (bufferType.dataType == ConstantsDataType.ARRAY)
-			{
-				register = getRegisterVector(registerType, numRegister);
-			}
-			else if (numRegister > 1)
-			{
-				//获取寄存器向量
-				register = getRegisterVector(registerType, numRegister);
-			}
-			else
-			{
-				register = getSingleRegister(registerType);
-			}
+			registerValue.dataTypeId = register.regId;
 
-			register.regId = dataTypeId;
-			_dataRegisterDic[dataTypeId] = register;
+			register.index = registerValue.index;
+
+			_dataRegisterDic[dataTypeId] = registerValue;
 			usedDataRegisterNum++;
-			return register;
-		}
-
-		/**
-		 * 申请数据寄存器矩阵
-		 * @param dataType 数据类型
-		 * @param numRegister 寄存器的个数(默认1个)
-		 * @return 数据寄存器
-		 */
-		arcanefagal function requestRegisterMatrix(dataTypeId:String):RegisterMatrix
-		{
-			if (_dataRegisterDic[dataTypeId])
-				return _dataRegisterDic[dataTypeId];
-
-			var bufferType:Context3DBufferType = Context3DBufferTypeManager.getBufferType(dataTypeId);
-
-			var register:RegisterMatrix = getRegisterMatrix(bufferType.registerType);
-
-			register.regId = dataTypeId;
-			_dataRegisterDic[dataTypeId] = register;
-			usedDataRegisterNum++;
-			return register;
-		}
-
-		/**
-		 * 申请数据寄存器向量
-		 * @param dataType 数据类型
-		 * @param numRegister 寄存器的个数(默认1个)
-		 * @return 数据寄存器
-		 */
-		arcanefagal function requestRegisterVector(dataTypeId:String, numRegister:int):RegisterVector
-		{
-			if (_dataRegisterDic[dataTypeId])
-				return _dataRegisterDic[dataTypeId];
-
-			var bufferType:Context3DBufferType = Context3DBufferTypeManager.getBufferType(dataTypeId);
-
-			var register:RegisterVector = getRegisterVector(bufferType.registerType, numRegister);
-
-			register.regId = dataTypeId;
-			_dataRegisterDic[dataTypeId] = register;
-			usedDataRegisterNum++;
-			return register;
-		}
-
-		/**
-		 * 获取寄存器
-		 * @param dataType 数据类型
-		 * @return 数据寄存器
-		 */
-		public function getRegister(dataType:String):Register
-		{
-			return _dataRegisterDic[dataType];
 		}
 
 		/**

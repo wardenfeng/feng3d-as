@@ -1,6 +1,5 @@
 package me.feng3d.core.buffer.context3d
 {
-	import me.feng3d.core.register.Register;
 
 	/**
 	 * Context3D关联寄存器的数据缓存
@@ -11,8 +10,8 @@ package me.feng3d.core.buffer.context3d
 		/** 需要寄存器的个数 */
 		public var numRegisters:int = 1;
 
-		/** 数据对应的寄存器 */
-		public var shaderRegister:Register;
+		/** 要设置的首个寄存器的索引 */
+		public var firstRegister:int;
 
 		/**
 		 * 创建寄存器数据缓存

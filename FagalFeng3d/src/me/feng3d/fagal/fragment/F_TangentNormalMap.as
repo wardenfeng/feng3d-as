@@ -2,10 +2,6 @@ package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.m33;
-	import me.feng3d.fagal.base.operation.mov;
-	import me.feng3d.fagal.base.operation.nrm;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -22,25 +18,19 @@ package me.feng3d.fagal.fragment
 		var n:Register = getFreeTemp("法线片段临时寄存器");
 
 		//标准化切线
-		nrm(t.xyz, _.tangent_v);
+		_.nrm(t.xyz, _.tangent_v);
 		//保存w不变
-		mov(t.w, _.tangent_v.w);
+		_.mov(t.w, _.tangent_v.w);
 		//标准化双切线
-		nrm(b.xyz, _.bitangent_v);
+		_.nrm(b.xyz, _.bitangent_v);
 		//标准化法线
-		nrm(n.xyz, _.normal_v);
+		_.nrm(n.xyz, _.normal_v);
 
 		F_NormalSample();
 
 		//标准化法线纹理数据
-		m33(_.normal_ft_4.xyz, _.normalTexData_ft_4, t);
+		_.m33(_.normal_ft_4.xyz, _.normalTexData_ft_4, t);
 		//保存w不变
-		mov(_.normal_ft_4.w, _.normal_v.w);
-
-		removeTemp(_.normalTexData_ft_4);
-		removeTemp(t);
-		removeTemp(b);
-		removeTemp(n);
-
+		_.mov(_.normal_ft_4.w, _.normal_v.w);
 	}
 }

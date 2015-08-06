@@ -28,7 +28,7 @@
 	import me.feng3d.parsers.MD5MeshParser;
 	import me.feng3d.utils.Cast;
 
-	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
+	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class Intermediate_MD5Animation extends TestBase
 	{
 		//body diffuse map

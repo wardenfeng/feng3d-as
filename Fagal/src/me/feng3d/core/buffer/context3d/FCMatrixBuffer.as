@@ -37,7 +37,7 @@ package me.feng3d.core.buffer.context3d
 		{
 			doUpdateFunc();
 
-			context3D.setProgramConstantsFromMatrix(Context3DProgramType.FRAGMENT, shaderRegister.index, matrix, false);
+			context3D.setProgramConstantsFromMatrix(Context3DProgramType.FRAGMENT, firstRegister, matrix, false);
 		}
 
 		/**

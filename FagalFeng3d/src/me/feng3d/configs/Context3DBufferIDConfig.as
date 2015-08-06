@@ -29,6 +29,8 @@ package me.feng3d.configs
 			["tangent_ft_4", " 切线片段临时寄存器 "], //
 			["biTangent_ft_4", " 双切线片段临时寄存器 "], //
 			["normalTexture_fs", " 法线纹理寄存器 "], //
+			["normalTexData_ft_4", " 法线纹理数据临时寄存器 "], //
+			["specularTexData_ft_4", " 光泽纹理数据片段临时寄存器 "], //
 			["finalColor_ft_4", " 最终颜色寄存器（输出到oc寄存器的颜色） "], //
 			//---------------------------- 常用寄存器数据类型 ------------------------------
 			["index", "索引数据"], //

@@ -51,68 +51,23 @@ package me.feng3d.core.register
 		}
 
 		/**
-		 * 获取临时寄存器数组
-		 * @param num 寄存器数量
-		 * @return 寄存器数组
-		 */
-		public function getFreeTemps(num:int):Vector.<Register>
-		{
-			var regNames:Vector.<Register> = new Vector.<Register>();
-			for (var i:int = 0; i < num; i++)
-			{
-				var reg:Register = requestFreeRegister();
-				regNames.push(reg);
-			}
-			return regNames;
-		}
-
-		/**
 		 * 获取寄存器
 		 * @param num 寄存器个数
 		 */
-		public function requestFreeRegisters(num:int):RegisterVector
+		public function requestFreeRegisters(num:int):RegisterValue
 		{
 			var index:int = find(num);
 			if (index == -1)
 				throw new Error(_regType + "寄存器不够用!");
-			var reg:RegisterVector = new RegisterVector(_regType, index, num);
+			var reg:RegisterValue = new RegisterValue();
+			reg.regType = _regType;
+			reg.index = index;
+			reg.num = num;
+
 			for (var i:int = 0; i < num; i++)
 			{
 				usedRegisters[index + i] = true;
 			}
-			return reg;
-		}
-
-		/**
-		 * 获取寄存器
-		 * @param num 寄存器个数
-		 */
-		public function requestRegisterMatrix():RegisterMatrix
-		{
-			var num:int = 4;
-
-			var index:int = find(num);
-			if (index == -1)
-				throw new Error(_regType + "寄存器不够用!");
-			var reg:RegisterMatrix = new RegisterMatrix(_regType, index);
-			for (var i:int = 0; i < num; i++)
-			{
-				usedRegisters[index + i] = true;
-			}
-			return reg;
-		}
-
-		/**
-		 * 获取寄存器
-		 * @param numRegister 寄存器个数
-		 */
-		public function requestFreeRegister():Register
-		{
-			var index:int = find();
-			if (index == -1)
-				throw new Error(_regType + "寄存器不够用!");
-			var reg:Register = new Register(_regType, index);
-			usedRegisters[index] = true;
 			return reg;
 		}
 
@@ -122,20 +77,9 @@ package me.feng3d.core.register
 		 */
 		public function removeUsage(register:Register):void
 		{
-			var start:int, last:int;
-			start = last = register.index;
-
-			//从使用中寄存器数组中删除
-			var registerVector:RegisterVector = register as RegisterVector;
-			var registerMatrix:RegisterMatrix = register as RegisterMatrix;
-			if (registerVector)
+			for (var i:int = 0; i < register.regLen; i++)
 			{
-				last = registerVector.last.index;
-			}
-
-			for (var i:int = start; i <= last; i++)
-			{
-				usedRegisters[i] = false;
+				usedRegisters[register.index + i] = false;
 			}
 		}
 
@@ -150,7 +94,7 @@ package me.feng3d.core.register
 		}
 
 		/**
-		 * 寻找可用寄存器编号
+		 * 寻找连续可用寄存器编号
 		 * @param num 个数
 		 * @return 如果找到返回非负值，未找到返回-1
 		 */

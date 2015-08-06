@@ -58,7 +58,7 @@ package base
 		 */
 		protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.run(V_baseShader, F_baseShader);
+			var result:Object = FagalRE.runShader(V_baseShader, F_baseShader);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

@@ -1,6 +1,5 @@
 package me.feng3d.fagal.vertex.animation
 {
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagalRE.FagalRE;
 
 
@@ -12,6 +11,6 @@ package me.feng3d.fagal.vertex.animation
 	{
 		var _:* = FagalRE.instance.space;
 
-		mov(_.animatedPosition_vt_4, _.animated_va_3);
+		_.mov(_.animatedPosition_vt_4, _.animated_va_3);
 	}
 }

@@ -19,7 +19,7 @@ package
 	 * 测试md5解析
 	 * @author warden_feng 2014-4-29
 	 */
-	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
+	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class MD5MeshParserTest extends TestBase
 	{
 		public var _view:View3D;

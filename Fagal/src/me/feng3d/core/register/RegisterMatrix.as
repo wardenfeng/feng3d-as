@@ -7,9 +7,19 @@ package me.feng3d.core.register
 	 */
 	public class RegisterMatrix extends RegisterVector
 	{
-		public function RegisterMatrix(regType:String, start:int)
+		public function RegisterMatrix(regId:String)
 		{
-			super(regType, start, 4);
+			super(regId);
+
+			regLen = 4;
 		}
+
+		override public function clear():void
+		{
+			regLen = 4;
+			index = -1;
+		}
+
+
 	}
 }

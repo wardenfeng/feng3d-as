@@ -18,7 +18,7 @@ package
 	 *
 	 * @author warden_feng 2014-3-14
 	 */
-	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
+	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestObj extends TestBase
 	{
 		public var obj3d:Mesh;

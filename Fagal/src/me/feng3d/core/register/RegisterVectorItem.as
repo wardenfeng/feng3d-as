@@ -1,5 +1,6 @@
 package me.feng3d.core.register
 {
+	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 寄存器向量元素
@@ -7,15 +8,30 @@ package me.feng3d.core.register
 	 */
 	public class RegisterVectorItem extends Register
 	{
-		public function RegisterVectorItem(reg:Register, numStr:String, num:int)
+		/**
+		 * 数组编号
+		 */
+		protected var _arrayIndex:int;
+
+		protected var _registerVector:RegisterVector;
+
+		public function RegisterVectorItem(registerVector:RegisterVector, arrayIndex:int)
 		{
-			super(reg.regType, 0);
-			_toStr = regType + "[" + numStr + "+" + (num + reg.index) + "]";
+			super(registerVector.regId);
+
+			_registerVector = registerVector;
+			_arrayIndex = arrayIndex;
 		}
 
-		override public function get index():int
+		override public function toString():String
 		{
-			throw new Error("index是个变量，无固定值");
+			if (FagalRE.instance.runState == FagalRE.PRERUN)
+				return "{" + regId + "}[" + _arrayIndex + "]";
+
+			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
+				return regType + (_arrayIndex + _registerVector.index);
+			return _regType;
 		}
+
 	}
 }

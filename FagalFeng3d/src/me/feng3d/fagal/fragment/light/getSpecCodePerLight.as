@@ -1,15 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.comment;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.removeTemp;
-	import me.feng3d.fagal.base.operation.add;
-	import me.feng3d.fagal.base.operation.dp3;
-	import me.feng3d.fagal.base.operation.mul;
-	import me.feng3d.fagal.base.operation.nrm;
-	import me.feng3d.fagal.base.operation.pow;
-	import me.feng3d.fagal.base.operation.sat;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -39,42 +31,41 @@ package me.feng3d.fagal.fragment.light
 		}
 
 		//入射光与视线方向的和 = 光照场景方向 add 标准视线方向
-		add(singleSpecularColorReg, lightDirReg, _.viewDir_ft_4);
+		_.add(singleSpecularColorReg, lightDirReg, _.viewDir_ft_4);
 		//标准化入射光与视线的和
-		nrm(singleSpecularColorReg.xyz, singleSpecularColorReg);
+		_.nrm(singleSpecularColorReg.xyz, singleSpecularColorReg);
 		//镜面反射光强度 = 法线 dp3 入射光与视线方向的和
-		dp3(singleSpecularColorReg.w, _.normal_ft_4, singleSpecularColorReg);
+		_.dp3(singleSpecularColorReg.w, _.normal_ft_4, singleSpecularColorReg);
 		//镜面反射光强度 锁定在0-1之间
-		sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
+		_.sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
 
 		if (shaderParams.hasSpecularTexture)
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
-			mul(_.specularTexData_ft_4.w, _.specularTexData_ft_4.y, _.specularData_fc_vector.w);
-			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularTexData_ft_4.w);
+			_.mul(_.specularTexData_ft_4.w, _.specularTexData_ft_4.y, _.specularData_fc_vector.w);
+			_.pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularTexData_ft_4.w);
 		}
 		else
 		{
 			//镜面反射光强度 = 镜面反射光强度 pow 光泽度
-			pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularData_fc_vector.w);
+			_.pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularData_fc_vector.w);
 		}
 
 		if (shaderParams.useLightFallOff)
 		{
 			//镜面反射光强度 = 镜面反射强度  nul (入射光强度？)
-			mul(singleSpecularColorReg.w, singleSpecularColorReg.w, lightDirReg.w);
+			_.mul(singleSpecularColorReg.w, singleSpecularColorReg.w, lightDirReg.w);
 		}
 
-		comment("镜面反射光颜色 = 灯光镜面反射颜色 mul 镜面反射光强度");
-		mul(singleSpecularColorReg.xyz, specularColorReg, singleSpecularColorReg.w);
+		_.comment("镜面反射光颜色 = 灯光镜面反射颜色 mul 镜面反射光强度");
+		_.mul(singleSpecularColorReg.xyz, specularColorReg, singleSpecularColorReg.w);
 
 		//叠加镜面反射光
 		if (!shaderParams.isFirstSpecLight)
 		{
 			//总镜面反射光 = 总镜面反射光 + 单个镜面反射光
-			add(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, singleSpecularColorReg);
-			removeTemp(singleSpecularColorReg);
+			_.add(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, singleSpecularColorReg);
 		}
 		shaderParams.isFirstSpecLight = false;
 	}

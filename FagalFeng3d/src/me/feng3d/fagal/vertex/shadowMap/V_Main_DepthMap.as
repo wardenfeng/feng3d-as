@@ -4,8 +4,6 @@ package me.feng3d.fagal.vertex.shadowMap
 
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.base.getFreeTemp;
-	import me.feng3d.fagal.base.operation.m44;
-	import me.feng3d.fagal.base.operation.mov;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -31,14 +29,14 @@ package me.feng3d.fagal.vertex.shadowMap
 			var _:* = FagalRE.instance.space;
 
 			//普通动画
-			mov(_.animatedPosition_vt_4, _.position_va_3);
+			_.mov(_.animatedPosition_vt_4, _.position_va_3);
 			var outPosition:Register = getFreeTemp("投影后的坐标");
 			//计算投影
-			m44(outPosition, _.animatedPosition_vt_4, _.projection_vc_matrix);
+			_.m44(outPosition, _.animatedPosition_vt_4, _.projection_vc_matrix);
 			//输出顶点坐标数据			
-			mov(_._op, outPosition);
+			_.mov(_._op, outPosition);
 			//把顶点投影坐标输出到片段着色器
-			mov(_.positionProjected_v, outPosition);
+			_.mov(_.positionProjected_v, outPosition);
 		}
 	}
 }

@@ -1,7 +1,5 @@
 package me.feng3d.fagal.vertex
 {
-	import me.feng3d.fagal.base.comment;
-	import me.feng3d.fagal.base.operation.sub;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,8 +10,7 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 
-		comment("计算视线方向");
-		sub(_.viewDir_v, _.cameraPosition_vc_vector, _.globalPosition_vt_4);
-
+		_.comment("计算视线方向");
+		_.sub(_.viewDir_v, _.cameraPosition_vc_vector, _.globalPosition_vt_4);
 	}
 }

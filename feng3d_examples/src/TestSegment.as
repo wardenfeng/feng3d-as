@@ -1,6 +1,5 @@
 package
 {
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -15,7 +14,7 @@ package
 	 * 测试线段
 	 * @author warden_feng 2014-4-9
 	 */
-	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
+	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestSegment extends TestBase
 	{
 		public var _view:View3D;
