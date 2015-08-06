@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.animation
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -13,8 +13,8 @@ package me.feng3d.fagal.vertex.animation
 		var _:* = FagalRE.instance.space;
 
 		//		
-		var tempVts0:Register = getFreeTemp();
-		var tempVts1:Register = getFreeTemp();
+		var tempVts0:Register = _.getFreeTemp();
+		var tempVts1:Register = _.getFreeTemp();
 
 		//			_.comment("计算第0个顶点混合值");
 		_.mul(tempVts0, _.position0_va_3, _.weights_vc_vector.x);

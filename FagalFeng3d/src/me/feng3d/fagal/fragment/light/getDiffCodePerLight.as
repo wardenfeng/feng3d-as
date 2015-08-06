@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -22,7 +22,7 @@ package me.feng3d.fagal.fragment.light
 		}
 		else
 		{
-			diffuseColorFtReg = getFreeTemp("单个漫反射光寄存器")
+			diffuseColorFtReg = _.getFreeTemp("单个漫反射光寄存器")
 		}
 
 		//计算灯光方向与法线夹角

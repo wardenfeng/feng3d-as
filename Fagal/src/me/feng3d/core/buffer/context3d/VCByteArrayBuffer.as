@@ -16,11 +16,19 @@ package me.feng3d.core.buffer.context3d
 	{
 		private var data:ByteArray;
 
+		/**
+		 * 创建一个顶点字节数组常量数据缓存
+		 * @param dataTypeId		数据编号
+		 * @param updateFunc		数据更新回调函数
+		 */
 		public function VCByteArrayBuffer(dataTypeId:String, updateFunc:Function)
 		{
 			super(dataTypeId, updateFunc);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcanefagal function doBuffer(context3D:Context3D):void
 		{
 			doUpdateFunc();

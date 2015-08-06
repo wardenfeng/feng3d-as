@@ -31,11 +31,17 @@ package me.feng3d.passes
 
 		private var _cubeTexture:CubeTextureProxyBase;
 
+		/**
+		 * 创建一个天空盒通道
+		 */
 		public function SkyBoxPass()
 		{
 			super();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -65,6 +71,9 @@ package me.feng3d.passes
 			textureBuffer.update(_cubeTexture);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateDepthTestBuffer(depthTestBuffer:DepthTestBuffer):void
 		{
 			super.updateDepthTestBuffer(depthTestBuffer);
@@ -72,6 +81,9 @@ package me.feng3d.passes
 			depthTestBuffer.update(false, Context3DCompareMode.LESS);
 		}
 
+		/**
+		 * 立方体纹理
+		 */
 		public function get cubeTexture():CubeTextureProxyBase
 		{
 			return _cubeTexture;
@@ -83,6 +95,9 @@ package me.feng3d.passes
 			markBufferDirty(_.texture_fs);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
 			var result:Object = FagalRE.runShader(V_SkyBox, F_SkyBox);
@@ -91,6 +106,9 @@ package me.feng3d.passes
 			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function render(renderable:IRenderable, camera:Camera3D):void
 		{
 			modelViewProjection.identity();
@@ -98,6 +116,9 @@ package me.feng3d.passes
 			modelViewProjection.append(camera.viewProjection);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function activate(camera:Camera3D):void
 		{
 			super.activate(camera);

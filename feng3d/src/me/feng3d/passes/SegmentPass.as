@@ -21,8 +21,19 @@ package me.feng3d.passes
 	 */
 	public class SegmentPass extends MaterialPassBase
 	{
+		/**
+		 * (1,1,1,1)向量
+		 */
 		protected static const ONE_VECTOR:Vector.<Number> = Vector.<Number>([1, 1, 1, 1]);
+
+		/**
+		 * 正面向量（Z轴负方向）
+		 */
 		protected static const FRONT_VECTOR:Vector.<Number> = Vector.<Number>([0, 0, -1, 0]);
+
+		/**
+		 * 常量数据
+		 */
 		private const constants:Vector.<Number> = new Vector.<Number>(4, true);
 
 		/**
@@ -44,6 +55,9 @@ package me.feng3d.passes
 			super();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -81,6 +95,9 @@ package me.feng3d.passes
 			m2cMatrixBuffer.update(m2cMatrix, true);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
 			var result:Object = FagalRE.runShader(V_Segment, F_Segment);
@@ -89,6 +106,9 @@ package me.feng3d.passes
 			programBuffer.update(result.vertexCode, result.fragmentCode);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcane function render(renderable:IRenderable, camera:Camera3D):void
 		{
 			//线段厚度

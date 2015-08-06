@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.animation
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -16,8 +16,8 @@ package me.feng3d.fagal.vertex.animation
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
 		//
-		var vt1:Register = getFreeTemp();
-		var vt2:Register = getFreeTemp();
+		var vt1:Register = _.getFreeTemp();
+		var vt2:Register = _.getFreeTemp();
 
 		_.globalmatrices_vc_vector.regLen = shaderParams.numJoints * 3;
 

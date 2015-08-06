@@ -10,7 +10,7 @@ package colorTerrain
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
-	 *
+	 * 颜色地形材质
 	 * @author warden_feng 2015-5-14
 	 */
 	public class ColorTerrainMaterial extends BaseMaterial

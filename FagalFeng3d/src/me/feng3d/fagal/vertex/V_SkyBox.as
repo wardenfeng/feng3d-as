@@ -3,7 +3,7 @@ package me.feng3d.fagal.vertex
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -22,7 +22,7 @@ package me.feng3d.fagal.vertex
 		{
 			var _:* = FagalRE.instance.space;
 
-			var vt0:Register = getFreeTemp("缩放后的顶点坐标");
+			var vt0:Register = _.getFreeTemp("缩放后的顶点坐标");
 			_.comment("缩放到天空盒应有的大小");
 			_.mul(vt0, _.position_va_3, _.scaleSkybox_vc_vector);
 			_.comment("把天空盒中心放到摄像机位置");

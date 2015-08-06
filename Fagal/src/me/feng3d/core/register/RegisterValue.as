@@ -7,7 +7,9 @@ package me.feng3d.core.register
 	 */
 	public class RegisterValue
 	{
-
+		/**
+		 * 数据类型编号
+		 */
 		public var dataTypeId:String;
 
 		/**
@@ -15,14 +17,19 @@ package me.feng3d.core.register
 		 */
 		public var regType:String;
 
+		/**
+		 * 寄存器索引
+		 */
 		public var index:int;
 
-		public var num:int = 1;
+		/**
+		 * 寄存器长度
+		 */
+		public var length:int = 1;
 
-		public function RegisterValue()
-		{
-		}
-
+		/**
+		 * 输出为字符串
+		 */
 		public function toString():String
 		{
 			if (regType == RegisterType.OP || regType == RegisterType.OC)

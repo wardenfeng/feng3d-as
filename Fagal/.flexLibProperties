@@ -10,8 +10,8 @@
     <classEntry path="me.feng3d.fagal.methods.FagalMethod"/>
     <classEntry path="me.feng3d.fagalRE.FagalRE"/>
     <classEntry path="me.feng3d.debug.assert"/>
-    <classEntry path="me.feng3d.core.register.RegisterVectorItem"/>
-    <classEntry path="me.feng3d.core.register.RegisterVector"/>
+    <classEntry path="me.feng3d.core.register.RegisterArrayItem"/>
+    <classEntry path="me.feng3d.core.register.RegisterArray"/>
     <classEntry path="me.feng3d.core.register.RegisterMatrix"/>
     <classEntry path="me.feng3d.fagal.params.ShaderParams"/>
     <classEntry path="me.feng3d.core.buffer.context3d.FSArrayBuffer"/>

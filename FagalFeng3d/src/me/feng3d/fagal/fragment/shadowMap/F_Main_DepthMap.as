@@ -3,7 +3,6 @@ package me.feng3d.fagal.fragment.shadowMap
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -28,11 +27,11 @@ package me.feng3d.fagal.fragment.shadowMap
 		{
 			var _:* = FagalRE.instance.space;
 
-			var positionReg:Register = getFreeTemp("坐标"); //ft2
+			var positionReg:Register = _.getFreeTemp("坐标"); //ft2
 			//深度的（乘以1,255,255*255,255*255*255后）不同值
-			var depthValueReg:Register = getFreeTemp("深度值");
+			var depthValueReg:Register = _.getFreeTemp("深度值");
 
-			var ft1:Register = getFreeTemp("");
+			var ft1:Register = _.getFreeTemp("");
 
 			//计算深度值depth属于（0,1）,该范围外的将会被frc处理为0或1
 			_.div(positionReg, _.positionProjected_v, _.positionProjected_v.w);

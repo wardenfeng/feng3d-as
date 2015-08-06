@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,9 +12,9 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 
-		var animatedNormal:Register = getFreeTemp("动画后顶点法线临时寄存器");
-		var animatedTangent:Register = getFreeTemp("动画后顶点切线临时寄存器");
-		var bitanTemp:Register = getFreeTemp("动画后顶点双切线临时寄存器");
+		var animatedNormal:Register = _.getFreeTemp("动画后顶点法线临时寄存器");
+		var animatedTangent:Register = _.getFreeTemp("动画后顶点切线临时寄存器");
+		var bitanTemp:Register = _.getFreeTemp("动画后顶点双切线临时寄存器");
 
 		//赋值法线数据
 		_.mov(animatedNormal, _.normal_va_3);

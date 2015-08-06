@@ -10,7 +10,7 @@ package colorMap
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
-	 *
+	 * 颜色映射材质
 	 * @author warden_feng 2015-5-14
 	 */
 	public class ColorMapMaterial extends BaseMaterial
@@ -20,11 +20,17 @@ package colorMap
 		 */
 		protected const commonsData:Vector.<Number> = new Vector.<Number>(4);
 
+		/**
+		 * 创建一个颜色映射材质
+		 */
 		public function ColorMapMaterial()
 		{
 			super();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			mapContext3DBuffer(_.commonsData_vc_vector, updateCommonsDataBuffer);
@@ -43,6 +49,9 @@ package colorMap
 			vcVectorBuffer.update(commonsData);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
 			var result:Object = FagalRE.runShader(V_colorMap, F_colorMap);

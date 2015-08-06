@@ -3,7 +3,7 @@ package me.feng3d.fagal.vertex.shadowMap
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -30,7 +30,7 @@ package me.feng3d.fagal.vertex.shadowMap
 
 			//普通动画
 			_.mov(_.animatedPosition_vt_4, _.position_va_3);
-			var outPosition:Register = getFreeTemp("投影后的坐标");
+			var outPosition:Register = _.getFreeTemp("投影后的坐标");
 			//计算投影
 			_.m44(outPosition, _.animatedPosition_vt_4, _.projection_vc_matrix);
 			//输出顶点坐标数据			

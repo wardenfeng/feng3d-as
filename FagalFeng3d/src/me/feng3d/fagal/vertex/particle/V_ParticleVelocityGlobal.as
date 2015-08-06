@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -15,7 +15,7 @@ package me.feng3d.fagal.vertex.particle
 	{
 		var _:* = FagalRE.instance.space;
 
-		var vt3:Register = getFreeTemp();
+		var vt3:Register = _.getFreeTemp();
 
 		//计算速度
 		_.mul(vt3, inCycleTimeTemp.x, particleVelocity); //时间*速度

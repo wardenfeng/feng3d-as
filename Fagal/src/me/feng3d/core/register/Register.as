@@ -16,6 +16,9 @@ package me.feng3d.core.register
 	 */
 	public dynamic class Register extends Proxy implements IRegister
 	{
+		/**
+		 * 寄存器中元素数组
+		 */
 		private static const COMPONENTS:Array = ["x", "y", "z", "w"];
 
 		protected var _regType:String;
@@ -52,8 +55,7 @@ package me.feng3d.core.register
 
 		/**
 		 * 创建一个寄存器
-		 * @param regType 寄存器名称
-		 * @param index 寄存器编号
+		 * @param regId			寄存器id
 		 */
 		public function Register(regId:String)
 		{
@@ -62,6 +64,9 @@ package me.feng3d.core.register
 			init();
 		}
 
+		/**
+		 * 初始化
+		 */
 		private function init():void
 		{
 			var bufferType:Context3DBufferType = Context3DBufferTypeManager.getBufferType(_regId);
@@ -69,6 +74,9 @@ package me.feng3d.core.register
 			_index = -1;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function toString():String
 		{
 			if (FagalRE.instance.runState == FagalRE.PRERUN)
@@ -134,11 +142,17 @@ package me.feng3d.core.register
 			return toString();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function get regLen():uint
 		{
 			return 1;
 		}
 
+		/**
+		 * 清理寄存器值
+		 */
 		public function clear():void
 		{
 			index = -1;

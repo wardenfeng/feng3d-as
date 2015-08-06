@@ -378,10 +378,6 @@ package me.feng3d.fagal.base.math
 			if (!Debug.agalDebug)
 				return;
 			append(FagalToken.COMMENT + remarks.join(" "));
-//			for (var i:int = 0; i < remarks.length; i++)
-//			{
-//				append(FagalToken.COMMENT + remarks[i]);
-//			}
 		}
 
 		/**

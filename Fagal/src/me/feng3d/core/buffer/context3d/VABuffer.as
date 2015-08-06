@@ -11,11 +11,14 @@ package me.feng3d.core.buffer.context3d
 	use namespace arcanefagal;
 
 	/**
-	 * 顶点数据缓存
+	 * 顶点数据缓冲
 	 * @author warden_feng 2014-8-14
 	 */
 	public class VABuffer extends RegisterBuffer
 	{
+		/**
+		 * 顶点数据缓冲格式数组
+		 */
 		private static const bufferFormats:Vector.<String> = Vector.<String>([null, Context3DVertexBufferFormat.FLOAT_1, Context3DVertexBufferFormat.FLOAT_2, Context3DVertexBufferFormat.FLOAT_3, Context3DVertexBufferFormat.FLOAT_4]);
 
 		/** 顶点数据缓存(真正的数据缓存) */
@@ -41,6 +44,9 @@ package me.feng3d.core.buffer.context3d
 			super(dataTypeId, updateFunc);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcanefagal function doBuffer(context3D:Context3D):void
 		{
 			doUpdateFunc();

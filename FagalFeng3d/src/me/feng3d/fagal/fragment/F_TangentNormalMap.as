@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -13,9 +13,9 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		//t、b、n 法线所在顶点的变换矩阵
-		var t:Register = getFreeTemp("切线片段临时寄存器");
-		var b:Register = getFreeTemp("双切线片段临时寄存器");
-		var n:Register = getFreeTemp("法线片段临时寄存器");
+		var t:Register = _.getFreeTemp("切线片段临时寄存器");
+		var b:Register = _.getFreeTemp("双切线片段临时寄存器");
+		var n:Register = _.getFreeTemp("法线片段临时寄存器");
 
 		//标准化切线
 		_.nrm(t.xyz, _.tangent_v);

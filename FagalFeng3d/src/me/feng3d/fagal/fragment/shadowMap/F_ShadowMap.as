@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.shadowMap
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -20,7 +20,7 @@ package me.feng3d.fagal.fragment.shadowMap
 		_.add(_.shadowValue_ft_4.w, _.shadowValue_ft_4.w, _.shadowCommondata1_fc_vector.y); //添加(1-阴影透明度)
 		_.sat(_.shadowValue_ft_4.w, _.shadowValue_ft_4.w); //使阴影值在(0,1)区间内
 
-		var temp:Register = getFreeTemp();
+		var temp:Register = _.getFreeTemp();
 
 		//根据阴影离摄像机的距离计算阴影的透明度
 		_.abs(temp, _.positionProjected_v.w); //获取顶点深度正值

@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -17,9 +17,9 @@ package me.feng3d.fagal.fragment
 		var numSplattingLayers:int = shaderParams.splatNum;
 
 		//缩放后的uv坐标、uv计算后的颜色值
-		var uvTemp:Register = getFreeTemp("缩放后的uv坐标");
+		var uvTemp:Register = _.getFreeTemp("缩放后的uv坐标");
 		//混合比例（4个分量表示4个纹理所占比重）
-		var blendTemp:Register = getFreeTemp("混合比例");
+		var blendTemp:Register = _.getFreeTemp("混合比例");
 
 		_.mul(uvTemp, _.uv_v, _.tile_fc_vector.c(0)); // 缩放uv （表示将重复x*x遍） x=scaleRegister.c(0)
 

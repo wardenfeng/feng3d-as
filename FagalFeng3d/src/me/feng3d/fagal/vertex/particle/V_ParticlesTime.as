@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -11,7 +11,7 @@ package me.feng3d.fagal.vertex.particle
 	public function V_ParticlesTime(particleCommon:Register, animatedPosition:Register, particleTimeVA:Register, particleTimeVC:Register, inCycleTimeTemp:Register):void
 	{
 		var _:* = FagalRE.instance.space;
-		var vt3:Register = getFreeTemp();
+		var vt3:Register = _.getFreeTemp();
 
 		//计算时间
 		_.sub(inCycleTimeTemp.x, particleTimeVC, particleTimeVA.x); //生存了的时间  = 粒子特效时间 - 粒子出生时间

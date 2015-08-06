@@ -28,6 +28,9 @@ package me.feng3d.core.buffer.context3d
 			super(dataTypeId, updateFunc);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override arcanefagal function doBuffer(context3D:Context3D):void
 		{
 			doUpdateFunc();
@@ -41,6 +44,10 @@ package me.feng3d.core.buffer.context3d
 			}
 		}
 
+		/**
+		 * 更新纹理
+		 * @param textures		纹理数组
+		 */
 		public function update(textures:Array):void
 		{
 			this.textures = textures;

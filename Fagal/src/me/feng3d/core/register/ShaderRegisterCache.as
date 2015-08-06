@@ -40,8 +40,10 @@ package me.feng3d.core.register
 //			[RegisterType.OC, 1], //
 //			];
 
-		/** AGAL2寄存器配置 */
-		private const registerConfig:Array = //
+		/**
+		 * AGAL2寄存器配置
+		 */
+		private static const registerConfig:Array = //
 			[[RegisterType.VA, 8], //
 			[RegisterType.VC, 250], //
 			[RegisterType.VT, 26], //

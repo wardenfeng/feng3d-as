@@ -11,7 +11,7 @@ package me.feng3d.fagalRE
 	import me.feng3d.core.buffer.type.Context3DBufferType;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterMatrix;
-	import me.feng3d.core.register.RegisterArray;
+	import me.feng3d.core.register.RegisterVector;
 
 	use namespace arcanefagal;
 
@@ -88,12 +88,12 @@ package me.feng3d.fagalRE
 			}
 			else if (bufferType.dataType == RgisterDataType.ARRAY)
 			{
-				register = new RegisterArray(dataTypeId);
+				register = new RegisterVector(dataTypeId);
 			}
 			else if (bufferType.dataType == RgisterDataType.VECTOR)
 			{
-				//获取寄存器数组
-				register = new RegisterArray(dataTypeId);
+				//获取寄存器向量
+				register = new RegisterVector(dataTypeId);
 			}
 			else
 			{

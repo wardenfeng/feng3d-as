@@ -6,9 +6,8 @@ package me.feng3d.fagalRE
 	import flash.utils.getQualifiedClassName;
 
 	import me.feng3d.arcanefagal;
-	import me.feng3d.core.register.Register;
-	import me.feng3d.core.register.RegisterArrayComplexItem;
 	import me.feng3d.core.register.RegisterType;
+	import me.feng3d.core.register.RegisterVectorComplexItem;
 	import me.feng3d.core.register.ShaderRegisterCache;
 	import me.feng3d.fagal.IField;
 	import me.feng3d.fagal.base.math.FagalMath;
@@ -88,10 +87,10 @@ package me.feng3d.fagalRE
 			{
 				for each (var reg:IField in parameters)
 				{
-					var registerArrayComplexItem:RegisterArrayComplexItem = reg as RegisterArrayComplexItem;
-					if (registerArrayComplexItem != null)
+					var registerVectorComplexItem:RegisterVectorComplexItem = reg as RegisterVectorComplexItem;
+					if (registerVectorComplexItem != null)
 					{
-						for each (var complexArg:IField in registerArrayComplexItem.complexArgs)
+						for each (var complexArg:IField in registerVectorComplexItem.complexArgs)
 						{
 							//记录寄存器使用次数
 							useRegDic[complexArg.regId] = int(useRegDic[complexArg.regId]) + 1;
@@ -104,18 +103,6 @@ package me.feng3d.fagalRE
 			}
 
 			return func.apply(null, parameters);
-		}
-
-		/**
-		 * 获取临时寄存器
-		 * @param description 寄存器描述
-		 * @return
-		 * @author warden_feng 2015-4-24
-		 */
-		public function getFreeTemp(description:String = ""):Register
-		{
-			var register:Register = FagalRegisterCenter.getFreeTemp(description);
-			return register;
 		}
 
 		public function clear():void
@@ -138,7 +125,7 @@ package me.feng3d.fagalRE
 
 				for each (var reg:IField in parameters)
 				{
-					var registerVectorComplexItem:RegisterArrayComplexItem = reg as RegisterArrayComplexItem;
+					var registerVectorComplexItem:RegisterVectorComplexItem = reg as RegisterVectorComplexItem;
 					if (registerVectorComplexItem != null)
 					{
 						for each (var complexArg:IField in registerVectorComplexItem.complexArgs)

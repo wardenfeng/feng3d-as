@@ -62,7 +62,7 @@ package me.feng3d.core.register
 			var reg:RegisterValue = new RegisterValue();
 			reg.regType = _regType;
 			reg.index = index;
-			reg.num = num;
+			reg.length = num;
 
 			for (var i:int = 0; i < num; i++)
 			{
@@ -83,11 +83,17 @@ package me.feng3d.core.register
 			}
 		}
 
+		/**
+		 * 销毁
+		 */
 		public function dispose():void
 		{
 			usedRegisters = null;
 		}
 
+		/**
+		 * 重置
+		 */
 		public function reset():void
 		{
 			usedRegisters = [];

@@ -1,22 +1,19 @@
 package me.feng3d.core.register
 {
 
-
 	/**
 	 * 寄存器数组
 	 * @author warden_feng 2014-11-4
 	 */
-	public class RegisterVector extends Register
+	public class RegisterArray extends Register
 	{
 		private var _regs:Vector.<Register>;
 
 		/**
 		 * 创建一个寄存器数组
-		 * @param regType			寄存器类型编号
-		 * @param start				起始编号
-		 * @param num				寄存器个数
+		 * @param regId		寄存器id
 		 */
-		public function RegisterVector(regId:String)
+		public function RegisterArray(regId:String)
 		{
 			_regs = new Vector.<Register>();
 			_regs.length = 1;
@@ -53,14 +50,14 @@ package me.feng3d.core.register
 
 			if (!_regs[$index])
 			{
-				var reg:RegisterVectorItem = new RegisterVectorItem(this, $index);
+				var reg:RegisterArrayItem = new RegisterArrayItem(this, $index);
 				_regs[$index] = reg;
 			}
 			return _regs[$index];
 		}
 
 		/**
-		 * 获取寄存器向量中的寄存器
+		 * 获取寄存器数组中的寄存器
 		 * @param args 索引信息
 		 * @return
 		 */
@@ -84,9 +81,12 @@ package me.feng3d.core.register
 			if (complexArgs.length == 0)
 				return getReg(index);
 
-			return new RegisterVectorComplexItem(this, complexArgs, index);
+			return new RegisterArrayComplexItem(this, complexArgs, index);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function get regLen():uint
 		{
 			return _regs.length;
@@ -97,9 +97,13 @@ package me.feng3d.core.register
 			_regs.length = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function clear():void
 		{
-			_regs.length = 1;
+			regLen = 1;
+
 			super.clear();
 		}
 	}

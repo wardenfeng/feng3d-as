@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -26,7 +26,7 @@ package me.feng3d.fagal.fragment.light
 		//点光源世界坐标寄存器
 		var pointLightPosReg:Register;
 
-		pointLightDirReg = getFreeTemp("光照方向");
+		pointLightDirReg = _.getFreeTemp("光照方向");
 		//遍历点光源
 		for (var i:uint = 0; i < numPointLights; ++i)
 		{

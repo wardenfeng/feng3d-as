@@ -42,8 +42,8 @@ package me.feng3d.core.buffer.context3d
 
 		/**
 		 * 更新数据
-		 * @param matrix
-		 * @param transposedMatrix
+		 * @param matrix					静态矩阵数据
+		 * @param transposedMatrix			如果为 true，则将按颠倒顺序将矩阵条目复制到寄存器中。默认值为 false。
 		 */
 		public function update(matrix:Matrix3D, transposedMatrix:Boolean = false):void
 		{

@@ -3,7 +3,7 @@ package fagal
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -26,7 +26,7 @@ package fagal
 			_.comment("传递顶点颜色数据", _.color_va_3, "到变量寄存器", _.color_v);
 			_.mov(_.color_v, _.color_va_3);
 
-			var uvTemp:Register = getFreeTemp("临时uv数据");
+			var uvTemp:Register = _.getFreeTemp("临时uv数据");
 			_.mov(uvTemp, _.uv_va_2);
 			_.mul(uvTemp.xy, uvTemp.xy, _.commonsData_vc_vector.x);
 			_.sub(uvTemp.xy, uvTemp.xy, _.commonsData_vc_vector.yy);

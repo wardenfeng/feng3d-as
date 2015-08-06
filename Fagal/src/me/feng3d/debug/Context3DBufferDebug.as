@@ -18,7 +18,6 @@ package me.feng3d.debug
 	import me.feng3d.core.buffer.context3d.VABuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.core.register.Register;
 
 	use namespace arcanefagal;
 

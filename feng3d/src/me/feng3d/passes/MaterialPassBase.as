@@ -51,8 +51,6 @@ package me.feng3d.passes
 
 		protected var _writeDepth:Boolean = true;
 
-		public var useVertex:Boolean = true;
-
 		protected var _smooth:Boolean = true;
 		protected var _repeat:Boolean = false;
 		protected var _mipmap:Boolean = true;

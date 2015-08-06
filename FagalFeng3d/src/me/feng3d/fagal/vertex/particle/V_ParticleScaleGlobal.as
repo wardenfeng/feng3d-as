@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.particle
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -15,7 +15,7 @@ package me.feng3d.fagal.vertex.particle
 	{
 		var _:* = FagalRE.instance.space;
 
-		var temp:Register = getFreeTemp();
+		var temp:Register = _.getFreeTemp();
 
 //			if (_usesCycle) {
 //				code += "mul " + temp + "," + animationRegisterCache.vertexTime + "," + scaleRegister + ".z\n";

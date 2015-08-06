@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.shadowMap
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 
@@ -13,8 +13,8 @@ package me.feng3d.fagal.fragment.shadowMap
 	{
 		var _:* = FagalRE.instance.space;
 
-		var depthCol:Register = getFreeTemp("深度值临时寄存器");
-		var uvReg:Register = getFreeTemp("深度图uv临时寄存器");
+		var depthCol:Register = _.getFreeTemp("深度值临时寄存器");
+		var uvReg:Register = _.getFreeTemp("深度图uv临时寄存器");
 
 		_.mov(uvReg, _.depthMapCoord_v); //计算阴影
 

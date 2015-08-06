@@ -17,9 +17,6 @@ package me.feng3d.fagalRE
 	 */
 	public class FagalRE
 	{
-		public static const PRERUN:String = "preRun";
-		public static const RUN:String = "run";
-
 		private static var _instance:FagalRE;
 
 		private var _context3DCache:Context3DCache;
@@ -31,9 +28,6 @@ package me.feng3d.fagalRE
 
 		public var runState:String;
 
-		/**
-		 * 数据id字典
-		 */
 		internal static var idDic:Dictionary = new Dictionary();
 
 		/**
@@ -87,6 +81,9 @@ package me.feng3d.fagalRE
 		{
 			return instance.runShader(vertexShader, fragmentShader);
 		}
+
+		public static const PRERUN:String = "preRun";
+		public static const RUN:String = "run";
 
 		/**
 		 * Fagal寄存器中心

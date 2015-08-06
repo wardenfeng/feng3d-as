@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -27,7 +27,7 @@ package me.feng3d.fagal.fragment.light
 		}
 		else
 		{
-			singleSpecularColorReg = getFreeTemp("单个镜面反射光寄存器");
+			singleSpecularColorReg = _.getFreeTemp("单个镜面反射光寄存器");
 		}
 
 		//入射光与视线方向的和 = 光照场景方向 add 标准视线方向

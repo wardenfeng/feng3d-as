@@ -3,7 +3,7 @@ package fagal
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -25,8 +25,8 @@ package fagal
 			var numSplattingLayers:int = 3;
 
 			//最终颜色寄存器（输出到oc寄存器的颜色）
-			var finalColorReg:Register = getFreeTemp("最终颜色寄存器（输出到oc寄存器的颜色）");
-			var currentColorReg:Register = getFreeTemp("当前纹理颜色值");
+			var finalColorReg:Register = _.getFreeTemp("最终颜色寄存器（输出到oc寄存器的颜色）");
+			var currentColorReg:Register = _.getFreeTemp("当前纹理颜色值");
 			var isFirst:Boolean = true;
 
 			for (var i:int = 0; i < numSplattingLayers; ++i)

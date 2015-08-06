@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.shadowMap
 {
 	import me.feng3d.core.register.Register;
-	import me.feng3d.fagal.base.getFreeTemp;
+	
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,7 +12,7 @@ package me.feng3d.fagal.vertex.shadowMap
 	{
 		var _:* = FagalRE.instance.space;
 
-		var temp:Register = getFreeTemp();
+		var temp:Register = _.getFreeTemp();
 
 		//计算顶点深度值
 		_.m44(temp, _.globalPosition_vt_4, _.depthMap_vc_matrix);
