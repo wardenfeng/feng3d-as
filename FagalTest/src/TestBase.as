@@ -13,7 +13,6 @@ package
 	import me.feng.load.LoadEvent;
 	import me.feng.load.LoadEventData;
 	import me.feng.load.data.LoadTaskItem;
-	import me.feng3d.debug.Debug;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**

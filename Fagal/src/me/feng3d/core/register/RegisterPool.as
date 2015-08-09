@@ -77,9 +77,13 @@ package me.feng3d.core.register
 		 */
 		public function removeUsage(register:Register):void
 		{
-			for (var i:int = 0; i < register.regLen; i++)
+			//只允许临时寄存器移除寄存器
+			if (RegisterType.isTemp(register.regType))
 			{
-				usedRegisters[register.index + i] = false;
+				for (var i:int = 0; i < register.regLen; i++)
+				{
+					usedRegisters[register.index + i] = false;
+				}
 			}
 		}
 

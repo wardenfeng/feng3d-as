@@ -21,6 +21,7 @@ package me.feng3d.passes
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.vertex.V_Main;
 	import me.feng3d.fagalRE.FagalRE;
+	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
 
@@ -255,7 +256,7 @@ package me.feng3d.passes
 		 */
 		arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.runShader(V_Main, F_Main);
+			var result:FagalShaderResult = FagalRE.runShader(V_Main, F_Main);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

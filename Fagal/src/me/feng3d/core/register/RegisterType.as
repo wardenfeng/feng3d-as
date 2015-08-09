@@ -1,6 +1,7 @@
 package me.feng3d.core.register
 {
 
+
 	/**
 	 * 寄存器类型
 	 * @author warden_feng 2014-6-9
@@ -35,45 +36,31 @@ package me.feng3d.core.register
 		public static const OC:String = "oc";
 
 		/**
-		 * 获取寄存器类型
-		 * @param register 寄存器
-		 * @return 寄存器类型
-		 */
-		public static function getType(register:*):String
-		{
-			if (register is Register)
-				return (register as Register).regType;
-			return null;
-		}
-
-		/**
 		 * 是否常量
-		 * @param field 寄存器项
+		 * @param regType		寄存器类型
 		 */
-		public static function isConst(field:*):Boolean
+		public static function isConst(regType:String):Boolean
 		{
-			var regType:String = getType(field);
 			return regType == VC || regType == FC;
 		}
 
 		/**
 		 * 是否临时变量
-		 * @param field 寄存器项
+		 * @param regType		寄存器类型
 		 */
-		public static function isTemp(field:*):Boolean
+		public static function isTemp(regType:String):Boolean
 		{
-			var regType:String = getType(field);
 			return regType == VT || regType == FT;
 		}
 
 		/**
 		 * 是否只读
-		 * @param field 寄存器项
+		 * @param regType		寄存器类型
 		 * @return
 		 */
-		public static function isReadOnly(field:*):Boolean
+		public static function isReadOnly(regType:String):Boolean
 		{
-			switch (getType(field))
+			switch (regType)
 			{
 				case VA:
 					return true;
@@ -99,12 +86,12 @@ package me.feng3d.core.register
 
 		/**
 		 * 是否可以在顶点寄存器中出现
-		 * @param register 寄存器
+		 * @param regType		寄存器类型
 		 * @return
 		 */
-		public static function inVertex(register:*):Boolean
+		public static function inVertex(regType:String):Boolean
 		{
-			switch (getType(register))
+			switch (regType)
 			{
 				case VA:
 					return true;
@@ -130,12 +117,12 @@ package me.feng3d.core.register
 
 		/**
 		 * 是否可以在片段寄存器中出现
-		 * @param register 寄存器
+		 * @param regType		寄存器类型
 		 * @return
 		 */
-		public static function inFragment(register:*):Boolean
+		public static function inFragment(regType:String):Boolean
 		{
-			switch (getType(register))
+			switch (regType)
 			{
 				case VA:
 					return false;
@@ -161,12 +148,12 @@ package me.feng3d.core.register
 
 		/**
 		 * 是否为输入数据寄存器
-		 * @param register 寄存器
+		 * @param regType		寄存器类型
 		 * @return
 		 */
-		public static function isInputDataRegister(register:RegisterValue):Boolean
+		public static function isInputDataRegister(regType:String):Boolean
 		{
-			switch (register.regType)
+			switch (regType)
 			{
 				case VA:
 					return true;

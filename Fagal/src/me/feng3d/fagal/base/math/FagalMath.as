@@ -1,18 +1,25 @@
 package me.feng3d.fagal.base.math
 {
+	import me.feng.events.FEventDispatcher;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterMatrix;
 	import me.feng3d.debug.Debug;
+	import me.feng3d.events.FagalMathEvent;
 	import me.feng3d.fagal.FagalToken;
 	import me.feng3d.fagal.IField;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
+	 * Fagal函数追加代码事件
+	 */
+	[Event(name = "fagalMathEventAppend", type = "me.feng3d.events.FagalMathEvent")]
+
+	/**
 	 * Fagal数学运算
 	 * @author warden_feng 2015-7-22
 	 */
-	public class FagalMath
+	public class FagalMath extends FEventDispatcher
 	{
 		/**
 		 * destination=abs(source1):一个寄存器的绝对值，分量形式
@@ -382,11 +389,10 @@ package me.feng3d.fagal.base.math
 
 		/**
 		 * 添加代码
-		 * @author warden_feng 2015-4-24
 		 */
 		public function append(code:String):void
 		{
-			FagalRE.instance.append(code);
+			dispatchEvent(new FagalMathEvent(FagalMathEvent.FAGALMATHEVENT_APPEND, code));
 		}
 	}
 }

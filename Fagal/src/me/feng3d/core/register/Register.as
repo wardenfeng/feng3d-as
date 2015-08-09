@@ -8,7 +8,6 @@ package me.feng3d.core.register
 	import me.feng3d.fagal.IRegister;
 	import me.feng3d.fagal.RegisterComponent;
 	import me.feng3d.fagal.RegisterComponentSelection;
-	import me.feng3d.fagalRE.FagalRE;
 
 	/**
 	 * 寄存器(链表)
@@ -16,6 +15,21 @@ package me.feng3d.core.register
 	 */
 	public dynamic class Register extends Proxy implements IRegister
 	{
+		/**
+		 * 输出寄存器名称
+		 */
+		public static const NAME:String = "name";
+
+		/**
+		 * 输出寄存器值
+		 */
+		public static const VALUE:String = "value";
+
+		/**
+		 * 寄存器输出方式
+		 */
+		public static var TO_STRING:String = NAME;
+
 		/**
 		 * 寄存器中元素数组
 		 */
@@ -79,7 +93,7 @@ package me.feng3d.core.register
 		 */
 		public function toString():String
 		{
-			if (FagalRE.instance.runState == FagalRE.PRERUN)
+			if (Register.TO_STRING == Register.NAME)
 				return "{" + regId + "}";
 
 			if (_regType != RegisterType.OP && _regType != RegisterType.OC)

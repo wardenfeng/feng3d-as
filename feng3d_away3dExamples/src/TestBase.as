@@ -1,9 +1,12 @@
 package
 {
+	import com.junkbyte.console.Cc;
+
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.debug.DebugCommon;
 	import me.feng.load.Load;
 	import me.feng.load.LoadEvent;
 	import me.feng.load.LoadEventData;
@@ -32,6 +35,7 @@ package
 		public function TestBase()
 		{
 			MyCC.initFlashConsole(this);
+			DebugCommon.loggerFunc = Cc.log;
 			new ConsoleExtension();
 			loadTextures();
 		}

@@ -8,6 +8,7 @@ package colorTerrain
 	import me.feng3d.core.buffer.context3d.FSArrayBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.fagalRE.FagalRE;
+	import me.feng3d.fagalRE.FagalShaderResult;
 
 	/**
 	 * 颜色地形材质
@@ -36,7 +37,7 @@ package colorTerrain
 
 		override protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.runShader(V_colorTerrain, F_colorTerrain);
+			var result:FagalShaderResult = FagalRE.runShader(V_colorTerrain, F_colorTerrain);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

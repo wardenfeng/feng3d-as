@@ -38,7 +38,7 @@ package me.feng3d.core.register
 		{
 			var _numStr:String = _complexArgs.join("+");
 
-			if (FagalRE.instance.runState == FagalRE.PRERUN)
+			if (Register.TO_STRING == Register.NAME)
 				return "{" + regId + "}[" + _numStr + "+" + _arrayIndex + "]";
 
 			if (_regType != RegisterType.OP && _regType != RegisterType.OC)

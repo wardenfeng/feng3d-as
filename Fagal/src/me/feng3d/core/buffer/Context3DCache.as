@@ -175,7 +175,7 @@ package me.feng3d.core.buffer
 			{
 				var registerBuffer:RegisterBuffer = regBufferDic[register.dataTypeId];
 				//输入数据寄存器必须有对应的数据缓存
-				if (RegisterType.isInputDataRegister(register))
+				if (RegisterType.isInputDataRegister(register.regType))
 				{
 					if (registerBuffer == null)
 					{

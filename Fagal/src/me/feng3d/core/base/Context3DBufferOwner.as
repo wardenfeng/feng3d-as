@@ -97,7 +97,7 @@ package me.feng3d.core.base
 		public function addChildBufferOwner(childBufferOwner:IContext3DBufferOwner):void
 		{
 			var index:int = childrenBufferOwner.indexOf(childBufferOwner);
-			assert(index == -1, "不要重复添加子项缓存拥有者");
+			assert(index == -1, "不能重复添加子项缓存拥有者");
 			childrenBufferOwner.push(childBufferOwner);
 			//添加事件
 			childBufferOwner.addEventListener(Context3DBufferOwnerEvent.ADD_CONTEXT3DBUFFER, bubbleDispatchEvent);

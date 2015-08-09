@@ -131,6 +131,7 @@ package
 			{
 				mesh = event.asset as Mesh;
 				initializeHeadModel(mesh);
+				mesh.scale(2);
 			}
 		}
 

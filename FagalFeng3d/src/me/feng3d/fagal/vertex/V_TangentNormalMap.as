@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
-	
+	import me.feng3d.core.register.RegisterArray;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**

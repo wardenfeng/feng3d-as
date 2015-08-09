@@ -15,6 +15,7 @@ package me.feng3d.passes
 	import me.feng3d.fagal.fragment.F_SkyBox;
 	import me.feng3d.fagal.vertex.V_SkyBox;
 	import me.feng3d.fagalRE.FagalRE;
+	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.textures.CubeTextureProxyBase;
 
 	use namespace arcane;
@@ -100,7 +101,7 @@ package me.feng3d.passes
 		 */
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.runShader(V_SkyBox, F_SkyBox);
+			var result:FagalShaderResult = FagalRE.runShader(V_SkyBox, F_SkyBox);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

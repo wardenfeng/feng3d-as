@@ -10,8 +10,8 @@ package me.feng3d.fagalRE
 	import me.feng3d.core.buffer.RgisterDataType;
 	import me.feng3d.core.buffer.type.Context3DBufferType;
 	import me.feng3d.core.register.Register;
-	import me.feng3d.core.register.RegisterMatrix;
 	import me.feng3d.core.register.RegisterArray;
+	import me.feng3d.core.register.RegisterMatrix;
 
 	use namespace arcanefagal;
 
@@ -25,8 +25,10 @@ package me.feng3d.fagalRE
 
 		private static var _dataRegisterDic:Dictionary;
 
-		private static var vtIndex:int;
-		private static var ftIndex:int;
+		/**
+		 * 临时寄存器递增索引（目的是为了获取唯一的临时寄存器名称，顶点与片段临时寄存器公用一个递增索引）
+		 */
+		private static var tempIndex:int;
 
 		/**
 		 * 构建Fagal寄存器中心
@@ -38,7 +40,9 @@ package me.feng3d.fagalRE
 			_instance = this;
 		}
 
-		/** 数据寄存器缓存 */
+		/**
+		 * 数据寄存器缓存
+		 */
 		public static function get dataRegisterDic():Dictionary
 		{
 			return _dataRegisterDic ||= new Dictionary();
@@ -73,7 +77,7 @@ package me.feng3d.fagalRE
 		 * @param numRegister
 		 * @return
 		 */
-		public static function createRegister(dataTypeId:String, numRegister:int = 1):Register
+		public static function createRegister(dataTypeId:String):Register
 		{
 			if (dataRegisterDic[dataTypeId])
 				return dataRegisterDic[dataTypeId];
@@ -115,11 +119,11 @@ package me.feng3d.fagalRE
 			var tempTypeId:String;
 			if (FagalRE.instance.shaderType == Context3DProgramType.VERTEX)
 			{
-				tempTypeId = "temp" + (vtIndex++) + "_vt_4";
+				tempTypeId = "temp" + (tempIndex++) + "_vt_4";
 			}
 			else if (FagalRE.instance.shaderType == Context3DProgramType.FRAGMENT)
 			{
-				tempTypeId = "temp" + (ftIndex++) + "_ft_4";
+				tempTypeId = "temp" + (tempIndex++) + "_ft_4";
 			}
 
 			var register:Register = createRegister(tempTypeId);
@@ -128,11 +132,47 @@ package me.feng3d.fagalRE
 			return register;
 		}
 
-		public static function resetVtFt():void
+		/**
+		 * 获取临时寄存器
+		 * @param description 寄存器描述
+		 * @return
+		 * @author warden_feng 2015-4-24
+		 */
+		public static function getFreeTemps(description:String = "", num:int = 1):Register
 		{
-			vtIndex = ftIndex = 0;
+			var tempTypeId:String;
+			if (FagalRE.instance.shaderType == Context3DProgramType.VERTEX)
+			{
+				if (num > 1)
+				{
+					tempTypeId = "temp" + (tempIndex++) + "_vt_" + RgisterDataType.ARRAY;
+				}
+				else
+				{
+					tempTypeId = "temp" + (tempIndex++) + "_vt_4";
+				}
+			}
+			else if (FagalRE.instance.shaderType == Context3DProgramType.FRAGMENT)
+			{
+				if (num > 1)
+				{
+					tempTypeId = "temp" + (tempIndex++) + "_ft_" + RgisterDataType.ARRAY;
+				}
+				else
+				{
+					tempTypeId = "temp" + (tempIndex++) + "_ft_4";
+				}
+			}
+
+			var register:Register = createRegister(tempTypeId);
+			register.description = description;
+
+			return register;
 		}
 
+		/**
+		 * 清理寄存器值
+		 */
 		public static function clear():void
 		{
 			for each (var register:Register in dataRegisterDic)

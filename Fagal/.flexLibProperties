@@ -28,6 +28,10 @@
     <classEntry path="me.feng3d.fagalRE.FagalRESpace"/>
     <classEntry path="me.feng3d.fagalRE.FagalRegisterCenter"/>
     <classEntry path="me.feng3d.fagalRE.FagalIdCenter"/>
+    <classEntry path="me.feng3d.fagalRE.FagalItem"/>
+    <classEntry path="me.feng3d.fagalRE.FagalCallLog"/>
+    <classEntry path="me.feng3d.fagalRE.FagalShaderResult"/>
+    <classEntry path="me.feng3d.events.FagalMathEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

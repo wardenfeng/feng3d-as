@@ -10,6 +10,7 @@ package base
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
+	import me.feng3d.fagalRE.FagalShaderResult;
 
 	/**
 	 * 基础材质
@@ -58,7 +59,7 @@ package base
 		 */
 		protected function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:Object = FagalRE.runShader(V_baseShader, F_baseShader);
+			var result:FagalShaderResult = FagalRE.runShader(V_baseShader, F_baseShader);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

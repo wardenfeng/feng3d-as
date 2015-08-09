@@ -109,10 +109,7 @@ package me.feng3d.core.register
 
 			if (!register)
 				return;
-			if (register.regType != RegisterType.FT && register.regType != RegisterType.VT)
-			{
-				return;
-			}
+
 			var _fragmentTempCache:RegisterPool = registerPoolDic[register.regType];
 			_fragmentTempCache.removeUsage(register);
 		}

@@ -30,7 +30,7 @@ package me.feng3d.core.register
 
 		override public function toString():String
 		{
-			if (FagalRE.instance.runState == FagalRE.PRERUN)
+			if (Register.TO_STRING == Register.NAME)
 				return "{" + regId + "}[" + _arrayIndex + "]";
 
 			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
