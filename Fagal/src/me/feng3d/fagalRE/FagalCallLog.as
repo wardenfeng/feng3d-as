@@ -43,7 +43,7 @@ package me.feng3d.fagalRE
 		 */
 		public function requestRegisterValue():void
 		{
-			Register.TO_STRING = Register.VALUE;
+//			Register.TO_STRING = Register.VALUE;
 
 			//使用寄存器计数字典
 			var useRegDic:Dictionary = new Dictionary();
@@ -84,7 +84,7 @@ package me.feng3d.fagalRE
 				}
 			}
 
-			Register.TO_STRING = Register.NAME;
+//			Register.TO_STRING = Register.NAME;
 		}
 
 		private var fagalCodeList:Array;

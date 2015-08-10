@@ -3,7 +3,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	
+
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -66,6 +66,19 @@ package me.feng3d.materials.methods
 			}
 			_texture = value;
 			markBufferDirty(_.specularTexture_fs);
+		}
+
+		/**
+		 * The sharpness of the specular highlight.
+		 */
+		public function get gloss():Number
+		{
+			return _gloss;
+		}
+
+		public function set gloss(value:Number):void
+		{
+			_gloss = value;
 		}
 
 		/**

@@ -170,6 +170,20 @@ package me.feng3d.materials
 		}
 
 		/**
+		 * The glossiness of the material (sharpness of the specular highlight).
+		 */
+		public function get gloss():Number
+		{
+			return _screenPass.specularMethod ? _screenPass.specularMethod.gloss : 0;
+		}
+
+		public function set gloss(value:Number):void
+		{
+			if (_screenPass.specularMethod)
+				_screenPass.specularMethod.gloss = value;
+		}
+
+		/**
 		 * The method used to render shadows cast on this surface, or null if no shadows are to be rendered. Defaults to null.
 		 */
 		public function get shadowMethod():ShadowMapMethodBase

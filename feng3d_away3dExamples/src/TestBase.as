@@ -52,7 +52,7 @@ package
 			//加载资源
 			var loadObj:LoadEventData = new LoadEventData();
 			loadObj.urls = [];
-			for (var i:int = 0; i < resourceList.length; i++)
+			for (var i:int = 0; resourceList != null && i < resourceList.length; i++)
 			{
 				loadObj.urls.push(rootPath + resourceList[i]);
 			}

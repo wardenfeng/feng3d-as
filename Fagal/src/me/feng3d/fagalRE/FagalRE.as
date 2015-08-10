@@ -7,7 +7,6 @@ package me.feng3d.fagalRE
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.ShaderRegisterCache;
-	import me.feng3d.fagal.FagalToken;
 	import me.feng3d.fagal.methods.FagalMethod;
 
 	use namespace arcanefagal;

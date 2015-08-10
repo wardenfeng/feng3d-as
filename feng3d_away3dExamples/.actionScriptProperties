@@ -37,11 +37,12 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Basic_Shading.as"/>
-    <application path="Intermediate_MD5Animation.as"/>
-    <application path="Basic_Fire.as"/>
     <application path="Basic_View.as"/>
     <application path="Basic_Particles.as"/>
+    <application path="Basic_Fire.as"/>
+    <application path="Intermediate_MD5Animation.as"/>
+    <application path="Basic_Load3DS.as"/>
+    <application path="Basic_Shading.as"/>
   </applications>
   <modules/>
   <workers/>

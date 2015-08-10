@@ -200,6 +200,10 @@
     <classEntry path="me.feng3d.cameras.lenses.FreeMatrixLens"/>
     <classEntry path="me.feng3d.core.traverse.ShadowCasterCollector"/>
     <classEntry path="me.feng3d.passes.DepthMapPass"/>
+    <classEntry path="me.feng3d.loaders.Loader3D"/>
+    <classEntry path="me.feng3d.parsers.Parsers"/>
+    <classEntry path="me.feng3d.loaders.misc.AssetLoaderContext"/>
+    <classEntry path="me.feng3d.loaders.misc.AssetLoaderToken"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
