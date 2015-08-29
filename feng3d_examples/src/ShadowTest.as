@@ -66,7 +66,6 @@
 		private var placeHolder:ObjectContainer3D;
 		private var mesh:Mesh;
 		private var ground:Mesh;
-		private var ground1:Mesh;
 
 		/**
 		 * Constructor

@@ -3,12 +3,16 @@ package me.feng3d.textures
 
 	import flash.display3D.Context3DTextureFormat;
 
+	import me.feng.core.NamedAssetBase;
+	import me.feng3d.library.assets.AssetType;
+	import me.feng3d.library.assets.IAsset;
+
 	/**
 	 * 纹理代理基类
 	 * <p>处理纹理与stage3d的关系</p>
 	 * @author warden_feng 2014-4-15
 	 */
-	public class TextureProxyBase
+	public class TextureProxyBase extends NamedAssetBase implements IAsset
 	{
 		/** 纹理类型 */
 		public var type:String;
@@ -100,6 +104,11 @@ package me.feng3d.textures
 		public function invalidateContent():void
 		{
 
+		}
+
+		public function get assetType():String
+		{
+			return AssetType.TEXTURE;
 		}
 	}
 }

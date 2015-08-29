@@ -17,6 +17,7 @@ package me.feng3d.passes
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.textures.CubeTextureProxyBase;
+	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
 
@@ -110,8 +111,9 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function render(renderable:IRenderable, camera:Camera3D):void
+		override protected function updateConstantData(renderable:IRenderable, camera:Camera3D):void
 		{
+			super.updateConstantData(renderable, camera);
 			modelViewProjection.identity();
 			modelViewProjection.append(renderable.sourceEntity.sceneTransform);
 			modelViewProjection.append(camera.viewProjection);
@@ -120,9 +122,9 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function activate(camera:Camera3D):void
+		override arcane function activate(camera:Camera3D, target:TextureProxyBase = null):void
 		{
-			super.activate(camera);
+			super.activate(camera, target);
 
 			var pos:Vector3D = camera.scenePosition;
 			cameraPos[0] = pos.x;

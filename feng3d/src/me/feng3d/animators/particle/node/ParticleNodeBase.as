@@ -3,9 +3,9 @@ package me.feng3d.animators.particle.node
 	import me.feng.error.AbstractClassError;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
+	import me.feng3d.animators.base.node.AnimationNodeBase;
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.fagal.params.ShaderParams;
 
@@ -15,23 +15,8 @@ package me.feng3d.animators.particle.node
 	 * 粒子节点
 	 * @author warden_feng 2014-11-13
 	 */
-	public class ParticleNodeBase extends Context3DBufferOwner
+	public class ParticleNodeBase extends AnimationNodeBase
 	{
-		private var _animationName:String;
-
-		/**
-		 * 动画节点名称
-		 */
-		public function get animationName():String
-		{
-			return _animationName;
-		}
-
-		public function set animationName(value:String):void
-		{
-			_animationName = value;
-		}
-
 		/** 模式列表 */
 		private static var MODES:Object = { //
 				0: GLOBAL, //
@@ -85,7 +70,7 @@ package me.feng3d.animators.particle.node
 		 */
 		public function ParticleNodeBase(animationName:String, mode:uint, dataLength:uint, priority:int = 1)
 		{
-			_animationName = animationName + MODES[mode];
+			name = animationName + MODES[mode];
 
 			_mode = mode;
 			_priority = priority;

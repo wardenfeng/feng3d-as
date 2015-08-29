@@ -7,6 +7,7 @@ package me.feng3d.core.traverse
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.partition.node.NodeBase;
+	import me.feng3d.entities.SkyBox;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
 
@@ -50,6 +51,14 @@ package me.feng3d.core.traverse
 		{
 			node = node;
 			return true;
+		}
+
+		/**
+		 * Passes a skybox to be processed by the traverser.
+		 */
+		public function applySkyBox(skyBox:SkyBox):void
+		{
+			throw new AbstractMethodError();
 		}
 
 		/**

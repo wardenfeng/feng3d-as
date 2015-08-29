@@ -102,7 +102,7 @@ package
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
 				var name:String = event.asset.name;
-				node.animationName = name;
+				node.name = name;
 				animationSet.addAnimation(node);
 
 				node.looping = true;

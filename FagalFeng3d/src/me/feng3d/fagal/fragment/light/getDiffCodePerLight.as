@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	
+
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -35,7 +35,7 @@ package me.feng3d.fagal.fragment.light
 			_.mul(diffuseColorFtReg.w, diffuseColorFtReg.w, lightDirReg.w);
 
 		_.comment("漫反射光颜色 = 灯光漫反射颜色 mul 漫反射光强度");
-		_.mul(diffuseColorFtReg, diffuseColorReg, diffuseColorFtReg.w);
+		_.mul(diffuseColorFtReg, diffuseColorFtReg.w, diffuseColorReg);
 
 		//叠加灯光
 		if (!shaderParams.isFirstDiffLight)

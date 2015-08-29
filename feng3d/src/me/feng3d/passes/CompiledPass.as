@@ -11,13 +11,13 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.ShadingMethodEvent;
-	
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
 	import me.feng3d.materials.methods.ShadowMapMethodBase;
 	import me.feng3d.textures.Texture2DBase;
+	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
 
@@ -102,9 +102,9 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function activate(camera:Camera3D):void
+		override arcane function activate(camera:Camera3D, target:TextureProxyBase = null):void
 		{
-			super.activate(camera);
+			super.activate(camera, target);
 
 			shaderParams.useLightFallOff = _enableLightFallOff;
 
@@ -120,11 +120,10 @@ package me.feng3d.passes
 			ambientMethod._lightAmbientB = _ambientLightB;
 		}
 
-		/**
-		 * @inheritDoc
-		 */
-		override arcane function render(renderable:IRenderable, camera:Camera3D):void
+		override protected function updateConstantData(renderable:IRenderable, camera:Camera3D):void
 		{
+			super.updateConstantData(renderable, camera);
+
 			//场景变换矩阵（物体坐标-->世界坐标）
 			var sceneTransform:Matrix3D = renderable.sourceEntity.sceneTransform;
 			//投影矩阵（世界坐标-->投影坐标）

@@ -35,11 +35,11 @@
     <classEntry path="me.feng3d.animators.skeleton.SkeletonAnimationSet"/>
     <classEntry path="me.feng3d.animators.skeleton.data.SkeletonJoint"/>
     <classEntry path="me.feng3d.animators.base.node.AnimationNodeBase"/>
-    <classEntry path="me.feng3d.animators.base.node.AnimationClipNode"/>
+    <classEntry path="me.feng3d.animators.base.node.AnimationClipNodeBase"/>
     <classEntry path="me.feng3d.animators.skeleton.SkeletonClipNode"/>
     <classEntry path="me.feng3d.animators.skeleton.data.SkeletonPose"/>
     <classEntry path="me.feng3d.animators.skeleton.data.JointPose"/>
-    <classEntry path="me.feng3d.animators.base.Animator"/>
+    <classEntry path="me.feng3d.animators.base.AnimatorBase"/>
     <classEntry path="me.feng3d.events.AnimatorEvent"/>
     <classEntry path="me.feng3d.animators.vertex.VertexAnimationSet"/>
     <classEntry path="me.feng3d.animators.skeleton.SkeletonAnimator"/>
@@ -164,9 +164,7 @@
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticlesInitColor"/>
     <classEntry path="me.feng3d.fagal.fragment.particle.F_Particles"/>
     <classEntry path="me.feng3d.fagal.fragment.particle.F_ParticleColorCombination"/>
-    <classEntry path="me.feng3d.animators.base.FrameAnimator"/>
     <classEntry path="me.feng3d.animators.IAnimator"/>
-    <classEntry path="me.feng3d.animators.base.MultiClipAnimator"/>
     <classEntry path="me.feng3d.materials.methods.ShadowMapMethodBase"/>
     <classEntry path="me.feng3d.lights.shadowmaps.NearDirectionalShadowMapper"/>
     <classEntry path="me.feng3d.lights.shadowmaps.ShadowMapperBase"/>
@@ -200,10 +198,12 @@
     <classEntry path="me.feng3d.cameras.lenses.FreeMatrixLens"/>
     <classEntry path="me.feng3d.core.traverse.ShadowCasterCollector"/>
     <classEntry path="me.feng3d.passes.DepthMapPass"/>
-    <classEntry path="me.feng3d.loaders.Loader3D"/>
-    <classEntry path="me.feng3d.parsers.Parsers"/>
-    <classEntry path="me.feng3d.loaders.misc.AssetLoaderContext"/>
     <classEntry path="me.feng3d.loaders.misc.AssetLoaderToken"/>
+    <classEntry path="me.feng3d.events.LoaderEvent"/>
+    <classEntry path="me.feng3d.core.render.PlanarShadowRenderer"/>
+    <classEntry path="me.feng3d.animators.skeleton.SkeletonClipState"/>
+    <classEntry path="me.feng3d.materials.methods.EffectMethodBase"/>
+    <classEntry path="me.feng3d.materials.methods.FogMethod"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

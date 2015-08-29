@@ -174,6 +174,9 @@ package me.feng3d.entities
 
 		public function set animator(value:IAnimator):void
 		{
+			if (_animator)
+				_animator.removeOwner(this);
+
 			_animator = value;
 
 			var i:int;
@@ -200,6 +203,9 @@ package me.feng3d.entities
 				var subMesh:SubMesh = subMeshes[i];
 				subMesh.animator = _animator;
 			}
+
+			if (_animator)
+				_animator.addOwner(this);
 		}
 
 		/**

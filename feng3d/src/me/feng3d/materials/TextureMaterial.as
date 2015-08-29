@@ -22,16 +22,14 @@ package me.feng3d.materials
 		 * @param smooth		是否平滑
 		 * @param repeat		是否重复
 		 * @param mipmap		是否使用mipmap
-		 * @param bothSides		是否为双面
 		 */
-		public function TextureMaterial(texture:Texture2DBase = null, smooth:Boolean = true, repeat:Boolean = false, mipmap:Boolean = true, bothSides:Boolean = true)
+		public function TextureMaterial(texture:Texture2DBase = null, smooth:Boolean = true, repeat:Boolean = false, mipmap:Boolean = true)
 		{
 			super();
 			this.texture = texture;
 			this.smooth = smooth;
 			this.repeat = repeat;
 			this.mipmap = mipmap;
-			this.bothSides = bothSides;
 		}
 
 		/**

@@ -13,7 +13,6 @@ package
 	import me.feng3d.containers.View3D;
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.events.AnimatorEvent;
 	import me.feng3d.events.AssetEvent;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.TextureMaterial;
@@ -43,10 +42,7 @@ package
 		private var animationSet:SkeletonAnimationSet;
 
 		private const IDLE_NAME:String = "idle2";
-		private const WALK_NAME:String = "walk7";
 
-		private const RUN_SPEED:Number = 2;
-		private const WALK_SPEED:Number = 1;
 		private const IDLE_SPEED:Number = 1;
 
 		// Assets.
@@ -102,37 +98,24 @@ package
 		{
 			if (event.asset.assetType == AssetType.ANIMATION_NODE)
 			{
-
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
-				var name:String = event.asset.name;
-				node.animationName = name;
+				node.name = IDLE_NAME;
 				animationSet.addAnimation(node);
 
-				if (name == IDLE_NAME || name == WALK_NAME)
-				{
-					node.looping = true;
-				}
-				else
-				{
-					node.looping = false;
-					node.addEventListener(AnimatorEvent.CYCLE_COMPLETE, onCycleComplete);
-				}
+				node.looping = true;
 
-				animator.play(name);
-
-				if (name == IDLE_NAME)
-					stop();
+				animator.play(node.name);
 			}
 			else if (event.asset.assetType == AssetType.ANIMATION_SET)
 			{
 				animationSet = event.asset as SkeletonAnimationSet;
 				animator = new SkeletonAnimator(animationSet, skeleton, true);
 
+				mesh.animator = animator;
+
 				var parser:MD5AnimParser = new MD5AnimParser();
 				parser.addEventListener(AssetEvent.ASSET_COMPLETE, onAssetComplete);
 				parser.parseAsync(resourceDic[HellKnight_Idle2]);
-
-				mesh.animator = animator;
 			}
 			else if (event.asset.assetType == AssetType.SKELETON)
 			{
@@ -145,34 +128,8 @@ package
 			}
 		}
 
-		private function stop():void
-		{
-			isMoving = false;
-
-			if (currentAnim == IDLE_NAME)
-				return;
-
-			currentAnim = IDLE_NAME;
-
-			if (onceAnim)
-				return;
-
-			//update animator
-			animator.playbackSpeed = IDLE_SPEED;
-			animator.play(currentAnim);
-		}
-
-		private function onCycleComplete(event:AnimatorEvent):void
-		{
-			onceAnim = null;
-
-			animator.play(currentAnim);
-			animator.playbackSpeed = isMoving ? movementDirection * (isRunning ? RUN_SPEED : WALK_SPEED) : IDLE_SPEED;
-		}
-
 		private function initializeHeadModel(model:Mesh):void
 		{
-
 			mesh = model;
 
 			// Apply a bitmap material that can be painted on.

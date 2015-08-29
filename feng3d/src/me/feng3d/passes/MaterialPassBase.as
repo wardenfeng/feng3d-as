@@ -7,16 +7,18 @@ package me.feng3d.passes
 	import flash.events.Event;
 
 	import me.feng.error.AbstractClassError;
-	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
+	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.buffer.context3d.BlendFactorsBuffer;
 	import me.feng3d.core.buffer.context3d.CullingBuffer;
 	import me.feng3d.core.buffer.context3d.DepthTestBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
+	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.vertex.V_Main;
@@ -24,6 +26,7 @@ package me.feng3d.passes
 	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
+	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
 
@@ -34,7 +37,7 @@ package me.feng3d.passes
 	 */
 	public class MaterialPassBase extends Context3DBufferOwner
 	{
-		protected var _animationSet:AnimationSetBase;
+		protected var _animationSet:IAnimationSet;
 
 		protected var _methodSetup:ShaderMethodSetup;
 
@@ -156,12 +159,12 @@ package me.feng3d.passes
 		/**
 		 * 动画数据集合
 		 */
-		public function get animationSet():AnimationSetBase
+		public function get animationSet():IAnimationSet
 		{
 			return _animationSet;
 		}
 
-		public function set animationSet(value:AnimationSetBase):void
+		public function set animationSet(value:IAnimationSet):void
 		{
 			if (_animationSet == value)
 				return;
@@ -177,7 +180,7 @@ package me.feng3d.passes
 		 * @param stage3DProxy		3D舞台代理
 		 * @param camera			摄像机
 		 */
-		arcane function activate(camera:Camera3D):void
+		arcane function activate(camera:Camera3D, target:TextureProxyBase = null):void
 		{
 			shaderParams.useMipmapping = _mipmap;
 			shaderParams.useSmoothTextures = _smooth;
@@ -209,11 +212,37 @@ package me.feng3d.passes
 		/**
 		 * 渲染
 		 * @param renderable			渲染对象
+		 * @param stage3DProxy			3D舞台代理
 		 * @param camera				摄像机
 		 */
-		arcane function render(renderable:IRenderable, camera:Camera3D):void
+		arcane function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
-			throw new AbstractMethodError();
+			updateConstantData(renderable, camera);
+
+			var context3dCache:Context3DCache = renderable.context3dCache;
+
+			context3dCache.addChildBufferOwner(this);
+
+			//设置渲染参数
+			context3dCache.shaderParams = shaderParams;
+
+			if (renderable.animator)
+				updateAnimationState(renderable, camera);
+
+			//绘制图形
+			context3dCache.render(stage3DProxy.context3D);
+
+			context3dCache.removeChildBufferOwner(this);
+		}
+
+		/**
+		 * 更新常量数据
+		 * @param renderable			渲染对象
+		 * @param camera				摄像机
+		 */
+		protected function updateConstantData(renderable:IRenderable, camera:Camera3D):void
+		{
+
 		}
 
 		/**

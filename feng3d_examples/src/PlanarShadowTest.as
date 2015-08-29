@@ -1,11 +1,8 @@
 ﻿package
 {
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-
-	import away3d.debug.AwayStats;
 
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
@@ -13,6 +10,8 @@
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
 	import me.feng3d.core.base.Geometry;
+	import me.feng3d.core.render.DefaultRenderer;
+	import me.feng3d.debug.Debug;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.shadowmaps.NearDirectionalShadowMapper;
@@ -20,6 +19,7 @@
 	import me.feng3d.materials.lightpickers.StaticLightPicker;
 	import me.feng3d.materials.methods.FilteredShadowMapMethod;
 	import me.feng3d.materials.methods.NearShadowMapMethod;
+	import me.feng3d.passes.PlanarShadowPass;
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.primitives.SphereGeometry;
 	import me.feng3d.utils.Cast;
@@ -27,39 +27,32 @@
 	/**
 	 * 测试阴影
 	 */
-	[SWF(backgroundColor = "#000000", frameRate = "30")]
-	public class ShadowTest extends Sprite
+	[SWF(backgroundColor = "#000000", frameRate = "60")]
+	public class PlanarShadowTest extends TestBase
 	{
 		//floor diffuse map
-		[Embed(source = "/../embeds/rockbase_diffuse.jpg")]
-		private var FloorDiffuse:Class;
+		private var FloorDiffuse:String = "embeds/rockbase_diffuse.jpg";
 
-//		//floor normal map
-//		[Embed(source = "/../embeds/rockbase_normals.png")]
-//		private var FloorNormals:Class;
-//
-//		//floor specular map
-//		[Embed(source = "/../embeds/rockbase_specular.png")]
-//		private var FloorSpecular:Class;
+		//floor normal map
+		private var FloorNormals:String = "embeds/rockbase_normals.png";
+
+		//floor specular map
+		private var FloorSpecular:String = "embeds/rockbase_specular.png";
 
 		//body diffuse map
-		[Embed(source = "/../embeds/hellknight/hellknight_diffuse.jpg")]
-		private var BodyDiffuse:Class;
+		private var BodyDiffuse:String = "embeds/hellknight/hellknight_diffuse.jpg";
 
-//		//body normal map
-//		[Embed(source = "/../embeds/hellknight/hellknight_normals.png")]
-//		private var BodyNormals:Class;
-//
-//		//bidy specular map
-//		[Embed(source = "/../embeds/hellknight/hellknight_specular.png")]
-//		private var BodySpecular:Class;
+		//body normal map
+		private var BodyNormals:String = "embeds/hellknight/hellknight_normals.png";
+
+		//bidy specular map
+		private var BodySpecular:String = "embeds/hellknight/hellknight_specular.png";
 
 		//engine variables
 		private var scene:Scene3D;
 		private var camera:Camera3D;
 		private var view:View3D;
 		private var cameraController:LookAtController;
-		private var awayStats:AwayStats;
 
 		//light objects
 		private var whiteLight:DirectionalLight;
@@ -79,15 +72,17 @@
 		/**
 		 * Constructor
 		 */
-		public function ShadowTest()
+		public function PlanarShadowTest()
 		{
-			init();
+			resourceList = [FloorDiffuse, FloorNormals, FloorSpecular, BodyDiffuse, BodyNormals, BodySpecular];
+			DefaultRenderer.usePlanarShadow = true;
+			super();
 		}
 
 		/**
 		 * Global initialise function
 		 */
-		private function init():void
+		public function init():void
 		{
 			initEngine();
 			initLights();
@@ -104,13 +99,14 @@
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 
+			Debug.agalDebug = true;
 			view = new View3D();
 			scene = view.scene;
 			camera = view.camera;
 
 			camera.lens.far = 5000;
-			camera.z = -200;
-			camera.y = 160;
+			camera.z = -500;
+			camera.y = 360;
 
 			//setup controller to be used on the camera
 			placeHolder = new ObjectContainer3D();
@@ -119,9 +115,6 @@
 
 			view.addSourceURL("srcview/index.html");
 			addChild(view);
-
-			awayStats = new AwayStats(view);
-			addChild(awayStats);
 		}
 
 		/**
@@ -141,7 +134,7 @@
 
 
 			//create a global shadow method
-			shadowMapMethod = new NearShadowMapMethod(new FilteredShadowMapMethod(whiteLight));
+			shadowMapMethod = new NearShadowMapMethod(new FilteredShadowMapMethod(whiteLight), 0.6);
 			shadowMapMethod.epsilon = .1;
 		}
 
@@ -151,20 +144,20 @@
 		private function initMaterials():void
 		{
 			//ground material
-			groundMaterial = new TextureMaterial(Cast.bitmapTexture(FloorDiffuse));
+			groundMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffuse]));
 			groundMaterial.smooth = true;
 			groundMaterial.repeat = true;
 			groundMaterial.mipmap = true;
 			groundMaterial.lightPicker = lightPicker;
-//			groundMaterial.normalMap = Cast.bitmapTexture(FloorNormals);
-//			groundMaterial.specularMap = Cast.bitmapTexture(FloorSpecular);
+			groundMaterial.normalMap = Cast.bitmapTexture(resourceDic[FloorNormals]);
+			groundMaterial.specularMap = Cast.bitmapTexture(resourceDic[FloorSpecular]);
 			groundMaterial.shadowMethod = shadowMapMethod;
 
 			//body material
-			bodyMaterial = new TextureMaterial(Cast.bitmapTexture(BodyDiffuse));
+			bodyMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[BodyDiffuse]));
 			bodyMaterial.specular = 1.5;
-//			bodyMaterial.specularMap = Cast.bitmapTexture(BodySpecular);
-//			bodyMaterial.normalMap = Cast.bitmapTexture(BodyNormals);
+			bodyMaterial.specularMap = Cast.bitmapTexture(resourceDic[BodySpecular]);
+			bodyMaterial.normalMap = Cast.bitmapTexture(resourceDic[BodyNormals]);
 			bodyMaterial.lightPicker = lightPicker;
 			bodyMaterial.shadowMethod = shadowMapMethod;
 		}
@@ -200,7 +193,7 @@
 			scene.addChild(mesh);
 
 			//add our lookat object to the mesh
-			mesh.addChild(placeHolder);
+//			mesh.addChild(placeHolder);
 		}
 
 		/**
@@ -212,6 +205,8 @@
 			stage.addEventListener(Event.RESIZE, onResize);
 			onResize();
 		}
+
+		public static var groundY:Number = 50;
 
 		/**
 		 * Navigation and render loop
@@ -226,6 +221,13 @@
 
 			count += 0.01;
 
+			mesh.x = Math.sin(count) * 100;
+			mesh.y = groundY + 50;
+			mesh.z = Math.cos(count * 0.7) * 100;
+
+			ground.y = groundY;
+			PlanarShadowPass.groundY = groundY + 0.1;
+
 			view.render();
 		}
 
@@ -236,7 +238,6 @@
 		{
 			view.width = stage.stageWidth;
 			view.height = stage.stageHeight;
-			awayStats.x = stage.stageWidth - awayStats.width;
 		}
 	}
 }

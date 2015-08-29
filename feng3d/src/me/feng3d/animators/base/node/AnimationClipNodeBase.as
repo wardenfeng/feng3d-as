@@ -6,10 +6,11 @@ package me.feng3d.animators.base.node
 	 * 动画剪辑节点基类(用于控制动画播放，包含每帧持续时间，是否循环播放等)
 	 * @author warden_feng 2014-5-20
 	 */
-	public class AnimationClipNode extends AnimationNodeBase
+	public class AnimationClipNodeBase extends AnimationNodeBase
 	{
 		protected var _looping:Boolean = true;
-		protected var _totalDuration:uint = 500;
+		protected var _totalDuration:uint = 0;
+		protected var _lastFrame:uint;
 
 		protected var _stitchDirty:Boolean = true;
 		protected var _stitchFinalFrame:Boolean = false;
@@ -23,8 +24,8 @@ package me.feng3d.animators.base.node
 
 		/**
 		 * 创建一个动画剪辑节点基类
-		 */		
-		public function AnimationClipNode()
+		 */
+		public function AnimationClipNodeBase()
 		{
 			super();
 		}
@@ -73,6 +74,16 @@ package me.feng3d.animators.base.node
 		{
 			return _stitchFinalFrame;
 		}
+		
+		public function set stitchFinalFrame(value:Boolean):void
+		{
+			if (_stitchFinalFrame == value)
+				return;
+			
+			_stitchFinalFrame = value;
+			
+			_stitchDirty = true;
+		}
 
 		/**
 		 * 总持续时间
@@ -84,15 +95,25 @@ package me.feng3d.animators.base.node
 
 			return _totalDuration;
 		}
-
+		
+		public function get lastFrame():uint
+		{
+			if (_stitchDirty)
+				updateStitch();
+			
+			return _lastFrame;
+		}
+		
 		/**
 		 * 更新动画播放控制状态
 		 */
 		protected function updateStitch():void
 		{
 			_stitchDirty = false;
+			
+			_lastFrame = (_looping && _stitchFinalFrame)? _numFrames : _numFrames - 1;
 
-			_totalDuration = 500;
+			_totalDuration = 0;
 			_totalDelta.x = 0;
 			_totalDelta.y = 0;
 			_totalDelta.z = 0;

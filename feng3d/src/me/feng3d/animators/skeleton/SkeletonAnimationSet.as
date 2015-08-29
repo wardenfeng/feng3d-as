@@ -2,6 +2,7 @@ package me.feng3d.animators.skeleton
 {
 	import me.feng3d.arcane;
 	import me.feng3d.animators.AnimationType;
+	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.passes.MaterialPassBase;
@@ -12,7 +13,7 @@ package me.feng3d.animators.skeleton
 	 * 骨骼动画集合
 	 * @author warden_feng 2014-5-20
 	 */
-	public class SkeletonAnimationSet extends AnimationSetBase
+	public class SkeletonAnimationSet extends AnimationSetBase implements IAnimationSet
 	{
 		private var _jointsPerVertex:uint;
 
@@ -35,7 +36,7 @@ package me.feng3d.animators.skeleton
 			return _jointsPerVertex;
 		}
 
-		arcane override function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
+		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			shaderParams.numJoints = _numJoints;
 			shaderParams.jointsPerVertex = _jointsPerVertex;

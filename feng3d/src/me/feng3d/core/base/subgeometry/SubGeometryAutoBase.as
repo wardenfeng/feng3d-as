@@ -1,7 +1,5 @@
 package me.feng3d.core.base.subgeometry
 {
-	
-	
 
 	/**
 	 * 子网格基类（分担SubGeometry负担，处理自动生成法线、切线、uv等计算）
@@ -13,20 +11,20 @@ package me.feng3d.core.base.subgeometry
 		private var _faceNormalsDirty:Boolean = true;
 		/** 面切线脏标记 */
 		private var _faceTangentsDirty:Boolean = true;
-		private var _faceNormals:Vector.<Number>;
-		private var _faceTangents:Vector.<Number>;
-		/** 是否使用面权重 */
-		private var _useFaceWeights:Boolean = false;
-		/** 面权重 */
-		private var _faceWeights:Vector.<Number>;
 
 		/** 是否自动生成顶点法线数据 */
 		private var _autoDeriveVertexNormals:Boolean = true;
 		/** 是否自动生成顶点切线数据 */
 		private var _autoDeriveVertexTangents:Boolean = true;
-
 		/** 是否自动生成UV数据 */
-		protected var _autoGenerateUVs:Boolean = false;
+		private var _autoGenerateUVs:Boolean = false;
+		/** 是否使用面权重 */
+		private var _useFaceWeights:Boolean = false;
+
+		private var _faceNormals:Vector.<Number>;
+		private var _faceTangents:Vector.<Number>;
+		/** 面权重 */
+		private var _faceWeights:Vector.<Number>;
 
 		public function SubGeometryAutoBase()
 		{
@@ -63,6 +61,60 @@ package me.feng3d.core.base.subgeometry
 			invalidVAData(_.uv_va_2);
 		}
 
+		/**
+		 * True if the vertex normals should be derived from the geometry, false if the vertex normals are set
+		 * explicitly.
+		 */
+		public function get autoDeriveVertexNormals():Boolean
+		{
+			return _autoDeriveVertexNormals;
+		}
+
+		public function set autoDeriveVertexNormals(value:Boolean):void
+		{
+			_autoDeriveVertexNormals = value;
+
+			invalidVAData(_.normal_va_3);
+		}
+
+		/**
+		 * True if the vertex tangents should be derived from the geometry, false if the vertex normals are set
+		 * explicitly.
+		 */
+		public function get autoDeriveVertexTangents():Boolean
+		{
+			return _autoDeriveVertexTangents;
+		}
+
+		public function set autoDeriveVertexTangents(value:Boolean):void
+		{
+			_autoDeriveVertexTangents = value;
+
+			invalidVAData(_.tangent_va_3);
+		}
+
+		/**
+		 * Indicates whether or not to take the size of faces into account when auto-deriving vertex normals and tangents.
+		 */
+		public function get useFaceWeights():Boolean
+		{
+			return _useFaceWeights;
+		}
+
+		public function set useFaceWeights(value:Boolean):void
+		{
+			_useFaceWeights = value;
+
+			//标记法线数据失效
+			if (_autoDeriveVertexNormals)
+				invalidVAData(_.normal_va_3);
+			//标记切线数据失效
+			if (_autoDeriveVertexTangents)
+				invalidVAData(_.tangent_va_3);
+
+			_faceNormalsDirty = true;
+		}
+
 		/** 更新面切线数据 */
 		private function updateFaceTangents():void
 		{
@@ -81,7 +133,7 @@ package me.feng3d.core.base.subgeometry
 			var uvs:Vector.<Number> = getVAData(_.uv_va_2);
 			var posStride:int = getVALen(_.position_va_3);
 			var posOffset:int = 0;
-			var texStride:int = getVALen(_.uv_v);
+			var texStride:int = getVALen(_.uv_va_2);
 			var texOffset:int = 0;
 
 			_faceTangents ||= new Vector.<Number>(_indices.length, true);
@@ -385,6 +437,9 @@ package me.feng3d.core.base.subgeometry
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function notifyVADataChanged(dataTypeId:String):void
 		{
 			super.notifyVADataChanged(dataTypeId);
@@ -398,12 +453,30 @@ package me.feng3d.core.base.subgeometry
 					_faceTangentsDirty = true;
 
 					//标记法线数据失效
-					invalidVAData(_.normal_va_3);
+					if (_autoDeriveVertexNormals)
+						invalidVAData(_.normal_va_3);
 					//标记切线数据失效
-					invalidVAData(_.tangent_va_3);
+					if (_autoDeriveVertexTangents)
+						invalidVAData(_.tangent_va_3);
 					break;
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
+		override public function updateIndexData(indices:Vector.<uint>):void
+		{
+			super.updateIndexData(indices);
+
+			_faceNormalsDirty = true;
+
+			//标记法线数据失效
+			if (_autoDeriveVertexNormals)
+				invalidVAData(_.normal_va_3);
+			//标记切线数据失效
+			if (_autoDeriveVertexTangents)
+				invalidVAData(_.tangent_va_3);
+		}
 	}
 }

@@ -1,9 +1,9 @@
 package me.feng3d.animators
 {
-	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.IContext3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.entities.Mesh;
 
 	/**
 	 * 动画接口
@@ -14,7 +14,7 @@ package me.feng3d.animators
 		/**
 		 * 获取动画集合基类
 		 */
-		function get animationSet():AnimationSetBase;
+		function get animationSet():IAnimationSet;
 
 		/**
 		 * 设置渲染状态
@@ -25,5 +25,19 @@ package me.feng3d.animators
 		 * @param camera				摄像机
 		 */
 		function setRenderState(renderable:IRenderable, camera:Camera3D):void;
+
+		/**
+		 * Used by the mesh object to which the animator is applied, registers the owner for internal use.
+		 *
+		 * @private
+		 */
+		function addOwner(mesh:Mesh):void
+
+		/**
+		 * Used by the mesh object from which the animator is removed, unregisters the owner for internal use.
+		 *
+		 * @private
+		 */
+		function removeOwner(mesh:Mesh):void
 	}
 }

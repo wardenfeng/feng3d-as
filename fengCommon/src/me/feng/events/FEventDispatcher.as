@@ -4,8 +4,6 @@ package me.feng.events
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 
-	import me.feng.core.NamedBase;
-
 	/**
 	 * 实现能在非flash原生显示列表中的冒泡的事件适配器.
 	 * <p>事件过程使用原生事件机制，不过增强了冒泡功能，使得事件会向上级（默认parent）冒泡。</p>
@@ -18,14 +16,16 @@ package me.feng.events
 	 *
 	 * @author warden_feng 2014-5-7
 	 */
-	public class FEventDispatcher extends NamedBase implements IEventDispatcher
+	public class FEventDispatcher implements IEventDispatcher
 	{
-		private var dispatcher:IEventDispatcher;
-
 		/**
 		 * 冒泡属性名称，或者称为上级（默认为parent）
 		 */
 		public static const BUBBLE_PROPERTY:String = "parent";
+
+		private var dispatcher:IEventDispatcher;
+
+		protected var _name:String;
 
 		/**
 		 * 创建 FEventDispatcher 类的实例.
@@ -42,6 +42,19 @@ package me.feng.events
 				dispatcher = new EventDispatcher(target);
 			else
 				dispatcher = new EventDispatcher(this);
+		}
+
+		/**
+		 * 名称
+		 */
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function set name(value:String):void
+		{
+			_name = value;
 		}
 
 		/**

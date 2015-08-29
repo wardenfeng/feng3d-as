@@ -16,5 +16,6 @@ package me.feng3d.animators.particle.data
 		 * 本地静态粒子属性，数据将上传顶点属性寄存器
 		 */
 		public static const LOCAL_STATIC:uint = 1;
+
 	}
 }

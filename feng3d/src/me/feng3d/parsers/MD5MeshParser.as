@@ -61,7 +61,7 @@ package me.feng3d.parsers
 		private var _bindPoses:Vector.<Matrix3D>;
 		/** 骨骼数据 */
 		private var _skeleton:Skeleton;
-		
+
 		private var _animationSet:SkeletonAnimationSet;
 
 		/** 旋转四元素 */
@@ -394,13 +394,13 @@ package me.feng3d.parsers
 
 				/**
 				 * 参考 http://blog.csdn.net/summerhust/article/details/17421213
-				 * VertexPos = (MJ-0 * weight[index0].pos * weight[index0].bias) + ... + (MJ-N * weight[indexN].pos * weight[indexN].bias) 
+				 * VertexPos = (MJ-0 * weight[index0].pos * weight[index0].bias) + ... + (MJ-N * weight[indexN].pos * weight[indexN].bias)
 				 * 变量对应 :
 				 * MJ-N -> bindPose; 第J个关节的变换矩阵
-				 * weight[indexN].pos -> weight.pos; 
-				 * weight[indexN].bias -> weight.bias; 
+				 * weight[indexN].pos -> weight.pos;
+				 * weight[indexN].bias -> weight.bias;
 				 */
-				
+
 				nonZeroWeights = 0;
 				for (var j:int = 0; j < vertex.countWeight; ++j)
 				{
@@ -436,6 +436,12 @@ package me.feng3d.parsers
 			subGeom.numVertices = vertices.length / 3;
 			//更新顶点坐标与uv数据
 			subGeom.fromVectors(vertices, uvs);
+			// cause explicit updates
+			subGeom.vertexNormalData;
+			subGeom.vertexTangentData;
+			// turn auto updates off because they may be animated and set explicitly
+			subGeom.autoDeriveVertexTangents = false;
+			subGeom.autoDeriveVertexNormals = false;
 			//更新关节索引与权重索引
 			subGeom.updateJointIndexData(jointIndices);
 			subGeom.updateJointWeightsData(jointWeights);

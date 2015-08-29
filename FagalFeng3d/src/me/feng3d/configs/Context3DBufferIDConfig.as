@@ -89,6 +89,8 @@ package me.feng3d.configs
 			["shadowCommondata2_fc_vector", "阴影函数片段常数2 保存有深度图尺寸"], //
 			["secondary_fc_vector", "用于计算阴影相对于观察者距离不同而作衰减"], //
 			["shadowValue_ft_4", "阴影值临时变量寄存器"], //
+
+			["shadowColorCommonsData_fc_vector", "平面阴影颜色片段常数"], //
 			//---------------------------- 天空盒相关寄存器数据类型 ------------------------------
 			["scaleSkybox_vc_vector", "天空盒缩放静态数据"], //
 			//---------------------------- 地形相关寄存器数据类型 ------------------------------
@@ -125,6 +127,10 @@ package me.feng3d.configs
 			["segmentOne_vc_vector", "常数1"], //
 			["segmentFront_vc_vector", "常数前向量"], //
 			["segmentConstants_vc_vector", "常量数据"], //
+
+			//---------------------------- 烟雾相关寄存器数据类型 ------------------------------
+			["fogColor_fc_vector", "雾颜色常量数据"], //
+			["fogCommonData_fc_vector", "雾通用常量数据"], //
 			];
 	}
 }

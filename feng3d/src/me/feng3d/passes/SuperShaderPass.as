@@ -5,9 +5,10 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
+	import me.feng3d.materials.methods.EffectMethodBase;
+	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
 
@@ -89,15 +90,33 @@ package me.feng3d.passes
 		}
 
 		/**
+		 * Appends an "effect" shading method to the shader. Effect methods are those that do not influence the lighting
+		 * but modulate the shaded colour, used for fog, outlines, etc. The method will be applied to the result of the
+		 * methods added prior.
+		 */
+		public function addMethod(method:EffectMethodBase):void
+		{
+			_methodSetup.addMethod(method);
+		}
+
+		/**
 		 * @inheritDoc
 		 */
-		override arcane function activate(camera:Camera3D):void
+		override arcane function activate(camera:Camera3D, target:TextureProxyBase = null):void
 		{
 			if (_lightPicker)
 			{
 				shaderParams.numPointLights = _lightPicker.numPointLights;
 				shaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
 			}
+
+			var methods:Vector.<EffectMethodBase> = _methodSetup._methods;
+			var len:uint = methods.length;
+			for (var i:int = 0; i < len; ++i)
+			{
+				methods[i].activate(shaderParams);
+			}
+
 			super.activate(camera);
 		}
 

@@ -35,7 +35,7 @@ package
 		public function TestBase()
 		{
 			MyCC.initFlashConsole(this);
-			DebugCommon.loggerFunc = Cc.log;
+//			DebugCommon.loggerFunc = Cc.log;
 			new ConsoleExtension();
 			loadTextures();
 		}
@@ -54,7 +54,15 @@ package
 			loadObj.urls = [];
 			for (var i:int = 0; resourceList != null && i < resourceList.length; i++)
 			{
-				loadObj.urls.push(rootPath + resourceList[i]);
+				if (resourceList[i] is String)
+				{
+					loadObj.urls.push(rootPath + resourceList[i]);
+				}
+				else
+				{
+					resourceList[i].url = rootPath + resourceList[i].url;
+					loadObj.urls.push(resourceList[i]);
+				}
 			}
 			loadObj.singleComplete = singleGeometryComplete;
 			loadObj.allItemsLoaded = allItemsLoaded;

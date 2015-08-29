@@ -12,6 +12,7 @@ package me.feng3d.core.traverse
 	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.partition.node.NodeBase;
 	import me.feng3d.entities.Entity;
+	import me.feng3d.entities.SkyBox;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -29,6 +30,7 @@ package me.feng3d.core.traverse
 	 */
 	public class EntityCollector extends PartitionTraverser
 	{
+		protected var _skyBox:SkyBox;
 		protected var _opaqueRenderableHead:RenderableListItem;
 		protected var _blendedRenderableHead:RenderableListItem;
 
@@ -89,6 +91,7 @@ package me.feng3d.core.traverse
 			_opaqueRenderableHead = null;
 			_renderableListItemPool.freeAll();
 			_entityListItemPool.freeAll();
+			_skyBox = null;
 			if (_numLights > 0)
 				_lights.length = _numLights = 0;
 			if (_numDirectionalLights > 0)
@@ -124,6 +127,14 @@ package me.feng3d.core.traverse
 		public function set cullPlanes(value:Vector.<Plane3D>):void
 		{
 			_customCullPlanes = value;
+		}
+
+		/**
+		 * 天空盒对象
+		 */
+		public function get skyBox():SkyBox
+		{
+			return _skyBox;
 		}
 
 		/**
@@ -177,7 +188,7 @@ package me.feng3d.core.traverse
 				var dz:Number = _entryPoint.z - entityScenePos.z;
 				// project onto camera's z-axis
 				item.zIndex = dx * _cameraForward.x + dy * _cameraForward.y + dz * _cameraForward.z + entity.zOffset;
-				item.renderSceneTransform = renderable.sourceEntity.sceneTransform;
+				item.renderSceneTransform = renderable.sourceEntity.getRenderSceneTransform(camera);
 				if (material.requiresBlending)
 				{
 					item.next = _blendedRenderableHead;
@@ -200,6 +211,15 @@ package me.feng3d.core.traverse
 			var enter:Boolean = _collectionMark != node._collectionMark && node.isInFrustum(_cullPlanes, _numCullPlanes);
 			node._collectionMark = _collectionMark;
 			return enter;
+		}
+
+		/**
+		 * Adds a skybox to the potentially visible objects.
+		 * @param renderable The skybox to add.
+		 */
+		override public function applySkyBox(skyBox:SkyBox):void
+		{
+			_skyBox = skyBox;
 		}
 
 		/**

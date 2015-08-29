@@ -19,9 +19,6 @@ package me.feng3d.events
 
 		/** 周期完成 */
 		public static const CYCLE_COMPLETE:String = "cycle_complete";
-		
-		/** 动画播放完成 */
-		public static const COMPLETE:String = "complete";
 
 		public function AnimatorEvent(type:String, data:* = null, bubbles:Boolean = false)
 		{

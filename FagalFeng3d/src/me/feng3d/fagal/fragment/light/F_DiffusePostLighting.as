@@ -40,10 +40,10 @@ package me.feng3d.fagal.fragment.light
 		_.sat(_.totalDiffuseLightColor_ft_4, _.totalDiffuseLightColor_ft_4);
 
 		//漫反射 + 环境光 因子
-		_.add(_.totalDiffuseLightColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, _.ambient_ft);
+		_.add(_.finalColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, _.finalColor_ft_4);
 
 		//混合漫反射光
-		_.mul(_.finalColor_ft_4.xyz, _.mDiff_ft, _.totalDiffuseLightColor_ft_4);
+		_.mul(_.finalColor_ft_4.xyz, _.mDiff_ft, _.finalColor_ft_4);
 		//保存w值不变
 		_.mov(_.finalColor_ft_4.w, _.mDiff_ft.w);
 	}

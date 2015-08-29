@@ -3,8 +3,8 @@ package me.feng3d.core.base
 	import flash.geom.Matrix3D;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-	
-	import me.feng.events.FEventDispatcher;
+
+	import me.feng.core.NamedAssetBase;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryEvent;
@@ -17,7 +17,7 @@ package me.feng3d.core.base
 	 * 几何体
 	 * @author warden_feng 2014-3-17
 	 */
-	public class Geometry extends FEventDispatcher implements IAsset
+	public class Geometry extends NamedAssetBase implements IAsset
 	{
 		private var _subGeometries:Vector.<SubGeometry>;
 
@@ -64,7 +64,7 @@ package me.feng3d.core.base
 			_subGeometries.push(subGeometry);
 
 			subGeometry.parent = this;
-			
+
 			dispatchEvent(new GeometryEvent(GeometryEvent.SUB_GEOMETRY_ADDED, subGeometry));
 		}
 
@@ -76,7 +76,7 @@ package me.feng3d.core.base
 		{
 			_subGeometries.splice(_subGeometries.indexOf(subGeometry), 1);
 			subGeometry.parent = null;
-			
+
 			dispatchEvent(new GeometryEvent(GeometryEvent.SUB_GEOMETRY_REMOVED, subGeometry));
 		}
 
@@ -84,7 +84,7 @@ package me.feng3d.core.base
 		{
 			var cls:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;
 			var clone:Geometry = new cls();
-			
+
 			var len:uint = _subGeometries.length;
 			for (var i:int = 0; i < len; ++i)
 				clone.addSubGeometry(_subGeometries[i].clone());

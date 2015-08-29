@@ -21,11 +21,15 @@ package me.feng3d.materials.methods
 		arcane var _specularMethod:BasicSpecularMethod;
 		arcane var _shadowMethod:ShadowMapMethodBase;
 
+		arcane var _methods:Vector.<EffectMethodBase>;
+
 		/**
 		 * 创建一个渲染函数设置
 		 */
 		public function ShaderMethodSetup()
 		{
+			_methods = new Vector.<EffectMethodBase>();
+
 			normalMethod = new BasicNormalMethod();
 			ambientMethod = new BasicAmbientMethod();
 			diffuseMethod = new BasicDiffuseMethod();
@@ -192,6 +196,20 @@ package me.feng3d.materials.methods
 		}
 
 		/**
+		 * Adds a method to change the material after all lighting is performed.
+		 * @param method The method to be added.
+		 */
+		public function addMethod(method:EffectMethodBase):void
+		{
+			_methods.push(method);
+
+			addChildBufferOwner(method);
+
+			method.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+			invalidateShaderProgram();
+		}
+
+		/**
 		 * 设置渲染状态
 		 * @param renderable		可渲染对象
 		 * @param stage3DProxy		3D舞台代理
@@ -204,6 +222,11 @@ package me.feng3d.materials.methods
 			diffuseMethod.setRenderState(renderable, camera);
 			specularMethod.setRenderState(renderable, camera);
 			shadowMethod && shadowMethod.setRenderState(renderable, camera);
+
+			for (var i:int = 0; i < _methods.length; i++)
+			{
+				_methods[i].setRenderState(renderable, camera);
+			}
 		}
 
 		/**
@@ -218,6 +241,11 @@ package me.feng3d.materials.methods
 			_diffuseMethod && _diffuseMethod.activate(shaderParams);
 			_specularMethod && _specularMethod.activate(shaderParams);
 			_shadowMethod && _shadowMethod.activate(shaderParams);
+
+			for (var i:int = 0; i < _methods.length; i++)
+			{
+				_methods[i].activate(shaderParams);
+			}
 		}
 	}
 }

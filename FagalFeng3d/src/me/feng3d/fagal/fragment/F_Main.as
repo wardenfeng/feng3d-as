@@ -94,6 +94,11 @@ package me.feng3d.fagal.fragment
 			//调用粒子相关片段渲染程序
 			F_Particles();
 
+			if (shaderParams.useFog > 0)
+			{
+				F_Fog();
+			}
+
 			F_FinalOut();
 		}
 	}

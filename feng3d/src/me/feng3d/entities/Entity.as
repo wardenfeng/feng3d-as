@@ -1,5 +1,6 @@
 package me.feng3d.entities
 {
+	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
 	import me.feng.error.AbstractClassError;
@@ -7,6 +8,7 @@ package me.feng3d.entities
 	import me.feng3d.arcane;
 	import me.feng3d.bounds.AxisAlignedBoundingBox;
 	import me.feng3d.bounds.BoundingVolumeBase;
+	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.core.math.Matrix3DUtils;
@@ -104,6 +106,15 @@ package me.feng3d.entities
 				updateBounds();
 
 			return _bounds;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function invalidateSceneTransform():void
+		{
+			super.invalidateSceneTransform();
+			_worldBoundsInvalid = true;
 		}
 
 		/**
@@ -289,6 +300,16 @@ package me.feng3d.entities
 		{
 			_worldBounds.transformFrom(bounds, sceneTransform);
 			_worldBoundsInvalid = false;
+		}
+
+		/**
+		 * The transformation matrix that transforms from model to world space, adapted with any special operations needed to render.
+		 * For example, assuring certain alignedness which is not inherent in the scene transform. By default, this would
+		 * return the scene transform.
+		 */
+		public function getRenderSceneTransform(camera:Camera3D):Matrix3D
+		{
+			return sceneTransform;
 		}
 	}
 }

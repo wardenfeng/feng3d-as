@@ -1,24 +1,25 @@
 package me.feng3d.animators.skeleton
 {
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
-	import me.feng3d.animators.base.node.AnimationClipNode;
+	import me.feng3d.animators.base.node.AnimationClipNodeBase;
 
 	/**
 	 * 骨骼动画节点（一般用于一个动画的帧列表）
 	 * 包含基于时间的动画数据作为单独的骨架构成。
 	 * @author warden_feng 2014-5-20
 	 */
-	public class SkeletonClipNode extends AnimationClipNode
+	public class SkeletonClipNode extends AnimationClipNodeBase
 	{
 		private var _frames:Vector.<SkeletonPose> = new Vector.<SkeletonPose>();
 
 		/**
 		 * 创建骨骼动画节点
-		 */		
+		 */
 		public function SkeletonClipNode()
 		{
+			_stateClass = SkeletonClipState;
 		}
 
 		/**
@@ -33,7 +34,7 @@ package me.feng3d.animators.skeleton
 		 * 添加帧到动画
 		 * @param skeletonPose 骨骼姿势
 		 * @param duration 持续时间
-		 */		
+		 */
 		public function addFrame(skeletonPose:SkeletonPose, duration:uint):void
 		{
 			_frames.push(skeletonPose);

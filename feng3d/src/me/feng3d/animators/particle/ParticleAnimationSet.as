@@ -4,6 +4,7 @@ package me.feng3d.animators.particle
 
 	import me.feng3d.arcane;
 	import me.feng3d.animators.AnimationType;
+	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
 	import me.feng3d.animators.particle.data.ParticleProperties;
@@ -26,7 +27,7 @@ package me.feng3d.animators.particle
 	 * 粒子动画set
 	 * @author warden_feng 2014-11-13
 	 */
-	public class ParticleAnimationSet extends AnimationSetBase
+	public class ParticleAnimationSet extends AnimationSetBase implements IAnimationSet
 	{
 		/**
 		 * Property used by particle nodes that require color compilation
@@ -100,15 +101,15 @@ package me.feng3d.animators.particle
 
 			_particleNodes.splice(i + 1, 0, node);
 
-			_effectDictionary[node.animationName] = node;
+			_effectDictionary[node.name] = node;
 
 			_effects.push(node);
 			addChildBufferOwner(node);
 
-			_effectNames.push(node.animationName);
+			_effectNames.push(node.name);
 		}
 
-		arcane override function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
+		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			shaderParams.usesDuration = _usesDuration;
 			shaderParams.usesLooping = _usesLooping;

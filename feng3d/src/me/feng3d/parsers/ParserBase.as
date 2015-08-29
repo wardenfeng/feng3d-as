@@ -27,6 +27,8 @@ package me.feng3d.parsers
 		protected static const PARSING_DONE:Boolean = true;
 		protected static const MORE_TO_PARSE:Boolean = false;
 
+		arcane var _fileName:String;
+
 		protected var _dataFormat:String;
 		protected var _data:*;
 		protected var _frameLimit:Number;
@@ -247,6 +249,14 @@ package me.feng3d.parsers
 		}
 
 		/**
+		 * A list of dependencies that need to be loaded and resolved for the object being parsed.
+		 */
+		public function get dependencies():Vector.<ResourceDependency>
+		{
+			return _dependencies;
+		}
+
+		/**
 		 * 是否还有时间
 		 */
 		protected function hasTime():Boolean
@@ -282,10 +292,10 @@ package me.feng3d.parsers
 		 */
 		protected function pauseAndRetrieveDependencies():void
 		{
-			if (_timer)
-				_timer.stop();
-			_parsingPaused = true;
-			dispatchEvent(new ParserEvent(ParserEvent.READY_FOR_DEPENDENCIES));
+//			if (_timer)
+//				_timer.stop();
+//			_parsingPaused = true;
+//			dispatchEvent(new ParserEvent(ParserEvent.READY_FOR_DEPENDENCIES));
 		}
 
 		/**

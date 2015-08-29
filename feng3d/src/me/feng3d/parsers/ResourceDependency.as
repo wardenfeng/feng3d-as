@@ -1,7 +1,7 @@
 ﻿package me.feng3d.parsers
 {
 	import flash.net.URLRequest;
-	
+
 	import me.feng3d.arcane;
 	import me.feng3d.library.assets.IAsset;
 
@@ -32,7 +32,7 @@
 		 * @param parentParser 被依赖的解析者
 		 * @param retrieveAsRawData
 		 * @param suppressAssetEvents
-		 */		
+		 */
 		public function ResourceDependency(id:String, req:URLRequest, data:*, parentParser:ParserBase, retrieveAsRawData:Boolean = false, suppressAssetEvents:Boolean = false)
 		{
 			_id = id;

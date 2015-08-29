@@ -51,6 +51,9 @@ package
 
 	import away3d.debug.AwayStats;
 
+	import br.com.stimuli.loading.BulkLoader;
+
+	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
 	import me.feng3d.debug.Debug;
@@ -58,34 +61,27 @@ package
 	import me.feng3d.events.AssetEvent;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.lights.DirectionalLight;
-	import me.feng3d.loaders.Loader3D;
-	import me.feng3d.loaders.misc.AssetLoaderContext;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.lightpickers.StaticLightPicker;
 	import me.feng3d.materials.methods.FilteredShadowMapMethod;
-	import me.feng3d.parsers.Parsers;
+	import me.feng3d.parsers.Max3DSParser;
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "30", quality = "LOW")]
-
 	public class Basic_Load3DS extends TestBase
 	{
 		//signature swf
-		[Embed(source = "/../embeds/signature.swf", symbol = "Signature")]
-		public static var SignatureSwf:Class;
+		public static var SignatureSwf:String = "embeds/signature.swf";
 
 		//solider ant texture
-		[Embed(source = "/../embeds/soldier_ant.jpg")]
-		public static var AntTexture:Class;
+		public static var AntTexture:String = "embeds/soldier_ant.jpg";
 
 		//solider ant model
-		[Embed(source = "/../embeds/soldier_ant.3ds", mimeType = "application/octet-stream")]
-		public static var AntModel:Class;
+		public static var AntModel:String = "embeds/soldier_ant.3ds";
 
 		//ground texture
-		[Embed(source = "/../embeds/CoarseRedSand.jpg")]
-		public static var SandTexture:Class;
+		public static var SandTexture:String = "embeds/CoarseRedSand.jpg";
 
 		//engine variables
 		private var _view:View3D;
@@ -104,7 +100,7 @@ package
 		private var _groundMaterial:TextureMaterial;
 
 		//scene objects
-		private var _loader:Loader3D;
+		private var _loader:ObjectContainer3D;
 		private var _ground:Mesh;
 
 		//navigation variables
@@ -119,6 +115,7 @@ package
 		 */
 		public function Basic_Load3DS()
 		{
+			resourceList = [SignatureSwf, AntTexture, {url: AntModel, type: BulkLoader.TYPE_BINARY}, SandTexture];
 			super();
 			Debug.agalDebug = true;
 		}
@@ -148,15 +145,8 @@ package
 			_lightPicker = new StaticLightPicker([_light]);
 			_view.scene.addChild(_light);
 
-			//setup parser to be used on Loader3D
-			Parsers.enableAllBundled();
-
-			//setup the url map for textures in the 3ds file
-			var assetLoaderContext:AssetLoaderContext = new AssetLoaderContext();
-			assetLoaderContext.mapUrlToData("texture.jpg", new AntTexture());
-
 			//setup materials
-			_groundMaterial = new TextureMaterial(Cast.bitmapTexture(SandTexture));
+			_groundMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[SandTexture]));
 			_groundMaterial.shadowMethod = new FilteredShadowMapMethod(_light);
 			_groundMaterial.lightPicker = _lightPicker;
 			_groundMaterial.specular = 0;
@@ -164,16 +154,18 @@ package
 			_view.scene.addChild(_ground);
 
 			//setup the scene
-			_loader = new Loader3D();
+			_loader = new ObjectContainer3D();
 			_loader.scale(300);
 			_loader.z = -200;
-			_loader.addEventListener(AssetEvent.ASSET_COMPLETE, onAssetComplete);
-			_loader.loadData(new AntModel(), assetLoaderContext);
 			_view.scene.addChild(_loader);
 
+			//parse hellknight mesh
+			var parser:Max3DSParser = new Max3DSParser();
+			parser.addEventListener(AssetEvent.ASSET_COMPLETE, onAssetComplete);
+			parser.parseAsync(resourceDic[AntModel]);
 
 			//add signature
-			_signature = new SignatureSwf();
+			_signature = resourceDic[SignatureSwf];
 			_signatureBitmap = new Bitmap(new BitmapData(_signature.width, _signature.height, true, 0));
 			stage.quality = StageQuality.HIGH;
 			_signatureBitmap.bitmapData.draw(_signature);
@@ -218,6 +210,8 @@ package
 			{
 				var mesh:Mesh = event.asset as Mesh;
 				mesh.castsShadows = true;
+				mesh.material = new TextureMaterial(Cast.bitmapTexture(resourceDic[AntTexture]));
+				_loader.addChild(mesh);
 			}
 			else if (event.asset.assetType == AssetType.MATERIAL)
 			{

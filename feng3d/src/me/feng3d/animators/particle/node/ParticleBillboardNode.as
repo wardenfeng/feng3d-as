@@ -11,7 +11,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.core.math.Matrix3DUtils;
-	
+
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -109,7 +109,7 @@ package me.feng3d.animators.particle.node
 		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
 		{
 			shaderParam.changePosition++;
-			shaderParam[animationName] = true;
+			shaderParam[name] = true;
 		}
 	}
 }

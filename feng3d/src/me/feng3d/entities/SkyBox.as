@@ -2,6 +2,8 @@ package me.feng3d.entities
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.core.partition.node.EntityNode;
+	import me.feng3d.core.partition.node.SkyBoxNode;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.SkyBoxMaterial;
 	import me.feng3d.textures.CubeTextureProxyBase;
@@ -21,12 +23,11 @@ package me.feng3d.entities
 		public function SkyBox(cubeMap:CubeTextureProxyBase)
 		{
 			super();
-
 			material = new SkyBoxMaterial(cubeMap);
 
 			subGeometry = new SubGeometry();
 			geometry.addSubGeometry(subGeometry);
-			
+
 			buildGeometry();
 		}
 
@@ -54,8 +55,32 @@ package me.feng3d.entities
 				4, 0, 3, 3, 7, 4, //
 				2, 1, 5, 5, 6, 2 //
 				];
-			
+
 			subGeometry.updateIndexData(indexData);
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function createEntityPartitionNode():EntityNode
+		{
+			return new SkyBoxNode(this);
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function updateBounds():void
+		{
+			_boundsInvalid = false;
+		}
+
+		/**
+		 * 天空盒不会投射阴影，始终为false
+		 */
+		override public function get castsShadows():Boolean
+		{
+			return false;
 		}
 
 		public override function get assetType():String

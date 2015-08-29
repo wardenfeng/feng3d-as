@@ -5,10 +5,12 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.OCBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
+	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.fagal.fragment.shadowMap.F_Main_DepthMap;
 	import me.feng3d.fagal.vertex.shadowMap.V_Main_DepthMap;
 	import me.feng3d.fagalRE.FagalRE;
@@ -61,6 +63,7 @@ package me.feng3d.passes
 		public function set depthMap(value:TextureProxyBase):void
 		{
 			_depthMap = value;
+			markBufferDirty(_.depthMap_oc);
 		}
 
 		/**
@@ -114,7 +117,20 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		arcane override function render(renderable:IRenderable, camera:Camera3D):void
+		override arcane function activate(camera:Camera3D, target:TextureProxyBase = null):void
+		{
+			//初始化渲染参数
+			shaderParams.initParams();
+
+			super.activate(camera, target);
+
+			_depthMap = target;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		arcane override function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
 		{
 			//场景变换矩阵（物体坐标-->世界坐标）
 			var sceneTransform:Matrix3D = renderable.sourceEntity.sceneTransform;
@@ -125,6 +141,8 @@ package me.feng3d.passes
 			modelViewProjection.identity();
 			modelViewProjection.append(sceneTransform);
 			modelViewProjection.append(projectionmatrix);
+
+			super.render(renderable, stage3DProxy, camera)
 		}
 
 		/**

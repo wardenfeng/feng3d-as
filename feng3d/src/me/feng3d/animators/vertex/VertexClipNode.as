@@ -1,26 +1,27 @@
 package me.feng3d.animators.vertex
 {
 	import flash.geom.Vector3D;
-	
+
+	import me.feng3d.animators.base.node.AnimationClipNodeBase;
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.animators.base.node.AnimationClipNode;
 
 	/**
 	 * 顶点动画剪辑节点
 	 * @author warden_feng 2014-5-30
 	 */
-	public class VertexClipNode extends AnimationClipNode
+	public class VertexClipNode extends AnimationClipNodeBase
 	{
 		private var _frames:Vector.<Geometry> = new Vector.<Geometry>();
 		private var _translations:Vector.<Vector3D> = new Vector.<Vector3D>();
 
 		/**
 		 * 创建一个顶点动画剪辑节点
-		 */		
+		 */
 		public function VertexClipNode()
 		{
+			_stateClass = VertexClipState;
 		}
-		
+
 		public function get frames():Vector.<Geometry>
 		{
 			return _frames;
@@ -31,7 +32,7 @@ package me.feng3d.animators.vertex
 		 * @param geometry 几何体
 		 * @param duration 持续时间
 		 * @param translation 偏移量
-		 */		
+		 */
 		public function addFrame(geometry:Geometry, duration:uint, translation:Vector3D = null):void
 		{
 			_frames.push(geometry);

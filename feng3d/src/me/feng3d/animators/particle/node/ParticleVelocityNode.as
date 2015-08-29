@@ -6,7 +6,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	
+
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -96,7 +96,7 @@ package me.feng3d.animators.particle.node
 		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
 		{
 			shaderParam.changePosition++;
-			shaderParam[animationName] = true;
+			shaderParam[name] = true;
 		}
 	}
 }

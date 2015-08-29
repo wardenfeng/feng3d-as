@@ -5,7 +5,6 @@ package me.feng3d.fagalRE
 	import me.feng.utils.ClassUtils;
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.buffer.Context3DCache;
-	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.ShaderRegisterCache;
 	import me.feng3d.fagal.methods.FagalMethod;
 
@@ -105,13 +104,9 @@ package me.feng3d.fagalRE
 			var shaderResult:FagalShaderResult = new FagalShaderResult();
 
 			//运行顶点渲染函数
-			var vertexObj:Object = run(vertexShader);
-			shaderResult.vertexFCode = vertexObj.fagal;
-			shaderResult.vertexCode = vertexObj.agal;
+			shaderResult.vertexCallLog = run(vertexShader);
 			//运行片段渲染函数
-			var fragmentObj:Object = run(fragmentShader);
-			shaderResult.fragmentFCode = fragmentObj.fagal;
-			shaderResult.fragmentCode = fragmentObj.agal;
+			shaderResult.fragmentCallLog = run(fragmentShader);
 
 			shaderResult.print();
 
@@ -122,7 +117,7 @@ package me.feng3d.fagalRE
 		 * 运行Fagal函数
 		 * @param agalMethod Fagal函数
 		 */
-		public function run(agalMethod:*):Object
+		public function run(agalMethod:*):Vector.<FagalItem>
 		{
 			//Fagal函数类实例
 			var agalMethodInstance:FagalMethod = ClassUtils.getInstance(agalMethod);
@@ -130,15 +125,9 @@ package me.feng3d.fagalRE
 			_shaderType = agalMethodInstance.shaderType;
 
 			//运行Fagal函数
-			var callLog:FagalCallLog = space.run(agalMethodInstance.runFunc);
+			var callLog:Vector.<FagalItem> = space.run(agalMethodInstance.runFunc);
 
-			var agalCode1:String = callLog.doCallLog(Register.NAME);
-
-			callLog.requestRegisterValue();
-
-			var agalCode2:String = callLog.doCallLog(Register.VALUE);
-
-			return {fagal: agalCode1, agal: agalCode2};
+			return callLog;
 		}
 
 		/**

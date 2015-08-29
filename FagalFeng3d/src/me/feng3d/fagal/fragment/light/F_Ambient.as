@@ -11,6 +11,6 @@ package me.feng3d.fagal.fragment.light
 	{
 		var _:* = FagalRE.instance.space;
 
-		_.mov(_.ambient_ft, _.ambientInput_fc_vector);
+		_.mov(_.finalColor_ft_4, _.ambientInput_fc_vector);
 	}
 }

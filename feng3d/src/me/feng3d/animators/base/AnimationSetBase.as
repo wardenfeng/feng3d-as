@@ -52,14 +52,14 @@ package me.feng3d.animators.base
 		 */
 		public function addAnimation(node:AnimationNodeBase):void
 		{
-			if (_animationDictionary[node.animationName])
-				throw new AnimationSetError("root node animationName '" + node.animationName + "' already exists in the set");
+			if (_animationDictionary[node.name])
+				throw new AnimationSetError("root node animationName '" + node.name + "' already exists in the set");
 
-			_animationDictionary[node.animationName] = node;
+			_animationDictionary[node.name] = node;
 
 			_animations.push(node);
 
-			_animationNames.push(node.animationName);
+			_animationNames.push(node.name);
 		}
 
 		/**
@@ -104,7 +104,7 @@ package me.feng3d.animators.base
 		 * @param pass			渲染通道
 		 * @throws	me.feng.error.AbstractMethodError
 		 */
-		arcane function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
+		public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			throw new AbstractMethodError();
 		}

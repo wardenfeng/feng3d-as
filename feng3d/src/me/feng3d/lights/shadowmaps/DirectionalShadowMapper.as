@@ -77,6 +77,37 @@ package me.feng3d.lights.shadowmaps
 			renderer.render(stage3DProxy, _casterCollector, target);
 		}
 
+		protected function updateCullPlanes(viewCamera:Camera3D):void
+		{
+			var lightFrustumPlanes:Vector.<Plane3D> = _overallDepthCamera.frustumPlanes;
+			var viewFrustumPlanes:Vector.<Plane3D> = viewCamera.frustumPlanes;
+			_cullPlanes.length = 4;
+
+			_cullPlanes[0] = lightFrustumPlanes[0];
+			_cullPlanes[1] = lightFrustumPlanes[1];
+			_cullPlanes[2] = lightFrustumPlanes[2];
+			_cullPlanes[3] = lightFrustumPlanes[3];
+
+			var dir:Vector3D = DirectionalLight(_light).sceneDirection;
+			var dirX:Number = dir.x;
+			var dirY:Number = dir.y;
+			var dirZ:Number = dir.z;
+			var j:int = 4;
+			for (var i:int = 0; i < 6; ++i)
+			{
+				var plane:Plane3D = viewFrustumPlanes[i];
+				if (plane.a * dirX + plane.b * dirY + plane.c * dirZ < 0)
+					_cullPlanes[j++] = plane;
+			}
+		}
+
+		override protected function updateDepthProjection(viewCamera:Camera3D):void
+		{
+			updateProjectionFromFrustumCorners(viewCamera, viewCamera.lens.frustumCorners, _matrix);
+			_overallDepthLens.matrix = _matrix;
+			updateCullPlanes(viewCamera);
+		}
+
 		/**
 		 * 更新投影矩阵
 		 * @param viewCamera		摄像机

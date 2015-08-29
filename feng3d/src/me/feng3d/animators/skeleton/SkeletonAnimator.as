@@ -5,8 +5,8 @@ package me.feng3d.animators.skeleton
 
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimator;
-	import me.feng3d.animators.base.AnimationSetBase;
-	import me.feng3d.animators.base.MultiClipAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
+	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.animators.skeleton.data.JointPose;
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.skeleton.data.SkeletonJoint;
@@ -17,8 +17,7 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.math.Quaternion;
-	
-	
+	import me.feng3d.events.AnimationStateEvent;
 
 	use namespace arcane;
 
@@ -26,7 +25,7 @@ package me.feng3d.animators.skeleton
 	 * 骨骼动画
 	 * @author warden_feng 2014-5-27
 	 */
-	public class SkeletonAnimator extends MultiClipAnimator implements IAnimator
+	public class SkeletonAnimator extends AnimatorBase implements IAnimator
 	{
 		private const _globalMatrices:Vector.<Number> = new Vector.<Number>();
 		private var _globalPose:SkeletonPose = new SkeletonPose();
@@ -37,16 +36,42 @@ package me.feng3d.animators.skeleton
 		private var _skeleton:Skeleton;
 		private var _forceCPU:Boolean;
 		private var _jointsPerVertex:uint;
+		private var _activeSkeletonState:ISkeletonAnimationState;
 
-		private var _skeletonAnimationSet:SkeletonAnimationSet;
+		/**
+		 * returns the calculated global matrices of the current skeleton pose.
+		 *
+		 * @see #globalPose
+		 */
+		public function get globalMatrices():Vector.<Number>
+		{
+			if (_globalPropertiesDirty)
+				updateGlobalProperties();
 
-		/** 骨骼根节点位置 */
-		private var _rootPos:Vector3D = new Vector3D();
-		/** 显示关节姿势 */
-		private var _skeletonPose:SkeletonPose = new SkeletonPose();
-		private var _showSkeletonPoseDirty:Boolean = true;
+			return _globalMatrices;
+		}
 
-		private var _activeSkeletonClipNode:SkeletonClipNode;
+		/**
+		 * returns the current skeleton pose output from the animator.
+		 *
+		 * @see away3d.animators.data.SkeletonPose
+		 */
+		public function get globalPose():SkeletonPose
+		{
+			if (_globalPropertiesDirty)
+				updateGlobalProperties();
+
+			return _globalPose;
+		}
+
+		/**
+		 * Returns the skeleton object in use by the animator - this defines the number and heirarchy of joints used by the
+		 * skinned geoemtry to which skeleon animator is applied.
+		 */
+		public function get skeleton():Skeleton
+		{
+			return _skeleton;
+		}
 
 		/**
 		 * 是否强行使用cpu
@@ -54,11 +79,6 @@ package me.feng3d.animators.skeleton
 		public function get forceCPU():Boolean
 		{
 			return _forceCPU;
-		}
-
-		public function get animationSet():AnimationSetBase
-		{
-			return _skeletonAnimationSet;
 		}
 
 		/**
@@ -69,19 +89,17 @@ package me.feng3d.animators.skeleton
 		 */
 		public function SkeletonAnimator(animationSet:SkeletonAnimationSet, skeleton:Skeleton, forceCPU:Boolean = false)
 		{
-			_skeletonAnimationSet = animationSet;
+			super(animationSet);
 
 			_skeleton = skeleton;
 			_forceCPU = forceCPU;
-			_jointsPerVertex = _skeletonAnimationSet.jointsPerVertex;
+			_jointsPerVertex = animationSet.jointsPerVertex;
 
-			if (forceCPU)
-			{
-				_skeletonAnimationSet.cancelGPUCompatibility();
-			}
+			if (_forceCPU || _jointsPerVertex > 4)
+				_animationSet.cancelGPUCompatibility();
 
+			animationSet.numJoints = _skeleton.numJoints;
 			_numJoints = _skeleton.numJoints;
-			_skeletonAnimationSet.numJoints = _skeleton.numJoints;
 
 			_globalMatrices.length = _numJoints * 12;
 			_globalMatrices.fixed = true;
@@ -121,27 +139,41 @@ package me.feng3d.animators.skeleton
 		 * @param name 动作名称
 		 * @param offset 偏移量
 		 */
-		public function play(animationName:String, offset:Number = NaN):void
+		public function play(name:String, transition:IAnimationTransition = null, offset:Number = NaN):void
 		{
-			if (_activeAnimationName != animationName)
+			if (_activeAnimationName != name)
 			{
-				_activeAnimationName = animationName;
+				_activeAnimationName = name;
 
-				if (!_skeletonAnimationSet.hasAnimation(animationName))
-					throw new Error("Animation root node " + animationName + " not found!");
+				if (!_animationSet.hasAnimation(name))
+					throw new Error("Animation root node " + name + " not found!");
 
-				//获取活动的骨骼状态
-				_activeSkeletonClipNode = _skeletonAnimationSet.getAnimation(animationName) as SkeletonClipNode;
+				if (transition && _activeNode)
+				{
+					//setup the transition
+					_activeNode = transition.getAnimationNode(this, _activeNode, _animationSet.getAnimation(name), _absoluteTime);
+					_activeNode.addEventListener(AnimationStateEvent.TRANSITION_COMPLETE, onTransitionComplete);
+				}
+				else
+					_activeNode = _animationSet.getAnimation(name);
 
-				_numFrames = _activeSkeletonClipNode.frames.length;
-				cycle = _activeSkeletonClipNode.totalDuration;
+				_activeState = getAnimationState(_activeNode);
+
+				if (updatePosition)
+				{
+					//update straight away to reset position deltas
+					_activeState.update(_absoluteTime);
+					_activeState.positionDelta;
+				}
+
+				_activeSkeletonState = _activeState as ISkeletonAnimationState;
 			}
 
 			start();
 
 			//使用时间偏移量处理特殊情况
 			if (!isNaN(offset))
-				reset(animationName, offset);
+				reset(name, offset);
 		}
 
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
@@ -152,7 +184,7 @@ package me.feng3d.animators.skeleton
 
 			var skinnedGeom:SkinnedSubGeometry = SkinnedSubGeometry(SubMesh(renderable).subGeometry);
 
-			if (_skeletonAnimationSet.usesCPU)
+			if (_animationSet.usesCPU)
 			{
 				var subGeomAnimState:SubGeomAnimationState = _animationStates[skinnedGeom] ||= new SubGeomAnimationState(skinnedGeom);
 
@@ -167,31 +199,20 @@ package me.feng3d.animators.skeleton
 			}
 		}
 
-		override protected function update():void
+		/**
+		 * Applies the calculated time delta to the active animation state node or state transition object.
+		 */
+		override protected function updateDeltaTime(dt:Number):void
 		{
-			super.update();
-
-			_showSkeletonPoseDirty = true;
+			super.updateDeltaTime(dt);
 
 			markBufferDirty(_.globalmatrices_vc_vector);
 
+			//invalidate pose matrices
 			_globalPropertiesDirty = true;
 
 			for (var key:Object in _animationStates)
 				SubGeomAnimationState(_animationStates[key]).dirty = true;
-		}
-
-		/**
-		 * 获取骨骼姿势
-		 * @param skeleton 骨骼
-		 * @return 骨骼姿势
-		 */
-		public function getSkeletonPose(skeleton:Skeleton):SkeletonPose
-		{
-			if (_showSkeletonPoseDirty)
-				updateSkeletonPose(skeleton);
-
-			return _skeletonPose;
 		}
 
 		/**
@@ -202,7 +223,7 @@ package me.feng3d.animators.skeleton
 			_globalPropertiesDirty = false;
 
 			//获取全局骨骼姿势
-			localToGlobalPose(getSkeletonPose(_skeleton), _globalPose, _skeleton);
+			localToGlobalPose(_activeSkeletonState.getSkeletonPose(_skeleton), _globalPose, _skeleton);
 
 			//姿势变换矩阵
 			//矩阵偏移量
@@ -483,103 +504,20 @@ package me.feng3d.animators.skeleton
 			}
 		}
 
-		/**
-		 * 更新骨骼姿势
-		 * @param skeleton 骨骼
-		 */
-		private function updateSkeletonPose(skeleton:Skeleton):void
+		private function onTransitionComplete(event:AnimationStateEvent):void
 		{
-			_showSkeletonPoseDirty = false;
-
-			if (!_activeSkeletonClipNode.totalDuration)
-				return;
-
-			if (_framesDirty)
-				updateFrames();
-
-			var currentPose:Vector.<JointPose> = _activeSkeletonClipNode.frames[currentFrame].jointPoses;
-			var nextPose:Vector.<JointPose> = _activeSkeletonClipNode.frames[nextFrame].jointPoses;
-			var numJoints:uint = skeleton.numJoints;
-			var p1:Vector3D, p2:Vector3D;
-			var pose1:JointPose, pose2:JointPose;
-			var showPoses:Vector.<JointPose> = _skeletonPose.jointPoses;
-			var showPose:JointPose;
-			var tr:Vector3D;
-
-			//调整当前显示关节姿势数量
-			if (showPoses.length != numJoints)
-				showPoses.length = numJoints;
-
-			if ((numJoints != currentPose.length) || (numJoints != nextPose.length))
-				throw new Error("joint counts don't match!");
-
-			for (var i:uint = 0; i < numJoints; ++i)
+			if (event.type == AnimationStateEvent.TRANSITION_COMPLETE)
 			{
-				showPose = showPoses[i] ||= new JointPose();
-				pose1 = currentPose[i];
-				pose2 = nextPose[i];
-				p1 = pose1.translation;
-				p2 = pose2.translation;
-
-				//根据前后两个关节姿势计算出当前显示关节姿势
-				showPose.orientation.lerp(pose1.orientation, pose2.orientation, _blendWeight);
-
-				//计算显示的关节位置
-				if (i > 0)
+				event.animationNode.removeEventListener(AnimationStateEvent.TRANSITION_COMPLETE, onTransitionComplete);
+				//if this is the current active state transition, revert control to the active node
+				if (_activeState == event.animationState)
 				{
-					tr = showPose.translation;
-					tr.x = p1.x + _blendWeight * (p2.x - p1.x);
-					tr.y = p1.y + _blendWeight * (p2.y - p1.y);
-					tr.z = p1.z + _blendWeight * (p2.z - p1.z);
+					_activeNode = _animationSet.getAnimation(_activeAnimationName);
+					_activeState = getAnimationState(_activeNode);
+					_activeSkeletonState = _activeState as ISkeletonAnimationState;
 				}
 			}
 		}
-
-//		protected function updatePositionDelta():void
-//		{
-//			_positionDeltaDirty = false;
-//			
-//			if (_framesDirty)
-//				updateFrames();
-//			
-//			var p1:Vector3D, p2:Vector3D, p3:Vector3D;
-//			var totalDelta:Vector3D = _skeletonClipNode.totalDelta;
-//			
-//			//跳过最后，重置位置
-//			if ((_timeDir > 0 && _nextFrame < _oldFrame) || (_timeDir < 0 && _nextFrame > _oldFrame)) {
-//				_rootPos.x -= totalDelta.x*_timeDir;
-//				_rootPos.y -= totalDelta.y*_timeDir;
-//				_rootPos.z -= totalDelta.z*_timeDir;
-//			}
-//			
-//			/** 保存骨骼根节点原位置 */
-//			var oldRootPos:Vector3D = _rootPos.clone();
-//			
-//			//计算骨骼根节点位置
-//			if (_skeletonClipNode.stitchFinalFrame && _nextFrame == _skeletonClipNode.lastFrame) {
-//				p1 = _frames[0].jointPoses[0].translation;
-//				p2 = _frames[1].jointPoses[0].translation;
-//				p3 = _currentPose.jointPoses[0].translation;
-//				
-//				_rootPos.x = p3.x + p1.x + _blendWeight*(p2.x - p1.x);
-//				_rootPos.y = p3.y + p1.y + _blendWeight*(p2.y - p1.y);
-//				_rootPos.z = p3.z + p1.z + _blendWeight*(p2.z - p1.z);
-//			} else {
-//				p1 = _currentPose.jointPoses[0].translation;
-//				p2 = _frames[_nextFrame].jointPoses[0].translation; //cover the instances where we wrap the pose but still want the final frame translation values
-//				_rootPos.x = p1.x + _blendWeight*(p2.x - p1.x);
-//				_rootPos.y = p1.y + _blendWeight*(p2.y - p1.y);
-//				_rootPos.z = p1.z + _blendWeight*(p2.z - p1.z);
-//			}
-//			
-//			//计算骨骼根节点偏移量
-//			_rootDelta.x = _rootPos.x - oldRootPos.x;
-//			_rootDelta.y = _rootPos.y - oldRootPos.y;
-//			_rootDelta.z = _rootPos.z - oldRootPos.z;
-//			
-//			//保存旧帧编号
-//			_oldFrame = _nextFrame;
-//		}
 
 	}
 }

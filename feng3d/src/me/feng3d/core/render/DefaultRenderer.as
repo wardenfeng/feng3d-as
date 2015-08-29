@@ -6,7 +6,7 @@ package me.feng3d.core.render
 
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.core.buffer.Context3DCache;
+	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.data.RenderableListItem;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.core.traverse.EntityCollector;
@@ -30,6 +30,7 @@ package me.feng3d.core.render
 		private var _activeMaterial:MaterialBase;
 
 		private var _depthRenderer:DepthRenderer;
+		private var _planarShadowRenderer:PlanarShadowRenderer;
 
 		/**
 		 * 创建一个默认渲染器
@@ -38,15 +39,26 @@ package me.feng3d.core.render
 		{
 			super();
 			_depthRenderer = new DepthRenderer();
+			_planarShadowRenderer = new PlanarShadowRenderer();
 		}
+		public static var usePlanarShadow:Boolean;
 
 		/**
 		 * @inheritDoc
 		 */
 		protected override function executeRender(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector, target:TextureProxyBase = null):void
 		{
-			updateLights(stage3DProxy, entityCollector);
+			if (!usePlanarShadow)
+			{
+				updateLights(stage3DProxy, entityCollector);
+			}
+
 			super.executeRender(stage3DProxy, entityCollector, target);
+
+			if (usePlanarShadow)
+			{
+				_planarShadowRenderer.render(stage3DProxy, entityCollector, target);
+			}
 		}
 
 		/**
@@ -57,6 +69,16 @@ package me.feng3d.core.render
 			var _context:Context3D = stage3DProxy.context3D;
 
 			_context.setBlendFactors(Context3DBlendFactor.ONE, Context3DBlendFactor.ZERO);
+
+			if (entityCollector.skyBox)
+			{
+				if (_activeMaterial)
+					_activeMaterial.deactivate();
+				_activeMaterial = null;
+
+				_context.setDepthTest(false, Context3DCompareMode.ALWAYS);
+				drawSkyBox(stage3DProxy, entityCollector);
+			}
 
 			_context.setDepthTest(true, Context3DCompareMode.LESS_EQUAL);
 
@@ -69,6 +91,27 @@ package me.feng3d.core.render
 				_activeMaterial.deactivate();
 
 			_activeMaterial = null;
+		}
+
+		/**
+		 * Draw the skybox if present.
+		 * @param entityCollector The EntityCollector containing all potentially visible information.
+		 */
+		private function drawSkyBox(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector):void
+		{
+			var renderable:IRenderable = entityCollector.skyBox.subMeshes[0];
+			var camera:Camera3D = entityCollector.camera;
+
+			var material:MaterialBase = renderable.material;
+
+			material.updateMaterial();
+			var pass:MaterialPassBase = material.getPass(0);
+			//初始化渲染参数
+			pass.shaderParams.initParams();
+			//激活渲染通道
+			pass.activate(camera);
+			pass.render(renderable, stage3DProxy, camera);
+			pass.deactivate();
 		}
 
 		/**
@@ -104,20 +147,7 @@ package me.feng3d.core.render
 
 					do
 					{
-						var context3dCache:Context3DCache = item2.renderable.context3dCache;
-
-						context3dCache.addChildBufferOwner(pass);
-
-						//设置渲染参数
-						context3dCache.shaderParams = pass.shaderParams;
-
-						//渲染通道
-						_activeMaterial.renderPass(j, item2.renderable, entityCollector.camera);
-
-						//绘制图形
-						context3dCache.render(stage3DProxy.context3D);
-
-						context3dCache.removeChildBufferOwner(pass);
+						pass.render(item2.renderable, stage3DProxy, camera);
 
 						item2 = item2.next;
 					} while (item2 && item2.renderable.material == _activeMaterial);
@@ -150,6 +180,5 @@ package me.feng3d.core.render
 					shadowMapper.renderDepthMap(stage3DProxy, entityCollector, _depthRenderer);
 			}
 		}
-
 	}
 }

@@ -2,7 +2,6 @@ package me.feng3d.fagalRE
 {
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
-	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
 	import me.feng3d.core.register.Register;
@@ -16,7 +15,7 @@ package me.feng3d.fagalRE
 	 */
 	public dynamic class FagalRESpace extends Proxy
 	{
-		private var callLog:FagalCallLog;
+		private var callLog:Vector.<FagalItem>;
 
 		private var _math:FagalMath;
 
@@ -74,7 +73,7 @@ package me.feng3d.fagalRE
 			var func:Function = math[funcName];
 			assert(func != null, "在Fagal中尝试调用" + getQualifiedClassName(math) + "中不存在的函数");
 
-			callLog.add(funcName, parameters)
+			callLog.push(new FagalItem(funcName, parameters));
 		}
 
 		/**
@@ -82,9 +81,9 @@ package me.feng3d.fagalRE
 		 * @param fagalMethod
 		 * @return
 		 */
-		public function run(fagalMethod:Function):FagalCallLog
+		public function run(fagalMethod:Function):Vector.<FagalItem>
 		{
-			callLog = new FagalCallLog();
+			callLog = new Vector.<FagalItem>();
 
 			fagalMethod();
 

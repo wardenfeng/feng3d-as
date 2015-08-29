@@ -7,6 +7,7 @@ package me.feng3d.materials
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
+	import me.feng3d.materials.methods.EffectMethodBase;
 	import me.feng3d.materials.methods.ShadowMapMethodBase;
 	import me.feng3d.passes.SuperShaderPass;
 	import me.feng3d.textures.Texture2DBase;
@@ -99,6 +100,22 @@ package me.feng3d.materials
 		public function set ambient(value:Number):void
 		{
 			_screenPass.ambientMethod.ambient = value;
+		}
+
+		/**
+		 * Indicates whether or not the material has transparency. If binary transparency is sufficient, for
+		 * example when using textures of foliage, consider using alphaThreshold instead.
+		 */
+		public function get alphaBlending():Boolean
+		{
+			return _alphaBlending;
+		}
+
+		public function set alphaBlending(value:Boolean):void
+		{
+			_alphaBlending = value;
+			_screenPass.setBlendMode(blendMode == BlendMode.NORMAL && requiresBlending ? BlendMode.LAYER : blendMode);
+//			_screenPass.preserveAlpha = requiresBlending;
 		}
 
 		/**
@@ -203,6 +220,16 @@ package me.feng3d.materials
 		{
 			super.lightPicker = value;
 			_screenPass.lightPicker = value;
+		}
+
+		/**
+		 * Appends an "effect" shading method to the shader. Effect methods are those that do not influence the lighting
+		 * but modulate the shaded colour, used for fog, outlines, etc. The method will be applied to the result of the
+		 * methods added prior.
+		 */
+		public function addMethod(method:EffectMethodBase):void
+		{
+			_screenPass.addMethod(method);
 		}
 	}
 }

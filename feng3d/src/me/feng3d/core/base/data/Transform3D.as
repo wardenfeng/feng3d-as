@@ -230,10 +230,9 @@ package me.feng3d.core.base.data
 		 */
 		public function translateLocal(axis:Vector3D, distance:Number):void
 		{
-			var x:Number = axis.x, y:Number = axis.y, z:Number = axis.z;
-			var len:Number = distance / Math.sqrt(x * x + y * y + z * z);
+			var len:Number = distance / axis.length;
 
-			transform.prependTranslation(x * len, y * len, z * len);
+			transform.prependTranslation(axis.x * len, axis.y * len, axis.z * len);
 
 			_transform.copyColumnTo(3, _pos);
 
@@ -343,7 +342,7 @@ package me.feng3d.core.base.data
 			}
 
 			//物体与目标点在相同位置时，稍作偏移
-			if(new Vector3D(_x,_y,_z).subtract(target).length == 0)
+			if (new Vector3D(_x, _y, _z).subtract(target).length == 0)
 			{
 				_z = target.z + 0.1;
 			}
@@ -412,7 +411,7 @@ package me.feng3d.core.base.data
 
 		/**
 		 * 被观察的对象
-		 */		
+		 */
 		public function get lookTarget():Vector3D
 		{
 			return _lookTarget;

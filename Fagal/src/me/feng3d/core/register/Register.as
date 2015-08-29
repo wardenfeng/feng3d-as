@@ -43,6 +43,18 @@ package me.feng3d.core.register
 		/** 描述 */
 		public var description:String;
 
+		public function get valueString():String
+		{
+			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
+				return _regType + _index;
+			return _regType;
+		}
+
+		public function get nameString():String
+		{
+			return regId;
+		}
+
 		/**
 		 * 寄存器编号
 		 */
@@ -94,11 +106,9 @@ package me.feng3d.core.register
 		public function toString():String
 		{
 			if (Register.TO_STRING == Register.NAME)
-				return "{" + regId + "}";
+				return nameString;
 
-			if (_regType != RegisterType.OP && _regType != RegisterType.OC)
-				return _regType + _index;
-			return _regType;
+			return valueString;
 		}
 
 		/**
@@ -151,9 +161,15 @@ package me.feng3d.core.register
 		 */
 		public function get desc():String
 		{
+			var str:String = regId + ":";
+			if (index != -1)
+			{
+				str += valueString;
+			}
+
 			if (description && description.length > 0)
-				return toString() + "[" + description + "]";
-			return toString();
+				return str += "[" + description + "]";
+			return str;
 		}
 
 		/**

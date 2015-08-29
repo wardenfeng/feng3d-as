@@ -11,6 +11,6 @@ package me.feng3d.fagal.vertex.shadowMap
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
 
-		shaderParams.usePoint ? V_ShadowMapPoint() : V_ShadowMapPlanar();
+		shaderParams.usePoint > 0 ? V_ShadowMapPoint() : V_ShadowMapPlanar();
 	}
 }

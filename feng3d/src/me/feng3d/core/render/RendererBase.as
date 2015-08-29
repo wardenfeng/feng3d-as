@@ -119,9 +119,9 @@ package me.feng3d.core.render
 
 		/**
 		 * 渲染潜在可见几何体到缓冲区或纹理
+		 * @param stage3DProxy			3D舞台代理
 		 * @param entityCollector 		实体收集器
 		 * @param target 				目标纹理，默认为null表示渲染到缓冲区
-		 * @param scissorRect			裁剪矩形
 		 */
 		arcane function render(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector, target:TextureProxyBase = null):void
 		{
@@ -143,8 +143,9 @@ package me.feng3d.core.render
 
 		/**
 		 * 执行渲染
+		 * @param stage3DProxy			3D舞台代理
 		 * @param entityCollector		实体收集器
-		 * @param scissorRect			裁剪矩形
+		 * @param target				渲染目标
 		 */
 		protected function executeRender(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector, target:TextureProxyBase = null):void
 		{
@@ -163,7 +164,9 @@ package me.feng3d.core.render
 
 		/**
 		 * 绘制
+		 * @param stage3DProxy			3D舞台代理
 		 * @param entityCollector		实体收集器
+		 * @param target				渲染目标
 		 */
 		protected function draw(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector, target:TextureProxyBase):void
 		{

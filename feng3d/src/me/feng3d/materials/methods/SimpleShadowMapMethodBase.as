@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	
+
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -149,7 +149,7 @@ package me.feng3d.materials.methods
 		{
 			super.activate(shaderParams);
 
-			shaderParams.usePoint = _usePoint;
+			shaderParams.usePoint += _usePoint;
 
 			if (_usePoint)
 				shadowCommonsData1[0] = -Math.pow(1 / ((_castingLight as PointLight).fallOff * _epsilon), 2);

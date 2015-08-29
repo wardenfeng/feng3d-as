@@ -11,6 +11,6 @@ package me.feng3d.fagal.vertex
 		var _:* = FagalRE.instance.space;
 
 		_.comment("场景坐标转换");
-		_.m44(_.globalPosition_vt_4, _.position_va_3, _.sceneTransform_vc_matrix);
+		_.m44(_.globalPosition_vt_4, _.animatedPosition_vt_4, _.sceneTransform_vc_matrix);
 	}
 }

@@ -2,9 +2,15 @@ package me.feng3d.fagal.vertex.shadowMap
 {
 	import flash.display3D.Context3DProgramType;
 
+	import me.feng3d.animators.AnimationType;
 	import me.feng3d.core.register.Register;
-	
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.vertex.V_BaseAnimation;
+	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
+	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
+	import me.feng3d.fagal.vertex.animation.V_VertexAnimationCPU;
+	import me.feng3d.fagal.vertex.animation.V_VertexAnimationGPU;
+	import me.feng3d.fagal.vertex.particle.V_Particles;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -28,8 +34,11 @@ package me.feng3d.fagal.vertex.shadowMap
 		{
 			var _:* = FagalRE.instance.space;
 
+			buildAnimationAGAL();
+
 			//普通动画
-			_.mov(_.animatedPosition_vt_4, _.position_va_3);
+//			_.mov(_.animatedPosition_vt_4, _.position_va_3);
+
 			var outPosition:Register = _.getFreeTemp("投影后的坐标");
 			//计算投影
 			_.m44(outPosition, _.animatedPosition_vt_4, _.projection_vc_matrix);
@@ -37,6 +46,37 @@ package me.feng3d.fagal.vertex.shadowMap
 			_.mov(_._op, outPosition);
 			//把顶点投影坐标输出到片段着色器
 			_.mov(_.positionProjected_v, outPosition);
+		}
+
+		/**
+		 * 生成动画代码
+		 */
+		protected function buildAnimationAGAL():void
+		{
+			switch (shaderParams.animationType)
+			{
+				case AnimationType.NONE:
+					V_BaseAnimation();
+					break;
+				case AnimationType.VERTEX_CPU:
+					V_VertexAnimationCPU();
+					break;
+				case AnimationType.VERTEX_GPU:
+					V_VertexAnimationGPU();
+					break;
+				case AnimationType.SKELETON_CPU:
+					V_SkeletonAnimationCPU();
+					break;
+				case AnimationType.SKELETON_GPU:
+					V_SkeletonAnimationGPU();
+					break;
+				case AnimationType.PARTICLE:
+					V_Particles();
+					break;
+				default:
+					throw new Error(AnimationType.PARTICLE + "类型动画缺少FAGAL代码");
+					break;
+			}
 		}
 	}
 }

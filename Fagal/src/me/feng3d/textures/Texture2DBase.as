@@ -1,7 +1,7 @@
 package me.feng3d.textures
 {
 	import me.feng3d.fagal.TextureType;
-	
+
 	/**
 	 * 纹理基类
 	 * @author warden_feng 2014-4-15

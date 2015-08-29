@@ -5,6 +5,7 @@ package me.feng3d.core.base
 	import flash.geom.Vector3D;
 
 	import me.feng3d.arcane;
+	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.controllers.ControllerBase;
@@ -383,6 +384,13 @@ package me.feng3d.core.base
 		public function set zOffset(value:int):void
 		{
 			_zOffset = value;
+		}
+
+		override public function translateLocal(axis:Vector3D, distance:Number):void
+		{
+			super.translateLocal(axis, distance);
+
+			notifySceneTransformChange();
 		}
 	}
 }

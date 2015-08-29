@@ -110,8 +110,10 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function render(renderable:IRenderable, camera:Camera3D):void
+		override protected function updateConstantData(renderable:IRenderable, camera:Camera3D):void
 		{
+			super.updateConstantData(renderable, camera);
+
 			//线段厚度
 			constants[0] = _thickness / 512;
 

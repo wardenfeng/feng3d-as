@@ -129,12 +129,22 @@ package me.feng3d.fagal.params
 		/**
 		 * 是否使用点光源
 		 */
-		public var usePoint:Boolean;
+		public var usePoint:int;
 
 		/**
 		 * 是否需要投影顶点坐标数据
 		 */
-		public var needsProjection:Boolean;
+		public var needsProjection:int;
+
+		/**
+		 * 是否渲染雾
+		 */
+		public var useFog:int;
+
+		/**
+		 * 使用近阴影渲染
+		 */
+		public var useNearShadowMap:int;
 
 		/**
 		 * 是否需要阴影寄存器
@@ -222,6 +232,14 @@ package me.feng3d.fagal.params
 
 			//
 			splatNum = 0;
+			splatNum_war3Terrain = 0;
+
+			usingShadowMapMethod = 0;
+			usePoint = 0;
+			needsProjection = 0;
+			useFog = 0;
+			useNearShadowMap = 0;
+			needsShadowRegister = 0;
 		}
 
 		/**

@@ -10,6 +10,7 @@
     <classEntry path="me.feng3d.fagal.vertex.shadowMap.V_ShadowMapPoint"/>
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_ShadowMapSample"/>
     <classEntry path="me.feng3d.configs.Context3DBufferIDConfig"/>
+    <classEntry path="me.feng3d.fagal.fragment.F_Fog"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
