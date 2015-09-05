@@ -73,10 +73,10 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		arcane override function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
+		arcane override function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D, renderIndex:int):void
 		{
 			//场景变换矩阵（物体坐标-->世界坐标）
-			var sceneTransform:Matrix3D = renderable.sourceEntity.sceneTransform;
+			var sceneTransform:Matrix3D = renderable.sourceEntity.getRenderSceneTransform(camera);
 
 			var shadowMatrix3D:Matrix3D = getShadowMatrix3D();
 
@@ -89,7 +89,7 @@ package me.feng3d.passes
 			modelViewProjection.append(shadowMatrix3D);
 			modelViewProjection.append(projectionmatrix);
 
-			super.render(renderable, stage3DProxy, camera)
+			super.render(renderable, stage3DProxy, camera, renderIndex)
 		}
 
 		public static var groundY:Number = 50;

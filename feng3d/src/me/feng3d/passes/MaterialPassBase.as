@@ -9,7 +9,6 @@ package me.feng3d.passes
 	import me.feng.error.AbstractClassError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimationSet;
-	import me.feng3d.animators.base.AnimationSetBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
@@ -214,8 +213,9 @@ package me.feng3d.passes
 		 * @param renderable			渲染对象
 		 * @param stage3DProxy			3D舞台代理
 		 * @param camera				摄像机
+		 * @param renderIndex			渲染编号
 		 */
-		arcane function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
+		arcane function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D, renderIndex:int):void
 		{
 			updateConstantData(renderable, camera);
 
@@ -230,7 +230,7 @@ package me.feng3d.passes
 				updateAnimationState(renderable, camera);
 
 			//绘制图形
-			context3dCache.render(stage3DProxy.context3D);
+			context3dCache.render(stage3DProxy.context3D, renderIndex);
 
 			context3dCache.removeChildBufferOwner(this);
 		}

@@ -43,7 +43,7 @@ package me.feng3d.core.traverse
 				var dy:Number = _entryPoint.y - entityScenePos.y;
 				var dz:Number = _entryPoint.z - entityScenePos.z;
 				item.zIndex = dx * _cameraForward.x + dy * _cameraForward.y + dz * _cameraForward.z;
-				item.renderSceneTransform = renderable.sourceEntity.sceneTransform;
+				item.renderSceneTransform = renderable.sourceEntity.getRenderSceneTransform(_camera);
 				_opaqueRenderableHead = item;
 			}
 		}

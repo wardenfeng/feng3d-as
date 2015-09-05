@@ -62,6 +62,7 @@ package
 	import me.feng3d.animators.skeleton.SkeletonAnimator;
 	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.animators.skeleton.data.Skeleton;
+	import me.feng3d.animators.transitions.CrossfadeTransition;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
@@ -152,7 +153,7 @@ package
 		//animation variables
 		private var animator:SkeletonAnimator;
 		private var animationSet:SkeletonAnimationSet;
-//		private var stateTransition:CrossfadeTransition = new CrossfadeTransition(0.5);
+		private var stateTransition:CrossfadeTransition = new CrossfadeTransition(0.5);
 		private var skeleton:Skeleton;
 		private var isRunning:Boolean;
 		private var isMoving:Boolean;
@@ -376,9 +377,6 @@ package
 			redLight.addChild(new Sprite3D(redLightMaterial, 200, 200));
 			blueLight.addChild(new Sprite3D(blueLightMaterial, 200, 200));
 
-			//AssetLibrary.enableParser(MD5MeshParser);
-			//AssetLibrary.enableParser(MD5AnimParser);
-
 			initMesh();
 
 			//create a snowy ground plane
@@ -506,7 +504,7 @@ package
 
 			onceAnim = null;
 
-			animator.play(currentAnim);
+			animator.play(currentAnim, stateTransition);
 			animator.playbackSpeed = isMoving ? movementDirection * (isRunning ? RUN_SPEED : WALK_SPEED) : IDLE_SPEED;
 		}
 
@@ -514,7 +512,7 @@ package
 		{
 			onceAnim = ANIM_NAMES[val + 2];
 			animator.playbackSpeed = ACTION_SPEED;
-			animator.play(onceAnim, null, 0);
+			animator.play(onceAnim, stateTransition, 0);
 		}
 
 		/**
@@ -613,7 +611,7 @@ package
 				return;
 
 			//update animator
-			animator.play(currentAnim);
+			animator.play(currentAnim, stateTransition);
 		}
 
 		private function stop():void
@@ -630,7 +628,7 @@ package
 
 			//update animator
 			animator.playbackSpeed = IDLE_SPEED;
-			animator.play(currentAnim);
+			animator.play(currentAnim, stateTransition);
 		}
 
 		/**

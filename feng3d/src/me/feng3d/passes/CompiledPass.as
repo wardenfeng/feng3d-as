@@ -125,7 +125,7 @@ package me.feng3d.passes
 			super.updateConstantData(renderable, camera);
 
 			//场景变换矩阵（物体坐标-->世界坐标）
-			var sceneTransform:Matrix3D = renderable.sourceEntity.sceneTransform;
+			var sceneTransform:Matrix3D = renderable.sourceEntity.getRenderSceneTransform(camera);
 			//投影矩阵（世界坐标-->投影坐标）
 			var projectionmatrix:Matrix3D = camera.viewProjection;
 

@@ -38,7 +38,6 @@ package me.feng3d.core.proxy
 		private var _backBufferEnableDepthAndStencil:Boolean = true;
 		private var _contextRequested:Boolean;
 		private var _scissorRect:Rectangle;
-		private var _color:uint;
 		private var _backBufferDirty:Boolean;
 		private var _viewPort:Rectangle;
 		private var _enterFrame:Event;
@@ -175,7 +174,7 @@ package me.feng3d.core.proxy
 				_backBufferDirty = false;
 			}
 
-			_context3D.clear(((_color >> 16) & 0xff) / 255.0, ((_color >> 8) & 0xff) / 255.0, (_color & 0xff) / 255.0, ((_color >> 24) & 0xff) / 255.0);
+			_context3D.clear(0, 0, 0, 0);
 
 			_bufferClear = true;
 		}
@@ -376,19 +375,6 @@ package me.feng3d.core.proxy
 			_viewportDirty = false;
 
 			return _viewPort;
-		}
-
-		/**
-		 * 背景颜色
-		 */
-		public function get color():uint
-		{
-			return _color;
-		}
-
-		public function set color(color:uint):void
-		{
-			_color = color;
 		}
 
 		/**

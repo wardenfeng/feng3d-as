@@ -89,7 +89,7 @@ package me.feng3d.core.render
 				{
 					if (item2.renderable.castsShadows)
 					{
-						planarShadowPass.render(item2.renderable, stage3DProxy, camera);
+						planarShadowPass.render(item2.renderable, stage3DProxy, camera, _renderIndex++);
 					}
 					item2 = item2.next;
 				} while (item2 && item2.renderable.material == _activeMaterial);

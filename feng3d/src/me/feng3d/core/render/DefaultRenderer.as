@@ -52,7 +52,7 @@ package me.feng3d.core.render
 			{
 				updateLights(stage3DProxy, entityCollector);
 			}
-
+//			return;
 			super.executeRender(stage3DProxy, entityCollector, target);
 
 			if (usePlanarShadow)
@@ -110,7 +110,7 @@ package me.feng3d.core.render
 			pass.shaderParams.initParams();
 			//激活渲染通道
 			pass.activate(camera);
-			pass.render(renderable, stage3DProxy, camera);
+			pass.render(renderable, stage3DProxy, camera, _renderIndex++);
 			pass.deactivate();
 		}
 
@@ -147,7 +147,7 @@ package me.feng3d.core.render
 
 					do
 					{
-						pass.render(item2.renderable, stage3DProxy, camera);
+						pass.render(item2.renderable, stage3DProxy, camera, _renderIndex++);
 
 						item2 = item2.next;
 					} while (item2 && item2.renderable.material == _activeMaterial);

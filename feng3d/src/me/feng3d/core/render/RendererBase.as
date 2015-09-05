@@ -38,6 +38,11 @@ package me.feng3d.core.render
 		protected var _textureRatioY:Number = 1;
 
 		/**
+		 * 渲染编号
+		 */
+		protected var _renderIndex:int;
+
+		/**
 		 * 创建一个渲染创新基类
 		 * @param renderToTexture		释放渲染到纹理
 		 */
@@ -153,6 +158,8 @@ package me.feng3d.core.render
 
 			if (_renderableSorter)
 				_renderableSorter.sort(entityCollector);
+
+			_renderIndex = 0;
 
 			//重置3D环境背景颜色
 			_context.clear(_backgroundR, _backgroundG, _backgroundB, _backgroundAlpha, 1, 0);

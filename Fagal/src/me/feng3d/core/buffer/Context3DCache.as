@@ -99,9 +99,10 @@ package me.feng3d.core.buffer
 		/**
 		 * 使用Context3D缓存绘制
 		 * <p>过程：渲染程序缓存（标记使用的寄存器数据缓存）-->寄存器数据缓存(标记使用的数据)-->其他缓存-->绘制三角形</p>
-		 * @param context3D		3d环境
+		 * @param context3D				3d环境
+		 * @param renderIndex			渲染编号
 		 */
-		public function render(context3D:Context3D):void
+		public function render(context3D:Context3D, renderIndex:int = 0):void
 		{
 			//更新渲染程序（标记使用寄存器）
 			fagalRE.context3DCache = this;
@@ -123,10 +124,22 @@ package me.feng3d.core.buffer
 				registerBuffer.doBuffer(context3D);
 			}
 
+			if (ocBuffer != null)
+			{
+				ocBuffer.doBuffer(context3D);
+				if (renderIndex == 0)
+				{
+					context3D.clear(1, 1, 1);
+				}
+			}
+
 			//执行索引数据缓存
 			indexBuffer.doBuffer(context3D);
 
-			context3D.setRenderToBackBuffer();
+			if (ocBuffer != null)
+			{
+				context3D.setRenderToBackBuffer();
+			}
 
 			//清理缓存
 			clearContext3D(context3D);
@@ -169,6 +182,7 @@ package me.feng3d.core.buffer
 		 */
 		private function mapRegister():void
 		{
+			ocBuffer = null;
 			runRegBufferList = [];
 
 			for each (var register:RegisterValue in dataRegisterDic)
@@ -184,8 +198,15 @@ package me.feng3d.core.buffer
 				}
 				if (registerBuffer != null)
 				{
-					registerBuffer.firstRegister = register.index;
-					runRegBufferList.push(registerBuffer);
+					if (registerBuffer is OCBuffer)
+					{
+						ocBuffer = registerBuffer as OCBuffer;
+					}
+					else
+					{
+						registerBuffer.firstRegister = register.index;
+						runRegBufferList.push(registerBuffer);
+					}
 				}
 			}
 			runRegBufferList.sortOn("dataTypeId");

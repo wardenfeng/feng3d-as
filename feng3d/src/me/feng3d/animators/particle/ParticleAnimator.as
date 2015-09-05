@@ -4,7 +4,6 @@ package me.feng3d.animators.particle
 	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
-	import me.feng3d.animators.particle.node.ParticleNodeBase;
 	import me.feng3d.animators.particle.states.ParticleStateBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;

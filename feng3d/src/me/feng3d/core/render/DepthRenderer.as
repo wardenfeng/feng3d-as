@@ -73,7 +73,7 @@ package me.feng3d.core.render
 				item2 = item;
 				do
 				{
-					depthPass.render(item2.renderable, stage3DProxy, camera);
+					depthPass.render(item2.renderable, stage3DProxy, camera, _renderIndex++);
 
 					item2 = item2.next;
 				} while (item2 && item2.renderable.material == _activeMaterial);

@@ -1,5 +1,7 @@
 package me.feng3d.animators
 {
+	import me.feng3d.animators.base.node.AnimationNodeBase;
+	import me.feng3d.animators.base.states.AnimationStateBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.IContext3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
@@ -25,6 +27,8 @@ package me.feng3d.animators
 		 * @param camera				摄像机
 		 */
 		function setRenderState(renderable:IRenderable, camera:Camera3D):void;
+
+		function getAnimationState(node:AnimationNodeBase):AnimationStateBase;
 
 		/**
 		 * Used by the mesh object to which the animator is applied, registers the owner for internal use.

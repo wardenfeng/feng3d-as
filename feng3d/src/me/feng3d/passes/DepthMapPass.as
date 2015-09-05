@@ -5,7 +5,6 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
-	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.OCBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
@@ -130,10 +129,10 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		arcane override function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D):void
+		arcane override function render(renderable:IRenderable, stage3DProxy:Stage3DProxy, camera:Camera3D, renderIndex:int):void
 		{
 			//场景变换矩阵（物体坐标-->世界坐标）
-			var sceneTransform:Matrix3D = renderable.sourceEntity.sceneTransform;
+			var sceneTransform:Matrix3D = renderable.sourceEntity.getRenderSceneTransform(camera);
 			//投影矩阵（世界坐标-->投影坐标）
 			var projectionmatrix:Matrix3D = camera.viewProjection;
 
@@ -142,7 +141,7 @@ package me.feng3d.passes
 			modelViewProjection.append(sceneTransform);
 			modelViewProjection.append(projectionmatrix);
 
-			super.render(renderable, stage3DProxy, camera)
+			super.render(renderable, stage3DProxy, camera, renderIndex)
 		}
 
 		/**
