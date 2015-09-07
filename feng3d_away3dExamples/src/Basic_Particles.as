@@ -129,7 +129,7 @@ package
 			addChild(new AwayStats(_view));
 
 			//setup the particle geometry
-			var plane:Geometry = new PlaneGeometry(10, 10, 1, 1, false);
+			var plane:Geometry = new PlaneGeometry(15, 15, 1, 1, false);
 			var geometrySet:Vector.<Geometry> = new Vector.<Geometry>();
 			for (var i:int = 0; i < 20000; i++)
 				geometrySet.push(plane);

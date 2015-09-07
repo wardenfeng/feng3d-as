@@ -131,6 +131,15 @@ package me.feng3d.configs
 			//---------------------------- 烟雾相关寄存器数据类型 ------------------------------
 			["fogColor_fc_vector", "雾颜色常量数据"], //
 			["fogCommonData_fc_vector", "雾通用常量数据"], //
+			//---------------------------- uv动画相关寄存器数据类型 ------------------------------
+			["uvAnimatorTranslate_vc_vector", "uv偏移值（uv动画）"], //
+			["uvAnimatorMatrix2d_vc_vector", "uv变换矩阵（uv动画）"], //
+			["spriteSheetVectorFrame_vc_vector", "常量数据（spriteSheet动画）"], //
+			//---------------------------- EnvMap相关寄存器数据类型 ------------------------------
+			["envMapcubeTexture_fs", "立方体纹理（EnvMap）"], //
+			["envMapMaskTexture_fs", "遮罩纹理（EnvMap）"], //
+			["envMapData_fc_vector", "片段数据（EnvMap）"], //
+
 			];
 	}
 }

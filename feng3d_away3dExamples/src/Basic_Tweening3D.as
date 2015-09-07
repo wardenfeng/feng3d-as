@@ -1,12 +1,12 @@
 /*
 
-Basic View example in Away3d
+3D Tweening example in Away3d
 
 Demonstrates:
 
-How to create a 3D environment for your objects
-How to add a new textured object to your world
-How to rotate an object in your world
+How to use Tweener within a 3D coordinate system.
+How to create a 3D mouse event listener on a scene object.
+How to return the scene coordinates of a mouse click on the surface of a scene object.
 
 Code by Rob Bateman
 rob@infiniteturtles.co.uk
@@ -43,31 +43,40 @@ package
 	import flash.events.Event;
 	import flash.geom.Vector3D;
 
+	import caurina.transitions.Tweener;
+	import caurina.transitions.properties.CurveModifiers;
+
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.Mesh;
+	import me.feng3d.events.MouseEvent3D;
 	import me.feng3d.materials.TextureMaterial;
+	import me.feng3d.primitives.CubeGeometry;
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "60", quality = "LOW")]
 
-	public class Basic_View extends TestBase
+	public class Basic_Tweening3D extends TestBase
 	{
 		//plane texture
-		public static var FloorDiffusePath:String = "embeds/floor_diffuse.jpg";
+		public static var FloorDiffuse:String = "embeds/floor_diffuse.jpg";
+
+		//cube texture jpg
+		public static var TrinketDiffuse:String = "embeds/trinket_diffuse.jpg";
 
 		//engine variables
 		private var _view:View3D;
 
 		//scene objects
 		private var _plane:Mesh;
+		private var _cube:Mesh;
 
 		/**
 		 * Constructor
 		 */
-		public function Basic_View()
+		public function Basic_Tweening3D()
 		{
-			resourceList = [FloorDiffusePath];
+			resourceList = [FloorDiffuse, TrinketDiffuse];
 			super();
 		}
 
@@ -86,8 +95,20 @@ package
 			_view.camera.lookAt(new Vector3D());
 
 			//setup the scene
-			_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffusePath])));
+			_cube = new Mesh(new CubeGeometry(100, 100, 100, 1, 1, 1, false), new TextureMaterial(Cast.bitmapTexture(resourceDic[TrinketDiffuse])));
+			_cube.y = 50;
+			_view.scene.addChild(_cube);
+
+			_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffuse])));
+//			_plane.pickingCollider = PickingColliderType.AS3_FIRST_ENCOUNTERED;
+			_plane.mouseEnabled = true;
 			_view.scene.addChild(_plane);
+
+			//add mouse listener
+			_plane.addEventListener(MouseEvent3D.MOUSE_UP, _onMouseUp);
+
+			//initialize Tweener curve modifiers
+			CurveModifiers.init();
 
 			//setup the render loop
 			addEventListener(Event.ENTER_FRAME, _onEnterFrame);
@@ -100,9 +121,16 @@ package
 		 */
 		private function _onEnterFrame(e:Event):void
 		{
-			_plane.rotationY += 1;
-
 			_view.render();
+		}
+
+		/**
+		 * mesh listener for mouse up interaction
+		 */
+		private function _onMouseUp(ev:MouseEvent3D):void
+		{
+			var scenePosition:Vector3D = ev.collider.scenePosition;
+			Tweener.addTween(_cube, {time: 0.5, x: scenePosition.x, z: scenePosition.z, _bezier: {x: _cube.x, z: scenePosition.z}});
 		}
 
 		/**

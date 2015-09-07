@@ -5,6 +5,7 @@ package me.feng3d.utils
 	import flash.display3D.Context3DTextureFilter;
 	import flash.display3D.Context3DWrapMode;
 
+	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.textures.TextureProxyBase;
 
 	/**
@@ -96,17 +97,20 @@ package me.feng3d.utils
 					flags.push(Context3DMipFilter.MIPNEAREST);
 			}
 
-			if (forceWrap)
+			if (!texture is BitmapCubeTexture)
 			{
-				flags.push(forceWrap);
-			}
-			else if (repeatTextures)
-			{
-				flags.push(Context3DWrapMode.REPEAT);
-			}
-			else
-			{
-				flags.push(Context3DWrapMode.CLAMP);
+				if (forceWrap)
+				{
+					flags.push(forceWrap);
+				}
+				else if (repeatTextures)
+				{
+					flags.push(Context3DWrapMode.REPEAT);
+				}
+				else
+				{
+					flags.push(Context3DWrapMode.CLAMP);
+				}
 			}
 
 			return flags;

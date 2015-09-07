@@ -5,7 +5,6 @@ package me.feng3d.core.base
 	import flash.geom.Vector3D;
 
 	import me.feng3d.arcane;
-	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.controllers.ControllerBase;
@@ -56,9 +55,6 @@ package me.feng3d.core.base
 		arcane var _scene:Scene3D;
 
 		protected var _zOffset:int = 0;
-
-		private var _explicitVisibility:Boolean = true;
-		private var _implicitVisibility:Boolean = true;
 
 		/**
 		 * 创建3D对象
@@ -292,7 +288,7 @@ package me.feng3d.core.base
 		public function get sceneVisible():Boolean
 		{
 			//从这里开始一直找父容器到场景了，且visible全为true则为场景上可见
-			return visible && ((parent is Scene3D) ? true : (parent ? parent.sceneVisible : false));
+			return visible && (scene != null) && ((parent is Scene3D) ? true : (parent ? parent.sceneVisible : false));
 		}
 
 		/**
@@ -363,14 +359,6 @@ package me.feng3d.core.base
 				return;
 
 			_implicitPartition = value;
-		}
-
-		/**
-		 * 是否可见
-		 */
-		arcane function get isVisible():Boolean
-		{
-			return _implicitVisibility && _explicitVisibility;
 		}
 
 		/**

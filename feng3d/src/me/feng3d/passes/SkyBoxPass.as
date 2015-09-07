@@ -16,7 +16,7 @@ package me.feng3d.passes
 	import me.feng3d.fagal.vertex.V_SkyBox;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
-	import me.feng3d.textures.CubeTextureProxyBase;
+	import me.feng3d.textures.CubeTextureBase;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
@@ -31,7 +31,7 @@ package me.feng3d.passes
 		private const scaleSkybox:Vector.<Number> = new Vector.<Number>(4);
 		private const modelViewProjection:Matrix3D = new Matrix3D();
 
-		private var _cubeTexture:CubeTextureProxyBase;
+		private var _cubeTexture:CubeTextureBase;
 
 		/**
 		 * 创建一个天空盒通道
@@ -86,12 +86,12 @@ package me.feng3d.passes
 		/**
 		 * 立方体纹理
 		 */
-		public function get cubeTexture():CubeTextureProxyBase
+		public function get cubeTexture():CubeTextureBase
 		{
 			return _cubeTexture;
 		}
 
-		public function set cubeTexture(value:CubeTextureProxyBase):void
+		public function set cubeTexture(value:CubeTextureBase):void
 		{
 			_cubeTexture = value;
 			markBufferDirty(_.texture_fs);

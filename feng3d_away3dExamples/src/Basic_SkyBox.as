@@ -1,12 +1,11 @@
 /*
 
-Basic View example in Away3d
+SkyBox example in Away3d
 
 Demonstrates:
 
-How to create a 3D environment for your objects
-How to add a new textured object to your world
-How to rotate an object in your world
+How to use a CubeTexture to create a SkyBox object.
+How to apply a CubeTexture to a material as an environment map.
 
 Code by Rob Bateman
 rob@infiniteturtles.co.uk
@@ -43,31 +42,42 @@ package
 	import flash.events.Event;
 	import flash.geom.Vector3D;
 
+	import me.feng3d.cameras.lenses.PerspectiveLens;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.Mesh;
-	import me.feng3d.materials.TextureMaterial;
-	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.entities.SkyBox;
+	import me.feng3d.materials.ColorMaterial;
+	import me.feng3d.materials.methods.EnvMapMethod;
+	import me.feng3d.primitives.TorusGeometry;
+	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "60", quality = "LOW")]
 
-	public class Basic_View extends TestBase
+	public class Basic_SkyBox extends TestBase
 	{
-		//plane texture
-		public static var FloorDiffusePath:String = "embeds/floor_diffuse.jpg";
+		// Environment map.
+		private var EnvPosX:String = "embeds/skybox/snow_positive_x.jpg";
+		private var EnvPosY:String = "embeds/skybox/snow_positive_y.jpg";
+		private var EnvPosZ:String = "embeds/skybox/snow_positive_z.jpg";
+		private var EnvNegX:String = "embeds/skybox/snow_negative_x.jpg";
+		private var EnvNegY:String = "embeds/skybox/snow_negative_y.jpg";
+		private var EnvNegZ:String = "embeds/skybox/snow_negative_z.jpg";
+
 
 		//engine variables
 		private var _view:View3D;
 
 		//scene objects
-		private var _plane:Mesh;
+		private var _skyBox:SkyBox;
+		private var _torus:Mesh;
 
 		/**
 		 * Constructor
 		 */
-		public function Basic_View()
+		public function Basic_SkyBox()
 		{
-			resourceList = [FloorDiffusePath];
+			resourceList = [EnvPosX, EnvPosY, EnvPosZ, EnvNegX, EnvNegY, EnvNegZ]
 			super();
 		}
 
@@ -82,12 +92,31 @@ package
 
 			//setup the camera
 			_view.camera.z = -600;
-			_view.camera.y = 500;
+			_view.camera.y = 0;
 			_view.camera.lookAt(new Vector3D());
+			_view.camera.lens = new PerspectiveLens(90);
+
+			//setup the cube texture
+			var cubeTexture:BitmapCubeTexture = new BitmapCubeTexture( //
+				Cast.bitmapData(resourceDic[EnvPosX]), Cast.bitmapData(resourceDic[EnvNegX]), //
+				Cast.bitmapData(resourceDic[EnvPosY]), Cast.bitmapData(resourceDic[EnvNegY]), //
+				Cast.bitmapData(resourceDic[EnvPosZ]), Cast.bitmapData(resourceDic[EnvNegZ]) //
+				);
+
+			//setup the environment map material
+			var material:ColorMaterial = new ColorMaterial(0xFFFFFF, 1);
+			material.specular = 0.5;
+			material.ambient = 0.25;
+			material.ambientColor = 0x111199;
+			material.ambient = 1;
+			material.addMethod(new EnvMapMethod(cubeTexture, 1));
 
 			//setup the scene
-			_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffusePath])));
-			_view.scene.addChild(_plane);
+			_torus = new Mesh(new TorusGeometry(150, 60, 40, 20), material);
+			_view.scene.addChild(_torus);
+
+			_skyBox = new SkyBox(cubeTexture);
+			_view.scene.addChild(_skyBox);
 
 			//setup the render loop
 			addEventListener(Event.ENTER_FRAME, _onEnterFrame);
@@ -100,7 +129,12 @@ package
 		 */
 		private function _onEnterFrame(e:Event):void
 		{
-			_plane.rotationY += 1;
+			_torus.rotationX += 2;
+			_torus.rotationY += 1;
+
+			_view.camera.position = new Vector3D();
+			_view.camera.rotationY += 0.5 * (stage.mouseX - stage.stageWidth / 2) / 800;
+			_view.camera.moveBackward(600);
 
 			_view.render();
 		}

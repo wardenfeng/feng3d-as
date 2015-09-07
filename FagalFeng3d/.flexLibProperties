@@ -11,6 +11,9 @@
     <classEntry path="me.feng3d.fagal.fragment.shadowMap.F_ShadowMapSample"/>
     <classEntry path="me.feng3d.configs.Context3DBufferIDConfig"/>
     <classEntry path="me.feng3d.fagal.fragment.F_Fog"/>
+    <classEntry path="me.feng3d.fagal.vertex.animation.V_UVAnimation"/>
+    <classEntry path="me.feng3d.fagal.vertex.animation.V_SpriteSheetAnimation"/>
+    <classEntry path="me.feng3d.fagal.fragment.F_EnvMapMethod"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

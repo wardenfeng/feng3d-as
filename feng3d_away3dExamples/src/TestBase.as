@@ -35,7 +35,7 @@ package
 		public function TestBase()
 		{
 			MyCC.initFlashConsole(this);
-//			DebugCommon.loggerFunc = Cc.log;
+			DebugCommon.loggerFunc = Cc.log;
 			new ConsoleExtension();
 			loadTextures();
 		}

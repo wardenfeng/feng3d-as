@@ -47,6 +47,12 @@ package me.feng3d.fagal.params
 		/** 动画Fagal函数类型 */
 		public var animationType:AnimationType;
 
+		/** 是否使用uv动画 */
+		public var useUVAnimation:int;
+
+		/** 是否使用SpritSheet动画 */
+		public var useSpriteSheetAnimation:int;
+
 		//-----------------------------------------
 		//		灯光渲染参数
 		//-----------------------------------------
@@ -163,6 +169,15 @@ package me.feng3d.fagal.params
 		/** 土壤纹理个数 */
 		public var splatNum_war3Terrain:int;
 
+		//-----------------------------------------
+		//		
+		//-----------------------------------------
+		/**  */
+		public var useEnvMapMethod:int;
+
+		/**  */
+		public var useEnvMapMask:int;
+
 		/**
 		 * 创建一个渲染参数
 		 */
@@ -219,6 +234,7 @@ package me.feng3d.fagal.params
 			//
 			numJoints = 0;
 			animationType = AnimationType.NONE;
+			useUVAnimation = 0;
 
 			//
 			numPointLights = 0;

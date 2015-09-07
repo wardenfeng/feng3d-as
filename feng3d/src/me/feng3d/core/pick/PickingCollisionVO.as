@@ -4,6 +4,7 @@ package me.feng3d.core.pick
 	import flash.geom.Vector3D;
 
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.entities.Entity;
 
@@ -54,19 +55,30 @@ package me.feng3d.core.pick
 		public var rayOriginIsInsideBounds:Boolean;
 
 		/**
-		 * 碰撞三角形索引 
-		 */		
+		 * 碰撞三角形索引
+		 */
 		public var index:uint;
-		
+
 		/**
 		 * 碰撞关联的渲染对象
 		 */
 		public var renderable:IRenderable;
-		
 
+		/**
+		 * 创建射线拾取碰撞数据
+		 * @param entity
+		 */
 		public function PickingCollisionVO(entity:Entity)
 		{
 			this.firstEntity = entity;
+		}
+
+		/**
+		 * 实体上碰撞世界坐标
+		 */
+		public function get scenePosition():Vector3D
+		{
+			return Matrix3DUtils.transformVector(firstEntity.sceneTransform, localPosition);
 		}
 	}
 }

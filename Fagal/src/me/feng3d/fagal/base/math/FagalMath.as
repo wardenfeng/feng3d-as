@@ -112,7 +112,7 @@ package me.feng3d.fagal.base.math
 		/**
 		 * 如果寄存器有任意一个分量小于0，则丢弃该像素不进行绘制(只适用于片段着色器)
 		 */
-		public function kil(destination:IField, source1:IField):void
+		public function kil(source1:IField):void
 		{
 			var code:String = "kil " + source1;
 			append(code);
@@ -168,7 +168,6 @@ package me.feng3d.fagal.base.math
 		 * destination.z=(source1.x*source2[2].x)+(source1.y*source2[2].y)+(source1.z*source2[2].z)+(source1.w*source2[2].w)
 		 * <br/>
 		 * destination.w=(source1.x*source2[3].x)+(source1.y*source2[3].y)+(source1.z*source2[3].z)+(source1.w*source2[3].w)
-
 		 */
 		public function m44(destination:Register, source1:Register, source2:RegisterMatrix):void
 		{
@@ -178,7 +177,6 @@ package me.feng3d.fagal.base.math
 
 		/**
 		 * max:destination=max(source1 ，source2): 两个寄存器之间的较大值，分量形式
-
 		 */
 		public function max(destination:IField, source1:IField, source2:IField):void
 		{

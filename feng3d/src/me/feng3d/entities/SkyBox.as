@@ -6,7 +6,7 @@ package me.feng3d.entities
 	import me.feng3d.core.partition.node.SkyBoxNode;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.SkyBoxMaterial;
-	import me.feng3d.textures.CubeTextureProxyBase;
+	import me.feng3d.textures.CubeTextureBase;
 
 	use namespace arcane;
 
@@ -20,7 +20,7 @@ package me.feng3d.entities
 	{
 		private var subGeometry:SubGeometry;
 
-		public function SkyBox(cubeMap:CubeTextureProxyBase)
+		public function SkyBox(cubeMap:CubeTextureBase)
 		{
 			super();
 			material = new SkyBoxMaterial(cubeMap);

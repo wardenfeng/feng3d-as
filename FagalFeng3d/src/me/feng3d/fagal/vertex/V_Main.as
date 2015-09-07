@@ -6,6 +6,8 @@ package me.feng3d.fagal.vertex
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
+	import me.feng3d.fagal.vertex.animation.V_SpriteSheetAnimation;
+	import me.feng3d.fagal.vertex.animation.V_UVAnimation;
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_VertexAnimationGPU;
 	import me.feng3d.fagal.vertex.particle.V_Particles;
@@ -34,7 +36,7 @@ package me.feng3d.fagal.vertex
 		{
 			var _:* = FagalRE.instance.space;
 
-			buildAnimationAGAL();
+			buildPositionAnimationAGAL();
 
 			//计算世界顶点坐标
 			if (shaderParams.needWorldPosition)
@@ -50,7 +52,19 @@ package me.feng3d.fagal.vertex
 			//输出数据到片段寄存器
 			if (shaderParams.needsUV > 0)
 			{
-				_.mov(_.uv_v, _.uv_va_2);
+				//
+				if (shaderParams.useUVAnimation > 0)
+				{
+					V_UVAnimation(_.uv_va_2, _.uv_v);
+				}
+				else if (shaderParams.useSpriteSheetAnimation > 0)
+				{
+					V_SpriteSheetAnimation(_.uv_va_2, _.uv_v);
+				}
+				else
+				{
+					_.mov(_.uv_v, _.uv_va_2);
+				}
 			}
 
 			//处理法线相关数据
@@ -82,7 +96,7 @@ package me.feng3d.fagal.vertex
 		/**
 		 * 生成动画代码
 		 */
-		protected function buildAnimationAGAL():void
+		protected function buildPositionAnimationAGAL():void
 		{
 			switch (shaderParams.animationType)
 			{

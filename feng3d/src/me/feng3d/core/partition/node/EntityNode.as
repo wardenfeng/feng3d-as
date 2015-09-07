@@ -57,7 +57,7 @@ package me.feng3d.core.partition.node
 		 */
 		override public function isInFrustum(planes:Vector.<Plane3D>, numPlanes:int):Boolean
 		{
-			if (!_entity.isVisible)
+			if (!_entity.sceneVisible)
 				return false;
 
 			return _entity.worldBounds.isInFrustum(planes, numPlanes);

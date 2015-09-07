@@ -210,12 +210,12 @@ package
 			{
 				var mesh:Mesh = event.asset as Mesh;
 				mesh.castsShadows = true;
-				mesh.material = new TextureMaterial(Cast.bitmapTexture(resourceDic[AntTexture]));
 				_loader.addChild(mesh);
 			}
 			else if (event.asset.assetType == AssetType.MATERIAL)
 			{
 				var material:TextureMaterial = event.asset as TextureMaterial;
+				material.texture = Cast.bitmapTexture(resourceDic[AntTexture]);
 				material.shadowMethod = new FilteredShadowMapMethod(_light);
 				material.lightPicker = _lightPicker;
 				material.gloss = 30;
