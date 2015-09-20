@@ -3,14 +3,15 @@ package me.feng3d.animators.spriteSheet
 	import me.feng3d.animators.base.node.AnimationClipNodeBase;
 
 	/**
-	 * A SpriteSheetClipNode containing time-based animation data as individual sprite sheet animation frames.
+	 * sprite动画剪辑节点
+	 * @author warden_feng 2015-9-18
 	 */
 	public class SpriteSheetClipNode extends AnimationClipNodeBase
 	{
 		private var _frames:Vector.<SpriteSheetAnimationFrame> = new Vector.<SpriteSheetAnimationFrame>();
 
 		/**
-		 * Creates a new <code>SpriteSheetClipNode</code> object.
+		 * 创建<code>SpriteSheetClipNode</code>实例.
 		 */
 		public function SpriteSheetClipNode()
 		{
@@ -18,7 +19,7 @@ package me.feng3d.animators.spriteSheet
 		}
 
 		/**
-		 * Returns a vector of SpriteSheetAnimationFrame representing the uv values of each animation frame in the clip.
+		 * 帧列表
 		 */
 		public function get frames():Vector.<SpriteSheetAnimationFrame>
 		{
@@ -26,10 +27,9 @@ package me.feng3d.animators.spriteSheet
 		}
 
 		/**
-		 * Adds a SpriteSheetAnimationFrame object to the internal timeline of the animation node.
-		 *
-		 * @param spriteSheetAnimationFrame The frame object to add to the timeline of the node.
-		 * @param duration The specified duration of the frame in milliseconds.
+		 * 添加帧到动画节点
+		 * @param spriteSheetAnimationFrame				sprite动画帧
+		 * @param duration								间隔时间
 		 */
 		public function addFrame(spriteSheetAnimationFrame:SpriteSheetAnimationFrame, duration:uint):void
 		{

@@ -17,6 +17,15 @@ package me.feng3d.textures
 		public var optimizeForRenderToTexture:Boolean = false;
 		public var streamingLevels:int = 0
 
+		/**
+		 * 创建位图立方体纹理代理
+		 * @param posX			X正方向位图
+		 * @param negX			X负方向位图
+		 * @param posY			Y正方向位图
+		 * @param negY			Y负方向位图
+		 * @param posZ			Z正方向位图
+		 * @param negZ			Z负方向位图
+		 */
 		public function BitmapCubeTexture(posX:BitmapData, negX:BitmapData, posY:BitmapData, negY:BitmapData, posZ:BitmapData, negZ:BitmapData)
 		{
 			super();
@@ -32,13 +41,16 @@ package me.feng3d.textures
 			setSize(posX.width, posX.height);
 		}
 
+		/**
+		 * 位图列表
+		 */
 		public function get bitmapDatas():Vector.<BitmapData>
 		{
 			return _bitmapDatas;
 		}
 
 		/**
-		 * The texture on the cube's right face.
+		 * 正X方向位图（右面位图）
 		 */
 		public function get positiveX():BitmapData
 		{
@@ -54,7 +66,7 @@ package me.feng3d.textures
 		}
 
 		/**
-		 * The texture on the cube's left face.
+		 * 负X方向位图（左面位图）
 		 */
 		public function get negativeX():BitmapData
 		{
@@ -70,7 +82,7 @@ package me.feng3d.textures
 		}
 
 		/**
-		 * The texture on the cube's top face.
+		 * 正Y方向位图（上面位图）
 		 */
 		public function get positiveY():BitmapData
 		{
@@ -86,7 +98,7 @@ package me.feng3d.textures
 		}
 
 		/**
-		 * The texture on the cube's bottom face.
+		 * 负Y方向位图（下面位图）
 		 */
 		public function get negativeY():BitmapData
 		{
@@ -102,7 +114,7 @@ package me.feng3d.textures
 		}
 
 		/**
-		 * The texture on the cube's far face.
+		 * 正Z方向位图（前面位图）
 		 */
 		public function get positiveZ():BitmapData
 		{
@@ -118,7 +130,7 @@ package me.feng3d.textures
 		}
 
 		/**
-		 * The texture on the cube's near face.
+		 * 负Z方向位图（后面位图）
 		 */
 		public function get negativeZ():BitmapData
 		{
@@ -133,18 +145,16 @@ package me.feng3d.textures
 			_bitmapDatas[5] = value;
 		}
 
+		/**
+		 * 检查位图尺寸
+		 * @param value		位图
+		 */
 		private function testSize(value:BitmapData):void
 		{
 			if (value.width != value.height)
 				throw new Error("BitmapData should have equal width and height!");
 			if (!TextureUtils.isBitmapDataValid(value))
 				throw new Error("Invalid bitmapData: Width and height must be power of 2 and cannot exceed 2048");
-		}
-
-		protected function uploadContent(texture:TextureBase):void
-		{
-			for (var i:int = 0; i < 6; ++i)
-				MipmapGenerator.generateMipMaps(_bitmapDatas[i], texture, null, _bitmapDatas[i].transparent, i);
 		}
 	}
 }

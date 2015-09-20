@@ -9,7 +9,6 @@ package me.feng3d.animators.uv
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
-	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.materials.TextureMaterial;
@@ -17,9 +16,8 @@ package me.feng3d.animators.uv
 	use namespace arcane;
 
 	/**
-	 * Provides an interface for assigning uv-based animation data sets to mesh-based entity objects
-	 * and controlling the various available states of animation through an interative playhead that can be
-	 * automatically updated or manually triggered.
+	 * UV动画
+	 * @author warden_feng 2014-5-27
 	 */
 	public class UVAnimator extends AnimatorBase implements IAnimator
 	{
@@ -38,9 +36,8 @@ package me.feng3d.animators.uv
 		private var _translateIncrease:Vector.<Number>;
 
 		/**
-		 * Creates a new <code>UVAnimator</code> object.
-		 *
-		 * @param uvAnimationSet The animation data set containing the uv animations used by the animator.
+		 * 创建<code>UVAnimator</code>实例
+		 * @param uvAnimationSet			UV动画集合
 		 */
 		public function UVAnimator(uvAnimationSet:UVAnimationSet)
 		{
@@ -50,35 +47,32 @@ package me.feng3d.animators.uv
 			_uvAnimationSet = uvAnimationSet;
 		}
 
-		/**
-		 * Defines if a rotation is performed automatically each update. The rotationIncrease value is added each iteration.
-		 */
 		public function set autoRotation(b:Boolean):void
 		{
 			_autoRotation = b;
 		}
 
+		/**
+		 * 是否自动旋转
+		 */
 		public function get autoRotation():Boolean
 		{
 			return _autoRotation;
 		}
 
-		/**
-		 * if autoRotation = true, the rotation is increased by the rotationIncrease value. Default is 1;
-		 */
 		public function set rotationIncrease(value:Number):void
 		{
 			_rotationIncrease = value;
 		}
 
+		/**
+		 * 旋转增量（当autoRotation = true生效）
+		 */
 		public function get rotationIncrease():Number
 		{
 			return _rotationIncrease;
 		}
 
-		/**
-		 * Defines if the animation is translated automatically each update. Ideal to scroll maps. Use setTranslateIncrease to define the offsets.
-		 */
 		public function set autoTranslate(b:Boolean):void
 		{
 			_autoTranslate = b;
@@ -86,14 +80,18 @@ package me.feng3d.animators.uv
 				_translateIncrease = Vector.<Number>([0, 0]);
 		}
 
+		/**
+		 * 是否自动转换
+		 */
 		public function get autoTranslate():Boolean
 		{
 			return _autoTranslate;
 		}
 
 		/**
-		 * if autoTranslate = true, animation is translated automatically each update with the u and v values.
-		 * Note if value are integers, no visible update will be performed. Values are expected to be in 0-1 range.
+		 * 设置转换值
+		 * @param u
+		 * @param v
 		 */
 		public function setTranslateIncrease(u:Number, v:Number):void
 		{
@@ -103,11 +101,17 @@ package me.feng3d.animators.uv
 			_translateIncrease[1] = v;
 		}
 
+		/**
+		 * 转换值
+		 */
 		public function get translateIncrease():Vector.<Number>
 		{
 			return _translateIncrease;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -186,7 +190,7 @@ package me.feng3d.animators.uv
 		}
 
 		/**
-		 * Applies the calculated time delta to the active animation state node.
+		 * @inheritDoc
 		 */
 		override protected function updateDeltaTime(dt:Number):void
 		{

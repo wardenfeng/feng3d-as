@@ -20,6 +20,12 @@ package me.feng3d.events
 		/** 周期完成 */
 		public static const CYCLE_COMPLETE:String = "cycle_complete";
 
+		/**
+		 * 创建一个动画时间
+		 * @param type			事件类型
+		 * @param data			事件数据
+		 * @param bubbles		是否冒泡
+		 */
 		public function AnimatorEvent(type:String, data:* = null, bubbles:Boolean = false)
 		{
 			super(type, data, bubbles);

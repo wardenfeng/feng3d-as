@@ -82,6 +82,9 @@ package me.feng3d.animators.particle.node
 			updateScaleData();
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();

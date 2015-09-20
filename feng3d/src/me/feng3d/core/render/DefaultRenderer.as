@@ -33,6 +33,11 @@ package me.feng3d.core.render
 		private var _planarShadowRenderer:PlanarShadowRenderer;
 
 		/**
+		 * 是否使用平面阴影
+		 */
+		public static var usePlanarShadow:Boolean;
+
+		/**
 		 * 创建一个默认渲染器
 		 */
 		public function DefaultRenderer()
@@ -41,7 +46,6 @@ package me.feng3d.core.render
 			_depthRenderer = new DepthRenderer();
 			_planarShadowRenderer = new PlanarShadowRenderer();
 		}
-		public static var usePlanarShadow:Boolean;
 
 		/**
 		 * @inheritDoc
@@ -52,7 +56,6 @@ package me.feng3d.core.render
 			{
 				updateLights(stage3DProxy, entityCollector);
 			}
-//			return;
 			super.executeRender(stage3DProxy, entityCollector, target);
 
 			if (usePlanarShadow)
@@ -96,6 +99,12 @@ package me.feng3d.core.render
 		/**
 		 * Draw the skybox if present.
 		 * @param entityCollector The EntityCollector containing all potentially visible information.
+		 */
+		/**
+		 * 绘制天空盒
+		 * @param stage3DProxy				3D舞台代理
+		 * @param entityCollector			实体收集器
+		 *
 		 */
 		private function drawSkyBox(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector):void
 		{

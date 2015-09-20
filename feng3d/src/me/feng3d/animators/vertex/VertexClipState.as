@@ -5,7 +5,8 @@ package me.feng3d.animators.vertex
 	import me.feng3d.core.base.Geometry;
 
 	/**
-	 *
+	 * 顶点动画剪辑状态
+	 * @author warden_feng 2015-9-18
 	 */
 	public class VertexClipState extends AnimationClipState implements IVertexAnimationState
 	{
@@ -36,6 +37,11 @@ package me.feng3d.animators.vertex
 			return _nextGeometry;
 		}
 
+		/**
+		 * 创建VertexClipState实例
+		 * @param animator				动画
+		 * @param vertexClipNode		顶点动画节点
+		 */
 		function VertexClipState(animator:IAnimator, vertexClipNode:VertexClipNode)
 		{
 			super(animator, vertexClipNode);
@@ -60,14 +66,6 @@ package me.feng3d.animators.vertex
 			}
 			else
 				_nextGeometry = _frames[_nextFrame];
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		override protected function updatePositionDelta():void
-		{
-			//TODO:implement positiondelta functionality for vertex animations
 		}
 	}
 }

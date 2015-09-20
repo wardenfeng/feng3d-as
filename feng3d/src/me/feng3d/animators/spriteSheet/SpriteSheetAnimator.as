@@ -14,14 +14,12 @@ package me.feng3d.animators.spriteSheet
 	import me.feng3d.materials.MaterialBase;
 	import me.feng3d.materials.SpriteSheetMaterial;
 	import me.feng3d.materials.TextureMaterial;
-	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
 
 	/**
-	 * Provides an interface for assigning uv-based sprite sheet animation data sets to mesh-based entity objects
-	 * and controlling the various available states of animation through an interative playhead that can be
-	 * automatically updated or manually triggered.
+	 * sprite动画
+	 * @author warden_feng 2014-5-27
 	 */
 	public class SpriteSheetAnimator extends AnimatorBase implements IAnimator
 	{
@@ -39,8 +37,8 @@ package me.feng3d.animators.spriteSheet
 		private var _mapDirty:Boolean;
 
 		/**
-		 * Creates a new <code>SpriteSheetAnimator</code> object.
-		 * @param spriteSheetAnimationSet  The animation data set containing the sprite sheet animation states used by the animator.
+		 * 创建sprite动画实例
+		 * @param spriteSheetAnimationSet			sprite动画集合
 		 */
 		public function SpriteSheetAnimator(spriteSheetAnimationSet:SpriteSheetAnimationSet)
 		{
@@ -48,66 +46,85 @@ package me.feng3d.animators.spriteSheet
 			_spriteSheetAnimationSet = spriteSheetAnimationSet;
 		}
 
-		/* Set the playrate of the animation in frames per second (not depending on player fps)*/
 		public function set fps(val:uint):void
 		{
 			_ms = 1000 / val;
 			_fps = val;
 		}
 
+		/**
+		 * 帧率
+		 */
 		public function get fps():uint
 		{
 			return _fps;
 		}
 
-		/* If true, reverse causes the animation to play backwards*/
 		public function set reverse(b:Boolean):void
 		{
 			_reverse = b;
 			_specsDirty = true;
 		}
 
+		/**
+		 * 是否反向
+		 */
 		public function get reverse():Boolean
 		{
 			return _reverse;
 		}
 
-		/* If true, backAndForth causes the animation to play backwards and forward alternatively. Starting forward.*/
 		public function set backAndForth(b:Boolean):void
 		{
 			_backAndForth = b;
 			_specsDirty = true;
 		}
 
+		/**
+		 * 改变播放方向
+		 */
 		public function get backAndForth():Boolean
 		{
 			return _backAndForth;
 		}
 
-		/* sets the animation pointer to a given frame and plays from there. Equivalent to ActionScript, the first frame is at 1, not 0.*/
+		/**
+		 * 跳到某帧播放（起始帧为1）
+		 * @param frameNumber			帧编号
+		 */
 		public function gotoAndPlay(frameNumber:uint):void
 		{
 			gotoFrame(frameNumber, true);
 		}
 
-		/* sets the animation pointer to a given frame and stops there. Equivalent to ActionScript, the first frame is at 1, not 0.*/
+		/**
+		 * 跳到某帧停止（起始帧为1）
+		 * @param frameNumber			帧编号
+		 */
 		public function gotoAndStop(frameNumber:uint):void
 		{
 			gotoFrame(frameNumber, false);
 		}
 
-		/* returns the current frame*/
+		/**
+		 * 当前帧编号
+		 */
 		public function get currentFrameNumber():uint
 		{
 			return SpriteSheetAnimationState(_activeState).currentFrameNumber;
 		}
 
-		/* returns the total amount of frame for the current animation*/
+		/**
+		 * 总帧数
+		 */
 		public function get totalFrames():uint
 		{
 			return SpriteSheetAnimationState(_activeState).totalFrames;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -171,7 +188,7 @@ package me.feng3d.animators.spriteSheet
 		}
 
 		/**
-		 * Applies the calculated time delta to the active animation state node.
+		 * @inheritDoc
 		 */
 		override protected function updateDeltaTime(dt:Number):void
 		{
@@ -198,15 +215,19 @@ package me.feng3d.animators.spriteSheet
 
 		}
 
-		public function testGPUCompatibility(pass:MaterialPassBase):void
-		{
-		}
-
+		/**
+		 * 克隆
+		 */
 		public function clone():IAnimator
 		{
 			return new SpriteSheetAnimator(_spriteSheetAnimationSet);
 		}
 
+		/**
+		 * 跳转某帧
+		 * @param frameNumber			帧编号
+		 * @param doPlay				是否播放
+		 */
 		private function gotoFrame(frameNumber:uint, doPlay:Boolean):void
 		{
 			if (!_activeState)

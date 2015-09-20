@@ -28,18 +28,21 @@ package me.feng3d.animators
 		 */
 		function setRenderState(renderable:IRenderable, camera:Camera3D):void;
 
+		/**
+		 * 获取动画状态
+		 * @param node		动画节点
+		 * @return			动画状态
+		 */
 		function getAnimationState(node:AnimationNodeBase):AnimationStateBase;
 
 		/**
-		 * Used by the mesh object to which the animator is applied, registers the owner for internal use.
-		 *
+		 * 添加应用动画的网格
 		 * @private
 		 */
 		function addOwner(mesh:Mesh):void
 
 		/**
-		 * Used by the mesh object from which the animator is removed, unregisters the owner for internal use.
-		 *
+		 * 移除应用动画的网格
 		 * @private
 		 */
 		function removeOwner(mesh:Mesh):void

@@ -32,6 +32,9 @@ package me.feng3d.primitives
 			_yUp = yUp;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		protected override function buildGeometry(target:SubGeometry):void
 		{
 			var vertexPositionData:Vector.<Number>;

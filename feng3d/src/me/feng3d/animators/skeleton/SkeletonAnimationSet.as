@@ -36,6 +36,9 @@ package me.feng3d.animators.skeleton
 			return _jointsPerVertex;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			shaderParams.numJoints = _numJoints;
@@ -47,10 +50,12 @@ package me.feng3d.animators.skeleton
 				shaderParams.animationType = AnimationType.SKELETON_GPU;
 		}
 
+		/**
+		 * 设置关节数量
+		 */
 		public function set numJoints(value:uint):void
 		{
 			_numJoints = value;
 		}
-
 	}
 }

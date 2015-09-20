@@ -1,11 +1,9 @@
 package me.feng3d.events
 {
 	import flash.events.Event;
-	import flash.geom.Vector3D;
 
 	import me.feng.events.FEvent;
 	import me.feng3d.containers.ObjectContainer3D;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.core.pick.PickingCollisionVO;
 
 	/**

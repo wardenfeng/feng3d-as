@@ -40,6 +40,9 @@ package me.feng3d.animators.vertex
 			_numPoses = vertexAnimationSet.numPoses;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -99,6 +102,9 @@ package me.feng3d.animators.vertex
 			_weights[uint(0)] = 1 - (_weights[uint(1)] = _activeVertexState.blendWeight);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			//没有姿势时，使用默认姿势
@@ -121,6 +127,10 @@ package me.feng3d.animators.vertex
 			vertexSubGeom.updateVertexData1(subGeom.vertexPositionData.concat());
 		}
 
+		/**
+		 * 设置空姿势
+		 * @param renderable		渲染对象
+		 */
 		private function setNullPose(renderable:IRenderable):void
 		{
 			var subMesh:SubMesh = SubMesh(renderable);

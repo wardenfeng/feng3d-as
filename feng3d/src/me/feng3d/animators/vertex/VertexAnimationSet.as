@@ -19,7 +19,7 @@ package me.feng3d.animators.vertex
 
 		/**
 		 * 创建一个顶点动画集合
-		 * @param numPoses The number of poses made available at once to the GPU animation code.
+		 * @param numPoses		姿势数量
 		 */
 		public function VertexAnimationSet(numPoses:uint = 2)
 		{
@@ -28,13 +28,16 @@ package me.feng3d.animators.vertex
 		}
 
 		/**
-		 * Returns the number of poses made available at once to the GPU animation code.
+		 * 姿势数量
 		 */
 		public function get numPoses():uint
 		{
 			return _numPoses;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			if (usesCPU)

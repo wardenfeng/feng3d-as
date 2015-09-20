@@ -3,21 +3,19 @@ package me.feng3d.animators.spriteSheet
 	import me.feng3d.animators.base.states.IAnimationState;
 
 	/**
-	 * Provides an interface for animation node classes that hold animation data for use in the SpriteSheetAnimator class.
-	 *
-	 * @see away3d.animators.SpriteSheetAnimator
+	 * sprite动画状态接口
+	 * @author warden_feng 2015-9-18
 	 */
 	public interface ISpriteSheetAnimationState extends IAnimationState
 	{
 		/**
-		 * Returns the current SpriteSheetAnimationFrame of animation in the clip based on the internal playhead position.
+		 * 当前帧数据
 		 */
 		function get currentFrameData():SpriteSheetAnimationFrame;
 
 		/**
-		 * Returns the current frame number.
+		 * 当前帧数
 		 */
 		function get currentFrameNumber():uint;
-
 	}
 }

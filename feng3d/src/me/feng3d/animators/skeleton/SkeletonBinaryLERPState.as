@@ -9,7 +9,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
 
 	/**
-	 *
+	 * 骨骼线性插值状态接口
+	 * @author warden_feng 2015-9-18
 	 */
 	public class SkeletonBinaryLERPState extends AnimationStateBase implements ISkeletonAnimationState
 	{
@@ -21,11 +22,7 @@ package me.feng3d.animators.skeleton
 		private var _inputB:ISkeletonAnimationState;
 
 		/**
-		 * Defines a fractional value between 0 and 1 representing the blending ratio between inputA (0) and inputB (1),
-		 * used to produce the skeleton pose output.
-		 *
-		 * @see inputA
-		 * @see inputB
+		 * 混合权重	(0[inputA],1[inputB])
 		 */
 		public function get blendWeight():Number
 		{
@@ -40,6 +37,11 @@ package me.feng3d.animators.skeleton
 			_skeletonPoseDirty = true;
 		}
 
+		/**
+		 * 创建SkeletonBinaryLERPState实例
+		 * @param animator						动画
+		 * @param skeletonAnimationNode			骨骼动画节点
+		 */
 		function SkeletonBinaryLERPState(animator:IAnimator, skeletonAnimationNode:SkeletonBinaryLERPNode)
 		{
 			super(animator, skeletonAnimationNode);
@@ -77,7 +79,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Returns the current skeleton pose of the animation in the clip based on the internal playhead position.
+		 * @inheritDoc
 		 */
 		public function getSkeletonPose(skeleton:Skeleton):SkeletonPose
 		{
@@ -103,9 +105,8 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Updates the output skeleton pose of the node based on the blendWeight value between input nodes.
-		 *
-		 * @param skeleton The skeleton used by the animator requesting the ouput pose.
+		 * 更新骨骼姿势
+		 * @param skeleton		骨骼
 		 */
 		private function updateSkeletonPose(skeleton:Skeleton):void
 		{

@@ -2,45 +2,45 @@ package me.feng3d.animators.uv
 {
 
 	/**
-	 * A value object for a single frame of animation in a <code>UVClipNode</code> object.
-	 *
-	 * @see away3d.animators.nodes.UVClipNode
+	 * UV动画帧
+	 * @author warden_feng 2015-9-18
+	 * @see me.feng3d.animators.spriteSheet.SpriteSheetAnimationFrame
 	 */
 	public class UVAnimationFrame
 	{
 		/**
-		 * The u-component offset of the UV animation frame.
+		 * U偏移
 		 */
 		public var offsetU:Number;
 
 		/**
-		 * The v-component offset of the UV animation frame.
+		 * V偏移
 		 */
 		public var offsetV:Number;
 
 		/**
-		 * The u-component scale of the UV animation frame.
+		 * U缩放
 		 */
 		public var scaleU:Number;
 
 		/**
-		 * The v-component scale of the UV animation frame.
+		 * V缩放
 		 */
 		public var scaleV:Number;
 
 		/**
-		 * The rotation value (in degrees) of the UV animation frame.
+		 * 旋转角度（度数）
 		 */
 		public var rotation:Number;
 
 		/**
-		 * Creates a new <code>UVAnimationFrame</code> object.
+		 * 创建<code>UVAnimationFrame</code>实例
 		 *
-		 * @param offsetU The u-component offset of the UV animation frame.
-		 * @param offsetV The v-component offset of the UV animation frame.
-		 * @param scaleU The u-component scale of the UV animation frame.
-		 * @param scaleV The v-component scale of the UV animation frame.
-		 * @param rotation The rotation value (in degrees) of the UV animation frame.
+		 * @param offsetU			U元素偏移
+		 * @param offsetV			V元素偏移
+		 * @param scaleU			U元素缩放
+		 * @param scaleV			V元素缩放
+		 * @param rotation			旋转角度（度数）
 		 */
 		public function UVAnimationFrame(offsetU:Number = 0, offsetV:Number = 0, scaleU:Number = 1, scaleV:Number = 1, rotation:Number = 0)
 		{

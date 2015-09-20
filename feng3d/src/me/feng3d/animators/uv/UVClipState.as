@@ -3,6 +3,10 @@ package me.feng3d.animators.uv
 	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.states.AnimationClipState;
 
+	/**
+	 * UV动画剪辑状态
+	 * @author warden_feng 2015-9-18
+	 */
 	public class UVClipState extends AnimationClipState implements IUVAnimationState
 	{
 		private var _frames:Vector.<UVAnimationFrame>;
@@ -32,6 +36,11 @@ package me.feng3d.animators.uv
 			return _nextUVFrame;
 		}
 
+		/**
+		 * 创建UVClipState实例
+		 * @param animator				动画
+		 * @param uvClipNode			UV动画剪辑节点
+		 */
 		function UVClipState(animator:IAnimator, uvClipNode:UVClipNode)
 		{
 			super(animator, uvClipNode);

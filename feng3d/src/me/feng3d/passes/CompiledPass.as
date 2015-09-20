@@ -120,6 +120,9 @@ package me.feng3d.passes
 			ambientMethod._lightAmbientB = _ambientLightB;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateConstantData(renderable:IRenderable, camera:Camera3D):void
 		{
 			super.updateConstantData(renderable, camera);
@@ -245,7 +248,7 @@ package me.feng3d.passes
 		}
 
 		/**
-		 * Updates method constants if they have changed.
+		 * 更新函数常量数据
 		 */
 		protected function updateMethodConstants():void
 		{

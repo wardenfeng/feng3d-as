@@ -2,8 +2,6 @@ package me.feng3d.primitives
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	
-	
 
 	use namespace arcane;
 
@@ -21,40 +19,41 @@ package me.feng3d.primitives
 		protected var vertexNormalData:Vector.<Number>;
 		protected var vertexTangentData:Vector.<Number>;
 		private var _rawIndices:Vector.<uint>;
-		private var _nextVertexIndex:uint;
-		private var _currentIndex:uint;
+		private var _vertexIndex:uint;
 		private var _currentTriangleIndex:uint;
 		private var _numVertices:uint;
 		private var vertexPositionStride:uint;
 		private var vertexNormalStride:uint;
 		private var vertexTangentStride:uint;
-		private var _vertexPositionOffset:int;
-		private var _vertexNormalOffset:int;
-		private var _vertexTangentOffset:int;
 
-		private function addVertex(px:Number, py:Number, pz:Number, nx:Number, ny:Number, nz:Number, tx:Number, ty:Number, tz:Number):void
+		/**
+		 * 添加顶点数据
+		 */
+		private function addVertex(vertexIndex:uint, px:Number, py:Number, pz:Number, nx:Number, ny:Number, nz:Number, tx:Number, ty:Number, tz:Number):void
 		{
-			var positionIndex:uint = _vertexPositionOffset + _nextVertexIndex * vertexPositionStride;
-			var normalIndex:uint = _vertexNormalOffset + _nextVertexIndex * vertexNormalStride;
-			var TangentIndex:uint = _vertexTangentOffset + _nextVertexIndex * vertexTangentStride;
-			vertexPositionData[positionIndex++] = px;
-			vertexPositionData[positionIndex++] = py;
-			vertexPositionData[positionIndex++] = pz;
-			vertexNormalData[normalIndex++] = nx;
-			vertexNormalData[normalIndex++] = ny;
-			vertexNormalData[normalIndex++] = nz;
-			vertexTangentData[TangentIndex++] = tx;
-			vertexTangentData[TangentIndex++] = ty;
-			vertexTangentData[TangentIndex] = tz;
-			_nextVertexIndex++;
+			vertexPositionData[vertexIndex * vertexPositionStride] = px;
+			vertexPositionData[vertexIndex * vertexPositionStride + 1] = py;
+			vertexPositionData[vertexIndex * vertexPositionStride + 2] = pz;
+			vertexNormalData[vertexIndex * vertexNormalStride] = nx;
+			vertexNormalData[vertexIndex * vertexNormalStride + 1] = ny;
+			vertexNormalData[vertexIndex * vertexNormalStride + 2] = nz;
+			vertexTangentData[vertexIndex * vertexTangentStride] = tx;
+			vertexTangentData[vertexIndex * vertexTangentStride + 1] = ty;
+			vertexTangentData[vertexIndex * vertexTangentStride + 2] = tz;
 		}
 
-		private function addTriangleClockWise(cwVertexIndex0:uint, cwVertexIndex1:uint, cwVertexIndex2:uint):void
+		/**
+		 * 添加三角形索引数据
+		 * @param currentTriangleIndex		当前三角形索引
+		 * @param cwVertexIndex0			索引0
+		 * @param cwVertexIndex1			索引1
+		 * @param cwVertexIndex2			索引2
+		 */
+		private function addTriangleClockWise(currentTriangleIndex:uint, cwVertexIndex0:uint, cwVertexIndex1:uint, cwVertexIndex2:uint):void
 		{
-			_rawIndices[_currentIndex++] = cwVertexIndex0;
-			_rawIndices[_currentIndex++] = cwVertexIndex1;
-			_rawIndices[_currentIndex++] = cwVertexIndex2;
-			_currentTriangleIndex++;
+			_rawIndices[currentTriangleIndex * 3] = cwVertexIndex0;
+			_rawIndices[currentTriangleIndex * 3 + 1] = cwVertexIndex1;
+			_rawIndices[currentTriangleIndex * 3 + 2] = cwVertexIndex2;
 		}
 
 		/**
@@ -67,15 +66,11 @@ package me.feng3d.primitives
 			var numTriangles:uint;
 			// reset utility variables
 			_numVertices = 0;
-			_nextVertexIndex = 0;
-			_currentIndex = 0;
+			_vertexIndex = 0;
 			_currentTriangleIndex = 0;
 			vertexPositionStride = target.vertexStride;
 			vertexNormalStride = target.vertexNormalStride;
 			vertexTangentStride = target.vertexTangentStride;
-			_vertexPositionOffset = 0;
-			_vertexNormalOffset = 0;
-			_vertexTangentOffset = 0;
 
 			// evaluate target number of vertices, triangles and indices
 			_numVertices = (_segmentsT + 1) * (_segmentsR + 1); // segmentsT + 1 because of closure, segmentsR + 1 because of closure
@@ -112,10 +107,12 @@ package me.feng3d.primitives
 
 			for (j = 0; j <= _segmentsT; ++j)
 			{
-				startPositionIndex = _vertexPositionOffset + _nextVertexIndex * vertexPositionStride;
+				startPositionIndex = j * (_segmentsR + 1) * vertexPositionStride;
 
 				for (i = 0; i <= _segmentsR; ++i)
 				{
+					_vertexIndex = j * (_segmentsR + 1) + i;
+
 					// revolution vertex
 					revolutionAngleR = i * revolutionAngleDeltaR;
 					revolutionAngleT = j * revolutionAngleDeltaT;
@@ -151,22 +148,22 @@ package me.feng3d.primitives
 
 					if (i == _segmentsR)
 					{
-						addVertex(x, vertexPositionData[startPositionIndex + 1], vertexPositionData[startPositionIndex + 2], nx, n1, n2, -(length ? ny / length : y / _radius), t1, t2);
+						addVertex(_vertexIndex, x, vertexPositionData[startPositionIndex + 1], vertexPositionData[startPositionIndex + 2], nx, n1, n2, -(length ? ny / length : y / _radius), t1, t2);
 					}
 					else
 					{
-						addVertex(x, comp1, comp2, nx, n1, n2, -(length ? ny / length : y / _radius), t1, t2);
+						addVertex(_vertexIndex, x, comp1, comp2, nx, n1, n2, -(length ? ny / length : y / _radius), t1, t2);
 					}
 
 					// close triangle
 					if (i > 0 && j > 0)
 					{
-						a = _nextVertexIndex - 1; // current
-						b = _nextVertexIndex - 2; // previous
+						a = _vertexIndex; // current
+						b = _vertexIndex - 1; // previous
 						c = b - _segmentsR - 1; // previous of last level
 						d = a - _segmentsR - 1; // current of last level
-						addTriangleClockWise(a, b, c);
-						addTriangleClockWise(a, c, d);
+						addTriangleClockWise(_currentTriangleIndex++, a, b, c);
+						addTriangleClockWise(_currentTriangleIndex++, a, c, d);
 					}
 				}
 			}
@@ -174,7 +171,7 @@ package me.feng3d.primitives
 			target.numVertices = _numVertices;
 			target.updateVertexPositionData(vertexPositionData);
 			target.updateVertexNormalData(vertexNormalData);
-			target.updateVertexTangentData( vertexTangentData);
+			target.updateVertexTangentData(vertexTangentData);
 			target.updateIndexData(_rawIndices);
 		}
 
@@ -186,8 +183,6 @@ package me.feng3d.primitives
 			var i:int, j:int;
 			var data:Vector.<Number>;
 			var stride:int = target.UVStride;
-			var offset:int = 0;
-			var skip:int = target.UVStride - 2;
 
 			// evaluate num uvs
 			var numUvs:uint = _numVertices * stride;
@@ -197,30 +192,30 @@ package me.feng3d.primitives
 			if (data == null || numUvs != data.length)
 			{
 				data = new Vector.<Number>(numUvs, true);
-				invalidateGeometry();
 			}
 
 			// current uv component index
-			var currentUvCompIndex:uint = offset;
+			var currentUvCompIndex:uint = 0;
 
+			var index:int = 0;
 			// surface
 			for (j = 0; j <= _segmentsT; ++j)
 			{
 				for (i = 0; i <= _segmentsR; ++i)
 				{
+					index = j * (_segmentsR + 1) + i;
 					// revolution vertex
-					data[currentUvCompIndex++] = (i / _segmentsR) * target.scaleU;
-					data[currentUvCompIndex++] = (j / _segmentsT) * target.scaleV;
-					currentUvCompIndex += skip;
+					data[index * stride] = (i / _segmentsR) * target.scaleU;
+					data[index * stride + 1] = (j / _segmentsT) * target.scaleV;
 				}
 			}
 
 			// build real data from raw data
-			target.updateUVData( data);
+			target.updateUVData(data);
 		}
 
 		/**
-		 * The radius of the torus.
+		 * 圆环半径
 		 */
 		public function get radius():Number
 		{
@@ -234,7 +229,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * The radius of the inner tube of the torus.
+		 * 管子半径
 		 */
 		public function get tubeRadius():Number
 		{
@@ -248,7 +243,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Defines the number of horizontal segments that make up the torus. Defaults to 16.
+		 * 横向段数
 		 */
 		public function get segmentsR():uint
 		{
@@ -263,7 +258,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Defines the number of vertical segments that make up the torus. Defaults to 8.
+		 * 纵向段数
 		 */
 		public function get segmentsT():uint
 		{
@@ -278,7 +273,7 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Defines whether the torus poles should lay on the Y-axis (true) or on the Z-axis (false).
+		 * Y轴是否朝上
 		 */
 		public function get yUp():Boolean
 		{
@@ -292,12 +287,12 @@ package me.feng3d.primitives
 		}
 
 		/**
-		 * Creates a new <code>Torus</code> object.
-		 * @param radius The radius of the torus.
-		 * @param tuebRadius The radius of the inner tube of the torus.
-		 * @param segmentsR Defines the number of horizontal segments that make up the torus.
-		 * @param segmentsT Defines the number of vertical segments that make up the torus.
-		 * @param yUp Defines whether the torus poles should lay on the Y-axis (true) or on the Z-axis (false).
+		 * 创建<code>Torus</code>实例
+		 * @param radius						圆环半径
+		 * @param tuebRadius					管道半径
+		 * @param segmentsR						横向段数
+		 * @param segmentsT						纵向段数
+		 * @param yUp							Y轴是否朝上
 		 */
 		public function TorusGeometry(radius:Number = 50, tubeRadius:Number = 50, segmentsR:uint = 16, segmentsT:uint = 8, yUp:Boolean = true)
 		{

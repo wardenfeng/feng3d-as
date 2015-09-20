@@ -170,7 +170,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The method used to render shadows cast on this surface, or null if no shadows are to be rendered.
+		 * 阴影映射函数
 		 */
 		public function get shadowMethod():ShadowMapMethodBase
 		{
@@ -196,8 +196,8 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * Adds a method to change the material after all lighting is performed.
-		 * @param method The method to be added.
+		 * 添加特效函数
+		 * @param method		特效函数
 		 */
 		public function addMethod(method:EffectMethodBase):void
 		{

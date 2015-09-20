@@ -1,21 +1,29 @@
 package me.feng3d.animators.spriteSheet
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.base.states.AnimationClipState;
 	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.states.AnimationClipState;
 
 	use namespace arcane;
 
+	/**
+	 * sprite动画状态
+	 * @author warden_feng 2015-9-18
+	 */
 	public class SpriteSheetAnimationState extends AnimationClipState implements ISpriteSheetAnimationState
 	{
 		private var _frames:Vector.<SpriteSheetAnimationFrame>;
 		private var _clipNode:SpriteSheetClipNode;
 		private var _currentFrameID:uint = 0;
 		private var _reverse:Boolean;
-		private var _back:Boolean;
 		private var _backAndForth:Boolean;
 		private var _forcedFrame:Boolean;
 
+		/**
+		 * 创建sprite动画状态实例
+		 * @param animator			动画
+		 * @param clipNode			动画剪辑节点
+		 */
 		function SpriteSheetAnimationState(animator:IAnimator, clipNode:SpriteSheetClipNode)
 		{
 			super(animator, clipNode);
@@ -24,17 +32,21 @@ package me.feng3d.animators.spriteSheet
 			_frames = _clipNode.frames;
 		}
 
+		/**
+		 * 是否反向播放
+		 */
 		public function set reverse(b:Boolean):void
 		{
-			_back = false;
 			_reverse = b;
 		}
 
+		/**
+		 * 改变播放方向
+		 */
 		public function set backAndForth(b:Boolean):void
 		{
 			if (b)
 				_reverse = false;
-			_back = false;
 			_backAndForth = b;
 		}
 
@@ -50,8 +62,7 @@ package me.feng3d.animators.spriteSheet
 		}
 
 		/**
-		 * returns current frame index of the animation.
-		 * The index is zero based and counts from first frame of the defined animation.
+		 * 当前帧数
 		 */
 		public function get currentFrameNumber():uint
 		{
@@ -65,7 +76,7 @@ package me.feng3d.animators.spriteSheet
 		}
 
 		/**
-		 * returns the total frames for the current animation.
+		 * 总帧数
 		 */
 		arcane function get totalFrames():uint
 		{

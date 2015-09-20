@@ -5,12 +5,16 @@ package me.feng3d.animators.uv
 	/**
 	 * A uv animation node containing time-based animation data as individual uv animation frames.
 	 */
+	/**
+	 * UV动画剪辑节点
+	 * @author warden_feng 2014-5-20
+	 */
 	public class UVClipNode extends AnimationClipNodeBase
 	{
 		private var _frames:Vector.<UVAnimationFrame> = new Vector.<UVAnimationFrame>();
 
 		/**
-		 * Returns a vector of UV frames representing the uv values of each animation frame in the clip.
+		 * 帧数据列表
 		 */
 		public function get frames():Vector.<UVAnimationFrame>
 		{
@@ -18,7 +22,7 @@ package me.feng3d.animators.uv
 		}
 
 		/**
-		 * Creates a new <code>UVClipNode</code> object.
+		 * 创建<code>UVClipNode</code>实例
 		 */
 		public function UVClipNode()
 		{
@@ -26,10 +30,9 @@ package me.feng3d.animators.uv
 		}
 
 		/**
-		 * Adds a UV frame object to the internal timeline of the animation node.
-		 *
-		 * @param uvFrame The uv frame object to add to the timeline of the node.
-		 * @param duration The specified duration of the frame in milliseconds.
+		 * 添加帧
+		 * @param uvFrame				UV动画帧
+		 * @param duration				间隔时间
 		 */
 		public function addFrame(uvFrame:UVAnimationFrame, duration:uint):void
 		{

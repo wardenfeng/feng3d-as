@@ -7,8 +7,7 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 *
-	 * FogMethod provides a method to add distance-based fog to a material.
+	 * 雾函数
 	 * @author warden_feng 2015-8-27
 	 */
 	public class FogMethod extends EffectMethodBase
@@ -28,7 +27,7 @@ package me.feng3d.materials.methods
 		private const fogCommonData:Vector.<Number> = Vector.<Number>([0, 0, 0, 0]);
 
 		/**
-		 * The distance from which the fog starts appearing.
+		 * 出现雾效果的最近距离
 		 */
 		public function get minDistance():Number
 		{
@@ -41,7 +40,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The distance at which the fog is densest.
+		 * 最远距离
 		 */
 		public function get maxDistance():Number
 		{
@@ -54,7 +53,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The colour of the fog.
+		 * 雾的颜色
 		 */
 		public function get fogColor():uint
 		{
@@ -70,10 +69,10 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * Creates a new FogMethod object.
-		 * @param minDistance The distance from which the fog starts appearing.
-		 * @param maxDistance The distance at which the fog is densest.
-		 * @param fogColor The colour of the fog.
+		 * 创建FogMethod实例
+		 * @param minDistance			出现雾效果的最近距离
+		 * @param maxDistance			最远距离
+		 * @param fogColor				雾的颜色
 		 */
 		public function FogMethod(minDistance:Number, maxDistance:Number, fogColor:uint = 0x808080)
 		{

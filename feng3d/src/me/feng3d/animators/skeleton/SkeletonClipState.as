@@ -9,7 +9,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
 
 	/**
-	 *
+	 * 骨骼剪辑状态
+	 * @author warden_feng 2015-9-18
 	 */
 	public class SkeletonClipState extends AnimationClipState implements ISkeletonAnimationState
 	{
@@ -22,7 +23,7 @@ package me.feng3d.animators.skeleton
 		private var _nextPose:SkeletonPose;
 
 		/**
-		 * Returns the current skeleton pose frame of animation in the clip based on the internal playhead position.
+		 * 当前骨骼姿势
 		 */
 		public function get currentPose():SkeletonPose
 		{
@@ -33,7 +34,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Returns the next skeleton pose frame of animation in the clip based on the internal playhead position.
+		 * 下个姿势
 		 */
 		public function get nextPose():SkeletonPose
 		{
@@ -43,6 +44,11 @@ package me.feng3d.animators.skeleton
 			return _nextPose;
 		}
 
+		/**
+		 * 创建骨骼剪辑状态实例
+		 * @param animator				动画
+		 * @param skeletonClipNode		骨骼剪辑节点
+		 */
 		function SkeletonClipState(animator:IAnimator, skeletonClipNode:SkeletonClipNode)
 		{
 			super(animator, skeletonClipNode);
@@ -52,7 +58,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Returns the current skeleton pose of the animation in the clip based on the internal playhead position.
+		 * @inheritDoc
 		 */
 		public function getSkeletonPose(skeleton:Skeleton):SkeletonPose
 		{

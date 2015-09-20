@@ -25,16 +25,17 @@ package me.feng3d.animators.particle.node
 		 */
 		public static const VELOCITY_VECTOR3D:String = "VelocityVector3D";
 
-		override public function get propertieName():String
-		{
-			return VELOCITY_VECTOR3D;
-		}
-
+		/**
+		 * @inheritDoc
+		 */
 		override public function get vaId():String
 		{
 			return _.particleVelocity_va_3;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function get vaLen():uint
 		{
 			return 3;
@@ -63,6 +64,9 @@ package me.feng3d.animators.particle.node
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();

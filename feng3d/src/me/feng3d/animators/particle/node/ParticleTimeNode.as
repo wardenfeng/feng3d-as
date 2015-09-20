@@ -14,11 +14,17 @@ package me.feng3d.animators.particle.node
 	 */
 	public class ParticleTimeNode extends ParticleNodeBase
 	{
+		/**
+		 * @inheritDoc
+		 */
 		override public function get vaId():String
 		{
 			return _.particleTime_va_4;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function get vaLen():uint
 		{
 			return 4;

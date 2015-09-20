@@ -23,10 +23,11 @@ package me.feng3d.core.traverse
 	/**
 	 * 实体收集器
 	 * <p>为场景分区收集所有场景图中被认为潜在显示对象</p>
-	 * @author warden_feng 2015-3-1
 	 *
 	 * @see me.feng3d.core.partition.Partition3D
 	 * @see me.feng3d.entities.Entity
+	 *
+	 * @author warden_feng 2015-3-1
 	 */
 	public class EntityCollector extends PartitionTraverser
 	{
@@ -214,8 +215,7 @@ package me.feng3d.core.traverse
 		}
 
 		/**
-		 * Adds a skybox to the potentially visible objects.
-		 * @param renderable The skybox to add.
+		 * @inheritDoc
 		 */
 		override public function applySkyBox(skyBox:SkyBox):void
 		{
@@ -240,6 +240,9 @@ package me.feng3d.core.traverse
 			_pointLights[_numPointLights++] = light;
 		}
 
+		/**
+		 * 方向光列表
+		 */
 		public function get directionalLights():Vector.<DirectionalLight>
 		{
 			return _directionalLights;

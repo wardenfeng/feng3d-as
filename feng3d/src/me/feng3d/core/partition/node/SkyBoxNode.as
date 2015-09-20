@@ -5,15 +5,16 @@ package me.feng3d.core.partition.node
 	import me.feng3d.entities.SkyBox;
 
 	/**
-	 * SkyBoxNode is a space partitioning leaf node that contains a SkyBox object.
+	 * 天空盒分区节点
+	 * @author warden_feng 2015-3-8
 	 */
 	public class SkyBoxNode extends EntityNode
 	{
 		private var _skyBox:SkyBox;
 
 		/**
-		 * Creates a new SkyBoxNode object.
-		 * @param skyBox The SkyBox to be contained in the node.
+		 * 创建SkyBoxNode实例
+		 * @param skyBox		天空盒实例
 		 */
 		public function SkyBoxNode(skyBox:SkyBox)
 		{
@@ -33,6 +34,9 @@ package me.feng3d.core.partition.node
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function isInFrustum(planes:Vector.<Plane3D>, numPlanes:int):Boolean
 		{
 			planes = planes;

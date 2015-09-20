@@ -42,6 +42,7 @@ package me.feng3d.configs
 			["projection_vc_matrix", "顶点程序投影矩阵静态数据"], //
 			["uv_v", "uv变量数据"], //
 			["texture_fs", "片段程序的纹理"], //
+			["skyboxTexture_fs", "天空盒立方体纹理"], //
 			["color_fc_vector", "颜色静态数据"], //
 			["program", "渲染程序"], //
 			["culling", "三角形剔除模式"], //

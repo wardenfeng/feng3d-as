@@ -4,22 +4,23 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 
 	/**
-	 * A skeleton animation node that uses two animation node inputs to blend a lineraly interpolated output of a skeleton pose.
+	 * 两个骨骼动画节点间进行线性插值得出骨骼姿势
+	 * @author warden_feng 2014-5-20
 	 */
 	public class SkeletonBinaryLERPNode extends AnimationNodeBase
 	{
 		/**
-		 * Defines input node A to use for the blended output.
+		 * 为混合输出提供输入节点A
 		 */
 		public var inputA:AnimationNodeBase;
 
 		/**
-		 * Defines input node B to use for the blended output.
+		 * 为混合输出提供输入节点B
 		 */
 		public var inputB:AnimationNodeBase;
 
 		/**
-		 * Creates a new <code>SkeletonBinaryLERPNode</code> object.
+		 * 创建<code>SkeletonBinaryLERPNode</code>对象
 		 */
 		public function SkeletonBinaryLERPNode()
 		{

@@ -51,6 +51,9 @@ package me.feng3d.animators.particle
 //			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -68,6 +71,9 @@ package me.feng3d.animators.particle
 			particleConstDataBuffer.update(vertexZeroConst);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var subMesh:SubMesh = renderable as SubMesh;

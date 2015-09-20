@@ -5,7 +5,8 @@ package me.feng3d.animators.base.states
 	import me.feng3d.events.AnimationStateEvent;
 
 	/**
-	 *
+	 * 动画剪辑状态
+	 * @author warden_feng 2015-9-18
 	 */
 	public class AnimationClipState extends AnimationStateBase
 	{
@@ -19,9 +20,7 @@ package me.feng3d.animators.base.states
 		protected var _framesDirty:Boolean = true;
 
 		/**
-		 * Returns a fractional value between 0 and 1 representing the blending ratio of the current playhead position
-		 * between the current frame (0) and next frame (1) of the animation.
-		 *
+		 * 混合权重	(0[当前帧],1[下一帧])
 		 * @see #currentFrame
 		 * @see #nextFrame
 		 */
@@ -34,7 +33,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Returns the current frame of animation in the clip based on the internal playhead position.
+		 * 当前帧
 		 */
 		public function get currentFrame():uint
 		{
@@ -45,7 +44,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Returns the next frame of animation in the clip based on the internal playhead position.
+		 * 下一帧
 		 */
 		public function get nextFrame():uint
 		{
@@ -55,6 +54,11 @@ package me.feng3d.animators.base.states
 			return _nextFrame;
 		}
 
+		/**
+		 * 创建一个帧动画状态
+		 * @param animator				动画
+		 * @param animationClipNode		帧动画节点
+		 */
 		function AnimationClipState(animator:IAnimator, animationClipNode:AnimationClipNodeBase)
 		{
 			super(animator, animationClipNode);
@@ -107,7 +111,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Updates the nodes internal playhead to determine the current and next animation frame, and the blendWeight between the two.
+		 * 更新帧，计算当前帧、下一帧与混合权重
 		 *
 		 * @see #currentFrame
 		 * @see #nextFrame
@@ -175,6 +179,9 @@ package me.feng3d.animators.base.states
 			}
 		}
 
+		/**
+		 * 通知播放完成
+		 */
 		private function notifyPlaybackComplete():void
 		{
 			_animationClipNode.dispatchEvent(new AnimationStateEvent(AnimationStateEvent.PLAYBACK_COMPLETE, _animator, this, _animationClipNode));

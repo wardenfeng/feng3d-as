@@ -74,14 +74,14 @@ package me.feng3d.animators.base.node
 		{
 			return _stitchFinalFrame;
 		}
-		
+
 		public function set stitchFinalFrame(value:Boolean):void
 		{
 			if (_stitchFinalFrame == value)
 				return;
-			
+
 			_stitchFinalFrame = value;
-			
+
 			_stitchDirty = true;
 		}
 
@@ -95,23 +95,26 @@ package me.feng3d.animators.base.node
 
 			return _totalDuration;
 		}
-		
+
+		/**
+		 * 最后帧数
+		 */
 		public function get lastFrame():uint
 		{
 			if (_stitchDirty)
 				updateStitch();
-			
+
 			return _lastFrame;
 		}
-		
+
 		/**
 		 * 更新动画播放控制状态
 		 */
 		protected function updateStitch():void
 		{
 			_stitchDirty = false;
-			
-			_lastFrame = (_looping && _stitchFinalFrame)? _numFrames : _numFrames - 1;
+
+			_lastFrame = (_looping && _stitchFinalFrame) ? _numFrames : _numFrames - 1;
 
 			_totalDuration = 0;
 			_totalDelta.x = 0;

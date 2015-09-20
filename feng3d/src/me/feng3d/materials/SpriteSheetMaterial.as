@@ -6,13 +6,11 @@ package me.feng3d.materials
 	use namespace arcane;
 
 	/**
-	 * SpriteSheetMaterial is a material required for a SpriteSheetAnimator if you have an animation spreaded over more maps
-	 * and/or have animated normalmaps, specularmaps
+	 * SpriteSheet材质
+	 * @author warden_feng 2014-4-15
 	 */
 	public class SpriteSheetMaterial extends TextureMaterial
 	{
-		//private var currentID:uint = 0;
-
 		private var _diffuses:Vector.<Texture2DBase>;
 		private var _normals:Vector.<Texture2DBase>;
 		private var _speculars:Vector.<Texture2DBase>;
@@ -24,17 +22,15 @@ package me.feng3d.materials
 		private var _currentMapID:uint;
 
 		/**
-		 * Creates a new SpriteSheetMaterial required for a SpriteSheetAnimator
+		 * 创建SpriteSheetMaterial实例
 		 *
-		 * (the sprite sheet maps of each textures must have power of 2 sizes)
-		 * @param diffuses        Vector.&lt;Texture2DBase&gt; : One or more Texture2DBase representing the diffuse information of the spritesheets. Must hold at least 1 diffuse.
-		 * @param normals        Vector.&lt;Texture2DBase&gt; : One or more Texture2DBase representing the normal information of the spritesheets. Default is null. If not null, must hold same amount of textures as diffuses.
-		 * @param speculars        Vector.&lt;Texture2DBase&gt; : One or more Texture2DBase representing the specular information of the spritesheets. Default is null. If not null, must hold same amount of textures as diffuses.
-		 * @param smooth        Boolean : Material smoothing. Default is true.
-		 * @param repeat        Boolean : Material repeat. Default is false.
-		 * @param mipmap        Boolean : Material mipmap. Set it to false if the animation graphics have thin lines or text information in them. Default is true.
+		 * @param diffuses			漫反射纹理列表
+		 * @param normals			法线纹理列表
+		 * @param speculars			高光纹理列表
+		 * @param smooth			是否平滑
+		 * @param repeat			是否重复
+		 * @param mipmap			是否使用mipmap
 		 */
-
 		public function SpriteSheetMaterial(diffuses:Vector.<Texture2DBase>, normals:Vector.<Texture2DBase> = null, speculars:Vector.<Texture2DBase> = null, smooth:Boolean = true, repeat:Boolean = false, mipmap:Boolean = true)
 		{
 
@@ -81,6 +77,11 @@ package me.feng3d.materials
 
 		}
 
+		/**
+		 * 切换
+		 * @param mapID			映射编号
+		 * @return				是否切换成功
+		 */
 		arcane function swap(mapID:uint = 0):Boolean
 		{
 

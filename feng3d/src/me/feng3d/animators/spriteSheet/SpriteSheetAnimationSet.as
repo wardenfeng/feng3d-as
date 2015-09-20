@@ -6,15 +6,14 @@ package me.feng3d.animators.spriteSheet
 	import me.feng3d.passes.MaterialPassBase;
 
 	/**
-	 * The animation data set containing the Spritesheet animation state data.
-	 *
-	 * @see away3d.animators.SpriteSheetAnimator
-	 * @see away3d.animators.SpriteSheetAnimationState
+	 * sprite动画集合
+	 * @author warden_feng 2015-9-18
 	 */
 	public class SpriteSheetAnimationSet extends AnimationSetBase implements IAnimationSet
 	{
-		private var _agalCode:String;
-
+		/**
+		 * 创建sprite动画集合
+		 */
 		function SpriteSheetAnimationSet()
 		{
 		}

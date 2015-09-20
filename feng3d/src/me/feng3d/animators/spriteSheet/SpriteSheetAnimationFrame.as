@@ -2,45 +2,45 @@ package me.feng3d.animators.spriteSheet
 {
 
 	/**
-	 * A value object for a single frame of animation in a <code>SpriteSheetClipNode</code> object.
-	 *
-	 * @see away3d.animators.nodes.SpriteSheetClipNode
+	 * sprite动画帧
+	 * @author warden_feng 2015-9-18
+	 * @see me.feng3d.animators.uv.UVAnimationFrame
 	 */
 	public class SpriteSheetAnimationFrame
 	{
 		/**
-		 * The u-component offset of the spritesheet frame.
+		 * U元素偏移
 		 */
 		public var offsetU:Number;
 
 		/**
-		 * The v-component offset of the spritesheet frame.
+		 * V元素偏移
 		 */
 		public var offsetV:Number;
 
 		/**
-		 * The u-component scale of the spritesheet frame.
+		 * U元素缩放
 		 */
 		public var scaleU:Number;
 
 		/**
-		 * The v-component scale of the spritesheet frame.
+		 * V元素缩放
 		 */
 		public var scaleV:Number;
 
 		/**
-		 * The mapID, zero based, if the animation is spreaded over more bitmapData's
+		 * 映射编号
 		 */
 		public var mapID:uint;
 
 		/**
-		 * Creates a new <code>SpriteSheetAnimationFrame</code> object.
+		 * 创建<code>SpriteSheetAnimationFrame</code>实例
 		 *
-		 * @param offsetU    The u-component offset of the spritesheet frame.
-		 * @param offsetV    The v-component offset of the spritesheet frame.
-		 * @param scaleU    The u-component scale of the spritesheet frame.
-		 * @param scaleV    The v-component scale of the spritesheet frame.
-		 * @param mapID    The v-component scale of the spritesheet frame.
+		 * @param offsetU			U元素偏移
+		 * @param offsetV			V元素偏移
+		 * @param scaleU			U元素缩放
+		 * @param scaleV			V元素缩放
+		 * @param mapID				映射编号
 		 */
 		public function SpriteSheetAnimationFrame(offsetU:Number = 0, offsetV:Number = 0, scaleU:Number = 1, scaleV:Number = 1, mapID:uint = 0)
 		{

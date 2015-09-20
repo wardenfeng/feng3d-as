@@ -1,6 +1,7 @@
 package me.feng3d.passes
 {
 	import flash.display3D.Context3DCompareMode;
+	import flash.display3D.Context3DWrapMode;
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
@@ -47,7 +48,7 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.texture_fs, updateTextureBuffer);
+			mapContext3DBuffer(_.skyboxTexture_fs, updateTextureBuffer);
 			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
 			mapContext3DBuffer(_.camerapos_vc_vector, updateCameraPosBuffer);
 			mapContext3DBuffer(_.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
@@ -94,7 +95,7 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureBase):void
 		{
 			_cubeTexture = value;
-			markBufferDirty(_.texture_fs);
+			markBufferDirty(_.skyboxTexture_fs);
 		}
 
 		/**
@@ -136,7 +137,7 @@ package me.feng3d.passes
 			scaleSkybox[3] = 1;
 
 			//通用渲染参数
-			shaderParams.addSampleFlags(_.texture_fs, _cubeTexture);
+			shaderParams.addSampleFlags(_.skyboxTexture_fs, _cubeTexture, Context3DWrapMode.CLAMP);
 		}
 	}
 }

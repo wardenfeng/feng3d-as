@@ -97,19 +97,22 @@ package me.feng3d.utils
 					flags.push(Context3DMipFilter.MIPNEAREST);
 			}
 
-			if (!texture is BitmapCubeTexture)
+			if (forceWrap)
 			{
-				if (forceWrap)
+				flags.push(forceWrap);
+			}
+			else
+			{
+				if (!(texture is BitmapCubeTexture))
 				{
-					flags.push(forceWrap);
-				}
-				else if (repeatTextures)
-				{
-					flags.push(Context3DWrapMode.REPEAT);
-				}
-				else
-				{
-					flags.push(Context3DWrapMode.CLAMP);
+					if (repeatTextures)
+					{
+						flags.push(Context3DWrapMode.REPEAT);
+					}
+					else
+					{
+						flags.push(Context3DWrapMode.CLAMP);
+					}
 				}
 			}
 

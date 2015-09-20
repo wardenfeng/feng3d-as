@@ -256,11 +256,6 @@ package me.feng3d.entities
 			var len:int = _subMeshes.length;
 			var i:uint;
 
-			// Important! This has to be done here, and not delayed until the
-			// next render loop, since this may be caused by the geometry being
-			// rebuilt IN THE RENDER LOOP. Invalidating and waiting will delay
-			// it until the NEXT RENDER FRAME which is probably not desirable.
-
 			for (i = 0; i < len; ++i)
 			{
 				subMesh = _subMeshes[i];
@@ -280,7 +275,7 @@ package me.feng3d.entities
 		}
 
 		/**
-		 * Indicates whether or not the Mesh can cast shadows. Default value is <code>true</code>.
+		 * 是否捕获阴影
 		 */
 		public function get castsShadows():Boolean
 		{

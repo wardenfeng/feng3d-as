@@ -20,6 +20,9 @@ package me.feng3d.core.base.data
 	{
 		private var _lookTarget:Vector3D;
 
+		/**
+		 * 创建3D元素状态变换实例
+		 */
 		public function Transform3D()
 		{
 			super();
@@ -304,10 +307,6 @@ package me.feng3d.core.base.data
 			invalidateRotation();
 		}
 
-		private static var tempAxeX:Vector3D;
-		private static var tempAxeY:Vector3D;
-		private static var tempAxeZ:Vector3D;
-
 		/**
 		 * 观察目标
 		 * <ul>
@@ -318,6 +317,10 @@ package me.feng3d.core.base.data
 		 */
 		public function lookAt(target:Vector3D, upAxis:Vector3D = null):void
 		{
+			var tempAxeX:Vector3D;
+			var tempAxeY:Vector3D;
+			var tempAxeZ:Vector3D;
+
 			if (!tempAxeX)
 				tempAxeX = new Vector3D();
 			if (!tempAxeY)

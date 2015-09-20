@@ -90,9 +90,8 @@ package me.feng3d.passes
 		}
 
 		/**
-		 * Appends an "effect" shading method to the shader. Effect methods are those that do not influence the lighting
-		 * but modulate the shaded colour, used for fog, outlines, etc. The method will be applied to the result of the
-		 * methods added prior.
+		 * 添加特效函数
+		 * @param method		特效函数
 		 */
 		public function addMethod(method:EffectMethodBase):void
 		{

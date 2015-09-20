@@ -39,8 +39,7 @@ package me.feng3d.animators.skeleton
 		private var _activeSkeletonState:ISkeletonAnimationState;
 
 		/**
-		 * returns the calculated global matrices of the current skeleton pose.
-		 *
+		 * 当前骨骼姿势的全局矩阵
 		 * @see #globalPose
 		 */
 		public function get globalMatrices():Vector.<Number>
@@ -52,9 +51,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * returns the current skeleton pose output from the animator.
-		 *
-		 * @see away3d.animators.data.SkeletonPose
+		 * 当前全局骨骼姿势
 		 */
 		public function get globalPose():SkeletonPose
 		{
@@ -65,8 +62,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Returns the skeleton object in use by the animator - this defines the number and heirarchy of joints used by the
-		 * skinned geoemtry to which skeleon animator is applied.
+		 * 骨骼
 		 */
 		public function get skeleton():Skeleton
 		{
@@ -123,6 +119,9 @@ package me.feng3d.animators.skeleton
 			}
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -176,6 +175,9 @@ package me.feng3d.animators.skeleton
 				reset(name, offset);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			//检查全局变换矩阵
@@ -200,7 +202,7 @@ package me.feng3d.animators.skeleton
 		}
 
 		/**
-		 * Applies the calculated time delta to the active animation state node or state transition object.
+		 * @inheritDoc
 		 */
 		override protected function updateDeltaTime(dt:Number):void
 		{
@@ -504,12 +506,14 @@ package me.feng3d.animators.skeleton
 			}
 		}
 
+		/**
+		 * 处理动画变换完成时间
+		 */
 		private function onTransitionComplete(event:AnimationStateEvent):void
 		{
 			if (event.type == AnimationStateEvent.TRANSITION_COMPLETE)
 			{
 				event.animationNode.removeEventListener(AnimationStateEvent.TRANSITION_COMPLETE, onTransitionComplete);
-				//if this is the current active state transition, revert control to the active node
 				if (_activeState == event.animationState)
 				{
 					_activeNode = _animationSet.getAnimation(_activeAnimationName);

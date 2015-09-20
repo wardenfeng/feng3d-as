@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<world>
+	<item name="ground"
+		  x="0"
+		  y="0"
+		  z="0"
+		  scale="5"
+		  rotationY="0"
+		  geometry="ground"
+		  material="groundbmp"/>
+	<item name="3d_crane_1"
+		  x="0"
+		  y="0"
+		  z="0"
+		  scale="5"
+		  rotationY="10"
+		  geometry="3d_crane_1"
+		  material="3d_crane_1"/>
+</world>

@@ -103,8 +103,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * Indicates whether or not the material has transparency. If binary transparency is sufficient, for
-		 * example when using textures of foliage, consider using alphaThreshold instead.
+		 * 是否透明度混合
 		 */
 		public function get alphaBlending():Boolean
 		{
@@ -187,7 +186,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * The glossiness of the material (sharpness of the specular highlight).
+		 * 高光值
 		 */
 		public function get gloss():Number
 		{
@@ -201,7 +200,7 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * The method used to render shadows cast on this surface, or null if no shadows are to be rendered. Defaults to null.
+		 * 阴影映射函数
 		 */
 		public function get shadowMethod():ShadowMapMethodBase
 		{
@@ -223,9 +222,8 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * Appends an "effect" shading method to the shader. Effect methods are those that do not influence the lighting
-		 * but modulate the shaded colour, used for fog, outlines, etc. The method will be applied to the result of the
-		 * methods added prior.
+		 * 添加特效函数
+		 * @param method		特效函数
 		 */
 		public function addMethod(method:EffectMethodBase):void
 		{

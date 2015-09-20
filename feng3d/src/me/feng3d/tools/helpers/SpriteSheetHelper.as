@@ -12,26 +12,27 @@ package me.feng3d.tools.helpers
 	import me.feng3d.utils.TextureUtils;
 
 	/**
-	 * SpriteSheetHelper, a class to ease sprite sheet animation data generation
+	 * sprite动画剪辑节帮助程序
+	 * @author warden_feng 2015-9-18
 	 */
 	public class SpriteSheetHelper
 	{
+		/**
+		 * 创建sprite动画剪辑节帮助程序实例
+		 */
 		function SpriteSheetHelper()
 		{
 		}
 
 		/**
-		 * Generates and returns one or more "sprite sheets" BitmapTexture from a given movieClip
-		 *
-		 * @param sourceMC                MovieClip: A movieclip with timeline animation
-		 * @param cols                    uint: Howmany cells along the u axis.
-		 * @param rows                    uint: Howmany cells along the v axis.
-		 * @param width                uint: The result bitmapData(s) width.
-		 * @param height                uint: The result bitmapData(s) height.
-		 * @param transparent                Boolean: if the bitmapData(s) must be transparent.
-		 * @param backgroundColor            uint: the bitmapData(s) background color if not transparent.
-		 *
-		 * @return Vector.&lt;Texture2DBase&gt;    The generated Texture2DBase vector for the SpriteSheetMaterial.
+		 * 根据影片剪辑生成纹理列表
+		 * @param sourceMC					源影片剪辑
+		 * @param cols						U方向个数
+		 * @param rows						V方向个数
+		 * @param width						宽度
+		 * @param height					高度
+		 * @param transparent 				是否透明
+		 * @param backgroundColor			贝爷颜色
 		 */
 		public function generateFromMovieClip(sourceMC:MovieClip, cols:uint, rows:uint, width:uint, height:uint, transparent:Boolean = false, backgroundColor:uint = 0):Vector.<Texture2DBase>
 		{
@@ -114,15 +115,13 @@ package me.feng3d.tools.helpers
 		}
 
 		/**
-		 * Returns a SpriteSheetClipNode to pass to animator from animation id , cols and rows.
-		 * @param animID                String:The name of the animation
-		 * @param cols                    uint: Howmany cells along the u axis.
-		 * @param rows                    uint: Howmany cells along the v axis.
-		 * @param mapCount                uint: If the same animation is spread over more bitmapDatas. Howmany bimapDatas. Default is 1.
-		 * @param from                    uint: The offset start if the animation first frame isn't in first cell top left on the map. zero based. Default is 0.
-		 * @param to                    uint: The last cell if the animation last frame cell isn't located down right on the map. zero based. Default is 0.
-		 *
-		 * @return SpriteSheetClipNode        SpriteSheetClipNode: The SpriteSheetClipNode filled with the data
+		 * 生成一个SpriteSheetClipNode
+		 * @param animID					动画编号
+		 * @param cols						U方向个数
+		 * @param rows						V方向个数
+		 * @param mapCount					映射数量
+		 * @param from						起始索引
+		 * @param to						终止索引
 		 */
 		public function generateSpriteSheetClipNode(animID:String, cols:uint, rows:uint, mapCount:uint = 1, from:uint = 0, to:uint = 0):SpriteSheetClipNode
 		{

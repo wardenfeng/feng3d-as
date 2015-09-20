@@ -11,7 +11,8 @@ package me.feng3d.animators.particle.states
 	use namespace arcane;
 
 	/**
-	 * ...
+	 * 粒子状态基类
+	 * @author warden_feng 2014-5-20
 	 */
 	public class ParticleStateBase extends AnimationStateBase
 	{
@@ -22,6 +23,12 @@ package me.feng3d.animators.particle.states
 
 		protected var _needUpdateTime:Boolean;
 
+		/**
+		 * 创建粒子状态基类
+		 * @param animator				粒子动画
+		 * @param particleNode			粒子节点
+		 * @param needUpdateTime		是否需要更新时间
+		 */
 		public function ParticleStateBase(animator:ParticleAnimator, particleNode:ParticleNodeBase, needUpdateTime:Boolean = false)
 		{
 			super(animator, particleNode);
@@ -30,6 +37,9 @@ package me.feng3d.animators.particle.states
 			_needUpdateTime = needUpdateTime;
 		}
 
+		/**
+		 * 是否需要更新时间
+		 */
 		public function get needUpdateTime():Boolean
 		{
 			return _needUpdateTime;

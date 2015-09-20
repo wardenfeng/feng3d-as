@@ -35,8 +35,6 @@ package me.feng3d.animators.particle.node
 		protected var _dataLength:uint = 3;
 		protected var _oneData:Vector.<Number>;
 
-		arcane var dataOffset:uint;
-
 		/**
 		 * 顶点数据编号
 		 */
@@ -49,14 +47,6 @@ package me.feng3d.animators.particle.node
 		 * 顶点数据长度
 		 */
 		public function get vaLen():uint
-		{
-			throw new AbstractMethodError();
-		}
-
-		/**
-		 * 属性名称
-		 */
-		public function get propertieName():String
 		{
 			throw new AbstractMethodError();
 		}

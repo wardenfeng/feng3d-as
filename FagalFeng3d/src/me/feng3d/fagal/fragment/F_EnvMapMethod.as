@@ -25,6 +25,8 @@ package me.feng3d.fagal.fragment
 		_.add(temp.w, temp.w, temp.w);
 		_.mul(temp.xyz, _.normal_ft_4.xyz, temp.w);
 		_.sub(temp.xyz, temp.xyz, _.viewDir_ft_4.xyz);
+
+		//有些没看懂..................................
 		_.tex(temp, temp, cubeMapReg);
 
 		_.sub(temp2.w, temp.w, _.commonsData_fc_vector.x); // -.5

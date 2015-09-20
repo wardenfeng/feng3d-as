@@ -30,7 +30,7 @@ package me.feng3d.animators.particle
 	public class ParticleAnimationSet extends AnimationSetBase implements IAnimationSet
 	{
 		/**
-		 * Property used by particle nodes that require color compilation
+		 * 颜色优先级
 		 */
 		public static const COLOR_PRIORITY:int = 18;
 
@@ -109,6 +109,9 @@ package me.feng3d.animators.particle
 			_effectNames.push(node.name);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
 			shaderParams.usesDuration = _usesDuration;
@@ -225,6 +228,11 @@ package me.feng3d.animators.particle
 			}
 		}
 
+		/**
+		 * 设置渲染状态
+		 * @param renderable		可渲染对象
+		 * @param camera			摄像机
+		 */
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			for (var i:int = 0; i < _particleNodes.length; i++)

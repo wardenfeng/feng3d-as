@@ -11,7 +11,6 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.core.math.Matrix3DUtils;
-
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -38,6 +37,9 @@ package me.feng3d.animators.particle.node
 			this.billboardAxis = billboardAxis;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
@@ -50,6 +52,9 @@ package me.feng3d.animators.particle.node
 			billboardMatrixBuffer.update(_matrix, true);
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var comps:Vector.<Vector3D>;

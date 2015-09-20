@@ -6,7 +6,8 @@ package me.feng3d.animators.base.states
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 
 	/**
-	 *
+	 * 动画状态基类
+	 * @author warden_feng 2015-9-18
 	 */
 	public class AnimationStateBase implements IAnimationState
 	{
@@ -19,7 +20,7 @@ package me.feng3d.animators.base.states
 		protected var _animator:IAnimator;
 
 		/**
-		 * Returns a 3d vector representing the translation delta of the animating entity for the current timestep of animation
+		 * @inheritDoc
 		 */
 		public function get positionDelta():Vector3D
 		{
@@ -29,6 +30,11 @@ package me.feng3d.animators.base.states
 			return _rootDelta;
 		}
 
+		/**
+		 * 创建动画状态基类
+		 * @param animator				动画
+		 * @param animationNode			动画节点
+		 */
 		function AnimationStateBase(animator:IAnimator, animationNode:AnimationNodeBase)
 		{
 			_animator = animator;
@@ -36,9 +42,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Resets the start time of the node to a  new value.
-		 *
-		 * @param startTime The absolute start time (in milliseconds) of the node's starting time.
+		 * @inheritDoc
 		 */
 		public function offset(startTime:int):void
 		{
@@ -48,11 +52,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Updates the configuration of the node to its current state.
-		 *
-		 * @param time The absolute time (in milliseconds) of the animator's play head position.
-		 *
-		 * @see away3d.animators.AnimatorBase#update()
+		 * @inheritDoc
 		 */
 		public function update(time:int):void
 		{
@@ -63,18 +63,15 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Sets the animation phase of the node.
-		 *
-		 * @param value The phase value to use. 0 represents the beginning of an animation clip, 1 represents the end.
+		 * @inheritDoc
 		 */
 		public function phase(value:Number):void
 		{
 		}
 
 		/**
-		 * Updates the node's internal playhead position.
-		 *
-		 * @param time The local time (in milliseconds) of the node's playhead position.
+		 * 更新时间
+		 * @param time		当前时间
 		 */
 		protected function updateTime(time:int):void
 		{
@@ -84,7 +81,7 @@ package me.feng3d.animators.base.states
 		}
 
 		/**
-		 * Updates the node's root delta position
+		 * 位置偏移
 		 */
 		protected function updatePositionDelta():void
 		{

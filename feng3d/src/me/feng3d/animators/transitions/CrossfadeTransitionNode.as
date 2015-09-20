@@ -3,16 +3,23 @@ package me.feng3d.animators.transitions
 	import me.feng3d.animators.skeleton.SkeletonBinaryLERPNode;
 
 	/**
-	 * A skeleton animation node that uses two animation node inputs to blend a lineraly interpolated output of a skeleton pose.
+	 * 淡入淡出变换节点
+	 * @author warden_feng 2014-5-20
 	 */
 	public class CrossfadeTransitionNode extends SkeletonBinaryLERPNode
 	{
+		/**
+		 * 混合速度
+		 */
 		public var blendSpeed:Number;
 
+		/**
+		 * 开始混合
+		 */
 		public var startBlend:int;
 
 		/**
-		 * Creates a new <code>CrossfadeTransitionNode</code> object.
+		 * 创建<code>CrossfadeTransitionNode</code>实例
 		 */
 		public function CrossfadeTransitionNode()
 		{

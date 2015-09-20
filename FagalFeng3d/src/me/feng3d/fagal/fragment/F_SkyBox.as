@@ -21,7 +21,7 @@ package me.feng3d.fagal.fragment
 			var _:* = FagalRE.instance.space;
 
 			//获取纹理数据
-			_.tex(_._oc, _.uv_v, _.texture_fs);
+			_.tex(_._oc, _.uv_v, _.skyboxTexture_fs);
 		}
 	}
 }

@@ -20,6 +20,10 @@ package me.feng3d.entities
 	{
 		private var subGeometry:SubGeometry;
 
+		/**
+		 * 创建天空盒实例
+		 * @param cubeMap		立方体贴图
+		 */
 		public function SkyBox(cubeMap:CubeTextureBase)
 		{
 			super();
@@ -83,6 +87,9 @@ package me.feng3d.entities
 			return false;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public override function get assetType():String
 		{
 			return AssetType.SKYBOX;

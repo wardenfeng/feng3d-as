@@ -33,6 +33,8 @@ package me.feng3d.passes
 		 */
 		private var shadowColorCommonsData:Vector.<Number> = new Vector.<Number>(4);
 
+		public static var groundY:Number = 50;
+
 		/**
 		 * 创建深度映射通道
 		 */
@@ -91,8 +93,6 @@ package me.feng3d.passes
 
 			super.render(renderable, stage3DProxy, camera, renderIndex)
 		}
-
-		public static var groundY:Number = 50;
 
 		/**
 		 * 参考《实时阴影技术》P22

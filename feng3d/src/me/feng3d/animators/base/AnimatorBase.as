@@ -17,23 +17,20 @@ package me.feng3d.animators.base
 	import me.feng3d.library.assets.IAsset;
 
 	/**
-	 * Dispatched when playback of an animation inside the animator object starts.
-	 *
-	 * @eventType away3d.events.AnimatorEvent
+	 * 当开始播放动画时触发
+	 * @eventType me.feng3d.events.AnimatorEvent
 	 */
 	[Event(name = "start", type = "me.feng3d.events.AnimatorEvent")]
 
 	/**
-	 * Dispatched when playback of an animation inside the animator object stops.
-	 *
-	 * @eventType away3d.events.AnimatorEvent
+	 * 当动画停止时触发
+	 * @eventType me.feng3d.events.AnimatorEvent
 	 */
 	[Event(name = "stop", type = "me.feng3d.events.AnimatorEvent")]
 
 	/**
-	 * Dispatched when playback of an animation reaches the end of an animation.
-	 *
-	 * @eventType away3d.events.AnimatorEvent
+	 * 当动画播放完一次时触发
+	 * @eventType me.feng3d.events.AnimatorEvent
 	 */
 	[Event(name = "cycle_complete", type = "me.feng3d.events.AnimatorEvent")]
 
@@ -62,9 +59,8 @@ package me.feng3d.animators.base
 		private var _animationStates:Dictionary = new Dictionary(true);
 
 		/**
-		 * Enables translation of the animated mesh from data returned per frame via the positionDelta property of the active animation node. Defaults to true.
-		 *
-		 * @see away3d.animators.states.IAnimationState#positionDelta
+		 * 是否更新位置
+		 * @see me.feng3d.animators.base.states.IAnimationState#positionDelta
 		 */
 		public var updatePosition:Boolean = true;
 
@@ -77,6 +73,11 @@ package me.feng3d.animators.base
 			_animationSet = animationSet;
 		}
 
+		/**
+		 * 获取动画状态
+		 * @param node		动画节点
+		 * @return			动画状态
+		 */
 		public function getAnimationState(node:AnimationNodeBase):AnimationStateBase
 		{
 			var className:Class = node.stateClass;
@@ -84,6 +85,11 @@ package me.feng3d.animators.base
 			return _animationStates[node] ||= new className(this, node);
 		}
 
+		/**
+		 * 根据名字获取动画状态
+		 * @param name			动作名称
+		 * @return				动画状态
+		 */
 		public function getAnimationStateByName(name:String):AnimationStateBase
 		{
 			return getAnimationState(_animationSet.getAnimation(name));
@@ -91,8 +97,7 @@ package me.feng3d.animators.base
 
 
 		/**
-		 * Returns the internal absolute time of the animator, calculated by the current time and the playback speed.
-		 *
+		 * 绝对时间（游戏时间）
 		 * @see #time
 		 * @see #playbackSpeed
 		 */
@@ -102,7 +107,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Returns the animation data set in use by the animator.
+		 * 动画设置
 		 */
 		public function get animationSet():IAnimationSet
 		{
@@ -110,7 +115,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Returns the current active animation state.
+		 * 活动的动画状态
 		 */
 		public function get activeState():IAnimationState
 		{
@@ -118,7 +123,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Returns the current active animation node.
+		 * 活动的动画节点
 		 */
 		public function get activeAnimation():AnimationNodeBase
 		{
@@ -126,7 +131,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Returns the current active animation node.
+		 * 活动的动作名
 		 */
 		public function get activeAnimationName():String
 		{
@@ -134,10 +139,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Determines whether the animators internal update mechanisms are active. Used in cases
-		 * where manual updates are required either via the <code>time</code> property or <code>update()</code> method.
-		 * Defaults to true.
-		 *
+		 * 是否自动更新，当值为true时，动画将会随时间播放
 		 * @see #time
 		 * @see #update()
 		 */
@@ -160,7 +162,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Gets and sets the internal time clock of the animator.
+		 * 动画时间
 		 */
 		public function get time():int
 		{
@@ -175,11 +177,9 @@ package me.feng3d.animators.base
 			update(value);
 		}
 
-
 		/**
-		 * Sets the animation phase of the current active state's animation clip(s).
-		 *
-		 * @param value The phase value to use. 0 represents the beginning of an animation clip, 1 represents the end.
+		 * 设置当前活动状态的动画剪辑的播放进度(0,1)
+		 * @param	播放进度。 0：动画起点，1：动画终点。
 		 */
 		public function phase(value:Number):void
 		{
@@ -188,6 +188,10 @@ package me.feng3d.animators.base
 
 		/**
 		 * The amount by which passed time should be scaled. Used to slow down or speed up animations. Defaults to 1.
+		 */
+		/**
+		 * 播放速度
+		 * <p>默认为1，表示正常速度</p>
 		 */
 		public function get playbackSpeed():Number
 		{
@@ -200,7 +204,8 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Resumes the automatic playback clock controling the active state of the animator.
+		 * 开始动画，当自动更新为true时有效
+		 * @see #autoUpdate
 		 */
 		public function start():void
 		{
@@ -222,9 +227,7 @@ package me.feng3d.animators.base
 
 
 		/**
-		 * Pauses the automatic playback clock of the animator, in case manual updates are required via the
-		 * <code>time</code> property or <code>update()</code> method.
-		 *
+		 * 暂停播放动画
 		 * @see #time
 		 * @see #update()
 		 */
@@ -245,8 +248,8 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Provides a way to manually update the active state of the animator when automatic
-		 * updates are disabled.
+		 * 更新动画
+		 * @param time			动画时间
 		 *
 		 * @see #stop()
 		 * @see #autoUpdate
@@ -260,14 +263,18 @@ package me.feng3d.animators.base
 			_time = time;
 		}
 
+		/**
+		 * 重置动画
+		 * @param name			动画名称
+		 * @param offset		动画时间偏移
+		 */
 		public function reset(name:String, offset:Number = 0):void
 		{
 			getAnimationState(_animationSet.getAnimation(name)).offset(offset + _absoluteTime);
 		}
 
 		/**
-		 * Used by the mesh object to which the animator is applied, registers the owner for internal use.
-		 *
+		 * 添加应用动画的网格
 		 * @private
 		 */
 		public function addOwner(mesh:Mesh):void
@@ -276,8 +283,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Used by the mesh object from which the animator is removed, unregisters the owner for internal use.
-		 *
+		 * 移除应用动画的网格
 		 * @private
 		 */
 		public function removeOwner(mesh:Mesh):void
@@ -286,8 +292,7 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Internal abstract method called when the time delta property of the animator's contents requires updating.
-		 *
+		 * 更新偏移时间
 		 * @private
 		 */
 		protected function updateDeltaTime(dt:Number):void
@@ -301,13 +306,16 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 * Enter frame event handler for automatically updating the active state of the animator.
+		 * 自动更新动画时帧更新事件
 		 */
 		private function onEnterFrame(event:Event = null):void
 		{
 			update(getTimer());
 		}
 
+		/**
+		 * 应用位置偏移量
+		 */
 		private function applyPositionDelta():void
 		{
 			var delta:Vector3D = _activeState.positionDelta;
@@ -322,21 +330,13 @@ package me.feng3d.animators.base
 		}
 
 		/**
-		 *  for internal use.
-		 *
+		 * 派发动画播放完成一周期事件
 		 * @private
 		 */
 		public function dispatchCycleEvent():void
 		{
 			if (hasEventListener(AnimatorEvent.CYCLE_COMPLETE))
 				dispatchEvent(new AnimatorEvent(AnimatorEvent.CYCLE_COMPLETE, this));
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function dispose():void
-		{
 		}
 
 		/**

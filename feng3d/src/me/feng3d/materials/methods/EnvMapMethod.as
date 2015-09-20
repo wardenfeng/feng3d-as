@@ -10,7 +10,8 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 * EnvMapMethod provides a material method to perform reflection mapping using cube maps.
+	 * 环境映射函数
+	 * @author warden_feng 2015-8-27
 	 */
 	public class EnvMapMethod extends EffectMethodBase
 	{
@@ -21,9 +22,9 @@ package me.feng3d.materials.methods
 		private var _mask:Texture2DBase;
 
 		/**
-		 * Creates an EnvMapMethod object.
-		 * @param envMap The environment map containing the reflected scene.
-		 * @param alpha The reflectivity of the surface.
+		 * 创建EnvMapMethod实例
+		 * @param envMap		环境映射贴图
+		 * @param alpha			反射率
 		 */
 		public function EnvMapMethod(envMap:CubeTextureBase, alpha:Number = 1)
 		{
@@ -33,7 +34,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * An optional texture to modulate the reflectivity of the surface.
+		 * 用来调节反射率的纹理
 		 */
 		public function get mask():Texture2DBase
 		{
@@ -52,7 +53,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The cubic environment map containing the reflected scene.
+		 * 环境映射贴图
 		 */
 		public function get envMap():CubeTextureBase
 		{
@@ -67,7 +68,7 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * The reflectivity of the surface.
+		 * 反射率
 		 */
 		public function get alpha():Number
 		{
@@ -80,6 +81,9 @@ package me.feng3d.materials.methods
 			_envMapData[0] = _alpha;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();

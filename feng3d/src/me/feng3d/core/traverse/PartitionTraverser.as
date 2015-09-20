@@ -54,7 +54,8 @@ package me.feng3d.core.traverse
 		}
 
 		/**
-		 * Passes a skybox to be processed by the traverser.
+		 * 应用天空盒
+		 * @param skyBox		天空盒
 		 */
 		public function applySkyBox(skyBox:SkyBox):void
 		{

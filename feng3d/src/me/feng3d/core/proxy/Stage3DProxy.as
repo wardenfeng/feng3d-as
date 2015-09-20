@@ -19,7 +19,7 @@ package me.feng3d.core.proxy
 	[Event(name = "exitFrame", type = "flash.events.Event")]
 
 	/**
-	 * 3D舞台代理类
+	 * 3D舞台代理
 	 */
 	public class Stage3DProxy extends EventDispatcher
 	{
@@ -64,7 +64,6 @@ package me.feng3d.core.proxy
 			_stage3DManager = stage3DManager;
 			_viewPort = new Rectangle();
 
-			// whatever happens, be sure this has highest priority
 			_stage3D.addEventListener(Event.CONTEXT3D_CREATE, onContext3DUpdate, false, 1000, false);
 			requestContext(forceSoftware, profile);
 		}
@@ -113,11 +112,6 @@ package me.feng3d.core.proxy
 				_exitFrame = new Event(Event.EXIT_FRAME);
 
 			dispatchEvent(_exitFrame);
-		}
-
-		public function get profile():String
-		{
-			return _profile;
 		}
 
 		/**

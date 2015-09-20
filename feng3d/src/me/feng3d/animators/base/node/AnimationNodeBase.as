@@ -15,6 +15,9 @@ package me.feng3d.animators.base.node
 	{
 		protected var _stateClass:Class;
 
+		/**
+		 * 状态类
+		 */
 		public function get stateClass():Class
 		{
 			return _stateClass;

@@ -17,7 +17,7 @@ package me.feng3d.materials.methods
 	 */
 	public class NearShadowMapMethod extends SimpleShadowMapMethodBase
 	{
-		protected var secondaryFragmentConstants:Vector.<Number> = new Vector.<Number>(4);
+		private var secondaryFragmentConstants:Vector.<Number> = new Vector.<Number>(4);
 
 		private var _baseMethod:SimpleShadowMapMethodBase;
 		/**
@@ -66,7 +66,7 @@ package me.feng3d.materials.methods
 			secondaryFragmentConstants[3] = 1;
 		}
 
-		protected function updateSecondaryCommonData0Buffer(fcVectorBuffer:FCVectorBuffer):void
+		private function updateSecondaryCommonData0Buffer(fcVectorBuffer:FCVectorBuffer):void
 		{
 			fcVectorBuffer.update(secondaryFragmentConstants);
 		}

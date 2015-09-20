@@ -22,6 +22,9 @@ package me.feng3d.animators.vertex
 			_stateClass = VertexClipState;
 		}
 
+		/**
+		 * 帧数据列表
+		 */
 		public function get frames():Vector.<Geometry>
 		{
 			return _frames;
@@ -44,6 +47,9 @@ package me.feng3d.animators.vertex
 			_stitchDirty = true;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateStitch():void
 		{
 			super.updateStitch();

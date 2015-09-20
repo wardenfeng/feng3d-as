@@ -46,6 +46,9 @@ package me.feng3d.animators.skeleton
 			_stitchDirty = true;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override protected function updateStitch():void
 		{
 			super.updateStitch();

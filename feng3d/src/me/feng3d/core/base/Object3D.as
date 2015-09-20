@@ -374,6 +374,9 @@ package me.feng3d.core.base
 			_zOffset = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		override public function translateLocal(axis:Vector3D, distance:Number):void
 		{
 			super.translateLocal(axis, distance);

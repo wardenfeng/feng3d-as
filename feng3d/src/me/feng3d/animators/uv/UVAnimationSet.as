@@ -6,15 +6,14 @@ package me.feng3d.animators.uv
 	import me.feng3d.passes.MaterialPassBase;
 
 	/**
-	 * The animation data set used by uv-based animators, containing uv animation state data.
-	 *
-	 * @see away3d.animators.UVAnimator
-	 * @see away3d.animators.UVAnimationState
+	 * UV动画集合
+	 * @author warden_feng 2014-5-20
 	 */
 	public class UVAnimationSet extends AnimationSetBase implements IAnimationSet
 	{
-		private var _agalCode:String;
-
+		/**
+		 * 创建UV动画集合实例
+		 */
 		public function UVAnimationSet()
 		{
 
