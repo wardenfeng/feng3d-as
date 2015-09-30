@@ -36,6 +36,8 @@ package me.feng3d.materials
 
 		private var _owners:Vector.<IMaterialOwner>;
 
+		private var _alphaPremultiplied:Boolean;
+
 		private var _blendMode:String = BlendMode.NORMAL;
 
 		protected var _numPasses:uint;
@@ -60,6 +62,9 @@ package me.feng3d.materials
 			_passes = new Vector.<MaterialPassBase>();
 			_depthPass = new DepthMapPass();
 			_planarShadowPass = new PlanarShadowPass();
+
+			// Default to considering pre-multiplied textures while blending
+			alphaPremultiplied = true;
 		}
 
 		/**
@@ -113,6 +118,24 @@ package me.feng3d.materials
 		public function set blendMode(value:String):void
 		{
 			_blendMode = value;
+		}
+
+		/**
+		 * Indicates whether visible textures (or other pixels) used by this material have
+		 * already been premultiplied. Toggle this if you are seeing black halos around your
+		 * blended alpha edges.
+		 */
+		public function get alphaPremultiplied():Boolean
+		{
+			return _alphaPremultiplied;
+		}
+
+		public function set alphaPremultiplied(value:Boolean):void
+		{
+			_alphaPremultiplied = value;
+
+			for (var i:int = 0; i < _numPasses; ++i)
+				_passes[i].alphaPremultiplied = value;
 		}
 
 		/**
@@ -174,6 +197,8 @@ package me.feng3d.materials
 		{
 			_passes.push(pass);
 			_numPasses = _passes.length;
+
+			pass.alphaPremultiplied = _alphaPremultiplied;
 
 			pass.mipmap = _mipmap;
 			pass.smooth = _smooth;

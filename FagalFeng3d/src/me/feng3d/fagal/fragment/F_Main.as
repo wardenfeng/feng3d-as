@@ -2,6 +2,7 @@ package me.feng3d.fagal.fragment
 {
 	import flash.display3D.Context3DProgramType;
 
+	import me.feng3d.fagal.fragment.light.F_AlphaPremultiplied;
 	import me.feng3d.fagal.fragment.light.F_Ambient;
 	import me.feng3d.fagal.fragment.light.F_DirectionalLight;
 	import me.feng3d.fagal.fragment.light.F_PointLight;
@@ -45,13 +46,13 @@ package me.feng3d.fagal.fragment
 			}
 
 			//光泽图采样
-			if (shaderParams.hasSpecularTexture)
+			if (shaderParams.hasSpecularTexture > 0)
 			{
 				F_SpecularSample();
 			}
 
 			//计算视线
-			if (shaderParams.needsViewDir)
+			if (shaderParams.needsViewDir > 0)
 			{
 				F_ViewDir();
 			}
@@ -84,6 +85,11 @@ package me.feng3d.fagal.fragment
 			if (shaderParams.usingDiffuseMethod)
 			{
 				shaderParams.diffuseMethod();
+			}
+
+			if (shaderParams.alphaPremultiplied)
+			{
+				F_AlphaPremultiplied();
 			}
 
 			if (shaderParams.numLights > 0 && shaderParams.usingSpecularMethod > 0)

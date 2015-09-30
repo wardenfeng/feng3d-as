@@ -24,10 +24,14 @@ package me.feng3d.fagal.params
 		public var repeatTextures:Boolean;
 
 		/** 是否有漫反射贴图 */
-		public var hasDiffuseTexture:Boolean;
+		public var hasDiffuseTexture:int;
 
 		/** 是否使用漫反射函数 */
 		public var usingDiffuseMethod:int;
+
+		public var useAmbientTexture:int;
+
+		public var alphaThreshold:Number = 0;
 
 		/** 是否需要uv坐标 */
 		public var needsUV:int;
@@ -89,7 +93,7 @@ package me.feng3d.fagal.params
 		/** 是否有法线贴图 */
 		public var hasNormalTexture:Boolean;
 		/** 是否有光泽贴图 */
-		public var hasSpecularTexture:Boolean;
+		public var hasSpecularTexture:int;
 
 		//------------- 渲染过程参数 ---------------
 		/** 是否为第一个渲染的镜面反射灯光 */
@@ -179,6 +183,18 @@ package me.feng3d.fagal.params
 		public var useEnvMapMask:int;
 
 		/**
+		 * 是否为入射光
+		 */
+		public var incidentLight:Boolean;
+
+		public var specularModelType:String;
+
+		public var diffuseModulateMethod:Function;
+		public var modulateMethod:Function;
+
+		public var alphaPremultiplied:Boolean;
+
+		/**
 		 * 创建一个渲染参数
 		 */
 		public function ShaderParams()
@@ -226,7 +242,7 @@ package me.feng3d.fagal.params
 			useSmoothTextures = false;
 			repeatTextures = false;
 
-			hasDiffuseTexture = false;
+			hasDiffuseTexture = 0;
 			needsUV = 0;
 
 			sampleFlagsDic = new Dictionary();

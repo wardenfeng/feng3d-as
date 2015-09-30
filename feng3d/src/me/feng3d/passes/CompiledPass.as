@@ -55,7 +55,7 @@ package me.feng3d.passes
 		/**
 		 * 通用数据
 		 */
-		protected const commonsData:Vector.<Number> = new Vector.<Number>(4);
+		protected const commonsData:Vector.<Number> = Vector.<Number>([0.5, 0, 1 / 255, 1]);
 
 		/**
 		 * 摄像机世界坐标
@@ -231,20 +231,7 @@ package me.feng3d.passes
 		 */
 		private function initConstantData():void
 		{
-			initCommonsData();
 			updateMethodConstants();
-		}
-
-		/**
-		 * 初始化通用数据
-		 */
-		protected function initCommonsData():void
-		{
-			commonsData[0] = .5;
-			commonsData[1] = 0;
-			commonsData[2] = 1 / 255;
-			commonsData[3] = 1;
-			markBufferDirty(_.commonsData_fc_vector);
 		}
 
 		/**

@@ -1,7 +1,6 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -30,16 +29,17 @@ package me.feng3d.fagal.fragment.light
 			singleSpecularColorReg = _.getFreeTemp("单个镜面反射光寄存器");
 		}
 
-		//入射光与视线方向的和 = 光照场景方向 add 标准视线方向
-		_.add(singleSpecularColorReg, lightDirReg, _.viewDir_ft_4);
-		//标准化入射光与视线的和
-		_.nrm(singleSpecularColorReg.xyz, singleSpecularColorReg);
-		//镜面反射光强度 = 法线 dp3 入射光与视线方向的和
-		_.dp3(singleSpecularColorReg.w, _.normal_ft_4, singleSpecularColorReg);
-		//镜面反射光强度 锁定在0-1之间
-		_.sat(singleSpecularColorReg.w, singleSpecularColorReg.w);
+		//灯光模型
+		if (shaderParams.specularModelType == SpecularModelType.PHONG)
+		{
+			F_Phong(singleSpecularColorReg, lightDirReg);
+		}
+		else
+		{
+			F_Blinn_Phong(singleSpecularColorReg, lightDirReg);
+		}
 
-		if (shaderParams.hasSpecularTexture)
+		if (shaderParams.hasSpecularTexture > 0)
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
@@ -56,6 +56,11 @@ package me.feng3d.fagal.fragment.light
 		{
 			//镜面反射光强度 = 镜面反射强度  nul (入射光强度？)
 			_.mul(singleSpecularColorReg.w, singleSpecularColorReg.w, lightDirReg.w);
+		}
+
+		if (shaderParams.modulateMethod != null)
+		{
+			shaderParams.modulateMethod(singleSpecularColorReg);
 		}
 
 		_.comment("镜面反射光颜色 = 灯光镜面反射颜色 mul 镜面反射光强度");

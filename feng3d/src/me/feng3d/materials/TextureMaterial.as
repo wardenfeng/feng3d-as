@@ -57,5 +57,18 @@ package me.feng3d.materials
 		{
 			_alpha = value;
 		}
+
+		/**
+		 * The texture object to use for the ambient colour.
+		 */
+		public function get ambientTexture():Texture2DBase
+		{
+			return _screenPass.ambientMethod.texture;
+		}
+
+		public function set ambientTexture(value:Texture2DBase):void
+		{
+			_screenPass.ambientMethod.texture = value;
+		}
 	}
 }

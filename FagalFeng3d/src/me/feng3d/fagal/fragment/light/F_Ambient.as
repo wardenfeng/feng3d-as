@@ -1,6 +1,8 @@
 package me.feng3d.fagal.fragment.light
 {
 
+	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -11,6 +13,20 @@ package me.feng3d.fagal.fragment.light
 	{
 		var _:* = FagalRE.instance.space;
 
-		_.mov(_.finalColor_ft_4, _.ambientInput_fc_vector);
+		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+
+		if (shaderParams.useAmbientTexture > 0)
+		{
+			var mAmbient_ft:Register = _.getFreeTemp("环境颜色值临时变量");
+			_.tex(mAmbient_ft, _.uv_v, _.ambientTexture_fs);
+			// apparently, still needs to un-premultiply :s
+			_.div(mAmbient_ft.xyz, mAmbient_ft.xyz, mAmbient_ft.w);
+			_.mov(_.finalColor_ft_4, mAmbient_ft);
+		}
+		else
+		{
+			_.mov(_.finalColor_ft_4, _.ambientColor_fc_vector);
+		}
+
 	}
 }

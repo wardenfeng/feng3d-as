@@ -21,7 +21,7 @@ package me.feng3d.fagal.fragment.light
 		}
 
 		//获取漫反射灯光
-		if (shaderParams.hasDiffuseTexture)
+		if (shaderParams.hasDiffuseTexture > 0)
 		{
 			F_DiffuseTexure();
 		}
@@ -39,12 +39,23 @@ package me.feng3d.fagal.fragment.light
 		//控制在0到1之间
 		_.sat(_.totalDiffuseLightColor_ft_4, _.totalDiffuseLightColor_ft_4);
 
-		//漫反射 + 环境光 因子
-		_.add(_.finalColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, _.finalColor_ft_4);
+		if (shaderParams.useAmbientTexture > 0)
+		{
+			_.mul(_.mDiff_ft.xyz, _.mDiff_ft, _.totalDiffuseLightColor_ft_4); //
+			_.mul(_.totalDiffuseLightColor_ft_4.xyz, _.finalColor_ft_4, _.totalDiffuseLightColor_ft_4); //
+			_.sub(_.finalColor_ft_4.xyz, _.finalColor_ft_4, _.totalDiffuseLightColor_ft_4); //
+			_.add(_.finalColor_ft_4.xyz, _.mDiff_ft, _.finalColor_ft_4);
+		}
+		else
+		{
+			//漫反射 + 环境光 因子
+			_.add(_.finalColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, _.finalColor_ft_4);
 
-		//混合漫反射光
-		_.mul(_.finalColor_ft_4.xyz, _.mDiff_ft, _.finalColor_ft_4);
-		//保存w值不变
-		_.mov(_.finalColor_ft_4.w, _.mDiff_ft.w);
+			//混合漫反射光
+			_.mul(_.finalColor_ft_4.xyz, _.mDiff_ft, _.finalColor_ft_4);
+			//保存w值不变
+			_.mov(_.finalColor_ft_4.w, _.mDiff_ft.w);
+		}
+
 	}
 }

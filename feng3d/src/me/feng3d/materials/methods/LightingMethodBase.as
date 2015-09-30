@@ -10,5 +10,6 @@ package me.feng3d.materials.methods
 	 */
 	public class LightingMethodBase extends ShadingMethodBase
 	{
+		arcane var _modulateMethod:Function;
 	}
 }

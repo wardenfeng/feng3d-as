@@ -14,6 +14,10 @@
     <classEntry path="me.feng3d.fagal.vertex.animation.V_UVAnimation"/>
     <classEntry path="me.feng3d.fagal.vertex.animation.V_SpriteSheetAnimation"/>
     <classEntry path="me.feng3d.fagal.fragment.F_EnvMapMethod"/>
+    <classEntry path="me.feng3d.fagal.fragment.method.F_FresnelSpecular"/>
+    <classEntry path="me.feng3d.fagal.fragment.light.F_Blinn_Phong"/>
+    <classEntry path="me.feng3d.fagal.fragment.light.SpecularModelType"/>
+    <classEntry path="me.feng3d.fagal.fragment.light.F_AlphaPremultiplied"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

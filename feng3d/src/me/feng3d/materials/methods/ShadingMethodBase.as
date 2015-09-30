@@ -15,7 +15,6 @@ package me.feng3d.materials.methods
 	 */
 	public class ShadingMethodBase extends Context3DBufferOwner
 	{
-
 		/**
 		 * 创建渲染寄函数基类
 		 */
@@ -72,6 +71,14 @@ package me.feng3d.materials.methods
 		 */
 		public function copyFrom(method:ShadingMethodBase):void
 		{
+		}
+
+		/**
+		 * Cleans up any resources used by the current object.
+		 */
+		public function dispose():void
+		{
+
 		}
 	}
 }

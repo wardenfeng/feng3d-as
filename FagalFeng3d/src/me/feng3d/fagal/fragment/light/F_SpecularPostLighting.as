@@ -18,7 +18,7 @@ package me.feng3d.fagal.fragment.light
 			_.mul(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, _.shadowValue_ft_4.w);
 		}
 
-		if (shaderParams.hasSpecularTexture)
+		if (shaderParams.hasSpecularTexture > 0)
 		{
 			_.mul(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, _.specularTexData_ft_4.x);
 		}

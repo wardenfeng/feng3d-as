@@ -62,6 +62,8 @@ package me.feng3d.passes
 
 		protected var _numPointLights:uint;
 
+		protected var _alphaPremultiplied:Boolean;
+
 		private var _shaderParams:ShaderParams;
 
 		/**
@@ -184,6 +186,8 @@ package me.feng3d.passes
 			shaderParams.useMipmapping = _mipmap;
 			shaderParams.useSmoothTextures = _smooth;
 			shaderParams.repeatTextures = _repeat;
+
+			shaderParams.alphaPremultiplied = _alphaPremultiplied && _enableBlending;
 
 			if (_animationSet)
 				_animationSet.activate(shaderParams, this);
@@ -421,6 +425,22 @@ package me.feng3d.passes
 		protected function usesLights():Boolean
 		{
 			return (_numPointLights > 0 || _numDirectionalLights > 0);
+		}
+
+		/**
+		 * Indicates whether visible textures (or other pixels) used by this material have
+		 * already been premultiplied. Toggle this if you are seeing black halos around your
+		 * blended alpha edges.
+		 */
+		public function get alphaPremultiplied():Boolean
+		{
+			return _alphaPremultiplied;
+		}
+
+		public function set alphaPremultiplied(value:Boolean):void
+		{
+			_alphaPremultiplied = value;
+			invalidateShaderProgram();
 		}
 	}
 }

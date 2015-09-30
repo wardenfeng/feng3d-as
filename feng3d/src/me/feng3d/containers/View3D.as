@@ -40,6 +40,9 @@ package me.feng3d.containers
 
 		/** 全局坐标脏标记 */
 		private var _globalPosDirty:Boolean;
+
+		private var _antiAlias:uint;
+
 		protected var _backBufferInvalid:Boolean = true;
 
 		private var _camera:Camera3D;
@@ -103,6 +106,21 @@ package me.feng3d.containers
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemoveFromeStage, false, 0, true);
 
 			_camera.partition = _scene.partition;
+		}
+
+		/**
+		 * The amount of anti-aliasing to be used.
+		 */
+		public function get antiAlias():uint
+		{
+			return _antiAlias;
+		}
+
+		public function set antiAlias(value:uint):void
+		{
+			_antiAlias = value;
+
+			_backBufferInvalid = true;
 		}
 
 		/**
@@ -365,7 +383,7 @@ package me.feng3d.containers
 							_height = 2048;
 					}
 
-					_stage3DProxy.configureBackBuffer(_width, _height, 0);
+					_stage3DProxy.configureBackBuffer(_width, _height, _antiAlias);
 					_backBufferInvalid = false;
 				}
 				else

@@ -34,6 +34,11 @@ package me.feng3d.fagal.fragment.light
 		if (shaderParams.useLightFallOff)
 			_.mul(diffuseColorFtReg.w, diffuseColorFtReg.w, lightDirReg.w);
 
+		if (shaderParams.diffuseModulateMethod != null)
+		{
+			shaderParams.diffuseModulateMethod(diffuseColorFtReg);
+		}
+
 		_.comment("漫反射光颜色 = 灯光漫反射颜色 mul 漫反射光强度");
 		_.mul(diffuseColorFtReg, diffuseColorFtReg.w, diffuseColorReg);
 

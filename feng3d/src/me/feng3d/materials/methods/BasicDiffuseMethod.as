@@ -3,7 +3,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	
+
 	import me.feng3d.fagal.fragment.light.F_DiffusePostLighting;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
@@ -24,10 +24,12 @@ package me.feng3d.materials.methods
 		/** 漫反射颜色数据RGBA */
 		private const diffuseInputData:Vector.<Number> = new Vector.<Number>(4);
 
+		private const alphaThresholdData:Vector.<Number> = Vector.<Number>([0, 0, 0, 0]);
+
 		/** 是否使用环境光材质 */
 		private var _useAmbientTexture:Boolean;
 
-		private var _isFirstLight:Boolean;
+		protected var _alphaThreshold:Number = 0;
 
 		/**
 		 * @inheritDoc
@@ -37,6 +39,7 @@ package me.feng3d.materials.methods
 			super.initBuffers();
 			mapContext3DBuffer(_.texture_fs, updateTextureBuffer);
 			mapContext3DBuffer(_.diffuseInput_fc_vector, updateDiffuseInputBuffer);
+			mapContext3DBuffer(_.alphaThreshold_fc_vector, updateAlphaThresholdBuffer);
 		}
 
 		/** 漫反射颜色 */
@@ -88,6 +91,11 @@ package me.feng3d.materials.methods
 			diffuseInputBuffer.update(diffuseInputData);
 		}
 
+		private function updateAlphaThresholdBuffer(fcVectorBuffer:FCVectorBuffer):void
+		{
+			fcVectorBuffer.update(alphaThresholdData);
+		}
+
 		/**
 		 * 漫反射纹理
 		 */
@@ -109,19 +117,54 @@ package me.feng3d.materials.methods
 		}
 
 		/**
+		 * The minimum alpha value for which pixels should be drawn. This is used for transparency that is either
+		 * invisible or entirely opaque, often used with textures for foliage, etc.
+		 * Recommended values are 0 to disable alpha, or 0.5 to create smooth edges. Default value is 0 (disabled).
+		 */
+		public function get alphaThreshold():Number
+		{
+			return _alphaThreshold;
+		}
+
+		public function set alphaThreshold(value:Number):void
+		{
+			if (value < 0)
+				value = 0;
+			else if (value > 1)
+				value = 1;
+			if (value == _alphaThreshold)
+				return;
+
+			if (value == 0 || _alphaThreshold == 0)
+				invalidateShaderProgram();
+
+			_alphaThreshold = value;
+
+			alphaThresholdData[0] = _alphaThreshold;
+		}
+
+		/**
 		 * @inheritDoc
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.needsUV += texture ? 1 : 0;
 			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
 
-			shaderParams.hasDiffuseTexture = _texture != null;
+			if (texture != null)
+			{
+				shaderParams.needsUV++;
+				shaderParams.hasDiffuseTexture++;
+				shaderParams.addSampleFlags(_.texture_fs, texture);
+			}
+
 			shaderParams.usingDiffuseMethod += 1;
+
+			shaderParams.alphaThreshold = _alphaThreshold;
 
 			shaderParams.diffuseMethod = F_DiffusePostLighting;
 
-			shaderParams.addSampleFlags(_.texture_fs, _texture);
+			shaderParams.diffuseModulateMethod = _modulateMethod;
+
 		}
 
 		/**

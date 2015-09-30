@@ -4,7 +4,10 @@ package me.feng3d.materials.methods
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
-	
+	import me.feng3d.core.buffer.context3d.FSBuffer;
+	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.textures.Texture2DBase;
+
 
 	use namespace arcane;
 
@@ -21,6 +24,9 @@ package me.feng3d.materials.methods
 	 */
 	public class BasicAmbientMethod extends ShadingMethodBase
 	{
+		protected var _useTexture:Boolean;
+		private var _texture:Texture2DBase;
+
 		private var _ambientColor:uint = 0xffffff;
 		private var _ambient:Number = 1;
 
@@ -29,17 +35,23 @@ package me.feng3d.materials.methods
 		arcane var _lightAmbientB:Number = 0;
 
 		/** 环境光分量数据 */
-		private const ambientInputData:Vector.<Number> = new Vector.<Number>(4);
+		private const ambientColorData:Vector.<Number> = new Vector.<Number>(4);
 
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.ambientInput_fc_vector, updateAmbientInputBuffer);
+			mapContext3DBuffer(_.ambientColor_fc_vector, updateAmbientInputBuffer);
+			mapContext3DBuffer(_.ambientTexture_fs, updateSpecularTextureBuffer);
 		}
 
 		private function updateAmbientInputBuffer(ambientInputBuffer:FCVectorBuffer):void
 		{
-			ambientInputBuffer.update(ambientInputData);
+			ambientInputBuffer.update(ambientColorData);
+		}
+
+		private function updateSpecularTextureBuffer(fsBuffer:FSBuffer):void
+		{
+			fsBuffer.update(texture);
 		}
 
 		/**
@@ -47,10 +59,10 @@ package me.feng3d.materials.methods
 		 */
 		private function updateAmbient():void
 		{
-			ambientInputData[0] = ((_ambientColor >> 16) & 0xff) / 0xff * _ambient * _lightAmbientR;
-			ambientInputData[1] = ((_ambientColor >> 8) & 0xff) / 0xff * _ambient * _lightAmbientG;
-			ambientInputData[2] = (_ambientColor & 0xff) / 0xff * _ambient * _lightAmbientB;
-			ambientInputData[3] = 1;
+			ambientColorData[0] = ((_ambientColor >> 16) & 0xff) / 0xff * _ambient * _lightAmbientR;
+			ambientColorData[1] = ((_ambientColor >> 8) & 0xff) / 0xff * _ambient * _lightAmbientG;
+			ambientColorData[2] = (_ambientColor & 0xff) / 0xff * _ambient * _lightAmbientB;
+			ambientColorData[3] = 1;
 		}
 
 		/**
@@ -59,7 +71,6 @@ package me.feng3d.materials.methods
 		override arcane function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			updateAmbient();
-
 		}
 
 		/**
@@ -88,6 +99,36 @@ package me.feng3d.materials.methods
 		{
 			_ambientColor = value;
 			updateAmbient();
+		}
+
+		/**
+		 * The bitmapData to use to define the diffuse reflection color per texel.
+		 */
+		public function get texture():Texture2DBase
+		{
+			return _texture;
+		}
+
+		public function set texture(value:Texture2DBase):void
+		{
+			if (Boolean(value) != _useTexture || (value && _texture && (value.hasMipMaps != _texture.hasMipMaps || value.format != _texture.format)))
+			{
+				invalidateShaderProgram();
+			}
+			_useTexture = Boolean(value);
+			_texture = value;
+
+			markBufferDirty(_.ambientTexture_fs);
+		}
+
+		override arcane function activate(shaderParams:ShaderParams):void
+		{
+			if (texture != null)
+			{
+				shaderParams.needsUV++;
+				shaderParams.useAmbientTexture++;
+				shaderParams.addSampleFlags(_.ambientTexture_fs, texture);
+			}
 		}
 
 		override public function copyFrom(method:ShadingMethodBase):void

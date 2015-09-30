@@ -3,7 +3,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-
+	import me.feng3d.fagal.fragment.light.SpecularModelType;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -79,6 +79,7 @@ package me.feng3d.materials.methods
 		public function set gloss(value:Number):void
 		{
 			_gloss = value;
+			updateSpecular();
 		}
 
 		/**
@@ -115,7 +116,7 @@ package me.feng3d.materials.methods
 
 		private function updateSpecularTextureBuffer(_specularTextureBuffer:FSBuffer):void
 		{
-			_specularTextureBuffer.update(_texture);
+			_specularTextureBuffer.update(texture);
 		}
 
 		/**
@@ -123,14 +124,20 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.needsUV += _texture != null ? 1 : 0;
 			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
 			shaderParams.needsViewDir += shaderParams.numLights > 0 ? 1 : 0;
 
 			shaderParams.usingSpecularMethod += 1;
-			shaderParams.hasSpecularTexture = _texture != null;
 
-			shaderParams.addSampleFlags(_.specularTexture_fs, _texture);
+			if (texture != null)
+			{
+				shaderParams.needsUV++
+				shaderParams.hasSpecularTexture++;
+				shaderParams.addSampleFlags(_.specularTexture_fs, texture);
+			}
+
+			shaderParams.modulateMethod = _modulateMethod;
+			shaderParams.specularModelType = SpecularModelType.BLINN_PHONG;
 		}
 
 		private function updateSpecular():void

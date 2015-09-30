@@ -46,6 +46,8 @@
     <application path="Intermediate_MD5Animation.as"/>
     <application path="Basic_SpriteSheetAnimation.as"/>
     <application path="Basic_Load3DS.as"/>
+    <application path="Intermediate_Globe.as"/>
+    <application path="Intermediate_Head.as"/>
     <application path="Basic_Shading.as"/>
   </applications>
   <modules/>

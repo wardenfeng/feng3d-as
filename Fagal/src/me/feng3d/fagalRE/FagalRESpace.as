@@ -71,7 +71,7 @@ package me.feng3d.fagalRE
 		{
 			var funcName:String = String(name);
 			var func:Function = math[funcName];
-			assert(func != null, "在Fagal中尝试调用" + getQualifiedClassName(math) + "中不存在的函数");
+			assert(func != null, "在Fagal中尝试调用" + getQualifiedClassName(math) + "." + funcName + "中不存在的函数");
 
 			callLog.push(new FagalItem(funcName, parameters));
 		}

@@ -61,8 +61,10 @@ package me.feng3d.configs
 			["weights_vc_vector", "顶点程序权重向量静态数据"], //
 			["globalmatrices_vc_vector", "骨骼全局变换矩阵静态数据"], //
 			//---------------------------- 灯光相关寄存器数据类型 ------------------------------
-			["ambientInput_fc_vector", "环境输入静态数据"], //
-			["diffuseInput_fc_vector", "漫射输入静态数据"], //
+			["ambientColor_fc_vector", "环境颜色数据"], //
+			["ambientTexture_fs", "环境纹理数据"], //
+			["diffuseInput_fc_vector", "漫反射输入静态数据"], //
+			["alphaThreshold_fc_vector", "漫反射透明度阀值数据"], //
 			["dirLightSceneDir_fc_vector", "方向光源场景方向"], //
 			["dirLightDiffuse_fc_vector", "方向光源漫反射光颜色"], //
 			["dirLightSpecular_fc_vector", "方向光源镜面反射颜色"], //
@@ -140,7 +142,8 @@ package me.feng3d.configs
 			["envMapcubeTexture_fs", "立方体纹理（EnvMap）"], //
 			["envMapMaskTexture_fs", "遮罩纹理（EnvMap）"], //
 			["envMapData_fc_vector", "片段数据（EnvMap）"], //
-
+			//----------------------------  ------------------------------
+			["fresnelSpecularData_fc_vector", "片段数据（FresnelSpecular）"], //
 			];
 	}
 }
