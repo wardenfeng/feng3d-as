@@ -7,7 +7,7 @@ package me.feng3d.core.pick
 
 	/**
 	 *
-	 * @author warden_feng 2014-4-30
+	 * @author feng 2014-4-30
 	 */
 	public class PickingColliderBase
 	{

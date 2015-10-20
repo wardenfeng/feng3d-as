@@ -7,7 +7,7 @@ package me.feng3d.core.sorter
 	 * 可渲染合并排序
 	 * <p>为了提升渲染性能，排序EntityCollector中潜在显示对象。</p>
 	 * <p>排序方式优先使用材质，其次是离摄像机的距离。不透明对象从前往后移，当对象需要混合的从后往前移，确保能够正确渲染。</p>
-	 * @author warden_feng 2015-3-9
+	 * @author feng 2015-3-9
 	 */
 	public class RenderableMergeSort implements IEntitySorter
 	{

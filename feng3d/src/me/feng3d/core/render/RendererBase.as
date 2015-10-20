@@ -15,7 +15,7 @@ package me.feng3d.core.render
 
 	/**
 	 * 渲染器抽象基类
-	 * @author warden_feng 2015-3-1
+	 * @author feng 2015-3-1
 	 */
 	public class RendererBase
 	{

@@ -12,7 +12,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * Context3D可执行的数据缓存
-	 * @author warden_feng 2014-6-9
+	 * @author feng 2014-6-9
 	 */
 	public class Context3DBuffer
 	{

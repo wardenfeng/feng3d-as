@@ -14,7 +14,7 @@ package me.feng3d.core.manager
 
 	/**
 	 * 鼠标事件管理
-	 * @author warden_feng 2014-4-29
+	 * @author feng 2014-4-29
 	 */
 	public class Mouse3DManager
 	{

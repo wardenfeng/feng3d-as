@@ -4,7 +4,7 @@ package me.feng3d.primitives.data
 
 	/**
 	 * 单条线段数据
-	 * @author warden_feng 2014-4-9
+	 * @author feng 2014-4-9
 	 */
 	public class Segment
 	{

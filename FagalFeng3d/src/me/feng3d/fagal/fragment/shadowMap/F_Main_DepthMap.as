@@ -8,7 +8,7 @@ package me.feng3d.fagal.fragment.shadowMap
 
 	/**
 	 * 深度图片段主程序
-	 * @author warden_feng 2015-5-30
+	 * @author feng 2015-5-30
 	 */
 	public class F_Main_DepthMap extends FagalMethod
 	{

@@ -3,7 +3,7 @@ package me.feng3d.textures
 
 	/**
 	 * 渲染纹理
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class RenderTexture extends Texture2DBase
 	{

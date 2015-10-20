@@ -10,7 +10,7 @@ package me.feng3d.utils
 
 	/**
 	 * 纹理工具类
-	 * @author warden_feng 2015-7-7
+	 * @author feng 2015-7-7
 	 */
 	public class TextureUtils
 	{

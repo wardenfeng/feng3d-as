@@ -10,7 +10,7 @@ package me.feng3d.animators.skeleton
 
 	/**
 	 * 骨骼剪辑状态
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class SkeletonClipState extends AnimationClipState implements ISkeletonAnimationState
 	{

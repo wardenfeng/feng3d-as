@@ -14,7 +14,7 @@ package
 
 	/**
 	 *
-	 * @author warden_feng 2015-8-29
+	 * @author feng 2015-8-29
 	 */
 	public class AlphaBlendingTest extends TestBase
 	{

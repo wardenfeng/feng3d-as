@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 环境映射函数
-	 * @author warden_feng 2015-8-27
+	 * @author feng 2015-8-27
 	 */
 	public class EnvMapMethod extends EffectMethodBase
 	{

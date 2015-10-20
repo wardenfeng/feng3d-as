@@ -6,7 +6,7 @@ package me.feng3d.fagal.vertex.shadowMap
 
 	/**
 	 * 方向光阴影映射
-	 * @author warden_feng 2015-7-17
+	 * @author feng 2015-7-17
 	 */
 	public function V_ShadowMapPlanar():void
 	{

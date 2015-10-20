@@ -9,7 +9,7 @@ package me.feng3d.primitives
 
 	/**
 	 * 线框基元基类
-	 * @author warden_feng 2014-4-27
+	 * @author feng 2014-4-27
 	 */
 	public class WireframePrimitiveBase extends SegmentSet
 	{

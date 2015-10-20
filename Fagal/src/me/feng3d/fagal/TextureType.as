@@ -3,7 +3,7 @@ package me.feng3d.fagal
 
 	/**
 	 * 纹理类型
-	 * @author warden_feng 2014-10-23
+	 * @author feng 2014-10-23
 	 */
 	public class TextureType
 	{

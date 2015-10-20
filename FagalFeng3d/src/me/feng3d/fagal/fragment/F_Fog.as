@@ -5,7 +5,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 雾片段着色器
-	 * @author warden_feng 2015-8-27
+	 * @author feng 2015-8-27
 	 */
 	public function F_Fog():void
 	{

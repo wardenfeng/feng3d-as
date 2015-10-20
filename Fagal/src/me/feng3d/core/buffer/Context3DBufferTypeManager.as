@@ -21,7 +21,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * 3d环境缓存类型管理者
-	 * @author warden_feng 2014-9-3
+	 * @author feng 2014-9-3
 	 */
 	public class Context3DBufferTypeManager
 	{

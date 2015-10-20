@@ -4,7 +4,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 编译切线片段程序(无法线图)
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function F_TangentNormalNoMap():void
 	{

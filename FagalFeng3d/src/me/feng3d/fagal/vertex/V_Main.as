@@ -16,7 +16,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 顶点渲染程序主入口
-	 * @author warden_feng 2014-10-30
+	 * @author feng 2014-10-30
 	 */
 	public class V_Main extends FagalMethod
 	{

@@ -3,7 +3,7 @@ package me.feng3d.core.register
 
 	/**
 	 * 寄存器数组
-	 * @author warden_feng 2014-11-4
+	 * @author feng 2014-11-4
 	 */
 	public class RegisterArray extends Register
 	{

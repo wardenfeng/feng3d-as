@@ -8,7 +8,7 @@ package me.feng3d.materials
 
 	/**
 	 * 天空盒材质
-	 * @author warden_feng 2014-7-11
+	 * @author feng 2014-7-11
 	 */
 	public class SkyBoxMaterial extends MaterialBase
 	{

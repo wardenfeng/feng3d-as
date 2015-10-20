@@ -7,7 +7,7 @@ package me.feng3d.materials
 
 	/**
 	 * SpriteSheet材质
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class SpriteSheetMaterial extends TextureMaterial
 	{

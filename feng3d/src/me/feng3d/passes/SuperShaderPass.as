@@ -16,7 +16,7 @@ package me.feng3d.passes
 	/**
 	 * 超级渲染通道
 	 * <p>提供灯光渲染相关信息</p>
-	 * @author warden_feng 2014-7-1
+	 * @author feng 2014-7-1
 	 */
 	public class SuperShaderPass extends CompiledPass
 	{

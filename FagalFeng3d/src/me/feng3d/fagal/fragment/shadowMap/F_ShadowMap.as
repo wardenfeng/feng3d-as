@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment.shadowMap
 
 	/**
 	 * 编译阴影映射片段程序
-	 * @author warden_feng 2015-6-23
+	 * @author feng 2015-6-23
 	 */
 	public function F_ShadowMap():void
 	{

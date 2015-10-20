@@ -11,7 +11,7 @@ package me.feng.task
 
 	/**
 	 * 任务
-	 * @author warden_feng 2015-5-27
+	 * @author feng 2015-5-27
 	 */
 	public class Task extends FEventDispatcher
 	{

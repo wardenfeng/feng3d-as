@@ -26,7 +26,7 @@ package me.feng3d.entities
 
 	/**
 	 * 网格
-	 * @author warden_feng 2014-4-9
+	 * @author feng 2014-4-9
 	 */
 	public class Mesh extends Entity implements IMaterialOwner
 	{

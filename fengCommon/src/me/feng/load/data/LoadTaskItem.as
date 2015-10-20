@@ -9,7 +9,7 @@ package me.feng.load.data
 
 	/**
 	 * 加载单元数据
-	 * @author warden_feng 2015-5-27
+	 * @author feng 2015-5-27
 	 */
 	public class LoadTaskItem extends TaskItem
 	{

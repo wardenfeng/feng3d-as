@@ -8,7 +8,7 @@ package me.feng3d.animators.skeleton
 	/**
 	 * 骨骼动画节点（一般用于一个动画的帧列表）
 	 * 包含基于时间的动画数据作为单独的骨架构成。
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class SkeletonClipNode extends AnimationClipNodeBase
 	{

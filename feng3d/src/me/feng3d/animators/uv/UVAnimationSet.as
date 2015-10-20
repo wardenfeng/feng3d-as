@@ -7,7 +7,7 @@ package me.feng3d.animators.uv
 
 	/**
 	 * UV动画集合
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class UVAnimationSet extends AnimationSetBase implements IAnimationSet
 	{

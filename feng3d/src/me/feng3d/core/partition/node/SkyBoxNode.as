@@ -6,7 +6,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 天空盒分区节点
-	 * @author warden_feng 2015-3-8
+	 * @author feng 2015-3-8
 	 */
 	public class SkyBoxNode extends EntityNode
 	{

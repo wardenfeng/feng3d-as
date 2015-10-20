@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment.shadowMap
 
 	/**
 	 * 阴影图采样比较计算阴影值
-	 * @author warden_feng 2015-7-17
+	 * @author feng 2015-7-17
 	 */
 	public function F_ShadowMapSample():void
 	{

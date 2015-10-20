@@ -5,7 +5,7 @@ package me.feng.component
 	/**
 	 * 组件基类
 	 * <p>所有组件均从该类继承</p>
-	 * @author warden_feng 2015-5-6
+	 * @author feng 2015-5-6
 	 */
 	public class Component extends FEventDispatcher
 	{

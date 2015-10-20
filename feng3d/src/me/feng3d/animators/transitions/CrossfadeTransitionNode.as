@@ -4,7 +4,7 @@ package me.feng3d.animators.transitions
 
 	/**
 	 * 淡入淡出变换节点
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class CrossfadeTransitionNode extends SkeletonBinaryLERPNode
 	{

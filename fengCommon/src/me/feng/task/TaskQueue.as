@@ -6,7 +6,7 @@ package me.feng.task
 	 * 任务队列（按先后顺序依次完成子任务，只有完成当前任务才会开始下个任务）
 	 * @includeExample TaskQueueTest.as
 	 * @includeExample KeyDownTask.as
-	 * @author warden_feng 2015-6-17
+	 * @author feng 2015-6-17
 	 */
 	public class TaskQueue extends TaskCollection
 	{

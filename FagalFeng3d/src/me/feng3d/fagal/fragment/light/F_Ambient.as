@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment.light
 
 	/**
 	 * 环境光片段渲染程序
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function F_Ambient():void
 	{

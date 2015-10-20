@@ -13,7 +13,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 片段渲染程序主入口
-	 * @author warden_feng 2014-10-30
+	 * @author feng 2014-10-30
 	 */
 	public class F_Main extends FagalMethod
 	{

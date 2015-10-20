@@ -12,7 +12,7 @@ package
 
 	/**
 	 * 测试3D环境缓存类
-	 * @author warden_feng 2015-7-1
+	 * @author feng 2015-7-1
 	 */
 	public class Context3DCacheDebugText extends TestBase
 	{

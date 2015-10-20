@@ -12,7 +12,7 @@ package
 
 	/**
 	 * 测试线段
-	 * @author warden_feng 2014-4-9
+	 * @author feng 2014-4-9
 	 */
 	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestSegment extends TestBase

@@ -6,7 +6,7 @@ package me.feng3d.animators.vertex
 
 	/**
 	 * 顶点动画剪辑状态
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class VertexClipState extends AnimationClipState implements IVertexAnimationState
 	{

@@ -21,7 +21,7 @@ package me.feng3d.core.render
 
 	/**
 	 * 默认渲染器，使用根据材质渲染场景图
-	 * @author warden_feng 2015-3-5
+	 * @author feng 2015-3-5
 	 */
 	public class DefaultRenderer extends RendererBase
 	{

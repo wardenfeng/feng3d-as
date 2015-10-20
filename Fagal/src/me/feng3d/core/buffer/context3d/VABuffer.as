@@ -12,7 +12,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 顶点数据缓冲
-	 * @author warden_feng 2014-8-14
+	 * @author feng 2014-8-14
 	 */
 	public class VABuffer extends RegisterBuffer
 	{

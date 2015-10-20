@@ -4,7 +4,7 @@ package me.feng.core
 
 	/**
 	 * 模块管理器
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class ModulesManager
 	{

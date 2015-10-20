@@ -22,7 +22,7 @@ package me.feng3d.containers
 
 	/**
 	 * 3D视图
-	 * @author warden_feng 2014-3-17
+	 * @author feng 2014-3-17
 	 */
 	public class View3D extends Sprite
 	{

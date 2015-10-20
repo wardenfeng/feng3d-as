@@ -5,7 +5,7 @@ package me.feng3d.animators.skeleton
 
 	/**
 	 * 两个骨骼动画节点间进行线性插值得出骨骼姿势
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class SkeletonBinaryLERPNode extends AnimationNodeBase
 	{

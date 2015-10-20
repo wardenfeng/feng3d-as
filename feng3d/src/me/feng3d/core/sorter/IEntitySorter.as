@@ -5,7 +5,7 @@ package me.feng3d.core.sorter
 	/**
 	 * 实体排序接口
 	 * <p>为优化渲染EntityCollector排序</p>
-	 * @author warden_feng 2015-3-6
+	 * @author feng 2015-3-6
 	 */
 	public interface IEntitySorter
 	{

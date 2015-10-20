@@ -10,7 +10,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 索引缓存
-	 * @author warden_feng 2014-8-21
+	 * @author feng 2014-8-21
 	 */
 	public class IndexBuffer extends Context3DBuffer
 	{

@@ -4,7 +4,7 @@ package me.feng3d.animators.base.data
 
 	/**
 	 * 动画数据
-	 * @author warden_feng 2015-1-14
+	 * @author feng 2015-1-14
 	 */
 	public class AnimationSubGeometry extends VertexBufferOwner
 	{

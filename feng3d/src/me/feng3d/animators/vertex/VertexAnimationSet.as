@@ -11,7 +11,7 @@ package me.feng3d.animators.vertex
 
 	/**
 	 * 顶点动画集合
-	 * @author warden_feng 2014-5-30
+	 * @author feng 2014-5-30
 	 */
 	public class VertexAnimationSet extends AnimationSetBase implements IAnimationSet
 	{

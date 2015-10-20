@@ -27,7 +27,7 @@ package me.feng3d.core.traverse
 	 * @see me.feng3d.core.partition.Partition3D
 	 * @see me.feng3d.entities.Entity
 	 *
-	 * @author warden_feng 2015-3-1
+	 * @author feng 2015-3-1
 	 */
 	public class EntityCollector extends PartitionTraverser
 	{

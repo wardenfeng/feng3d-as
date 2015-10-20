@@ -4,7 +4,7 @@ package me.feng.task
 	import flash.events.KeyboardEvent;
 
 	//按键任务
-	//@author warden_feng 2015-6-17
+	//@author feng 2015-6-17
 	//
 	public class KeyDownTask extends TaskItem
 	{

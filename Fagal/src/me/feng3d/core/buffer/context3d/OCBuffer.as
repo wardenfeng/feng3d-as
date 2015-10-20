@@ -11,7 +11,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 输出纹理缓冲
-	 * @author warden_feng 2015-6-3
+	 * @author feng 2015-6-3
 	 */
 	public class OCBuffer extends RegisterBuffer
 	{

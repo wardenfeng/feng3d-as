@@ -6,7 +6,7 @@ package me.feng3d.animators.transitions
 
 	/**
 	 * 淡入淡出变换状态
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class CrossfadeTransitionState extends SkeletonBinaryLERPState
 	{

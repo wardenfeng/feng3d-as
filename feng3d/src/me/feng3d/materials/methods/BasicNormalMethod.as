@@ -9,7 +9,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 基础法线函数
-	 * @author warden_feng 2014-7-16
+	 * @author feng 2014-7-16
 	 */
 	public class BasicNormalMethod extends ShadingMethodBase
 	{

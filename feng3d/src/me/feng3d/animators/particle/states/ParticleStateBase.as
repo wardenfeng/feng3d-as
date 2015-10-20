@@ -12,7 +12,7 @@ package me.feng3d.animators.particle.states
 
 	/**
 	 * 粒子状态基类
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class ParticleStateBase extends AnimationStateBase
 	{

@@ -3,7 +3,7 @@ package me.feng.events
 
 	//
 	// 测试事件调度器
-	// @author warden_feng 2014-11-26
+	// @author feng 2014-11-26
 	//
 	public class FEventDispatcherTest extends TestBase
 	{

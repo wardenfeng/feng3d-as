@@ -6,7 +6,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 点光源分区节点
-	 * @author warden_feng 2015-3-23
+	 * @author feng 2015-3-23
 	 */
 	public class PointLightNode extends EntityNode
 	{

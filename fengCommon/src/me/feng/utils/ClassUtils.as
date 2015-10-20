@@ -6,7 +6,7 @@ package me.feng.utils
 
 	/**
 	 * 类工具
-	 * @author warden_feng 2015-4-27
+	 * @author feng 2015-4-27
 	 */
 	public class ClassUtils
 	{

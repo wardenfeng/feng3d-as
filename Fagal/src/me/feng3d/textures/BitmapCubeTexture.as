@@ -8,7 +8,7 @@ package me.feng3d.textures
 
 	/**
 	 * 位图立方体纹理代理
-	 * @author warden_feng 2014-7-12
+	 * @author feng 2014-7-12
 	 */
 	public class BitmapCubeTexture extends CubeTextureBase
 	{

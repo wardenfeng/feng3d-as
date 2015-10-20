@@ -13,7 +13,7 @@ package me.feng3d.containers
 
 	/**
 	 * 3d场景
-	 * @author warden_feng 2014-3-17
+	 * @author feng 2014-3-17
 	 */
 	public class Scene3D extends ObjectContainer3D
 	{

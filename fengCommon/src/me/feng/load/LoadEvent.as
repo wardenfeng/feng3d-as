@@ -4,7 +4,7 @@ package me.feng.load
 
 	/**
 	 * 加载事件
-	 * @author warden_feng 2014-7-25
+	 * @author feng 2014-7-25
 	 */
 	public class LoadEvent extends FEvent
 	{

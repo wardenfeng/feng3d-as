@@ -14,7 +14,7 @@ package base
 
 	/**
 	 * 基础材质
-	 * @author warden_feng 2014-10-27
+	 * @author feng 2014-10-27
 	 */
 	public class BaseMaterial extends Context3DBufferOwner
 	{

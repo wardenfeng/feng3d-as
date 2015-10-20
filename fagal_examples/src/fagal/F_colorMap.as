@@ -7,7 +7,7 @@ package fagal
 
 	/**
 	 * 输出颜色贴图
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	public class F_colorMap extends FagalMethod
 	{

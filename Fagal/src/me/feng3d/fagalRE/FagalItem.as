@@ -7,7 +7,7 @@ package me.feng3d.fagalRE
 
 	/**
 	 * fagal函数单元
-	 * @author warden_feng 2015-8-8
+	 * @author feng 2015-8-8
 	 */
 	public class FagalItem
 	{

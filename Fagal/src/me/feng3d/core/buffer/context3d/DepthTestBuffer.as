@@ -8,7 +8,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 深度测试缓存
-	 * @author warden_feng 2014-8-28
+	 * @author feng 2014-8-28
 	 */
 	public class DepthTestBuffer extends Context3DBuffer
 	{

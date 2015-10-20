@@ -4,7 +4,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 视线片段渲染函数
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function F_ViewDir():void
 	{

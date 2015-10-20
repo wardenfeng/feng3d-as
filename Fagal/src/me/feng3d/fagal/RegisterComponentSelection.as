@@ -4,7 +4,7 @@ package me.feng3d.fagal
 
 	/**
 	 * 寄存器单元组合
-	 * @author warden_feng 2014-10-22
+	 * @author feng 2014-10-22
 	 */
 	public class RegisterComponentSelection implements IField
 	{

@@ -4,7 +4,7 @@ package me.feng3d.core.register
 
 	/**
 	 * 寄存器数组元素
-	 * @author warden_feng 2014-11-3
+	 * @author feng 2014-11-3
 	 */
 	public class RegisterArrayItem extends Register
 	{

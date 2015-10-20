@@ -4,7 +4,7 @@ package me.feng.task
 
 	//测试任务队列
 	//鼠标分别单击与双击完成任务
-	//@author warden_feng 2015-6-17
+	//@author feng 2015-6-17
 	public class TaskQueueTest extends TestBase
 	{
 		private var taskQueue:TaskQueue;

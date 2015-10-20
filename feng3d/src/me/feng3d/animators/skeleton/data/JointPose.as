@@ -6,7 +6,7 @@ package me.feng3d.animators.skeleton.data
 	
 	/**
 	 * 关节pose
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class JointPose
 	{

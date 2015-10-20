@@ -6,7 +6,7 @@ package me.feng3d.entities.segment
 
 	/**
 	 * 线段渲染数据缓存
-	 * @author warden_feng 2014-5-9
+	 * @author feng 2014-5-9
 	 */
 	public class SegmentSubGeometry extends SubGeometry
 	{

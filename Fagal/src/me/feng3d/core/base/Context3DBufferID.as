@@ -3,7 +3,7 @@ package me.feng3d.core.base
 
 	/**
 	 * 3D环境缓冲编号集合
-	 * @author warden_feng 2015-7-21
+	 * @author feng 2015-7-21
 	 */
 	public dynamic class Context3DBufferID
 	{

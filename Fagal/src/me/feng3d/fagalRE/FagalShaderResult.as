@@ -14,7 +14,7 @@ package me.feng3d.fagalRE
 
 	/**
 	 * Fagal渲染结果
-	 * @author warden_feng 2015-8-8
+	 * @author feng 2015-8-8
 	 */
 	public class FagalShaderResult
 	{

@@ -2,7 +2,7 @@ package me.feng.error
 {
 
 	//测试抽象类
-	//@author warden_feng 2015-5-21
+	//@author feng 2015-5-21
 	public class AbstractClassErrorTest extends TestBase
 	{
 		public function AbstractClassErrorTest()

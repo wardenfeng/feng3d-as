@@ -10,7 +10,7 @@ package me.feng3d.core.base.subgeometry
 
 	/**
 	 * 子网格基类
-	 * @author warden_feng 2015-1-14
+	 * @author feng 2015-1-14
 	 */
 	public class SubGeometryBase extends VertexBufferOwner
 	{

@@ -8,7 +8,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 混合因素缓存
-	 * @author warden_feng 2014-8-28
+	 * @author feng 2014-8-28
 	 */
 	public class BlendFactorsBuffer extends Context3DBuffer
 	{

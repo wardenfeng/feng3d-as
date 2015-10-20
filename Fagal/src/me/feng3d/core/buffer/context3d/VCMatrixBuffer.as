@@ -10,7 +10,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * Context3D 顶点矩阵常量数据缓存
-	 * @author warden_feng 2014-8-20
+	 * @author feng 2014-8-20
 	 */
 	public class VCMatrixBuffer extends ConstantsBuffer
 	{

@@ -13,7 +13,7 @@ package
 
 	/**
 	 * (6)用四边形组成一个正方体并转动
-	 * @author warden_feng 2014-3-27
+	 * @author feng 2014-3-27
 	 */
 	[SWF(width = "640", height = "640", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestCamera extends TestBase

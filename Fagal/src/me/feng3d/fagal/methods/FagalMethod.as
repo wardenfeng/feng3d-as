@@ -10,7 +10,7 @@ package me.feng3d.fagal.methods
 
 	/**
 	 * Fagal函数
-	 * @author warden_feng 2014-10-23
+	 * @author feng 2014-10-23
 	 */
 	public class FagalMethod
 	{

@@ -7,7 +7,7 @@ package me.feng3d.core.base
 
 	/**
 	 * Context3D缓存拥有者接口
-	 * @author warden_feng 2014-11-24
+	 * @author feng 2014-11-24
 	 */
 	public interface IContext3DBufferOwner extends IEventDispatcher
 	{

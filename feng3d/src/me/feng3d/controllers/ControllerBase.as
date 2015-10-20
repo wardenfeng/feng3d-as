@@ -9,7 +9,7 @@ package me.feng3d.controllers
 
 	/**
 	 * 控制器
-	 * @author warden_feng 2014-10-10
+	 * @author feng 2014-10-10
 	 */
 	public class ControllerBase
 	{

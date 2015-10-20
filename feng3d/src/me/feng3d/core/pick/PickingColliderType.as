@@ -3,7 +3,7 @@ package me.feng3d.core.pick
 	
 	/**
 	 * 定义检测相交的工具类
-	 * @author warden_feng 2014-4-30
+	 * @author feng 2014-4-30
 	 */
 	public class PickingColliderType
 	{

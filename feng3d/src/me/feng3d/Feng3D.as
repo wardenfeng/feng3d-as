@@ -3,7 +3,7 @@ package me.feng3d
 
 	/**
 	 * feng3d引擎
-	 * @author warden_feng 2014-3-14
+	 * @author feng 2014-3-14
 	 */
 	public class Feng3D
 	{

@@ -3,7 +3,7 @@ package me.feng3d.animators.uv
 
 	/**
 	 * UV动画帧
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 * @see me.feng3d.animators.spriteSheet.SpriteSheetAnimationFrame
 	 */
 	public class UVAnimationFrame

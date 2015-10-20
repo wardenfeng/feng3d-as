@@ -4,7 +4,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 光泽图取样函数
-	 * @author warden_feng 2014-10-23
+	 * @author feng 2014-10-23
 	 */
 	public function F_SpecularSample():void
 	{

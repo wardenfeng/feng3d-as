@@ -4,7 +4,7 @@ package me.feng3d.materials
 
 	/**
 	 * 线段材质
-	 * @author warden_feng 2014-4-16
+	 * @author feng 2014-4-16
 	 */
 	public class SegmentMaterial extends MaterialBase
 	{

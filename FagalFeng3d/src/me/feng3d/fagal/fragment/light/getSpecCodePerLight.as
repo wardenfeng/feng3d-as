@@ -6,7 +6,7 @@ package me.feng3d.fagal.fragment.light
 
 	/**
 	 * 计算单个镜面反射光
-	 * @author warden_feng 2015-4-24
+	 * @author feng 2015-4-24
 	 */
 	public function getSpecCodePerLight(lightDirReg:Register, specularColorReg:Register):void
 	{

@@ -9,7 +9,7 @@ package me.feng3d.entities
 
 	/**
 	 * 高度地形
-	 * @author warden_feng 2014-7-16
+	 * @author feng 2014-7-16
 	 */
 	public class Elevation extends Mesh
 	{

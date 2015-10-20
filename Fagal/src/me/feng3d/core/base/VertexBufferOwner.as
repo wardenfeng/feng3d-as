@@ -7,7 +7,7 @@ package me.feng3d.core.base
 
 	/**
 	 * 顶点数据拥有者
-	 * @author warden_feng 2015-1-14
+	 * @author feng 2015-1-14
 	 */
 	public class VertexBufferOwner extends Context3DBufferOwner
 	{

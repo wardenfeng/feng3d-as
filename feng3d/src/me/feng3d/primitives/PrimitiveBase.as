@@ -12,7 +12,7 @@ package me.feng3d.primitives
 
 	/**
 	 * 基础网格
-	 * @author warden_feng 2014-10-11
+	 * @author feng 2014-10-11
 	 */
 	public class PrimitiveBase extends Geometry
 	{

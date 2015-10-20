@@ -3,7 +3,7 @@ package me.feng3d.configs
 
 	/**
 	 * 3D缓冲编号配置
-	 * @author warden_feng 2015-7-21
+	 * @author feng 2015-7-21
 	 */
 	public class Context3DBufferIDConfig
 	{

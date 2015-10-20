@@ -20,7 +20,7 @@ package me.feng3d.materials.methods
 	 * Gamb：整个场景的环境光值。
 	 * Mamb：材质的环境光分量。它总是等于漫反射分量——由纹理图定义。
 	 *
-	 * @author warden_feng 2014-7-1
+	 * @author feng 2014-7-1
 	 */
 	public class BasicAmbientMethod extends ShadingMethodBase
 	{

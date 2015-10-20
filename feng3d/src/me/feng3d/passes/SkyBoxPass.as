@@ -24,7 +24,7 @@ package me.feng3d.passes
 
 	/**
 	 * 天空盒通道
-	 * @author warden_feng 2014-7-11
+	 * @author feng 2014-7-11
 	 */
 	public class SkyBoxPass extends MaterialPassBase
 	{

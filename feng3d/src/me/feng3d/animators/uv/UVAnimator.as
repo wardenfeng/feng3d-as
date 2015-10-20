@@ -17,7 +17,7 @@ package me.feng3d.animators.uv
 
 	/**
 	 * UV动画
-	 * @author warden_feng 2014-5-27
+	 * @author feng 2014-5-27
 	 */
 	public class UVAnimator extends AnimatorBase implements IAnimator
 	{

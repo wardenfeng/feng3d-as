@@ -4,7 +4,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 编译切线顶点程序(无法线图)
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function V_TangentNormalNoMap():void
 	{

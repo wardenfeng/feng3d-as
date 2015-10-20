@@ -3,7 +3,7 @@ package me.feng3d
 
 	/**
 	 * Fagal
-	 * @author warden_feng 2015-4-27
+	 * @author feng 2015-4-27
 	 */
 	public class Fagal
 	{

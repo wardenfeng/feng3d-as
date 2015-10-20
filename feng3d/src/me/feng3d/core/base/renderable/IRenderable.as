@@ -7,7 +7,7 @@ package me.feng3d.core.base.renderable
 
 	/**
 	 * IRenderable为对象提供一个表示可以被渲染的接口
-	 * @author warden_feng 2014-4-9
+	 * @author feng 2014-4-9
 	 */
 	public interface IRenderable extends IMaterialOwner
 	{

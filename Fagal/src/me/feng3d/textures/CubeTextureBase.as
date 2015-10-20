@@ -4,7 +4,7 @@ package me.feng3d.textures
 
 	/**
 	 * 立方体纹理代理基类
-	 * @author warden_feng 2014-7-12
+	 * @author feng 2014-7-12
 	 */
 	public class CubeTextureBase extends TextureProxyBase
 	{

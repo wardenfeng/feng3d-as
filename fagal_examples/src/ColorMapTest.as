@@ -18,7 +18,7 @@ package
 
 	/**
 	 * 通过顶点颜色渲染地形
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	[SWF(width = "800", height = "600", frameRate = "60")]
 	public class ColorMapTest extends TestBase

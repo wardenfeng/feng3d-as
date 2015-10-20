@@ -20,7 +20,7 @@ package
 
 	/**
 	 * 测试MD5动画解析
-	 * @author warden_feng 2014-4-29
+	 * @author feng 2014-4-29
 	 */
 	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class SkeletonAnimatorTest extends TestBase

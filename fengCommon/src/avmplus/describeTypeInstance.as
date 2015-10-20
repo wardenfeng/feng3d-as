@@ -3,7 +3,7 @@ package avmplus
 
 	/**
 	 * 获取类实例描述
-	 * @author warden_feng 2012-10-23
+	 * @author feng 2012-10-23
 	 */
 	public function describeTypeInstance(type:*):Object
 	{

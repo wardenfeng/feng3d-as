@@ -9,7 +9,7 @@ package me.feng3d.fagal.vertex.particle
 	 * @param animatedPosition		动画后的顶点坐标数据
 	 * @param positionReg			顶点坐标数据
 	 * @param particleCommon		粒子常数数据[0,1,2,0]
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticlesInit(positionTemp:Register, animatedPosition:Register, positionReg:Register, particleCommon:Register):void
 	{

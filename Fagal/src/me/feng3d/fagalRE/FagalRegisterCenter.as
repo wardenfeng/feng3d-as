@@ -17,7 +17,7 @@ package me.feng3d.fagalRE
 
 	/**
 	 * Fagal寄存器中心
-	 * @author warden_feng 2015-7-23
+	 * @author feng 2015-7-23
 	 */
 	public dynamic class FagalRegisterCenter extends Proxy
 	{
@@ -112,7 +112,7 @@ package me.feng3d.fagalRE
 		 * 获取临时寄存器
 		 * @param description 寄存器描述
 		 * @return
-		 * @author warden_feng 2015-4-24
+		 * @author feng 2015-4-24
 		 */
 		public static function getFreeTemp(description:String = ""):Register
 		{
@@ -136,7 +136,7 @@ package me.feng3d.fagalRE
 		 * 获取临时寄存器
 		 * @param description 寄存器描述
 		 * @return
-		 * @author warden_feng 2015-4-24
+		 * @author feng 2015-4-24
 		 */
 		public static function getFreeTemps(description:String = "", num:int = 1):Register
 		{

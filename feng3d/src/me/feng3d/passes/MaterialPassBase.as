@@ -32,7 +32,7 @@ package me.feng3d.passes
 	/**
 	 * 纹理通道基类
 	 * <p>该类实现了生成与管理渲染程序功能</p>
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class MaterialPassBase extends Context3DBufferOwner
 	{

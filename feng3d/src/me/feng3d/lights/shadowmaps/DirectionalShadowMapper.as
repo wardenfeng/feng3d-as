@@ -18,7 +18,7 @@ package me.feng3d.lights.shadowmaps
 
 	/**
 	 * 方向光阴影映射
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class DirectionalShadowMapper extends ShadowMapperBase
 	{

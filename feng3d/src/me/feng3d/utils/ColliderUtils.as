@@ -4,7 +4,7 @@ package me.feng3d.utils
 
 	/**
 	 *
-	 * @author warden_feng 2015-4-28
+	 * @author feng 2015-4-28
 	 */
 	public class ColliderUtils
 	{

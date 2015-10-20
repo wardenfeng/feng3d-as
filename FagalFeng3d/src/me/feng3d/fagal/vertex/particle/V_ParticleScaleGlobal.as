@@ -9,7 +9,7 @@ package me.feng3d.fagal.vertex.particle
 	 * @param scaleRegister				粒子缩放常数数据
 	 * @param inCycleTimeTemp			粒子周期内时间临时寄存器
 	 * @param animatedPosition			动画后的顶点坐标数据
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticleScaleGlobal(scaleRegister:Register, inCycleTimeTemp:Register, animatedPosition:Register):void
 	{

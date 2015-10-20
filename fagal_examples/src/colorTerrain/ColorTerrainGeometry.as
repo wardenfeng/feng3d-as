@@ -4,7 +4,7 @@ package colorTerrain
 
 	/**
 	 *
-	 * @author warden_feng 2015-5-14
+	 * @author feng 2015-5-14
 	 */
 	public class ColorTerrainGeometry extends BaseGeometry
 	{

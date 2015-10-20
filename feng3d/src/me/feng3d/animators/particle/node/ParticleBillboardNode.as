@@ -17,7 +17,7 @@ package me.feng3d.animators.particle.node
 
 	/**
 	 * 广告牌节点
-	 * @author warden_feng 2014-11-13
+	 * @author feng 2014-11-13
 	 */
 	public class ParticleBillboardNode extends ParticleNodeBase
 	{

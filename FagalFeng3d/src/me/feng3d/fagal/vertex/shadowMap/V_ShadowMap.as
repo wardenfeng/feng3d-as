@@ -5,7 +5,7 @@ package me.feng3d.fagal.vertex.shadowMap
 
 	/**
 	 * 编译阴影映射顶点程序
-	 * @author warden_feng 2015-6-23
+	 * @author feng 2015-6-23
 	 */
 	public function V_ShadowMap():void
 	{

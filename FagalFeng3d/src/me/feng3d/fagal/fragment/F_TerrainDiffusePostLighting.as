@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 地形渲染函数
-	 * @author warden_feng 2014-11-6
+	 * @author feng 2014-11-6
 	 */
 	public function F_TerrainDiffusePostLighting():void
 	{

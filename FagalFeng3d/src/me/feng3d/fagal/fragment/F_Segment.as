@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 线段片段渲染程序
-	 * @author warden_feng 2014-10-28
+	 * @author feng 2014-10-28
 	 */
 	public class F_Segment extends FagalMethod
 	{

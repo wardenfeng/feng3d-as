@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 * 几何体事件
-	 * @author warden_feng 2014-5-15
+	 * @author feng 2014-5-15
 	 */
 	public class GeometryEvent extends FEvent
 	{

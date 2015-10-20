@@ -17,7 +17,7 @@ package me.feng3d.core.render
 
 	/**
 	 * 深度渲染器
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class DepthRenderer extends RendererBase
 	{

@@ -18,7 +18,7 @@ package me.feng3d.cameras
 
 	/**
 	 * 摄像机
-	 * @author warden_feng 2014-3-17
+	 * @author feng 2014-3-17
 	 */
 	public class Camera3D extends Entity
 	{

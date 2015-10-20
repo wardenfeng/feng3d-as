@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * 动画事件
-	 * @author warden_feng 2014-5-27
+	 * @author feng 2014-5-27
 	 */
 	public class AnimatorEvent extends FEvent
 	{

@@ -14,7 +14,7 @@ package me.feng3d.entities
 	 * 天空盒类用于渲染的场景中的天空。
 	 * 总是被认为是静态的,在无穷远处,并且总是集中在相机的位置和大小符合在相机的视锥体,
 	 * 确保天空盒总是尽可能大而不被裁剪。
-	 * @author warden_feng 2014-7-11
+	 * @author feng 2014-7-11
 	 */
 	public class SkyBox extends Mesh
 	{

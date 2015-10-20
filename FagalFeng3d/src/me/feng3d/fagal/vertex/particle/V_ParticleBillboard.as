@@ -7,7 +7,7 @@ package me.feng3d.fagal.vertex.particle
 	 * 粒子广告牌节点顶点渲染程序
 	 * @param particleBillboardMtx			广告牌旋转矩阵(3个长度向量形式)
 	 * @param animatedPosition				动画后的顶点坐标数据
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticleBillboard(particleBillboardMtx:Register, animatedPosition:Register):void
 	{

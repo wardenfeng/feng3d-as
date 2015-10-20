@@ -4,7 +4,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 顶点世界坐标渲染函数
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function V_WorldPosition():void
 	{

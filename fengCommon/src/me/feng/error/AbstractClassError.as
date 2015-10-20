@@ -4,7 +4,7 @@ package me.feng.error
 
 	/**
 	 * 抽象类错误
-	 * @author warden_feng 2015-2-13
+	 * @author feng 2015-2-13
 	 */
 	public class AbstractClassError extends Error
 	{

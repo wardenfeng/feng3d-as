@@ -3,7 +3,7 @@ package me.feng3d.animators.particle.data
 
 	/**
 	 * 粒子属性
-	 * @author warden_feng 2014-11-13
+	 * @author feng 2014-11-13
 	 */
 	dynamic public class ParticleProperties
 	{

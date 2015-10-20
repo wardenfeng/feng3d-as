@@ -9,7 +9,7 @@ package me.feng3d.animators
 
 	/**
 	 * 动画接口
-	 * @author warden_feng 2015-1-30
+	 * @author feng 2015-1-30
 	 */
 	public interface IAnimator extends IContext3DBufferOwner
 	{

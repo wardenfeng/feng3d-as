@@ -12,7 +12,7 @@ package me.feng3d.core.partition
 	/**
 	 * 3D空间分区
 	 * <p>用于把3D空间分区，便于搜索出有必要渲染的对象，从而优化性能</p>
-	 * @author warden_feng 2015-3-5
+	 * @author feng 2015-3-5
 	 */
 	public class Partition3D
 	{

@@ -13,7 +13,7 @@ package me.feng3d.animators.particle.node
 
 	/**
 	 * 粒子颜色节点
-	 * @author warden_feng 2015-1-20
+	 * @author feng 2015-1-20
 	 */
 	public class ParticleColorNode extends ParticleNodeBase
 	{

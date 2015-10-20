@@ -5,7 +5,7 @@ package me.feng3d.fagalRE
 
 	/**
 	 * Fagal编号中心
-	 * @author warden_feng 2015-7-23
+	 * @author feng 2015-7-23
 	 */
 	public dynamic class FagalIdCenter extends Proxy
 	{

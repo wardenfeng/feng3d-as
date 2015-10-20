@@ -6,7 +6,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 漫反射纹理取样
-	 * @author warden_feng 2014-11-6
+	 * @author feng 2014-11-6
 	 */
 	public function F_DiffuseTexure():void
 	{

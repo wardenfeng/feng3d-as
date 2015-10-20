@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * 解析事件
-	 * @author warden_feng 2014-5-16
+	 * @author feng 2014-5-16
 	 */
 	public class ParserEvent extends FEvent
 	{

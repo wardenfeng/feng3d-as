@@ -13,7 +13,7 @@ package me.feng.utils
 		 // trace output
 		 [MouseEvent type="click" bubbles=true  cancelable=false]
 	 * </pre>
-	 * @author warden_feng 2014-5-7
+	 * @author feng 2014-5-7
 	 */
 	public function formatString(format:String, ... args):String
 	{

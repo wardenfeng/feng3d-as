@@ -15,7 +15,7 @@ package me.feng3d.fagal.vertex.shadowMap
 
 	/**
 	 * 深度图顶点主程序
-	 * @author warden_feng 2015-5-30
+	 * @author feng 2015-5-30
 	 */
 	public class V_Main_DepthMap extends FagalMethod
 	{

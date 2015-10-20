@@ -11,7 +11,7 @@ package me.feng3d.lights
 
 	/**
 	 * 方向灯光
-	 * @author warden_feng 2014-9-11
+	 * @author feng 2014-9-11
 	 */
 	public class DirectionalLight extends LightBase
 	{

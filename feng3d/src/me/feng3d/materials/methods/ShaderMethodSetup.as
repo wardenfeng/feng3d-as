@@ -13,7 +13,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 渲染函数设置
-	 * @author warden_feng 2014-7-1
+	 * @author feng 2014-7-1
 	 */
 	public class ShaderMethodSetup extends Context3DBufferOwner
 	{

@@ -10,7 +10,7 @@ package me.feng3d.bounds
 	/**
 	 * 无空间包围盒，用于表示一直处于视锥体内或之外
 	 * <p>用于某些一直处于视锥体的实体，例如方向光源、天空盒等</p>
-	 * @author warden_feng 2015-3-21
+	 * @author feng 2015-3-21
 	 */
 	public class NullBounds extends BoundingVolumeBase
 	{

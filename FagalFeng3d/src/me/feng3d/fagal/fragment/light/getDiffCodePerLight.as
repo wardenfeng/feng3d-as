@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment.light
 
 	/**
 	 * 处理
-	 * @author warden_feng 2015-4-24
+	 * @author feng 2015-4-24
 	 */
 	public function getDiffCodePerLight(lightDirReg:Register, diffuseColorReg:Register):void
 	{

@@ -3,7 +3,7 @@ package me.feng3d.core.math
 
 	/**
 	 * 点与面的相对位置
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class PlaneClassification
 	{

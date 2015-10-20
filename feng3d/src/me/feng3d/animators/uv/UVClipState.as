@@ -5,7 +5,7 @@ package me.feng3d.animators.uv
 
 	/**
 	 * UV动画剪辑状态
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class UVClipState extends AnimationClipState implements IUVAnimationState
 	{

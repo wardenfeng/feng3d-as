@@ -5,7 +5,7 @@ package me.feng3d.fagal.vertex.particle
 
 	/**
 	 * 粒子顶点渲染程序
-	 * @author warden_feng 2014-11-14
+	 * @author feng 2014-11-14
 	 */
 	public function V_Particles():void
 	{

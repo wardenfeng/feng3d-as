@@ -12,7 +12,7 @@ package colorMap
 
 	/**
 	 * 颜色映射材质
-	 * @author warden_feng 2015-5-14
+	 * @author feng 2015-5-14
 	 */
 	public class ColorMapMaterial extends BaseMaterial
 	{

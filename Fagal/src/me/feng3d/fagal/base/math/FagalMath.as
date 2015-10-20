@@ -17,7 +17,7 @@ package me.feng3d.fagal.base.math
 
 	/**
 	 * Fagal数学运算
-	 * @author warden_feng 2015-7-22
+	 * @author feng 2015-7-22
 	 */
 	public class FagalMath extends FEventDispatcher
 	{
@@ -366,7 +366,7 @@ package me.feng3d.fagal.base.math
 		/**
 		 * 混合数据
 		 * <p>destination = source1 + (source2-source1) x factor</p>
-		 * @author warden_feng 2015-7-4
+		 * @author feng 2015-7-4
 		 */
 		public function blend(destination:IField, source1:IField, source2:IField, factor:IField):void
 		{

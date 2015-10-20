@@ -36,7 +36,7 @@ package me.feng3d.animators.base
 
 	/**
 	 * 动画基类
-	 * @author warden_feng 2014-5-27
+	 * @author feng 2014-5-27
 	 */
 	public class AnimatorBase extends Context3DBufferOwner implements IAsset
 	{

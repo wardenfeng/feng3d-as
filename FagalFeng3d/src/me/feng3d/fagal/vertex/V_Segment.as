@@ -9,7 +9,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 线段顶点渲染程序
-	 * @author warden_feng 2014-10-28
+	 * @author feng 2014-10-28
 	 */
 	public class V_Segment extends FagalMethod
 	{

@@ -14,7 +14,7 @@ package me.feng3d.lights
 
 	/**
 	 * 灯光基类
-	 * @author warden_feng 2014-9-11
+	 * @author feng 2014-9-11
 	 */
 	public class LightBase extends Entity
 	{

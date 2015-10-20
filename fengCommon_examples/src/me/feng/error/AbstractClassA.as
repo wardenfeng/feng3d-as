@@ -3,7 +3,7 @@ package me.feng.error
 
 	/**
 	 * 抽象类A
-	 * @author warden_feng 2015-5-21
+	 * @author feng 2015-5-21
 	 */
 	public class AbstractClassA
 	{

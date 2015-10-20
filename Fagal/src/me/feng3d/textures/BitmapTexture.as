@@ -6,7 +6,7 @@ package me.feng3d.textures
 
 	/**
 	 * 位图纹理
-	 * @author warden_feng 2014-3-24
+	 * @author feng 2014-3-24
 	 */
 	public class BitmapTexture extends Texture2DBase
 	{

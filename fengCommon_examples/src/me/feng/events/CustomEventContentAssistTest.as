@@ -3,7 +3,7 @@ package me.feng.events
 	import flash.display.Sprite;
 
 	// 自定义事件内容辅助测试
-	// @author warden_feng 2015-2-13
+	// @author feng 2015-2-13
 	public class CustomEventContentAssistTest extends TestBase
 	{
 		public function init():void

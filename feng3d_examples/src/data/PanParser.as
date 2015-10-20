@@ -5,7 +5,7 @@ package data
 
 	/**
 	 * 解析pan3d中的数据
-	 * @author warden_feng 2014-4-23
+	 * @author feng 2014-4-23
 	 */
 	public class PanParser
 	{

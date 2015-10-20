@@ -20,7 +20,7 @@ package me.feng3d.passes
 
 	/**
 	 * 深度映射通道
-	 * @author warden_feng 2015-5-29
+	 * @author feng 2015-5-29
 	 */
 	public class DepthMapPass extends MaterialPassBase
 	{

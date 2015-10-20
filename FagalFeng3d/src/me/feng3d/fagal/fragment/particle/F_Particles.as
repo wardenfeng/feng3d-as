@@ -5,7 +5,7 @@ package me.feng3d.fagal.fragment.particle
 
 	/**
 	 * 粒子片段渲染程序
-	 * @author warden_feng 2015-1-21
+	 * @author feng 2015-1-21
 	 */
 	public function F_Particles():void
 	{

@@ -4,7 +4,7 @@ package me.feng.core
 
 	/**
 	 * 全局事件适配器
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class GlobalDispatcher extends FEventDispatcher
 	{

@@ -5,7 +5,7 @@ package
 
 	/**
 	 * 测试基类
-	 * @author warden_feng 2015-5-8
+	 * @author feng 2015-5-8
 	 */
 	public class TestBase extends Sprite
 	{

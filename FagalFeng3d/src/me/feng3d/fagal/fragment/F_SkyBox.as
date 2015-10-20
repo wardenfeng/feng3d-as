@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 天空盒片段渲染程序
-	 * @author warden_feng 2014-11-4
+	 * @author feng 2014-11-4
 	 */
 	public class F_SkyBox extends FagalMethod
 	{

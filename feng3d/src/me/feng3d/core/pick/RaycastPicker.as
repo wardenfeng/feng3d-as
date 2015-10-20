@@ -8,7 +8,7 @@ package me.feng3d.core.pick
 
 	/**
 	 * 光线投射采集
-	 * @author warden_feng 2014-4-29
+	 * @author feng 2014-4-29
 	 */
 	public class RaycastPicker
 	{

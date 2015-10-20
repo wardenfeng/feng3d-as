@@ -3,7 +3,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 空分区节点
-	 * @author warden_feng 2015-3-9
+	 * @author feng 2015-3-9
 	 */
 	public class NullNode extends NodeBase
 	{

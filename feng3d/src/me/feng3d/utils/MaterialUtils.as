@@ -11,7 +11,7 @@ package me.feng3d.utils
 
 	/**
 	 * 纹理材质工厂
-	 * @author warden_feng 2014-7-7
+	 * @author feng 2014-7-7
 	 */
 	public class MaterialUtils
 	{

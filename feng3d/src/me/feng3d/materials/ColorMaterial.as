@@ -4,7 +4,7 @@ package me.feng3d.materials
 
 	/**
 	 * 颜色材质
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class ColorMaterial extends SinglePassMaterialBase
 	{

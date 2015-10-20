@@ -16,7 +16,7 @@ package me.feng3d.lights.shadowmaps
 
 	/**
 	 * 阴影映射基类
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class ShadowMapperBase
 	{

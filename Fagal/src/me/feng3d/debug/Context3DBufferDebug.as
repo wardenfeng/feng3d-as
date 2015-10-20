@@ -23,7 +23,7 @@ package me.feng3d.debug
 
 	/**
 	 * 3d环境缓存调试工具类
-	 * @author warden_feng 2014-9-9
+	 * @author feng 2014-9-9
 	 */
 	public class Context3DBufferDebug
 	{

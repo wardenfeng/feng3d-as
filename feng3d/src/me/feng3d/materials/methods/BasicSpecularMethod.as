@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 镜面反射函数
-	 * @author warden_feng 2014-5-19
+	 * @author feng 2014-5-19
 	 */
 	public class BasicSpecularMethod extends LightingMethodBase
 	{

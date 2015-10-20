@@ -15,7 +15,7 @@ package me.feng3d.core.base
 
 	/**
 	 * 几何体
-	 * @author warden_feng 2014-3-17
+	 * @author feng 2014-3-17
 	 */
 	public class Geometry extends NamedAssetBase implements IAsset
 	{

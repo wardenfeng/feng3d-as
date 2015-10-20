@@ -16,7 +16,7 @@ package me.feng3d.materials
 
 	/**
 	 * 单通道纹理
-	 * @author warden_feng 2014-6-5
+	 * @author feng 2014-6-5
 	 */
 	public class SinglePassMaterialBase extends MaterialBase
 	{

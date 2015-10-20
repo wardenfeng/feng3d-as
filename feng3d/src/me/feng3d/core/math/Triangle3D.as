@@ -4,7 +4,7 @@ package me.feng3d.core.math
 
 	/**
 	 * 三角形
-	 * @author warden_feng 2014-5-4
+	 * @author feng 2014-5-4
 	 */
 	public class Triangle3D
 	{

@@ -6,7 +6,7 @@ package me.feng3d.core.data
 
 	/**
 	 * 可渲染元素链表（元素）
-	 * @author warden_feng 2015-3-6
+	 * @author feng 2015-3-6
 	 */
 	public class RenderableListItem
 	{

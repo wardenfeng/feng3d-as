@@ -20,7 +20,7 @@ package me.feng3d.parsers
 
 	/**
 	 * 解析基类
-	 * @author warden_feng 2014-5-16
+	 * @author feng 2014-5-16
 	 */
 	public class ParserBase extends FEventDispatcher
 	{

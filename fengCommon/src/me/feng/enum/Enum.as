@@ -11,7 +11,7 @@ package me.feng.enum
 	 * @includeExample TypeEnum.as
 	 * @includeExample TypeEnum1.as
 	 *
-	 * @author warden_feng 2015-5-7
+	 * @author feng 2015-5-7
 	 */
 	public class Enum
 	{

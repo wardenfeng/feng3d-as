@@ -6,7 +6,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 *
-	 * @author warden_feng 2015-9-5
+	 * @author feng 2015-9-5
 	 */
 	public function F_EnvMapMethod():void
 	{

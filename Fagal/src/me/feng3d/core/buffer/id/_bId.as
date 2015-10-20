@@ -4,7 +4,7 @@ package me.feng3d.core.buffer.id
 
 	/**
 	 * 3D环境缓冲编号集合实例
-	 * @author warden_feng 2015-7-21
+	 * @author feng 2015-7-21
 	 */
 	public function _bId():Context3DBufferID
 	{

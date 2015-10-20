@@ -5,7 +5,7 @@ package me.feng3d.fagal.vertex.animation
 
 	/**
 	 * 骨骼动画渲染程序(CPU)
-	 * @author warden_feng 2014-11-3
+	 * @author feng 2014-11-3
 	 */
 	public function V_SkeletonAnimationCPU():void
 	{

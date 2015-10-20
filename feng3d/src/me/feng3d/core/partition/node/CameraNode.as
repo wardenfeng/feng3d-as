@@ -6,7 +6,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 摄像机分区节点
-	 * @author warden_feng 2015-3-21
+	 * @author feng 2015-3-21
 	 */
 	public class CameraNode extends EntityNode
 	{

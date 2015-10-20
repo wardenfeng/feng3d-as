@@ -6,7 +6,7 @@ package me.feng.load
 
 	/**
 	 * 加载模块类
-	 * @author warden_feng 2014-7-25
+	 * @author feng 2014-7-25
 	 */
 	public class Load
 	{

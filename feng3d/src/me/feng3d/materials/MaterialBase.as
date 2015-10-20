@@ -18,7 +18,7 @@ package me.feng3d.materials
 
 	/**
 	 * 材质基类
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class MaterialBase extends NamedAssetBase implements IAsset
 	{

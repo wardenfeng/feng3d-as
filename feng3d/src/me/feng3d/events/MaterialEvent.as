@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * 材质事件
-	 * @author warden_feng 2014-9-9
+	 * @author feng 2014-9-9
 	 */
 	public class MaterialEvent extends FEvent
 	{

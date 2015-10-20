@@ -3,7 +3,7 @@ package me.feng3d.animators.skeleton.data
 	
 	/**
 	 * 骨骼关节数据
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class SkeletonJoint
 	{

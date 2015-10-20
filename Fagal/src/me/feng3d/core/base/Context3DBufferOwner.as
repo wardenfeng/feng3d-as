@@ -31,7 +31,7 @@ package me.feng3d.core.base
 
 	/**
 	 * Context3D缓存拥有者
-	 * @author warden_feng 2014-11-26
+	 * @author feng 2014-11-26
 	 */
 	public class Context3DBufferOwner extends NamedAssetBase implements IContext3DBufferOwner
 	{

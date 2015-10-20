@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 * 3D环境缓冲拥有者事件
-	 * @author warden_feng 2015-7-18
+	 * @author feng 2015-7-18
 	 */
 	public class Context3DBufferOwnerEvent extends FEvent
 	{

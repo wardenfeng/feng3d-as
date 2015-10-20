@@ -6,7 +6,7 @@ package me.feng3d.fagal.vertex.animation
 
 	/**
 	 * UV动画顶点渲染程序
-	 * @author warden_feng 2015-9-5
+	 * @author feng 2015-9-5
 	 */
 	public function V_UVAnimation(UVSource:Register, UVTarget:Register):void
 	{

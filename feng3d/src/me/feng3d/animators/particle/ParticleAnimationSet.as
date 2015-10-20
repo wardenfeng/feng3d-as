@@ -25,7 +25,7 @@ package me.feng3d.animators.particle
 
 	/**
 	 * 粒子动画set
-	 * @author warden_feng 2014-11-13
+	 * @author feng 2014-11-13
 	 */
 	public class ParticleAnimationSet extends AnimationSetBase implements IAnimationSet
 	{

@@ -11,7 +11,7 @@ package me.feng.task
 
 	/**
 	 * 任务集合，任务列表与任务队列等的基类
-	 * @author warden_feng 2015-6-16
+	 * @author feng 2015-6-16
 	 */
 	public class TaskCollection extends TaskItem
 	{

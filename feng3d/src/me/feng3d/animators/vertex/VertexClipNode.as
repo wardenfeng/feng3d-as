@@ -7,7 +7,7 @@ package me.feng3d.animators.vertex
 
 	/**
 	 * 顶点动画剪辑节点
-	 * @author warden_feng 2014-5-30
+	 * @author feng 2014-5-30
 	 */
 	public class VertexClipNode extends AnimationClipNodeBase
 	{

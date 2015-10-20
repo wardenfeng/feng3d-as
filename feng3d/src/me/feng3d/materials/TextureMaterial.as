@@ -8,7 +8,7 @@ package me.feng3d.materials
 
 	/**
 	 * 纹理材质
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class TextureMaterial extends SinglePassMaterialBase
 	{

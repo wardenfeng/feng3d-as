@@ -10,7 +10,7 @@ package me.feng3d.lights
 
 	/**
 	 * 点灯光
-	 * @author warden_feng 2014-10-9
+	 * @author feng 2014-10-9
 	 */
 	public class PointLight extends LightBase
 	{

@@ -9,7 +9,7 @@ package me.feng3d.animators.base.node
 
 	/**
 	 * 动画节点基类
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class AnimationNodeBase extends Context3DBufferOwner implements IAsset
 	{

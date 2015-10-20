@@ -10,7 +10,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 分区节点基类
-	 * @author warden_feng 2015-3-8
+	 * @author feng 2015-3-8
 	 */
 	public class NodeBase
 	{

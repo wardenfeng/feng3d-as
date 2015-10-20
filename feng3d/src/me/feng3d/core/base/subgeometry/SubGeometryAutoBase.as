@@ -3,7 +3,7 @@ package me.feng3d.core.base.subgeometry
 
 	/**
 	 * 子网格基类（分担SubGeometry负担，处理自动生成法线、切线、uv等计算）
-	 * @author warden_feng 2014-12-19
+	 * @author feng 2014-12-19
 	 */
 	public class SubGeometryAutoBase extends SubGeometryBase
 	{

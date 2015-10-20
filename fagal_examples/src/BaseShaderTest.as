@@ -18,7 +18,7 @@ package
 
 	/**
 	 * 测试基础渲染函数
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	[SWF(width = "640", height = "362", frameRate = "60")]
 	public class BaseShaderTest extends TestBase

@@ -24,7 +24,7 @@ package me.feng3d.passes
 	/**
 	 * 编译通道
 	 * <p>用于处理复杂的渲染通道</p>
-	 * @author warden_feng 2014-6-5
+	 * @author feng 2014-6-5
 	 */
 	public class CompiledPass extends MaterialPassBase
 	{

@@ -3,7 +3,7 @@ package me.feng.events
 
 	//
 	// 事件冒泡测试(使用接口)
-	// @author warden_feng 2014-11-26
+	// @author feng 2014-11-26
 	//
 	public class EventBubblesTest2 extends TestBase
 	{

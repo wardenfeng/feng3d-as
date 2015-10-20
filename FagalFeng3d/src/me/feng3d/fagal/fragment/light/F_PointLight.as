@@ -7,7 +7,7 @@ package me.feng3d.fagal.fragment.light
 
 	/**
 	 * 点光源渲染
-	 * @author warden_feng 2014-11-8
+	 * @author feng 2014-11-8
 	 */
 	public function F_PointLight():void
 	{

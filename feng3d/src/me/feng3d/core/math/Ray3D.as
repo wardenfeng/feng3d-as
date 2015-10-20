@@ -4,7 +4,7 @@ package me.feng3d.core.math
 
 	/**
 	 * 3D射线
-	 * @author warden_feng 2013-6-13
+	 * @author feng 2013-6-13
 	 */
 	public class Ray3D extends Line3D
 	{

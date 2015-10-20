@@ -13,7 +13,7 @@ package
 
 	/**
 	 * 测试颜色材质
-	 * @author warden_feng 2014-3-27
+	 * @author feng 2014-3-27
 	 */
 	[SWF(width = "640", height = "640", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestMaterial extends TestBase

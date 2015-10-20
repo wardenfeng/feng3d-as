@@ -4,7 +4,7 @@ package me.feng3d.utils
 
 	/**
 	 *
-	 * @author warden_feng 2014-12-18
+	 * @author feng 2014-12-18
 	 */
 	public class SubGeomUtil
 	{

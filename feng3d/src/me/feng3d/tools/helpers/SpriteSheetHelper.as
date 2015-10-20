@@ -13,7 +13,7 @@ package me.feng3d.tools.helpers
 
 	/**
 	 * sprite动画剪辑节帮助程序
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class SpriteSheetHelper
 	{

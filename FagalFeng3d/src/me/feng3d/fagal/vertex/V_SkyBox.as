@@ -9,7 +9,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 天空盒顶点渲染程序
-	 * @author warden_feng 2014-11-4
+	 * @author feng 2014-11-4
 	 */
 	public class V_SkyBox extends FagalMethod
 	{

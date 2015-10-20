@@ -8,7 +8,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 雾函数
-	 * @author warden_feng 2015-8-27
+	 * @author feng 2015-8-27
 	 */
 	public class FogMethod extends EffectMethodBase
 	{

@@ -18,7 +18,7 @@ package me.feng3d.passes
 
 	/**
 	 * 线段渲染通道
-	 * @author warden_feng 2014-4-16
+	 * @author feng 2014-4-16
 	 */
 	public class SegmentPass extends MaterialPassBase
 	{

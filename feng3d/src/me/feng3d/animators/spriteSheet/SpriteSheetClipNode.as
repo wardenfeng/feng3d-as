@@ -4,7 +4,7 @@ package me.feng3d.animators.spriteSheet
 
 	/**
 	 * sprite动画剪辑节点
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class SpriteSheetClipNode extends AnimationClipNodeBase
 	{

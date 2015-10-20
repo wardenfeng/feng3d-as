@@ -3,7 +3,7 @@ package me.feng3d.core.register
 
 	/**
 	 * 寄存器池
-	 * @author warden_feng 2014-6-9
+	 * @author feng 2014-6-9
 	 */
 	public class RegisterPool
 	{

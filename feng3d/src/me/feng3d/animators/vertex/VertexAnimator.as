@@ -16,7 +16,7 @@ package me.feng3d.animators.vertex
 
 	/**
 	 * 顶点动画
-	 * @author warden_feng 2014-5-13
+	 * @author feng 2014-5-13
 	 */
 	public class VertexAnimator extends AnimatorBase implements IAnimator
 	{

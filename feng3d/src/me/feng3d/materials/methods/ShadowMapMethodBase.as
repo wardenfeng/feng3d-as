@@ -11,7 +11,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 阴影映射函数基类
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class ShadowMapMethodBase extends ShadingMethodBase implements IAsset
 	{

@@ -36,7 +36,7 @@ package me.feng3d.core.base.data
 	 * <ul>
 	 *     <li>管理3D元素的位置、旋转、缩放状态</li>
 	 * </ul>
-	 * @author warden_feng 2014-3-31
+	 * @author feng 2014-3-31
 	 */
 	public class Element3D extends NamedAssetBase
 	{

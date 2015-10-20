@@ -3,7 +3,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 3d环境常量数据缓存
-	 * @author warden_feng 2014-8-20
+	 * @author feng 2014-8-20
 	 */
 	public class ConstantsBuffer extends RegisterBuffer
 	{

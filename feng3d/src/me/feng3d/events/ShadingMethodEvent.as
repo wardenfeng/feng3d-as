@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * 渲染函数事件
-	 * @author warden_feng 2014-7-1
+	 * @author feng 2014-7-1
 	 */
 	public class ShadingMethodEvent extends FEvent
 	{

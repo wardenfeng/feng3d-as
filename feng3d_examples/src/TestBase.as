@@ -17,7 +17,7 @@ package
 
 	/**
 	 *
-	 * @author warden_feng 2014-4-9
+	 * @author feng 2014-4-9
 	 */
 	public class TestBase extends Sprite
 	{

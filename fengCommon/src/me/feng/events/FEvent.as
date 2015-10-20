@@ -8,7 +8,7 @@ package me.feng.events
 
 	/**
 	 * 携带数据的事件，该类为自定义事件基类
-	 * @author warden_feng 2014-5-7
+	 * @author feng 2014-5-7
 	 */
 	public class FEvent extends Event
 	{

@@ -6,7 +6,7 @@ package me.feng3d.core.buffer.context3d.item
 
 	/**
 	 * 顶点VA数据缓冲
-	 * @author warden_feng 2014-8-28
+	 * @author feng 2014-8-28
 	 */
 	public class VADataBuffer
 	{

@@ -6,7 +6,7 @@ package me.feng3d.animators
 
 	/**
 	 * 提供动画数据集合的接口
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public interface IAnimationSet
 	{

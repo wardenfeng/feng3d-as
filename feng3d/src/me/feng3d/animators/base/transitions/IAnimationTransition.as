@@ -5,7 +5,7 @@ package me.feng3d.animators.base.transitions
 
 	/**
 	 * 淡入淡出变换接口
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public interface IAnimationTransition
 	{

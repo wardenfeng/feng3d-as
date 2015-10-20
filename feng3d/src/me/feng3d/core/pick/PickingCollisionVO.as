@@ -10,7 +10,7 @@ package me.feng3d.core.pick
 
 	/**
 	 * 采集的碰撞数据
-	 * @author warden_feng 2014-4-29
+	 * @author feng 2014-4-29
 	 */
 	public class PickingCollisionVO
 	{

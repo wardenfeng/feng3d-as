@@ -13,7 +13,7 @@ package me.feng3d.bounds
 
 	/**
 	 * 包围盒基类
-	 * @author warden_feng 2014-4-27
+	 * @author feng 2014-4-27
 	 */
 	public class BoundingVolumeBase
 	{

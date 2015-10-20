@@ -8,7 +8,7 @@ package me.feng3d.events
 
 	/**
 	 * 3d鼠标事件
-	 * @author warden_feng 2014-4-29
+	 * @author feng 2014-4-29
 	 * @see flash.events.MouseEvent
 	 */
 	public class MouseEvent3D extends FEvent

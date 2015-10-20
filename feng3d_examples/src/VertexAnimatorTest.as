@@ -25,7 +25,7 @@ package
 
 	/**
 	 *
-	 * @author warden_feng 2014-6-11
+	 * @author feng 2014-6-11
 	 */
 	[SWF(width = "640", height = "480", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class VertexAnimatorTest extends TestBase

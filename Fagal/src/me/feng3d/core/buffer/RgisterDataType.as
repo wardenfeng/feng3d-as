@@ -3,7 +3,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * 寄存器数据类型
-	 * @author warden_feng 2014-8-20
+	 * @author feng 2014-8-20
 	 */
 	public class RgisterDataType
 	{

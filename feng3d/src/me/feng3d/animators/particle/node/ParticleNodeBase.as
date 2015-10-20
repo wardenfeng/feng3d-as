@@ -13,7 +13,7 @@ package me.feng3d.animators.particle.node
 
 	/**
 	 * 粒子节点
-	 * @author warden_feng 2014-11-13
+	 * @author feng 2014-11-13
 	 */
 	public class ParticleNodeBase extends AnimationNodeBase
 	{

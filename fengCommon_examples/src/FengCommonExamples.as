@@ -20,7 +20,7 @@ package
 
 	/**
 	 * feng公共类库实例
-	 * @author warden_feng 2015-5-8
+	 * @author feng 2015-5-8
 	 */
 	[SWF(width = "800", height = "600")]
 	public class FengCommonExamples extends Sprite

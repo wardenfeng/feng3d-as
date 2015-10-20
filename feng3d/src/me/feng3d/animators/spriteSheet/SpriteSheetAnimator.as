@@ -19,7 +19,7 @@ package me.feng3d.animators.spriteSheet
 
 	/**
 	 * sprite动画
-	 * @author warden_feng 2014-5-27
+	 * @author feng 2014-5-27
 	 */
 	public class SpriteSheetAnimator extends AnimatorBase implements IAnimator
 	{

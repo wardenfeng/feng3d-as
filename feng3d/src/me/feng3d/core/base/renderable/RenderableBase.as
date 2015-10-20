@@ -12,7 +12,7 @@ package me.feng3d.core.base.renderable
 
 	/**
 	 * 可渲染对象基类
-	 * @author warden_feng 2015-5-27
+	 * @author feng 2015-5-27
 	 */
 	public class RenderableBase extends Context3DBufferOwner implements IRenderable
 	{

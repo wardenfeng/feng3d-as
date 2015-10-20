@@ -8,7 +8,7 @@ package me.feng.task
 	 * @includeExample TaskListTest.as
 	 * @includeExample KeyDownTask.as
 	 *
-	 * @author warden_feng 2014-7-24
+	 * @author feng 2014-7-24
 	 */
 	public class TaskList extends TaskCollection
 	{

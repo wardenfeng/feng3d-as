@@ -12,7 +12,7 @@ package me.feng3d.utils
 
 	/**
 	 * 资源处理
-	 * @author warden_feng 2014-3-24
+	 * @author feng 2014-3-24
 	 */
 	public class Cast
 	{

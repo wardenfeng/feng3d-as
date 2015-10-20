@@ -3,7 +3,7 @@ package me.feng3d.materials
 	
 	/**
 	 * 
-	 * @author warden_feng 2014-5-19
+	 * @author feng 2014-5-19
 	 */
 	public class ColorMultiPassMaterial extends MultiPassMaterialBase
 	{

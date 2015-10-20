@@ -7,7 +7,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 网格分区节点
-	 * @author warden_feng 2015-3-8
+	 * @author feng 2015-3-8
 	 */
 	public class MeshNode extends EntityNode
 	{

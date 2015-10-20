@@ -6,7 +6,7 @@ package me.feng.core
 	/**
 	 * 界面管理器
 	 * <p>为界面模块搭建框架</p>
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class ViewManager extends ModulesManager
 	{

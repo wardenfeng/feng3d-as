@@ -4,7 +4,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 基础动画顶点渲染函数(无动画)
-	 * @author warden_feng 2014-11-3
+	 * @author feng 2014-11-3
 	 */
 	public function V_BaseAnimation():void
 	{

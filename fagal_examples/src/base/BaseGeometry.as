@@ -5,7 +5,7 @@ package base
 
 	/**
 	 *
-	 * @author warden_feng 2014-10-27
+	 * @author feng 2014-10-27
 	 */
 	public class BaseGeometry extends VertexBufferOwner
 	{

@@ -12,7 +12,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 基础漫反射函数
-	 * @author warden_feng 2014-7-1
+	 * @author feng 2014-7-1
 	 */
 	public class BasicDiffuseMethod extends LightingMethodBase
 	{

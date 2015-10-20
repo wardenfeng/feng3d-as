@@ -8,7 +8,7 @@ package me.feng3d.materials.lightpickers
 
 	/**
 	 * 灯光采集器
-	 * @author warden_feng 2014-9-11
+	 * @author feng 2014-9-11
 	 */
 	public class StaticLightPicker extends LightPickerBase
 	{

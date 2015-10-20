@@ -11,7 +11,7 @@ package me.feng3d.containers
 
 	/**
 	 * 3d对象容器
-	 * @author warden_feng 2014-3-21
+	 * @author feng 2014-3-21
 	 */
 	public class ObjectContainer3D extends InteractiveObject3D implements IAsset
 	{

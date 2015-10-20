@@ -13,7 +13,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * AGAL程序缓冲
-	 * @author warden_feng 2014-8-20
+	 * @author feng 2014-8-20
 	 */
 	public class AGALProgram3DCache
 	{

@@ -3,7 +3,7 @@ package me.feng3d.fagal
 
 	/**
 	 * 寄存器项
-	 * @author warden_feng 2014-10-22
+	 * @author feng 2014-10-22
 	 */
 	public interface IField
 	{

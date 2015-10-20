@@ -9,7 +9,7 @@ package model3d
 
 	/**
 	 * 相片盒子
-	 * @author warden_feng 2014-4-14
+	 * @author feng 2014-4-14
 	 */
 	public class PhotoBox extends ObjectContainer3D
 	{

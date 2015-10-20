@@ -5,7 +5,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 漫反射材质颜色
-	 * @author warden_feng 2014-11-6
+	 * @author feng 2014-11-6
 	 */
 	public function F_DiffuseColor():void
 	{

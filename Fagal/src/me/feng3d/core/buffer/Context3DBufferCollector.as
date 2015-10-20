@@ -12,7 +12,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * 3D环境缓冲收集器
-	 * @author warden_feng 2015-7-18
+	 * @author feng 2015-7-18
 	 */
 	public class Context3DBufferCollector
 	{

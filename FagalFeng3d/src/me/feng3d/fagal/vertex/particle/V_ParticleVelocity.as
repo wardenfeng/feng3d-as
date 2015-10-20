@@ -9,7 +9,7 @@ package me.feng3d.fagal.vertex.particle
 	 * @param particleVelocity			粒子速度数据
 	 * @param positionTemp				偏移坐标临时寄存器
 	 * @param inCycleTimeTemp			粒子周期内时间临时寄存器
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticleVelocity(particleVelocity:Register, positionTemp:Register, inCycleTimeTemp:Register):void
 	{

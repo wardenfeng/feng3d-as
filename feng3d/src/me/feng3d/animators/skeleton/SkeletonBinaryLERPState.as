@@ -10,7 +10,7 @@ package me.feng3d.animators.skeleton
 
 	/**
 	 * 骨骼线性插值状态接口
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class SkeletonBinaryLERPState extends AnimationStateBase implements ISkeletonAnimationState
 	{

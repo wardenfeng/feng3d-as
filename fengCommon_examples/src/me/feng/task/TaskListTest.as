@@ -4,7 +4,7 @@ package me.feng.task
 
 	//测试任务列表
 	//鼠标分别单击与双击完成任务
-	//@author warden_feng 2015-3-9
+	//@author feng 2015-3-9
 	public class TaskListTest extends TestBase
 	{
 		private var taskList:TaskList;

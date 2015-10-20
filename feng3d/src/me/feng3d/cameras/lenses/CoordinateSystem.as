@@ -3,7 +3,7 @@ package me.feng3d.cameras.lenses
 
 	/**
 	 * 坐标系统类型
-	 * @author warden_feng 2014-10-14
+	 * @author feng 2014-10-14
 	 */
 	public class CoordinateSystem
 	{

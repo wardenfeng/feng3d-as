@@ -18,7 +18,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * 3D环境缓存类(方便调试与管理渲染操作)
-	 * @author warden_feng 2014-6-6
+	 * @author feng 2014-6-6
 	 */
 	public class Context3DCache extends Context3DBufferCollector
 	{

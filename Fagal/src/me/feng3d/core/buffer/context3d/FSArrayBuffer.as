@@ -10,7 +10,7 @@ package me.feng3d.core.buffer.context3d
 
 	/**
 	 * 纹理数组缓存（解决类似地形多纹理混合）
-	 * @author warden_feng 2014-11-6
+	 * @author feng 2014-11-6
 	 */
 	public class FSArrayBuffer extends RegisterBuffer
 	{

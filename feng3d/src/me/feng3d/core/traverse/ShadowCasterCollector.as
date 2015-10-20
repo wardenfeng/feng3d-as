@@ -12,7 +12,7 @@ package me.feng3d.core.traverse
 
 	/**
 	 * 阴影投射者集合
-	 * @author warden_feng 2015-5-29
+	 * @author feng 2015-5-29
 	 */
 	public class ShadowCasterCollector extends EntityCollector
 	{

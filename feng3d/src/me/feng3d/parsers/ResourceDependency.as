@@ -9,7 +9,7 @@
 
 	/**
 	 * 资源依赖(包含需要加载与处理的资源)
-	 * @author warden_feng 2014-5-19
+	 * @author feng 2014-5-19
 	 */
 	public class ResourceDependency
 	{

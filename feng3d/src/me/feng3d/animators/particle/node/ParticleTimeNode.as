@@ -10,7 +10,7 @@ package me.feng3d.animators.particle.node
 
 	/**
 	 * 粒子时间节点
-	 * @author warden_feng 2014-11-17
+	 * @author feng 2014-11-17
 	 */
 	public class ParticleTimeNode extends ParticleNodeBase
 	{

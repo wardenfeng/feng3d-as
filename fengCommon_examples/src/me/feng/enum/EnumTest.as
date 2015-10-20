@@ -3,7 +3,7 @@ package me.feng.enum
 
 
 	//
-	// @author warden_feng 2015-5-7
+	// @author feng 2015-5-7
 	//
 	public class EnumTest extends TestBase
 	{

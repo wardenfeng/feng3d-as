@@ -6,7 +6,7 @@ package me.feng3d.fagal.vertex.particle
 
 	/**
 	 * 粒子颜色节点顶点渲染程序
-	 * @author warden_feng 2015-1-20
+	 * @author feng 2015-1-20
 	 */
 	public function V_ParticleColorGlobal(startMultiplierValue:Register, deltaMultiplierValue:Register, startOffsetValue:Register, deltaOffsetValue:Register, inCycleTimeTemp:Register, colorMulTarget:Register, colorAddTarget:Register):void
 	{

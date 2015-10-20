@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 *
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class LightEvent extends FEvent
 	{

@@ -5,7 +5,7 @@ package me.feng3d.events
 	
 	/**
 	 * 
-	 * @author warden_feng 2014-9-10
+	 * @author feng 2014-9-10
 	 */
 	public class Container3DEvent extends FEvent
 	{

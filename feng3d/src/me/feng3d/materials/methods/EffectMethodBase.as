@@ -5,7 +5,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 特效函数基类
-	 * @author warden_feng 2015-8-27
+	 * @author feng 2015-8-27
 	 */
 	public class EffectMethodBase extends ShadingMethodBase implements IAsset
 	{

@@ -19,7 +19,7 @@ package me.feng3d.passes
 
 	/**
 	 * 平面阴影映射通道
-	 * @author warden_feng 2015-5-29
+	 * @author feng 2015-5-29
 	 */
 	public class PlanarShadowPass extends MaterialPassBase
 	{

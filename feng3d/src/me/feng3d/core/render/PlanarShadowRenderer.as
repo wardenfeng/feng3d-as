@@ -17,7 +17,7 @@ package me.feng3d.core.render
 
 	/**
 	 * 平面阴影渲染器
-	 * @author warden_feng 2015-8-23
+	 * @author feng 2015-8-23
 	 */
 	public class PlanarShadowRenderer extends RendererBase
 	{

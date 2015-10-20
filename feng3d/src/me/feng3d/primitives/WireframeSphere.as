@@ -4,7 +4,7 @@ package me.feng3d.primitives
 
 	/**
 	 * 球体线框
-	 * @author warden_feng 2015-3-21
+	 * @author feng 2015-3-21
 	 */
 	public class WireframeSphere extends WireframePrimitiveBase
 	{

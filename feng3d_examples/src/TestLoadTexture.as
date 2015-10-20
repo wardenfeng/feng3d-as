@@ -15,7 +15,7 @@ package
 
 	/**
 	 * 测试加载纹理材质
-	 * @author warden_feng 2014-7-7
+	 * @author feng 2014-7-7
 	 */
 	[SWF(width = "640", height = "640", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestLoadTexture extends TestBase

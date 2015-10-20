@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 * 网格事件
-	 * @author warden_feng 2015-3-20
+	 * @author feng 2015-3-20
 	 */
 	public class MeshEvent extends FEvent
 	{

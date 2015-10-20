@@ -14,7 +14,7 @@ package me.feng3d.core.base.data
 	 *     <li>处理3d元素的平移、旋转、缩放等操作</li>
 	 * </ul>
 	 *
-	 * @author warden_feng 2014-3-31
+	 * @author feng 2014-3-31
 	 */
 	public class Transform3D extends Element3D
 	{

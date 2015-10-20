@@ -17,7 +17,7 @@ package
 
 	/**
 	 * 测试鼠标事件
-	 * @author warden_feng 2014-3-14
+	 * @author feng 2014-3-14
 	 */
 	[SWF(width = "640", height = "360", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestMouseEvent extends TestBase

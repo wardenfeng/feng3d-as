@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 * 镜头事件
-	 * @author warden_feng 2014-10-14
+	 * @author feng 2014-10-14
 	 */
 	public class LensEvent extends FEvent
 	{

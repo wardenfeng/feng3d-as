@@ -5,7 +5,7 @@ package me.feng3d.events
 
 	/**
 	 * 3D对象事件(3D状态发生改变、位置、旋转、缩放)
-	 * @author warden_feng 2014-3-31
+	 * @author feng 2014-3-31
 	 */
 	public class Object3DEvent extends FEvent
 	{

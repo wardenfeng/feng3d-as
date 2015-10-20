@@ -13,7 +13,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 近阴影映射函数
-	 * @author warden_feng 2015-5-28
+	 * @author feng 2015-5-28
 	 */
 	public class NearShadowMapMethod extends SimpleShadowMapMethodBase
 	{

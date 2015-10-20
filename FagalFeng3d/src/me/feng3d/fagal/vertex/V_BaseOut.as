@@ -7,7 +7,7 @@ package me.feng3d.fagal.vertex
 
 	/**
 	 * 基本顶点投影渲染
-	 * @author warden_feng 2014-10-30
+	 * @author feng 2014-10-30
 	 */
 	public function V_BaseOut():void
 	{

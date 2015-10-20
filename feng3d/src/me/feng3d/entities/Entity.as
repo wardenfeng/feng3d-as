@@ -22,7 +22,7 @@ package me.feng3d.entities
 
 	/**
 	 * Entity为所有场景绘制对象提供一个基类，表示存在场景中。可以被entityCollector收集。
-	 * @author warden_feng 2014-3-24
+	 * @author feng 2014-3-24
 	 */
 	public class Entity extends ObjectContainer3D
 	{

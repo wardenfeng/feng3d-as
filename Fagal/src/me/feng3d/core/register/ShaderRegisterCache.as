@@ -9,7 +9,7 @@ package me.feng3d.core.register
 
 	/**
 	 * 渲染寄存器缓存
-	 * @author warden_feng 2014-6-5
+	 * @author feng 2014-6-5
 	 */
 	public class ShaderRegisterCache
 	{

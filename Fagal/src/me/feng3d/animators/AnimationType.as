@@ -4,7 +4,7 @@ package me.feng3d.animators
 
 	/**
 	 * 动画类型
-	 * @author warden_feng 2015-1-27
+	 * @author feng 2015-1-27
 	 */
 	public class AnimationType extends Enum
 	{

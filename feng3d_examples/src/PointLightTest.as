@@ -19,7 +19,7 @@ package
 
 	/**
 	 * 测试点光源
-	 * @author warden_feng
+	 * @author feng
 	 */
 	[SWF(backgroundColor = "#ffffff", frameRate = "60", quality = "LOW", width = "670", height = "380")]
 	public class PointLightTest extends TestBase

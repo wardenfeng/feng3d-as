@@ -25,7 +25,7 @@ package me.feng3d.core.base
 	 *     <li>维护父对象parent</li>
 	 * </ul>
 	 *
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class Object3D extends Transform3D
 	{

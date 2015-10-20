@@ -10,7 +10,7 @@ package parser
 
 	/**
 	 * Obj文件解析类（由Stage3dObjParser修改）
-	 * @author warden_feng
+	 * @author feng
 	 */
 	public class ObjParser1
 	{

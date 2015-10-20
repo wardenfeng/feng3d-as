@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * 3D舞台事件
-	 * @author warden_feng 2015-3-5
+	 * @author feng 2015-3-5
 	 */
 	public class Stage3DEvent extends Event
 	{

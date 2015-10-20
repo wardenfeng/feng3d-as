@@ -6,7 +6,7 @@ package me.feng3d.fagal.vertex.particle
 
 	/**
 	 * 粒子时间节点顶点渲染程序
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticlesTime(particleCommon:Register, animatedPosition:Register, particleTimeVA:Register, particleTimeVC:Register, inCycleTimeTemp:Register):void
 	{

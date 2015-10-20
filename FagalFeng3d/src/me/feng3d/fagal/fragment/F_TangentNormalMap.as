@@ -6,7 +6,7 @@ package me.feng3d.fagal.fragment
 
 	/**
 	 * 编译切线法线贴图片段程序
-	 * @author warden_feng 2014-11-7
+	 * @author feng 2014-11-7
 	 */
 	public function F_TangentNormalMap():void
 	{

@@ -15,7 +15,7 @@ package me.feng3d.materials.methods
 
 	/**
 	 * 地形渲染函数
-	 * @author warden_feng 2014-7-16
+	 * @author feng 2014-7-16
 	 */
 	public class TerrainDiffuseMethod extends BasicDiffuseMethod
 	{

@@ -13,7 +13,7 @@ package me.feng3d.animators.particle.node
 
 	/**
 	 * 粒子缩放节点
-	 * @author warden_feng 2015-1-15
+	 * @author feng 2015-1-15
 	 */
 	public class ParticleScaleNode extends ParticleNodeBase
 	{

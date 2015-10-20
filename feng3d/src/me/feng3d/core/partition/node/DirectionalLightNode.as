@@ -5,7 +5,7 @@ package me.feng3d.core.partition.node
 
 	/**
 	 * 方向光分区节点
-	 * @author warden_feng 2015-3-21
+	 * @author feng 2015-3-21
 	 */
 	public class DirectionalLightNode extends EntityNode
 	{

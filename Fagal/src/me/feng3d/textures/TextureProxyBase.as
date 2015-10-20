@@ -10,7 +10,7 @@ package me.feng3d.textures
 	/**
 	 * 纹理代理基类
 	 * <p>处理纹理与stage3d的关系</p>
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class TextureProxyBase extends NamedAssetBase implements IAsset
 	{

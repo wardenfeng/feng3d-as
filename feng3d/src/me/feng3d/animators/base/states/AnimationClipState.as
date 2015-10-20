@@ -6,7 +6,7 @@ package me.feng3d.animators.base.states
 
 	/**
 	 * 动画剪辑状态
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class AnimationClipState extends AnimationStateBase
 	{

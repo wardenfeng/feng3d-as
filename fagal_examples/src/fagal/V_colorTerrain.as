@@ -7,7 +7,7 @@ package fagal
 
 	/**
 	 * 顶点颜色渲染地形 顶点渲染
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	public class V_colorTerrain extends FagalMethod
 	{

@@ -12,7 +12,7 @@ package me.feng3d.utils
 
 	/**
 	 *
-	 * @author warden_feng 2014-5-19
+	 * @author feng 2014-5-19
 	 */
 	public class GeomUtil
 	{

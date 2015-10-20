@@ -9,7 +9,7 @@ package me.feng3d.primitives
 
 	/**
 	* 线框几何体
-	 * @author warden_feng 2014-5-8
+	 * @author feng 2014-5-8
 	 */
 	public class WireframeGeometry extends WireframePrimitiveBase
 	{

@@ -4,7 +4,7 @@ package me.feng3d.core.base.data
 
 	/**
 	 * 单个粒子数据
-	 * @author warden_feng 2014-12-9
+	 * @author feng 2014-12-9
 	 */
 	public class ParticleData
 	{

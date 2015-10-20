@@ -7,7 +7,7 @@ package me.feng3d.animators.base.states
 
 	/**
 	 * 动画状态基类
-	 * @author warden_feng 2015-9-18
+	 * @author feng 2015-9-18
 	 */
 	public class AnimationStateBase implements IAnimationState
 	{

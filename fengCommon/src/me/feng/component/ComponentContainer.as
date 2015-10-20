@@ -4,7 +4,7 @@ package me.feng.component
 
 	/**
 	 * 组件容器（集合）
-	 * @author warden_feng 2015-5-6
+	 * @author feng 2015-5-6
 	 */
 	public class ComponentContainer extends Component
 	{

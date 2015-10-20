@@ -5,7 +5,7 @@ package me.feng3d.core.buffer.context3d.item
 
 	/**
 	 *
-	 * @author warden_feng 2014-8-26
+	 * @author feng 2014-8-26
 	 */
 	public class IndexBufferItem
 	{

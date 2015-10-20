@@ -11,7 +11,7 @@ package me.feng3d.animators.skeleton
 
 	/**
 	 * 骨骼动画集合
-	 * @author warden_feng 2014-5-20
+	 * @author feng 2014-5-20
 	 */
 	public class SkeletonAnimationSet extends AnimationSetBase implements IAnimationSet
 	{

@@ -3,7 +3,7 @@ package me.feng.task
 
 	/**
 	 * 任务状态
-	 * @author warden_feng 2015-6-16
+	 * @author feng 2015-6-16
 	 */
 	public class TaskState
 	{

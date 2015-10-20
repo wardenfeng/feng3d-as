@@ -14,7 +14,7 @@ package me.feng.events
 	 * @includeExample FEventDispatcherTest.as
 	 * @includeExample IFEventDispatcherTest.as
 	 *
-	 * @author warden_feng 2014-5-7
+	 * @author feng 2014-5-7
 	 */
 	public class FEventDispatcher implements IEventDispatcher
 	{

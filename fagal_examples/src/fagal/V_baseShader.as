@@ -7,7 +7,7 @@ package fagal
 
 	/**
 	 * 基础顶点渲染
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	public class V_baseShader extends FagalMethod
 	{

@@ -3,7 +3,7 @@ package me.feng3d.utils
 
 	/**
 	 * 向量工具类
-	 * @author warden_feng 2014-12-10
+	 * @author feng 2014-12-10
 	 */
 	public class VectorUtils
 	{

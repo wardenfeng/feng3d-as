@@ -4,7 +4,7 @@ package me.feng3d.events
 
 	/**
 	 * Fagal函数事件
-	 * @author warden_feng 2015-8-8
+	 * @author feng 2015-8-8
 	 */
 	public class FagalMathEvent extends FEvent
 	{

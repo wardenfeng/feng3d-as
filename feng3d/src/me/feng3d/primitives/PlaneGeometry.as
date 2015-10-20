@@ -4,7 +4,7 @@ package me.feng3d.primitives
 
 	/**
 	 * 平面网格（四边形）
-	 * @author warden_feng 2014-4-15
+	 * @author feng 2014-4-15
 	 */
 	public class PlaneGeometry extends PrimitiveBase
 	{

@@ -15,7 +15,7 @@ package me.feng3d.core.traverse
 
 	/**
 	 * 分区横越者
-	 * @author warden_feng 2015-3-1
+	 * @author feng 2015-3-1
 	 */
 	public class PartitionTraverser
 	{

@@ -23,7 +23,7 @@ package me.feng3d.animators.skeleton
 
 	/**
 	 * 骨骼动画
-	 * @author warden_feng 2014-5-27
+	 * @author feng 2014-5-27
 	 */
 	public class SkeletonAnimator extends AnimatorBase implements IAnimator
 	{

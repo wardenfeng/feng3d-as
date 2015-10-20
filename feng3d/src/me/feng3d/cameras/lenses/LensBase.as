@@ -13,7 +13,7 @@ package me.feng3d.cameras.lenses
 
 	/**
 	 * 摄像机镜头
-	 * @author warden_feng 2014-10-14
+	 * @author feng 2014-10-14
 	 */
 	public class LensBase extends FEventDispatcher
 	{

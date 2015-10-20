@@ -15,7 +15,7 @@ package me.feng3d.core.buffer
 
 	/**
 	 * 纹理缓存中心
-	 * @author warden_feng 2014-8-14
+	 * @author feng 2014-8-14
 	 */
 	public class TextureCenter
 	{

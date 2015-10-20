@@ -3,7 +3,7 @@ package me.feng3d.core.register
 
 	/**
 	 * 寄存器值
-	 * @author warden_feng 2015-7-30
+	 * @author feng 2015-7-30
 	 */
 	public class RegisterValue
 	{

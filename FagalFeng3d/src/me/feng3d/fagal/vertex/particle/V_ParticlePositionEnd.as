@@ -7,7 +7,7 @@ package me.feng3d.fagal.vertex.particle
 	 * 粒子结算偏移坐标渲染程序
 	 * @param animatedPosition			动画后的顶点坐标数据
 	 * @param positionTemp				偏移坐标临时寄存器
-	 * @author warden_feng 2014-12-26
+	 * @author feng 2014-12-26
 	 */
 	public function V_ParticlePositionEnd(animatedPosition:Register, positionTemp:Register):void
 	{

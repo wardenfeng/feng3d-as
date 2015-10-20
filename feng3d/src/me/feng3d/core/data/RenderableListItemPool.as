@@ -3,7 +3,7 @@ package me.feng3d.core.data
 
 	/**
 	 * 可渲染列表元素池
-	 * @author warden_feng 2015-3-6
+	 * @author feng 2015-3-6
 	 */
 	public class RenderableListItemPool
 	{

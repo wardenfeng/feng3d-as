@@ -8,7 +8,7 @@ package geometry
 
 	/**
 	 * 测试Geometry事件冒泡
-	 * @author warden_feng 2014-12-18
+	 * @author feng 2014-12-18
 	 */
 	public class GeometryEventTest extends Sprite
 	{

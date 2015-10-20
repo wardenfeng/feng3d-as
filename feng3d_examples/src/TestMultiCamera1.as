@@ -20,7 +20,7 @@ package
 
 	/**
 	 * 测试多视角
-	 * @author warden_feng 2014-3-27
+	 * @author feng 2014-3-27
 	 */
 	[SWF(width = "640", height = "640", frameRate = "60", backgroundColor = "#FFFFFF")]
 	public class TestMultiCamera1 extends TestBase
