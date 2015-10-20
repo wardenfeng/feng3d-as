@@ -1,7 +1,10 @@
 package me.feng3d.lights
 {
+	import flash.geom.Matrix3D;
+
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
+	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.events.LightEvent;
 	import me.feng3d.library.assets.AssetType;
@@ -207,6 +210,18 @@ package me.feng3d.lights
 		{
 			_shadowMapper = value;
 			_shadowMapper.light = this;
+		}
+
+		/**
+		 * Gets the optimal projection matrix to render a light-based depth map for a single object.
+		 *
+		 * @param renderable The IRenderable object to render to a depth map.
+		 * @param target An optional target Matrix3D object. If not provided, an instance will be created.
+		 * @return A Matrix3D object containing the projection transformation.
+		 */
+		arcane function getObjectProjectionMatrix(renderable:IRenderable, target:Matrix3D = null):Matrix3D
+		{
+			throw new AbstractMethodError();
 		}
 	}
 }

@@ -15,6 +15,8 @@ package me.feng3d.materials.methods
 	 */
 	public class ShadowMapMethodBase extends ShadingMethodBase implements IAsset
 	{
+		public static const METHOD_TYPE:String = "ShadowMapMethod";
+
 		protected var _castingLight:LightBase;
 		protected var _shadowMapper:ShadowMapperBase;
 
@@ -27,6 +29,8 @@ package me.feng3d.materials.methods
 		 */
 		public function ShadowMapMethodBase(castingLight:LightBase)
 		{
+			methodType = METHOD_TYPE;
+			typeUnique = true;
 			super();
 			_castingLight = castingLight;
 			castingLight.castsShadows = true;

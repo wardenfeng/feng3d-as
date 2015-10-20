@@ -25,6 +25,8 @@ package me.feng3d.core.buffer
 	 */
 	public class Context3DBufferTypeManager
 	{
+		private static const NAME_REGEXP:String = "[a-zA-Z0-9$]";
+
 		/** 缓存类型字典 */
 		private var bufferTypeDic:Dictionary;
 
@@ -37,18 +39,18 @@ package me.feng3d.core.buffer
 			["blendFactors", BlendFactorsBuffer], //
 			["culling", CullingBuffer], //
 			["depthTest", DepthTestBuffer], //
-			["([a-zA-Z0-9]+)?_fc_bytes", FCByteArrayBuffer], //
-			["([a-zA-Z0-9]+)?_fc_matrix", FCMatrixBuffer], //
-			["([a-zA-Z0-9]+)?_fc_vector", FCVectorBuffer], //
-			["([a-zA-Z0-9]+)?_fs_array", FSArrayBuffer], //
-			["([a-zA-Z0-9]+)?_fs", FSBuffer], //
+			["(" + NAME_REGEXP + "+)?_fc_bytes", FCByteArrayBuffer], //
+			["(" + NAME_REGEXP + "+)?_fc_matrix", FCMatrixBuffer], //
+			["(" + NAME_REGEXP + "+)?_fc_vector", FCVectorBuffer], //
+			["(" + NAME_REGEXP + "+)?_fs_array", FSArrayBuffer], //
+			["(" + NAME_REGEXP + "+)?_fs", FSBuffer], //
 			["index", IndexBuffer], //
-			["([a-zA-Z0-9]+)?_oc", OCBuffer], //
+			["(" + NAME_REGEXP + "+)?_oc", OCBuffer], //
 			["program", ProgramBuffer], //
-			["([a-zA-Z0-9]+)?_va_([1-4x])", VABuffer], //
-			["([a-zA-Z0-9]+)?_vc_bytes", VCByteArrayBuffer], //
-			["([a-zA-Z0-9]+)?_vc_matrix", VCMatrixBuffer], //
-			["([a-zA-Z0-9]+)?_vc_vector", VCVectorBuffer], //
+			["(" + NAME_REGEXP + "+)?_va_([1-4x])", VABuffer], //
+			["(" + NAME_REGEXP + "+)?_vc_bytes", VCByteArrayBuffer], //
+			["(" + NAME_REGEXP + "+)?_vc_matrix", VCMatrixBuffer], //
+			["(" + NAME_REGEXP + "+)?_vc_vector", VCVectorBuffer], //
 			];
 
 		/**

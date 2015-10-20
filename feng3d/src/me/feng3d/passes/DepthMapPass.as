@@ -32,12 +32,12 @@ package me.feng3d.passes
 		/**
 		 * 通用数据
 		 */
-		private var depthCommonsData0:Vector.<Number> = new Vector.<Number>(4);
+		private var depthCommonsData0:Vector.<Number> = Vector.<Number>([1.0, 255.0, 255.0 * 255.0, 255.0 * 255.0 * 255.0]);
 
 		/**
 		 * 通用数据
 		 */
-		private var depthCommonsData1:Vector.<Number> = new Vector.<Number>(4);
+		private var depthCommonsData1:Vector.<Number> = Vector.<Number>([1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 0.0]);
 
 		private var _depthMap:TextureProxyBase;
 
@@ -47,8 +47,6 @@ package me.feng3d.passes
 		public function DepthMapPass()
 		{
 			super();
-			depthCommonsData0 = Vector.<Number>([1.0, 255.0, 65025.0, 16581375.0]);
-			depthCommonsData1 = Vector.<Number>([1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 0.0]);
 		}
 
 		/**
@@ -141,7 +139,7 @@ package me.feng3d.passes
 			modelViewProjection.append(sceneTransform);
 			modelViewProjection.append(projectionmatrix);
 
-			super.render(renderable, stage3DProxy, camera, renderIndex)
+			super.render(renderable, stage3DProxy, camera, renderIndex);
 		}
 
 		/**

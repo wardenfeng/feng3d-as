@@ -144,6 +144,18 @@ package me.feng3d.configs
 			["envMapData_fc_vector", "片段数据（EnvMap）"], //
 			//----------------------------  ------------------------------
 			["fresnelSpecularData_fc_vector", "片段数据（FresnelSpecular）"], //
+			//----------------------------  ------------------------------
+			["SSD$ToTex_vc_vector", "SubsurfaceScatteringDiffuseMethod"], //
+			["SSD$f$ColorData_vc_vector", "SubsurfaceScatteringDiffuseMethod"], //
+			["SSD$fragmentData0_vc_vector", "SubsurfaceScatteringDiffuseMethod"], //
+			["SSD$fragmentData1_vc_vector", "SubsurfaceScatteringDiffuseMethod"], //
+			["SSD$depthMap_fs", "SubsurfaceScatteringDiffuseMethod"], //
+			["SSD$LightProjection_vc_matrix", "SubsurfaceScatteringDiffuseMethod"], //
+			//----------------------------  ------------------------------
+			["SODP$polyOffset_vc_vector", "SingleObjectDepthPass"], //
+			["SODP$objectProjection_vc_matrix", "SingleObjectDepthPass"], //
+			["SODP$depthCommonsData0_fc_vector", "SingleObjectDepthPass"], //
+			["SODP$depthCommonsData1_fc_vector", "SingleObjectDepthPass"], //
 			];
 	}
 }

@@ -79,8 +79,6 @@ package
 	import me.feng3d.materials.lightpickers.StaticLightPicker;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
-	import me.feng3d.materials.methods.CompositeDiffuseMethod;
-	import me.feng3d.materials.methods.CompositeSpecularMethod;
 	import me.feng3d.materials.methods.FresnelSpecularMethod;
 	import me.feng3d.materials.methods.PhongSpecularMethod;
 	import me.feng3d.primitives.SphereGeometry;

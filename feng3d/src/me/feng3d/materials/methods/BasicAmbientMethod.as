@@ -24,6 +24,8 @@ package me.feng3d.materials.methods
 	 */
 	public class BasicAmbientMethod extends ShadingMethodBase
 	{
+		public static const METHOD_TYPE:String = "AmbientMethod";
+
 		protected var _useTexture:Boolean;
 		private var _texture:Texture2DBase;
 
@@ -37,6 +39,18 @@ package me.feng3d.materials.methods
 		/** 环境光分量数据 */
 		private const ambientColorData:Vector.<Number> = new Vector.<Number>(4);
 
+		/**
+		 * 创建一个基础环境光函数
+		 */
+		public function BasicAmbientMethod()
+		{
+			methodType = METHOD_TYPE;
+			typeUnique = true;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();

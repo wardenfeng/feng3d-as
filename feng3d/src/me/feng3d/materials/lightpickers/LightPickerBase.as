@@ -5,6 +5,7 @@ package me.feng3d.materials.lightpickers
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
 	import me.feng3d.lights.DirectionalLight;
+	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
 
 	use namespace arcane;
@@ -18,6 +19,7 @@ package me.feng3d.materials.lightpickers
 		protected var _numPointLights:uint;
 		protected var _numDirectionalLights:uint;
 
+		protected var _allPickedLights:Vector.<LightBase>;
 		protected var _pointLights:Vector.<PointLight>;
 		protected var _directionalLights:Vector.<DirectionalLight>;
 
@@ -63,5 +65,12 @@ package me.feng3d.materials.lightpickers
 			return _directionalLights;
 		}
 
+		/**
+		 * A collection of all the collected lights.
+		 */
+		public function get allPickedLights():Vector.<LightBase>
+		{
+			return _allPickedLights;
+		}
 	}
 }

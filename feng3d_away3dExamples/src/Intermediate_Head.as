@@ -68,6 +68,7 @@ package
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
 	import me.feng3d.materials.methods.FresnelSpecularMethod;
+	import me.feng3d.materials.methods.SubsurfaceScatteringDiffuseMethod;
 	import me.feng3d.parsers.OBJParser;
 	import me.feng3d.primitives.WireframeGeometry;
 	import me.feng3d.utils.Cast;
@@ -103,8 +104,7 @@ package
 
 		//material objects
 		private var headMaterial:TextureMaterial;
-//		private var subsurfaceMethod:SubsurfaceScatteringDiffuseMethod;
-		private var subsurfaceMethod:BasicDiffuseMethod;
+		private var subsurfaceMethod:SubsurfaceScatteringDiffuseMethod;
 		private var fresnelMethod:FresnelSpecularMethod;
 		private var diffuseMethod:BasicDiffuseMethod;
 		private var specularMethod:BasicSpecularMethod;
@@ -212,12 +212,10 @@ package
 			headMaterial.ambient = 1;
 
 			//create subscattering diffuse method
-//			subsurfaceMethod = new SubsurfaceScatteringDiffuseMethod(2048, 2);
-//			subsurfaceMethod.scatterColor = 0xff7733;
-//			subsurfaceMethod.scattering = 0.05;
-//			subsurfaceMethod.translucency = 4;
-
-			subsurfaceMethod = new BasicDiffuseMethod();
+			subsurfaceMethod = new SubsurfaceScatteringDiffuseMethod(2048, 2);
+			subsurfaceMethod.scatterColor = 0xff7733;
+			subsurfaceMethod.scattering = 0.05;
+			subsurfaceMethod.translucency = 4;
 			headMaterial.diffuseMethod = subsurfaceMethod;
 
 			//create fresnel specular method

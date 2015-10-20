@@ -16,6 +16,8 @@ package me.feng3d.materials.methods
 	 */
 	public class BasicDiffuseMethod extends LightingMethodBase
 	{
+		public static const METHOD_TYPE:String = "DiffuseMethod";
+
 		/** 漫反射纹理 */
 		protected var _texture:Texture2DBase;
 
@@ -30,6 +32,15 @@ package me.feng3d.materials.methods
 		private var _useAmbientTexture:Boolean;
 
 		protected var _alphaThreshold:Number = 0;
+
+		/**
+		 * 创建一个基础漫反射函数
+		 */
+		public function BasicDiffuseMethod()
+		{
+			methodType = METHOD_TYPE;
+			typeUnique = true;
+		}
 
 		/**
 		 * @inheritDoc

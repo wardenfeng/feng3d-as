@@ -13,10 +13,10 @@ package me.feng3d.passes
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
+	import me.feng3d.materials.methods.BasicNormalMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
 	import me.feng3d.materials.methods.ShadowMapMethodBase;
-	import me.feng3d.textures.Texture2DBase;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
@@ -114,7 +114,7 @@ package me.feng3d.passes
 			if (usesLights())
 				updateLightConstants();
 
-			var ambientMethod:BasicAmbientMethod = _methodSetup._ambientMethod;
+			var ambientMethod:BasicAmbientMethod = _methodSetup.ambientMethod;
 			ambientMethod._lightAmbientR = _ambientLightR;
 			ambientMethod._lightAmbientG = _ambientLightG;
 			ambientMethod._lightAmbientB = _ambientLightB;
@@ -239,16 +239,7 @@ package me.feng3d.passes
 		 */
 		protected function updateMethodConstants():void
 		{
-			if (_methodSetup._normalMethod)
-				_methodSetup._normalMethod.initConstants();
-			if (_methodSetup._diffuseMethod)
-				_methodSetup._diffuseMethod.initConstants();
-			if (_methodSetup._ambientMethod)
-				_methodSetup._ambientMethod.initConstants();
-			if (_methodSetup._specularMethod)
-				_methodSetup._specularMethod.initConstants();
-			if (_methodSetup._shadowMethod)
-				_methodSetup._shadowMethod.initConstants();
+			_methodSetup.initConstants();
 		}
 
 		/**
@@ -291,16 +282,16 @@ package me.feng3d.passes
 		}
 
 		/**
-		 * 法线贴图，用来表示纹理表面方向
+		 * 法线函数，默认为BasicNormalMethod
 		 */
-		public function get normalMap():Texture2DBase
+		public function get normalMethod():BasicNormalMethod
 		{
-			return _methodSetup._normalMethod.normalMap;
+			return _methodSetup.normalMethod;
 		}
 
-		public function set normalMap(value:Texture2DBase):void
+		public function set normalMethod(value:BasicNormalMethod):void
 		{
-			_methodSetup._normalMethod.normalMap = value;
+			_methodSetup.normalMethod = value;
 		}
 
 		/**

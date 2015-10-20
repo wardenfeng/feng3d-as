@@ -37,9 +37,12 @@ package me.feng3d.fagalRE
 		{
 			var attr:String = name;
 
-			if (!hasOwnProperty(attr))
+			CONFIG::check
 			{
-				throw new Error("不存在" + attr + "的Fagal编号");
+				if (!hasOwnProperty(attr))
+				{
+					throw new Error("不存在" + attr + "的Fagal编号");
+				}
 			}
 			return attr;
 		}

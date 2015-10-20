@@ -11,7 +11,6 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -33,22 +32,22 @@ package me.feng3d.materials.methods
 		/**
 		 * 顶点常量数据0
 		 */
-		protected var shadowCommonsVCData0:Vector.<Number> = new Vector.<Number>(4);
+		protected var shadowCommonsVCData0:Vector.<Number> = Vector.<Number>([0.5, -0.5, 0.0, 1.0]);
 
 		/**
 		 * 通用数据0
 		 */
-		protected var shadowCommonsData0:Vector.<Number> = new Vector.<Number>(4);
+		protected var shadowCommonsData0:Vector.<Number> = Vector.<Number>([1.0, 1 / 255.0, 1 / 65025.0, 1 / 16581375.0]);
 
 		/**
 		 * 通用数据1
 		 */
-		protected var shadowCommonsData1:Vector.<Number> = new Vector.<Number>(4);
+		protected var shadowCommonsData1:Vector.<Number> = Vector.<Number>([0, 0, 0, 1]);
 
 		/**
 		 * 通用数据2
 		 */
-		protected var shadowCommonsData2:Vector.<Number> = new Vector.<Number>(4);
+		protected var shadowCommonsData2:Vector.<Number> = Vector.<Number>([0.5, 2048, 1.0 / 2048, 0]);
 
 		/**
 		 * 深度投影矩阵
@@ -121,30 +120,6 @@ package me.feng3d.materials.methods
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function initConstants():void
-		{
-			shadowCommonsData0[0] = 1.0;
-			shadowCommonsData0[1] = 1 / 255.0;
-			shadowCommonsData0[2] = 1 / 65025.0;
-			shadowCommonsData0[3] = 1 / 16581375.0;
-
-			shadowCommonsData1[2] = 0;
-			shadowCommonsData1[3] = 1;
-
-			shadowCommonsData2[0] = 0.5;
-			var size:int = castingLight.shadowMapper.depthMapSize;
-			shadowCommonsData2[1] = size;
-			shadowCommonsData2[2] = 1 / size;
-
-			shadowCommonsVCData0[0] = .5;
-			shadowCommonsVCData0[1] = -.5;
-			shadowCommonsVCData0[2] = 0.0;
-			shadowCommonsVCData0[3] = 1.0;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
 			super.activate(shaderParams);
@@ -157,6 +132,10 @@ package me.feng3d.materials.methods
 				shadowCommonsVCData0[3] = -1 / (DirectionalShadowMapper(_shadowMapper).depth * _epsilon);
 
 			shadowCommonsData1[1] = 1 - _alpha;
+
+			var size:int = castingLight.shadowMapper.depthMapSize;
+			shadowCommonsData2[1] = size;
+			shadowCommonsData2[2] = 1 / size;
 
 			//通用渲染参数
 			var flags:Array = [castingLight.shadowMapper.depthMap.type, Context3DTextureFilter.NEAREST, Context3DWrapMode.CLAMP];

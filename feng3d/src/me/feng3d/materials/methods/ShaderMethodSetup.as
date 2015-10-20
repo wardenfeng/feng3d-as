@@ -1,5 +1,7 @@
 package me.feng3d.materials.methods
 {
+	import flash.utils.Dictionary;
+
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
@@ -15,25 +17,22 @@ package me.feng3d.materials.methods
 	 */
 	public class ShaderMethodSetup extends Context3DBufferOwner
 	{
-		arcane var _normalMethod:BasicNormalMethod;
-		arcane var _ambientMethod:BasicAmbientMethod;
-		arcane var _diffuseMethod:BasicDiffuseMethod;
-		arcane var _specularMethod:BasicSpecularMethod;
-		arcane var _shadowMethod:ShadowMapMethodBase;
+		private var uniqueMethodDic:Dictionary;
 
-		arcane var _methods:Vector.<EffectMethodBase>;
+		arcane var methods:Vector.<ShadingMethodBase>;
 
 		/**
 		 * 创建一个渲染函数设置
 		 */
 		public function ShaderMethodSetup()
 		{
-			_methods = new Vector.<EffectMethodBase>();
+			uniqueMethodDic = new Dictionary();
+			methods = new Vector.<ShadingMethodBase>();
 
-			normalMethod = new BasicNormalMethod();
-			ambientMethod = new BasicAmbientMethod();
-			diffuseMethod = new BasicDiffuseMethod();
-			specularMethod = new BasicSpecularMethod();
+			addMethod(new BasicNormalMethod());
+			addMethod(new BasicAmbientMethod());
+			addMethod(new BasicDiffuseMethod());
+			addMethod(new BasicSpecularMethod());
 		}
 
 		/**
@@ -41,28 +40,12 @@ package me.feng3d.materials.methods
 		 */
 		public function get diffuseMethod():BasicDiffuseMethod
 		{
-			return _diffuseMethod;
+			return uniqueMethodDic[BasicDiffuseMethod.METHOD_TYPE];
 		}
 
 		public function set diffuseMethod(value:BasicDiffuseMethod):void
 		{
-			if (_diffuseMethod)
-			{
-				_diffuseMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				if (value)
-					value.copyFrom(_diffuseMethod);
-				removeChildBufferOwner(_diffuseMethod);
-			}
-
-			_diffuseMethod = value;
-
-			if (_diffuseMethod)
-			{
-				_diffuseMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				addChildBufferOwner(_diffuseMethod);
-			}
-
-			invalidateShaderProgram();
+			addUniqueMethod(value);
 		}
 
 		/**
@@ -70,28 +53,12 @@ package me.feng3d.materials.methods
 		 */
 		public function get specularMethod():BasicSpecularMethod
 		{
-			return _specularMethod;
+			return uniqueMethodDic[BasicSpecularMethod.METHOD_TYPE];
 		}
 
 		public function set specularMethod(value:BasicSpecularMethod):void
 		{
-			if (_specularMethod)
-			{
-				_specularMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				if (value)
-					value.copyFrom(_specularMethod);
-				removeChildBufferOwner(_specularMethod);
-			}
-
-			_specularMethod = value;
-
-			if (_specularMethod)
-			{
-				_specularMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				addChildBufferOwner(_specularMethod);
-			}
-
-			invalidateShaderProgram();
+			addUniqueMethod(value);
 		}
 
 		/**
@@ -99,29 +66,38 @@ package me.feng3d.materials.methods
 		 */
 		public function get normalMethod():BasicNormalMethod
 		{
-			return _normalMethod;
+			return uniqueMethodDic[BasicNormalMethod.METHOD_TYPE];
 		}
 
 		public function set normalMethod(value:BasicNormalMethod):void
 		{
-			if (_normalMethod)
-			{
-				_normalMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				if (value)
-					value.copyFrom(_normalMethod);
+			addUniqueMethod(value);
+		}
 
-				removeChildBufferOwner(_normalMethod);
-			}
+		/**
+		 * 漫反射函数
+		 */
+		public function get ambientMethod():BasicAmbientMethod
+		{
+			return uniqueMethodDic[BasicAmbientMethod.METHOD_TYPE];
+		}
 
-			_normalMethod = value;
+		public function set ambientMethod(value:BasicAmbientMethod):void
+		{
+			addUniqueMethod(value);
+		}
 
-			if (_normalMethod)
-			{
-				_normalMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				addChildBufferOwner(_normalMethod);
-			}
+		/**
+		 * 阴影映射函数
+		 */
+		public function get shadowMethod():ShadowMapMethodBase
+		{
+			return uniqueMethodDic[ShadowMapMethodBase.METHOD_TYPE];
+		}
 
-			invalidateShaderProgram();
+		public function set shadowMethod(value:ShadowMapMethodBase):void
+		{
+			addUniqueMethod(value);
 		}
 
 		/**
@@ -141,71 +117,85 @@ package me.feng3d.materials.methods
 		}
 
 		/**
-		 * 漫反射函数
+		 * 添加渲染函数
+		 * @param method			渲染函数
 		 */
-		public function get ambientMethod():BasicAmbientMethod
+		public function addMethod(method:ShadingMethodBase):void
 		{
-			return _ambientMethod;
-		}
-
-		public function set ambientMethod(value:BasicAmbientMethod):void
-		{
-			if (_ambientMethod)
+			if (method.typeUnique)
 			{
-				_ambientMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				if (value)
-					value.copyFrom(_ambientMethod);
-				removeChildBufferOwner(_ambientMethod);
+				addUniqueMethod(method);
 			}
-
-			_ambientMethod = value;
-
-			if (_ambientMethod)
+			else
 			{
-				_ambientMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				addChildBufferOwner(_ambientMethod);
+				$addMethod(method);
 			}
-
-			invalidateShaderProgram();
 		}
 
 		/**
-		 * 阴影映射函数
+		 * 移除渲染函数
+		 * @param method			渲染函数
 		 */
-		public function get shadowMethod():ShadowMapMethodBase
+		public function removeMethod(method:ShadingMethodBase):void
 		{
-			return _shadowMethod;
-		}
-
-		public function set shadowMethod(value:ShadowMapMethodBase):void
-		{
-			if (_shadowMethod)
+			if (method.typeUnique)
 			{
-				_shadowMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				if (value)
-					value.copyFrom(_shadowMethod);
-				removeChildBufferOwner(_shadowMethod);
+				removeUniqueMethod(method)
 			}
-			_shadowMethod = value;
-			if (_shadowMethod)
+			else
 			{
-				_shadowMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-				addChildBufferOwner(_shadowMethod);
+				$removeMethod(method);
 			}
-			invalidateShaderProgram();
 		}
 
 		/**
-		 * 添加特效函数
-		 * @param method		特效函数
+		 * 添加唯一渲染函数
+		 * @param method			渲染函数
 		 */
-		public function addMethod(method:EffectMethodBase):void
+		private function addUniqueMethod(method:ShadingMethodBase):void
 		{
-			_methods.push(method);
+			var oldMethod:ShadingMethodBase = uniqueMethodDic[method.methodType];
+			if (oldMethod != null)
+			{
+				method.copyFrom(oldMethod);
+				$removeMethod(oldMethod);
+			}
+			$addMethod(method);
+			uniqueMethodDic[method.methodType] = method;
+		}
 
-			addChildBufferOwner(method);
+		/**
+		 * 移除唯一渲染函数
+		 * @param method			渲染函数
+		 */
+		private function removeUniqueMethod(method:ShadingMethodBase):void
+		{
+			$removeMethod(method);
+			uniqueMethodDic[method.methodType] = null;
+		}
 
+		/**
+		 * 添加函数
+		 * @param method			渲染函数
+		 */
+		private function $addMethod(method:ShadingMethodBase):void
+		{
 			method.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+			addChildBufferOwner(method);
+			methods.push(method);
+			invalidateShaderProgram();
+		}
+
+		/**
+		 * 删除函数
+		 * @param method			渲染函数
+		 */
+		private function $removeMethod(method:ShadingMethodBase):void
+		{
+			method.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+			removeChildBufferOwner(method);
+			var index:int = methods.indexOf(method);
+			methods.splice(index, 1);
 			invalidateShaderProgram();
 		}
 
@@ -217,15 +207,9 @@ package me.feng3d.materials.methods
 		 */
 		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
-			normalMethod.setRenderState(renderable, camera);
-			ambientMethod.setRenderState(renderable, camera);
-			diffuseMethod.setRenderState(renderable, camera);
-			specularMethod.setRenderState(renderable, camera);
-			shadowMethod && shadowMethod.setRenderState(renderable, camera);
-
-			for (var i:int = 0; i < _methods.length; i++)
+			for (var i:int = 0; i < methods.length; i++)
 			{
-				_methods[i].setRenderState(renderable, camera);
+				methods[i].setRenderState(renderable, camera);
 			}
 		}
 
@@ -236,15 +220,20 @@ package me.feng3d.materials.methods
 		 */
 		public function activate(shaderParams:ShaderParams):void
 		{
-			_normalMethod && _normalMethod.activate(shaderParams);
-			_ambientMethod && _ambientMethod.activate(shaderParams);
-			_diffuseMethod && _diffuseMethod.activate(shaderParams);
-			_specularMethod && _specularMethod.activate(shaderParams);
-			_shadowMethod && _shadowMethod.activate(shaderParams);
-
-			for (var i:int = 0; i < _methods.length; i++)
+			for (var i:int = 0; i < methods.length; i++)
 			{
-				_methods[i].activate(shaderParams);
+				methods[i].activate(shaderParams);
+			}
+		}
+
+		/**
+		 * 初始化常量数据
+		 */
+		public function initConstants():void
+		{
+			for (var i:int = 0; i < methods.length; i++)
+			{
+				methods[i].initConstants();
 			}
 		}
 	}

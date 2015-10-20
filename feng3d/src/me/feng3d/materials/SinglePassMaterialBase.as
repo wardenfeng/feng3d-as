@@ -161,12 +161,12 @@ package me.feng3d.materials
 		 */
 		public function get normalMap():Texture2DBase
 		{
-			return _screenPass.normalMap;
+			return _screenPass.normalMethod.normalMap;
 		}
 
 		public function set normalMap(value:Texture2DBase):void
 		{
-			_screenPass.normalMap = value;
+			_screenPass.normalMethod.normalMap = value;
 		}
 
 		/**

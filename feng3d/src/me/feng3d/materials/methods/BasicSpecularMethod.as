@@ -10,24 +10,30 @@ package me.feng3d.materials.methods
 	use namespace arcane;
 
 	/**
-	 * 镜面反射方法
+	 * 镜面反射函数
 	 * @author warden_feng 2014-5-19
 	 */
 	public class BasicSpecularMethod extends LightingMethodBase
 	{
+		public static const METHOD_TYPE:String = "SpecularMethod";
+
 		private var _gloss:int = 50;
 		private var _specular:Number = 1;
 		private var _specularColor:uint = 0xffffff;
 
 		/** 镜面反射数据 */
-		protected const _specularData:Vector.<Number> = new Vector.<Number>(4);
+		protected const _specularData:Vector.<Number> = Vector.<Number>([1, 1, 1, 50]);
 
 		private var _texture:Texture2DBase;
 
+		/**
+		 * 创建镜面反射函数
+		 */
 		public function BasicSpecularMethod()
 		{
+			methodType = METHOD_TYPE;
+			typeUnique = true;
 			super();
-			updateSpecular();
 		}
 
 		/**

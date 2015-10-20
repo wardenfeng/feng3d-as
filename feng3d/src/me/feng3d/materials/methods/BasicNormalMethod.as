@@ -2,20 +2,33 @@ package me.feng3d.materials.methods
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
 
 	/**
-	 *
+	 * 基础法线函数
 	 * @author warden_feng 2014-7-16
 	 */
 	public class BasicNormalMethod extends ShadingMethodBase
 	{
+		public static const METHOD_TYPE:String = "NormalMethod";
+
 		private var _texture:Texture2DBase;
 
+		/**
+		 * 创建一个基础法线函数
+		 */
+		public function BasicNormalMethod()
+		{
+			methodType = METHOD_TYPE;
+			typeUnique = true;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
 		override protected function initBuffers():void
 		{
 			super.initBuffers();

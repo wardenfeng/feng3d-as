@@ -8,6 +8,7 @@ package me.feng3d.passes
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
 	import me.feng3d.materials.methods.EffectMethodBase;
+	import me.feng3d.materials.methods.ShadingMethodBase;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;
@@ -109,7 +110,7 @@ package me.feng3d.passes
 				shaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
 			}
 
-			var methods:Vector.<EffectMethodBase> = _methodSetup._methods;
+			var methods:Vector.<ShadingMethodBase> = _methodSetup.methods;
 			var len:uint = methods.length;
 			for (var i:int = 0; i < len; ++i)
 			{

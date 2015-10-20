@@ -6,6 +6,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
 
@@ -15,6 +16,22 @@ package me.feng3d.materials.methods
 	 */
 	public class ShadingMethodBase extends Context3DBufferOwner
 	{
+		protected var _passes:Vector.<MaterialPassBase>;
+
+		/**
+		 * 渲染函数类型
+		 * <p>当typeUnique为true时，用于唯一性判断</p>
+		 * @see #typeUnique
+		 */
+		arcane var methodType:String;
+
+		/**
+		 * 是否唯一
+		 * <p>值为true时一个pass只能包含一个该类型函数，否则允许多个</p>
+		 * @see #methodType
+		 */
+		arcane var typeUnique:Boolean = false;
+
 		/**
 		 * 创建渲染寄函数基类
 		 */
@@ -71,6 +88,14 @@ package me.feng3d.materials.methods
 		 */
 		public function copyFrom(method:ShadingMethodBase):void
 		{
+		}
+
+		/**
+		 * Any passes required that render to a texture used by this method.
+		 */
+		public function get passes():Vector.<MaterialPassBase>
+		{
+			return _passes;
 		}
 
 		/**
