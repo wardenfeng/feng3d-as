@@ -16,14 +16,14 @@ package me.feng.load
 	public class LoadTaskQueue extends TaskList
 	{
 		/** 加载事件数据 */
-		private var _loadData:LoadEventData;
+		private var _loadData:LoadUrlData;
 
 		/**
 		 * 创建一个加载队列
 		 * @param loadData	需要加载的数据
 		 * @param loader 	加载器
 		 */
-		public function LoadTaskQueue(loadData:LoadEventData, loader:BulkLoader)
+		public function LoadTaskQueue(loadData:LoadUrlData, loader:BulkLoader)
 		{
 			super();
 
@@ -55,6 +55,7 @@ package me.feng.load
 		override protected function onCompletedItem(event:TaskEvent):void
 		{
 			var taskItemData:LoadTaskItem = event.currentTarget as LoadTaskItem;
+
 			_loadData.doSingleComplete(taskItemData);
 
 			super.onCompletedItem(event);

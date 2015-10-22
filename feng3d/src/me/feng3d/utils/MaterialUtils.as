@@ -5,8 +5,8 @@ package me.feng3d.utils
 	import me.feng.core.GlobalDispatcher;
 	import me.feng.load.Load;
 	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadEventData;
-	import me.feng.load.data.LoadTaskItem;
+	import me.feng.load.LoadUrlData;
+	import me.feng.load.LoadUrlEvent;
 	import me.feng3d.materials.TextureMaterial;
 
 	/**
@@ -31,20 +31,21 @@ package me.feng3d.utils
 
 			var textureMaterial:TextureMaterial = new TextureMaterial();
 
-			var loadObj:LoadEventData = new LoadEventData();
+			var loadObj:LoadUrlData = new LoadUrlData();
 			loadObj.urls = [rootPath + url];
-			loadObj.singleComplete = singleGeometryComplete;
+			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, onLoadSingleComplete);
+
 			loadObj.data = {textureMaterial: textureMaterial}
 			dispatcher.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadObj));
 
 			return textureMaterial;
 		}
 
-		/** 单个图片加载完毕 */
-		private static function singleGeometryComplete(loadData:LoadEventData, loadItemData:LoadTaskItem):void
+		protected static function onLoadSingleComplete(event:LoadUrlEvent):void
 		{
+			var loadData:LoadUrlData = event.target as LoadUrlData;
 			var textureMaterial:TextureMaterial = loadData.data.textureMaterial;
-			var bitmap:Bitmap = loadItemData.loadingItem.content;
+			var bitmap:Bitmap = event.loadTaskItem.loadingItem.content;
 			textureMaterial.texture = Cast.bitmapTexture(bitmap);
 		}
 	}

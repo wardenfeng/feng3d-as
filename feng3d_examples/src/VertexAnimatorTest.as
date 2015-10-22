@@ -12,7 +12,8 @@ package
 	import me.feng.core.GlobalDispatcher;
 	import me.feng.load.Load;
 	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadEventData;
+	import me.feng.load.LoadUrlData;
+	import me.feng.load.LoadUrlEvent;
 	import me.feng.load.data.LoadTaskItem;
 	import me.feng3d.animators.vertex.VertexAnimationSet;
 	import me.feng3d.animators.vertex.VertexAnimator;
@@ -96,10 +97,10 @@ package
 				}
 				else
 				{
-					var loadEventData:LoadEventData = new LoadEventData();
+					var loadEventData:LoadUrlData = new LoadUrlData();
 					loadEventData.urls = [element.geometryUrl, element.materialUrl];
-					loadEventData.singleComplete = singleGeometryComplete;
-					loadEventData.allItemsLoaded = allItemsLoaded;
+					loadEventData.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, singleGeometryComplete);
+					loadEventData.addEventListener(LoadUrlEvent.LOAD_COMPLETE, allItemsLoaded);
 					loadEventData.data = {element: element}
 
 					dispatcher.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadEventData));
@@ -118,8 +119,9 @@ package
 		}
 
 		/** 一个场景对象的所有资源加载完毕 */
-		private function allItemsLoaded(loadData:LoadEventData):void
+		private function allItemsLoaded(event:LoadUrlEvent):void
 		{
+			var loadData:LoadUrlData = event.target as LoadUrlData;
 			var element:Element = loadData.data.element;
 			element.geometry ||= geometryDic[element.geometryUrl];
 			element.animation ||= animationDic[element.geometryUrl];
@@ -136,8 +138,11 @@ package
 		}
 
 		/** 单个模型数据加载完毕 */
-		private function singleGeometryComplete(loadData:LoadEventData, loadItemData:LoadTaskItem):void
+		private function singleGeometryComplete(event:LoadUrlEvent):void
 		{
+			var loadData:LoadUrlData = event.currentTarget as LoadUrlData;
+			var loadItemData:LoadTaskItem = event.loadTaskItem;
+
 			var element:Element = loadData.data.element;
 			if (loadItemData.url == element.geometryUrl)
 			{

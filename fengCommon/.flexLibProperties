@@ -12,7 +12,7 @@
     <classEntry path="me.feng.component.Component"/>
     <classEntry path="me.feng.component.ComponentContainer"/>
     <classEntry path="me.feng.enum.Enum"/>
-    <classEntry path="me.feng.load.LoadEventData"/>
+    <classEntry path="me.feng.load.LoadUrlData"/>
     <classEntry path="me.feng.load.data.LoadTaskItem"/>
     <classEntry path="me.feng.task.Task"/>
     <classEntry path="me.feng.task.TaskCollection"/>
@@ -20,6 +20,7 @@
     <classEntry path="me.feng.task.TaskQueue"/>
     <classEntry path="me.feng.utils.ClassUtils"/>
     <classEntry path="me.feng.debug.DebugCommon"/>
+    <classEntry path="me.feng.load.LoadUrlEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

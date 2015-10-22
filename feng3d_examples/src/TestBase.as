@@ -9,8 +9,8 @@ package
 	import me.feng.debug.DebugCommon;
 	import me.feng.load.Load;
 	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadEventData;
-	import me.feng.load.data.LoadTaskItem;
+	import me.feng.load.LoadUrlData;
+	import me.feng.load.LoadUrlEvent;
 	import me.feng3d.ConsoleExtension;
 	import me.feng3d.configs.Context3DBufferIDConfig;
 	import me.feng3d.fagalRE.FagalRE;
@@ -50,7 +50,7 @@ package
 			Load.init();
 
 			//加载资源
-			var loadObj:LoadEventData = new LoadEventData();
+			var loadObj:LoadUrlData = new LoadUrlData();
 			loadObj.urls = [];
 			if (resourceList != null)
 			{
@@ -59,24 +59,24 @@ package
 					loadObj.urls.push(rootPath + resourceList[i]);
 				}
 			}
-			loadObj.singleComplete = singleGeometryComplete;
-			loadObj.allItemsLoaded = allItemsLoaded;
+			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, singleGeometryComplete);
+			loadObj.addEventListener(LoadUrlEvent.LOAD_COMPLETE, allItemsLoaded);
 			GlobalDispatcher.instance.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadObj));
 		}
 
 		/** 单个资源加载完毕 */
-		private function singleGeometryComplete(loadData:LoadEventData, loadTaskItem:LoadTaskItem):void
+		private function singleGeometryComplete(event:LoadUrlEvent):void
 		{
-			var path:String = loadTaskItem.url;
+			var path:String = event.loadTaskItem.url;
 			path = path.substr(rootPath.length);
 
-			resourceDic[path] = loadTaskItem.loadingItem.content;
+			resourceDic[path] = event.loadTaskItem.loadingItem.content;
 		}
 
 		/**
 		 * 处理全部加载完成事件
 		 */
-		private function allItemsLoaded(... args):void
+		private function allItemsLoaded(event:LoadUrlEvent):void
 		{
 			//配置3d缓存编号
 			FagalRE.addBufferID(Context3DBufferIDConfig.bufferIdConfigs);
