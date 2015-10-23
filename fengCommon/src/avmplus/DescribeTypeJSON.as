@@ -28,39 +28,5 @@ package avmplus
 			| INCLUDE_CONSTRUCTOR | INCLUDE_TRAITS | USE_ITRAITS | HIDE_OBJECT;
 		public static const CLASS_FLAGS:uint = INCLUDE_INTERFACES | INCLUDE_VARIABLES //
 			| INCLUDE_ACCESSORS | INCLUDE_METHODS | INCLUDE_METADATA | INCLUDE_TRAITS | HIDE_OBJECT;
-
-
-		//----------------------               Public static Methods               ----------------------//
-
-		/**
-		 * 获取类型描述
-		 * @param target	类对象
-		 * @param flags		描述标记
-		 * @return			类型描述
-		 */
-		public static function describeType(target:Object, flags:uint):Object
-		{
-			return describeTypeJSON(target, flags);
-		}
-
-		/**
-		 * 获取类实例描述
-		 * @param type		类类型
-		 * @return			类实例描述
-		 */
-		public static function getInstanceDescription(type:Class):Object
-		{
-			return describeTypeJSON(type, INSTANCE_FLAGS);
-		}
-
-		/**
-		 * 获取类描述
-		 * @param type		类类型
-		 * @return 			类描述
-		 */
-		public static function getClassDescription(type:Class):Object
-		{
-			return describeTypeJSON(type, CLASS_FLAGS);
-		}
 	}
 }

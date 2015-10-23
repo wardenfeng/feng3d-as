@@ -3,12 +3,13 @@ package avmplus
 
 	/**
 	 * 获取类实例描述
+	 * @param type		类类型
+	 * @return			类实例描述
+	 *
 	 * @author feng 2012-10-23
 	 */
-	public function describeTypeInstance(type:*):Object
+	public function describeTypeInstance(type:Class):Object
 	{
-		return describeTypeJSON(type, INCLUDE_BASES | INCLUDE_INTERFACES //
-			| INCLUDE_VARIABLES | INCLUDE_ACCESSORS | INCLUDE_METHODS | INCLUDE_METADATA //
-			| INCLUDE_CONSTRUCTOR | INCLUDE_TRAITS | USE_ITRAITS | HIDE_OBJECT);
+		return describeTypeJSON(type, DescribeTypeJSON.INSTANCE_FLAGS);
 	}
 }

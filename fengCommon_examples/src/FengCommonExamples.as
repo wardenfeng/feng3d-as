@@ -9,6 +9,8 @@ package
 	import flash.text.TextFieldAutoSize;
 	import flash.utils.getQualifiedClassName;
 
+	import avmplus.DescribeTypeTest;
+
 	import me.feng.enum.EnumTest;
 	import me.feng.error.AbstractClassErrorTest;
 	import me.feng.events.CustomEventContentAssistTest;
@@ -34,6 +36,7 @@ package
 			EventBubblesTest2, //
 			FEventDispatcherTest, //
 			IFEventDispatcherTest, //
+			DescribeTypeTest, //
 			];
 		private var testInstanceList:Array = [];
 		private var index:int = 0;

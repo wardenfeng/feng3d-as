@@ -131,7 +131,7 @@ package me.feng3d.core.proxy
 		 * 设置渲染缓冲区的视口尺寸和其他属性
 		 * @param backBufferWidth		缓冲区的宽度，以像素为单位。
 		 * @param backBufferHeight		缓冲区的高度，以像素为单位。
-		 * @param antiAlias				一个整数值，指定所请求的消除锯齿品质。该值与消除锯齿时使用的子示例的数量相关联。使用更多子示例要求执行更多的计算，尽管相对性能影响取决于特定的渲染硬件。消除锯齿的类型和是否执行消除锯齿操作取决于设备和渲染模式。软件渲染上下文完全不支持消除锯齿。
+		 * @param antiAlias				一个整数值，指定所请求的消除锯齿品质。该值与消除锯齿时使用的子实例的数量相关联。使用更多子实例要求执行更多的计算，尽管相对性能影响取决于特定的渲染硬件。消除锯齿的类型和是否执行消除锯齿操作取决于设备和渲染模式。软件渲染上下文完全不支持消除锯齿。
 		 */
 		public function configureBackBuffer(backBufferWidth:int, backBufferHeight:int, antiAlias:int):void
 		{
