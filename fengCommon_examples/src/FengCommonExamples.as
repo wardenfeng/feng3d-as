@@ -21,7 +21,7 @@ package
 	import me.feng.task.TaskListTest;
 
 	/**
-	 * feng公共类库实例
+	 * feng公共类库示例
 	 * @author feng 2015-5-8
 	 */
 	[SWF(width = "800", height = "600")]
