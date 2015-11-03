@@ -3,7 +3,7 @@ package me.feng3d.core.base
 	import flash.utils.Dictionary;
 
 	import me.feng3d.core.buffer.context3d.VABuffer;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 
 	/**
 	 * 顶点数据拥有者

@@ -162,6 +162,8 @@ package me.feng3d.materials.methods
 			}
 			$addMethod(method);
 			uniqueMethodDic[method.methodType] = method;
+
+			invalidateShaderProgram();
 		}
 
 		/**

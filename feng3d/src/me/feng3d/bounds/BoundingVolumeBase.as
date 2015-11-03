@@ -100,7 +100,7 @@ package me.feng3d.bounds
 					vertices = subGeom.vertexPositionData;
 					var vertexDataLen:uint = vertices.length;
 					i = 0;
-					var stride:uint = subGeom.vertexStride;
+					var stride:uint = subGeom.vertexPositionStride;
 
 					while (i < vertexDataLen)
 					{

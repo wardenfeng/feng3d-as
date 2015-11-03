@@ -1,14 +1,12 @@
 package me.feng.task
 {
-	import me.feng.events.TaskEvent;
+	import me.feng.task.type.TaskQueue;
 
 	//测试任务队列
 	//鼠标分别单击与双击完成任务
 	//@author feng 2015-6-17
 	public class TaskQueueTest extends TestBase
 	{
-		private var taskQueue:TaskQueue;
-
 		public function init():void
 		{
 			trace("这里有分别按下A、B两个按键子任务，完成之后即可完成整个任务。");
@@ -17,7 +15,7 @@ package me.feng.task
 			var keyTask:String = "AB";
 
 			//创建任务列表
-			taskQueue = new TaskQueue();
+			var taskQueue:TaskQueue = new TaskQueue();
 			taskQueue.addEventListener(TaskEvent.COMPLETED, onCompleted);
 			taskQueue.addEventListener(TaskEvent.COMPLETEDITEM, onCompletedItem);
 			for (var i:int = 0; i < keyTask.length; i++)
@@ -32,6 +30,11 @@ package me.feng.task
 		protected function onCompleted(event:TaskEvent):void
 		{
 			trace("完成总任务");
+
+			var taskQueue:TaskQueue = event.currentTarget as TaskQueue;
+			taskQueue.removeEventListener(TaskEvent.COMPLETED, onCompleted);
+			taskQueue.removeEventListener(TaskEvent.COMPLETEDITEM, onCompletedItem);
+			taskQueue.destroy();
 		}
 
 		protected function onCompletedItem(event:TaskEvent):void
@@ -43,11 +46,6 @@ package me.feng.task
 
 		public function destroy():void
 		{
-			//移除所有子任务
-			taskQueue.removeEventListener(TaskEvent.COMPLETED, onCompleted);
-			taskQueue.removeEventListener(TaskEvent.COMPLETEDITEM, onCompletedItem);
-			taskQueue.destroy();
-			taskQueue = null;
 		}
 	}
 }

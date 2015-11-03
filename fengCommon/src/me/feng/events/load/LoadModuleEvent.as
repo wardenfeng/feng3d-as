@@ -1,4 +1,4 @@
-package me.feng.load
+package me.feng.events.load
 {
 	import me.feng.events.FEvent;
 
@@ -6,7 +6,7 @@ package me.feng.load
 	 * 加载事件
 	 * @author feng 2014-7-25
 	 */
-	public class LoadEvent extends FEvent
+	public class LoadModuleEvent extends FEvent
 	{
 		/** 加载资源 */
 		public static const LOAD_RESOURCE:String = "loadResource";
@@ -18,7 +18,7 @@ package me.feng.load
 		 * @param bubbles 				确定 Event 对象是否参与事件流的冒泡阶段。默认值为 false。
 		 * @param cancelable 			确定是否可以取消 Event 对象。默认值为 false。
 		 */
-		public function LoadEvent(type:String, data:LoadUrlData, bubbles:Boolean = false, cancelable:Boolean = false)
+		public function LoadModuleEvent(type:String, data:LoadModuleEventData, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
 			super(type, data, bubbles, cancelable);
 		}
@@ -26,7 +26,7 @@ package me.feng.load
 		/**
 		 * 加载事件数据
 		 */
-		public function get loadEventData():LoadUrlData
+		public function get loadEventData():LoadModuleEventData
 		{
 			return data;
 		}

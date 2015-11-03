@@ -1,5 +1,6 @@
-package me.feng.task
+package me.feng.task.type
 {
+	import me.feng.task.TaskCollection;
 
 
 	/**

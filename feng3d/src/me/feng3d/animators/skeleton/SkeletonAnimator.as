@@ -393,7 +393,7 @@ package me.feng3d.animators.skeleton
 				targetData[uint(index + 2)] = vz;
 
 				//跳到下个顶点的起始位置
-				index = uint(index + subGeom.vertexStride);
+				index = uint(index + subGeom.vertexPositionStride);
 			}
 		}
 

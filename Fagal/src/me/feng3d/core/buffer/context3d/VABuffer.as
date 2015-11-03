@@ -6,7 +6,7 @@ package me.feng3d.core.buffer.context3d
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.buffer.context3d.item.VADataBuffer;
 	import me.feng3d.core.buffer.context3d.item.VertexBufferItem;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 
 	use namespace arcanefagal;
 

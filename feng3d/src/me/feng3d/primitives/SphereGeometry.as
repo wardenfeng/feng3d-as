@@ -44,7 +44,7 @@ package me.feng3d.primitives
 			var i:uint, j:uint, triIndex:uint;
 			var numVerts:uint = (_segmentsH + 1) * (_segmentsW + 1);
 
-			var vertexPositionStride:uint = target.vertexStride;
+			var vertexPositionStride:uint = target.vertexPositionStride;
 			var vertexNormalStride:uint = target.vertexNormalStride;
 			var vertexTangentStride:uint = target.vertexTangentStride;
 

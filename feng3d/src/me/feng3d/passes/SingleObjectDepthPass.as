@@ -1,6 +1,5 @@
 package me.feng3d.passes
 {
-	import flash.display3D.textures.Texture;
 	import flash.geom.Matrix3D;
 	import flash.utils.Dictionary;
 
@@ -104,14 +103,6 @@ package me.feng3d.passes
 		{
 			if (_textures)
 			{
-				for (var i:uint = 0; i < _textures.length; ++i)
-				{
-					for each (var vec:Vector.<Texture> in _textures[i])
-					{
-						for (var j:uint = 0; j < vec.length; ++j)
-							vec[j].dispose();
-					}
-				}
 				_textures = null;
 			}
 		}
@@ -121,19 +112,7 @@ package me.feng3d.passes
 		 */
 		private function updateProjectionTextures():void
 		{
-			if (_textures)
-			{
-				for (var i:uint = 0; i < _textures.length; ++i)
-				{
-					for each (var vec:Vector.<Texture> in _textures[i])
-					{
-						for (var j:uint = 0; j < vec.length; ++j)
-							vec[j].dispose();
-					}
-				}
-			}
-
-			_textures = new Vector.<Dictionary>(8);
+			_textures = new Dictionary();
 			_projections = new Dictionary();
 			_projectionTexturesInvalid = false;
 		}

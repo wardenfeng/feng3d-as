@@ -1,65 +1,33 @@
 package me.feng.task
 {
-	import me.feng.events.FEventDispatcher;
-	import me.feng.events.TaskEvent;
 
 	/**
-	 * 完成任务时触发
-	 * @eventType me.feng.events.TaskEvent
-	 */
-	[Event(name = "completed", type = "me.feng.events.TaskEvent")]
-
-	/**
-	 * 任务
+	 * 任务模块类
+	 * @includeExample TaskModuleTest.as
+	 *
 	 * @author feng 2015-5-27
 	 */
-	public class Task extends FEventDispatcher
+	public class Task
 	{
-		/** 任务状态 */
-		protected var _state:int = TaskState.STATE_INIT;
+		private static var _isInit:Boolean = false;
+
+		private static var taskManager:TaskManager;
 
 		/**
-		 * 任务状态
+		 * 模块是否初始化
 		 */
-		public function get state():int
+		public static function get isInit():Boolean
 		{
-			return _state;
+			return _isInit;
 		}
 
 		/**
-		 * 创建一个任务单元数据
+		 * 初始化模块
 		 */
-		public function Task()
+		public static function init():void
 		{
-			_state = TaskState.STATE_INIT;
-		}
-
-		/**
-		 * 执行任务
-		 * @param params	执行参数
-		 */
-		public function execute(params:* = null):void
-		{
-			_state = TaskState.STATE_EXECUTING;
-
-		}
-
-		/**
-		 * 执行完成事件
-		 */
-		protected function doComplete():void
-		{
-			_state = TaskState.STATE_COMPLETED;
-
-			dispatchEvent(new TaskEvent(TaskEvent.COMPLETED));
-		}
-
-		/**
-		 * 销毁
-		 */
-		public function destroy():void
-		{
-
+			taskManager || (taskManager = new TaskManager());
+			_isInit = true;
 		}
 	}
 }

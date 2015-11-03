@@ -1,13 +1,12 @@
 package me.feng.task
 {
 	import me.feng.error.AbstractClassError;
-	import me.feng.events.TaskEvent;
 
 	/**
 	 * 完成一个任务单元时触发
 	 * @eventType me.feng.events.TaskEvent
 	 */
-	[Event(name = "completedItem", type = "me.feng.events.TaskEvent")]
+	[Event(name = "completedItem", type = "me.feng.task.TaskEvent")]
 
 	/**
 	 * 任务集合，任务列表与任务队列等的基类
@@ -62,7 +61,7 @@ package me.feng.task
 		 */
 		override public function execute(params:* = null):void
 		{
-			_state = TaskState.STATE_EXECUTING;
+			_state = TaskStateType.STATE_EXECUTING;
 			waitingItemList = allItemList.concat();
 			executingItemList.length = 0;
 			completedItemList.length = 0;
@@ -96,17 +95,29 @@ package me.feng.task
 				allItemList.push(item);
 				item.addEventListener(TaskEvent.COMPLETED, onCompletedItem);
 
-				if (state == TaskState.STATE_EXECUTING)
+				if (state == TaskStateType.STATE_EXECUTING)
 				{
-					if (item.state == TaskState.STATE_INIT || item.state == TaskState.STATE_EXECUTING)
+					if (item.state == TaskStateType.STATE_INIT || item.state == TaskStateType.STATE_EXECUTING)
 					{
 						executingItemList.push(item);
 					}
-					else if (item.state == TaskState.STATE_COMPLETED)
+					else if (item.state == TaskStateType.STATE_COMPLETED)
 					{
 						completedItemList.push(item);
 					}
 				}
+			}
+		}
+
+		/**
+		 * 添加任务列表
+		 * @param taskList		任务列表
+		 */
+		public function addItems(taskList:Vector.<TaskItem>):void
+		{
+			for (var i:int = 0; i < taskList.length; i++)
+			{
+				addItem(taskList[i]);
 			}
 		}
 
@@ -195,5 +206,6 @@ package me.feng.task
 			executingItemList = null;
 			completedItemList = null;
 		}
+
 	}
 }

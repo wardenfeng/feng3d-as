@@ -5,7 +5,7 @@ package me.feng.task
 	 * 任务状态
 	 * @author feng 2015-6-16
 	 */
-	public class TaskState
+	public class TaskStateType
 	{
 		/** 初始状态 */
 		public static const STATE_INIT:int = 0;

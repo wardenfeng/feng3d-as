@@ -1,5 +1,6 @@
-package me.feng.events
+package me.feng.task
 {
+	import me.feng.events.FEvent;
 
 	/**
 	 * 任务事件

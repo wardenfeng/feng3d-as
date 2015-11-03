@@ -1,9 +1,7 @@
 package me.feng3d.textures
 {
 	import flash.display.BitmapData;
-	import flash.display3D.textures.TextureBase;
 
-	import me.feng3d.utils.MipmapGenerator;
 	import me.feng3d.utils.TextureUtils;
 
 	/**

@@ -8,10 +8,8 @@ package me.feng3d.core.base.subgeometry
 
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 	import me.feng3d.events.GeometryEvent;
-	
-	
 
 	use namespace arcane;
 
@@ -89,7 +87,7 @@ package me.feng3d.core.base.subgeometry
 			var normals:Vector.<Number> = vertexNormalData;
 			var tangents:Vector.<Number> = vertexTangentData;
 
-			var posStride:int = vertexStride;
+			var posStride:int = vertexPositionStride;
 			var normalStride:int = vertexNormalStride;
 			var tangentStride:int = vertexTangentStride;
 
@@ -181,13 +179,12 @@ package me.feng3d.core.base.subgeometry
 		{
 			setVAData(_.position_va_3, data);
 
-			dispatchEvent(new GeometryEvent(GeometryEvent.SHAPE_CHANGE, this));
+			dispatchEvent(new GeometryEvent(GeometryEvent.SHAPE_CHANGE, this, true));
 		}
 
 		/**
-		 * Updates the vertex normals of the SubGeometry. When updating the vertex normals like this,
-		 * autoDeriveVertexNormals will be set to false and vertex normals will no longer be calculated automatically.
-		 * @param vertexNormals The vertex normals to upload.
+		 * 更新顶点法线数据
+		 * @param vertexNormals 顶点法线数据
 		 */
 		public function updateVertexNormalData(vertexNormals:Vector.<Number>):void
 		{
@@ -195,9 +192,8 @@ package me.feng3d.core.base.subgeometry
 		}
 
 		/**
-		 * Updates the vertex tangents of the SubGeometry. When updating the vertex tangents like this,
-		 * autoDeriveVertexTangents will be set to false and vertex tangents will no longer be calculated automatically.
-		 * @param vertexTangents The vertex tangents to upload.
+		 * 更新顶点切线数据
+		 * @param vertexTangents 顶点切线数据
 		 */
 		public function updateVertexTangentData(vertexTangents:Vector.<Number>):void
 		{
@@ -213,7 +209,7 @@ package me.feng3d.core.base.subgeometry
 		}
 
 		/**
-		 * The raw vertex normal data.
+		 * 顶点法线数据
 		 */
 		public function get vertexNormalData():Vector.<Number>
 		{
@@ -221,9 +217,7 @@ package me.feng3d.core.base.subgeometry
 		}
 
 		/**
-		 * The raw vertex tangent data.
-		 *
-		 * @private
+		 * 顶点切线数据
 		 */
 		public function get vertexTangentData():Vector.<Number>
 		{
@@ -238,21 +232,33 @@ package me.feng3d.core.base.subgeometry
 			return getVAData(_.uv_va_2);
 		}
 
-		public function get vertexStride():uint
+		/**
+		 * 顶点坐标数据步长
+		 */
+		public function get vertexPositionStride():uint
 		{
 			return getVALen(_.position_va_3);
 		}
 
+		/**
+		 * 顶点切线步长
+		 */
 		public function get vertexTangentStride():uint
 		{
 			return getVALen(_.tangent_va_3);
 		}
 
+		/**
+		 * 顶点法线步长
+		 */
 		public function get vertexNormalStride():uint
 		{
 			return getVALen(_.normal_va_3);
 		}
 
+		/**
+		 * UV步长
+		 */
 		public function get UVStride():uint
 		{
 			return getVALen(_.uv_va_2);
@@ -289,6 +295,9 @@ package me.feng3d.core.base.subgeometry
 			return _clone;
 		}
 
+		/**
+		 * 父网格
+		 */
 		public function get parent():Geometry
 		{
 			return _parent;

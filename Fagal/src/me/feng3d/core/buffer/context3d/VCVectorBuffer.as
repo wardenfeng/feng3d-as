@@ -4,7 +4,7 @@ package me.feng3d.core.buffer.context3d
 	import flash.display3D.Context3DProgramType;
 
 	import me.feng3d.arcanefagal;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 
 	use namespace arcanefagal;
 

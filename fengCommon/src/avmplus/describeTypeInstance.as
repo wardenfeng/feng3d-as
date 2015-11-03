@@ -10,6 +10,6 @@ package avmplus
 	 */
 	public function describeTypeInstance(type:Class):Object
 	{
-		return describeTypeJSON(type, DescribeTypeJSON.INSTANCE_FLAGS);
+		return describeTypeJSON(type, DescribeTypeFlags.INSTANCE_FLAGS);
 	}
 }

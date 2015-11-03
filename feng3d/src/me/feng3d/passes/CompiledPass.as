@@ -28,6 +28,8 @@ package me.feng3d.passes
 	 */
 	public class CompiledPass extends MaterialPassBase
 	{
+		arcane var _passes:Vector.<MaterialPassBase>;
+
 		/**
 		 * 物体投影变换矩阵（模型空间坐标-->GPU空间坐标）
 		 */
@@ -314,7 +316,52 @@ package me.feng3d.passes
 		 */
 		private function onShaderInvalidated(event:ShadingMethodEvent):void
 		{
+			var oldPasses:Vector.<MaterialPassBase> = _passes;
+			_passes = new Vector.<MaterialPassBase>();
+
+			if (_methodSetup)
+				addPassesFromMethods();
+
+
+
 			invalidateShaderProgram();
+		}
+
+		/**
+		 * Adds any possible passes needed by the used methods.
+		 */
+		protected function addPassesFromMethods():void
+		{
+			if (_methodSetup.normalMethod && _methodSetup.normalMethod.hasOutput)
+				addPasses(_methodSetup.normalMethod.passes);
+			if (_methodSetup.ambientMethod)
+				addPasses(_methodSetup.ambientMethod.passes);
+			if (_methodSetup.shadowMethod)
+				addPasses(_methodSetup.shadowMethod.passes);
+			if (_methodSetup.diffuseMethod)
+				addPasses(_methodSetup.diffuseMethod.passes);
+			if (_methodSetup.specularMethod)
+				addPasses(_methodSetup.specularMethod.passes);
+		}
+
+		/**
+		 * Adds internal passes to the material.
+		 *
+		 * @param passes The passes to add.
+		 */
+		protected function addPasses(passes:Vector.<MaterialPassBase>):void
+		{
+			if (!passes)
+				return;
+
+			var len:uint = passes.length;
+
+			for (var i:uint = 0; i < len; ++i)
+			{
+				passes[i].material = material;
+				passes[i].lightPicker = _lightPicker;
+				_passes.push(passes[i]);
+			}
 		}
 
 		/**

@@ -4,6 +4,9 @@ package me.feng.load
 	import br.com.stimuli.loading.loadingtypes.ImageItem;
 	import br.com.stimuli.loading.loadingtypes.LoadingItem;
 
+	import me.feng.debug.assert;
+	import me.feng.task.Task;
+
 	/**
 	 * 加载模块类
 	 * @author feng 2014-7-25
@@ -18,6 +21,8 @@ package me.feng.load
 		public static function init():void
 		{
 			loadManager || (loadManager = new LoadManager());
+
+			assert(Task.isInit, "加载模块依赖任务模块，请先初始化任务模块");
 		}
 
 		/**

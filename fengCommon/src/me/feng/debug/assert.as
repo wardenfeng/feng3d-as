@@ -1,4 +1,4 @@
-package me.feng3d.debug
+package me.feng.debug
 {
 
 	/**

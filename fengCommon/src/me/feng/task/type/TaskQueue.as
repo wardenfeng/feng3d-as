@@ -1,6 +1,8 @@
-package me.feng.task
+package me.feng.task.type
 {
-	import me.feng.events.TaskEvent;
+	import me.feng.task.TaskEvent;
+	import me.feng.task.TaskCollection;
+	import me.feng.task.TaskItem;
 
 	/**
 	 * 任务队列（按先后顺序依次完成子任务，只有完成当前任务才会开始下个任务）

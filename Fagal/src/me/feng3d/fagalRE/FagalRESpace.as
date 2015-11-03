@@ -6,7 +6,7 @@ package me.feng3d.fagalRE
 
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterArray;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 	import me.feng3d.fagal.base.math.FagalMath;
 
 	/**

@@ -6,13 +6,20 @@ package me.feng.load
 	import br.com.stimuli.loading.BulkLoader;
 	import br.com.stimuli.loading.BulkProgressEvent;
 
-	import me.feng.core.ModulesManager;
+	import me.feng.arcaneCommon;
+	import me.feng.core.FModuleManager;
+	import me.feng.events.task.TaskModuleEvent;
+	import me.feng.events.task.TaskModuleEventDispatchTaskData;
+	import me.feng.task.Task;
+	import me.feng.events.load.LoadModuleEvent;
+
+	use namespace arcaneCommon;
 
 	/**
 	 * 加载管理器
 	 * @author feng 2014-7-25
 	 */
-	public class LoadManager extends ModulesManager
+	public class LoadManager extends FModuleManager
 	{
 		/** 加载器 */
 		public var loader:BulkLoader;
@@ -53,16 +60,19 @@ package me.feng.load
 
 			loader.addEventListener(BulkLoader.PROGRESS, onAllItemsProgress);
 
-			dispatcher.addEventListener(LoadEvent.LOAD_RESOURCE, onLoadResource);
+			addEventListener(LoadModuleEvent.LOAD_RESOURCE, onLoadResource);
 		}
 
 		/**
 		 * 处理加载资源事件
 		 * @param event
 		 */
-		private function onLoadResource(event:LoadEvent):void
+		private function onLoadResource(event:LoadModuleEvent):void
 		{
-			new LoadTaskQueue(event.loadEventData, loader);
+			var taskModuleEventData:TaskModuleEventDispatchTaskData = event.loadEventData.taskModuleEventData;
+			taskModuleEventData.params = loader;
+
+			dispatchEvent(new TaskModuleEvent(TaskModuleEvent.DISPATCH_TASK, taskModuleEventData));
 
 			if (!loader.isRunning)
 				loader.start();

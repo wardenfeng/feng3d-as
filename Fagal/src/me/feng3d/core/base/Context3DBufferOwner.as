@@ -5,7 +5,7 @@ package me.feng3d.core.base
 	import me.feng.core.NamedAssetBase;
 	import me.feng3d.core.buffer.Context3DBufferTypeManager;
 	import me.feng3d.core.buffer.context3d.Context3DBuffer;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 	import me.feng3d.events.Context3DBufferOwnerEvent;
 	import me.feng3d.fagalRE.FagalIdCenter;
 

@@ -122,8 +122,8 @@ package me.feng.utils
 		public static function call(space:Object, funcName:String, params:Array):*
 		{
 			var func:Function = space[funcName];
-			func.apply(null, params);
-			return null;
+			var result:* = func.apply(null, params);
+			return result;
 		}
 
 		/**

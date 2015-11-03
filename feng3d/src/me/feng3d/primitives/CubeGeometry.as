@@ -168,7 +168,7 @@ package me.feng3d.primitives
 			var outer_pos:Number;
 
 			var numVerts:uint = ((_segmentsW + 1) * (_segmentsH + 1) + (_segmentsW + 1) * (_segmentsD + 1) + (_segmentsH + 1) * (_segmentsD + 1)) * 2;
-			var vertexPositionStride:uint = target.vertexStride;
+			var vertexPositionStride:uint = target.vertexPositionStride;
 			var vertexNormalStride:uint = target.vertexNormalStride;
 			var vertexTangentStride:uint = target.vertexTangentStride;
 

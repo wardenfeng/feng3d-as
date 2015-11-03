@@ -10,9 +10,9 @@ package
 	import data.PanParser;
 
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.events.load.LoadModuleEvent;
+	import me.feng.events.load.LoadModuleEventData;
 	import me.feng.load.Load;
-	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadUrlData;
 	import me.feng.load.LoadUrlEvent;
 	import me.feng.load.data.LoadTaskItem;
 	import me.feng3d.animators.vertex.VertexAnimationSet;
@@ -97,13 +97,13 @@ package
 				}
 				else
 				{
-					var loadEventData:LoadUrlData = new LoadUrlData();
+					var loadEventData:LoadModuleEventData = new LoadModuleEventData();
 					loadEventData.urls = [element.geometryUrl, element.materialUrl];
 					loadEventData.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, singleGeometryComplete);
 					loadEventData.addEventListener(LoadUrlEvent.LOAD_COMPLETE, allItemsLoaded);
 					loadEventData.data = {element: element}
 
-					dispatcher.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadEventData));
+					dispatcher.dispatchEvent(new LoadModuleEvent(LoadModuleEvent.LOAD_RESOURCE, loadEventData));
 				}
 			}
 		}
@@ -121,7 +121,7 @@ package
 		/** 一个场景对象的所有资源加载完毕 */
 		private function allItemsLoaded(event:LoadUrlEvent):void
 		{
-			var loadData:LoadUrlData = event.target as LoadUrlData;
+			var loadData:LoadModuleEventData = event.target as LoadModuleEventData;
 			var element:Element = loadData.data.element;
 			element.geometry ||= geometryDic[element.geometryUrl];
 			element.animation ||= animationDic[element.geometryUrl];
@@ -140,7 +140,7 @@ package
 		/** 单个模型数据加载完毕 */
 		private function singleGeometryComplete(event:LoadUrlEvent):void
 		{
-			var loadData:LoadUrlData = event.currentTarget as LoadUrlData;
+			var loadData:LoadModuleEventData = event.currentTarget as LoadModuleEventData;
 			var loadItemData:LoadTaskItem = event.loadTaskItem;
 
 			var element:Element = loadData.data.element;

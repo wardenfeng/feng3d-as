@@ -19,6 +19,8 @@ package
 	import me.feng.events.FEventDispatcherTest;
 	import me.feng.events.IFEventDispatcherTest;
 	import me.feng.task.TaskListTest;
+	import me.feng.task.TaskModuleTest;
+	import me.feng.task.TaskQueueTest;
 
 	/**
 	 * feng公共类库示例
@@ -30,6 +32,8 @@ package
 		private var testClassList:Array = [ //
 			AbstractClassErrorTest, //
 			TaskListTest, //
+			TaskQueueTest, //
+			TaskModuleTest, //
 			EnumTest, //
 			CustomEventContentAssistTest, //
 			EventBubblesTest, //

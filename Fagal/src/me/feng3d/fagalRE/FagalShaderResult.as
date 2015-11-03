@@ -5,7 +5,7 @@ package me.feng3d.fagalRE
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.ShaderRegisterCache;
-	import me.feng3d.debug.assert;
+	import me.feng.debug.assert;
 	import me.feng3d.events.FagalMathEvent;
 	import me.feng3d.fagal.FagalToken;
 	import me.feng3d.fagal.base.math.FagalMath;

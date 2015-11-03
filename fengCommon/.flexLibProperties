@@ -5,22 +5,26 @@
     <classEntry path="me.feng.error.AbstractClassError"/>
     <classEntry path="me.feng.events.FEvent"/>
     <classEntry path="me.feng.events.FEventDispatcher"/>
-    <classEntry path="me.feng.load.LoadTaskQueue"/>
     <classEntry path="me.feng.task.TaskItem"/>
-    <classEntry path="me.feng.task.TaskList"/>
+    <classEntry path="me.feng.task.type.TaskList"/>
     <classEntry path="me.feng.utils.formatString"/>
     <classEntry path="me.feng.component.Component"/>
     <classEntry path="me.feng.component.ComponentContainer"/>
     <classEntry path="me.feng.enum.Enum"/>
-    <classEntry path="me.feng.load.LoadUrlData"/>
+    <classEntry path="me.feng.events.load.LoadModuleEventData"/>
     <classEntry path="me.feng.load.data.LoadTaskItem"/>
     <classEntry path="me.feng.task.Task"/>
     <classEntry path="me.feng.task.TaskCollection"/>
-    <classEntry path="me.feng.task.TaskState"/>
-    <classEntry path="me.feng.task.TaskQueue"/>
+    <classEntry path="me.feng.task.TaskStateType"/>
+    <classEntry path="me.feng.task.type.TaskQueue"/>
     <classEntry path="me.feng.utils.ClassUtils"/>
     <classEntry path="me.feng.debug.DebugCommon"/>
     <classEntry path="me.feng.load.LoadUrlEvent"/>
+    <classEntry path="me.feng.events.task.TaskModuleEvent"/>
+    <classEntry path="me.feng.events.task.TaskModuleEventDispatchTaskData"/>
+    <classEntry path="me.feng.task.type.TaskCollectionType"/>
+    <classEntry path="me.feng.events.task.TaskModuleEventRegisterData"/>
+    <classEntry path="me.feng.debug.assert"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

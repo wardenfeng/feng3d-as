@@ -23,6 +23,7 @@ package me.feng3d.passes
 	import me.feng3d.fagal.vertex.V_Main;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
+	import me.feng3d.materials.MaterialBase;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.ShaderMethodSetup;
 	import me.feng3d.textures.TextureProxyBase;
@@ -36,6 +37,8 @@ package me.feng3d.passes
 	 */
 	public class MaterialPassBase extends Context3DBufferOwner
 	{
+		protected var _material:MaterialBase;
+
 		protected var _animationSet:IAnimationSet;
 
 		protected var _methodSetup:ShaderMethodSetup;
@@ -72,6 +75,19 @@ package me.feng3d.passes
 		public function MaterialPassBase()
 		{
 			AbstractClassError.check(this);
+		}
+
+		/**
+		 * The material to which this pass belongs.
+		 */
+		public function get material():MaterialBase
+		{
+			return _material;
+		}
+
+		public function set material(value:MaterialBase):void
+		{
+			_material = value;
 		}
 
 		/**

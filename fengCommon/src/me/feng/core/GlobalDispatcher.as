@@ -2,6 +2,10 @@ package me.feng.core
 {
 	import me.feng.events.FEventDispatcher;
 
+	[Event(name = "dispatchTask", type = "me.feng.events.task.TaskModuleEvent")]
+
+	[Event(name = "registerTaskCollectionType", type = "me.feng.events.task.TaskModuleEvent")]
+
 	/**
 	 * 全局事件适配器
 	 * @author feng

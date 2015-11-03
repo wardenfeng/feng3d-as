@@ -8,7 +8,7 @@ package me.feng.core
 	 * <p>为界面模块搭建框架</p>
 	 * @author feng
 	 */
-	public class ViewManager extends ModulesManager
+	public class ViewManager extends FModuleManager
 	{
 		/**
 		 * 主界面

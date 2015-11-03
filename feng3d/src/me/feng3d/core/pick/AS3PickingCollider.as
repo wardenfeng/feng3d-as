@@ -45,7 +45,7 @@ package me.feng3d.core.pick
 			var uvData:Vector.<Number> = subGeom.UVData;
 			var collisionTriangleIndex:int = -1;
 
-			var vertexStride:uint = subGeom.vertexStride;
+			var vertexStride:uint = subGeom.vertexPositionStride;
 			var vertexOffset:uint = 0;
 			var uvStride:uint = subGeom.UVStride;
 			var numIndices:int = indexData.length;

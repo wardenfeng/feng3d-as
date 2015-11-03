@@ -1,13 +1,17 @@
 package
 {
+	import com.junkbyte.console.Cc;
+
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.debug.DebugCommon;
+	import me.feng.events.load.LoadModuleEvent;
+	import me.feng.events.load.LoadModuleEventData;
 	import me.feng.load.Load;
-	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadUrlData;
 	import me.feng.load.LoadUrlEvent;
+	import me.feng.task.Task;
 	import me.feng3d.ConsoleExtension;
 	import me.feng3d.configs.Context3DBufferIDConfig;
 	import me.feng3d.fagalRE.FagalRE;
@@ -31,10 +35,19 @@ package
 
 		public function TestBase()
 		{
-			MyCC.initFlashConsole(this);
-//			DebugCommon.loggerFunc = Cc.log;
-			new ConsoleExtension();
+			initModules();
+
 			loadTextures();
+		}
+
+		private function initModules():void
+		{
+			MyCC.initFlashConsole(this);
+			DebugCommon.loggerFunc = Cc.log;
+			new ConsoleExtension();
+
+			Task.init();
+			Load.init();
 		}
 
 		/**
@@ -44,10 +57,8 @@ package
 		{
 			resourceDic = new Dictionary();
 
-			Load.init();
-
 			//加载资源
-			var loadObj:LoadUrlData = new LoadUrlData();
+			var loadObj:LoadModuleEventData = new LoadModuleEventData();
 			loadObj.urls = [];
 			for (var i:int = 0; resourceList != null && i < resourceList.length; i++)
 			{
@@ -63,7 +74,7 @@ package
 			}
 			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, singleGeometryComplete);
 			loadObj.addEventListener(LoadUrlEvent.LOAD_COMPLETE, allItemsLoaded);
-			GlobalDispatcher.instance.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadObj));
+			GlobalDispatcher.instance.dispatchEvent(new LoadModuleEvent(LoadModuleEvent.LOAD_RESOURCE, loadObj));
 		}
 
 		/** 单个资源加载完毕 */

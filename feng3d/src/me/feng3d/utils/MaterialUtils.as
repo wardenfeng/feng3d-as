@@ -3,9 +3,9 @@ package me.feng3d.utils
 	import flash.display.Bitmap;
 
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.events.load.LoadModuleEvent;
+	import me.feng.events.load.LoadModuleEventData;
 	import me.feng.load.Load;
-	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadUrlData;
 	import me.feng.load.LoadUrlEvent;
 	import me.feng3d.materials.TextureMaterial;
 
@@ -31,19 +31,19 @@ package me.feng3d.utils
 
 			var textureMaterial:TextureMaterial = new TextureMaterial();
 
-			var loadObj:LoadUrlData = new LoadUrlData();
+			var loadObj:LoadModuleEventData = new LoadModuleEventData();
 			loadObj.urls = [rootPath + url];
 			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, onLoadSingleComplete);
 
 			loadObj.data = {textureMaterial: textureMaterial}
-			dispatcher.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadObj));
+			dispatcher.dispatchEvent(new LoadModuleEvent(LoadModuleEvent.LOAD_RESOURCE, loadObj));
 
 			return textureMaterial;
 		}
 
 		protected static function onLoadSingleComplete(event:LoadUrlEvent):void
 		{
-			var loadData:LoadUrlData = event.target as LoadUrlData;
+			var loadData:LoadModuleEventData = event.target as LoadModuleEventData;
 			var textureMaterial:TextureMaterial = loadData.data.textureMaterial;
 			var bitmap:Bitmap = event.loadTaskItem.loadingItem.content;
 			textureMaterial.texture = Cast.bitmapTexture(bitmap);

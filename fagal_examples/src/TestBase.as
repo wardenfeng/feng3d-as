@@ -9,11 +9,12 @@ package
 
 	import me.feng.core.GlobalDispatcher;
 	import me.feng.debug.DebugCommon;
+	import me.feng.events.load.LoadModuleEvent;
+	import me.feng.events.load.LoadModuleEventData;
 	import me.feng.load.Load;
-	import me.feng.load.LoadEvent;
-	import me.feng.load.LoadUrlData;
 	import me.feng.load.LoadUrlEvent;
 	import me.feng.load.data.LoadTaskItem;
+	import me.feng.task.Task;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -36,9 +37,18 @@ package
 
 		public function TestBase()
 		{
+			initModules();
+
+			loadTextures();
+		}
+
+		private function initModules():void
+		{
 			MyCC.initFlashConsole(this);
 			DebugCommon.loggerFunc = Cc.log;
-			loadTextures();
+
+			Task.init();
+			Load.init();
 		}
 
 		/**
@@ -53,10 +63,8 @@ package
 				rootPath = "";
 			}
 
-			Load.init();
-
 			//加载资源
-			var loadObj:LoadUrlData = new LoadUrlData();
+			var loadObj:LoadModuleEventData = new LoadModuleEventData();
 			loadObj.urls = [];
 			for (var i:int = 0; i < resourceList.length; i++)
 			{
@@ -65,7 +73,7 @@ package
 			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, onLoadSingleComplete);
 			loadObj.addEventListener(LoadUrlEvent.LOAD_COMPLETE, onLoadComplete);
 
-			GlobalDispatcher.instance.dispatchEvent(new LoadEvent(LoadEvent.LOAD_RESOURCE, loadObj));
+			GlobalDispatcher.instance.dispatchEvent(new LoadModuleEvent(LoadModuleEvent.LOAD_RESOURCE, loadObj));
 		}
 
 		/** 单个资源加载完毕 */

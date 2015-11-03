@@ -68,7 +68,7 @@ package me.feng3d.primitives
 			_numVertices = 0;
 			_vertexIndex = 0;
 			_currentTriangleIndex = 0;
-			vertexPositionStride = target.vertexStride;
+			vertexPositionStride = target.vertexPositionStride;
 			vertexNormalStride = target.vertexNormalStride;
 			vertexTangentStride = target.vertexTangentStride;
 

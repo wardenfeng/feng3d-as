@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <actionScriptProperties analytics="false" mainApplicationPath="Basic_Shading.as" projectUUID="52e47eeb-403d-487d-8b48-5bdb87cb1fe5" version="11">
-  <compiler additionalCompilerArguments="-locale en_US" advancedTelemetry="false" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale en_US" advancedTelemetry="false" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -37,16 +37,17 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Basic_View.as"/>
     <application path="Basic_Tweening3D.as"/>
-    <application path="Basic_UVAnimation.as"/>
     <application path="Basic_Particles.as"/>
     <application path="Basic_Fire.as"/>
     <application path="Basic_SkyBox.as"/>
     <application path="Intermediate_MD5Animation.as"/>
+    <application path="Intermediate_Globe.as"/>
+    <application path="Advanced_ShallowWaterDemo.as"/>
+    <application path="Basic_View.as"/>
+    <application path="Basic_UVAnimation.as"/>
     <application path="Basic_SpriteSheetAnimation.as"/>
     <application path="Basic_Load3DS.as"/>
-    <application path="Intermediate_Globe.as"/>
     <application path="Intermediate_Head.as"/>
     <application path="Basic_Shading.as"/>
   </applications>

@@ -136,7 +136,7 @@ package me.feng3d.primitives
 			var base:uint;
 			var tw:uint = _segmentsW + 1;
 			var numVertices:uint = (_segmentsH + 1) * tw;
-			var vertexPositionStride:uint = target.vertexStride;
+			var vertexPositionStride:uint = target.vertexPositionStride;
 			var vertexNormalStride:uint = target.vertexNormalStride;
 			var vertexTangentStride:uint = target.vertexTangentStride;
 			if (_doubleSided)

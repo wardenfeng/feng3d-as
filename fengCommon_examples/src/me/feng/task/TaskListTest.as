@@ -1,6 +1,6 @@
 package me.feng.task
 {
-	import me.feng.events.TaskEvent;
+	import me.feng.task.type.TaskList;
 
 	//测试任务列表
 	//鼠标分别单击与双击完成任务
