@@ -2,7 +2,7 @@ package me.feng3d.cameras.lenses
 {
 	import flash.geom.Vector3D;
 
-	import me.feng3d.core.math.Matrix3DUtils;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 透视摄像机镜头

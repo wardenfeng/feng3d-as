@@ -7,10 +7,10 @@ package me.feng3d.entities
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.core.pick.IPickingCollider;
 	import me.feng3d.materials.MaterialBase;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Ray3D;
 
 	use namespace arcane;
 

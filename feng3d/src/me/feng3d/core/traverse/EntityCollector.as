@@ -8,8 +8,6 @@ package me.feng3d.core.traverse
 	import me.feng3d.core.data.EntityListItemPool;
 	import me.feng3d.core.data.RenderableListItem;
 	import me.feng3d.core.data.RenderableListItemPool;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.partition.node.NodeBase;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.entities.SkyBox;
@@ -17,6 +15,8 @@ package me.feng3d.core.traverse
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
 	import me.feng3d.materials.MaterialBase;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Plane3D;
 
 	use namespace arcane;
 

@@ -30,7 +30,7 @@
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="3" linkType="1" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Fagal/bin/Fagal.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fagal/bin/fagal.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

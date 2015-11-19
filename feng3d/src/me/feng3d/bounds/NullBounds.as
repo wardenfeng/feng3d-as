@@ -3,7 +3,7 @@ package me.feng3d.bounds
 	import flash.geom.Matrix3D;
 
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.math.Plane3D;
+	import me.feng3d.mathlib.Plane3D;
 	import me.feng3d.primitives.WireframePrimitiveBase;
 	import me.feng3d.primitives.WireframeSphere;
 

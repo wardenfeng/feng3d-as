@@ -3,9 +3,9 @@ package me.feng3d.bounds
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Plane3D;
-	import me.feng3d.core.math.Ray3D;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Plane3D;
+	import me.feng3d.mathlib.Ray3D;
 	import me.feng3d.primitives.WireframeCube;
 	import me.feng3d.primitives.WireframePrimitiveBase;
 

@@ -9,10 +9,10 @@ package me.feng3d.core.base
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.controllers.ControllerBase;
 	import me.feng3d.core.base.data.Transform3D;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.events.MouseEvent3D;
 	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	use namespace arcane;
 

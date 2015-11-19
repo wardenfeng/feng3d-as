@@ -7,14 +7,14 @@ package me.feng3d.cameras
 	import me.feng3d.bounds.NullBounds;
 	import me.feng3d.cameras.lenses.LensBase;
 	import me.feng3d.cameras.lenses.PerspectiveLens;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.partition.node.CameraNode;
 	import me.feng3d.core.partition.node.EntityNode;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.events.CameraEvent;
 	import me.feng3d.events.LensEvent;
 	import me.feng3d.library.assets.AssetType;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Plane3D;
 
 	/**
 	 * 摄像机

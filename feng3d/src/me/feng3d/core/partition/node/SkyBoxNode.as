@@ -1,8 +1,8 @@
 package me.feng3d.core.partition.node
 {
-	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.traverse.PartitionTraverser;
 	import me.feng3d.entities.SkyBox;
+	import me.feng3d.mathlib.Plane3D;
 
 	/**
 	 * 天空盒分区节点

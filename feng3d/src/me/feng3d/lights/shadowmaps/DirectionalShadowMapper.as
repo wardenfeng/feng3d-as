@@ -7,11 +7,11 @@ package me.feng3d.lights.shadowmaps
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.cameras.lenses.FreeMatrixLens;
 	import me.feng3d.containers.Scene3D;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.core.render.DepthRenderer;
 	import me.feng3d.lights.DirectionalLight;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Plane3D;
 	import me.feng3d.textures.TextureProxyBase;
 
 	use namespace arcane;

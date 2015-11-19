@@ -7,8 +7,8 @@ package me.feng3d.bounds
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.core.math.Plane3D;
-	import me.feng3d.core.math.Ray3D;
+	import me.feng3d.mathlib.Plane3D;
+	import me.feng3d.mathlib.Ray3D;
 	import me.feng3d.primitives.WireframePrimitiveBase;
 
 	/**

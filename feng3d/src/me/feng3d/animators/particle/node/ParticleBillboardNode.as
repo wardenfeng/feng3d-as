@@ -9,9 +9,9 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
-	import me.feng3d.core.math.MathConsts;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.mathlib.MathConsts;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	use namespace arcane;
 

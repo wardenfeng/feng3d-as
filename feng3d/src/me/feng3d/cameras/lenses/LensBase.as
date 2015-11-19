@@ -8,8 +8,8 @@ package me.feng3d.cameras.lenses
 	import me.feng.error.AbstractMethodError;
 	import me.feng.events.FEventDispatcher;
 	import me.feng3d.arcane;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.events.LensEvent;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 摄像机镜头

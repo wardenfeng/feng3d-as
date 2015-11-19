@@ -1,7 +1,7 @@
 package me.feng3d.core.pick
 {
 	import me.feng3d.core.base.submesh.SubMesh;
-	import me.feng3d.core.math.Ray3D;
+	import me.feng3d.mathlib.Ray3D;
 
 	/**
 	 *

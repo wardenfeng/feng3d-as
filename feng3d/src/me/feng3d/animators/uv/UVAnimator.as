@@ -10,8 +10,8 @@ package me.feng3d.animators.uv
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.core.math.MathConsts;
 	import me.feng3d.materials.TextureMaterial;
+	import me.feng3d.mathlib.MathConsts;
 
 	use namespace arcane;
 

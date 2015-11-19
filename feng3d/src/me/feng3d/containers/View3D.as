@@ -10,13 +10,13 @@ package me.feng3d.containers
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.manager.Mouse3DManager;
 	import me.feng3d.core.manager.Stage3DManager;
-	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.core.render.DefaultRenderer;
 	import me.feng3d.core.render.RendererBase;
 	import me.feng3d.core.traverse.EntityCollector;
 	import me.feng3d.events.CameraEvent;
 	import me.feng3d.events.Stage3DEvent;
+	import me.feng3d.mathlib.Ray3D;
 
 	use namespace arcane;
 

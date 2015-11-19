@@ -1,12 +1,12 @@
 package me.feng3d.parsers
 {
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.arcane;
+	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.animators.skeleton.data.JointPose;
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
-	import me.feng3d.animators.skeleton.SkeletonClipNode;
-	import me.feng3d.core.math.Quaternion;
+	import me.feng3d.mathlib.Quaternion;
 
 	use namespace arcane;
 
@@ -56,7 +56,7 @@ package me.feng3d.parsers
 		/** 层级关系 */
 		private var _hierarchy:Vector.<HierarchyData>;
 		/** 包围盒数据 */
-		private var _bounds:Vector.<BoundsData>;//貌似解析完毕后就没有使用过该数据
+		private var _bounds:Vector.<BoundsData>; //貌似解析完毕后就没有使用过该数据
 		/** 帧数据 */
 		private var _frameData:Vector.<FrameData>;
 		/** 基础帧数据 */
@@ -655,7 +655,7 @@ package me.feng3d.parsers
 
 import flash.geom.Vector3D;
 
-import me.feng3d.core.math.Quaternion;
+import me.feng3d.mathlib.Quaternion;
 
 /**
  * 层级数据

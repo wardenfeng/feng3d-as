@@ -4,9 +4,9 @@ package me.feng3d.core.pick
 	import flash.geom.Vector3D;
 
 	import me.feng3d.core.base.renderable.IRenderable;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.entities.Entity;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Ray3D;
 
 	/**
 	 * 采集的碰撞数据

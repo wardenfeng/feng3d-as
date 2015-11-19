@@ -2,9 +2,9 @@ package me.feng3d.test
 {
 	import com.junkbyte.console.Cc;
 	import com.junkbyte.console.Console;
-	
+
 	import flash.net.FileReference;
-	
+
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.core.base.Object3D;
 	import me.feng3d.core.buffer.Context3DCache;
@@ -31,15 +31,15 @@ package me.feng3d.test
 				report("Not a ObjectContainer3D.", 10, true, console.panels.mainPanel.reportChannel);
 				return;
 			}
-			
+
 			var debugInfos:Array = Context3DBufferDebug.debug(context3DCache);
 			var debugInfoStr:String = JSON.stringify(debugInfos);
 			trace(debugInfoStr);
-			
+
 			var file:FileReference = new FileReference();
 			file.save(debugInfoStr, "context3DBufferDebug.txt");
 		}
-		
+
 		private function mapCmd(param:String = "0"):void
 		{
 //			console.mapch(console.panels.mainPanel.reportChannel, console.cl.scope as ObjectContainer3D, int(param));

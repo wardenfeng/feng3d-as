@@ -3,7 +3,7 @@ package me.feng3d.core.pick
 	import flash.geom.Point;
 	import flash.geom.Vector3D;
 
-	import me.feng3d.core.math.Ray3D;
+	import me.feng3d.mathlib.Ray3D;
 
 	/**
 	 *

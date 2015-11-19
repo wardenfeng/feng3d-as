@@ -6,11 +6,11 @@ package me.feng3d.core.manager
 
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
-	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.core.pick.PickingCollisionVO;
 	import me.feng3d.core.pick.RaycastPicker;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.events.MouseEvent3D;
+	import me.feng3d.mathlib.Ray3D;
 
 	/**
 	 * 鼠标事件管理

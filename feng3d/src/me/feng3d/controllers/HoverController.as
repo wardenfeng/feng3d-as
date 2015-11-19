@@ -4,9 +4,9 @@ package me.feng3d.controllers
 
 	import me.feng3d.arcane;
 	import me.feng3d.containers.ObjectContainer3D;
-	import me.feng3d.core.math.MathConsts;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.entities.Entity;
+	import me.feng3d.mathlib.MathConsts;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	use namespace arcane;
 

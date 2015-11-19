@@ -4,9 +4,9 @@ package me.feng3d.core.base.data
 	import flash.geom.Vector3D;
 
 	import me.feng.core.NamedAssetBase;
-	import me.feng3d.core.math.MathConsts;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.mathlib.MathConsts;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 位移时抛出

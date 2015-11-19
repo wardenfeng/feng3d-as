@@ -16,8 +16,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
-	import me.feng3d.core.math.Quaternion;
 	import me.feng3d.events.AnimationStateEvent;
+	import me.feng3d.mathlib.Quaternion;
 
 	use namespace arcane;
 

@@ -11,12 +11,12 @@ package me.feng3d.entities
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
-	import me.feng3d.core.math.Matrix3DUtils;
-	import me.feng3d.core.math.Ray3D;
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.core.partition.node.EntityNode;
 	import me.feng3d.core.pick.IPickingCollider;
 	import me.feng3d.core.pick.PickingCollisionVO;
+	import me.feng3d.mathlib.Matrix3DUtils;
+	import me.feng3d.mathlib.Ray3D;
 
 	use namespace arcane;
 

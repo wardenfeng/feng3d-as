@@ -29,10 +29,10 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Fagal/bin/Fagal.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/FagalFeng3d/bin/FagalFeng3d.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/feng3d/bin/feng3d.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fagal/bin/fagal.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fagalFeng3d/bin/fagalFeng3d.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

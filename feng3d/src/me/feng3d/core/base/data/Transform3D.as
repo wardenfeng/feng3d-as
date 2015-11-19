@@ -3,8 +3,8 @@ package me.feng3d.core.base.data
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng3d.core.math.MathConsts;
-	import me.feng3d.core.math.Matrix3DUtils;
+	import me.feng3d.mathlib.MathConsts;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 3D元素状态变换<br/><br/>

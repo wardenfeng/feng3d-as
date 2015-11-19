@@ -1,8 +1,8 @@
 package me.feng3d.core.partition.node
 {
 	import me.feng3d.arcane;
-	import me.feng3d.core.math.Plane3D;
 	import me.feng3d.entities.Entity;
+	import me.feng3d.mathlib.Plane3D;
 
 	use namespace arcane;
 

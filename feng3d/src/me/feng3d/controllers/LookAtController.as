@@ -3,9 +3,9 @@ package me.feng3d.controllers
 	import flash.geom.Vector3D;
 
 	import me.feng3d.containers.ObjectContainer3D;
-	import me.feng3d.core.math.Matrix3DUtils;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 注视点控制器
