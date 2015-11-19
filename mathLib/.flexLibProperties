@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="me.feng3d.mathlib.MathConsts"/>
+    <classEntry path="me.feng3d.mathlib.Triangle3D"/>
+    <classEntry path="me.feng3d.mathlib.Ray3D"/>
+    <classEntry path="me.feng3d.mathlib.Matrix3DUtils"/>
+    <classEntry path="me.feng3d.mathlib.PlaneClassification"/>
+    <classEntry path="me.feng3d.mathlib.Line3D"/>
+    <classEntry path="me.feng3d.mathlib.Quaternion"/>
+    <classEntry path="me.feng3d.mathlib.Plane3D"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

@@ -1,0 +1,16 @@
+package me.feng3d.mathlib
+{
+	import flash.geom.Vector3D;
+
+	/**
+	 * 3D射线
+	 * @author feng 2013-6-13
+	 */
+	public class Ray3D extends Line3D
+	{
+		public function Ray3D(position:Vector3D = null, direction:Vector3D = null)
+		{
+			super(position, direction);
+		}
+	}
+}
