@@ -105,6 +105,8 @@ package
 			obj3d.rotationX = t * 0.6;
 			obj3d.rotationY = t * 0.7;
 			obj3d.rotationZ = t * 1.0;
+
+			_view.render();
 		}
 
 

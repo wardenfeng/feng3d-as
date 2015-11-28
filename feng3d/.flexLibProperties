@@ -199,11 +199,11 @@
     <classEntry path="me.feng3d.core.traverse.ShadowCasterCollector"/>
     <classEntry path="me.feng3d.passes.DepthMapPass"/>
     <classEntry path="me.feng3d.loaders.misc.AssetLoaderToken"/>
-    <classEntry path="me.feng3d.events.LoaderEvent"/>
     <classEntry path="me.feng3d.core.render.PlanarShadowRenderer"/>
     <classEntry path="me.feng3d.animators.skeleton.SkeletonClipState"/>
     <classEntry path="me.feng3d.materials.methods.EffectMethodBase"/>
     <classEntry path="me.feng3d.materials.methods.FogMethod"/>
+    <classEntry path="me.feng3d.debug.AwayStats"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

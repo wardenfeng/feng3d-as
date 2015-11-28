@@ -1,6 +1,7 @@
 package me.feng3d.core.manager
 {
 	import flash.display.Stage;
+	import flash.display3D.Context3DProfile;
 	import flash.utils.Dictionary;
 
 	import me.feng3d.arcane;
@@ -82,7 +83,7 @@ package me.feng3d.core.manager
 		 * @param profile The compatibility profile, an enumeration of Context3DProfile
 		 * @return The allocated stage3DProxy
 		 */
-		public function getFreeStage3DProxy(forceSoftware:Boolean = false, profile:String = "baseline"):Stage3DProxy
+		public function getFreeStage3DProxy(forceSoftware:Boolean = false, profile:String = Context3DProfile.STANDARD):Stage3DProxy
 		{
 			var i:uint;
 			var len:uint = _stageProxies.length;

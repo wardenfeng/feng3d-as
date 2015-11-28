@@ -11,7 +11,7 @@ package
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Mesh;
-	
+
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.textures.BitmapTexture;
 
@@ -76,7 +76,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.updateUVData( objParser.rawUvBuffer);
+			sub.updateUVData(objParser.rawUvBuffer);
 
 			head = new Mesh();
 			head.name = "head";
@@ -102,7 +102,7 @@ package
 			if (head)
 				head.rotationY++;
 
-
+			_view.render();
 		}
 	}
 }

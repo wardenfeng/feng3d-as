@@ -49,7 +49,7 @@ package
 	import flash.geom.Vector3D;
 	import flash.utils.getTimer;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import br.com.stimuli.loading.BulkLoader;
 

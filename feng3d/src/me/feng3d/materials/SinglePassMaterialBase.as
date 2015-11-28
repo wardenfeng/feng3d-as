@@ -6,6 +6,7 @@ package me.feng3d.materials
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.materials.methods.BasicAmbientMethod;
 	import me.feng3d.materials.methods.BasicDiffuseMethod;
+	import me.feng3d.materials.methods.BasicNormalMethod;
 	import me.feng3d.materials.methods.BasicSpecularMethod;
 	import me.feng3d.materials.methods.EffectMethodBase;
 	import me.feng3d.materials.methods.ShadowMapMethodBase;
@@ -33,6 +34,14 @@ package me.feng3d.materials
 		}
 
 		/**
+		 * The number of "effect" methods added to the material.
+		 */
+		public function get numMethods():int
+		{
+			return _screenPass.numMethods;
+		}
+
+		/**
 		 * @inheritDoc
 		 */
 		override public function set blendMode(value:String):void
@@ -47,6 +56,21 @@ package me.feng3d.materials
 		override public function get requiresBlending():Boolean
 		{
 			return super.requiresBlending || _alphaBlending;
+		}
+
+		/**
+		 * The minimum alpha value for which pixels should be drawn. This is used for transparency that is either
+		 * invisible or entirely opaque, often used with textures for foliage, etc.
+		 * Recommended values are 0 to disable alpha, or 0.5 to create smooth edges. Default value is 0 (disabled).
+		 */
+		public function get alphaThreshold():Number
+		{
+			return _screenPass.diffuseMethod.alphaThreshold;
+		}
+
+		public function set alphaThreshold(value:Number):void
+		{
+			_screenPass.diffuseMethod.alphaThreshold = value;
 		}
 
 		/**
@@ -128,6 +152,19 @@ package me.feng3d.materials
 		public function set diffuseMethod(value:BasicDiffuseMethod):void
 		{
 			_screenPass.diffuseMethod = value;
+		}
+
+		/**
+		 * The method used to generate the per-pixel normals. Defaults to BasicNormalMethod.
+		 */
+		public function get normalMethod():BasicNormalMethod
+		{
+			return _screenPass.normalMethod;
+		}
+
+		public function set normalMethod(value:BasicNormalMethod):void
+		{
+			_screenPass.normalMethod = value;
 		}
 
 		/**

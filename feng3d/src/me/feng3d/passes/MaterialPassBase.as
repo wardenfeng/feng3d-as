@@ -458,5 +458,15 @@ package me.feng3d.passes
 			_alphaPremultiplied = value;
 			invalidateShaderProgram();
 		}
+
+		/**
+		 * Cleans up any resources used by the current object.
+		 * @param deep Indicates whether other resources should be cleaned up, that could potentially be shared across different instances.
+		 */
+		public function dispose():void
+		{
+			if (_lightPicker)
+				_lightPicker.removeEventListener(Event.CHANGE, onLightsChange);
+		}
 	}
 }

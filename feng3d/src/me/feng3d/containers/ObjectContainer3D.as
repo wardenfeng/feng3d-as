@@ -70,6 +70,17 @@ package me.feng3d.containers
 		}
 
 		/**
+		 * 移除所有子对象
+		 */
+		public function removeAllChild():void
+		{
+			for (var i:int = _children.length - 1; i >= 0; i--)
+			{
+				removeChildAt(i);
+			}
+		}
+
+		/**
 		 * 内部移除子对象
 		 * @param childIndex	移除子对象所在索引
 		 * @param child			移除子对象
@@ -177,6 +188,142 @@ package me.feng3d.containers
 				if (!child._explicitPartition)
 					child.implicitPartition = value;
 			}
+		}
+
+		/**
+		 * The minimum extremum of the object along the X-axis.
+		 */
+		public function get minX():Number
+		{
+			var i:uint;
+			var len:uint = _children.length;
+			var min:Number = Number.POSITIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.minX + child.x;
+				if (m < min)
+					min = m;
+			}
+
+			return min;
+		}
+
+		/**
+		 * The minimum extremum of the object along the Y-axis.
+		 */
+		public function get minY():Number
+		{
+			var i:uint;
+			var len:uint = _children.length;
+			var min:Number = Number.POSITIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.minY + child.y;
+				if (m < min)
+					min = m;
+			}
+
+			return min;
+		}
+
+		/**
+		 * The minimum extremum of the object along the Z-axis.
+		 */
+		public function get minZ():Number
+		{
+			var i:uint;
+			var len:uint = _children.length;
+			var min:Number = Number.POSITIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.minZ + child.z;
+				if (m < min)
+					min = m;
+			}
+
+			return min;
+		}
+
+		/**
+		 * The maximum extremum of the object along the X-axis.
+		 */
+		public function get maxX():Number
+		{
+			// todo: this isn't right, doesn't take into account transforms
+			var i:uint;
+			var len:uint = _children.length;
+			var max:Number = Number.NEGATIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.maxX + child.x;
+				if (m > max)
+					max = m;
+			}
+
+			return max;
+		}
+
+		/**
+		 * The maximum extremum of the object along the Y-axis.
+		 */
+		public function get maxY():Number
+		{
+			var i:uint;
+			var len:uint = _children.length;
+			var max:Number = Number.NEGATIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.maxY + child.y;
+				if (m > max)
+					max = m;
+			}
+
+			return max;
+		}
+
+		/**
+		 * The maximum extremum of the object along the Z-axis.
+		 */
+		public function get maxZ():Number
+		{
+			var i:uint;
+			var len:uint = _children.length;
+			var max:Number = Number.NEGATIVE_INFINITY;
+			var m:Number;
+
+			while (i < len)
+			{
+				var child:ObjectContainer3D = _children[i++];
+				m = child.maxZ + child.z;
+				if (m > max)
+					max = m;
+			}
+
+			return max;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function dispose():void
+		{
+			if (parent)
+				parent.removeChild(this);
 		}
 
 		/**

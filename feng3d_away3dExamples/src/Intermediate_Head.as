@@ -53,7 +53,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;

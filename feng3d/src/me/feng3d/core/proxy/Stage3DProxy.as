@@ -3,6 +3,7 @@ package me.feng3d.core.proxy
 	import flash.display.Shape;
 	import flash.display.Stage3D;
 	import flash.display3D.Context3D;
+	import flash.display3D.Context3DProfile;
 	import flash.display3D.Context3DRenderMode;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -45,6 +46,7 @@ package me.feng3d.core.proxy
 		private var _viewportUpdated:Stage3DEvent;
 		private var _viewportDirty:Boolean;
 		private var _bufferClear:Boolean;
+		private var _color:uint;
 
 		/**
 		 * 创建一个3D舞台代理
@@ -66,6 +68,19 @@ package me.feng3d.core.proxy
 
 			_stage3D.addEventListener(Event.CONTEXT3D_CREATE, onContext3DUpdate, false, 1000, false);
 			requestContext(forceSoftware, profile);
+		}
+
+		/**
+		 * The background color of the Stage3D.
+		 */
+		public function get color():uint
+		{
+			return _color;
+		}
+
+		public function set color(color:uint):void
+		{
+			_color = color;
 		}
 
 		/**
@@ -168,7 +183,11 @@ package me.feng3d.core.proxy
 				_backBufferDirty = false;
 			}
 
-			_context3D.clear(0, 0, 0, 0);
+			_context3D.clear( //
+				((_color >> 16) & 0xff) / 255.0, //
+				((_color >> 8) & 0xff) / 255.0, //
+				(_color & 0xff) / 255.0, //
+				((_color >> 24) & 0xff) / 255.0);
 
 			_bufferClear = true;
 		}
@@ -441,7 +460,7 @@ package me.feng3d.core.proxy
 		/**
 		 * 请求3D环境
 		 */
-		private function requestContext(forceSoftware:Boolean = false, profile:String = "baseline"):void
+		private function requestContext(forceSoftware:Boolean = false, profile:String = Context3DProfile.STANDARD):void
 		{
 			// If forcing software, we can be certain that the
 			// returned Context3D will be running software mode.
@@ -458,7 +477,7 @@ package me.feng3d.core.proxy
 			{
 				try
 				{
-					_stage3D["requestContext3D"](renderMode, profile);
+					_stage3D.requestContext3D(renderMode, profile);
 				}
 				catch (error:Error)
 				{

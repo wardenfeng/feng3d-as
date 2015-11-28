@@ -11,7 +11,7 @@ package
 	import me.feng3d.core.pick.PickingColliderType;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.MouseEvent3D;
-	
+
 
 	import parser.ObjParser1;
 
@@ -56,7 +56,7 @@ package
 			sub.updateIndexData(objParser.rawIndexBuffer);
 			sub.numVertices = objParser.rawPositionsBuffer.length / 3;
 			sub.updateVertexPositionData(objParser.rawPositionsBuffer);
-			sub.updateUVData( objParser.rawUvBuffer);
+			sub.updateUVData(objParser.rawUvBuffer);
 
 			head = new Mesh();
 			head.name = "head";
@@ -86,6 +86,7 @@ package
 		protected function onEnterFrame(event:Event):void
 		{
 			head.rotationY = 0;
+			_view.render();
 		}
 
 		/**

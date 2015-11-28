@@ -76,6 +76,13 @@ package
 
 			Load.init();
 			loadConfig();
+
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+
+		protected function onEnterFrame(event:Event):void
+		{
+			view.render();
 		}
 
 		/** 添加场景元件 */

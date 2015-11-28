@@ -47,6 +47,14 @@ package me.feng3d.animators.base
 		}
 
 		/**
+		 * Returns a vector of animation state objects that make up the contents of the animation data set.
+		 */
+		public function get animations():Vector.<AnimationNodeBase>
+		{
+			return _animations;
+		}
+
+		/**
 		 * 添加动画
 		 * @param node 动画节点
 		 */

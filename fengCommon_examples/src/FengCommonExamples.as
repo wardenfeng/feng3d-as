@@ -1,6 +1,8 @@
 package
 {
+	import com.Tevoydes.TestObjectView;
 	import com.bit101.components.List;
+	import com.bit101.components.Style;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -41,6 +43,7 @@ package
 			FEventDispatcherTest, //
 			IFEventDispatcherTest, //
 			DescribeTypeTest, //
+			TestObjectView //
 			];
 		private var testInstanceList:Array = [];
 		private var index:int = 0;
@@ -54,6 +57,8 @@ package
 		private function init(event:Event = null):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+
+			initStyles();
 
 			logTf = new TextField();
 			logTf.x = 100;
@@ -95,6 +100,25 @@ package
 		{
 			trace("trace", arg.join(" "));
 			logTf && logTf.appendText(arg.join(" ") + "\n");
+		}
+
+		//	----------------------------------------------------------------
+		//	PRIVATE METHODS
+		//	----------------------------------------------------------------
+		private function initStyles():void
+		{
+			Style.setStyle(Style.DARK);
+
+			Style.embedFonts = false;
+			Style.fontSize = 12;
+
+			Style.PANEL = 0x333333;
+			Style.BACKGROUND = 0x333333;
+			Style.INPUT_TEXT = 0xEEEEEE;
+			Style.LABEL_TEXT = 0xEEEEEE;
+			Style.BUTTON_FACE = 0x555555;
+			Style.DROPSHADOW = 0x000000;
+			Style.LIST_ALTERNATE = 0x333333;
 		}
 	}
 }

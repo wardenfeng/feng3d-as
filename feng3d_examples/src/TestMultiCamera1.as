@@ -12,7 +12,6 @@ package
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
-	
 
 	import model3d.PhotoBox;
 
@@ -32,6 +31,7 @@ package
 		private var len:int = 100;
 
 		private var cameraObjData:String = "art/camera.obj";
+		private var view:View3D;
 
 		public function TestMultiCamera1()
 		{
@@ -44,7 +44,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 
-			var view:View3D = new View3D(scene3D);
+			view = new View3D(scene3D);
 			addChild(view);
 
 			camera = view.camera;
@@ -117,6 +117,8 @@ package
 			camera.x = len * Math.sin(angle / 180 * Math.PI);
 
 			camera.lookAt(new Vector3D());
+
+			view.render();
 		}
 	}
 }

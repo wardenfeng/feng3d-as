@@ -65,6 +65,8 @@ package
 		private function _onEnterFrame(e:Event):void
 		{
 			trident.rotationY++;
+
+			_view.render();
 		}
 	}
 }

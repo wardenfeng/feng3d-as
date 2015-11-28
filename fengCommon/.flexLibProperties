@@ -25,6 +25,7 @@
     <classEntry path="me.feng.task.type.TaskCollectionType"/>
     <classEntry path="me.feng.events.task.TaskModuleEventRegisterData"/>
     <classEntry path="me.feng.debug.assert"/>
+    <classEntry path="me.feng.utils.ArrayUtils"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

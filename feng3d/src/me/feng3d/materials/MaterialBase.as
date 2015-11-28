@@ -342,5 +342,20 @@ package me.feng3d.materials
 				invalidatePasses(null);
 			}
 		}
+
+		/**
+		 * Cleans up resources owned by the material, including passes. Textures are not owned by the material since they
+		 * could be used by other materials and will not be disposed.
+		 */
+		public function dispose():void
+		{
+			var i:uint;
+
+			for (i = 0; i < _numPasses; ++i)
+				_passes[i].dispose();
+
+			_depthPass.dispose();
+			_depthPass.removeEventListener(Event.CHANGE, onPassChange);
+		}
 	}
 }

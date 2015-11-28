@@ -53,7 +53,7 @@ package
 	import flash.geom.Vector3D;
 	import flash.utils.Timer;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import me.feng3d.animators.particle.ParticleAnimationSet;
 	import me.feng3d.animators.particle.ParticleAnimator;

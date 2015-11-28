@@ -57,7 +57,7 @@ package
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;

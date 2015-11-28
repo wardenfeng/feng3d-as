@@ -29,7 +29,7 @@ package me.feng3d.utils
 		{
 			Load.init();
 
-			var textureMaterial:TextureMaterial = new TextureMaterial();
+			var textureMaterial:TextureMaterial = new TextureMaterial(DefaultMaterialManager.getDefaultTexture());
 
 			var loadObj:LoadModuleEventData = new LoadModuleEventData();
 			loadObj.urls = [rootPath + url];

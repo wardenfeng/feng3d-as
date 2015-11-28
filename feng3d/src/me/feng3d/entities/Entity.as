@@ -98,6 +98,72 @@ package me.feng3d.entities
 		}
 
 		/**
+		 * @inheritDoc
+		 */
+		override public function get minX():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.min.x;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function get minY():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.min.y;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function get minZ():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.min.z;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function get maxX():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.max.x;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function get maxY():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.max.y;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function get maxZ():Number
+		{
+			if (_boundsInvalid)
+				updateBounds();
+
+			return _bounds.max.z;
+		}
+
+		/**
 		 * 边界
 		 */
 		public function get bounds():BoundingVolumeBase

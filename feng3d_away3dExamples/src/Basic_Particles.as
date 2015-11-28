@@ -52,7 +52,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import me.feng3d.animators.particle.ParticleAnimationSet;
 	import me.feng3d.animators.particle.ParticleAnimator;

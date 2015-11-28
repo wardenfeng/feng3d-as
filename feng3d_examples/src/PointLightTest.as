@@ -167,6 +167,8 @@ package
 
 			mainLight.x = Math.sin(getTimer() / 1000) * 400;
 			mainLight.z = Math.cos(getTimer() / 1000) * 400;
+
+			view.render();
 		}
 
 		/**

@@ -47,6 +47,14 @@ package me.feng3d.passes
 		}
 
 		/**
+		 * The number of "effect" methods added to the material.
+		 */
+		public function get numMethods():int
+		{
+			return _methodSetup.numMethods;
+		}
+
+		/**
 		 * @inheritDoc
 		 */
 		override protected function initBuffers():void

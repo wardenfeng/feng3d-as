@@ -1,4 +1,4 @@
-package away3d.debug
+package me.feng3d.debug
 {
 	import flash.display.BitmapData;
 	import flash.display.CapsStyle;

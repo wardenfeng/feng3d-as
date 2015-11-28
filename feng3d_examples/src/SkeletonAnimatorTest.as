@@ -3,6 +3,7 @@ package
 	import flash.display.BitmapData;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.geom.Vector3D;
 
 	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
@@ -82,6 +83,13 @@ package
 			_view.camera.lookAt(new Vector3D());
 
 			initObjects();
+
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+
+		protected function onEnterFrame(event:Event):void
+		{
+			_view.render();
 		}
 
 		/**

@@ -43,6 +43,24 @@ package me.feng3d.materials.methods
 		}
 
 		/**
+		 * The base shadow map method on which this method's shading is based.
+		 */
+		public function get baseMethod():SimpleShadowMapMethodBase
+		{
+			return _baseMethod;
+		}
+
+		public function set baseMethod(value:SimpleShadowMapMethodBase):void
+		{
+			if (_baseMethod == value)
+				return;
+			_baseMethod.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
+			_baseMethod = value;
+			_baseMethod.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated, false, 0, true);
+			invalidateShaderProgram();
+		}
+
+		/**
 		 * @inheritDoc
 		 */
 		override protected function initBuffers():void

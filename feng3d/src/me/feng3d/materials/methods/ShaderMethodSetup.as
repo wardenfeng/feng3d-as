@@ -36,6 +36,14 @@ package me.feng3d.materials.methods
 		}
 
 		/**
+		 * The number of "effect" methods added to the material.
+		 */
+		public function get numMethods():int
+		{
+			return methods.length;
+		}
+
+		/**
 		 * 漫反射函数
 		 */
 		public function get diffuseMethod():BasicDiffuseMethod

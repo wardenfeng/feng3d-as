@@ -74,6 +74,7 @@ package
 		protected function onEnterFrame(event:Event):void
 		{
 			container3D.rotationY++;
+			_view.render();
 		}
 	}
 }

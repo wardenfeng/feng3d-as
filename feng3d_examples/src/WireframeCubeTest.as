@@ -66,6 +66,8 @@ package
 		private function _onEnterFrame(e:Event):void
 		{
 			wireframeCube.rotationY++;
+
+			_view.render();
 		}
 	}
 }

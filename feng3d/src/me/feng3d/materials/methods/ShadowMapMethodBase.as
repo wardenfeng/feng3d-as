@@ -54,6 +54,19 @@ package me.feng3d.materials.methods
 		}
 
 		/**
+		 * The "transparency" of the shadows. This allows making shadows less strong.
+		 */
+		public function get alpha():Number
+		{
+			return _alpha;
+		}
+
+		public function set alpha(value:Number):void
+		{
+			_alpha = value;
+		}
+
+		/**
 		 * A small value to counter floating point precision errors when comparing values in the shadow map with the
 		 * calculated depth value. Increase this if shadow banding occurs, decrease it if the shadow seems to be too detached.
 		 */

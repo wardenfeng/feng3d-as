@@ -193,6 +193,8 @@ package
 			}
 
 			light1.direction = new Vector3D(Math.sin(getTimer() / 10000) * 1500, -1000, Math.cos(getTimer() / 10000) * 1500);
+
+			view.render();
 		}
 
 		/**

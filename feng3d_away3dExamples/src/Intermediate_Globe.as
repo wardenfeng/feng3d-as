@@ -60,7 +60,7 @@ package
 	import flash.text.TextFormat;
 	import flash.ui.Keyboard;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;

@@ -26,6 +26,22 @@ package me.feng3d.bounds
 		protected var _boundingRenderable:WireframePrimitiveBase;
 
 		/**
+		 * The maximum extreme of the bounds
+		 */
+		public function get max():Vector3D
+		{
+			return _max;
+		}
+
+		/**
+		 * The minimum extreme of the bounds
+		 */
+		public function get min():Vector3D
+		{
+			return _min;
+		}
+
+		/**
 		 * 创建包围盒
 		 */
 		public function BoundingVolumeBase()

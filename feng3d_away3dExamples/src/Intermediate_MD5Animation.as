@@ -54,7 +54,7 @@ package
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
 
-	import away3d.debug.AwayStats;
+	import me.feng3d.debug.AwayStats;
 
 	import br.com.stimuli.loading.BulkLoader;
 

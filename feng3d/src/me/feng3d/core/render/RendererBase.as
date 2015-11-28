@@ -37,6 +37,8 @@ package me.feng3d.core.render
 		protected var _textureRatioX:Number = 1;
 		protected var _textureRatioY:Number = 1;
 
+		protected var _shareContext:Boolean = false;
+
 		/**
 		 * 渲染编号
 		 */
@@ -116,6 +118,22 @@ package me.feng3d.core.render
 		}
 
 		/**
+		 * Defers control of Context3D clear() and present() calls to Stage3DProxy, enabling multiple Stage3D frameworks
+		 * to share the same Context3D object.
+		 *
+		 * @private
+		 */
+		arcane function get shareContext():Boolean
+		{
+			return _shareContext;
+		}
+
+		arcane function set shareContext(value:Boolean):void
+		{
+			_shareContext = value;
+		}
+
+		/**
 		 * 释放
 		 */
 		arcane function dispose():void
@@ -162,7 +180,8 @@ package me.feng3d.core.render
 			_renderIndex = 0;
 
 			//重置3D环境背景颜色
-			_context.clear(_backgroundR, _backgroundG, _backgroundB, _backgroundAlpha, 1, 0);
+			if ((target || !_shareContext))
+				_context.clear(_backgroundR, _backgroundG, _backgroundB, _backgroundAlpha, 1, 0);
 			_context.setDepthTest(false, Context3DCompareMode.ALWAYS);
 
 			//绘制

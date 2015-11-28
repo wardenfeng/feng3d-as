@@ -38,8 +38,11 @@ package me.feng3d.containers
 		private var _width:Number = 0;
 		private var _height:Number = 0;
 
-		/** 全局坐标脏标记 */
+		private var _localPos:Point = new Point();
+		private var _globalPos:Point = new Point();
 		private var _globalPosDirty:Boolean;
+
+		protected var _parentIsStage:Boolean;
 
 		private var _antiAlias:uint;
 
@@ -77,6 +80,8 @@ package me.feng3d.containers
 
 		protected var _aspectRatio:Number;
 
+		protected var _shareContext:Boolean = false;
+
 		/**
 		 * 创建一个3D视图
 		 * @param scene 				场景
@@ -103,9 +108,40 @@ package me.feng3d.containers
 			_mouse3DManager.enableMouseListeners(this);
 
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+			addEventListener(Event.ADDED, onAdded, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemoveFromeStage, false, 0, true);
 
 			_camera.partition = _scene.partition;
+		}
+
+		override public function set x(value:Number):void
+		{
+			if (x == value)
+				return;
+
+			_localPos.x = super.x = value;
+
+			_globalPos.x = parent ? parent.localToGlobal(_localPos).x : value;
+			_globalPosDirty = true;
+		}
+
+		override public function set y(value:Number):void
+		{
+			if (y == value)
+				return;
+
+			_localPos.y = super.y = value;
+
+			_globalPos.y = parent ? parent.localToGlobal(_localPos).y : value;
+			_globalPosDirty = true;
+		}
+
+		override public function set visible(value:Boolean):void
+		{
+			super.visible = value;
+
+			if (_stage3DProxy && !_shareContext)
+				_stage3DProxy.visible = value;
 		}
 
 		/**
@@ -162,9 +198,6 @@ package me.feng3d.containers
 		 */
 		private function onAddedToStage(event:Event):void
 		{
-			if (_addedToStage)
-				return;
-
 			_addedToStage = true;
 
 			if (!_stage3DProxy)
@@ -174,15 +207,25 @@ package me.feng3d.containers
 				_stage3DProxy.addEventListener(Stage3DEvent.CONTEXT3D_RECREATED, onContext3DRecreated);
 			}
 
-			_globalPosDirty = true;
-
-			_stage3DProxy.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			_stage3DProxy.visible = true;
 
 			if (_width == 0)
 				width = stage.stageWidth;
 
 			if (_height == 0)
 				height = stage.stageHeight;
+		}
+
+		/**
+		 * 添加事件
+		 * @param event
+		 */
+		private function onAdded(event:Event):void
+		{
+			_parentIsStage = (parent == stage);
+
+			_globalPos = parent.localToGlobal(_localPos);
+			_globalPosDirty = true;
 		}
 
 		/**
@@ -198,7 +241,7 @@ package me.feng3d.containers
 		 */
 		private function onRemoveFromeStage(event:Event):void
 		{
-			_stage3DProxy.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+			_stage3DProxy.visible = false;
 		}
 
 		/**
@@ -212,14 +255,6 @@ package me.feng3d.containers
 			_hitField.graphics.beginFill(0x000000);
 			_hitField.graphics.drawRect(0, 0, 100, 100);
 			addChild(_hitField);
-		}
-
-		/**
-		 * 处理进入帧事件
-		 */
-		private function onEnterFrame(e:Event):void
-		{
-			render();
 		}
 
 		/**
@@ -247,6 +282,16 @@ package me.feng3d.containers
 			if (_backBufferInvalid)
 				updateBackBuffer();
 
+			if (!_parentIsStage)
+			{
+				var globalPos:Point = parent.localToGlobal(_localPos);
+				if (_globalPos.x != globalPos.x || _globalPos.y != globalPos.y)
+				{
+					_globalPos = globalPos;
+					_globalPosDirty = true;
+				}
+			}
+
 			if (_globalPosDirty)
 				updateGlobalPos();
 
@@ -255,16 +300,23 @@ package me.feng3d.containers
 			//收集渲染实体
 			_scene.traversePartitions(_entityCollector);
 
+			_renderer.shareContext = _shareContext;
+
 			//渲染收集的实体对象
 			_renderer.render(stage3DProxy, _entityCollector);
 
 			//收集场景显示对象
 			_scene.collectMouseCollisionEntitys();
 
-			//获取鼠标射线
-			var mouseRay3D:Ray3D = getMouseRay3D();
-			//更新鼠标碰撞
-			_mouse3DManager.fireMouseEvents(mouseRay3D, _scene.mouseCollisionEntitys);
+			if (!_shareContext)
+			{
+				stage3DProxy.present();
+
+				//获取鼠标射线
+				var mouseRay3D:Ray3D = getMouseRay3D();
+				//更新鼠标碰撞
+				_mouse3DManager.fireMouseEvents(mouseRay3D, _scene.mouseCollisionEntitys);
+			}
 
 			// register that a view has been rendered
 			stage3DProxy.bufferClear = false;
@@ -296,14 +348,9 @@ package me.feng3d.containers
 		{
 			_stage3DProxy = value;
 
-			if (_stage3DProxy)
-			{
-				_stage3DProxy.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-			}
-
 			_stage3DProxy = stage3DProxy;
 
-			_stage3DProxy.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			_globalPosDirty = true;
 		}
 
 		/**
@@ -367,11 +414,29 @@ package me.feng3d.containers
 		}
 
 		/**
+		 * Defers control of Context3D clear() and present() calls to Stage3DProxy, enabling multiple Stage3D frameworks
+		 * to share the same Context3D object.
+		 */
+		public function get shareContext():Boolean
+		{
+			return _shareContext;
+		}
+
+		public function set shareContext(value:Boolean):void
+		{
+			if (_shareContext == value)
+				return;
+
+			_shareContext = value;
+			_globalPosDirty = true;
+		}
+
+		/**
 		 * 更新背景缓冲大小
 		 */
 		protected function updateBackBuffer():void
 		{
-			if (_stage3DProxy.context3D)
+			if (_stage3DProxy.context3D && !_shareContext)
 			{
 				if (_width && _height)
 				{
@@ -395,41 +460,16 @@ package me.feng3d.containers
 		}
 
 		/**
-		 * 设置X坐标
-		 */
-		override public function set x(value:Number):void
-		{
-			if (x == value)
-				return;
-			super.x = value;
-
-			_globalPosDirty = true;
-		}
-
-		/**
-		 * 设置y坐标
-		 */
-		override public function set y(value:Number):void
-		{
-			if (y == value)
-				return;
-			super.y = value;
-
-			_globalPosDirty = true;
-		}
-
-		/**
 		 * 更新全局坐标
 		 */
 		protected function updateGlobalPos():void
 		{
+			_globalPosDirty = false;
+
 			if (!_stage3DProxy)
 				return;
-
-			_stage3DProxy.x = x;
-			_stage3DProxy.y = y;
-
-			_globalPosDirty = false;
+			_stage3DProxy.x = _globalPos.x;
+			_stage3DProxy.y = _globalPos.y;
 		}
 
 		/**

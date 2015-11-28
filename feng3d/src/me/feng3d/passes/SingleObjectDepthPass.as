@@ -99,7 +99,7 @@ package me.feng3d.passes
 		/**
 		 * @inheritDoc
 		 */
-		public function dispose():void
+		override public function dispose():void
 		{
 			if (_textures)
 			{

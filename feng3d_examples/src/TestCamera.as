@@ -61,6 +61,8 @@ package
 		{
 			container3D.rotationY++;
 //			container3D.transform.appendRotation(1, Vector3D.Y_AXIS, container3D.transform.position);
+
+			_view.render();
 		}
 	}
 }

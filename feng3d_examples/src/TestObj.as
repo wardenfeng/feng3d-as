@@ -68,6 +68,8 @@ package
 		protected function onEnterFrame(event:Event):void
 		{
 			obj3d.rotationY++;
+
+			_view.render();
 		}
 
 

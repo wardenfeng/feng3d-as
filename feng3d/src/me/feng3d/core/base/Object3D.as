@@ -383,5 +383,12 @@ package me.feng3d.core.base
 
 			notifySceneTransformChange();
 		}
+
+		/**
+		 * Cleans up any resources used by the current object.
+		 */
+		public function dispose():void
+		{
+		}
 	}
 }
