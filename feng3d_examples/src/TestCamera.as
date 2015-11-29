@@ -44,7 +44,7 @@ package
 			_view.camera.y = 100;
 			_view.camera.lookAt(new Vector3D());
 
-			container3D = new PhotoBox();
+			container3D = new PhotoBox(rootPath);
 			_view.scene.addChild(container3D);
 
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);

@@ -46,7 +46,7 @@ package
 			_view.camera.y = 50;
 			_view.camera.lookAt(new Vector3D());
 
-			var textureMaterial:TextureMaterial = MaterialUtils.createTextureMaterial("img/photo.jpg");
+			var textureMaterial:TextureMaterial = MaterialUtils.createTextureMaterial(rootPath + "img/photo.jpg");
 
 			//setup the scene
 			mesh = new Mesh(new PlaneGeometry(), textureMaterial);

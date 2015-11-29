@@ -82,7 +82,7 @@ package
 
 		private function initObj():void
 		{
-			var photoBox:ObjectContainer3D = new PhotoBox(40, 4);
+			var photoBox:ObjectContainer3D = new PhotoBox(rootPath, 40, 4);
 			scene3D.addChild(photoBox);
 		}
 

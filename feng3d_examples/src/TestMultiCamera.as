@@ -59,7 +59,7 @@ package
 			view1.x = stage.stageWidth - view1.width;
 			view1.backgroundColor = 0x666666;
 
-			container3D = new PhotoBox();
+			container3D = new PhotoBox(rootPath);
 			_view.scene.addChild(container3D);
 
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
