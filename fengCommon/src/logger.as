@@ -9,6 +9,7 @@ package
 	 */
 	public function logger(... args):void
 	{
-		DebugCommon.loggerFunc.apply(null, args);
+		if (DebugCommon.loggerFunc)
+			DebugCommon.loggerFunc.apply(null, args);
 	}
 }

@@ -15,9 +15,6 @@ package me.feng3d.utils
 	 */
 	public class MaterialUtils
 	{
-		//资源根路径
-		public static var rootPath:String = "http://images.feng3d.me/feng3dDemo/assets/";
-
 		private static var dispatcher:GlobalDispatcher = GlobalDispatcher.instance;
 
 		/**
@@ -32,7 +29,7 @@ package me.feng3d.utils
 			var textureMaterial:TextureMaterial = new TextureMaterial(DefaultMaterialManager.getDefaultTexture());
 
 			var loadObj:LoadModuleEventData = new LoadModuleEventData();
-			loadObj.urls = [rootPath + url];
+			loadObj.urls = [url];
 			loadObj.addEventListener(LoadUrlEvent.LOAD_SINGLE_COMPLETE, onLoadSingleComplete);
 
 			loadObj.data = {textureMaterial: textureMaterial}
@@ -50,3 +47,5 @@ package me.feng3d.utils
 		}
 	}
 }
+
+
