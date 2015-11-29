@@ -1,4 +1,4 @@
-package geometry
+package
 {
 	import flash.display.Sprite;
 
@@ -10,9 +10,14 @@ package geometry
 	 * 测试Geometry事件冒泡
 	 * @author feng 2014-12-18
 	 */
-	public class GeometryEventTest extends Sprite
+	public class GeometryEventTest extends TestBase
 	{
 		public function GeometryEventTest()
+		{
+
+		}
+
+		public function init():void
 		{
 			var geom:Geometry = new Geometry();
 			var subGeom:SubGeometry = new SubGeometry();
@@ -21,7 +26,7 @@ package geometry
 			geom.addEventListener(GeometryEvent.SHAPE_CHANGE, onBoundsInvalid);
 			subGeom.addEventListener(GeometryEvent.SHAPE_CHANGE, onBoundsInvalid);
 
-			
+
 			subGeom.dispatchEvent(new GeometryEvent(GeometryEvent.SHAPE_CHANGE, null, true));
 		}
 

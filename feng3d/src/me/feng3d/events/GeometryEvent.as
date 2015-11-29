@@ -20,9 +20,9 @@ package me.feng3d.events
 
 		private var _subGeometry:SubGeometry;
 
-		public function GeometryEvent(type:String, subGeometry:SubGeometry = null, bubbles:Boolean = false)
+		public function GeometryEvent(type:String, subGeometry:SubGeometry = null, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
-			super(type, subGeometry, bubbles);
+			super(type, subGeometry, bubbles, cancelable);
 			_subGeometry = subGeometry;
 		}
 
