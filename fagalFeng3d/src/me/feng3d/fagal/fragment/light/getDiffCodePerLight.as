@@ -1,7 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
-
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -14,9 +14,10 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 
 		var diffuseColorFtReg:Register;
-		if (shaderParams.isFirstDiffLight)
+		if (lightShaderParams.isFirstDiffLight)
 		{
 			diffuseColorFtReg = _.totalDiffuseLightColor_ft_4;
 		}
@@ -31,7 +32,7 @@ package me.feng3d.fagal.fragment.light
 		_.max(diffuseColorFtReg.w, diffuseColorFtReg.x, _.commonsData_fc_vector.y);
 
 		//灯光衰减
-		if (shaderParams.useLightFallOff)
+		if (lightShaderParams.useLightFallOff)
 			_.mul(diffuseColorFtReg.w, diffuseColorFtReg.w, lightDirReg.w);
 
 		if (shaderParams.diffuseModulateMethod != null)
@@ -43,10 +44,10 @@ package me.feng3d.fagal.fragment.light
 		_.mul(diffuseColorFtReg, diffuseColorFtReg.w, diffuseColorReg);
 
 		//叠加灯光
-		if (!shaderParams.isFirstDiffLight)
+		if (!lightShaderParams.isFirstDiffLight)
 		{
 			_.add(_.totalDiffuseLightColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, diffuseColorFtReg);
 		}
-		shaderParams.isFirstDiffLight = false;
+		lightShaderParams.isFirstDiffLight = false;
 	}
 }

@@ -1,8 +1,8 @@
 package me.feng3d.fagal.vertex
 {
 	import me.feng3d.core.register.Register;
-	
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -13,9 +13,10 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
 
 		//阴影渲染需要 投影后的顶点坐标
-		if (shaderParams.needsProjection > 0)
+		if (shadowShaderParams.needsProjection > 0)
 		{
 			var vt5:Register = _.getFreeTemp("投影后顶点坐标");
 			_.m44(vt5, _.animatedPosition_vt_4, _.projection_vc_matrix);

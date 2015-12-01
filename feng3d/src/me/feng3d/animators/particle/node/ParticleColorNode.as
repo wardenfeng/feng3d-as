@@ -7,6 +7,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.animators.particle.data.ParticleProperties;
 	import me.feng3d.animators.particle.data.ParticlePropertiesMode;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
+	import me.feng3d.fagal.params.ParticleShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 
 	use namespace arcane;
@@ -169,10 +170,12 @@ package me.feng3d.animators.particle.node
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
+		override arcane function processAnimationSetting(shaderParams:ShaderParams):void
 		{
-			shaderParam.changeColor++;
-			shaderParam[name] = true;
+			var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+
+			particleShaderParams.changeColor++;
+			particleShaderParams[name] = true;
 		}
 	}
 }

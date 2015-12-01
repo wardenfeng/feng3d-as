@@ -5,6 +5,7 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.PointLight;
 	import me.feng3d.materials.methods.EffectMethodBase;
@@ -114,8 +115,9 @@ package me.feng3d.passes
 		{
 			if (_lightPicker)
 			{
-				shaderParams.numPointLights = _lightPicker.numPointLights;
-				shaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
+				var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+				lightShaderParams.numPointLights = _lightPicker.numPointLights;
+				lightShaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
 			}
 
 			var methods:Vector.<ShadingMethodBase> = _methodSetup.methods;

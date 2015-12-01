@@ -5,6 +5,7 @@ package me.feng3d.fagal.vertex.shadowMap
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.params.AnimationShaderParams;
 	import me.feng3d.fagal.vertex.V_BaseAnimation;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
@@ -53,7 +54,9 @@ package me.feng3d.fagal.vertex.shadowMap
 		 */
 		protected function buildAnimationAGAL():void
 		{
-			switch (shaderParams.animationType)
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+
+			switch (animationShaderParams.animationType)
 			{
 				case AnimationType.NONE:
 					V_BaseAnimation();

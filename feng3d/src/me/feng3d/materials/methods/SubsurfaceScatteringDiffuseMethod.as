@@ -10,6 +10,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.passes.MaterialPassBase;
@@ -273,6 +274,7 @@ package me.feng3d.materials.methods
 		{
 			var _:* = FagalRE.instance.space;
 			var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 
 			// only scatter first light
 			if (!_isFirstLight)
@@ -283,7 +285,7 @@ package me.feng3d.materials.methods
 
 			var depthReg:Register = _.SSD$depthMap_fs;
 
-			if (shaderParams.needsViewDir > 0)
+			if (lightShaderParams.needsViewDir > 0)
 				_targetReg = _.viewDir_ft_4;
 			else
 			{

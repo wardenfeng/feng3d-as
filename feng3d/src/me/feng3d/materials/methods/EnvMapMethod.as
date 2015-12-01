@@ -3,6 +3,8 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.CubeTextureBase;
 	import me.feng3d.textures.Texture2DBase;
@@ -112,12 +114,16 @@ package me.feng3d.materials.methods
 		 */
 		arcane override function activate(shaderParams:ShaderParams):void
 		{
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+			commonShaderParams.needsUV += _mask != null;
+
 			shaderParams.useEnvMapMethod++;
 
-			shaderParams.needsNormals++;
-			shaderParams.needsViewDir++;
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			lightShaderParams.needsNormals++;
+			lightShaderParams.needsViewDir++;
+
 //			shaderParams.needsView = true;
-			shaderParams.needsUV += _mask != null;
 			shaderParams.useEnvMapMask += _mask != null;
 
 			shaderParams.addSampleFlags(_.envMapcubeTexture_fs, _cubeTexture);

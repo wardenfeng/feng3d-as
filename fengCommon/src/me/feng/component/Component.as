@@ -9,13 +9,24 @@ package me.feng.component
 	 */
 	public class Component extends FEventDispatcher
 	{
+		private var _componentName:String;
+
+		/**
+		 * 创建组件
+		 * @param componentName		组件名称
+		 */
+		public function Component(componentName:String)
+		{
+			_componentName = componentName;
+		}
+
 		/**
 		 * 组件名称
 		 */
-		public var componentName:String;
-
-		public function Component()
+		public function get componentName():String
 		{
+			return _componentName;
 		}
+
 	}
 }

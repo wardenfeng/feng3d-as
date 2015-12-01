@@ -18,6 +18,8 @@ package me.feng3d.animators.particle
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.entities.Mesh;
+	import me.feng3d.fagal.params.AnimationShaderParams;
+	import me.feng3d.fagal.params.ParticleShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.passes.MaterialPassBase;
 
@@ -114,16 +116,19 @@ package me.feng3d.animators.particle
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			shaderParams.usesDuration = _usesDuration;
-			shaderParams.usesLooping = _usesLooping;
-			shaderParams.usesDelay = _usesDelay;
+			var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+
+			particleShaderParams.usesDuration = _usesDuration;
+			particleShaderParams.usesLooping = _usesLooping;
+			particleShaderParams.usesDelay = _usesDelay;
 
 			for (var i:int = 0; i < _effects.length; i++)
 			{
 				_effects[i].processAnimationSetting(shaderParams);
 			}
 
-			shaderParams.animationType = AnimationType.PARTICLE;
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			animationShaderParams.animationType = AnimationType.PARTICLE;
 		}
 
 		/**

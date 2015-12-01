@@ -2,6 +2,7 @@ package me.feng3d.materials.methods
 {
 	import me.feng3d.arcane;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
 	import me.feng3d.lights.LightBase;
@@ -85,8 +86,9 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.usingShadowMapMethod += 1;
-			shaderParams.needsShadowRegister++;
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			shadowShaderParams.usingShadowMapMethod += 1;
+			shadowShaderParams.needsShadowRegister++;
 		}
 	}
 }

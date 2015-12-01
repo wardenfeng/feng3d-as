@@ -5,6 +5,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
+	import me.feng3d.fagal.params.CommonShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -139,8 +140,9 @@ package me.feng3d.materials.methods
 		{
 			if (texture != null)
 			{
-				shaderParams.needsUV++;
-				shaderParams.useAmbientTexture++;
+				var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+				commonShaderParams.needsUV++;
+				commonShaderParams.useAmbientTexture++;
 				shaderParams.addSampleFlags(_.ambientTexture_fs, texture);
 			}
 		}

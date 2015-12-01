@@ -6,9 +6,10 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSArrayBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-	
 	import me.feng3d.fagal.fragment.F_TerrainDiffusePostLighting;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.TerrainShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
@@ -91,13 +92,16 @@ package me.feng3d.materials.methods
 			super.activate(shaderParams);
 
 			//通用渲染参数
-			shaderParams.splatNum = _numSplattingLayers;
+			var terrainShaderParams:TerrainShaderParams = shaderParams.getComponent(TerrainShaderParams.NAME);
+
+			terrainShaderParams.splatNum = _numSplattingLayers;
 
 			shaderParams.addSampleFlags(_.texture_fs, texture, Context3DWrapMode.REPEAT);
 			shaderParams.addSampleFlags(_.terrainTextures_fs_array, splats[0], Context3DWrapMode.REPEAT);
 			shaderParams.addSampleFlags(_.blendingtexture_fs, blendingTexture);
 
-			shaderParams.diffuseMethod = F_TerrainDiffusePostLighting;
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			lightShaderParams.diffuseMethod = F_TerrainDiffusePostLighting;
 		}
 	}
 }

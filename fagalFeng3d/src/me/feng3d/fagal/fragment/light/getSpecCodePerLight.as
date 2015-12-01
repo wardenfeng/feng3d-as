@@ -1,6 +1,7 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -12,6 +13,7 @@ package me.feng3d.fagal.fragment.light
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 
 		//镜面反射光原理
 		//法线 = 入射光方向 - 反射光方向------------1
@@ -20,7 +22,7 @@ package me.feng3d.fagal.fragment.light
 		//反射光方向与-视线方向 的 夹角余弦值 == 入射光方向+视线 与 法线 的 夹角余弦值  == 反射光强度
 
 		var singleSpecularColorReg:Register;
-		if (shaderParams.isFirstSpecLight)
+		if (lightShaderParams.isFirstSpecLight)
 		{
 			singleSpecularColorReg = _.totalSpecularLightColor_ft_4;
 		}
@@ -39,7 +41,7 @@ package me.feng3d.fagal.fragment.light
 			F_Blinn_Phong(singleSpecularColorReg, lightDirReg);
 		}
 
-		if (shaderParams.hasSpecularTexture > 0)
+		if (lightShaderParams.hasSpecularTexture > 0)
 		{
 			//使用光照图调整高光
 			//光泽纹理数据片段临时寄存器
@@ -52,7 +54,7 @@ package me.feng3d.fagal.fragment.light
 			_.pow(singleSpecularColorReg.w, singleSpecularColorReg.w, _.specularData_fc_vector.w);
 		}
 
-		if (shaderParams.useLightFallOff)
+		if (lightShaderParams.useLightFallOff)
 		{
 			//镜面反射光强度 = 镜面反射强度  nul (入射光强度？)
 			_.mul(singleSpecularColorReg.w, singleSpecularColorReg.w, lightDirReg.w);
@@ -67,11 +69,11 @@ package me.feng3d.fagal.fragment.light
 		_.mul(singleSpecularColorReg.xyz, specularColorReg, singleSpecularColorReg.w);
 
 		//叠加镜面反射光
-		if (!shaderParams.isFirstSpecLight)
+		if (!lightShaderParams.isFirstSpecLight)
 		{
 			//总镜面反射光 = 总镜面反射光 + 单个镜面反射光
 			_.add(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, singleSpecularColorReg);
 		}
-		shaderParams.isFirstSpecLight = false;
+		lightShaderParams.isFirstSpecLight = false;
 	}
 }

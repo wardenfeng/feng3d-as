@@ -9,6 +9,7 @@ package me.feng3d.animators.particle.node
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
+	import me.feng3d.fagal.params.ParticleShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.mathlib.MathConsts;
 	import me.feng3d.mathlib.Matrix3DUtils;
@@ -111,10 +112,12 @@ package me.feng3d.animators.particle.node
 		/**
 		 * @inheritDoc
 		 */
-		override arcane function processAnimationSetting(shaderParam:ShaderParams):void
+		override arcane function processAnimationSetting(shaderParams:ShaderParams):void
 		{
-			shaderParam.changePosition++;
-			shaderParam[name] = true;
+			var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+
+			particleShaderParams.changePosition++;
+			particleShaderParams[name] = true;
 		}
 	}
 }

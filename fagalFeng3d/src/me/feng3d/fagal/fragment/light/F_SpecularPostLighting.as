@@ -1,6 +1,8 @@
 package me.feng3d.fagal.fragment.light
 {
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -11,14 +13,16 @@ package me.feng3d.fagal.fragment.light
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
 
 		//把阴影值使用到镜面反射上
-		if (shaderParams.needsShadowRegister)
+		if (shadowShaderParams.needsShadowRegister)
 		{
 			_.mul(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, _.shadowValue_ft_4.w);
 		}
 
-		if (shaderParams.hasSpecularTexture > 0)
+		if (lightShaderParams.hasSpecularTexture > 0)
 		{
 			_.mul(_.totalSpecularLightColor_ft_4.xyz, _.totalSpecularLightColor_ft_4, _.specularTexData_ft_4.x);
 		}

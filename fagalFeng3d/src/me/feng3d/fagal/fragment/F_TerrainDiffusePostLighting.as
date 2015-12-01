@@ -1,8 +1,8 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
-	
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.TerrainShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -14,7 +14,9 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var numSplattingLayers:int = shaderParams.splatNum;
+		var terrainShaderParams:TerrainShaderParams = shaderParams.getComponent(TerrainShaderParams.NAME);
+
+		var numSplattingLayers:int = terrainShaderParams.splatNum;
 
 		//缩放后的uv坐标、uv计算后的颜色值
 		var uvTemp:Register = _.getFreeTemp("缩放后的uv坐标");
