@@ -29,12 +29,6 @@ package me.feng3d.fagal.params
 		public var repeatTextures:Boolean;
 
 		//-----------------------------------------
-		//		魔兽争霸地形渲染参数
-		//-----------------------------------------
-		/** 土壤纹理个数 */
-		public var splatNum_war3Terrain:int;
-
-		//-----------------------------------------
 		//		
 		//-----------------------------------------
 		/**  */
@@ -68,6 +62,7 @@ package me.feng3d.fagal.params
 			addComponent(new ShadowShaderParams());
 			addComponent(new FogShaderParams());
 			addComponent(new TerrainShaderParams());
+			addComponent(new WarcraftShaderParams());
 		}
 
 		/**
@@ -108,8 +103,6 @@ package me.feng3d.fagal.params
 		public function init():void
 		{
 			sampleFlagsDic = new Dictionary();
-
-			splatNum_war3Terrain = 0;
 		}
 
 		/**
