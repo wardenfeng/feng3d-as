@@ -35,10 +35,11 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="BaseShaderTest.as"/>
     <application path="Context3DCacheDebugText.as"/>
-    <application path="ColorMapTest.as"/>
+    <application path="TextureTest.as"/>
+    <application path="BaseShaderTest.as"/>
     <application path="ColorTerrainShaderTest.as"/>
+    <application path="ColorMapTest.as"/>
   </applications>
   <modules/>
   <workers/>
