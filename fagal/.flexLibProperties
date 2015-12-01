@@ -38,6 +38,7 @@
     <classEntry path="me.feng3d.fagal.params.FogShaderParams"/>
     <classEntry path="me.feng3d.fagal.params.TerrainShaderParams"/>
     <classEntry path="me.feng3d.fagal.params.WarcraftShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.EnvShaderParams"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

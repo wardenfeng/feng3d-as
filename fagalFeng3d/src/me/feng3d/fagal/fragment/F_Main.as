@@ -11,6 +11,7 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.fragment.shadowMap.F_ShadowMap;
 	import me.feng3d.fagal.methods.FagalMethod;
 	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.EnvShaderParams;
 	import me.feng3d.fagal.params.FogShaderParams;
 	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShadowShaderParams;
@@ -39,6 +40,7 @@ package me.feng3d.fagal.fragment
 			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
 			var fogShaderParams:FogShaderParams = shaderParams.getComponent(FogShaderParams.NAME);
+			var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
 
 			//计算法线
 			if (lightShaderParams.needsNormals > 0)
@@ -108,7 +110,7 @@ package me.feng3d.fagal.fragment
 			//调用粒子相关片段渲染程序
 			F_Particles();
 
-			if (shaderParams.useEnvMapMethod > 0)
+			if (envShaderParams.useEnvMapMethod > 0)
 			{
 				F_EnvMapMethod()
 			}

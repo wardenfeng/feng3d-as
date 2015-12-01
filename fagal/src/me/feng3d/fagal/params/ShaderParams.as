@@ -28,15 +28,6 @@ package me.feng3d.fagal.params
 		/** 是否重复纹理 */
 		public var repeatTextures:Boolean;
 
-		//-----------------------------------------
-		//		
-		//-----------------------------------------
-		/**  */
-		public var useEnvMapMethod:int;
-
-		/**  */
-		public var useEnvMapMask:int;
-
 		/**
 		 * 是否为入射光
 		 */
@@ -63,6 +54,7 @@ package me.feng3d.fagal.params
 			addComponent(new FogShaderParams());
 			addComponent(new TerrainShaderParams());
 			addComponent(new WarcraftShaderParams());
+			addComponent(new EnvShaderParams());
 		}
 
 		/**

@@ -4,6 +4,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.EnvShaderParams;
 	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.CubeTextureBase;
@@ -117,14 +118,15 @@ package me.feng3d.materials.methods
 			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
 			commonShaderParams.needsUV += _mask != null;
 
-			shaderParams.useEnvMapMethod++;
-
 			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 			lightShaderParams.needsNormals++;
 			lightShaderParams.needsViewDir++;
 
 //			shaderParams.needsView = true;
-			shaderParams.useEnvMapMask += _mask != null;
+
+			var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
+			envShaderParams.useEnvMapMethod++;
+			envShaderParams.useEnvMapMask += _mask != null;
 
 			shaderParams.addSampleFlags(_.envMapcubeTexture_fs, _cubeTexture);
 			shaderParams.addSampleFlags(_.envMapMaskTexture_fs, _mask);
