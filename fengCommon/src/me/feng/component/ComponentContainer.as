@@ -11,7 +11,7 @@ package me.feng.component
 		/**
 		 * 组件列表
 		 */
-		protected var components:Vector.<Component>;
+		protected var components:Array;	//我并不喜欢使用vector，这使得我不得不去处理越界的问题，繁琐！此处重新修改为Array！
 
 		/**
 		 * 创建一个组件容器
@@ -19,7 +19,7 @@ package me.feng.component
 		public function ComponentContainer(componentName:String)
 		{
 			super(componentName);
-			components = new Vector.<Component>();
+			components = [];
 		}
 
 		/**
@@ -101,3 +101,5 @@ package me.feng.component
 		}
 	}
 }
+
+

@@ -2,6 +2,7 @@ package me.feng3d.fagal.params
 {
 	import flash.utils.Dictionary;
 
+	import me.feng.component.Component;
 	import me.feng.component.ComponentContainer;
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.TextureUtils;
@@ -55,6 +56,39 @@ package me.feng3d.fagal.params
 			addComponent(new TerrainShaderParams());
 			addComponent(new WarcraftShaderParams());
 			addComponent(new EnvShaderParams());
+		}
+
+		/**
+		 * 根据类定义获取组件
+		 * @param cls
+		 * @return
+		 */
+		public function getComponentByClass(cls:Class):*
+		{
+			var component:Component = findComponentByClass(cls)[0];
+
+			if (component == null)
+			{
+				component = new cls();
+				addComponent(component);
+			}
+
+			return component;
+		}
+
+		/**
+		 * 根据类定义查找组件
+		 * @param cls		类定义
+		 * @return			返回与给出类定义一致的组件
+		 */
+		private function findComponentByClass(cls:Class):Array
+		{
+			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
+			{
+				return item is cls;
+			});
+
+			return filterResult;
 		}
 
 		/**
@@ -142,3 +176,5 @@ package me.feng3d.fagal.params
 
 	}
 }
+
+
