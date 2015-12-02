@@ -10,6 +10,11 @@ package me.feng3d.fagal.fragment
 	import me.feng3d.fagal.fragment.particle.F_Particles;
 	import me.feng3d.fagal.fragment.shadowMap.F_ShadowMap;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.EnvShaderParams;
+	import me.feng3d.fagal.params.FogShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 
 	/**
 	 * 片段渲染程序主入口
@@ -31,11 +36,16 @@ package me.feng3d.fagal.fragment
 		override public function runFunc():void
 		{
 			shaderParams.preRunParams();
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			var fogShaderParams:FogShaderParams = shaderParams.getComponent(FogShaderParams.NAME);
+			var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
 
 			//计算法线
-			if (shaderParams.needsNormals > 0)
+			if (lightShaderParams.needsNormals > 0)
 			{
-				if (shaderParams.hasNormalTexture)
+				if (lightShaderParams.hasNormalTexture)
 				{
 					F_TangentNormalMap();
 				}
@@ -46,45 +56,45 @@ package me.feng3d.fagal.fragment
 			}
 
 			//光泽图采样
-			if (shaderParams.hasSpecularTexture > 0)
+			if (lightShaderParams.hasSpecularTexture > 0)
 			{
 				F_SpecularSample();
 			}
 
 			//计算视线
-			if (shaderParams.needsViewDir > 0)
+			if (lightShaderParams.needsViewDir > 0)
 			{
 				F_ViewDir();
 			}
 
 			//处理方向灯光
-			if (shaderParams.numDirectionalLights > 0)
+			if (lightShaderParams.numDirectionalLights > 0)
 			{
 				F_DirectionalLight();
 			}
 
 			//处理点灯光
-			if (shaderParams.numPointLights > 0)
+			if (lightShaderParams.numPointLights > 0)
 			{
 				F_PointLight();
 			}
 
 			//计算环境光
-			if (shaderParams.numLights > 0)
+			if (lightShaderParams.numLights > 0)
 			{
 				F_Ambient();
 			}
 
 			//渲染阴影
-			if (shaderParams.usingShadowMapMethod > 0)
+			if (shadowShaderParams.usingShadowMapMethod > 0)
 			{
 				F_ShadowMap();
 			}
 
 			//计算漫反射
-			if (shaderParams.usingDiffuseMethod)
+			if (commonShaderParams.usingDiffuseMethod)
 			{
-				shaderParams.diffuseMethod();
+				lightShaderParams.diffuseMethod();
 			}
 
 			if (shaderParams.alphaPremultiplied)
@@ -92,7 +102,7 @@ package me.feng3d.fagal.fragment
 				F_AlphaPremultiplied();
 			}
 
-			if (shaderParams.numLights > 0 && shaderParams.usingSpecularMethod > 0)
+			if (lightShaderParams.numLights > 0 && lightShaderParams.usingSpecularMethod > 0)
 			{
 				F_SpecularPostLighting();
 			}
@@ -100,12 +110,12 @@ package me.feng3d.fagal.fragment
 			//调用粒子相关片段渲染程序
 			F_Particles();
 
-			if (shaderParams.useEnvMapMethod > 0)
+			if (envShaderParams.useEnvMapMethod > 0)
 			{
 				F_EnvMapMethod()
 			}
 
-			if (shaderParams.useFog > 0)
+			if (fogShaderParams.useFog > 0)
 			{
 				F_Fog();
 			}

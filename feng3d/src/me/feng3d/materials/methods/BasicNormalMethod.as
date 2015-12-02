@@ -2,6 +2,7 @@ package me.feng3d.materials.methods
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -80,7 +81,9 @@ package me.feng3d.materials.methods
 
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.hasNormalTexture = _texture != null;
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+
+			lightShaderParams.hasNormalTexture = _texture != null;
 			shaderParams.addSampleFlags(_.normalTexture_fs, _texture);
 		}
 	}

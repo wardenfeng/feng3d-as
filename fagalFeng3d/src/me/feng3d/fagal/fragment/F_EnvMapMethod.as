@@ -1,6 +1,7 @@
 package me.feng3d.fagal.fragment
 {
 	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.EnvShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -12,6 +13,7 @@ package me.feng3d.fagal.fragment
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
 
 		var dataRegister:Register = _.envMapData_fc_vector;
 		var temp:Register = _.getFreeTemp("");
@@ -33,7 +35,7 @@ package me.feng3d.fagal.fragment
 		_.kil(temp2.w); // used for real time reflection mapping - if alpha is not 1 (mock texture) kil output
 		_.sub(temp, temp, targetReg);
 
-		if (shaderParams.useEnvMapMask)
+		if (envShaderParams.useEnvMapMask)
 		{
 			_.tex(temp2, _.uv_v, _.envMapMaskTexture_fs);
 			_.mul(temp, temp2, temp);

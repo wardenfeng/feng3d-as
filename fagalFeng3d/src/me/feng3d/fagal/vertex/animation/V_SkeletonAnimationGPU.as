@@ -1,7 +1,7 @@
 package me.feng3d.fagal.vertex.animation
 {
 	import me.feng3d.core.register.Register;
-	
+	import me.feng3d.fagal.params.AnimationShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -14,12 +14,13 @@ package me.feng3d.fagal.vertex.animation
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
 
 		//
 		var vt1:Register = _.getFreeTemp();
 		var vt2:Register = _.getFreeTemp();
 
-		_.globalmatrices_vc_vector.regLen = shaderParams.numJoints * 3;
+		_.globalmatrices_vc_vector.regLen = animationShaderParams.numJoints * 3;
 
 		_.comment("计算该顶点坐标通关该关节得到的x值-----------1");
 		_.dp4(vt1.x, _.position_va_3, _.globalmatrices_vc_vector.getReg1(_.jointindex_va_x.x));

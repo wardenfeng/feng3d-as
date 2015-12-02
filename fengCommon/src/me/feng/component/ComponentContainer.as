@@ -16,8 +16,9 @@ package me.feng.component
 		/**
 		 * 创建一个组件容器
 		 */
-		public function ComponentContainer()
+		public function ComponentContainer(componentName:String)
 		{
+			super(componentName);
 			components = new Vector.<Component>();
 		}
 

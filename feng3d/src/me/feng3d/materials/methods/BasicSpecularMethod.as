@@ -4,6 +4,8 @@ package me.feng3d.materials.methods
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.fagal.fragment.light.SpecularModelType;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -130,15 +132,18 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
-			shaderParams.needsViewDir += shaderParams.numLights > 0 ? 1 : 0;
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
 
-			shaderParams.usingSpecularMethod += 1;
+			lightShaderParams.needsNormals += lightShaderParams.numLights > 0 ? 1 : 0;
+			lightShaderParams.needsViewDir += lightShaderParams.numLights > 0 ? 1 : 0;
+			lightShaderParams.usingSpecularMethod += 1;
 
 			if (texture != null)
 			{
-				shaderParams.needsUV++
-				shaderParams.hasSpecularTexture++;
+				lightShaderParams.hasSpecularTexture++;
+
+				var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+				commonShaderParams.needsUV++
 				shaderParams.addSampleFlags(_.specularTexture_fs, texture);
 			}
 

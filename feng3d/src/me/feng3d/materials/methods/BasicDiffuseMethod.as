@@ -3,8 +3,9 @@ package me.feng3d.materials.methods
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
-
 	import me.feng3d.fagal.fragment.light.F_DiffusePostLighting;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.textures.Texture2DBase;
 
@@ -159,23 +160,23 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			shaderParams.needsNormals += shaderParams.numLights > 0 ? 1 : 0;
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
 
 			if (texture != null)
 			{
-				shaderParams.needsUV++;
-				shaderParams.hasDiffuseTexture++;
+				commonShaderParams.needsUV++;
+				commonShaderParams.hasDiffuseTexture++;
 				shaderParams.addSampleFlags(_.texture_fs, texture);
 			}
 
-			shaderParams.usingDiffuseMethod += 1;
-
-			shaderParams.alphaThreshold = _alphaThreshold;
-
-			shaderParams.diffuseMethod = F_DiffusePostLighting;
+			commonShaderParams.usingDiffuseMethod += 1;
+			commonShaderParams.alphaThreshold = _alphaThreshold;
 
 			shaderParams.diffuseModulateMethod = _modulateMethod;
 
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			lightShaderParams.needsNormals += lightShaderParams.numLights > 0 ? 1 : 0;
+			lightShaderParams.diffuseMethod = F_DiffusePostLighting;
 		}
 
 		/**

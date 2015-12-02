@@ -4,6 +4,10 @@ package me.feng3d.fagal.vertex
 
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.params.AnimationShaderParams;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationCPU;
 	import me.feng3d.fagal.vertex.animation.V_SkeletonAnimationGPU;
 	import me.feng3d.fagal.vertex.animation.V_SpriteSheetAnimation;
@@ -35,29 +39,33 @@ package me.feng3d.fagal.vertex
 		override public function runFunc():void
 		{
 			var _:* = FagalRE.instance.space;
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
 
 			buildPositionAnimationAGAL();
 
 			//计算世界顶点坐标
-			if (shaderParams.needWorldPosition)
+			if (lightShaderParams.needWorldPosition)
 				V_WorldPosition();
 
 			//输出世界坐标到片段寄存器
-			if (shaderParams.usesGlobalPosFragment)
+			if (lightShaderParams.usesGlobalPosFragment)
 				V_WorldPositionOut();
 
 			//计算投影坐标
 			V_BaseOut();
 
 			//输出数据到片段寄存器
-			if (shaderParams.needsUV > 0)
+			if (commonShaderParams.needsUV > 0)
 			{
 				//
-				if (shaderParams.useUVAnimation > 0)
+				if (animationShaderParams.useUVAnimation > 0)
 				{
 					V_UVAnimation(_.uv_va_2, _.uv_v);
 				}
-				else if (shaderParams.useSpriteSheetAnimation > 0)
+				else if (animationShaderParams.useSpriteSheetAnimation > 0)
 				{
 					V_SpriteSheetAnimation(_.uv_va_2, _.uv_v);
 				}
@@ -68,9 +76,9 @@ package me.feng3d.fagal.vertex
 			}
 
 			//处理法线相关数据
-			if (shaderParams.needsNormals > 0)
+			if (lightShaderParams.needsNormals > 0)
 			{
-				if (shaderParams.hasNormalTexture)
+				if (lightShaderParams.hasNormalTexture)
 				{
 					V_TangentNormalMap();
 				}
@@ -81,13 +89,13 @@ package me.feng3d.fagal.vertex
 			}
 
 			//计算视线方向
-			if (shaderParams.needsViewDir > 0)
+			if (lightShaderParams.needsViewDir > 0)
 			{
 				V_ViewDir();
 			}
 
 			//计算阴影相关数据
-			if (shaderParams.usingShadowMapMethod > 0)
+			if (shadowShaderParams.usingShadowMapMethod > 0)
 			{
 				V_ShadowMap();
 			}
@@ -98,7 +106,9 @@ package me.feng3d.fagal.vertex
 		 */
 		protected function buildPositionAnimationAGAL():void
 		{
-			switch (shaderParams.animationType)
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+
+			switch (animationShaderParams.animationType)
 			{
 				case AnimationType.NONE:
 					V_BaseAnimation();

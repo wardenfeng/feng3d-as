@@ -1,6 +1,8 @@
 package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -13,7 +15,10 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var numDirectionalLights:int = shaderParams.numDirectionalLights;
+		var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+
+		var numDirectionalLights:int = lightShaderParams.numDirectionalLights;
 
 		//遍历处理每个方向光
 		for (var i:uint = 0; i < numDirectionalLights; ++i)
@@ -26,12 +31,12 @@ package me.feng3d.fagal.fragment.light
 			var specularColorReg:Register = _.dirLightSpecular_fc_vector.getReg(i);
 
 			//处理每个光的漫反射
-			if (shaderParams.usingDiffuseMethod > 0)
+			if (commonShaderParams.usingDiffuseMethod > 0)
 			{
 				getDiffCodePerLight(lightDirReg, diffuseColorReg);
 			}
 			//处理每个光的镜面反射
-			if (shaderParams.usingSpecularMethod > 0)
+			if (lightShaderParams.usingSpecularMethod > 0)
 			{
 				getSpecCodePerLight(lightDirReg, specularColorReg);
 			}

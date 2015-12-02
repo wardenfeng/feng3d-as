@@ -2,6 +2,7 @@ package me.feng3d.fagal.fragment.light
 {
 
 	import me.feng3d.core.register.Register;
+	import me.feng3d.fagal.params.CommonShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -14,8 +15,9 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
 
-		if (shaderParams.useAmbientTexture > 0)
+		if (commonShaderParams.useAmbientTexture > 0)
 		{
 			var mAmbient_ft:Register = _.getFreeTemp("环境颜色值临时变量");
 			_.tex(mAmbient_ft, _.uv_v, _.ambientTexture_fs);

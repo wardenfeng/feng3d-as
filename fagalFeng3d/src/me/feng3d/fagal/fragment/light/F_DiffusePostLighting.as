@@ -2,7 +2,10 @@ package me.feng3d.fagal.fragment.light
 {
 	import me.feng3d.fagal.fragment.F_DiffuseColor;
 	import me.feng3d.fagal.fragment.F_DiffuseTexure;
+	import me.feng3d.fagal.params.CommonShaderParams;
+	import me.feng3d.fagal.params.LightShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -12,16 +15,21 @@ package me.feng3d.fagal.fragment.light
 	public function F_DiffusePostLighting():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
+		var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+
+
 		var _:* = FagalRE.instance.space;
 
 		//把阴影使用到漫反射光上
-		if (shaderParams.numLights > 0 && shaderParams.needsShadowRegister > 0)
+		if (lightShaderParams.numLights > 0 && shadowShaderParams.needsShadowRegister > 0)
 		{
 			_.mul(_.totalDiffuseLightColor_ft_4.xyz, _.totalDiffuseLightColor_ft_4, _.shadowValue_ft_4.w);
 		}
 
 		//获取漫反射灯光
-		if (shaderParams.hasDiffuseTexture > 0)
+		if (commonShaderParams.hasDiffuseTexture > 0)
 		{
 			F_DiffuseTexure();
 		}
@@ -30,7 +38,7 @@ package me.feng3d.fagal.fragment.light
 			F_DiffuseColor();
 		}
 
-		if (shaderParams.numLights == 0)
+		if (lightShaderParams.numLights == 0)
 		{
 			_.mov(_.finalColor_ft_4, _.mDiff_ft);
 			return;
@@ -39,7 +47,7 @@ package me.feng3d.fagal.fragment.light
 		//控制在0到1之间
 		_.sat(_.totalDiffuseLightColor_ft_4, _.totalDiffuseLightColor_ft_4);
 
-		if (shaderParams.useAmbientTexture > 0)
+		if (commonShaderParams.useAmbientTexture > 0)
 		{
 			_.mul(_.mDiff_ft.xyz, _.mDiff_ft, _.totalDiffuseLightColor_ft_4); //
 			_.mul(_.totalDiffuseLightColor_ft_4.xyz, _.finalColor_ft_4, _.totalDiffuseLightColor_ft_4); //

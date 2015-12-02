@@ -4,6 +4,7 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.AnimationSetBase;
+	import me.feng3d.fagal.params.AnimationShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.passes.MaterialPassBase;
 
@@ -41,13 +42,15 @@ package me.feng3d.animators.skeleton
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			shaderParams.numJoints = _numJoints;
-			shaderParams.jointsPerVertex = _jointsPerVertex;
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+
+			animationShaderParams.numJoints = _numJoints;
+			animationShaderParams.jointsPerVertex = _jointsPerVertex;
 
 			if (usesCPU)
-				shaderParams.animationType = AnimationType.SKELETON_CPU;
+				animationShaderParams.animationType = AnimationType.SKELETON_CPU;
 			else
-				shaderParams.animationType = AnimationType.SKELETON_GPU;
+				animationShaderParams.animationType = AnimationType.SKELETON_GPU;
 		}
 
 		/**

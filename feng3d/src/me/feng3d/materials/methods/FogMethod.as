@@ -2,7 +2,9 @@ package me.feng3d.materials.methods
 {
 	import me.feng3d.arcane;
 	import me.feng3d.core.buffer.context3d.FCVectorBuffer;
+	import me.feng3d.fagal.params.FogShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagal.params.ShadowShaderParams;
 
 	use namespace arcane;
 
@@ -116,8 +118,11 @@ package me.feng3d.materials.methods
 			fogCommonData[0] = _minDistance;
 			fogCommonData[1] = 1 / (_maxDistance - _minDistance);
 
-			shaderParams.useFog++;
-			shaderParams.needsProjection++;
+			var fogShaderParams:FogShaderParams = shaderParams.getComponent(FogShaderParams.NAME);
+			fogShaderParams.useFog++;
+
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			shadowShaderParams.needsProjection++;
 		}
 
 	}

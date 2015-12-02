@@ -4,6 +4,7 @@ package me.feng3d.animators.vertex
 	import me.feng3d.animators.AnimationType;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.AnimationSetBase;
+	import me.feng3d.fagal.params.AnimationShaderParams;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.passes.MaterialPassBase;
 
@@ -40,10 +41,11 @@ package me.feng3d.animators.vertex
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
 			if (usesCPU)
-				shaderParams.animationType = AnimationType.VERTEX_CPU;
+				animationShaderParams.animationType = AnimationType.VERTEX_CPU;
 			else
-				shaderParams.animationType = AnimationType.VERTEX_GPU;
+				animationShaderParams.animationType = AnimationType.VERTEX_GPU;
 		}
 	}
 }
