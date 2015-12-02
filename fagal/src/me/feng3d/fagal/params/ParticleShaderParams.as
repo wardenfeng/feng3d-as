@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class ParticleShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "ParticleShaderParams";
-
 		//-----------------------------------------
 		//		粒子渲染参数
 		//-----------------------------------------
@@ -44,7 +39,7 @@ package me.feng3d.fagal.params
 		 */
 		public function ParticleShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

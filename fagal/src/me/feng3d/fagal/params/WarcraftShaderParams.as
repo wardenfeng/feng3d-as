@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class WarcraftShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "WarcraftShaderParams";
-
 		//-----------------------------------------
 		//		魔兽争霸地形渲染参数
 		//-----------------------------------------
@@ -25,7 +20,7 @@ package me.feng3d.fagal.params
 		 */
 		public function WarcraftShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

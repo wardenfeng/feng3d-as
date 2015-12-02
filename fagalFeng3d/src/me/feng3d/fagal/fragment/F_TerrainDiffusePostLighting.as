@@ -14,7 +14,7 @@ package me.feng3d.fagal.fragment
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var terrainShaderParams:TerrainShaderParams = shaderParams.getComponent(TerrainShaderParams.NAME);
+		var terrainShaderParams:TerrainShaderParams = shaderParams.getComponentByClass(TerrainShaderParams);
 
 		var numSplattingLayers:int = terrainShaderParams.splatNum;
 

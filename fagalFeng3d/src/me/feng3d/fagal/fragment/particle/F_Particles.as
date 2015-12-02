@@ -11,7 +11,7 @@ package me.feng3d.fagal.fragment.particle
 	public function F_Particles():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+		var particleShaderParams:ParticleShaderParams = shaderParams.getComponentByClass(ParticleShaderParams);
 
 		/** 粒子渲染参数 */
 		if (particleShaderParams.ParticleColorGlobal)

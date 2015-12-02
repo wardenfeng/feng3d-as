@@ -13,11 +13,6 @@ package me.feng3d.fagal.params
 	 */
 	public class ShaderParams extends ComponentContainer
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "ShaderParams";
-
 		/** 取样标记字典 */
 		private var sampleFlagsDic:Dictionary;
 
@@ -45,7 +40,7 @@ package me.feng3d.fagal.params
 		 */
 		public function ShaderParams()
 		{
-			super(NAME);
+			super();
 			addComponent(new CommonShaderParams());
 			addComponent(new AnimationShaderParams());
 			addComponent(new LightShaderParams());
@@ -64,7 +59,7 @@ package me.feng3d.fagal.params
 		{
 			init();
 
-			for each (var shaderParam:Object in components)
+			for each (var shaderParam:Object in children)
 			{
 				if (shaderParam.hasOwnProperty("init"))
 				{
@@ -80,7 +75,7 @@ package me.feng3d.fagal.params
 		{
 			preRun();
 
-			for each (var shaderParam:Object in components)
+			for each (var shaderParam:Object in children)
 			{
 				if (shaderParam.hasOwnProperty("preRun"))
 				{
@@ -142,3 +137,5 @@ package me.feng3d.fagal.params
 
 	}
 }
+
+

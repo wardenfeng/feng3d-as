@@ -8,11 +8,6 @@ package me.feng3d.fagal.params
 	 */
 	public class CommonShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "CommonShaderParams";
-
 		//-----------------------------------------
 		//		通用渲染参数
 		//-----------------------------------------
@@ -34,7 +29,7 @@ package me.feng3d.fagal.params
 		 */
 		public function CommonShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

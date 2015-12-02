@@ -274,7 +274,7 @@ package me.feng3d.materials.methods
 		{
 			var _:* = FagalRE.instance.space;
 			var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 
 			// only scatter first light
 			if (!_isFirstLight)

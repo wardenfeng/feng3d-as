@@ -212,5 +212,15 @@ package me.feng.utils
 			var index:int = BASETYPES.indexOf(type);
 			return index != -1;
 		}
+
+		/**
+		 * 获取对象默认名称
+		 * @param obj				对象
+		 * @return					对象默认名称
+		 */
+		public static function getDefaultName(obj:Object):String
+		{
+			return getQualifiedClassName(obj).split("::").pop();
+		}
 	}
 }

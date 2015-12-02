@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class ShadowShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "ShadowShaderParams";
-
 		//-----------------------------------------
 		//		阴影渲染参数
 		//-----------------------------------------
@@ -48,7 +43,7 @@ package me.feng3d.fagal.params
 		 */
 		public function ShadowShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

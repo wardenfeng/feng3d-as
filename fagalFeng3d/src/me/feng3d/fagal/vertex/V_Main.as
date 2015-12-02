@@ -39,10 +39,10 @@ package me.feng3d.fagal.vertex
 		override public function runFunc():void
 		{
 			var _:* = FagalRE.instance.space;
-			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
-			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
 
 			buildPositionAnimationAGAL();
 
@@ -106,7 +106,7 @@ package me.feng3d.fagal.vertex
 		 */
 		protected function buildPositionAnimationAGAL():void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
 
 			switch (animationShaderParams.animationType)
 			{

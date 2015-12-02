@@ -13,7 +13,7 @@ package me.feng3d.fagal.fragment
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+		var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
 
 		_.tex(_.mDiff_ft, _.uv_v, _.texture_fs);
 

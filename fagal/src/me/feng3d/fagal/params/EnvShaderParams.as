@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class EnvShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "ShaderParams";
-
 		//-----------------------------------------
 		//		
 		//-----------------------------------------
@@ -25,7 +20,7 @@ package me.feng3d.fagal.params
 
 		public function EnvShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 	}
 }

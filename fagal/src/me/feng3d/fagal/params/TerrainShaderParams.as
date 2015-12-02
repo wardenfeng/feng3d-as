@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class TerrainShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "TerrainShaderParams";
-
 		//-----------------------------------------
 		//		地形渲染参数
 		//-----------------------------------------
@@ -25,7 +20,7 @@ package me.feng3d.fagal.params
 		 */
 		public function TerrainShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

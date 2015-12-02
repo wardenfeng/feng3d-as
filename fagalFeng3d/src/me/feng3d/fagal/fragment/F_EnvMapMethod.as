@@ -13,7 +13,7 @@ package me.feng3d.fagal.fragment
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
+		var envShaderParams:EnvShaderParams = shaderParams.getComponentByClass(EnvShaderParams);
 
 		var dataRegister:Register = _.envMapData_fc_vector;
 		var temp:Register = _.getFreeTemp("");

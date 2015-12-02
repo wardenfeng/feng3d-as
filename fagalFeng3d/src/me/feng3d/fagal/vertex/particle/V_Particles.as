@@ -13,7 +13,7 @@ package me.feng3d.fagal.vertex.particle
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+		var particleShaderParams:ParticleShaderParams = shaderParams.getComponentByClass(ParticleShaderParams);
 
 		//初始化
 		if (particleShaderParams.changePosition > 0)
