@@ -160,7 +160,7 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
 
 			if (texture != null)
 			{
@@ -174,7 +174,7 @@ package me.feng3d.materials.methods
 
 			shaderParams.diffuseModulateMethod = _modulateMethod;
 
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 			lightShaderParams.needsNormals += lightShaderParams.numLights > 0 ? 1 : 0;
 			lightShaderParams.diffuseMethod = F_DiffusePostLighting;
 		}

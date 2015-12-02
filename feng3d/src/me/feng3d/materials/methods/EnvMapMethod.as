@@ -115,16 +115,16 @@ package me.feng3d.materials.methods
 		 */
 		arcane override function activate(shaderParams:ShaderParams):void
 		{
-			var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+			var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
 			commonShaderParams.needsUV += _mask != null;
 
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 			lightShaderParams.needsNormals++;
 			lightShaderParams.needsViewDir++;
 
 //			shaderParams.needsView = true;
 
-			var envShaderParams:EnvShaderParams = shaderParams.getComponent(EnvShaderParams.NAME);
+			var envShaderParams:EnvShaderParams = shaderParams.getComponentByClass(EnvShaderParams);
 			envShaderParams.useEnvMapMethod++;
 			envShaderParams.useEnvMapMask += _mask != null;
 

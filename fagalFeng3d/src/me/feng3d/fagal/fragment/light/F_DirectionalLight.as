@@ -15,8 +15,8 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
-		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+		var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
+		var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 
 		var numDirectionalLights:int = lightShaderParams.numDirectionalLights;
 

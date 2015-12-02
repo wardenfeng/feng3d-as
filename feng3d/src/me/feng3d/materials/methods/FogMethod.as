@@ -118,10 +118,10 @@ package me.feng3d.materials.methods
 			fogCommonData[0] = _minDistance;
 			fogCommonData[1] = 1 / (_maxDistance - _minDistance);
 
-			var fogShaderParams:FogShaderParams = shaderParams.getComponent(FogShaderParams.NAME);
+			var fogShaderParams:FogShaderParams = shaderParams.getComponentByClass(FogShaderParams);
 			fogShaderParams.useFog++;
 
-			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
 			shadowShaderParams.needsProjection++;
 		}
 

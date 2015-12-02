@@ -13,7 +13,7 @@ package me.feng3d.fagal.vertex
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
 
 		//阴影渲染需要 投影后的顶点坐标
 		if (shadowShaderParams.needsProjection > 0)

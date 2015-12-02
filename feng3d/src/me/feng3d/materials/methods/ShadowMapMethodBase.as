@@ -86,7 +86,7 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponent(ShadowShaderParams.NAME);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
 			shadowShaderParams.usingShadowMapMethod += 1;
 			shadowShaderParams.needsShadowRegister++;
 		}

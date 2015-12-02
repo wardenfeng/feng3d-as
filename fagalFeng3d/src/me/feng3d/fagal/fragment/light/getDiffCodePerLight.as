@@ -14,7 +14,7 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+		var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 
 		var diffuseColorFtReg:Register;
 		if (lightShaderParams.isFirstDiffLight)

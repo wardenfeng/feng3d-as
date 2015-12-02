@@ -1,8 +1,7 @@
 package me.feng.core
 {
-	import flash.utils.getQualifiedClassName;
-
 	import me.feng.events.FEventDispatcher;
+	import me.feng.utils.ClassUtils;
 
 	/**
 	 * 拥有名字的对象
@@ -27,7 +26,7 @@ package me.feng.core
 		{
 			if (!_name)
 			{
-				_name = getQualifiedClassName(this).split("::").pop() + createNamedId();
+				_name = ClassUtils.getDefaultName(this) + createNamedId();
 			}
 			return _name;
 		}

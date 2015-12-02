@@ -116,7 +116,7 @@ package me.feng3d.animators.particle
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var particleShaderParams:ParticleShaderParams = shaderParams.getComponent(ParticleShaderParams.NAME);
+			var particleShaderParams:ParticleShaderParams = shaderParams.getComponentByClass(ParticleShaderParams);
 
 			particleShaderParams.usesDuration = _usesDuration;
 			particleShaderParams.usesLooping = _usesLooping;
@@ -127,7 +127,7 @@ package me.feng3d.animators.particle
 				_effects[i].processAnimationSetting(shaderParams);
 			}
 
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
 			animationShaderParams.animationType = AnimationType.PARTICLE;
 		}
 

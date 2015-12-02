@@ -92,7 +92,7 @@ package me.feng3d.materials.methods
 			super.activate(shaderParams);
 
 			//通用渲染参数
-			var terrainShaderParams:TerrainShaderParams = shaderParams.getComponent(TerrainShaderParams.NAME);
+			var terrainShaderParams:TerrainShaderParams = shaderParams.getComponentByClass(TerrainShaderParams);
 
 			terrainShaderParams.splatNum = _numSplattingLayers;
 
@@ -100,7 +100,7 @@ package me.feng3d.materials.methods
 			shaderParams.addSampleFlags(_.terrainTextures_fs_array, splats[0], Context3DWrapMode.REPEAT);
 			shaderParams.addSampleFlags(_.blendingtexture_fs, blendingTexture);
 
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 			lightShaderParams.diffuseMethod = F_TerrainDiffusePostLighting;
 		}
 	}

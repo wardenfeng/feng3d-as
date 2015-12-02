@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	 */
 	public class LightShaderParams extends Component
 	{
-		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "LightShaderParams";
-
 		//-----------------------------------------
 		//		灯光渲染参数
 		//-----------------------------------------
@@ -64,7 +59,7 @@ package me.feng3d.fagal.params
 		 */
 		public function LightShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**

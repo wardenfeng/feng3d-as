@@ -25,7 +25,7 @@ package me.feng3d.animators.uv
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
 			animationShaderParams.useUVAnimation++;
 		}
 	}

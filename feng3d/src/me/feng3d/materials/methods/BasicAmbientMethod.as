@@ -140,7 +140,7 @@ package me.feng3d.materials.methods
 		{
 			if (texture != null)
 			{
-				var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+				var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
 				commonShaderParams.needsUV++;
 				commonShaderParams.useAmbientTexture++;
 				shaderParams.addSampleFlags(_.ambientTexture_fs, texture);

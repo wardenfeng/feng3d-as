@@ -109,7 +109,7 @@ package me.feng3d.passes
 		{
 			super.activate(camera, target);
 
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 			lightShaderParams.useLightFallOff = _enableLightFallOff;
 
 			_methodSetup.activate(shaderParams);

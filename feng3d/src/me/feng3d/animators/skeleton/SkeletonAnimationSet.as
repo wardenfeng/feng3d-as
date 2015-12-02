@@ -42,7 +42,7 @@ package me.feng3d.animators.skeleton
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
 
 			animationShaderParams.numJoints = _numJoints;
 			animationShaderParams.jointsPerVertex = _jointsPerVertex;

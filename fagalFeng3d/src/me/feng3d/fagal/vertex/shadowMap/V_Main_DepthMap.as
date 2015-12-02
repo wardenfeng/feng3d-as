@@ -54,7 +54,7 @@ package me.feng3d.fagal.vertex.shadowMap
 		 */
 		protected function buildAnimationAGAL():void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponent(AnimationShaderParams.NAME);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
 
 			switch (animationShaderParams.animationType)
 			{

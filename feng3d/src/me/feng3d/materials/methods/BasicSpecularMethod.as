@@ -132,7 +132,7 @@ package me.feng3d.materials.methods
 		 */
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 
 			lightShaderParams.needsNormals += lightShaderParams.numLights > 0 ? 1 : 0;
 			lightShaderParams.needsViewDir += lightShaderParams.numLights > 0 ? 1 : 0;
@@ -142,7 +142,7 @@ package me.feng3d.materials.methods
 			{
 				lightShaderParams.hasSpecularTexture++;
 
-				var commonShaderParams:CommonShaderParams = shaderParams.getComponent(CommonShaderParams.NAME);
+				var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
 				commonShaderParams.needsUV++
 				shaderParams.addSampleFlags(_.specularTexture_fs, texture);
 			}

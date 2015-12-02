@@ -13,7 +13,7 @@ package me.feng3d.fagal.fragment.light
 	{
 		var _:* = FagalRE.instance.space;
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var lightShaderParams:LightShaderParams = shaderParams.getComponent(LightShaderParams.NAME);
+		var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
 
 		//镜面反射光原理
 		//法线 = 入射光方向 - 反射光方向------------1

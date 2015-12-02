@@ -9,11 +9,6 @@ package me.feng3d.fagal.params
 	public class FogShaderParams extends Component
 	{
 		/**
-		 * 组件名称
-		 */
-		public static const NAME:String = "FogShaderParams";
-
-		/**
 		 * 是否渲染雾
 		 */
 		public var useFog:int;
@@ -23,7 +18,7 @@ package me.feng3d.fagal.params
 		 */
 		public function FogShaderParams()
 		{
-			super(NAME);
+			super();
 		}
 
 		/**
