@@ -1,5 +1,7 @@
 package me.feng.component
 {
+	import avmplus.getQualifiedClassName;
+
 	import me.feng.component.event.ComponentEvent;
 	import me.feng.component.event.vo.AddedComponentEventVO;
 	import me.feng.debug.assert;
@@ -67,10 +69,11 @@ package me.feng.component
 		public function addComponentAt(com:Component, index:int):void
 		{
 			assert(com != this, "子项与父项不能相同");
-			assert(index >= 0, "给出索引超出范围");
+			assert(index >= 0 && index <= numComponents, "给出索引超出范围");
 
 			if (hasComponent(com))
 			{
+				index = Math.min(index, components.length - 1);
 				setComponentIndex(com, index)
 				return;
 			}
@@ -180,7 +183,9 @@ package me.feng.component
 		{
 			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
 			{
-				return item is cls;
+				var className1:String = getQualifiedClassName(item);
+				var className2:String = getQualifiedClassName(cls);
+				return className1 == className2;
 			});
 
 			return filterResult;
