@@ -52,7 +52,7 @@ package me.feng.component
 
 			if (hasComponent(com))
 			{
-				setComponentIndex(com, components.length);
+				setComponentIndex(com, components.length - 1);
 				return;
 			}
 
@@ -67,7 +67,7 @@ package me.feng.component
 		public function addComponentAt(com:Component, index:int):void
 		{
 			assert(com != this, "子项与父项不能相同");
-			assert(index >= 0 && index < numComponents, "给出索引超出范围");
+			assert(index >= 0, "给出索引超出范围");
 
 			if (hasComponent(com))
 			{
