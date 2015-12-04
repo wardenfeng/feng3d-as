@@ -138,6 +138,7 @@ package me.feng.component
 
 		/**
 		 * 根据组件名称获取组件
+		 * <p>注意：此处比较的是componentName而非name</p>
 		 * @param componentName		组件名称
 		 * @return 					获取到的组件
 		 */
@@ -148,7 +149,8 @@ package me.feng.component
 		}
 
 		/**
-		 * 获取与给出名称相同的所有组件
+		 * 获取与给出组件名称相同的所有组件
+		 * <p>注意：此处比较的是componentName而非name</p>
 		 * @param componentName		组件名称
 		 * @return 					获取到的组件
 		 */
@@ -156,7 +158,7 @@ package me.feng.component
 		{
 			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
 			{
-				return item.name == componentName;
+				return item.componentName == componentName;
 			});
 
 			return filterResult;
