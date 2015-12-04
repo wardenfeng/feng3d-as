@@ -137,6 +137,17 @@ package me.feng.component
 		}
 
 		/**
+		 * 获取指定位置索引的子组件
+		 * @param index			位置索引
+		 * @return				子组件
+		 */
+		public function getComponentAt(index:uint):*
+		{
+			assert(index < numComponents, "给出索引超出范围");
+			return components[index];
+		}
+
+		/**
 		 * 根据组件名称获取组件
 		 * <p>注意：此处比较的是componentName而非name</p>
 		 * @param componentName		组件名称
