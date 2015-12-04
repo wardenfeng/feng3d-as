@@ -25,7 +25,7 @@ package me.feng.component
 		/**
 		 * 组件列表
 		 */
-		protected const children:Array = []; //我并不喜欢使用vector，这使得我不得不去处理越界的问题，繁琐！此处重新修改为Array！
+		protected const components:Array = []; //我并不喜欢使用vector，这使得我不得不去处理越界的问题，繁琐！此处重新修改为Array！
 
 		/**
 		 * 创建一个组件容器
@@ -36,15 +36,34 @@ package me.feng.component
 		}
 
 		/**
+		 * 子组件个数
+		 */
+		public function get numComponents():int
+		{
+			return components.length;
+		}
+
+		/**
 		 * 添加组件
 		 * @param com 被添加组件
 		 */
 		public function addComponent(com:Component):void
 		{
-			if (indexOf(com) == -1)
+			if (getComponentIndex(com) == -1)
 			{
-				children.push(com);
+				components.push(com);
 			}
+			dispatchChildrenEvent(new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com)));
+		}
+
+		/**
+		 * 添加组件到指定位置
+		 * @param com			被添加的组件
+		 * @param index			插入的位置
+		 */
+		public function addComponentAt(com:Component, index:int):void
+		{
+			components.splice(index, 0, com);
 			dispatchChildrenEvent(new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com)));
 		}
 
@@ -55,7 +74,7 @@ package me.feng.component
 		 */
 		public function getComponent(componentName:String):*
 		{
-			for each (var com:Component in children)
+			for each (var com:Component in components)
 			{
 				if (com.componentName == componentName)
 				{
@@ -71,21 +90,21 @@ package me.feng.component
 		 */
 		public function removeComponent(com:Component):void
 		{
-			var index:int = indexOf(com);
+			var index:int = getComponentIndex(com);
 			if (index != -1)
 			{
-				children.splice(index, 1);
+				components.splice(index, 1);
 			}
 		}
 
 		/**
-		 * 使用 strict equality (===) 运算符搜索数组中的项，并返回项的索引位置。
-		 * @param com	查找的组件
-		 * @return		数组项的索引位置（从 0 开始）。如果未找到 searchElement 参数，则返回值为 -1。
+		 * 获取组件在容器的索引位置
+		 * @param com			查询的组件
+		 * @return				组件在容器的索引位置
 		 */
-		public function indexOf(com:Component):int
+		public function getComponentIndex(com:Component):int
 		{
-			var index:int = children.indexOf(com);
+			var index:int = components.indexOf(com);
 			return index;
 		}
 
@@ -96,7 +115,7 @@ package me.feng.component
 		 */
 		public function hasComponent(com:Component):Boolean
 		{
-			return indexOf(com) != -1;
+			return getComponentIndex(com) != -1;
 		}
 
 		/**
@@ -124,7 +143,7 @@ package me.feng.component
 		 */
 		private function findComponentByClass(cls:Class):Array
 		{
-			var filterResult:Array = children.filter(function(item:Component, ... args):Boolean
+			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
 			{
 				return item is cls;
 			});
@@ -139,7 +158,7 @@ package me.feng.component
 		 */
 		private function dispatchChildrenEvent(event:FEvent):void
 		{
-			children.forEach(function(item:Component, ... args):void
+			components.forEach(function(item:Component, ... args):void
 			{
 				item.dispatchEvent(event);
 			});
@@ -153,7 +172,7 @@ package me.feng.component
 		override public function dispatchEvent(event:Event):Boolean
 		{
 			//派发事件给所有组件
-			for each (var com:Component in children)
+			for each (var com:Component in components)
 			{
 				com.dispatchEvent(event);
 			}

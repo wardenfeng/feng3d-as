@@ -59,7 +59,7 @@ package me.feng3d.fagal.params
 		{
 			init();
 
-			for each (var shaderParam:Object in children)
+			for each (var shaderParam:Object in components)
 			{
 				if (shaderParam.hasOwnProperty("init"))
 				{
@@ -75,7 +75,7 @@ package me.feng3d.fagal.params
 		{
 			preRun();
 
-			for each (var shaderParam:Object in children)
+			for each (var shaderParam:Object in components)
 			{
 				if (shaderParam.hasOwnProperty("preRun"))
 				{
