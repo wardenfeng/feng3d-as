@@ -110,7 +110,7 @@ package me.feng.component
 		 */
 		public function getComponentIndex(com:Component):int
 		{
-			assert(hasComponent(com), "组件不在容器中");
+			assert(components.indexOf(com) != -1, "组件不在容器中");
 
 			var index:int = components.indexOf(com);
 			return index;
@@ -198,7 +198,7 @@ package me.feng.component
 		 */
 		public function hasComponent(com:Component):Boolean
 		{
-			return getComponentIndex(com) != -1;
+			return components.indexOf(com) != -1;
 		}
 
 		/**
