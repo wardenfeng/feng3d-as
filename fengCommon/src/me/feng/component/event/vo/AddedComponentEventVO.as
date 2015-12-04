@@ -5,7 +5,7 @@ package me.feng.component.event.vo
 
 	/**
 	 * 添加组件事件数据
-	 * @author warden_feng 2015-12-2
+	 * @author feng 2015-12-2
 	 */
 	public class AddedComponentEventVO
 	{

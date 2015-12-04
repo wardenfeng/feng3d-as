@@ -6,7 +6,7 @@ package
 
 	/**
 	 * 组件接口
-	 * @author warden_feng 2015-12-2
+	 * @author feng 2015-12-2
 	 */
 	public interface IComponent extends IEventDispatcher
 	{

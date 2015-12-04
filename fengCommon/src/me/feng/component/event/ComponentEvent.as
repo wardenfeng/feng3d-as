@@ -4,7 +4,7 @@ package me.feng.component.event
 
 	/**
 	 * 组件事件
-	 * @author warden_feng 2015-12-2
+	 * @author feng 2015-12-2
 	 */
 	public class ComponentEvent extends FEvent
 	{

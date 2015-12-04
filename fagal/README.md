@@ -15,7 +15,7 @@ package fagal
  
 	/**
 	 * 基础顶点渲染
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	[AGALMethod(methodName = "V_baseShader", methodType = "vertex")]
 	public class V_baseShader extends AGALMethod
@@ -54,7 +54,7 @@ package fagal
  
 	/**
 	 * 基础片段渲染
-	 * @author warden_feng 2014-10-24
+	 * @author feng 2014-10-24
 	 */
 	[AGALMethod(methodName = "F_baseShader", methodType = "fragment")]
 	public class F_baseShader extends AGALMethod

@@ -4,7 +4,7 @@ package me.feng3d.fagal.params
 
 	/**
 	 * 雾渲染参数
-	 * @author warden_feng 2015-12-1
+	 * @author feng 2015-12-1
 	 */
 	public class FogShaderParams extends Component
 	{

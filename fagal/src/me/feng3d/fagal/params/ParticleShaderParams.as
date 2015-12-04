@@ -5,7 +5,7 @@ package me.feng3d.fagal.params
 
 	/**
 	 * 粒子渲染参数
-	 * @author warden_feng 2015-12-1
+	 * @author feng 2015-12-1
 	 */
 	public class ParticleShaderParams extends Component
 	{
