@@ -160,18 +160,13 @@ package me.feng.component
 
 		/**
 		 * 根据类定义获取组件
-		 * @param cls
+		 * <p>如果存在多个则返回第一个</p>
+		 * @param cls				类定义
 		 * @return
 		 */
 		public function getComponentByClass(cls:Class):*
 		{
-			var component:Component = findComponentByClass(cls)[0];
-
-			if (component == null)
-			{
-				component = new cls();
-				addComponent(component);
-			}
+			var component:Component = getComponentsByClass(cls)[0];
 
 			return component;
 		}
@@ -181,7 +176,7 @@ package me.feng.component
 		 * @param cls		类定义
 		 * @return			返回与给出类定义一致的组件
 		 */
-		private function findComponentByClass(cls:Class):Array
+		public function getComponentsByClass(cls:Class):Array
 		{
 			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
 			{
@@ -189,6 +184,25 @@ package me.feng.component
 			});
 
 			return filterResult;
+		}
+
+		/**
+		 * 根据类定义获取或创建组件
+		 * <p>当不存在该类型对象时创建一个该组件并且添加到容器中</p>
+		 * @param cls
+		 * @return
+		 */
+		public function getOrCreateComponentByClass(cls:Class):*
+		{
+			var component:Component = getComponentByClass(cls);
+
+			if (component == null)
+			{
+				component = new cls();
+				addComponent(component);
+			}
+
+			return component;
 		}
 
 		/**
