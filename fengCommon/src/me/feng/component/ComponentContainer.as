@@ -1,9 +1,8 @@
 package me.feng.component
 {
-	import flash.events.Event;
-
 	import me.feng.component.event.ComponentEvent;
 	import me.feng.component.event.vo.AddedComponentEventVO;
+	import me.feng.debug.assert;
 	import me.feng.events.FEvent;
 
 	/**
@@ -49,11 +48,15 @@ package me.feng.component
 		 */
 		public function addComponent(com:Component):void
 		{
-			if (getComponentIndex(com) == -1)
+			assert(com != this, "子项与父项不能相同");
+
+			if (hasComponent(com))
 			{
-				components.push(com);
+				setComponentIndex(com, components.length);
+				return;
 			}
-			dispatchChildrenEvent(new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com)));
+
+			addComponentAt(com, components.length);
 		}
 
 		/**
@@ -63,25 +66,17 @@ package me.feng.component
 		 */
 		public function addComponentAt(com:Component, index:int):void
 		{
+			assert(com != this, "子项与父项不能相同");
+			assert(index >= 0 && index < numComponents, "给出索引超出范围");
+
+			if (hasComponent(com))
+			{
+				setComponentIndex(com, index)
+				return;
+			}
+
 			components.splice(index, 0, com);
 			dispatchChildrenEvent(new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com)));
-		}
-
-		/**
-		 * 根据组件名称获取组件
-		 * @param componentName		组件名称
-		 * @return 					获取到的组件
-		 */
-		public function getComponent(componentName:String):*
-		{
-			for each (var com:Component in components)
-			{
-				if (com.componentName == componentName)
-				{
-					return com;
-				}
-			}
-			return null;
 		}
 
 		/**
@@ -90,11 +85,22 @@ package me.feng.component
 		 */
 		public function removeComponent(com:Component):void
 		{
+			assert(hasComponent(com), "只能移除在容器中的组件");
+
 			var index:int = getComponentIndex(com);
-			if (index != -1)
-			{
-				components.splice(index, 1);
-			}
+			removeComponentAt(index);
+		}
+
+		/**
+		 * 移除组件
+		 * @param index		要删除的 Component 的子索引。
+		 */
+		public function removeComponentAt(index:int):Component
+		{
+			assert(index >= 0 && index < numComponents, "给出索引超出范围");
+
+			var removeComponent:Component = components.splice(index, 1)[0];
+			return removeComponent;
 		}
 
 		/**
@@ -104,18 +110,52 @@ package me.feng.component
 		 */
 		public function getComponentIndex(com:Component):int
 		{
+			assert(hasComponent(com), "组件不在容器中");
+
 			var index:int = components.indexOf(com);
 			return index;
 		}
 
 		/**
-		 * 判断是否拥有组件
-		 * @param com	被检测的组件
-		 * @return		true：拥有该组件；false：不拥有该组件。
+		 * 设置子组件的位置
+		 * @param com				子组件
+		 * @param index				位置索引
 		 */
-		public function hasComponent(com:Component):Boolean
+		public function setComponentIndex(com:Component, index:uint):void
 		{
-			return getComponentIndex(com) != -1;
+			assert(index >= 0 && index < numComponents, "给出索引超出范围");
+
+			var oldIndex:int = components.indexOf(com);
+			assert(oldIndex >= 0 && oldIndex < numComponents, "子组件不在容器内");
+
+			components.splice(oldIndex, 1);
+			components.splice(index, 0, com);
+		}
+
+		/**
+		 * 根据组件名称获取组件
+		 * @param componentName		组件名称
+		 * @return 					获取到的组件
+		 */
+		public function getComponentByName(componentName:String):*
+		{
+			var filterResult:Array = getComponentsByName(componentName);
+			return filterResult[0];
+		}
+
+		/**
+		 * 获取与给出名称相同的所有组件
+		 * @param componentName		组件名称
+		 * @return 					获取到的组件
+		 */
+		public function getComponentsByName(componentName:String):Array
+		{
+			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
+			{
+				return item.name == componentName;
+			});
+
+			return filterResult;
 		}
 
 		/**
@@ -152,6 +192,44 @@ package me.feng.component
 		}
 
 		/**
+		 * 判断是否拥有组件
+		 * @param com	被检测的组件
+		 * @return		true：拥有该组件；false：不拥有该组件。
+		 */
+		public function hasComponent(com:Component):Boolean
+		{
+			return getComponentIndex(com) != -1;
+		}
+
+		/**
+		 * 交换子组件位置
+		 * @param index1		第一个子组件的索引位置
+		 * @param index2		第二个子组件的索引位置
+		 */
+		public function swapComponentsAt(index1:int, index2:int):void
+		{
+			assert(index1 >= 0 && index1 < numComponents, "第一个子组件的索引位置超出范围");
+			assert(index2 >= 0 && index2 < numComponents, "第二个子组件的索引位置超出范围");
+
+			var temp:Component = components[index1];
+			components[index1] = components[index2];
+			components[index2] = temp;
+		}
+
+		/**
+		 * 交换子组件位置
+		 * @param com1		第一个子组件
+		 * @param com2		第二个子组件
+		 */
+		public function swapComponents(com1:Component, com2:Component):void
+		{
+			assert(hasComponent(com1), "第一个子组件不在容器中");
+			assert(hasComponent(com2), "第二个子组件不在容器中");
+
+			swapComponentsAt(getComponentIndex(com1), getComponentIndex(com2));
+		}
+
+		/**
 		 * 派发子组件事件
 		 * <p>事件广播给子组件</p>
 		 * @param event
@@ -164,21 +242,5 @@ package me.feng.component
 			});
 		}
 
-		/**
-		 * 组件容器派发事件，该事件会转发给容器内所有组件
-		 * @param event		派发的事件
-		 * @return			如果成功调度了事件，则值为 true。值 false 表示失败或对事件调用了 preventDefault()。
-		 */
-		override public function dispatchEvent(event:Event):Boolean
-		{
-			//派发事件给所有组件
-			for each (var com:Component in components)
-			{
-				com.dispatchEvent(event);
-			}
-			return super.dispatchEvent(event);
-		}
 	}
 }
-
-
