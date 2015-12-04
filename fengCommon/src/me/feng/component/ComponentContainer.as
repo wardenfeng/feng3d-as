@@ -6,6 +6,7 @@ package me.feng.component
 	import me.feng.component.event.vo.AddedComponentEventVO;
 	import me.feng.debug.assert;
 	import me.feng.events.FEvent;
+	import me.feng.utils.ClassUtils;
 
 	/**
 	 * 添加子组件后触发
@@ -183,9 +184,7 @@ package me.feng.component
 		{
 			var filterResult:Array = components.filter(function(item:Component, ... args):Boolean
 			{
-				var className1:String = getQualifiedClassName(item);
-				var className2:String = getQualifiedClassName(cls);
-				return className1 == className2;
+				return ClassUtils.isSameClass(item, cls);
 			});
 
 			return filterResult;

@@ -222,5 +222,18 @@ package me.feng.utils
 		{
 			return getQualifiedClassName(obj).split("::").pop();
 		}
+
+		/**
+		 * 判断两个对象的完全限定类名是否相同
+		 * @param obj1			对象1
+		 * @param obj2			对象2
+		 * @return
+		 */
+		public static function isSameClass(obj1:*, obj2:*):Boolean
+		{
+			var className1:String = getQualifiedClassName(obj1);
+			var className2:String = getQualifiedClassName(obj2);
+			return className1 == className2;
+		}
 	}
 }
