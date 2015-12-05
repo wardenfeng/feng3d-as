@@ -29,8 +29,6 @@
     <classEntry path="me.feng.component.UniqueNameComponent"/>
     <classEntry path="me.feng.component.event.ComponentEvent"/>
     <classEntry path="me.feng.component.event.vo.AddedComponentEventVO"/>
-    <classEntry path="me.feng.component.IComponentContainer"/>
-    <classEntry path="IComponent"/>
     <classEntry path="me.feng.component.event.vo.RemovedComponentEventVO"/>
   </includeClasses>
   <includeResources/>
