@@ -1,6 +1,6 @@
 package me.feng3d.animators.skeleton.data
 {
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
 
@@ -9,7 +9,7 @@ package me.feng3d.animators.skeleton.data
 	 * 骨骼pose
 	 * @author feng 2014-5-20
 	 */
-	public class SkeletonPose extends NamedAssetBase implements IAsset
+	public class SkeletonPose extends NamedAsset implements IAsset
 	{
 		/** 关节pose列表 */
 		public var jointPoses:Vector.<JointPose>;

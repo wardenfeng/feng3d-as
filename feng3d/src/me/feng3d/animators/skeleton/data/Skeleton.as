@@ -1,6 +1,6 @@
 package me.feng3d.animators.skeleton.data
 {
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
 
@@ -9,7 +9,7 @@ package me.feng3d.animators.skeleton.data
 	 * 骨骼数据
 	 * @author feng 2014-5-20
 	 */
-	public class Skeleton extends NamedAssetBase implements IAsset
+	public class Skeleton extends NamedAsset implements IAsset
 	{
 		/** 骨骼关节数据列表 */
 		public var joints:Vector.<SkeletonJoint>;

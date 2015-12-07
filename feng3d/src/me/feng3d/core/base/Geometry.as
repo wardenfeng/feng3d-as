@@ -4,7 +4,7 @@ package me.feng3d.core.base
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryEvent;
@@ -17,7 +17,7 @@ package me.feng3d.core.base
 	 * 几何体
 	 * @author feng 2014-3-17
 	 */
-	public class Geometry extends NamedAssetBase implements IAsset
+	public class Geometry extends NamedAsset implements IAsset
 	{
 		private var _subGeometries:Vector.<SubGeometry>;
 

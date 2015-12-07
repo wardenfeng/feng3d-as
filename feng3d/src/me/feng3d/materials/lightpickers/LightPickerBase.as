@@ -1,6 +1,6 @@
 package me.feng3d.materials.lightpickers
 {
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
@@ -14,7 +14,7 @@ package me.feng3d.materials.lightpickers
 	 * 灯光采集器
 	 * @author feng 2014-9-11
 	 */
-	public class LightPickerBase extends NamedAssetBase implements IAsset
+	public class LightPickerBase extends NamedAsset implements IAsset
 	{
 		protected var _numPointLights:uint;
 		protected var _numDirectionalLights:uint;

@@ -3,7 +3,7 @@ package me.feng3d.core.base.data
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.events.Object3DEvent;
 	import me.feng3d.mathlib.MathConsts;
 	import me.feng3d.mathlib.Matrix3DUtils;
@@ -38,7 +38,7 @@ package me.feng3d.core.base.data
 	 * </ul>
 	 * @author feng 2014-3-31
 	 */
-	public class Element3D extends NamedAssetBase
+	public class Element3D extends NamedAsset
 	{
 		private var _smallestNumber:Number = 0.0000000000000000000001;
 		protected var _transformDirty:Boolean = true;

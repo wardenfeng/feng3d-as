@@ -3,7 +3,7 @@ package me.feng3d.materials
 	import flash.display.BlendMode;
 	import flash.events.Event;
 
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.core.base.IMaterialOwner;
@@ -20,7 +20,7 @@ package me.feng3d.materials
 	 * 材质基类
 	 * @author feng 2014-4-15
 	 */
-	public class MaterialBase extends NamedAssetBase implements IAsset
+	public class MaterialBase extends NamedAsset implements IAsset
 	{
 		/**
 		 * 唯一编号

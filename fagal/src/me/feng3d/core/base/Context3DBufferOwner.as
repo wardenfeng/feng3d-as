@@ -2,7 +2,7 @@ package me.feng3d.core.base
 {
 	import flash.utils.Dictionary;
 
-	import me.feng.core.NamedAssetBase;
+	import me.feng.core.NamedAsset;
 	import me.feng3d.core.buffer.Context3DBufferTypeManager;
 	import me.feng3d.core.buffer.context3d.Context3DBuffer;
 	import me.feng.debug.assert;
@@ -33,7 +33,7 @@ package me.feng3d.core.base
 	 * Context3D缓存拥有者
 	 * @author feng 2014-11-26
 	 */
-	public class Context3DBufferOwner extends NamedAssetBase implements IContext3DBufferOwner
+	public class Context3DBufferOwner extends NamedAsset implements IContext3DBufferOwner
 	{
 		private var _bufferDic:Dictionary;
 		private var _bufferList:Vector.<Context3DBuffer>;

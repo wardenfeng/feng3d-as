@@ -1,22 +1,24 @@
 package me.feng.core
 {
-	import me.feng.events.FEventDispatcher;
+	import flash.utils.Dictionary;
+
+	import me.feng.component.Component;
 	import me.feng.utils.ClassUtils;
 
 	/**
 	 * 拥有名字的对象
 	 * @author feng 2014-5-7
 	 */
-	public class NamedAssetBase extends FEventDispatcher
+	public class NamedAsset extends Component
 	{
-		private static var autoNamedId:int = 0;
+		private static const nameDic:Dictionary = new Dictionary();
 
 		/**
 		 * 创建一个拥有名字的对象
 		 */
-		public function NamedAssetBase()
+		public function NamedAsset()
 		{
-			super(this);
+			super();
 		}
 
 		/**
@@ -26,7 +28,9 @@ package me.feng.core
 		{
 			if (!_name)
 			{
-				_name = ClassUtils.getDefaultName(this) + createNamedId();
+				var defaultName:String = ClassUtils.getDefaultName(this);
+
+				_name = defaultName + nameDic[defaultName]++;
 			}
 			return _name;
 		}
@@ -38,12 +42,5 @@ package me.feng.core
 			_name = value;
 		}
 
-		/**
-		 * 产生唯一标识
-		 */
-		private static function createNamedId():int
-		{
-			return autoNamedId++;
-		}
 	}
 }
