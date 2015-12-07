@@ -106,7 +106,9 @@ package me.feng.component
 			}
 
 			components.splice(index, 0, com);
-			dispatchChildrenEvent(new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com)));
+			var addedComponentEvent:ComponentEvent = new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com));
+			dispatchEvent(addedComponentEvent);
+			dispatchChildrenEvent(addedComponentEvent);
 		}
 
 		/**
