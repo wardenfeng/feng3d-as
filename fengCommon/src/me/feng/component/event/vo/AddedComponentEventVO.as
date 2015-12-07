@@ -1,7 +1,7 @@
 package me.feng.component.event.vo
 {
 	import me.feng.component.Component;
-	import me.feng.component.ComponentContainer;
+	import me.feng.component.Component;
 
 	/**
 	 * 添加组件事件数据
@@ -9,7 +9,7 @@ package me.feng.component.event.vo
 	 */
 	public class AddedComponentEventVO
 	{
-		public var container:ComponentContainer;
+		public var container:Component;
 		public var child:Component;
 
 		/**
@@ -17,7 +17,7 @@ package me.feng.component.event.vo
 		 * @param container			组件容器
 		 * @param child				子组件
 		 */
-		public function AddedComponentEventVO(container:ComponentContainer, child:Component)
+		public function AddedComponentEventVO(container:Component, child:Component)
 		{
 			this.container = container;
 			this.child = child;

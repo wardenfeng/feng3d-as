@@ -51,7 +51,7 @@ package me.feng.component
 			checkUniqueName(addedComponentEventVO.container);
 		}
 
-		private function checkUniqueName(container:ComponentContainer):void
+		private function checkUniqueName(container:Component):void
 		{
 			container
 

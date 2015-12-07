@@ -2,7 +2,7 @@ package me.feng3d.fagal.params
 {
 	import flash.utils.Dictionary;
 
-	import me.feng.component.ComponentContainer;
+	import me.feng.component.Component;
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.TextureUtils;
 
@@ -11,7 +11,7 @@ package me.feng3d.fagal.params
 	 * <p>? 是否需要限定组件为ShaderParamsComponent</p>
 	 * @author feng 2014-11-4
 	 */
-	public class ShaderParams extends ComponentContainer
+	public class ShaderParams extends Component
 	{
 		/** 取样标记字典 */
 		private var sampleFlagsDic:Dictionary;

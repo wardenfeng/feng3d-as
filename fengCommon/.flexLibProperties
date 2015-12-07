@@ -9,7 +9,6 @@
     <classEntry path="me.feng.task.type.TaskList"/>
     <classEntry path="me.feng.utils.formatString"/>
     <classEntry path="me.feng.component.Component"/>
-    <classEntry path="me.feng.component.ComponentContainer"/>
     <classEntry path="me.feng.enum.Enum"/>
     <classEntry path="me.feng.events.load.LoadModuleEventData"/>
     <classEntry path="me.feng.load.data.LoadTaskItem"/>
