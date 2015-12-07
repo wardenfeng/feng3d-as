@@ -44,6 +44,10 @@ package me.feng.component
 			removedComponentEventVO.container.removeEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
 		}
 
+		/**
+		 * 处理添加组件事件
+		 * @param event
+		 */
 		protected function onAddedComponetContainer(event:ComponentEvent):void
 		{
 			var addedComponentEventVO:AddedComponentEventVO = event.data;
