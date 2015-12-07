@@ -90,25 +90,27 @@ package me.feng.component
 
 		/**
 		 * 添加组件到指定位置
-		 * @param com			被添加的组件
+		 * @param component		被添加的组件
 		 * @param index			插入的位置
 		 */
-		public function addComponentAt(com:Component, index:int):void
+		public function addComponentAt(component:Component, index:int):void
 		{
-			assert(com != this, "子项与父项不能相同");
+			assert(component != this, "子项与父项不能相同");
 			assert(index >= 0 && index <= numComponents, "给出索引超出范围");
 
-			if (hasComponent(com))
+			if (hasComponent(component))
 			{
 				index = Math.min(index, components.length - 1);
-				setComponentIndex(com, index)
+				setComponentIndex(component, index)
 				return;
 			}
 
-			components.splice(index, 0, com);
-			var addedComponentEvent:ComponentEvent = new ComponentEvent(ComponentEvent.ADDED_COMPONET, new AddedComponentEventVO(this, com));
+			components.splice(index, 0, component);
+			var addedComponentEventVO:AddedComponentEventVO = new AddedComponentEventVO(this, component);
+			var addedComponentEvent:ComponentEvent = new ComponentEvent(ComponentEvent.ADDED_COMPONET, addedComponentEventVO);
 			dispatchEvent(addedComponentEvent);
-			dispatchChildrenEvent(addedComponentEvent);
+			var beAddedComponentEvent:ComponentEvent = new ComponentEvent(ComponentEvent.BE_ADDED_COMPONET, addedComponentEventVO);
+			component.dispatchEvent(beAddedComponentEvent);
 		}
 
 		/**

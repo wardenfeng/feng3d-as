@@ -13,7 +13,6 @@ package me.feng.component
 	 */
 	public class UniqueNameComponent extends Component
 	{
-
 		public function UniqueNameComponent()
 		{
 			super();
@@ -31,6 +30,7 @@ package me.feng.component
 			var addedComponentEventVO:AddedComponentEventVO = event.data;
 			assert(addedComponentEventVO.child == this);
 			addedComponentEventVO.container.addEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
+			checkUniqueName(addedComponentEventVO.container);
 		}
 
 		/**
@@ -63,7 +63,7 @@ package me.feng.component
 				var component:Component = container.getComponentAt(i);
 				if (nameDic[component.componentName])
 				{
-					throw new Error("存在多个子组件拥有相同的名称");
+					throwEvent(new Error("存在多个子组件拥有相同的名称"));
 				}
 				nameDic[component.componentName] = true;
 			}

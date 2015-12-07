@@ -5,6 +5,11 @@ package me.feng.events
 	import flash.events.IEventDispatcher;
 
 	/**
+	 * 被添加到组件容器后触发
+	 */
+	[Event(name = "errorEvent", type = "me.feng.events.FErrorEvent")]
+
+	/**
 	 * 实现能在非flash原生显示列表中的冒泡的事件适配器.
 	 * <p>事件过程使用原生事件机制，不过增强了冒泡功能，使得事件会向上级（默认parent）冒泡。</p>
 	 *
@@ -141,6 +146,22 @@ package me.feng.events
 		public function willTrigger(type:String):Boolean
 		{
 			return dispatcher.willTrigger(type);
+		}
+
+		/**
+		 * 抛出错误事件
+		 * <p>该函数会抛出 ErrorEvent.ERROR 事件</p>
+		 * <p>仅当错误事件被正确处理（FErrorEvent.isProcessed == true）时不会使用throw抛出错误</p>
+		 * @see me.feng.events.FErrorEvent
+		 *
+		 * @author feng 2015-12-7
+		 */
+		protected function throwEvent(error:Error):void
+		{
+			var errorEvent:FErrorEvent = new FErrorEvent(FErrorEvent.ERROR_EVENT, error);
+			dispatchEvent(errorEvent);
+			if (!errorEvent.isProcessed)
+				throw error;
 		}
 	}
 }
