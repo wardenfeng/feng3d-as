@@ -1,6 +1,7 @@
 package me.feng.component
 {
 	import flash.utils.Dictionary;
+	import flash.utils.getQualifiedClassName;
 
 	import me.feng.component.event.ComponentEvent;
 	import me.feng.component.event.vo.AddedComponentEventVO;
@@ -8,13 +9,13 @@ package me.feng.component
 	import me.feng.debug.assert;
 
 	/**
-	 * 唯一名称组件
-	 * <p>不允许容器内存在两个名称相同的子组件</p>
+	 * 唯一类型组件
+	 * <p>不允许容器内存在两个相同类型的子组件</p>
 	 * @author feng 2015-12-2
 	 */
-	public class UniqueNameComponent extends Component
+	public class UniqueClassComponent extends Component
 	{
-		public function UniqueNameComponent()
+		public function UniqueClassComponent()
 		{
 			super();
 
@@ -58,7 +59,7 @@ package me.feng.component
 		}
 
 		/**
-		 * 检查子组件中名称是否唯一
+		 * 检查子组件中类型是否唯一
 		 * @param container
 		 */
 		private function checkUniqueName(container:Component):void
@@ -67,11 +68,12 @@ package me.feng.component
 			for (var i:int = 0; i < container.numComponents; i++)
 			{
 				var component:Component = container.getComponentAt(i);
-				if (nameDic[component.componentName])
+				var classDefine:String = getQualifiedClassName(component);
+				if (nameDic[classDefine])
 				{
-					throwEvent(new Error("存在多个子组件拥有相同的名称"));
+					throwEvent(new Error("存在多个子组件拥有相同的类型"));
 				}
-				nameDic[component.componentName] = true;
+				nameDic[classDefine] = true;
 			}
 		}
 	}
