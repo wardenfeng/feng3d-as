@@ -29,8 +29,8 @@ package me.feng.core
 			if (!_name)
 			{
 				var defaultName:String = ClassUtils.getDefaultName(this);
-
-				_name = defaultName + nameDic[defaultName]++;
+				_name = defaultName + int(nameDic[defaultName]);
+				nameDic[defaultName] = int(nameDic[defaultName]) + 1;
 			}
 			return _name;
 		}
