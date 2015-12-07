@@ -1,6 +1,6 @@
 package me.feng.component
 {
-	import flash.display.DisplayObjectContainer;
+	import flash.utils.Dictionary;
 
 	import me.feng.component.event.ComponentEvent;
 	import me.feng.component.event.vo.AddedComponentEventVO;
@@ -30,7 +30,7 @@ package me.feng.component
 		{
 			var addedComponentEventVO:AddedComponentEventVO = event.data;
 			assert(addedComponentEventVO.child == this);
-			addedComponentEventVO.container.addEventListener(ComponentEvent.ADDED_COMPONET, onAddComponetContainer);
+			addedComponentEventVO.container.addEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
 		}
 
 		/**
@@ -41,22 +41,32 @@ package me.feng.component
 		{
 			var removedComponentEventVO:RemovedComponentEventVO = event.data;
 			assert(removedComponentEventVO.child == this);
-			removedComponentEventVO.container.removeEventListener(ComponentEvent.ADDED_COMPONET, onAddComponetContainer);
+			removedComponentEventVO.container.removeEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
 		}
 
-		protected function onAddComponetContainer(event:ComponentEvent):void
+		protected function onAddedComponetContainer(event:ComponentEvent):void
 		{
 			var addedComponentEventVO:AddedComponentEventVO = event.data;
 
 			checkUniqueName(addedComponentEventVO.container);
 		}
 
+		/**
+		 * 检查子组件中名称是否唯一
+		 * @param container
+		 */
 		private function checkUniqueName(container:Component):void
 		{
-			container
-
-			new DisplayObjectContainer().numChildren;
+			var nameDic:Dictionary = new Dictionary();
+			for (var i:int = 0; i < container.numComponents; i++)
+			{
+				var component:Component = container.getComponentAt(i);
+				if (nameDic[component.componentName])
+				{
+					throw new Error("存在多个子组件拥有相同的名称");
+				}
+				nameDic[component.componentName] = true;
+			}
 		}
-
 	}
 }
