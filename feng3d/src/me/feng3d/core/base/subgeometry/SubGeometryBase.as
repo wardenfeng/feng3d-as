@@ -4,7 +4,7 @@ package me.feng3d.core.base.subgeometry
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.VertexBufferOwner;
 	import me.feng3d.core.buffer.context3d.IndexBuffer;
-	
+
 
 	use namespace arcane;
 

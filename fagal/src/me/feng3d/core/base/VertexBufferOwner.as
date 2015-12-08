@@ -80,7 +80,7 @@ package me.feng3d.core.base
 		 * 使顶点数据失效
 		 * @param dataTypeId
 		 */
-		protected function invalidVAData(dataTypeId:String):void
+		public function invalidVAData(dataTypeId:String):void
 		{
 			dataValidDic[dataTypeId] = false;
 			markBufferDirty(dataTypeId);

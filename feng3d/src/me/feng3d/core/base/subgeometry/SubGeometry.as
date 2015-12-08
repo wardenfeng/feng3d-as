@@ -6,9 +6,10 @@ package me.feng3d.core.base.subgeometry
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
+	import me.feng.debug.assert;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
-	import me.feng.debug.assert;
+	import me.feng3d.events.GeometryComponentEvent;
 	import me.feng3d.events.GeometryEvent;
 
 	use namespace arcane;
@@ -262,6 +263,14 @@ package me.feng3d.core.base.subgeometry
 		public function get UVStride():uint
 		{
 			return getVALen(_.uv_va_2);
+		}
+
+		override public function getVAData(dataTypeId:String, needUpdate:Boolean = true):Vector.<Number>
+		{
+			var updateVADataEvent:GeometryComponentEvent = new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId);
+			dispatchEvent(updateVADataEvent);
+
+			return super.getVAData(dataTypeId, needUpdate);
 		}
 
 		public function clone():SubGeometry

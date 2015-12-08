@@ -295,7 +295,7 @@ package me.feng.component
 		 * <p>事件广播给子组件</p>
 		 * @param event
 		 */
-		private function dispatchChildrenEvent(event:FEvent):void
+		protected function dispatchChildrenEvent(event:FEvent):void
 		{
 			components.forEach(function(item:Component, ... args):void
 			{
