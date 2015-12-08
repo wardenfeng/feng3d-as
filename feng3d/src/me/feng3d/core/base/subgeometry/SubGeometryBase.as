@@ -4,7 +4,8 @@ package me.feng3d.core.base.subgeometry
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.VertexBufferOwner;
 	import me.feng3d.core.buffer.context3d.IndexBuffer;
-	
+	import me.feng3d.events.GeometryComponentEvent;
+
 
 	use namespace arcane;
 
@@ -35,6 +36,14 @@ package me.feng3d.core.base.subgeometry
 			super.initBuffers();
 			mapContext3DBuffer(_.index, updateIndexBuffer);
 			mapVABuffer(_.position_va_3, 3);
+		}
+
+		override public function getVAData(dataTypeId:String, needUpdate:Boolean = true):Vector.<Number>
+		{
+			var updateVADataEvent:GeometryComponentEvent = new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId);
+			dispatchChildrenEvent(updateVADataEvent);
+
+			return super.getVAData(dataTypeId, needUpdate);
 		}
 
 		/**

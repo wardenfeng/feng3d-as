@@ -29,7 +29,6 @@ package me.feng.component
 		protected function onBeAddedComponet(event:ComponentEvent):void
 		{
 			var addedComponentEventVO:AddedComponentEventVO = event.data;
-			assert(addedComponentEventVO.child == this);
 			addedComponentEventVO.container.addEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
 
 			checkUniqueName(addedComponentEventVO.container);
@@ -42,7 +41,6 @@ package me.feng.component
 		protected function onBeRemovedComponet(event:ComponentEvent):void
 		{
 			var removedComponentEventVO:RemovedComponentEventVO = event.data;
-			assert(removedComponentEventVO.child == this);
 			removedComponentEventVO.container.removeEventListener(ComponentEvent.ADDED_COMPONET, onAddedComponetContainer);
 		}
 
