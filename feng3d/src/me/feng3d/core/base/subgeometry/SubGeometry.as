@@ -275,9 +275,9 @@ package me.feng3d.core.base.subgeometry
 			return getVALen(_.uv_va_2);
 		}
 
-		override public function setVAData(dataTypeId:String, data:Vector.<Number>):void
+		override protected function notifyVADataChanged(dataTypeId:String):void
 		{
-			super.setVAData(dataTypeId, data);
+			super.notifyVADataChanged(dataTypeId);
 
 			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_VA_DATA, dataTypeId));
 		}
