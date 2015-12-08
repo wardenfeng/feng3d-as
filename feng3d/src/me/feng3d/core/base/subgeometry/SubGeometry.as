@@ -15,6 +15,16 @@ package me.feng3d.core.base.subgeometry
 	use namespace arcane;
 
 	/**
+	 * 获取几何体顶点数据时触发
+	 */
+	[Event(name = "getVAData", type = "me.feng3d.events.GeometryComponentEvent")]
+
+	/**
+	 * 改变几何体顶点数据后触发
+	 */
+	[Event(name = "changedVAData", type = "me.feng3d.events.GeometryComponentEvent")]
+
+	/**
 	 * 子几何体
 	 */
 	public class SubGeometry extends SubGeometryAutoBase
@@ -265,10 +275,16 @@ package me.feng3d.core.base.subgeometry
 			return getVALen(_.uv_va_2);
 		}
 
+		override public function setVAData(dataTypeId:String, data:Vector.<Number>):void
+		{
+			super.setVAData(dataTypeId, data);
+
+			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_VA_DATA, dataTypeId));
+		}
+
 		override public function getVAData(dataTypeId:String, needUpdate:Boolean = true):Vector.<Number>
 		{
-			var updateVADataEvent:GeometryComponentEvent = new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId);
-			dispatchEvent(updateVADataEvent);
+			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId));
 
 			return super.getVAData(dataTypeId, needUpdate);
 		}

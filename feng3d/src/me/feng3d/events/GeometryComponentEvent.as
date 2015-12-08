@@ -8,7 +8,15 @@ package me.feng3d.events
 	 */
 	public class GeometryComponentEvent extends FEvent
 	{
+		/**
+		 * 获取几何体顶点数据
+		 */
 		public static const GET_VA_DATA:String = "getVAData";
+
+		/**
+		 * 改变几何体顶点数据事件
+		 */
+		public static const CHANGED_VA_DATA:String = "changedVAData";
 
 		public function GeometryComponentEvent(type:String, data:* = null, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
