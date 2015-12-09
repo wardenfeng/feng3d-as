@@ -25,9 +25,14 @@ package me.feng3d.core.base.subgeometry
 	[Event(name = "changedVAData", type = "me.feng3d.events.GeometryComponentEvent")]
 
 	/**
+	 * 改变顶点索引数据后触发
+	 */
+	[Event(name = "changedIndexData", type = "me.feng3d.events.GeometryComponentEvent")]
+
+	/**
 	 * 子几何体
 	 */
-	public class SubGeometry extends SubGeometryAutoBase
+	public class SubGeometry extends SubGeometryBase
 	{
 		private var _scaleU:Number = 1;
 		private var _scaleV:Number = 1;
@@ -282,11 +287,18 @@ package me.feng3d.core.base.subgeometry
 			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_VA_DATA, dataTypeId));
 		}
 
-		override public function getVAData(dataTypeId:String, needUpdate:Boolean = true):Vector.<Number>
+		override public function getVAData(dataTypeId:String):Vector.<Number>
 		{
 			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId));
 
-			return super.getVAData(dataTypeId, needUpdate);
+			return super.getVAData(dataTypeId);
+		}
+
+		override public function updateIndexData(indices:Vector.<uint>):void
+		{
+			super.updateIndexData(indices);
+
+			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_INDEX_DATA));
 		}
 
 		public function clone():SubGeometry

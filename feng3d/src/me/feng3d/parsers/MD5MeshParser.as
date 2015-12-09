@@ -439,9 +439,6 @@ package me.feng3d.parsers
 			// cause explicit updates
 			subGeom.vertexNormalData;
 			subGeom.vertexTangentData;
-			// turn auto updates off because they may be animated and set explicitly
-			subGeom.autoDeriveVertexTangents = false;
-			subGeom.autoDeriveVertexNormals = false;
 			//更新关节索引与权重索引
 			subGeom.updateJointIndexData(jointIndices);
 			subGeom.updateJointWeightsData(jointWeights);

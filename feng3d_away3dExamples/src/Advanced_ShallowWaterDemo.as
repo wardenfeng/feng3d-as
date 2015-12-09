@@ -482,8 +482,6 @@ package
 			plane.mouseEnabled = true;
 			plane.pickingCollider = PickingColliderType.BOUNDS_ONLY;
 //			plane.geometry.convertToSeparateBuffers();
-			plane.geometry.subGeometries[0].autoDeriveVertexNormals = false;
-			plane.geometry.subGeometries[0].autoDeriveVertexTangents = false;
 			scene.addChild(plane);
 
 			//create pool

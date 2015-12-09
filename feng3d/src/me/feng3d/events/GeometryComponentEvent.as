@@ -18,6 +18,11 @@ package me.feng3d.events
 		 */
 		public static const CHANGED_VA_DATA:String = "changedVAData";
 
+		/**
+		 * 改变顶点索引数据事件
+		 */
+		public static const CHANGED_INDEX_DATA:String = "changedIndexData";
+
 		public function GeometryComponentEvent(type:String, data:* = null, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
 			super(type, data, bubbles, cancelable);

@@ -19,7 +19,7 @@ package me.feng3d.core.base
 		/** 顶点数据长度字典 */
 		private var data32PerVertexDic:Dictionary = new Dictionary();
 		/** 顶点数据字典 */
-		private var vertexDataDic:Dictionary = new Dictionary();
+		protected var vertexDataDic:Dictionary = new Dictionary();
 
 		/** 数据有效(与脏相反)标记字典 */
 		private var dataValidDic:Dictionary = new Dictionary();
@@ -119,14 +119,11 @@ package me.feng3d.core.base
 		 * @param needUpdate 是否需要更新数据
 		 * @return 顶点属性数据
 		 */
-		public function getVAData(dataTypeId:String, needUpdate:Boolean = true):Vector.<Number>
+		public function getVAData(dataTypeId:String):Vector.<Number>
 		{
-			if (needUpdate)
-			{
-				if (!dataValidDic[dataTypeId])
-					updateVAdata(dataTypeId);
-				dataValidDic[dataTypeId] = true;
-			}
+			if (!dataValidDic[dataTypeId])
+				updateVAdata(dataTypeId);
+			dataValidDic[dataTypeId] = true;
 
 			return vertexDataDic[dataTypeId];
 		}
