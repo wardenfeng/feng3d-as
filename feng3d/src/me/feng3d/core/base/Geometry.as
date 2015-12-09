@@ -114,14 +114,6 @@ package me.feng3d.core.base
 				_subGeometries[i].scaleUV(scaleU, scaleV);
 		}
 
-		/**
-		 * 验证
-		 */
-		arcane function validate():void
-		{
-
-		}
-
 		public function get assetType():String
 		{
 			return AssetType.GEOMETRY;
