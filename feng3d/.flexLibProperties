@@ -208,6 +208,7 @@
     <classEntry path="me.feng3d.events.GeometryComponentEvent"/>
     <classEntry path="me.feng3d.components.subgeometry.AutoDeriveVertexNormals"/>
     <classEntry path="me.feng3d.components.subgeometry.SubGeometryTransformation"/>
+    <classEntry path="me.feng3d.components.subgeometry.SubGeometryComponent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
