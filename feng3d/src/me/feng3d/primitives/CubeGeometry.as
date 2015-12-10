@@ -429,11 +429,11 @@ package me.feng3d.primitives
 			{
 				for (j = 0; j <= _segmentsH; j++)
 				{
-					data[uidx++] = (tl0u + i * du) * target.scaleU;
-					data[uidx++] = (tl0v + (v_tile_dim - j * dv)) * target.scaleV;
+					data[uidx++] = tl0u + i * du;
+					data[uidx++] = tl0v + (v_tile_dim - j * dv);
 					uidx += skip;
-					data[uidx++] = (tl1u + (u_tile_dim - i * du)) * target.scaleU;
-					data[uidx++] = (tl1v + (v_tile_dim - j * dv)) * target.scaleV;
+					data[uidx++] = tl1u + (u_tile_dim - i * du);
+					data[uidx++] = tl1v + (v_tile_dim - j * dv);
 					uidx += skip;
 				}
 			}
@@ -449,11 +449,11 @@ package me.feng3d.primitives
 			{
 				for (j = 0; j <= _segmentsD; j++)
 				{
-					data[uidx++] = (tl0u + i * du) * target.scaleU;
-					data[uidx++] = (tl0v + (v_tile_dim - j * dv)) * target.scaleV;
+					data[uidx++] = tl0u + i * du;
+					data[uidx++] = tl0v + (v_tile_dim - j * dv);
 					uidx += skip;
-					data[uidx++] = (tl1u + i * du) * target.scaleU;
-					data[uidx++] = (tl1v + j * dv) * target.scaleV;
+					data[uidx++] = tl1u + i * du;
+					data[uidx++] = tl1v + j * dv;
 					uidx += skip;
 				}
 			}
@@ -469,12 +469,11 @@ package me.feng3d.primitives
 			{
 				for (j = 0; j <= _segmentsH; j++)
 				{
-					data[uidx++] = (tl0u + i * du) * target.scaleU;
-					;
-					data[uidx++] = (tl0v + (v_tile_dim - j * dv)) * target.scaleV;
+					data[uidx++] = tl0u + i * du;
+					data[uidx++] = tl0v + (v_tile_dim - j * dv);
 					uidx += skip;
-					data[uidx++] = (tl1u + (u_tile_dim - i * du)) * target.scaleU;
-					data[uidx++] = (tl1v + (v_tile_dim - j * dv)) * target.scaleV;
+					data[uidx++] = tl1u + (u_tile_dim - i * du);
+					data[uidx++] = tl1v + (v_tile_dim - j * dv);
 					uidx += skip;
 				}
 			}

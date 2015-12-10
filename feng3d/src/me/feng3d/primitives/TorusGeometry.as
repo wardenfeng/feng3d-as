@@ -205,8 +205,8 @@ package me.feng3d.primitives
 				{
 					index = j * (_segmentsR + 1) + i;
 					// revolution vertex
-					data[index * stride] = (i / _segmentsR) * target.scaleU;
-					data[index * stride + 1] = (j / _segmentsT) * target.scaleV;
+					data[index * stride] = i / _segmentsR;
+					data[index * stride + 1] = j / _segmentsT;
 				}
 			}
 

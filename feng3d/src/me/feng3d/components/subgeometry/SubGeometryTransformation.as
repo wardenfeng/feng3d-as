@@ -5,6 +5,7 @@ package me.feng3d.components.subgeometry
 	import me.feng.component.event.vo.AddedComponentEventVO;
 	import me.feng.component.event.vo.RemovedComponentEventVO;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.fagalRE.FagalIdCenter;
 
 	/**
 	 * 子几何体形变组件
@@ -13,6 +14,9 @@ package me.feng3d.components.subgeometry
 	public class SubGeometryTransformation extends Component
 	{
 		private var subGeometry:SubGeometry;
+
+		private var _scaleU:Number = 1;
+		private var _scaleV:Number = 1;
 
 		public function SubGeometryTransformation()
 		{
@@ -42,5 +46,43 @@ package me.feng3d.components.subgeometry
 			subGeometry = null;
 		}
 
+
+		public function get scaleU():Number
+		{
+			return _scaleU;
+		}
+
+		public function get scaleV():Number
+		{
+			return _scaleV;
+		}
+
+		public function scaleUV(scaleU:Number = 1, scaleV:Number = 1):void
+		{
+			var stride:int = subGeometry.getVALen(_.uv_va_2);
+			var uvs:Vector.<Number> = subGeometry.UVData;
+			var len:int = uvs.length;
+			var ratioU:Number = scaleU / _scaleU;
+			var ratioV:Number = scaleV / _scaleV;
+
+			for (var i:uint = 0; i < len; i += stride)
+			{
+				uvs[i] *= ratioU;
+				uvs[i + 1] *= ratioV;
+			}
+
+			_scaleU = scaleU;
+			_scaleV = scaleV;
+
+			subGeometry.setVAData(_.uv_va_2, uvs);
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
+		}
 	}
 }

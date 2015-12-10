@@ -279,13 +279,13 @@ package me.feng3d.primitives
 			{
 				for (var xi:uint = 0; xi <= _segmentsW; ++xi)
 				{
-					data[index++] = (xi / _segmentsW) * target.scaleU;
-					data[index++] = (1 - yi / _segmentsH) * target.scaleV;
+					data[index++] = xi / _segmentsW;
+					data[index++] = 1 - yi / _segmentsH;
 
 					if (_doubleSided)
 					{
-						data[index++] = (xi / _segmentsW) * target.scaleU;
-						data[index++] = (1 - yi / _segmentsH) * target.scaleV;
+						data[index++] = xi / _segmentsW;
+						data[index++] = 1 - yi / _segmentsH;
 					}
 				}
 			}

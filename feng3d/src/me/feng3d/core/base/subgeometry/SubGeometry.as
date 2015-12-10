@@ -34,9 +34,6 @@ package me.feng3d.core.base.subgeometry
 	 */
 	public class SubGeometry extends SubGeometryBase
 	{
-		private var _scaleU:Number = 1;
-		private var _scaleV:Number = 1;
-
 		private var _parent:Geometry;
 
 		/**
@@ -61,36 +58,6 @@ package me.feng3d.core.base.subgeometry
 			updateVertexPositionData(vertices);
 
 			updateUVData(uvs);
-		}
-
-		public function get scaleU():Number
-		{
-			return _scaleU;
-		}
-
-		public function get scaleV():Number
-		{
-			return _scaleV;
-		}
-
-		public function scaleUV(scaleU:Number = 1, scaleV:Number = 1):void
-		{
-			var stride:int = getVALen(_.uv_va_2);
-			var uvs:Vector.<Number> = UVData;
-			var len:int = uvs.length;
-			var ratioU:Number = scaleU / _scaleU;
-			var ratioV:Number = scaleV / _scaleV;
-
-			for (var i:uint = 0; i < len; i += stride)
-			{
-				uvs[i] *= ratioU;
-				uvs[i + 1] *= ratioV;
-			}
-
-			_scaleU = scaleU;
-			_scaleV = scaleV;
-
-			markBufferDirty(_.uv_va_2);
 		}
 
 		/**
