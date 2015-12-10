@@ -5,12 +5,13 @@ package me.feng3d.animators.vertex
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.cameras.Camera3D;
+	import me.feng3d.components.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.core.base.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
+	import me.feng3d.entities.Mesh;
 
 	use namespace arcane;
 
@@ -118,7 +119,7 @@ package me.feng3d.animators.vertex
 			var subMesh:SubMesh = SubMesh(renderable);
 			var subGeom:SubGeometry = subMesh.subGeometry;
 
-			var vertexSubGeom:VertexSubGeometry = VertexSubGeometry(subGeom);
+			var vertexSubGeom:VertexSubGeometry = subGeom.getOrCreateComponentByClass(VertexSubGeometry);
 //				//获取默认姿势几何体数据
 			subGeom = _poses[0].subGeometries[subMesh._index] || subMesh.subGeometry;
 			vertexSubGeom.updateVertexData0(subGeom.vertexPositionData.concat());
@@ -136,6 +137,21 @@ package me.feng3d.animators.vertex
 			var subMesh:SubMesh = SubMesh(renderable);
 
 			var subGeom:SubGeometry = SubMesh(renderable).subGeometry;
+		}
+
+		override public function addOwner(mesh:Mesh):void
+		{
+			var geometry:Geometry = mesh.geometry;
+
+			var i:int;
+			var subGeometry:SubGeometry;
+			for (i = 0; i < geometry.subGeometries.length; i++)
+			{
+				subGeometry = geometry.subGeometries[i] as SubGeometry;
+				subGeometry.getOrCreateComponentByClass(VertexSubGeometry);
+			}
+
+			super.addOwner(mesh);
 		}
 	}
 }

@@ -88,7 +88,7 @@
     <classEntry path="me.feng3d.core.buffer.IndexBufferItem"/>
     <classEntry path="me.feng3d.core.base.subgeometry.GeometryDataItem"/>
     <classEntry path="me.feng3d.core.buffer.context3d.VADataBuffer"/>
-    <classEntry path="me.feng3d.core.base.subgeometry.VertexSubGeometry"/>
+    <classEntry path="me.feng3d.components.subgeometry.VertexSubGeometry"/>
     <classEntry path="me.feng3d.core.buffer.context3d.DepthTestBuffer"/>
     <classEntry path="me.feng3d.core.buffer.type.DepthTestBufferType"/>
     <classEntry path="me.feng3d.core.buffer.type.BlendFactorsBufferType"/>

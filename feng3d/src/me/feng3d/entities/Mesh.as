@@ -2,11 +2,9 @@ package me.feng3d.entities
 {
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimator;
-	import me.feng3d.animators.vertex.VertexAnimator;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.IMaterialOwner;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.core.base.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.partition.node.EntityNode;
 	import me.feng3d.core.partition.node.MeshNode;
@@ -15,7 +13,6 @@ package me.feng3d.entities
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.MaterialBase;
 	import me.feng3d.utils.DefaultMaterialManager;
-	import me.feng3d.utils.GeomUtil;
 
 	use namespace arcane;
 
@@ -180,23 +177,6 @@ package me.feng3d.entities
 			_animator = value;
 
 			var i:int;
-			if (value is VertexAnimator)
-			{
-				var oldGeometry:Geometry = geometry;
-
-				var oldSubGeometry:SubGeometry;
-				var newSubGeometry:VertexSubGeometry;
-				geometry = new Geometry();
-				for (i = 0; i < oldGeometry.subGeometries.length; i++)
-				{
-					oldSubGeometry = oldGeometry.subGeometries[i] as SubGeometry;
-					newSubGeometry = new VertexSubGeometry();
-					GeomUtil.copyDataSubGeom(oldSubGeometry, newSubGeometry);
-					newSubGeometry.updateVertexData0(oldSubGeometry.vertexPositionData.concat());
-					newSubGeometry.updateVertexData1(oldSubGeometry.vertexPositionData.concat());
-					geometry.addSubGeometry(newSubGeometry);
-				}
-			}
 
 			for (i = 0; i < subMeshes.length; i++)
 			{
