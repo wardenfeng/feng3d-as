@@ -217,6 +217,24 @@ package me.feng3d.core.base.subgeometry
 		}
 
 		/**
+		 * 缩放网格尺寸
+		 */
+		public function scale(scale:Number):void
+		{
+			var vertices:Vector.<Number> = getVAData(_.position_va_3);
+			var len:uint = vertices.length;
+			var stride:int = getVALen(_.position_va_3);
+
+			for (var i:uint = 0; i < len; i += stride)
+			{
+				vertices[i] *= scale;
+				vertices[i + 1] *= scale;
+				vertices[i + 2] *= scale;
+			}
+			markBufferDirty(_.position_va_3);
+		}
+
+		/**
 		 * 顶点数据
 		 */
 		public function get vertexPositionData():Vector.<Number>

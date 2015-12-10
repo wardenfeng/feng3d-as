@@ -135,13 +135,5 @@ package me.feng3d.primitives
 			buildUVs(_subGeometry);
 			_uvDirty = false;
 		}
-
-		override arcane function validate():void
-		{
-			if (_geomDirty)
-				updateGeometry();
-			if (_uvDirty)
-				updateUVs();
-		}
 	}
 }

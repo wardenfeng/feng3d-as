@@ -69,7 +69,7 @@ package me.feng3d.components.subgeometry
 		protected function onBeRemovedComponet(event:ComponentEvent):void
 		{
 			var removedComponentEventVO:RemovedComponentEventVO = event.data;
-			subGeometry = removedComponentEventVO.container as SubGeometry;
+			subGeometry = null;
 		}
 
 		protected function onGetVAData(event:GeometryComponentEvent):void
