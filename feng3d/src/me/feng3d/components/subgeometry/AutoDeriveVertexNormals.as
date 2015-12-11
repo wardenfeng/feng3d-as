@@ -1,12 +1,8 @@
 package me.feng3d.components.subgeometry
 {
 	import me.feng.component.event.ComponentEvent;
-	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryComponentEvent;
-	import me.feng3d.fagalRE.FagalIdCenter;
-
-	use namespace arcane;
 
 	/**
 	 * 自动生成顶点法线数据
@@ -29,6 +25,13 @@ package me.feng3d.components.subgeometry
 		private var target:Vector.<Number>;
 		private var needGenerate:Boolean;
 
+		public function AutoDeriveVertexNormals()
+		{
+			dataTypeId = _.normal_va_3;
+
+			super();
+		}
+
 		override protected function set subGeometry(value:SubGeometry):void
 		{
 			if (_subGeometry != null)
@@ -44,13 +47,6 @@ package me.feng3d.components.subgeometry
 				_subGeometry.addEventListener(GeometryComponentEvent.CHANGED_VA_DATA, onChangedVAData);
 				_subGeometry.addEventListener(GeometryComponentEvent.CHANGED_INDEX_DATA, onChangedIndexData);
 			}
-		}
-
-		public function AutoDeriveVertexNormals()
-		{
-			dataTypeId = _.normal_va_3;
-
-			super();
 		}
 
 		/**
@@ -252,14 +248,6 @@ package me.feng3d.components.subgeometry
 			}
 
 			return target;
-		}
-
-		/**
-		 * Fagal编号中心
-		 */
-		public function get _():FagalIdCenter
-		{
-			return FagalIdCenter.instance;
 		}
 	}
 }

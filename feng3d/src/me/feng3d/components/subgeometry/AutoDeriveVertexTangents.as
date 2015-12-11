@@ -1,18 +1,14 @@
 package me.feng3d.components.subgeometry
 {
-	import me.feng.component.Component;
 	import me.feng.component.event.ComponentEvent;
-	import me.feng.component.event.vo.AddedComponentEventVO;
-	import me.feng.component.event.vo.RemovedComponentEventVO;
-	import me.feng3d.events.GeometryComponentEvent;
-	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
+	import me.feng3d.events.GeometryComponentEvent;
 
 	/**
 	 * 自动生成切线组件
 	 * @author feng 2014-12-19
 	 */
-	public class AutoDeriveVertexTangents extends Component
+	public class AutoDeriveVertexTangents extends SubGeometryComponent
 	{
 		/** 面切线脏标记 */
 		private var _faceTangentsDirty:Boolean = true;
@@ -24,27 +20,18 @@ package me.feng3d.components.subgeometry
 		/** 面权重 */
 		private var _faceWeights:Vector.<Number>;
 
-		private var _subGeometry:SubGeometry;
 		private var dataTypeId:String;
 		private var target:Vector.<Number>;
 		private var needGenerate:Boolean;
 
 		public function AutoDeriveVertexTangents()
 		{
-			super();
-
 			dataTypeId = _.tangent_va_3;
 
-			addEventListener(ComponentEvent.BE_ADDED_COMPONET, onBeAddedComponet);
-			addEventListener(ComponentEvent.BE_REMOVED_COMPONET, onBeRemovedComponet);
+			super();
 		}
 
-		private function get subGeometry():SubGeometry
-		{
-			return _subGeometry;
-		}
-
-		private function set subGeometry(value:SubGeometry):void
+		override protected function set subGeometry(value:SubGeometry):void
 		{
 			if (_subGeometry != null)
 			{
@@ -65,23 +52,12 @@ package me.feng3d.components.subgeometry
 		 * 处理被添加事件
 		 * @param event
 		 */
-		protected function onBeAddedComponet(event:ComponentEvent):void
+		override protected function onBeAddedComponet(event:ComponentEvent):void
 		{
-			var addedComponentEventVO:AddedComponentEventVO = event.data;
-			subGeometry = addedComponentEventVO.container as SubGeometry;
+			super.onBeAddedComponet(event);
 
 			needGenerate = true;
 			subGeometry.invalidVAData(dataTypeId);
-		}
-
-		/**
-		 * 处理被移除事件
-		 * @param event
-		 */
-		protected function onBeRemovedComponet(event:ComponentEvent):void
-		{
-			var removedComponentEventVO:RemovedComponentEventVO = event.data;
-			subGeometry = null;
 		}
 
 		protected function onGetVAData(event:GeometryComponentEvent):void
@@ -271,14 +247,6 @@ package me.feng3d.components.subgeometry
 			}
 
 			return target;
-		}
-
-		/**
-		 * Fagal编号中心
-		 */
-		public function get _():FagalIdCenter
-		{
-			return FagalIdCenter.instance;
 		}
 	}
 }

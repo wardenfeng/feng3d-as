@@ -4,10 +4,8 @@ package me.feng3d.components.subgeometry
 	import me.feng.component.event.ComponentEvent;
 	import me.feng.component.event.vo.AddedComponentEventVO;
 	import me.feng.component.event.vo.RemovedComponentEventVO;
-	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-
-	use namespace arcane;
+	import me.feng3d.fagalRE.FagalIdCenter;
 
 	/**
 	 * 子几何体组件
@@ -15,7 +13,7 @@ package me.feng3d.components.subgeometry
 	 */
 	public class SubGeometryComponent extends Component
 	{
-		arcane var _subGeometry:SubGeometry;
+		protected var _subGeometry:SubGeometry;
 
 		public function SubGeometryComponent()
 		{
@@ -52,7 +50,15 @@ package me.feng3d.components.subgeometry
 		protected function onBeRemovedComponet(event:ComponentEvent):void
 		{
 			var removedComponentEventVO:RemovedComponentEventVO = event.data;
-			subGeometry = removedComponentEventVO.container as SubGeometry;
+			subGeometry = null;
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		protected function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 	}
 }
