@@ -1,6 +1,7 @@
-package me.feng3d.core.base.subgeometry
+package me.feng3d.components.subgeometry
 {
 	import me.feng3d.arcane;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
 
 
 	use namespace arcane;

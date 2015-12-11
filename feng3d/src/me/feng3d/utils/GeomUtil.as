@@ -5,7 +5,7 @@ package me.feng3d.utils
 	import me.feng.debug.assert;
 	import me.feng3d.arcane;
 	import me.feng3d.components.subgeometry.AutoDeriveVertexNormals;
-	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
+	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 
 

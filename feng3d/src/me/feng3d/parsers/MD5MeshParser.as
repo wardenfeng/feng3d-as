@@ -8,7 +8,7 @@ package me.feng3d.parsers
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.skeleton.data.SkeletonJoint;
 	import me.feng3d.core.base.Geometry;
-	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
+	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.mathlib.Quaternion;
 

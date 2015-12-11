@@ -13,7 +13,7 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
-	import me.feng3d.core.base.subgeometry.SkinnedSubGeometry;
+	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.AnimationStateEvent;
