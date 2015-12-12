@@ -11,8 +11,6 @@ package me.feng3d.components.subgeometry
 	 */
 	public class SubGeometryTransformation extends SubGeometryComponent
 	{
-		private var subGeometry:SubGeometry;
-
 		private var _scaleU:Number = 1;
 		private var _scaleV:Number = 1;
 

@@ -12,8 +12,9 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.animators.skeleton.data.SkeletonJoint;
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
+	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.AnimationStateEvent;
@@ -184,19 +185,20 @@ package me.feng3d.animators.skeleton
 			if (_globalPropertiesDirty)
 				updateGlobalProperties();
 
-			var skinnedGeom:SkinnedSubGeometry = SkinnedSubGeometry(SubMesh(renderable).subGeometry);
+			var subGeometry:SubGeometry = SubMesh(renderable).subGeometry;
 
 			if (_animationSet.usesCPU)
 			{
-				var subGeomAnimState:SubGeomAnimationState = _animationStates[skinnedGeom] ||= new SubGeomAnimationState(skinnedGeom);
+				var subGeomAnimState:SubGeomAnimationState = _animationStates[subGeometry] ||= new SubGeomAnimationState(subGeometry);
 
 				//检查动画数据
 				if (subGeomAnimState.dirty)
 				{
-					morphGeometry(subGeomAnimState, skinnedGeom);
+					morphGeometry(subGeomAnimState, subGeometry);
 					subGeomAnimState.dirty = false;
 				}
 				//更新动画数据到几何体
+				var skinnedGeom:SkinnedSubGeometry = subGeometry.getComponentByClass(SkinnedSubGeometry);
 				skinnedGeom.updateAnimatedData(subGeomAnimState.animatedVertexData);
 			}
 		}
@@ -325,14 +327,16 @@ package me.feng3d.animators.skeleton
 		 * @param state 动画几何体数据
 		 * @param subGeom 蒙皮几何体
 		 */
-		private function morphGeometry(state:SubGeomAnimationState, subGeom:SkinnedSubGeometry):void
+		private function morphGeometry(state:SubGeomAnimationState, subGeom:SubGeometry):void
 		{
+			var skinnedGeom:SkinnedSubGeometry = subGeom.getComponentByClass(SkinnedSubGeometry);
+
 			//几何体顶点数据
 			var vertexData:Vector.<Number> = subGeom.vertexPositionData;
 			//动画顶点数据（目标数据）
 			var targetData:Vector.<Number> = state.animatedVertexData;
-			var jointIndices:Vector.<Number> = subGeom.jointIndexData;
-			var jointWeights:Vector.<Number> = subGeom.jointWeightsData;
+			var jointIndices:Vector.<Number> = skinnedGeom.jointIndexData;
+			var jointWeights:Vector.<Number> = skinnedGeom.jointWeightsData;
 			var index:uint;
 			var j:uint, k:uint;
 			var vx:Number, vy:Number, vz:Number;

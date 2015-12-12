@@ -168,17 +168,18 @@ package me.feng3d.utils
 
 		public static function constructSubGeometry(verts:Vector.<Number>, indices:Vector.<uint>, uvs:Vector.<Number>, weights:Vector.<Number>, jointIndices:Vector.<Number>, triangleOffset:int):SubGeometry
 		{
-			var sub:SubGeometry;
+			var sub:SubGeometry = new SubGeometry();
 
 			if (weights && jointIndices)
 			{
 				// If there were weights and joint indices defined, this
 				// is a skinned mesh and needs to be built from skinned
 				// sub-geometries.
-				sub = new SkinnedSubGeometry(weights.length / (verts.length / 3));
-				SkinnedSubGeometry(sub).updateJointWeightsData(weights);
-				SkinnedSubGeometry(sub).updateJointIndexData(jointIndices);
+				var skinnedSubGeometry:SkinnedSubGeometry = new SkinnedSubGeometry(weights.length / (verts.length / 3));
+				sub.addComponent(skinnedSubGeometry);
 
+				skinnedSubGeometry.updateJointWeightsData(weights);
+				skinnedSubGeometry.updateJointIndexData(jointIndices);
 			}
 			else
 				sub = new SubGeometry();

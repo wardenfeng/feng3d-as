@@ -1,8 +1,7 @@
 package me.feng3d.components.subgeometry
 {
+	import me.feng.component.event.ComponentEvent;
 	import me.feng3d.arcane;
-	import me.feng3d.core.base.subgeometry.SubGeometry;
-
 
 	use namespace arcane;
 
@@ -10,7 +9,7 @@ package me.feng3d.components.subgeometry
 	 * 蒙皮子网格
 	 * 提供了关节 索引数据与权重数据
 	 */
-	public class SkinnedSubGeometry extends SubGeometry
+	public class SkinnedSubGeometry extends SubGeometryComponent
 	{
 		private var _jointsPerVertex:int;
 
@@ -23,13 +22,17 @@ package me.feng3d.components.subgeometry
 			super();
 		}
 
-		override protected function initBuffers():void
+		/**
+		 * 处理被添加事件
+		 * @param event
+		 */
+		override protected function onBeAddedComponet(event:ComponentEvent):void
 		{
-			super.initBuffers();
+			super.onBeAddedComponet(event);
 
-			mapVABuffer(_.animated_va_3, 3);
-			mapVABuffer(_.jointweights_va_x, _jointsPerVertex);
-			mapVABuffer(_.jointindex_va_x, _jointsPerVertex);
+			subGeometry.mapVABuffer(_.animated_va_3, 3);
+			subGeometry.mapVABuffer(_.jointweights_va_x, _jointsPerVertex);
+			subGeometry.mapVABuffer(_.jointindex_va_x, _jointsPerVertex);
 		}
 
 		/**
@@ -37,7 +40,7 @@ package me.feng3d.components.subgeometry
 		 */
 		public function updateAnimatedData(value:Vector.<Number>):void
 		{
-			setVAData(_.animated_va_3, value);
+			subGeometry.setVAData(_.animated_va_3, value);
 		}
 
 		/**
@@ -45,7 +48,7 @@ package me.feng3d.components.subgeometry
 		 */
 		arcane function get jointWeightsData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(_.jointweights_va_x);
+			var data:Vector.<Number> = subGeometry.getVAData(_.jointweights_va_x);
 			return data;
 		}
 
@@ -54,7 +57,7 @@ package me.feng3d.components.subgeometry
 		 */
 		arcane function get jointIndexData():Vector.<Number>
 		{
-			var data:Vector.<Number> = getVAData(_.jointindex_va_x);
+			var data:Vector.<Number> = subGeometry.getVAData(_.jointindex_va_x);
 			return data;
 		}
 
@@ -63,7 +66,7 @@ package me.feng3d.components.subgeometry
 		 */
 		arcane function updateJointWeightsData(value:Vector.<Number>):void
 		{
-			setVAData(_.jointweights_va_x, value);
+			subGeometry.setVAData(_.jointweights_va_x, value);
 		}
 
 		/**
@@ -71,7 +74,7 @@ package me.feng3d.components.subgeometry
 		 */
 		arcane function updateJointIndexData(value:Vector.<Number>):void
 		{
-			setVAData(_.jointindex_va_x, value);
+			subGeometry.setVAData(_.jointindex_va_x, value);
 		}
 	}
 }

@@ -7,8 +7,11 @@ package me.feng3d.parsers
 	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.skeleton.data.SkeletonJoint;
-	import me.feng3d.core.base.Geometry;
+	import me.feng3d.components.subgeometry.AutoDeriveVertexNormals;
+	import me.feng3d.components.subgeometry.AutoDeriveVertexTangents;
 	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
+	import me.feng3d.core.base.Geometry;
+	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.mathlib.Quaternion;
 
@@ -363,7 +366,7 @@ package me.feng3d.parsers
 		 * @param indices 顶点索引数据
 		 * @return 包含所有几何体数据的SkinnedSubGeometry实例
 		 */
-		private function translateGeom(vertexData:Vector.<VertexData>, weights:Vector.<WeightData>, indices:Vector.<uint>):SkinnedSubGeometry
+		private function translateGeom(vertexData:Vector.<VertexData>, weights:Vector.<WeightData>, indices:Vector.<uint>):SubGeometry
 		{
 			var len:int = vertexData.length;
 			var v1:int, v2:int, v3:int;
@@ -371,7 +374,9 @@ package me.feng3d.parsers
 			var weight:WeightData;
 			var bindPose:Matrix3D;
 			var pos:Vector3D;
-			var subGeom:SkinnedSubGeometry = new SkinnedSubGeometry(_maxJointCount);
+			var subGeom:SubGeometry = new SubGeometry();
+			var skinnedsubGeom:SkinnedSubGeometry = new SkinnedSubGeometry(_maxJointCount);
+			subGeom.addComponent(skinnedsubGeom);
 			//uv数据
 			var uvs:Vector.<Number> = new Vector.<Number>(len * 2, true);
 			//顶点位置数据
@@ -440,8 +445,9 @@ package me.feng3d.parsers
 			subGeom.vertexNormalData;
 			subGeom.vertexTangentData;
 			//更新关节索引与权重索引
-			subGeom.updateJointIndexData(jointIndices);
-			subGeom.updateJointWeightsData(jointWeights);
+			skinnedsubGeom.updateJointIndexData(jointIndices);
+			skinnedsubGeom.updateJointWeightsData(jointWeights);
+
 
 			return subGeom;
 		}

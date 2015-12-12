@@ -6,6 +6,7 @@ package me.feng3d.core.base
 
 	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
+	import me.feng3d.components.subgeometry.SubGeometryTransformation;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryEvent;
 	import me.feng3d.library.assets.AssetType;
@@ -111,7 +112,10 @@ package me.feng3d.core.base
 		{
 			var numSubGeoms:uint = _subGeometries.length;
 			for (var i:uint = 0; i < numSubGeoms; ++i)
-				_subGeometries[i].scaleUV(scaleU, scaleV);
+			{
+				var subGeometryTransformation:SubGeometryTransformation = _subGeometries[i].getOrCreateComponentByClass(SubGeometryTransformation);
+				subGeometryTransformation.scaleUV(scaleU, scaleV);
+			}
 		}
 
 		public function get assetType():String
