@@ -442,6 +442,8 @@ package me.feng3d.parsers
 			//更新顶点坐标与uv数据
 			subGeom.fromVectors(vertices, uvs);
 			// cause explicit updates
+			subGeom.addComponent(new AutoDeriveVertexNormals());
+			subGeom.addComponent(new AutoDeriveVertexTangents());
 			subGeom.vertexNormalData;
 			subGeom.vertexTangentData;
 			//更新关节索引与权重索引
