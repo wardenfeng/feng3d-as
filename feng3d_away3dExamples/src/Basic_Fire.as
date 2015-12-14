@@ -53,8 +53,6 @@ package
 	import flash.geom.Vector3D;
 	import flash.utils.Timer;
 
-	import me.feng3d.debug.AwayStats;
-
 	import me.feng3d.animators.particle.ParticleAnimationSet;
 	import me.feng3d.animators.particle.ParticleAnimator;
 	import me.feng3d.animators.particle.data.ParticleProperties;
@@ -69,6 +67,7 @@ package
 	import me.feng3d.controllers.HoverController;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.ParticleGeometry;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.lights.DirectionalLight;
@@ -76,6 +75,7 @@ package
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.lightpickers.StaticLightPicker;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.tools.helpers.ParticleGeometryHelper;
 	import me.feng3d.utils.Cast;
 

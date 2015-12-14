@@ -1,4 +1,4 @@
-package 
+package
 {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -7,6 +7,7 @@ package
 
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.SkyBox;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.utils.Cast;
 

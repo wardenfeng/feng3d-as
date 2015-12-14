@@ -17,10 +17,10 @@
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Elevation;
 	import me.feng3d.entities.Mesh;
-	
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.methods.TerrainDiffuseMethod;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	[SWF(width = "800", height = "600", backgroundColor = "#000000", frameRate = "60", quality = "LOW")]
@@ -218,7 +218,7 @@
 			subGeometry.numVertices = positionsBuffer.length / 3;
 			subGeometry.updateIndexData(indexBuffer);
 			subGeometry.updateVertexPositionData(positionsBuffer);
-			subGeometry.updateUVData( uvBuffer);
+			subGeometry.updateUVData(uvBuffer);
 			geometry.addSubGeometry(subGeometry);
 
 			return geometry;

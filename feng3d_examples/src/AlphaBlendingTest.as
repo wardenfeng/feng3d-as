@@ -10,6 +10,7 @@ package
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.Sprite3D;
 	import me.feng3d.materials.TextureMaterial;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	/**

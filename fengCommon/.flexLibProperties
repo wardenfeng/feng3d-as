@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="me.feng.core.NamedAssetBase"/>
     <classEntry path="me.feng.error.AbstractClassError"/>
     <classEntry path="me.feng.events.FEvent"/>
     <classEntry path="me.feng.events.FEventDispatcher"/>
@@ -25,11 +24,6 @@
     <classEntry path="me.feng.events.task.TaskModuleEventRegisterData"/>
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
-    <classEntry path="me.feng.component.UniqueNameComponent"/>
-    <classEntry path="me.feng.component.event.ComponentEvent"/>
-    <classEntry path="me.feng.component.event.vo.AddedComponentEventVO"/>
-    <classEntry path="me.feng.component.event.vo.RemovedComponentEventVO"/>
-    <classEntry path="me.feng.events.FErrorEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -49,13 +49,12 @@ package
 	import flash.geom.Vector3D;
 	import flash.utils.getTimer;
 
-	import me.feng3d.debug.AwayStats;
-
 	import br.com.stimuli.loading.BulkLoader;
 
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.AssetEvent;
@@ -66,6 +65,7 @@ package
 	import me.feng3d.materials.methods.FilteredShadowMapMethod;
 	import me.feng3d.parsers.Max3DSParser;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "30", quality = "LOW")]

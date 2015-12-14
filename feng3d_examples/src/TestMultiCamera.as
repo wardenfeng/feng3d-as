@@ -1,6 +1,5 @@
 package
 {
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -10,6 +9,7 @@ package
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
+	import me.feng3d.test.TestBase;
 
 	import model3d.PhotoBox;
 

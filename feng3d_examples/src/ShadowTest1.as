@@ -30,6 +30,7 @@
 	import me.feng3d.parsers.MD5AnimParser;
 	import me.feng3d.parsers.MD5MeshParser;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.utils.Cast;
 

@@ -54,8 +54,6 @@ package
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
 
-	import me.feng3d.debug.AwayStats;
-
 	import br.com.stimuli.loading.BulkLoader;
 
 	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
@@ -68,6 +66,7 @@ package
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.entities.SkyBox;
 	import me.feng3d.entities.Sprite3D;
@@ -85,6 +84,7 @@ package
 	import me.feng3d.parsers.MD5AnimParser;
 	import me.feng3d.parsers.MD5MeshParser;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.utils.Cast;
 

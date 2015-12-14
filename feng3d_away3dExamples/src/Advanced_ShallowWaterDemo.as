@@ -57,14 +57,13 @@ package
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 
-	import me.feng3d.debug.AwayStats;
-
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.pick.PickingColliderType;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.debug.Debug;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.entities.SkyBox;
@@ -78,6 +77,7 @@ package
 	import me.feng3d.materials.methods.FogMethod;
 	import me.feng3d.primitives.CubeGeometry;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.utils.Cast;

@@ -10,6 +10,7 @@ package
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.materials.TextureMaterial;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	import parser.ObjParser1;

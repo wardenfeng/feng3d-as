@@ -1,10 +1,9 @@
 package
 {
-	import flash.display.Sprite;
-
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryEvent;
+	import me.feng3d.test.TestBase;
 
 	/**
 	 * 测试Geometry事件冒泡

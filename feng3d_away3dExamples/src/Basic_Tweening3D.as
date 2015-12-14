@@ -52,6 +52,7 @@ package
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.primitives.CubeGeometry;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "60", quality = "LOW")]

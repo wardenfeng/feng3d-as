@@ -9,6 +9,7 @@ package
 	import me.feng3d.debug.Trident;
 	import me.feng3d.entities.SegmentSet;
 	import me.feng3d.primitives.data.Segment;
+	import me.feng3d.test.TestBase;
 
 	/**
 	 * 测试线段

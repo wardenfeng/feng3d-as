@@ -20,6 +20,7 @@
 	import me.feng3d.materials.methods.NearShadowMapMethod;
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.primitives.SphereGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	/**

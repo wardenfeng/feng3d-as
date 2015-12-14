@@ -20,6 +20,7 @@ package
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.primitives.SphereGeometry;
 	import me.feng3d.primitives.TorusGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.utils.Cast;
 

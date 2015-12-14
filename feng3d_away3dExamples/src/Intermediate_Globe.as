@@ -60,8 +60,6 @@ package
 	import flash.text.TextFormat;
 	import flash.ui.Keyboard;
 
-	import me.feng3d.debug.AwayStats;
-
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.ObjectContainer3D;
@@ -69,6 +67,7 @@ package
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
 	import me.feng3d.core.register.Register;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.entities.SkyBox;
 	import me.feng3d.entities.Sprite3D;
@@ -82,6 +81,7 @@ package
 	import me.feng3d.materials.methods.FresnelSpecularMethod;
 	import me.feng3d.materials.methods.PhongSpecularMethod;
 	import me.feng3d.primitives.SphereGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.utils.Cast;

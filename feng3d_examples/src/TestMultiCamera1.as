@@ -12,6 +12,7 @@ package
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
+	import me.feng3d.test.TestBase;
 
 	import model3d.PhotoBox;
 

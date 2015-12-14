@@ -53,12 +53,11 @@ package
 	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
 
-	import me.feng3d.debug.AwayStats;
-
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
+	import me.feng3d.debug.AwayStats;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.AssetEvent;
 	import me.feng3d.library.assets.AssetType;
@@ -71,6 +70,7 @@ package
 	import me.feng3d.materials.methods.SubsurfaceScatteringDiffuseMethod;
 	import me.feng3d.parsers.OBJParser;
 	import me.feng3d.primitives.WireframeGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	[SWF(backgroundColor = "#000000", frameRate = "30", quality = "LOW")]

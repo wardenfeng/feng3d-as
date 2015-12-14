@@ -8,6 +8,7 @@ package
 
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.View3D;
+	import me.feng3d.test.TestBase;
 
 	import model3d.PhotoBox;
 

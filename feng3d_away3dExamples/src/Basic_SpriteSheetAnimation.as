@@ -41,7 +41,6 @@ package
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -55,6 +54,7 @@ package
 	import me.feng3d.materials.SpriteSheetMaterial;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.textures.Texture2DBase;
 	import me.feng3d.tools.helpers.SpriteSheetHelper;

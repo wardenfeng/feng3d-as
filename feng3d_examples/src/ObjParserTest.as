@@ -1,4 +1,4 @@
-package 
+package
 {
 	import flash.display.BitmapData;
 	import flash.display.StageAlign;
@@ -13,6 +13,7 @@ package
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.parsers.OBJParser;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapTexture;
 
 	/**

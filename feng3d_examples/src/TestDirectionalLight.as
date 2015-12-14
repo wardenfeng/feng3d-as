@@ -16,6 +16,7 @@ package
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.lightpickers.StaticLightPicker;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
 	/**

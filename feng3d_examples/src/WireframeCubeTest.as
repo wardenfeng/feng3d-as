@@ -9,6 +9,7 @@ package
 	import me.feng3d.containers.View3D;
 	import me.feng3d.debug.Trident;
 	import me.feng3d.primitives.WireframeCube;
+	import me.feng3d.test.TestBase;
 
 	/**
 	 * 测试线框立方体

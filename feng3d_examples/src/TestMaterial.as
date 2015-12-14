@@ -10,6 +10,7 @@ package
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.test.TestBase;
 
 	/**
 	 * 测试颜色材质

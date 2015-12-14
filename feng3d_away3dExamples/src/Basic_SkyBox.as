@@ -49,6 +49,7 @@ package
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.methods.EnvMapMethod;
 	import me.feng3d.primitives.TorusGeometry;
+	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.utils.Cast;
 
