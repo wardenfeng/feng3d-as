@@ -1,6 +1,7 @@
 package me.feng3d.utils
 {
 
+
 	/**
 	 * 向量工具类
 	 * @author feng 2014-12-10
@@ -28,6 +29,20 @@ package me.feng3d.utils
 		}
 
 		/**
+		 * 拷贝数组
+		 * @param source		源数组
+		 * @param target		目标数组
+		 * @param offset		在源数组中的偏移量
+		 */
+		public static function copy(source:Vector.<Number>, target:Vector.<Number>, offset:uint):void
+		{
+			source.forEach(function(item:Number, index:int, ... args):void
+			{
+				target[offset + index] = item;
+			});
+		}
+
+		/**
 		 * 把source添加到target中
 		 * @param source 源向量
 		 * @param target 目标向量
@@ -46,5 +61,7 @@ package me.feng3d.utils
 			}
 			return target;
 		}
+
+
 	}
 }
