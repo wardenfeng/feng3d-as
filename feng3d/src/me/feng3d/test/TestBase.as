@@ -22,7 +22,8 @@ package me.feng3d.test
 	public class TestBase extends Sprite
 	{
 		//资源根路径
-		protected var rootPath:String = "http://images.feng3d.me/feng3dDemo/assets/";
+//		protected var rootPath:String = "http://images.feng3d.me/feng3dDemo/assets/";
+		protected var rootPath:String = "http://127.0.0.1:9080/";
 
 		/**
 		 * 资源列表

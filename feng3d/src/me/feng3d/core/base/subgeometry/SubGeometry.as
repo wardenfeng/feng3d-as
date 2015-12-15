@@ -7,6 +7,8 @@ package me.feng3d.core.base.subgeometry
 	import me.feng.debug.assert;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
+	import me.feng3d.core.base.VertexBufferOwner;
+	import me.feng3d.core.buffer.context3d.IndexBuffer;
 	import me.feng3d.events.GeometryComponentEvent;
 	import me.feng3d.events.GeometryEvent;
 
@@ -30,9 +32,14 @@ package me.feng3d.core.base.subgeometry
 	/**
 	 * 子几何体
 	 */
-	public class SubGeometry extends SubGeometryBase
+	public class SubGeometry extends VertexBufferOwner
 	{
 		private var _parent:Geometry;
+
+		protected var _indices:Vector.<uint>;
+
+		protected var _numIndices:uint;
+		protected var _numTriangles:uint;
 
 		/**
 		 * 创建一个新几何体
@@ -46,9 +53,79 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
+			mapContext3DBuffer(_.index, updateIndexBuffer);
+
+			mapVABuffer(_.position_va_3, 3);
 			mapVABuffer(_.uv_va_2, 2);
 			mapVABuffer(_.normal_va_3, 3);
 			mapVABuffer(_.tangent_va_3, 3);
+		}
+
+		/**
+		 * 更新索引数据
+		 * @param indexBuffer 索引缓存
+		 */
+		protected function updateIndexBuffer(indexBuffer:IndexBuffer):void
+		{
+			indexBuffer.update(indices, numIndices, numIndices);
+		}
+
+		/**
+		 * 可绘制三角形的个数
+		 */
+		public function get numTriangles():uint
+		{
+			return _numTriangles;
+		}
+
+		/**
+		 * 销毁
+		 */
+		public function dispose():void
+		{
+			_indices = null;
+		}
+
+		/**
+		 * 顶点索引数据
+		 */
+		public function get indexData():Vector.<uint>
+		{
+			if (_indices == null)
+				_indices = new Vector.<uint>();
+			return _indices;
+		}
+
+		/**
+		 * 索引数量
+		 */
+		public function get numIndices():uint
+		{
+			return _numIndices;
+		}
+
+		/**
+		 * 索引数据
+		 */
+		public function get indices():Vector.<uint>
+		{
+			return _indices;
+		}
+
+		/**
+		 * 更新顶点索引数据
+		 */
+		public function updateIndexData(indices:Vector.<uint>):void
+		{
+			_indices = indices;
+			_numIndices = indices.length;
+
+			var numTriangles:int = _numIndices / 3;
+			_numTriangles = numTriangles;
+
+			markBufferDirty(_.index);
+
+			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_INDEX_DATA));
 		}
 
 		public function fromVectors(vertices:Vector.<Number>, uvs:Vector.<Number>):void
@@ -171,13 +248,6 @@ package me.feng3d.core.base.subgeometry
 			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.GET_VA_DATA, dataTypeId));
 
 			return super.getVAData(dataTypeId);
-		}
-
-		override public function updateIndexData(indices:Vector.<uint>):void
-		{
-			super.updateIndexData(indices);
-
-			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_INDEX_DATA));
 		}
 
 		public function clone():SubGeometry
