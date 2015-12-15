@@ -38,6 +38,8 @@ package me.feng3d.test
 			initModules();
 
 			loadTextures();
+
+			new TryRootPath();
 		}
 
 		private function initModules():void
