@@ -1,6 +1,6 @@
 package me.feng3d.core.base
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.materials.MaterialBase;
 
 	/**
@@ -18,6 +18,6 @@ package me.feng3d.core.base
 		/**
 		 * 动画
 		 */
-		function get animator():IAnimator;
+		function get animator():AnimatorBase;
 	}
 }

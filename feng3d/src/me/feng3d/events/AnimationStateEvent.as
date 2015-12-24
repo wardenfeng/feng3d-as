@@ -3,7 +3,7 @@ package me.feng3d.events
 	import flash.events.Event;
 
 	import me.feng.events.FEvent;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 	import me.feng3d.animators.base.states.IAnimationState;
 
@@ -19,7 +19,7 @@ package me.feng3d.events
 
 		public static const TRANSITION_COMPLETE:String = "transitionComplete";
 
-		private var _animator:IAnimator;
+		private var _animator:AnimatorBase;
 		private var _animationState:IAnimationState;
 		private var _animationNode:AnimationNodeBase;
 
@@ -30,7 +30,7 @@ package me.feng3d.events
 		 * @param animator The animation state object that is the subject of this event.
 		 * @param animationNode The animation node inside the animation state from which the event originated.
 		 */
-		public function AnimationStateEvent(type:String, animator:IAnimator, animationState:IAnimationState, animationNode:AnimationNodeBase):void
+		public function AnimationStateEvent(type:String, animator:AnimatorBase, animationState:IAnimationState, animationNode:AnimationNodeBase):void
 		{
 			super(type, false, false);
 
@@ -42,7 +42,7 @@ package me.feng3d.events
 		/**
 		 * The animator object that is the subject of this event.
 		 */
-		public function get animator():IAnimator
+		public function get animator():AnimatorBase
 		{
 			return _animator;
 		}

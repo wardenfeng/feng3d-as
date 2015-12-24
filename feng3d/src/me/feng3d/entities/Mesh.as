@@ -1,7 +1,7 @@
 package me.feng3d.entities
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.IMaterialOwner;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
@@ -33,7 +33,7 @@ package me.feng3d.entities
 
 		protected var _materialSelf:MaterialBase;
 
-		protected var _animator:IAnimator;
+		protected var _animator:AnimatorBase;
 
 		private var _castsShadows:Boolean = true;
 
@@ -164,12 +164,12 @@ package me.feng3d.entities
 		/**
 		 * @inheritDoc
 		 */
-		public function get animator():IAnimator
+		public function get animator():AnimatorBase
 		{
 			return _animator;
 		}
 
-		public function set animator(value:IAnimator):void
+		public function set animator(value:AnimatorBase):void
 		{
 			if (_animator)
 				_animator.removeOwner(this);

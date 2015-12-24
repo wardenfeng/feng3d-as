@@ -2,7 +2,7 @@ package me.feng3d.animators.skeleton
 {
 	import flash.geom.Vector3D;
 
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.states.AnimationClipState;
 	import me.feng3d.animators.skeleton.data.JointPose;
 	import me.feng3d.animators.skeleton.data.Skeleton;
@@ -49,7 +49,7 @@ package me.feng3d.animators.skeleton
 		 * @param animator				动画
 		 * @param skeletonClipNode		骨骼剪辑节点
 		 */
-		function SkeletonClipState(animator:IAnimator, skeletonClipNode:SkeletonClipNode)
+		function SkeletonClipState(animator:AnimatorBase, skeletonClipNode:SkeletonClipNode)
 		{
 			super(animator, skeletonClipNode);
 

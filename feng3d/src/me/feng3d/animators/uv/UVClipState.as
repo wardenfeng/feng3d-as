@@ -1,6 +1,6 @@
 package me.feng3d.animators.uv
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.states.AnimationClipState;
 
 	/**
@@ -41,7 +41,7 @@ package me.feng3d.animators.uv
 		 * @param animator				动画
 		 * @param uvClipNode			UV动画剪辑节点
 		 */
-		function UVClipState(animator:IAnimator, uvClipNode:UVClipNode)
+		function UVClipState(animator:AnimatorBase, uvClipNode:UVClipNode)
 		{
 			super(animator, uvClipNode);
 

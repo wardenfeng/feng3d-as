@@ -1,7 +1,7 @@
 package me.feng3d.animators.spriteSheet
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.states.AnimationClipState;
 
 	use namespace arcane;
@@ -24,7 +24,7 @@ package me.feng3d.animators.spriteSheet
 		 * @param animator			动画
 		 * @param clipNode			动画剪辑节点
 		 */
-		function SpriteSheetAnimationState(animator:IAnimator, clipNode:SpriteSheetClipNode)
+		function SpriteSheetAnimationState(animator:AnimatorBase, clipNode:SpriteSheetClipNode)
 		{
 			super(animator, clipNode);
 

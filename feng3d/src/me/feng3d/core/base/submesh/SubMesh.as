@@ -3,7 +3,7 @@ package me.feng3d.core.base.submesh
 	import flash.events.Event;
 
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
 	import me.feng3d.core.base.renderable.RenderableBase;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
@@ -27,7 +27,7 @@ package me.feng3d.core.base.submesh
 		private var _material:MaterialBase;
 		private var _materialDirty:Boolean;
 
-		private var _animator:IAnimator;
+		private var _animator:AnimatorBase;
 
 		private var _animationSubGeometry:AnimationSubGeometry;
 
@@ -143,12 +143,12 @@ package me.feng3d.core.base.submesh
 		/**
 		 * @inheritDoc
 		 */
-		override public function get animator():IAnimator
+		override public function get animator():AnimatorBase
 		{
 			return _animator;
 		}
 
-		public function set animator(value:IAnimator):void
+		public function set animator(value:AnimatorBase):void
 		{
 			if (_animator)
 			{

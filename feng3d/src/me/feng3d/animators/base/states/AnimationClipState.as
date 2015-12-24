@@ -1,6 +1,6 @@
 package me.feng3d.animators.base.states
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationClipNodeBase;
 	import me.feng3d.events.AnimationStateEvent;
 
@@ -59,7 +59,7 @@ package me.feng3d.animators.base.states
 		 * @param animator				动画
 		 * @param animationClipNode		帧动画节点
 		 */
-		function AnimationClipState(animator:IAnimator, animationClipNode:AnimationClipNodeBase)
+		function AnimationClipState(animator:AnimatorBase, animationClipNode:AnimationClipNodeBase)
 		{
 			super(animator, animationClipNode);
 

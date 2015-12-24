@@ -2,7 +2,7 @@ package me.feng3d.animators.skeleton
 {
 	import flash.geom.Vector3D;
 
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.states.AnimationStateBase;
 	import me.feng3d.animators.skeleton.data.JointPose;
 	import me.feng3d.animators.skeleton.data.Skeleton;
@@ -42,7 +42,7 @@ package me.feng3d.animators.skeleton
 		 * @param animator						动画
 		 * @param skeletonAnimationNode			骨骼动画节点
 		 */
-		function SkeletonBinaryLERPState(animator:IAnimator, skeletonAnimationNode:SkeletonBinaryLERPNode)
+		function SkeletonBinaryLERPState(animator:AnimatorBase, skeletonAnimationNode:SkeletonBinaryLERPNode)
 		{
 			super(animator, skeletonAnimationNode);
 

@@ -1,6 +1,6 @@
 package me.feng3d.animators.vertex
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.states.AnimationClipState;
 	import me.feng3d.core.base.Geometry;
 
@@ -42,7 +42,7 @@ package me.feng3d.animators.vertex
 		 * @param animator				动画
 		 * @param vertexClipNode		顶点动画节点
 		 */
-		function VertexClipState(animator:IAnimator, vertexClipNode:VertexClipNode)
+		function VertexClipState(animator:AnimatorBase, vertexClipNode:VertexClipNode)
 		{
 			super(animator, vertexClipNode);
 

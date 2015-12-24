@@ -8,7 +8,6 @@ package me.feng3d.animators.base
 
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.animators.IAnimationSet;
-	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 	import me.feng3d.animators.base.states.AnimationStateBase;
 	import me.feng3d.animators.base.states.IAnimationState;
@@ -42,7 +41,7 @@ package me.feng3d.animators.base
 	 * 动画基类
 	 * @author feng 2014-5-27
 	 */
-	public class AnimatorBase extends Context3DBufferOwner implements IAsset, IAnimator
+	public class AnimatorBase extends Context3DBufferOwner implements IAsset
 	{
 		/** 动画驱动器 */
 		private var _broadcaster:Sprite = new Sprite();

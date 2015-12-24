@@ -4,7 +4,7 @@ package me.feng3d.animators.spriteSheet
 	import flash.utils.setTimeout;
 
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.cameras.Camera3D;
@@ -218,7 +218,7 @@ package me.feng3d.animators.spriteSheet
 		/**
 		 * 克隆
 		 */
-		public function clone():IAnimator
+		public function clone():AnimatorBase
 		{
 			return new SpriteSheetAnimator(_spriteSheetAnimationSet);
 		}

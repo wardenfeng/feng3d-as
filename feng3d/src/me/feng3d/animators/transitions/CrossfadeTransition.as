@@ -1,6 +1,6 @@
 package me.feng3d.animators.transitions
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 
@@ -24,7 +24,7 @@ package me.feng3d.animators.transitions
 		/**
 		 * @inheritDoc
 		 */
-		public function getAnimationNode(animator:IAnimator, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startBlend:int):AnimationNodeBase
+		public function getAnimationNode(animator:AnimatorBase, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startBlend:int):AnimationNodeBase
 		{
 			var crossFadeTransitionNode:CrossfadeTransitionNode = new CrossfadeTransitionNode();
 			crossFadeTransitionNode.inputA = startNode;

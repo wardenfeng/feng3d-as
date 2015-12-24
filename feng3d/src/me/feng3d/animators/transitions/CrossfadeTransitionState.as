@@ -1,6 +1,6 @@
 package me.feng3d.animators.transitions
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.skeleton.SkeletonBinaryLERPState;
 	import me.feng3d.events.AnimationStateEvent;
 
@@ -18,7 +18,7 @@ package me.feng3d.animators.transitions
 		 * @param animator						动画
 		 * @param skeletonAnimationNode			骨骼动画节点
 		 */
-		function CrossfadeTransitionState(animator:IAnimator, skeletonAnimationNode:CrossfadeTransitionNode)
+		function CrossfadeTransitionState(animator:AnimatorBase, skeletonAnimationNode:CrossfadeTransitionNode)
 		{
 			super(animator, skeletonAnimationNode);
 

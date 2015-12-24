@@ -2,7 +2,7 @@ package me.feng3d.core.base.renderable
 {
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.Entity;
@@ -70,7 +70,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get animator():IAnimator
+		public function get animator():AnimatorBase
 		{
 			throw new AbstractMethodError();
 		}

@@ -2,7 +2,7 @@ package me.feng3d.animators.base.states
 {
 	import flash.geom.Vector3D;
 
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 
 	/**
@@ -17,7 +17,7 @@ package me.feng3d.animators.base.states
 
 		protected var _time:int;
 		protected var _startTime:int;
-		protected var _animator:IAnimator;
+		protected var _animator:AnimatorBase;
 
 		/**
 		 * @inheritDoc
@@ -35,7 +35,7 @@ package me.feng3d.animators.base.states
 		 * @param animator				动画
 		 * @param animationNode			动画节点
 		 */
-		function AnimationStateBase(animator:IAnimator, animationNode:AnimationNodeBase)
+		function AnimationStateBase(animator:AnimatorBase, animationNode:AnimationNodeBase)
 		{
 			_animator = animator;
 			_animationNode = animationNode;

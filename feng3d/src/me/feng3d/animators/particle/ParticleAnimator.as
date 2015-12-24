@@ -1,7 +1,7 @@
 package me.feng3d.animators.particle
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.particle.states.ParticleStateBase;
 	import me.feng3d.cameras.Camera3D;

@@ -1,6 +1,6 @@
 package me.feng3d.animators.base.transitions
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 
 	/**
@@ -17,6 +17,6 @@ package me.feng3d.animators.base.transitions
 		 * @param startTime				开始时间
 		 * @return						动画变换节点
 		 */
-		function getAnimationNode(animator:IAnimator, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startTime:int):AnimationNodeBase
+		function getAnimationNode(animator:AnimatorBase, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startTime:int):AnimationNodeBase
 	}
 }

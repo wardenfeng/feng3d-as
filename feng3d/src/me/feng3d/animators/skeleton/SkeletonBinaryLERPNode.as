@@ -1,6 +1,6 @@
 package me.feng3d.animators.skeleton
 {
-	import me.feng3d.animators.IAnimator;
+	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 
 	/**
@@ -30,7 +30,7 @@ package me.feng3d.animators.skeleton
 		/**
 		 * @inheritDoc
 		 */
-		public function getAnimationState(animator:IAnimator):SkeletonBinaryLERPState
+		public function getAnimationState(animator:AnimatorBase):SkeletonBinaryLERPState
 		{
 			return animator.getAnimationState(this) as SkeletonBinaryLERPState;
 		}
