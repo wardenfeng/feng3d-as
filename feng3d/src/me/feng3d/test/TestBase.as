@@ -3,6 +3,7 @@ package me.feng3d.test
 	import com.junkbyte.console.Cc;
 
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.utils.Dictionary;
 
 	import me.feng.core.GlobalDispatcher;
@@ -12,6 +13,8 @@ package me.feng3d.test
 	import me.feng.load.Load;
 	import me.feng.load.LoadUrlEvent;
 	import me.feng.task.Task;
+	import me.feng.task.TaskEvent;
+	import me.feng.utils.TryConnectURL;
 	import me.feng3d.configs.Context3DBufferIDConfig;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -21,8 +24,12 @@ package me.feng3d.test
 	 */
 	public class TestBase extends Sprite
 	{
+		protected var rootPaths:Array = [ //
+			"http://127.0.0.1:9080/", //
+			"http://images.feng3d.me/feng3dDemo/assets/", //
+			];
+
 		//资源根路径
-//		protected var rootPath:String = "http://images.feng3d.me/feng3dDemo/assets/";
 		protected var rootPath:String = "http://127.0.0.1:9080/";
 
 		/**
@@ -37,7 +44,7 @@ package me.feng3d.test
 		{
 			initModules();
 
-			loadTextures();
+			tryConnect();
 		}
 
 		private function initModules():void
@@ -48,6 +55,29 @@ package me.feng3d.test
 
 			Task.init();
 			Load.init();
+		}
+
+		private function tryConnect():void
+		{
+			var tryRootPath:TryConnectURL = new TryConnectURL();
+			tryRootPath.addEventListener(TaskEvent.COMPLETED, tryRootPathComplete);
+			tryRootPath.tryConnect(rootPaths);
+		}
+
+		private function tryRootPathComplete(event:Event):void
+		{
+			var tryConnectURL:TryConnectURL = event.currentTarget as TryConnectURL;
+			if (tryConnectURL.connectedUrls.length == 0)
+			{
+				trace("没有可连接的资源路径！");
+			}
+			else
+			{
+				trace("以下为可连接的资源路径：");
+				trace(tryConnectURL.connectedUrls);
+				rootPath = tryConnectURL.connectedUrls[0];
+				loadTextures();
+			}
 		}
 
 		/**

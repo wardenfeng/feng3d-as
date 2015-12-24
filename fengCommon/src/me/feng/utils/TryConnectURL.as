@@ -26,13 +26,13 @@ package me.feng.utils
 		 */
 		override protected function onCompletedItem(event:TaskEvent):void
 		{
-			super.onCompletedItem(event);
-
 			var taskItem:TryConnectURLTaskItem = event.target as TryConnectURLTaskItem;
 			if (taskItem.result)
 			{
 				connectedUrls.push(taskItem.url);
 			}
+
+			super.onCompletedItem(event);
 		}
 	}
 }
@@ -73,7 +73,7 @@ class TryConnectURLTaskItem extends TaskItem
 		loader = new URLLoader();
 		addListeners();
 
-		var request:URLRequest = new URLRequest(url);
+		var request:URLRequest = new URLRequest(url + "?version=" + Math.random());
 		try
 		{
 			loader.load(request);
