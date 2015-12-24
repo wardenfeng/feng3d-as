@@ -33,14 +33,14 @@ package me.feng3d.core.base
 	 * Context3D缓存拥有者
 	 * @author feng 2014-11-26
 	 */
-	public class Context3DBufferOwner extends NamedAsset implements IContext3DBufferOwner
+	public class Context3DBufferOwner extends NamedAsset
 	{
 		private var _bufferDic:Dictionary;
 		private var _bufferList:Vector.<Context3DBuffer>;
 		/**
 		 * 缓冲拥有者子项列表
 		 */
-		private var childrenBufferOwner:Vector.<IContext3DBufferOwner>;
+		private var childrenBufferOwner:Vector.<Context3DBufferOwner>;
 
 		private var allBufferList:Vector.<Context3DBuffer>;
 		/**
@@ -53,7 +53,7 @@ package me.feng3d.core.base
 		 */
 		public function Context3DBufferOwner()
 		{
-			childrenBufferOwner = new Vector.<IContext3DBufferOwner>()
+			childrenBufferOwner = new Vector.<Context3DBufferOwner>()
 			initBuffers();
 		}
 
@@ -93,7 +93,7 @@ package me.feng3d.core.base
 		 * 添加子项缓存拥有者
 		 * @param childBufferOwner
 		 */
-		public function addChildBufferOwner(childBufferOwner:IContext3DBufferOwner):void
+		public function addChildBufferOwner(childBufferOwner:Context3DBufferOwner):void
 		{
 			var index:int = childrenBufferOwner.indexOf(childBufferOwner);
 			assert(index == -1, "不能重复添加子项缓存拥有者");
@@ -111,7 +111,7 @@ package me.feng3d.core.base
 		 * 移除子项缓存拥有者
 		 * @param childBufferOwner
 		 */
-		public function removeChildBufferOwner(childBufferOwner:IContext3DBufferOwner):void
+		public function removeChildBufferOwner(childBufferOwner:Context3DBufferOwner):void
 		{
 			var index:int = childrenBufferOwner.indexOf(childBufferOwner);
 			assert(index != -1, "无法移除不存在的子项缓存拥有者");

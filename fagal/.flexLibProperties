@@ -16,7 +16,6 @@
     <classEntry path="me.feng3d.core.buffer.context3d.FSArrayBuffer"/>
     <classEntry path="me.feng3d.Fagal"/>
     <classEntry path="me.feng3d.core.buffer.context3d.OCBuffer"/>
-    <classEntry path="me.feng3d.core.base.IContext3DBufferOwner"/>
     <classEntry path="me.feng3d.core.base.Context3DBufferOwner"/>
     <classEntry path="me.feng3d.events.Context3DBufferOwnerEvent"/>
     <classEntry path="me.feng3d.core.buffer.Context3DBufferCollector"/>

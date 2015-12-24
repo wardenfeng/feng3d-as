@@ -4,7 +4,7 @@ package me.feng3d.core.buffer
 
 	import me.feng3d.arcanefagal;
 	import me.feng3d.core.base.Context3DBufferOwner;
-	import me.feng3d.core.base.IContext3DBufferOwner;
+	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.buffer.context3d.Context3DBuffer;
 	import me.feng3d.events.Context3DBufferOwnerEvent;
 
@@ -17,7 +17,7 @@ package me.feng3d.core.buffer
 	public class Context3DBufferCollector
 	{
 		/** 根3D环境缓冲拥有者 */
-		private var _rootBufferOwner:IContext3DBufferOwner;
+		private var _rootBufferOwner:Context3DBufferOwner;
 
 		/** 所有数据缓存 */
 		private var bufferDic:Dictionary = new Dictionary();
@@ -33,7 +33,7 @@ package me.feng3d.core.buffer
 		/**
 		 * 根3D环境缓冲拥有者
 		 */
-		private function get rootBufferOwner():IContext3DBufferOwner
+		private function get rootBufferOwner():Context3DBufferOwner
 		{
 			if (_rootBufferOwner == null)
 			{
@@ -51,7 +51,7 @@ package me.feng3d.core.buffer
 		 * 添加子项缓存拥有者
 		 * @param childBufferOwner
 		 */
-		public function addChildBufferOwner(childBufferOwner:IContext3DBufferOwner):void
+		public function addChildBufferOwner(childBufferOwner:Context3DBufferOwner):void
 		{
 			rootBufferOwner.addChildBufferOwner(childBufferOwner);
 		}
@@ -60,7 +60,7 @@ package me.feng3d.core.buffer
 		 * 移除子项缓存拥有者
 		 * @param childBufferOwner
 		 */
-		public function removeChildBufferOwner(childBufferOwner:IContext3DBufferOwner):void
+		public function removeChildBufferOwner(childBufferOwner:Context3DBufferOwner):void
 		{
 			rootBufferOwner.removeChildBufferOwner(childBufferOwner);
 		}
@@ -126,7 +126,7 @@ package me.feng3d.core.buffer
 		 * 添加缓冲拥有者
 		 * @param bufferOwer		缓冲拥有者
 		 */
-		private function addContext3DBufferOwer(bufferOwer:IContext3DBufferOwner):void
+		private function addContext3DBufferOwer(bufferOwer:Context3DBufferOwner):void
 		{
 			var allBufferList:Vector.<Context3DBuffer> = bufferOwer.getAllBufferList();
 			for (var i:int = 0; i < allBufferList.length; i++)
@@ -139,7 +139,7 @@ package me.feng3d.core.buffer
 		 * 移除缓冲拥有者
 		 * @param bufferOwer		缓冲拥有者
 		 */
-		private function removeContext3DBufferOwer(bufferOwer:IContext3DBufferOwner):void
+		private function removeContext3DBufferOwer(bufferOwer:Context3DBufferOwner):void
 		{
 			var allBufferList:Vector.<Context3DBuffer> = bufferOwer.getAllBufferList();
 			for (var i:int = 0; i < allBufferList.length; i++)
