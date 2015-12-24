@@ -24,7 +24,6 @@
     <classEntry path="me.feng.events.task.TaskModuleEventRegisterData"/>
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
-    <classEntry path="me.feng.utils.TryConnectURL"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

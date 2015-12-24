@@ -12,7 +12,6 @@ package me.feng3d.test
 	import me.feng.load.Load;
 	import me.feng.load.LoadUrlEvent;
 	import me.feng.task.Task;
-	import me.feng.utils.TryConnectURLList;
 	import me.feng3d.configs.Context3DBufferIDConfig;
 	import me.feng3d.fagalRE.FagalRE;
 
@@ -39,8 +38,6 @@ package me.feng3d.test
 			initModules();
 
 			loadTextures();
-
-			new TryConnectURLList();
 		}
 
 		private function initModules():void

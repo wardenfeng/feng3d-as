@@ -1,82 +1,132 @@
 package me.feng.utils
 {
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.IOErrorEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
+	import me.feng.task.TaskEvent;
+	import me.feng.task.type.TaskQueue;
 
 	/**
 	 * 尝试获取可连接地址
 	 * @author feng 2015-12-15
 	 */
-	public class TryConnectURL extends EventDispatcher
+	public class TryConnectURL extends TaskQueue
 	{
-		private var loader:URLLoader;
-		public var result:Boolean;
-		public var url:String;
+		public var connectedUrls:Array;
 
-		public function tryConnect(url:String):void
+		public function tryConnect(urls:Array):void
 		{
-			loader = new URLLoader();
-			this.url = url;
-			addListeners();
-
-			var request:URLRequest = new URLRequest(url);
-			try
+			connectedUrls = [];
+			for (var i:int = 0; i < urls.length; i++)
 			{
-				loader.load(request);
+				addItem(new TryConnectURLTaskItem(urls[i]));
 			}
-			catch (error:Error)
+			execute();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override protected function onCompletedItem(event:TaskEvent):void
+		{
+			super.onCompletedItem(event);
+
+			var taskItem:TryConnectURLTaskItem = event.target as TryConnectURLTaskItem;
+			if (taskItem.result)
 			{
-				connectFailure();
+				connectedUrls.push(taskItem.url);
 			}
 		}
+	}
+}
 
-		private function addListeners():void
+import flash.events.Event;
+import flash.events.IOErrorEvent;
+import flash.events.SecurityErrorEvent;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
+
+import me.feng.task.TaskItem;
+
+/**
+ * 尝试获取可连接地址
+ * @author feng 2015-12-15
+ */
+class TryConnectURLTaskItem extends TaskItem
+{
+	private var loader:URLLoader;
+	public var result:Boolean;
+	public var url:String;
+
+	public function TryConnectURLTaskItem(url:String)
+	{
+		this.url = url;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	override public function execute(param:* = null):void
+	{
+		tryConnect();
+	}
+
+	private function tryConnect():void
+	{
+		loader = new URLLoader();
+		addListeners();
+
+		var request:URLRequest = new URLRequest(url);
+		try
 		{
-			loader.addEventListener(Event.COMPLETE, connectSucceed);
-			loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, connectFailure);
-			loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			loader.load(request);
 		}
-
-		private function removeListeners():void
+		catch (error:Error)
 		{
-			loader.removeEventListener(Event.COMPLETE, connectSucceed);
-			loader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, connectFailure);
-			loader.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			connectFailure();
 		}
+	}
 
-		private function connectFailure(... args):void
+	private function addListeners():void
+	{
+		loader.addEventListener(Event.COMPLETE, connectSucceed);
+		loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, connectFailure);
+		loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+	}
+
+	private function removeListeners():void
+	{
+		loader.removeEventListener(Event.COMPLETE, connectSucceed);
+		loader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, connectFailure);
+		loader.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+	}
+
+	private function connectFailure(... args):void
+	{
+		result = false;
+		connentEnd();
+	}
+
+	private function connectSucceed(... args):void
+	{
+		result = true;
+		connentEnd();
+	}
+
+	private function connentEnd():void
+	{
+		removeListeners();
+		loader = null;
+
+		doComplete();
+	}
+
+	private function ioErrorHandler(event:IOErrorEvent):void
+	{
+		if (loader.bytesLoaded > 0)
 		{
-			result = false;
-			connentEnd();
+			connectSucceed();
 		}
-
-		private function connectSucceed(... args):void
+		else
 		{
-			result = true;
-			connentEnd();
-		}
-
-		private function connentEnd():void
-		{
-			removeListeners();
-
-			dispatchEvent(new Event(Event.COMPLETE));
-		}
-
-		private function ioErrorHandler(event:IOErrorEvent):void
-		{
-			if (loader.bytesLoaded > 0)
-			{
-				connectSucceed();
-			}
-			else
-			{
-				connectFailure();
-			}
+			connectFailure();
 		}
 	}
 }

@@ -8,10 +8,9 @@ package me.feng.load
 
 	import me.feng.arcaneCommon;
 	import me.feng.core.FModuleManager;
+	import me.feng.events.load.LoadModuleEvent;
 	import me.feng.events.task.TaskModuleEvent;
 	import me.feng.events.task.TaskModuleEventDispatchTaskData;
-	import me.feng.task.Task;
-	import me.feng.events.load.LoadModuleEvent;
 
 	use namespace arcaneCommon;
 
