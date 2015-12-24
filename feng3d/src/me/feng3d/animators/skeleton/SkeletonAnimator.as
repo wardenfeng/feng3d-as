@@ -4,7 +4,6 @@ package me.feng3d.animators.skeleton
 	import flash.utils.Dictionary;
 
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.animators.skeleton.data.JointPose;
@@ -26,7 +25,7 @@ package me.feng3d.animators.skeleton
 	 * 骨骼动画
 	 * @author feng 2014-5-27
 	 */
-	public class SkeletonAnimator extends AnimatorBase implements IAnimator
+	public class SkeletonAnimator extends AnimatorBase
 	{
 		private const _globalMatrices:Vector.<Number> = new Vector.<Number>();
 		private var _globalPose:SkeletonPose = new SkeletonPose();
@@ -179,7 +178,7 @@ package me.feng3d.animators.skeleton
 		/**
 		 * @inheritDoc
 		 */
-		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			//检查全局变换矩阵
 			if (_globalPropertiesDirty)

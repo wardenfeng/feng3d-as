@@ -15,7 +15,7 @@ package me.feng3d.animators.particle
 	 * 粒子动画
 	 * @author feng 2014-11-13
 	 */
-	public class ParticleAnimator extends AnimatorBase implements IAnimator
+	public class ParticleAnimator extends AnimatorBase
 	{
 		private var _particleAnimationSet:ParticleAnimationSet;
 
@@ -63,7 +63,7 @@ package me.feng3d.animators.particle
 		/**
 		 * @inheritDoc
 		 */
-		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var subMesh:SubMesh = renderable as SubMesh;
 

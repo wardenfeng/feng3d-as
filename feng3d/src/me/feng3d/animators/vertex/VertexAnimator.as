@@ -1,7 +1,6 @@
 package me.feng3d.animators.vertex
 {
 	import me.feng3d.arcane;
-	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.cameras.Camera3D;
@@ -19,7 +18,7 @@ package me.feng3d.animators.vertex
 	 * 顶点动画
 	 * @author feng 2014-5-13
 	 */
-	public class VertexAnimator extends AnimatorBase implements IAnimator
+	public class VertexAnimator extends AnimatorBase
 	{
 		private const _weights:Vector.<Number> = Vector.<Number>([1, 0, 0, 0]);
 
@@ -106,7 +105,7 @@ package me.feng3d.animators.vertex
 		/**
 		 * @inheritDoc
 		 */
-		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			//没有姿势时，使用默认姿势
 			if (!_poses.length)

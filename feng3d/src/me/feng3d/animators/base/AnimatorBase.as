@@ -6,11 +6,15 @@ package me.feng3d.animators.base
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 
+	import me.feng.error.AbstractMethodError;
 	import me.feng3d.animators.IAnimationSet;
+	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
 	import me.feng3d.animators.base.states.AnimationStateBase;
 	import me.feng3d.animators.base.states.IAnimationState;
+	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
+	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.AnimatorEvent;
 	import me.feng3d.library.assets.AssetType;
@@ -38,7 +42,7 @@ package me.feng3d.animators.base
 	 * 动画基类
 	 * @author feng 2014-5-27
 	 */
-	public class AnimatorBase extends Context3DBufferOwner implements IAsset
+	public class AnimatorBase extends Context3DBufferOwner implements IAsset, IAnimator
 	{
 		/** 动画驱动器 */
 		private var _broadcaster:Sprite = new Sprite();
@@ -337,6 +341,14 @@ package me.feng3d.animators.base
 		{
 			if (hasEventListener(AnimatorEvent.CYCLE_COMPLETE))
 				dispatchEvent(new AnimatorEvent(AnimatorEvent.CYCLE_COMPLETE, this));
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		{
+			throw new AbstractMethodError();
 		}
 
 		/**

@@ -21,7 +21,7 @@ package me.feng3d.animators.spriteSheet
 	 * sprite动画
 	 * @author feng 2014-5-27
 	 */
-	public class SpriteSheetAnimator extends AnimatorBase implements IAnimator
+	public class SpriteSheetAnimator extends AnimatorBase
 	{
 		private const _vectorFrame:Vector.<Number> = new Vector.<Number>(4, true);
 
@@ -139,7 +139,7 @@ package me.feng3d.animators.spriteSheet
 		/**
 		 * @inheritDoc
 		 */
-		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var material:MaterialBase = renderable.material;
 			if (!material || !material is TextureMaterial)

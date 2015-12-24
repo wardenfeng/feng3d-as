@@ -19,7 +19,7 @@ package me.feng3d.animators.uv
 	 * UV动画
 	 * @author feng 2014-5-27
 	 */
-	public class UVAnimator extends AnimatorBase implements IAnimator
+	public class UVAnimator extends AnimatorBase
 	{
 		private const _matrix2d:Vector.<Number> = Vector.<Number>([1, 0, 0, 0, 1, 0, 0, 0]);
 		private const _translate:Vector.<Number> = Vector.<Number>([0, 0, 0.5, 0.5]);
@@ -132,7 +132,7 @@ package me.feng3d.animators.uv
 		/**
 		 * @inheritDoc
 		 */
-		public function setRenderState(renderable:IRenderable, camera:Camera3D):void
+		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var material:TextureMaterial = renderable.material as TextureMaterial;
 			var subMesh:SubMesh = renderable as SubMesh;
