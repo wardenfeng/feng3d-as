@@ -3,7 +3,6 @@ package me.feng3d.animators.particle
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimator;
 	import me.feng3d.animators.base.AnimatorBase;
-	import me.feng3d.animators.base.data.AnimationSubGeometry;
 	import me.feng3d.animators.particle.states.ParticleStateBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
@@ -39,16 +38,6 @@ package me.feng3d.animators.particle
 			_particleAnimationSet = particleAnimationSet;
 
 			addChildBufferOwner(_particleAnimationSet);
-
-//			var state:ParticleStateBase;
-//			var node:ParticleNodeBase;
-//			for each (node in _particleAnimationSet.particleNodes)
-//			{
-//				state = getAnimationState(node) as ParticleStateBase;
-//				_animationParticleStates.push(state);
-//				if (state.needUpdateTime)
-//					_timeParticleStates.push(state);
-//			}
 		}
 
 		/**
@@ -83,8 +72,6 @@ package me.feng3d.animators.particle
 
 			if (!subMesh.animationSubGeometry)
 				_particleAnimationSet.generateAnimationSubGeometries(subMesh.parentMesh);
-
-			var animationSubGeometry:AnimationSubGeometry = subMesh.animationSubGeometry;
 
 			timeConstData[0] = timeConstData[1] = timeConstData[2] = timeConstData[3] = time / 1000;
 
