@@ -72,13 +72,13 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.shadowCommondata0_vc_vector, updateShadowCommonVCData0Buffer);
-			mapContext3DBuffer(_.shadowCommondata0_fc_vector, updateShadowCommonData0Buffer);
-			mapContext3DBuffer(_.shadowCommondata1_fc_vector, updateShadowCommonData1Buffer);
-			mapContext3DBuffer(_.shadowCommondata2_fc_vector, updateShadowCommonData2Buffer);
-			mapContext3DBuffer(_.depthMap_vc_matrix, updateDepthProjectionMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.shadowCommondata0_vc_vector, updateShadowCommonVCData0Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.shadowCommondata0_fc_vector, updateShadowCommonData0Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.shadowCommondata1_fc_vector, updateShadowCommonData1Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.shadowCommondata2_fc_vector, updateShadowCommonData2Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthMap_vc_matrix, updateDepthProjectionMatrixBuffer);
 
-			mapContext3DBuffer(_.depthMap_fs, updateTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthMap_fs, updateTextureBuffer);
 		}
 
 		protected function updateShadowCommonVCData0Buffer(vcVectorBuffer:VCVectorBuffer):void

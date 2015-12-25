@@ -47,13 +47,13 @@ package me.feng3d.core.base.subgeometry
 		public function SubGeometry()
 		{
 			super();
+
+			initBuffers();
 		}
 
-		override protected function initBuffers():void
+		protected function initBuffers():void
 		{
-			super.initBuffers();
-
-			mapContext3DBuffer(_.index, updateIndexBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.index, updateIndexBuffer);
 
 			mapVABuffer(_.position_va_3, 3);
 			mapVABuffer(_.uv_va_2, 2);
@@ -123,7 +123,7 @@ package me.feng3d.core.base.subgeometry
 			var numTriangles:int = _numIndices / 3;
 			_numTriangles = numTriangles;
 
-			markBufferDirty(_.index);
+			context3DBufferOwner.markBufferDirty(_.index);
 
 			dispatchEvent(new GeometryComponentEvent(GeometryComponentEvent.CHANGED_INDEX_DATA));
 		}

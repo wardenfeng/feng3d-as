@@ -77,7 +77,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.fresnelSpecularData_fc_vector, updateSpecularDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.fresnelSpecularData_fc_vector, updateSpecularDataBuffer);
 		}
 
 		private function updateSpecularDataBuffer(fcVectorBuffer:FCVectorBuffer):void

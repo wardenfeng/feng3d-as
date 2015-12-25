@@ -61,12 +61,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.dirLightSceneDir_fc_vector, updateDirLightSceneDirBuffer);
-			mapContext3DBuffer(_.dirLightDiffuse_fc_vector, updateDirLightDiffuseReg);
-			mapContext3DBuffer(_.dirLightSpecular_fc_vector, updateDirLightSpecularBuffer);
-			mapContext3DBuffer(_.pointLightScenePos_fc_vector, updatePointLightScenePositionBuffer);
-			mapContext3DBuffer(_.pointLightDiffuse_fc_vector, updatePointLightDiffuseReg);
-			mapContext3DBuffer(_.pointLightSpecular_fc_vector, updatePointLightSpecularBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.dirLightSceneDir_fc_vector, updateDirLightSceneDirBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.dirLightDiffuse_fc_vector, updateDirLightDiffuseReg);
+			context3DBufferOwner.mapContext3DBuffer(_.dirLightSpecular_fc_vector, updateDirLightSpecularBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.pointLightScenePos_fc_vector, updatePointLightScenePositionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.pointLightDiffuse_fc_vector, updatePointLightDiffuseReg);
+			context3DBufferOwner.mapContext3DBuffer(_.pointLightSpecular_fc_vector, updatePointLightSpecularBuffer);
 		}
 
 		private function updateDirLightSpecularBuffer(dirLightSpecularBuffer:FCVectorBuffer):void

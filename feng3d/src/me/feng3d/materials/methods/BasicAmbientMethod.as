@@ -55,8 +55,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.ambientColor_fc_vector, updateAmbientInputBuffer);
-			mapContext3DBuffer(_.ambientTexture_fs, updateSpecularTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.ambientColor_fc_vector, updateAmbientInputBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.ambientTexture_fs, updateSpecularTextureBuffer);
 		}
 
 		private function updateAmbientInputBuffer(ambientInputBuffer:FCVectorBuffer):void
@@ -133,7 +133,7 @@ package me.feng3d.materials.methods
 			_useTexture = Boolean(value);
 			_texture = value;
 
-			markBufferDirty(_.ambientTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.ambientTexture_fs);
 		}
 
 		override arcane function activate(shaderParams:ShaderParams):void

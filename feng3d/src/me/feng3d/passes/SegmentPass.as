@@ -62,11 +62,11 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.segmentC2pMatrix_vc_matrix, updateC2pMatrixBuffer);
-			mapContext3DBuffer(_.segmentM2cMatrix_vc_matrix, updateM2cMatrixBuffer);
-			mapContext3DBuffer(_.segmentOne_vc_vector, updateOneBuffer);
-			mapContext3DBuffer(_.segmentFront_vc_vector, updateFrontBuffer);
-			mapContext3DBuffer(_.segmentConstants_vc_vector, updateConstantsBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.segmentC2pMatrix_vc_matrix, updateC2pMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.segmentM2cMatrix_vc_matrix, updateM2cMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.segmentOne_vc_vector, updateOneBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.segmentFront_vc_vector, updateFrontBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.segmentConstants_vc_vector, updateConstantsBuffer);
 		}
 
 		private function updateConstantsBuffer(constantsBuffer:VCVectorBuffer):void

@@ -100,7 +100,10 @@ package me.feng3d.core.base
 		{
 			var numSubGeoms:uint = _subGeometries.length;
 			for (var i:uint = 0; i < numSubGeoms; ++i)
-				_subGeometries[i].scale(scale);
+			{
+				var subGeometryTransformation:SubGeometryTransformation = _subGeometries[i].getOrCreateComponentByClass(SubGeometryTransformation);
+				subGeometryTransformation.scale(scale);
+			}
 		}
 
 		/**

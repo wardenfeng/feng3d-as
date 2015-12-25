@@ -69,11 +69,11 @@ package me.feng3d.passes
 		{
 			super.initBuffers();
 
-			mapContext3DBuffer(_.SODP$polyOffset_vc_vector, updatePolyOffsetBuffer);
-			mapContext3DBuffer(_.SODP$objectProjection_vc_matrix, updateObjectProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SODP$polyOffset_vc_vector, updatePolyOffsetBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SODP$objectProjection_vc_matrix, updateObjectProjectionBuffer);
 
-			mapContext3DBuffer(_.SODP$depthCommonsData0_fc_vector, updateDepthCommonsData0Buffer);
-			mapContext3DBuffer(_.SODP$depthCommonsData1_fc_vector, updateDepthCommonsData1Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SODP$depthCommonsData0_fc_vector, updateDepthCommonsData0Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SODP$depthCommonsData1_fc_vector, updateDepthCommonsData1Buffer);
 		}
 
 		private function updatePolyOffsetBuffer(vcVectorBuffer:VCVectorBuffer):void

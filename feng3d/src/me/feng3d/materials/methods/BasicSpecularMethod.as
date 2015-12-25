@@ -73,7 +73,7 @@ package me.feng3d.materials.methods
 				invalidateShaderProgram();
 			}
 			_texture = value;
-			markBufferDirty(_.specularTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.specularTexture_fs);
 		}
 
 		/**
@@ -113,8 +113,8 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.specularData_fc_vector, updateSpecularDataBuffer);
-			mapContext3DBuffer(_.specularTexture_fs, updateSpecularTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.specularData_fc_vector, updateSpecularDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.specularTexture_fs, updateSpecularTextureBuffer);
 		}
 
 		private function updateSpecularDataBuffer(_specularDataBuffer:FCVectorBuffer):void

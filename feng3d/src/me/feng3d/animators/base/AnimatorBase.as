@@ -6,6 +6,7 @@ package me.feng3d.animators.base
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 
+	import me.feng.core.NamedAsset;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
@@ -16,6 +17,7 @@ package me.feng3d.animators.base
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.events.AnimatorEvent;
+	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
 
@@ -41,8 +43,10 @@ package me.feng3d.animators.base
 	 * 动画基类
 	 * @author feng 2014-5-27
 	 */
-	public class AnimatorBase extends Context3DBufferOwner implements IAsset
+	public class AnimatorBase extends NamedAsset implements IAsset
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		/** 动画驱动器 */
 		private var _broadcaster:Sprite = new Sprite();
 		/** 是否正在播放动画 */
@@ -74,6 +78,25 @@ package me.feng3d.animators.base
 		public function AnimatorBase(animationSet:IAnimationSet)
 		{
 			_animationSet = animationSet;
+
+			context3DBufferOwner = new Context3DBufferOwner();
+			initBuffers();
+		}
+
+		/**
+		 * 初始化Context3d缓存
+		 */
+		protected function initBuffers():void
+		{
+
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**

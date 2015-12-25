@@ -52,7 +52,7 @@ package me.feng3d.materials.methods
 			}
 			_mask = value;
 
-			markBufferDirty(_.envMapMaskTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.envMapMaskTexture_fs);
 		}
 
 		/**
@@ -67,7 +67,7 @@ package me.feng3d.materials.methods
 		{
 			_cubeTexture = value;
 
-			markBufferDirty(_.envMapcubeTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.envMapcubeTexture_fs);
 		}
 
 		/**
@@ -90,9 +90,9 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.envMapcubeTexture_fs, updateCubeTextureBuffer);
-			mapContext3DBuffer(_.envMapMaskTexture_fs, updateMaskTextureBuffer);
-			mapContext3DBuffer(_.envMapData_fc_vector, updateDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.envMapcubeTexture_fs, updateCubeTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.envMapMaskTexture_fs, updateMaskTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.envMapData_fc_vector, updateDataBuffer);
 		}
 
 		private function updateCubeTextureBuffer(fsBuffer:FSBuffer):void

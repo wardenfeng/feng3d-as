@@ -76,11 +76,11 @@ package me.feng3d.animators.particle.node
 
 			if (mode == ParticlePropertiesMode.GLOBAL)
 			{
-				mapContext3DBuffer(_.particleStartColorMultiplier_vc_vector, updateStartColorMultiplierConstBuffer);
-				mapContext3DBuffer(_.particleDeltaColorMultiplier_vc_vector, updateDeltaColorMultiplierConstBuffer);
+				context3DBufferOwner.mapContext3DBuffer(_.particleStartColorMultiplier_vc_vector, updateStartColorMultiplierConstBuffer);
+				context3DBufferOwner.mapContext3DBuffer(_.particleDeltaColorMultiplier_vc_vector, updateDeltaColorMultiplierConstBuffer);
 
-				mapContext3DBuffer(_.particleStartColorOffset_vc_vector, updateStartColorOffsetConstBuffer);
-				mapContext3DBuffer(_.particleDeltaColorOffset_vc_vector, updateDeltaColorOffsetConstBuffer);
+				context3DBufferOwner.mapContext3DBuffer(_.particleStartColorOffset_vc_vector, updateStartColorOffsetConstBuffer);
+				context3DBufferOwner.mapContext3DBuffer(_.particleDeltaColorOffset_vc_vector, updateDeltaColorOffsetConstBuffer);
 			}
 		}
 

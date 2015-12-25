@@ -50,8 +50,8 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(_.shadowColorCommonsData_fc_vector, updateShadowColorCommonsDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.shadowColorCommonsData_fc_vector, updateShadowColorCommonsDataBuffer);
 		}
 
 		/**

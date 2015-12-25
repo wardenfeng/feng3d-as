@@ -85,7 +85,7 @@ package me.feng3d.passes
 		{
 			_methodSetup = new ShaderMethodSetup();
 			_methodSetup.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-			addChildBufferOwner(_methodSetup);
+			context3DBufferOwner.addChildBufferOwner(_methodSetup.context3DBufferOwner);
 		}
 
 		/**
@@ -94,12 +94,12 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.commonsData_fc_vector, updateCommonsDataBuffer);
-			mapContext3DBuffer(_.cameraPosition_vc_vector, updateCameraPositionBuffer);
-			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(_.normalSceneTransform_vc_matrix, updateSceneNormalMatrixBuffer);
-			mapContext3DBuffer(_.sceneTransform_vc_matrix, updateSceneTransformMatrixBuffer);
-			mapContext3DBuffer(_.wordProjection_vc_matrix, updateWordProjectionMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.commonsData_fc_vector, updateCommonsDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.cameraPosition_vc_vector, updateCameraPositionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.normalSceneTransform_vc_matrix, updateSceneNormalMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.sceneTransform_vc_matrix, updateSceneTransformMatrixBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.wordProjection_vc_matrix, updateWordProjectionMatrixBuffer);
 		}
 
 		/**

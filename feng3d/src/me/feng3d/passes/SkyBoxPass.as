@@ -48,10 +48,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.skyboxTexture_fs, updateTextureBuffer);
-			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(_.camerapos_vc_vector, updateCameraPosBuffer);
-			mapContext3DBuffer(_.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.skyboxTexture_fs, updateTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.camerapos_vc_vector, updateCameraPosBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.scaleSkybox_vc_vector, updateScaleSkyboxBuffer);
 		}
 
 		private function updateProjectionBuffer(projectionBuffer:VCMatrixBuffer):void
@@ -95,7 +95,7 @@ package me.feng3d.passes
 		public function set cubeTexture(value:CubeTextureBase):void
 		{
 			_cubeTexture = value;
-			markBufferDirty(_.skyboxTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.skyboxTexture_fs);
 		}
 
 		/**

@@ -125,7 +125,7 @@ package me.feng3d.animators.skeleton
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.globalmatrices_vc_vector, updateGlobalmatricesBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.globalmatrices_vc_vector, updateGlobalmatricesBuffer);
 		}
 
 		private function updateGlobalmatricesBuffer(globalmatricesBuffer:VCVectorBuffer):void
@@ -209,7 +209,7 @@ package me.feng3d.animators.skeleton
 		{
 			super.updateDeltaTime(dt);
 
-			markBufferDirty(_.globalmatrices_vc_vector);
+			context3DBufferOwner.markBufferDirty(_.globalmatrices_vc_vector);
 
 			//invalidate pose matrices
 			_globalPropertiesDirty = true;

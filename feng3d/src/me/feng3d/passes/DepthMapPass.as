@@ -60,7 +60,7 @@ package me.feng3d.passes
 		public function set depthMap(value:TextureProxyBase):void
 		{
 			_depthMap = value;
-			markBufferDirty(_.depthMap_oc);
+			context3DBufferOwner.markBufferDirty(_.depthMap_oc);
 		}
 
 		/**
@@ -69,10 +69,10 @@ package me.feng3d.passes
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
-			mapContext3DBuffer(_.depthCommonData0_fc_vector, updateDepthCommonData0Buffer);
-			mapContext3DBuffer(_.depthCommonData1_fc_vector, updateDepthCommonData1Buffer);
-			mapContext3DBuffer(_.depthMap_oc, updateTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthCommonData0_fc_vector, updateDepthCommonData0Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthCommonData1_fc_vector, updateDepthCommonData1Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthMap_oc, updateTextureBuffer);
 		}
 
 		/**

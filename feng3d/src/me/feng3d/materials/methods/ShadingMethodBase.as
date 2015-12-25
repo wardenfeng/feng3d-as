@@ -1,11 +1,13 @@
 package me.feng3d.materials.methods
 {
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
@@ -14,8 +16,10 @@ package me.feng3d.materials.methods
 	 * 渲染函数基类
 	 * @author feng 2014-7-1
 	 */
-	public class ShadingMethodBase extends Context3DBufferOwner
+	public class ShadingMethodBase extends NamedAsset
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		protected var _passes:Vector.<MaterialPassBase>;
 
 		/**
@@ -38,6 +42,25 @@ package me.feng3d.materials.methods
 		public function ShadingMethodBase()
 		{
 			super();
+
+			context3DBufferOwner = new Context3DBufferOwner();
+			initBuffers();
+		}
+
+		/**
+		 * 初始化Context3d缓存
+		 */
+		protected function initBuffers():void
+		{
+
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**

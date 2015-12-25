@@ -115,8 +115,8 @@ package me.feng3d.animators.uv
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.uvAnimatorTranslate_vc_vector, updateTranslateBuffer);
-			mapContext3DBuffer(_.uvAnimatorMatrix2d_vc_vector, updateMatrix2dBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.uvAnimatorTranslate_vc_vector, updateTranslateBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.uvAnimatorMatrix2d_vc_vector, updateMatrix2dBuffer);
 		}
 
 		private function updateTranslateBuffer(buffer:VCVectorBuffer):void

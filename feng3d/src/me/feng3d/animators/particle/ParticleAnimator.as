@@ -37,7 +37,7 @@ package me.feng3d.animators.particle
 			super(particleAnimationSet);
 			_particleAnimationSet = particleAnimationSet;
 
-			addChildBufferOwner(_particleAnimationSet);
+			context3DBufferOwner.addChildBufferOwner(_particleAnimationSet.context3DBufferOwner);
 		}
 
 		/**
@@ -46,8 +46,8 @@ package me.feng3d.animators.particle
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.particleCommon_vc_vector, updateParticleConstDataBuffer);
-			mapContext3DBuffer(_.particleTime_vc_vector, updateTimeConstBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.particleCommon_vc_vector, updateParticleConstDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.particleTime_vc_vector, updateTimeConstBuffer);
 		}
 
 		private function updateTimeConstBuffer(timeConstBuffer:VCVectorBuffer):void

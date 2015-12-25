@@ -6,6 +6,7 @@ package me.feng3d.passes
 	import flash.display3D.Context3DTriangleFace;
 	import flash.events.Event;
 
+	import me.feng.core.NamedAsset;
 	import me.feng.error.AbstractClassError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimationSet;
@@ -21,6 +22,7 @@ package me.feng3d.passes
 	import me.feng3d.fagal.fragment.F_Main;
 	import me.feng3d.fagal.params.ShaderParams;
 	import me.feng3d.fagal.vertex.V_Main;
+	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.materials.MaterialBase;
@@ -35,8 +37,10 @@ package me.feng3d.passes
 	 * <p>该类实现了生成与管理渲染程序功能</p>
 	 * @author feng 2014-4-15
 	 */
-	public class MaterialPassBase extends Context3DBufferOwner
+	public class MaterialPassBase extends NamedAsset
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		protected var _material:MaterialBase;
 
 		protected var _animationSet:IAnimationSet;
@@ -75,6 +79,17 @@ package me.feng3d.passes
 		public function MaterialPassBase()
 		{
 			AbstractClassError.check(this);
+
+			context3DBufferOwner = new Context3DBufferOwner();
+			initBuffers();
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**
@@ -157,20 +172,19 @@ package me.feng3d.passes
 		public function set enableBlending(value:Boolean):void
 		{
 			_enableBlending = value;
-			markBufferDirty(_.blendFactors);
-			markBufferDirty(_.depthTest);
+			context3DBufferOwner.markBufferDirty(_.blendFactors);
+			context3DBufferOwner.markBufferDirty(_.depthTest);
 		}
 
 		/**
-		 * @inheritDoc
+		 * 初始化Context3d缓存
 		 */
-		override protected function initBuffers():void
+		protected function initBuffers():void
 		{
-			super.initBuffers();
-			mapContext3DBuffer(_.culling, updateCullingBuffer);
-			mapContext3DBuffer(_.blendFactors, updateBlendFactorsBuffer);
-			mapContext3DBuffer(_.depthTest, updateDepthTestBuffer);
-			mapContext3DBuffer(_.program, updateProgramBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.culling, updateCullingBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.blendFactors, updateBlendFactorsBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.depthTest, updateDepthTestBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.program, updateProgramBuffer);
 		}
 
 		/**
@@ -241,7 +255,7 @@ package me.feng3d.passes
 
 			var context3dCache:Context3DCache = renderable.context3dCache;
 
-			context3dCache.addChildBufferOwner(this);
+			context3dCache.addChildBufferOwner(this.context3DBufferOwner);
 
 			//设置渲染参数
 			context3dCache.shaderParams = shaderParams;
@@ -252,7 +266,7 @@ package me.feng3d.passes
 			//绘制图形
 			context3dCache.render(stage3DProxy.context3D, renderIndex);
 
-			context3dCache.removeChildBufferOwner(this);
+			context3dCache.removeChildBufferOwner(this.context3DBufferOwner);
 		}
 
 		/**
@@ -270,7 +284,7 @@ package me.feng3d.passes
 		 */
 		arcane function invalidateShaderProgram():void
 		{
-			markBufferDirty(_.program);
+			context3DBufferOwner.markBufferDirty(_.program);
 		}
 
 		/**
@@ -404,7 +418,7 @@ package me.feng3d.passes
 		public function set writeDepth(value:Boolean):void
 		{
 			_writeDepth = value;
-			markBufferDirty(_.depthTest);
+			context3DBufferOwner.markBufferDirty(_.depthTest);
 		}
 
 		/**
@@ -418,7 +432,7 @@ package me.feng3d.passes
 		public function set depthCompareMode(value:String):void
 		{
 			_depthCompareMode = value;
-			markBufferDirty(_.depthTest);
+			context3DBufferOwner.markBufferDirty(_.depthTest);
 		}
 
 		/**
@@ -432,7 +446,7 @@ package me.feng3d.passes
 		public function set bothSides(value:Boolean):void
 		{
 			_bothSides = value;
-			markBufferDirty(_.culling);
+			context3DBufferOwner.markBufferDirty(_.culling);
 		}
 
 		/**

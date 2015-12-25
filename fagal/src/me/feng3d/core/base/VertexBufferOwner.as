@@ -2,15 +2,19 @@ package me.feng3d.core.base
 {
 	import flash.utils.Dictionary;
 
-	import me.feng3d.core.buffer.context3d.VABuffer;
+	import me.feng.core.NamedAsset;
 	import me.feng.debug.assert;
+	import me.feng3d.core.buffer.context3d.VABuffer;
+	import me.feng3d.fagalRE.FagalIdCenter;
 
 	/**
 	 * 顶点数据拥有者
 	 * @author feng 2015-1-14
 	 */
-	public class VertexBufferOwner extends Context3DBufferOwner
+	public class VertexBufferOwner extends NamedAsset
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		protected var _numVertices:uint;
 
 		private var _vaIdList:Vector.<String> = new Vector.<String>();
@@ -30,6 +34,7 @@ package me.feng3d.core.base
 		public function VertexBufferOwner()
 		{
 			super();
+			context3DBufferOwner = new Context3DBufferOwner();
 		}
 
 		/**
@@ -62,7 +67,7 @@ package me.feng3d.core.base
 			data32PerVertexDic[dataTypeId] = data32PerVertex;
 			vertexDataDic[dataTypeId] = new Vector.<Number>();
 			_vaIdList.push(dataTypeId);
-			vaBufferDic[dataTypeId] = mapContext3DBuffer(dataTypeId, updateVABuffer);
+			vaBufferDic[dataTypeId] = context3DBufferOwner.mapContext3DBuffer(dataTypeId, updateVABuffer);
 		}
 
 		/**
@@ -83,7 +88,7 @@ package me.feng3d.core.base
 		public function invalidVAData(dataTypeId:String):void
 		{
 			dataValidDic[dataTypeId] = false;
-			markBufferDirty(dataTypeId);
+			context3DBufferOwner.markBufferDirty(dataTypeId);
 		}
 
 		/**
@@ -106,7 +111,7 @@ package me.feng3d.core.base
 			var vaLen:uint = getVALen(dataTypeId);
 			assert(data.length == numVertices * vaLen, "数据长度不对，更新数据之前需要给SubGeometry.numVertices赋值");
 			vertexDataDic[dataTypeId] = data;
-			markBufferDirty(dataTypeId);
+			context3DBufferOwner.markBufferDirty(dataTypeId);
 
 			dataValidDic[dataTypeId] = true;
 
@@ -153,6 +158,14 @@ package me.feng3d.core.base
 		public function get vaIdList():Vector.<String>
 		{
 			return _vaIdList;
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 	}
 }

@@ -33,7 +33,7 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.normalTexture_fs, updateNormalTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.normalTexture_fs, updateNormalTextureBuffer);
 		}
 
 		private function updateNormalTextureBuffer(normalTextureBuffer:FSBuffer):void
@@ -59,7 +59,7 @@ package me.feng3d.materials.methods
 
 			_texture = value;
 
-			markBufferDirty(_.normalTexture_fs);
+			context3DBufferOwner.markBufferDirty(_.normalTexture_fs);
 		}
 
 		/**

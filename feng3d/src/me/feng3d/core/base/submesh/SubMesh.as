@@ -110,12 +110,12 @@ package me.feng3d.core.base.submesh
 		{
 			if (_subGeometry)
 			{
-				removeChildBufferOwner(_subGeometry);
+				context3DBufferOwner.removeChildBufferOwner(_subGeometry.context3DBufferOwner);
 			}
 			_subGeometry = value;
 			if (_subGeometry)
 			{
-				addChildBufferOwner(_subGeometry);
+				context3DBufferOwner.addChildBufferOwner(_subGeometry.context3DBufferOwner);
 			}
 		}
 
@@ -131,12 +131,12 @@ package me.feng3d.core.base.submesh
 		{
 			if (_animationSubGeometry)
 			{
-				removeChildBufferOwner(_animationSubGeometry);
+				context3DBufferOwner.removeChildBufferOwner(_animationSubGeometry.context3DBufferOwner);
 			}
 			_animationSubGeometry = value;
 			if (_animationSubGeometry)
 			{
-				addChildBufferOwner(_animationSubGeometry);
+				context3DBufferOwner.addChildBufferOwner(_animationSubGeometry.context3DBufferOwner);
 			}
 		}
 
@@ -152,13 +152,13 @@ package me.feng3d.core.base.submesh
 		{
 			if (_animator)
 			{
-				removeChildBufferOwner(_animator);
+				context3DBufferOwner.removeChildBufferOwner(_animator.context3DBufferOwner);
 				material.animationSet = null;
 			}
 			_animator = value;
 			if (_animator)
 			{
-				addChildBufferOwner(_animator);
+				context3DBufferOwner.addChildBufferOwner(_animator.context3DBufferOwner);
 				material.animationSet = _animator.animationSet;
 			}
 		}

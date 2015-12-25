@@ -106,7 +106,7 @@ package me.feng3d.animators.particle
 			_effectDictionary[node.name] = node;
 
 			_effects.push(node);
-			addChildBufferOwner(node);
+			context3DBufferOwner.addChildBufferOwner(node.context3DBufferOwner);
 
 			_effectNames.push(node.name);
 		}

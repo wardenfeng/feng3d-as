@@ -50,7 +50,7 @@ package me.feng3d.materials.methods
 		public function set splats(value:Array):void
 		{
 			_splats = value;
-			markBufferDirty(_.terrainTextures_fs_array);
+			context3DBufferOwner.markBufferDirty(_.terrainTextures_fs_array);
 		}
 
 		public function get blendingTexture():Texture2DBase
@@ -61,15 +61,15 @@ package me.feng3d.materials.methods
 		public function set blendingTexture(value:Texture2DBase):void
 		{
 			_blendingTexture = value;
-			markBufferDirty(_.blendingtexture_fs);
+			context3DBufferOwner.markBufferDirty(_.blendingtexture_fs);
 		}
 
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.blendingtexture_fs, updateBlendingTextureBuffer);
-			mapContext3DBuffer(_.terrainTextures_fs_array, updateTerrainTextureBuffer);
-			mapContext3DBuffer(_.tile_fc_vector, updateTileDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.blendingtexture_fs, updateBlendingTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.terrainTextures_fs_array, updateTerrainTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.tile_fc_vector, updateTileDataBuffer);
 		}
 
 		private function updateTerrainTextureBuffer(terrainTextureBufferArr:FSArrayBuffer):void

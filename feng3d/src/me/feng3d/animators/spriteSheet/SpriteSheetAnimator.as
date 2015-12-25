@@ -128,7 +128,7 @@ package me.feng3d.animators.spriteSheet
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.spriteSheetVectorFrame_vc_vector, updateVectorFrameBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.spriteSheetVectorFrame_vc_vector, updateVectorFrameBuffer);
 		}
 
 		private function updateVectorFrameBuffer(vcVectorBuffer:VCVectorBuffer):void

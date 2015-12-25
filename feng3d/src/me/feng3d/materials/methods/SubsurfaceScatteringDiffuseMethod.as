@@ -73,7 +73,7 @@ package me.feng3d.materials.methods
 			if (_depthMap != value)
 			{
 				_depthMap = value;
-				markBufferDirty(_.SSD$depthMap_fs);
+				context3DBufferOwner.markBufferDirty(_.SSD$depthMap_fs);
 			}
 		}
 
@@ -84,13 +84,13 @@ package me.feng3d.materials.methods
 		{
 			super.initBuffers();
 
-			mapContext3DBuffer(_.SSD$ToTex_vc_vector, SSD$ToTexBuffer);
-			mapContext3DBuffer(_.SSD$f$ColorData_vc_vector, f$ColorDataBuffer);
-			mapContext3DBuffer(_.SSD$fragmentData0_vc_vector, fragmentData0Buffer);
-			mapContext3DBuffer(_.SSD$fragmentData1_vc_vector, fragmentData1Buffer);
-			mapContext3DBuffer(_.SSD$depthMap_fs, updateDepthMapBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$ToTex_vc_vector, SSD$ToTexBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$f$ColorData_vc_vector, f$ColorDataBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$fragmentData0_vc_vector, fragmentData0Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$fragmentData1_vc_vector, fragmentData1Buffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$depthMap_fs, updateDepthMapBuffer);
 
-			mapContext3DBuffer(_.SSD$LightProjection_vc_matrix, updateLightProjectionBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.SSD$LightProjection_vc_matrix, updateLightProjectionBuffer);
 		}
 
 		private function SSD$ToTexBuffer(vcVectorBuffer:VCVectorBuffer):void

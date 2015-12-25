@@ -2,12 +2,14 @@ package me.feng3d.materials.methods
 {
 	import flash.utils.Dictionary;
 
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.IRenderable;
 	import me.feng3d.events.ShadingMethodEvent;
 	import me.feng3d.fagal.params.ShaderParams;
+	import me.feng3d.fagalRE.FagalIdCenter;
 
 	use namespace arcane;
 
@@ -15,8 +17,10 @@ package me.feng3d.materials.methods
 	 * 渲染函数设置
 	 * @author feng 2014-7-1
 	 */
-	public class ShaderMethodSetup extends Context3DBufferOwner
+	public class ShaderMethodSetup extends NamedAsset
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		private var uniqueMethodDic:Dictionary;
 
 		arcane var methods:Vector.<ShadingMethodBase>;
@@ -26,6 +30,9 @@ package me.feng3d.materials.methods
 		 */
 		public function ShaderMethodSetup()
 		{
+			context3DBufferOwner = new Context3DBufferOwner();
+			initBuffers();
+
 			uniqueMethodDic = new Dictionary();
 			methods = new Vector.<ShadingMethodBase>();
 
@@ -33,6 +40,22 @@ package me.feng3d.materials.methods
 			addMethod(new BasicAmbientMethod());
 			addMethod(new BasicDiffuseMethod());
 			addMethod(new BasicSpecularMethod());
+		}
+
+		/**
+		 * 初始化Context3d缓存
+		 */
+		protected function initBuffers():void
+		{
+
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**
@@ -191,7 +214,7 @@ package me.feng3d.materials.methods
 		private function $addMethod(method:ShadingMethodBase):void
 		{
 			method.addEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-			addChildBufferOwner(method);
+			context3DBufferOwner.addChildBufferOwner(method.context3DBufferOwner);
 			methods.push(method);
 			invalidateShaderProgram();
 		}
@@ -203,7 +226,7 @@ package me.feng3d.materials.methods
 		private function $removeMethod(method:ShadingMethodBase):void
 		{
 			method.removeEventListener(ShadingMethodEvent.SHADER_INVALIDATED, onShaderInvalidated);
-			removeChildBufferOwner(method);
+			context3DBufferOwner.removeChildBufferOwner(method.context3DBufferOwner);
 			var index:int = methods.indexOf(method);
 			methods.splice(index, 1);
 			invalidateShaderProgram();

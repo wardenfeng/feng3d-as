@@ -49,9 +49,9 @@ package me.feng3d.materials.methods
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.texture_fs, updateTextureBuffer);
-			mapContext3DBuffer(_.diffuseInput_fc_vector, updateDiffuseInputBuffer);
-			mapContext3DBuffer(_.alphaThreshold_fc_vector, updateAlphaThresholdBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.texture_fs, updateTextureBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.diffuseInput_fc_vector, updateDiffuseInputBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.alphaThreshold_fc_vector, updateAlphaThresholdBuffer);
 		}
 
 		/** 漫反射颜色 */
@@ -125,7 +125,7 @@ package me.feng3d.materials.methods
 
 			_texture = value;
 
-			markBufferDirty(_.texture_fs);
+			context3DBufferOwner.markBufferDirty(_.texture_fs);
 		}
 
 		/**

@@ -1,11 +1,13 @@
 package me.feng3d.core.base.renderable
 {
+	import me.feng.core.NamedAsset;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.Entity;
+	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.materials.MaterialBase;
 
 	use namespace arcane;
@@ -14,8 +16,10 @@ package me.feng3d.core.base.renderable
 	 * 可渲染对象基类
 	 * @author feng 2015-5-27
 	 */
-	public class RenderableBase extends Context3DBufferOwner implements IRenderable
+	public class RenderableBase extends NamedAsset implements IRenderable
 	{
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		private var _context3dCache:Context3DCache;
 
 		/**
@@ -23,8 +27,27 @@ package me.feng3d.core.base.renderable
 		 */
 		public function RenderableBase()
 		{
+			context3DBufferOwner = new Context3DBufferOwner();
+			initBuffers();
+
 			_context3dCache = new Context3DCache();
-			_context3dCache.addChildBufferOwner(this);
+			_context3dCache.addChildBufferOwner(this.context3DBufferOwner);
+		}
+
+		/**
+		 * 初始化Context3d缓存
+		 */
+		protected function initBuffers():void
+		{
+
+		}
+
+		/**
+		 * Fagal编号中心
+		 */
+		public function get _():FagalIdCenter
+		{
+			return FagalIdCenter.instance;
 		}
 
 		/**

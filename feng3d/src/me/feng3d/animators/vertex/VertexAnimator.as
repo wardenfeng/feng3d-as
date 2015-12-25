@@ -46,7 +46,7 @@ package me.feng3d.animators.vertex
 		override protected function initBuffers():void
 		{
 			super.initBuffers();
-			mapContext3DBuffer(_.weights_vc_vector, updateWeightsBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.weights_vc_vector, updateWeightsBuffer);
 		}
 
 		private function updateWeightsBuffer(weightsBuffer:VCVectorBuffer):void
