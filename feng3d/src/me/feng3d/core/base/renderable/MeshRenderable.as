@@ -1,12 +1,9 @@
 package me.feng3d.core.base.renderable
 {
-	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.core.base.submesh.SubMesh;
-	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.Entity;
-	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.materials.MaterialBase;
 
 	use namespace arcane;
@@ -15,9 +12,8 @@ package me.feng3d.core.base.renderable
 	 * 可渲染对象基类
 	 * @author feng 2015-5-27
 	 */
-	public class MeshRenderable extends NamedAsset implements IRenderable
+	public class MeshRenderable extends Renderable
 	{
-		private var _context3dCache:Context3DCache;
 		private var subMesh:SubMesh;
 
 		/**
@@ -25,32 +21,16 @@ package me.feng3d.core.base.renderable
 		 */
 		public function MeshRenderable(subMesh:SubMesh)
 		{
-			this.subMesh = subMesh;
+			super();
 
-			_context3dCache = new Context3DCache();
+			this.subMesh = subMesh;
 			_context3dCache.addChildBufferOwner(subMesh.context3DBufferOwner);
 		}
 
 		/**
-		 * Fagal编号中心
-		 */
-		public function get _():FagalIdCenter
-		{
-			return FagalIdCenter.instance;
-		}
-
-		/**
 		 * @inheritDoc
 		 */
-		public function get context3dCache():Context3DCache
-		{
-			return _context3dCache;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get mouseEnabled():Boolean
+		override public function get mouseEnabled():Boolean
 		{
 			return subMesh.mouseEnabled;
 		}
@@ -58,7 +38,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get numTriangles():uint
+		override public function get numTriangles():uint
 		{
 			return subMesh.numTriangles;
 		}
@@ -66,7 +46,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get sourceEntity():Entity
+		override public function get sourceEntity():Entity
 		{
 			return subMesh.sourceEntity;
 		}
@@ -74,7 +54,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get material():MaterialBase
+		override public function get material():MaterialBase
 		{
 			return subMesh.material;
 		}
@@ -82,7 +62,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get animator():AnimatorBase
+		override public function get animator():AnimatorBase
 		{
 			return subMesh.animator;
 		}
@@ -90,7 +70,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * @inheritDoc
 		 */
-		public function get castsShadows():Boolean
+		override public function get castsShadows():Boolean
 		{
 			return subMesh.castsShadows;
 		}
