@@ -136,7 +136,7 @@ package me.feng3d.entities
 
 			_pickingCollisionVO.renderable = null;
 			if (_pickingCollider.testSubMeshCollision(_pickingSubMesh, _pickingCollisionVO, shortestCollisionDistance))
-				_pickingCollisionVO.renderable = _pickingSubMesh;
+				_pickingCollisionVO.renderable = _pickingSubMesh.renderableBase;
 
 			return _pickingCollisionVO.renderable != null;
 		}

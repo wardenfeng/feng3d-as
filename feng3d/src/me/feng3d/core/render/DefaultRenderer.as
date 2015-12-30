@@ -108,7 +108,7 @@ package me.feng3d.core.render
 		 */
 		private function drawSkyBox(stage3DProxy:Stage3DProxy, entityCollector:EntityCollector):void
 		{
-			var renderable:IRenderable = entityCollector.skyBox.subMeshes[0];
+			var renderable:IRenderable = entityCollector.skyBox.subMeshes[0].renderableBase;
 			var camera:Camera3D = entityCollector.camera;
 
 			var material:MaterialBase = renderable.material;

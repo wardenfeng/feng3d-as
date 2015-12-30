@@ -2,9 +2,11 @@ package me.feng3d.core.base.submesh
 {
 	import flash.events.Event;
 
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
+	import me.feng3d.core.base.Context3DBufferOwner;
 	import me.feng3d.core.base.renderable.RenderableBase;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Entity;
@@ -17,8 +19,12 @@ package me.feng3d.core.base.submesh
 	/**
 	 * 子网格，可渲染对象
 	 */
-	public class SubMesh extends RenderableBase
+	public class SubMesh extends NamedAsset
 	{
+		public var renderableBase:RenderableBase;
+
+		public var context3DBufferOwner:Context3DBufferOwner;
+
 		protected var _parentMesh:Mesh;
 		protected var _subGeometry:SubGeometry;
 		arcane var _index:uint;
@@ -39,6 +45,9 @@ package me.feng3d.core.base.submesh
 		 */
 		public function SubMesh(subGeometry:SubGeometry, parentMesh:Mesh, material:MaterialBase = null)
 		{
+			context3DBufferOwner = new Context3DBufferOwner();
+			renderableBase = new RenderableBase(this);
+
 			_parentMesh = parentMesh;
 			this.subGeometry = subGeometry;
 			this.material = material;
@@ -49,7 +58,7 @@ package me.feng3d.core.base.submesh
 		/**
 		 * 渲染材质
 		 */
-		override public function get material():MaterialBase
+		public function get material():MaterialBase
 		{
 			if (_materialDirty)
 				updateMaterial();
@@ -81,19 +90,19 @@ package me.feng3d.core.base.submesh
 
 			if (_material)
 			{
-				_material.removeOwner(this);
+				_material.removeOwner(this.renderableBase);
 			}
 			_material = value;
 			if (_material)
 			{
-				_material.addOwner(this);
+				_material.addOwner(this.renderableBase);
 			}
 		}
 
 		/**
 		 * 所属实体
 		 */
-		override public function get sourceEntity():Entity
+		public function get sourceEntity():Entity
 		{
 			return _parentMesh;
 		}
@@ -143,7 +152,7 @@ package me.feng3d.core.base.submesh
 		/**
 		 * @inheritDoc
 		 */
-		override public function get animator():AnimatorBase
+		public function get animator():AnimatorBase
 		{
 			return _animator;
 		}
@@ -171,7 +180,7 @@ package me.feng3d.core.base.submesh
 			return _parentMesh;
 		}
 
-		public override function get castsShadows():Boolean
+		public function get castsShadows():Boolean
 		{
 			return _parentMesh.castsShadows;
 		}
@@ -179,7 +188,7 @@ package me.feng3d.core.base.submesh
 		/**
 		 * @inheritDoc
 		 */
-		override public function get mouseEnabled():Boolean
+		public function get mouseEnabled():Boolean
 		{
 			return _parentMesh.mouseEnabled || _parentMesh.ancestorsAllowMouseEnabled;
 		}
@@ -187,7 +196,7 @@ package me.feng3d.core.base.submesh
 		/**
 		 * @inheritDoc
 		 */
-		override public function get numTriangles():uint
+		public function get numTriangles():uint
 		{
 			return _subGeometry.numTriangles;
 		}

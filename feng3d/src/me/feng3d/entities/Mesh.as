@@ -152,7 +152,7 @@ package me.feng3d.entities
 				if (_pickingCollider.testSubMeshCollision(subMesh, _pickingCollisionVO, shortestCollisionDistance))
 				{
 					shortestCollisionDistance = _pickingCollisionVO.rayEntryDistance;
-					_pickingCollisionVO.renderable = subMesh;
+					_pickingCollisionVO.renderable = subMesh.renderableBase;
 					if (!findClosest)
 						return true;
 				}

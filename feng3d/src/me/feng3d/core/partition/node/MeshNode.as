@@ -35,7 +35,7 @@ package me.feng3d.core.partition.node
 				var i:uint;
 				var len:uint = subs.length;
 				while (i < len)
-					traverser.applyRenderable(subs[i++]);
+					traverser.applyRenderable(subs[i++].renderableBase);
 			}
 		}
 	}

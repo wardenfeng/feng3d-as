@@ -1,10 +1,9 @@
 package me.feng3d.core.base.renderable
 {
 	import me.feng.core.NamedAsset;
-	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
-	import me.feng3d.core.base.Context3DBufferOwner;
+	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.fagalRE.FagalIdCenter;
@@ -18,28 +17,18 @@ package me.feng3d.core.base.renderable
 	 */
 	public class RenderableBase extends NamedAsset implements IRenderable
 	{
-		public var context3DBufferOwner:Context3DBufferOwner;
-
 		private var _context3dCache:Context3DCache;
+		private var subMesh:SubMesh;
 
 		/**
 		 * 创建一个可渲染对象基类
 		 */
-		public function RenderableBase()
+		public function RenderableBase(subMesh:SubMesh)
 		{
-			context3DBufferOwner = new Context3DBufferOwner();
-			initBuffers();
+			this.subMesh = subMesh;
 
 			_context3dCache = new Context3DCache();
-			_context3dCache.addChildBufferOwner(this.context3DBufferOwner);
-		}
-
-		/**
-		 * 初始化Context3d缓存
-		 */
-		protected function initBuffers():void
-		{
-
+			_context3dCache.addChildBufferOwner(subMesh.context3DBufferOwner);
 		}
 
 		/**
@@ -63,7 +52,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get mouseEnabled():Boolean
 		{
-			throw new AbstractMethodError();
+			return subMesh.mouseEnabled;
 		}
 
 		/**
@@ -71,7 +60,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get numTriangles():uint
 		{
-			throw new AbstractMethodError();
+			return subMesh.numTriangles;
 		}
 
 		/**
@@ -79,7 +68,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get sourceEntity():Entity
 		{
-			throw new AbstractMethodError();
+			return subMesh.sourceEntity;
 		}
 
 		/**
@@ -87,7 +76,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get material():MaterialBase
 		{
-			throw new AbstractMethodError();
+			return subMesh.material;
 		}
 
 		/**
@@ -95,7 +84,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get animator():AnimatorBase
 		{
-			throw new AbstractMethodError();
+			return subMesh.animator;
 		}
 
 		/**
@@ -103,7 +92,7 @@ package me.feng3d.core.base.renderable
 		 */
 		public function get castsShadows():Boolean
 		{
-			throw new AbstractMethodError();
+			return subMesh.castsShadows;
 		}
 	}
 }
