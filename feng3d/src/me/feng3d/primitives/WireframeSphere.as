@@ -27,13 +27,17 @@ package me.feng3d.primitives
 			_radius = radius;
 			_segmentsW = segmentsW;
 			_segmentsH = segmentsH;
+
+			buildGeometry();
 		}
 
 		/**
 		 * @inheritDoc
 		 */
-		override protected function buildGeometry():void
+		protected function buildGeometry():void
 		{
+			segmentGeometry.removeAllSegments();
+
 			var vertices:Vector.<Number> = new Vector.<Number>();
 			var v0:Vector3D = new Vector3D();
 			var v1:Vector3D = new Vector3D();

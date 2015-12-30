@@ -2,7 +2,6 @@ package me.feng3d.entities.segment
 {
 
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	
 
 	/**
 	 * 线段渲染数据缓存
@@ -10,16 +9,9 @@ package me.feng3d.entities.segment
 	 */
 	public class SegmentSubGeometry extends SubGeometry
 	{
-		/** 更新回调函数 */
-		protected var _updateFunc:Function;
-
-		/** 线段数据是否脏了 */
-		private var _segmentDataDirty:Boolean = true;
-
-		public function SegmentSubGeometry(updateFunc:Function)
+		public function SegmentSubGeometry()
 		{
 			super();
-			_updateFunc = updateFunc;
 		}
 
 		override protected function initBuffers():void
@@ -32,10 +24,9 @@ package me.feng3d.entities.segment
 			mapVABuffer(_.segmentColor_va_4, 4);
 		}
 
-		override public function get indices():Vector.<uint>
+		override public function get vertexPositionData():Vector.<Number>
 		{
-			doUpdateFunc();
-			return _indices;
+			return pointData0;
 		}
 
 		public function get pointData0():Vector.<Number>
@@ -102,31 +93,5 @@ package me.feng3d.entities.segment
 			setVAData(_.segmentColor_va_4, value);
 		}
 
-		override protected function updateVAdata(dataTypeId:String):void
-		{
-			doUpdateFunc();
-			super.updateVAdata(dataTypeId);
-		}
-
-		protected function doUpdateFunc():void
-		{
-			if (_updateFunc != null && _segmentDataDirty)
-			{
-				_segmentDataDirty = false;
-				_updateFunc();
-			}
-		}
-
-		public function invalid():void
-		{
-			_segmentDataDirty = true;
-
-			invalidVAData(_.segmentStart_va_3);
-			invalidVAData(_.segmentEnd_va_3);
-			invalidVAData(_.segmentThickness_va_1);
-			invalidVAData(_.segmentColor_va_4);
-		}
 	}
 }
-
-

@@ -5,7 +5,6 @@ package me.feng3d.primitives
 
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	
 
 	/**
 	* 线框几何体
@@ -37,12 +36,14 @@ package me.feng3d.primitives
 		public function setDrawGeometry(value:Geometry):void
 		{
 			_drawGeometry = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
-		override protected function buildGeometry():void
+		protected function buildGeometry():void
 		{
-			removeAllSegments();
+			segmentGeometry.removeAllSegments();
+
 			if (drawGeometry == null)
 				return;
 			//避免重复绘制同一条线段

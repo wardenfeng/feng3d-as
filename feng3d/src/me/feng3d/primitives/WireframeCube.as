@@ -22,10 +22,12 @@ package me.feng3d.primitives
 		public function WireframeCube(width:Number = 100, height:Number = 100, depth:Number = 100, color:uint = 0xFFFFFF, thickness:Number = 1)
 		{
 			super(color, thickness);
-			
-			cubeWidth = width;
-			cubeHeight = height;
-			cubeDepth = depth;
+
+			_cubeWidth = width;
+			_cubeHeight = height;
+			_cubeDepth = depth;
+
+			buildGeometry();
 		}
 
 		/**
@@ -39,7 +41,8 @@ package me.feng3d.primitives
 		public function set cubeWidth(value:Number):void
 		{
 			_cubeWidth = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -55,7 +58,8 @@ package me.feng3d.primitives
 			if (value <= 0)
 				throw new Error("Value needs to be greater than 0");
 			_cubeHeight = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -69,16 +73,17 @@ package me.feng3d.primitives
 		public function set cubeDepth(value:Number):void
 		{
 			_cubeDepth = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
 		 * @inheritDoc
 		 */
-		override protected function buildGeometry():void
+		protected function buildGeometry():void
 		{
-			removeAllSegments();
-			
+			segmentGeometry.removeAllSegments();
+
 			var v0:Vector3D = new Vector3D();
 			var v1:Vector3D = new Vector3D();
 			var hw:Number = _cubeWidth * .5;

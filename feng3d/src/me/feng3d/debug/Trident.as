@@ -50,7 +50,7 @@
 			for (var i:int = 0; i < arr.length; i++)
 			{
 				segmentX = new Segment(arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
-				addSegment(segmentX);
+				segmentGeometry.addSegment(segmentX);
 			}
 
 		}

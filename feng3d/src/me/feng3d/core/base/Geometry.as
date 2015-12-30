@@ -81,6 +81,14 @@ package me.feng3d.core.base
 			dispatchEvent(new GeometryEvent(GeometryEvent.SUB_GEOMETRY_REMOVED, subGeometry));
 		}
 
+		protected function removeAllSubGeometry():void
+		{
+			for (var i:int = _subGeometries.length - 1; i >= 0; i--)
+			{
+				removeSubGeometry(_subGeometries[i]);
+			}
+		}
+
 		public function clone():Geometry
 		{
 			var cls:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;

@@ -36,6 +36,8 @@
 			_segmentsW = segmentsW;
 			_segmentsH = segmentsH;
 			_orientation = orientation;
+
+			buildGeometry();
 		}
 
 		/**
@@ -49,7 +51,8 @@
 		public function set orientation(value:String):void
 		{
 			_orientation = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -63,7 +66,8 @@
 		public function set width(value:Number):void
 		{
 			_width = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -79,7 +83,8 @@
 			if (value <= 0)
 				throw new Error("Value needs to be greater than 0");
 			_height = value;
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -93,8 +98,8 @@
 		public function set segmentsW(value:int):void
 		{
 			_segmentsW = value;
-			removeAllSegments();
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
@@ -108,15 +113,17 @@
 		public function set segmentsH(value:int):void
 		{
 			_segmentsH = value;
-			removeAllSegments();
-			_segmentSubGeometry.invalid();
+
+			buildGeometry();
 		}
 
 		/**
 		 * @inheritDoc
 		 */
-		override protected function buildGeometry():void
+		protected function buildGeometry():void
 		{
+			segmentGeometry.removeAllSegments();
+
 			var v0:Vector3D = new Vector3D();
 			var v1:Vector3D = new Vector3D();
 			var hw:Number = _width * .5;

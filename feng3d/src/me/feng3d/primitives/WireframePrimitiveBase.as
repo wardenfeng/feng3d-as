@@ -3,7 +3,6 @@ package me.feng3d.primitives
 	import flash.geom.Vector3D;
 
 	import me.feng.error.AbstractClassError;
-	import me.feng.error.AbstractMethodError;
 	import me.feng3d.entities.SegmentSet;
 	import me.feng3d.primitives.data.Segment;
 
@@ -39,11 +38,11 @@ package me.feng3d.primitives
 		{
 			_color = value;
 
-			for each (var segment:Segment in segments)
+			for each (var segment:Segment in segmentGeometry.segments)
 			{
 				segment.startColor = segment.endColor = value;
 			}
-			_segmentSubGeometry.invalid();
+			segmentGeometry.updateGeometry();
 		}
 
 		/** 线条粗细值 */
@@ -56,26 +55,11 @@ package me.feng3d.primitives
 		{
 			_thickness = value;
 
-			for each (var segment:Segment in segments)
+			for each (var segment:Segment in segmentGeometry.segments)
 			{
 				segment.thickness = segment.thickness = value;
 			}
-			_segmentSubGeometry.invalid();
-		}
-
-		/**
-		 * 创建几何体
-		 */
-		protected function buildGeometry():void
-		{
-			throw new AbstractMethodError();
-		}
-
-		override protected function updateSegmentData():void
-		{
-			buildGeometry();
-
-			super.updateSegmentData();
+			segmentGeometry.updateGeometry();
 		}
 
 		/**
@@ -87,16 +71,15 @@ package me.feng3d.primitives
 		protected function updateOrAddSegment(index:uint, v0:Vector3D, v1:Vector3D):void
 		{
 			var segment:Segment;
-			if ((segment = getSegment(index)) != null)
+			if ((segment = segmentGeometry.getSegment(index)) != null)
 			{
 				segment.start = v0;
 				segment.end = v1;
 			}
 			else
 			{
-				addSegment(new Segment(v0.clone(), v1.clone(), _color, _color, _thickness));
+				segmentGeometry.addSegment(new Segment(v0.clone(), v1.clone(), _color, _color, _thickness));
 			}
-			_segmentSubGeometry.invalid();
 		}
 	}
 }
