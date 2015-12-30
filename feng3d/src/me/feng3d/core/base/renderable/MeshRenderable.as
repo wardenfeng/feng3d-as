@@ -15,7 +15,7 @@ package me.feng3d.core.base.renderable
 	 * 可渲染对象基类
 	 * @author feng 2015-5-27
 	 */
-	public class RenderableBase extends NamedAsset implements IRenderable
+	public class MeshRenderable extends NamedAsset implements IRenderable
 	{
 		private var _context3dCache:Context3DCache;
 		private var subMesh:SubMesh;
@@ -23,7 +23,7 @@ package me.feng3d.core.base.renderable
 		/**
 		 * 创建一个可渲染对象基类
 		 */
-		public function RenderableBase(subMesh:SubMesh)
+		public function MeshRenderable(subMesh:SubMesh)
 		{
 			this.subMesh = subMesh;
 

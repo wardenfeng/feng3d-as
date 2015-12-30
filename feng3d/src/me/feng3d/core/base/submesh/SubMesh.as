@@ -7,7 +7,7 @@ package me.feng3d.core.base.submesh
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
 	import me.feng3d.core.base.Context3DBufferOwner;
-	import me.feng3d.core.base.renderable.RenderableBase;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.entities.Mesh;
@@ -21,7 +21,7 @@ package me.feng3d.core.base.submesh
 	 */
 	public class SubMesh extends NamedAsset
 	{
-		public var renderableBase:RenderableBase;
+		public var renderableBase:MeshRenderable;
 
 		public var context3DBufferOwner:Context3DBufferOwner;
 
@@ -46,7 +46,7 @@ package me.feng3d.core.base.submesh
 		public function SubMesh(subGeometry:SubGeometry, parentMesh:Mesh, material:MaterialBase = null)
 		{
 			context3DBufferOwner = new Context3DBufferOwner();
-			renderableBase = new RenderableBase(this);
+			renderableBase = new MeshRenderable(this);
 
 			_parentMesh = parentMesh;
 			this.subGeometry = subGeometry;

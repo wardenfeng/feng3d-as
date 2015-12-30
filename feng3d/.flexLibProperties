@@ -187,7 +187,7 @@
     <classEntry path="me.feng3d.primitives.WireframeSphere"/>
     <classEntry path="me.feng3d.core.partition.node.PointLightNode"/>
     <classEntry path="me.feng3d.utils.ColliderUtils"/>
-    <classEntry path="me.feng3d.core.base.renderable.RenderableBase"/>
+    <classEntry path="me.feng3d.core.base.renderable.MeshRenderable"/>
     <classEntry path="me.feng3d.materials.methods.SimpleShadowMapMethodBase"/>
     <classEntry path="me.feng3d.materials.methods.NearShadowMapMethod"/>
     <classEntry path="me.feng3d.events.LightEvent"/>
