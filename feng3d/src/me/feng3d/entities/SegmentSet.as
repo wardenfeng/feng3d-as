@@ -25,10 +25,8 @@ package me.feng3d.entities
 		public function SegmentSet()
 		{
 			super();
-//			_segmentSubGeometry = new SegmentSubGeometry(updateSegmentData);
 			this.geometry = segmentGeometry = new SegmentGeometry();
 			material = new SegmentMaterial();
-//			geometry.addSubGeometry(_segmentSubGeometry);
 		}
 
 		/**
