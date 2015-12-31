@@ -4,6 +4,7 @@ package me.feng3d.core.base
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
+	import me.feng.core.NamedAsset;
 	import me.feng3d.arcane;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
@@ -27,8 +28,10 @@ package me.feng3d.core.base
 	 *
 	 * @author feng
 	 */
-	public class Object3D extends Transform3D
+	public class Object3D extends NamedAsset
 	{
+		public var transform3D:Transform3D;
+
 		/** @private */
 		arcane var _controller:ControllerBase;
 
@@ -62,6 +65,9 @@ package me.feng3d.core.base
 		public function Object3D()
 		{
 			super();
+			transform3D = new Transform3D();
+			transform3D.addEventListener(Transform3DEvent.TRANSFORM_CHANGED, onTransformChanged);
+			transform3D.addEventListener(Transform3DEvent.POSITION_CHANGED, onPositionChanged);
 		}
 
 		/**
@@ -90,8 +96,9 @@ package me.feng3d.core.base
 		public function clone():Object3D
 		{
 			var clone:Object3D = new Object3D();
-			clone.pivotPoint = pivotPoint;
-			clone.transform = transform;
+			clone.transform3D = new Transform3D();
+			clone.transform3D.pivotPoint = transform3D.pivotPoint;
+			clone.transform3D.transform = transform3D.transform;
 			return clone;
 		}
 
@@ -128,10 +135,10 @@ package me.feng3d.core.base
 			if (_parent && !_parent._isRoot)
 			{
 				_sceneTransform.copyFrom(_parent.sceneTransform);
-				_sceneTransform.prepend(transform);
+				_sceneTransform.prepend(transform3D.transform);
 			}
 			else
-				_sceneTransform.copyFrom(transform);
+				_sceneTransform.copyFrom(transform3D.transform);
 
 			_sceneTransformDirty = false;
 		}
@@ -139,10 +146,8 @@ package me.feng3d.core.base
 		/**
 		 * 使变换矩阵失效，场景变换矩阵也将失效
 		 */
-		override public function invalidateTransform():void
+		protected function onTransformChanged(event:Transform3DEvent):void
 		{
-			super.invalidateTransform();
-
 			notifySceneTransformChange();
 		}
 
@@ -168,7 +173,7 @@ package me.feng3d.core.base
 			if (_listenToSceneTransformChanged)
 			{
 				if (!_sceneTransformChanged)
-					_sceneTransformChanged = new Transform3DEvent(Transform3DEvent.SCENETRANSFORM_CHANGED, this);
+					_sceneTransformChanged = new Transform3DEvent(Transform3DEvent.SCENETRANSFORM_CHANGED, this.transform3D);
 				dispatchEvent(_sceneTransformChanged);
 			}
 
@@ -190,7 +195,7 @@ package me.feng3d.core.base
 
 			_parent = value;
 
-			invalidateTransform();
+			transform3D.invalidateTransform();
 		}
 
 		/**
@@ -374,13 +379,8 @@ package me.feng3d.core.base
 			_zOffset = value;
 		}
 
-		/**
-		 * @inheritDoc
-		 */
-		override public function translateLocal(axis:Vector3D, distance:Number):void
+		protected function onPositionChanged(event:Transform3DEvent):void
 		{
-			super.translateLocal(axis, distance);
-
 			notifySceneTransformChange();
 		}
 
