@@ -13,8 +13,8 @@ package me.feng3d.animators.skeleton
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
-	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.events.AnimationStateEvent;
 	import me.feng3d.mathlib.Quaternion;
@@ -184,7 +184,7 @@ package me.feng3d.animators.skeleton
 			if (_globalPropertiesDirty)
 				updateGlobalProperties();
 
-			var subGeometry:SubGeometry = SubMesh(renderable).subGeometry;
+			var subGeometry:SubGeometry = MeshRenderable(renderable).subMesh.subGeometry;
 
 			if (_animationSet.usesCPU)
 			{

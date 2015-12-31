@@ -14,7 +14,7 @@ package me.feng3d.core.base.renderable
 	 */
 	public class MeshRenderable extends Renderable
 	{
-		private var subMesh:SubMesh;
+		public var subMesh:SubMesh;
 
 		/**
 		 * 创建一个可渲染对象基类

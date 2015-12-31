@@ -2,10 +2,10 @@ package me.feng3d.animators.particle
 {
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
-	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.particle.states.ParticleStateBase;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 
@@ -65,7 +65,7 @@ package me.feng3d.animators.particle
 		 */
 		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
-			var subMesh:SubMesh = renderable as SubMesh;
+			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
 
 			if (!subMesh)
 				throw(new Error("Must be subMesh"));

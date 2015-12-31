@@ -7,6 +7,7 @@ package me.feng3d.animators.vertex
 	import me.feng3d.components.subgeometry.VertexSubGeometry;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
@@ -115,7 +116,7 @@ package me.feng3d.animators.vertex
 			}
 
 			// this type of animation can only be SubMesh
-			var subMesh:SubMesh = SubMesh(renderable);
+			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
 			var subGeom:SubGeometry = subMesh.subGeometry;
 
 			var vertexSubGeom:VertexSubGeometry = subGeom.getOrCreateComponentByClass(VertexSubGeometry);
@@ -133,9 +134,9 @@ package me.feng3d.animators.vertex
 		 */
 		private function setNullPose(renderable:IRenderable):void
 		{
-			var subMesh:SubMesh = SubMesh(renderable);
+			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
 
-			var subGeom:SubGeometry = SubMesh(renderable).subGeometry;
+			var subGeom:SubGeometry = subMesh.subGeometry;
 		}
 
 		override public function addOwner(mesh:Mesh):void
