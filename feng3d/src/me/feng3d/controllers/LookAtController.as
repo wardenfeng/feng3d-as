@@ -4,7 +4,7 @@ package me.feng3d.controllers
 
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.entities.Entity;
-	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
@@ -61,7 +61,7 @@ package me.feng3d.controllers
 		{
 			if (_lookAtObject)
 			{
-				_lookAtObject.removeEventListener(Object3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
+				_lookAtObject.removeEventListener(Transform3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
 				_lookAtObject = null;
 			}
 
@@ -87,12 +87,12 @@ package me.feng3d.controllers
 				return;
 
 			if (_lookAtObject)
-				_lookAtObject.removeEventListener(Object3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
+				_lookAtObject.removeEventListener(Transform3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
 
 			_lookAtObject = val;
 
 			if (_lookAtObject)
-				_lookAtObject.addEventListener(Object3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
+				_lookAtObject.addEventListener(Transform3DEvent.SCENETRANSFORM_CHANGED, onLookAtObjectChanged);
 
 			notifyUpdate();
 		}
@@ -100,7 +100,7 @@ package me.feng3d.controllers
 		/**
 		 * 处理注视目标变化事件
 		 */
-		private function onLookAtObjectChanged(event:Object3DEvent):void
+		private function onLookAtObjectChanged(event:Transform3DEvent):void
 		{
 			notifyUpdate();
 		}

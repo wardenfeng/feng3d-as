@@ -11,7 +11,7 @@ package me.feng3d.core.base
 	import me.feng3d.core.base.data.Transform3D;
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.events.MouseEvent3D;
-	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.Matrix3DUtils;
 
 	use namespace arcane;
@@ -48,7 +48,7 @@ package me.feng3d.core.base
 
 		private var _visible:Boolean = true;
 
-		private var _sceneTransformChanged:Object3DEvent;
+		private var _sceneTransformChanged:Transform3DEvent;
 
 		private var _listenToSceneTransformChanged:Boolean;
 
@@ -168,7 +168,7 @@ package me.feng3d.core.base
 			if (_listenToSceneTransformChanged)
 			{
 				if (!_sceneTransformChanged)
-					_sceneTransformChanged = new Object3DEvent(Object3DEvent.SCENETRANSFORM_CHANGED, this);
+					_sceneTransformChanged = new Transform3DEvent(Transform3DEvent.SCENETRANSFORM_CHANGED, this);
 				dispatchEvent(_sceneTransformChanged);
 			}
 
@@ -300,7 +300,7 @@ package me.feng3d.core.base
 
 			switch (type)
 			{
-				case Object3DEvent.SCENETRANSFORM_CHANGED:
+				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = true;
 					break;
 //				case Object3DEvent.SCENE_CHANGED:
@@ -321,7 +321,7 @@ package me.feng3d.core.base
 
 			switch (type)
 			{
-				case Object3DEvent.SCENETRANSFORM_CHANGED:
+				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = false;
 					break;
 //				case Object3DEvent.SCENE_CHANGED:

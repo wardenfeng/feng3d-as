@@ -4,29 +4,29 @@ package me.feng3d.core.base.data
 	import flash.geom.Vector3D;
 
 	import me.feng.core.NamedAsset;
-	import me.feng3d.events.Object3DEvent;
+	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.MathConsts;
 	import me.feng3d.mathlib.Matrix3DUtils;
 
 	/**
 	 * 位移时抛出
 	 */
-	[Event(name = "positionChanged", type = "me.feng3d.events.Object3DEvent")]
+	[Event(name = "positionChanged", type = "me.feng3d.events.Transform3DEvent")]
 
 	/**
 	 * 旋转时抛出
 	 */
-	[Event(name = "rotationChanged", type = "me.feng3d.events.Object3DEvent")]
+	[Event(name = "rotationChanged", type = "me.feng3d.events.Transform3DEvent")]
 
 	/**
 	 * 缩放时抛出
 	 */
-	[Event(name = "scaleChanged", type = "me.feng3d.events.Object3DEvent")]
+	[Event(name = "scaleChanged", type = "me.feng3d.events.Transform3DEvent")]
 
 	/**
 	 * 变换状态抛出
 	 */
-	[Event(name = "transformChanged", type = "me.feng3d.events.Object3DEvent")]
+	[Event(name = "transformChanged", type = "me.feng3d.events.Transform3DEvent")]
 
 
 	/**
@@ -47,10 +47,10 @@ package me.feng3d.core.base.data
 		private var _rotationDirty:Boolean;
 		private var _scaleDirty:Boolean;
 
-		private var _positionChanged:Object3DEvent;
-		private var _rotationChanged:Object3DEvent;
-		private var _scaleChanged:Object3DEvent;
-		private var _transformChanged:Object3DEvent;
+		private var _positionChanged:Transform3DEvent;
+		private var _rotationChanged:Transform3DEvent;
+		private var _scaleChanged:Transform3DEvent;
+		private var _transformChanged:Transform3DEvent;
 
 		private var _eulers:Vector3D = new Vector3D();
 
@@ -396,7 +396,7 @@ package me.feng3d.core.base.data
 		private function notifyPositionChanged():void
 		{
 			if (!_positionChanged)
-				_positionChanged = new Object3DEvent(Object3DEvent.POSITION_CHANGED, this);
+				_positionChanged = new Transform3DEvent(Transform3DEvent.POSITION_CHANGED, this);
 
 			dispatchEvent(_positionChanged);
 		}
@@ -418,7 +418,7 @@ package me.feng3d.core.base.data
 		private function notifyTransformChanged():void
 		{
 			if (!_transformChanged)
-				_transformChanged = new Object3DEvent(Object3DEvent.TRANSFORM_CHANGED, this);
+				_transformChanged = new Transform3DEvent(Transform3DEvent.TRANSFORM_CHANGED, this);
 
 			dispatchEvent(_transformChanged);
 		}
@@ -486,16 +486,16 @@ package me.feng3d.core.base.data
 			super.addEventListener(type, listener, useCapture, priority, useWeakReference);
 			switch (type)
 			{
-				case Object3DEvent.POSITION_CHANGED:
+				case Transform3DEvent.POSITION_CHANGED:
 					_listenToPositionChanged = true;
 					break;
-				case Object3DEvent.ROTATION_CHANGED:
+				case Transform3DEvent.ROTATION_CHANGED:
 					_listenToRotationChanged = true;
 					break;
-				case Object3DEvent.SCALE_CHANGED:
+				case Transform3DEvent.SCALE_CHANGED:
 					_listenToRotationChanged = true;
 					break;
-				case Object3DEvent.TRANSFORM_CHANGED:
+				case Transform3DEvent.TRANSFORM_CHANGED:
 					_listenToTransformChanged = true;
 					break;
 			}
@@ -515,16 +515,16 @@ package me.feng3d.core.base.data
 
 			switch (type)
 			{
-				case Object3DEvent.POSITION_CHANGED:
+				case Transform3DEvent.POSITION_CHANGED:
 					_listenToPositionChanged = false;
 					break;
-				case Object3DEvent.ROTATION_CHANGED:
+				case Transform3DEvent.ROTATION_CHANGED:
 					_listenToRotationChanged = false;
 					break;
-				case Object3DEvent.SCALE_CHANGED:
+				case Transform3DEvent.SCALE_CHANGED:
 					_listenToScaleChanged = false;
 					break;
-				case Object3DEvent.TRANSFORM_CHANGED:
+				case Transform3DEvent.TRANSFORM_CHANGED:
 					_listenToTransformChanged = false;
 					break;
 			}
@@ -552,7 +552,7 @@ package me.feng3d.core.base.data
 		private function notifyRotationChanged():void
 		{
 			if (!_rotationChanged)
-				_rotationChanged = new Object3DEvent(Object3DEvent.ROTATION_CHANGED, this);
+				_rotationChanged = new Transform3DEvent(Transform3DEvent.ROTATION_CHANGED, this);
 
 			dispatchEvent(_rotationChanged);
 		}
@@ -579,7 +579,7 @@ package me.feng3d.core.base.data
 		private function notifyScaleChanged():void
 		{
 			if (!_scaleChanged)
-				_scaleChanged = new Object3DEvent(Object3DEvent.SCALE_CHANGED, this);
+				_scaleChanged = new Transform3DEvent(Transform3DEvent.SCALE_CHANGED, this);
 
 			dispatchEvent(_scaleChanged);
 		}
