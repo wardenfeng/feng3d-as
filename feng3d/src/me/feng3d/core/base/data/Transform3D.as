@@ -18,8 +18,6 @@ package me.feng3d.core.base.data
 	 */
 	public class Transform3D extends Element3D
 	{
-		private var _lookTarget:Vector3D;
-
 		/**
 		 * 创建3D元素状态变换实例
 		 */
@@ -408,19 +406,6 @@ package me.feng3d.core.base.data
 				rotationX -= 180;
 				rotationZ -= 180;
 			}
-
-			_lookTarget = target;
 		}
-
-		/**
-		 * 被观察的对象
-		 */
-		public function get lookTarget():Vector3D
-		{
-			return _lookTarget;
-		}
-
 	}
 }
-
-
