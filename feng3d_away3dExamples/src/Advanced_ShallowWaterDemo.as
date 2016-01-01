@@ -476,9 +476,9 @@ package
 			var planeSegments:uint = (gridDimension - 1);
 			planeSize = planeSegments * gridSpacing;
 			plane = new Mesh(new PlaneGeometry(planeSize, planeSize, planeSegments, planeSegments), liquidMaterial);
-			plane.rotationX = 90;
-			plane.x -= planeSize / 2;
-			plane.z -= planeSize / 2;
+			plane.transform3D.rotationX = 90;
+			plane.transform3D.x -= planeSize / 2;
+			plane.transform3D.z -= planeSize / 2;
 			plane.mouseEnabled = true;
 			plane.pickingCollider = PickingColliderType.BOUNDS_ONLY;
 //			plane.geometry.convertToSeparateBuffers();
@@ -491,23 +491,23 @@ package
 			var poolHOffset:Number = planeSize / 2 + poolThickness / 2;
 
 			var left:Mesh = new Mesh(new CubeGeometry(poolThickness, poolHeight, planeSize + poolThickness * 2), poolMaterial);
-			left.x = -poolHOffset;
-			left.y = poolVOffset;
+			left.transform3D.x = -poolHOffset;
+			left.transform3D.y = poolVOffset;
 			scene.addChild(left);
 
 			var right:Mesh = new Mesh(new CubeGeometry(poolThickness, poolHeight, planeSize + poolThickness * 2), poolMaterial);
-			right.x = poolHOffset;
-			right.y = poolVOffset;
+			right.transform3D.x = poolHOffset;
+			right.transform3D.y = poolVOffset;
 			scene.addChild(right);
 
 			var back:Mesh = new Mesh(new CubeGeometry(planeSize, poolHeight, poolThickness), poolMaterial);
-			back.z = poolHOffset;
-			back.y = poolVOffset;
+			back.transform3D.z = poolHOffset;
+			back.transform3D.y = poolVOffset;
 			scene.addChild(back);
 
 			var front:Mesh = new Mesh(new CubeGeometry(planeSize, poolHeight, poolThickness), poolMaterial);
-			front.z = -poolHOffset;
-			front.y = poolVOffset;
+			front.transform3D.z = -poolHOffset;
+			front.transform3D.y = poolVOffset;
 			scene.addChild(front);
 		}
 
@@ -642,7 +642,7 @@ package
 			cameraController.distance += distanceIncrement;
 
 			// Update light.
-			skyLight.transform = camera.transform.clone();
+			skyLight.transform3D.transform = camera.transform3D.transform.clone();
 
 			view.render();
 		}

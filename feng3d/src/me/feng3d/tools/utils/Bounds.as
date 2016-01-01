@@ -218,13 +218,13 @@ package me.feng3d.tools.utils
 			{
 				parseObjectBounds(obj, parentTransform);
 
-				containerTransform = obj.transform.clone();
+				containerTransform = obj.transform3D.transform.clone();
 				if (parentTransform)
 					containerTransform.append(parentTransform);
 			}
 			else if (isEntity && !parentTransform)
 			{
-				var mat:Matrix3D = obj.transform.clone();
+				var mat:Matrix3D = obj.transform3D.transform.clone();
 				mat.invert();
 				parseObjectBounds(obj, mat);
 			}
@@ -271,7 +271,7 @@ package me.feng3d.tools.utils
 
 			var e:Entity = oC as Entity;
 			var corners:Vector.<Number>;
-			var mat:Matrix3D = oC.transform.clone();
+			var mat:Matrix3D = oC.transform3D.transform.clone();
 			var cB:Vector.<Number> = _containers[oC];
 			if (e)
 			{

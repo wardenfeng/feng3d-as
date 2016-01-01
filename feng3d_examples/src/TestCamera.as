@@ -41,9 +41,9 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -300;
-			_view.camera.y = 100;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -300;
+			_view.camera.transform3D.y = 100;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			container3D = new PhotoBox(rootPath);
 			_view.scene.addChild(container3D);
@@ -54,13 +54,13 @@ package
 
 		protected function onMouseWheel(event:MouseEvent):void
 		{
-			_view.camera.z += event.delta;
+			_view.camera.transform3D.z += event.delta;
 			trace("摄像机位置", _view.camera.sceneTransform.position)
 		}
 
 		protected function onEnterFrame(event:Event):void
 		{
-			container3D.rotationY++;
+			container3D.transform3D.rotationY++;
 //			container3D.transform.appendRotation(1, Vector3D.Y_AXIS, container3D.transform.position);
 
 			_view.render();

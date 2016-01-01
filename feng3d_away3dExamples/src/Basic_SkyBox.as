@@ -92,9 +92,9 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -600;
-			_view.camera.y = 0;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -600;
+			_view.camera.transform3D.y = 0;
+			_view.camera.transform3D.lookAt(new Vector3D());
 			_view.camera.lens = new PerspectiveLens(90);
 
 			//setup the cube texture
@@ -130,12 +130,12 @@ package
 		 */
 		private function _onEnterFrame(e:Event):void
 		{
-			_torus.rotationX += 2;
-			_torus.rotationY += 1;
+			_torus.transform3D.rotationX += 2;
+			_torus.transform3D.rotationY += 1;
 
-			_view.camera.position = new Vector3D();
-			_view.camera.rotationY += 0.5 * (stage.mouseX - stage.stageWidth / 2) / 800;
-			_view.camera.moveBackward(600);
+			_view.camera.transform3D.position = new Vector3D();
+			_view.camera.transform3D.rotationY += 0.5 * (stage.mouseX - stage.stageWidth / 2) / 800;
+			_view.camera.transform3D.moveBackward(600);
 
 			_view.render();
 		}

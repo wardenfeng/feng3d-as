@@ -28,6 +28,11 @@ package me.feng3d.core.base.data
 	 */
 	[Event(name = "transformChanged", type = "me.feng3d.events.Transform3DEvent")]
 
+	/**
+	 * 变换已更新
+	 */
+	[Event(name = "transformUpdated", type = "me.feng3d.events.Transform3DEvent")]
+
 
 	/**
 	 * 3D元素<br/><br/>
@@ -464,6 +469,8 @@ package me.feng3d.core.base.data
 			_positionDirty = false;
 			_rotationDirty = false;
 			_scaleDirty = false;
+
+			dispatchEvent(new Transform3DEvent(Transform3DEvent.TRANSFORM_UPDATED, this));
 		}
 
 		/**

@@ -250,12 +250,12 @@ package
 			camera = view.camera;
 
 			camera.lens.far = 5000;
-			camera.z = -200;
-			camera.y = 160;
+			camera.transform3D.z = -200;
+			camera.transform3D.y = 160;
 
 			//setup controller to be used on the camera
 			placeHolder = new ObjectContainer3D();
-			placeHolder.y = 50;
+			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
 			view.addSourceURL("srcview/index.html");
@@ -299,16 +299,16 @@ package
 		{
 			//create a light for shadows that mimics the sun's position in the skybox
 			redLight = new PointLight();
-			redLight.x = -1000;
-			redLight.y = 200;
-			redLight.z = -1400;
+			redLight.transform3D.x = -1000;
+			redLight.transform3D.y = 200;
+			redLight.transform3D.z = -1400;
 			redLight.color = 0xff1111;
 			scene.addChild(redLight);
 
 			blueLight = new PointLight();
-			blueLight.x = 1000;
-			blueLight.y = 200;
-			blueLight.z = 1400;
+			blueLight.transform3D.x = 1000;
+			blueLight.transform3D.y = 200;
+			blueLight.transform3D.z = 1400;
 			blueLight.color = 0x1111ff;
 			scene.addChild(blueLight);
 
@@ -421,16 +421,16 @@ package
 
 			//update character animation
 			if (mesh)
-				mesh.rotationY += currentRotationInc;
+				mesh.transform3D.rotationY += currentRotationInc;
 
 			count += 0.01;
 
-			redLight.x = Math.sin(count) * 1500;
-			redLight.y = 250 + Math.sin(count * 0.54) * 200;
-			redLight.z = Math.cos(count * 0.7) * 1500;
-			blueLight.x = -Math.sin(count * 0.8) * 1500;
-			blueLight.y = 250 - Math.sin(count * .65) * 200;
-			blueLight.z = -Math.cos(count * 0.9) * 1500;
+			redLight.transform3D.x = Math.sin(count) * 1500;
+			redLight.transform3D.y = 250 + Math.sin(count * 0.54) * 200;
+			redLight.transform3D.z = Math.cos(count * 0.7) * 1500;
+			blueLight.transform3D.x = -Math.sin(count * 0.8) * 1500;
+			blueLight.transform3D.y = 250 - Math.sin(count * .65) * 200;
+			blueLight.transform3D.z = -Math.cos(count * 0.9) * 1500;
 
 			view.render();
 		}

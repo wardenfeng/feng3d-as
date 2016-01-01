@@ -30,6 +30,11 @@ package me.feng3d.events
 		public static const TRANSFORM_CHANGED:String = "transformChanged";
 
 		/**
+		 * 变换已更新
+		 */
+		public static const TRANSFORM_UPDATED:String = "transformUpdated";
+
+		/**
 		 * 场景变换矩阵发生变化
 		 */
 		public static const SCENETRANSFORM_CHANGED:String = "scenetransformChanged";

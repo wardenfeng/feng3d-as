@@ -8,6 +8,7 @@ package me.feng3d.entities
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.pick.IPickingCollider;
+	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.materials.MaterialBase;
 	import me.feng3d.mathlib.Matrix3DUtils;
 	import me.feng3d.mathlib.Ray3D;
@@ -39,6 +40,8 @@ package me.feng3d.entities
 		public function Sprite3D(material:MaterialBase, width:Number, height:Number)
 		{
 			super();
+			transform3D.addEventListener(Transform3DEvent.TRANSFORM_UPDATED, onTransformUpdated);
+
 			this.material = material;
 			_width = width;
 			_height = height;
@@ -99,14 +102,13 @@ package me.feng3d.entities
 
 		override protected function updateBounds():void
 		{
-			_bounds.fromExtremes(-.5 * _scaleX, -.5 * _scaleY, -.5 * _scaleZ, .5 * _scaleX, .5 * _scaleY, .5 * _scaleZ);
+			_bounds.fromExtremes(-.5 * transform3D.scaleX, -.5 * transform3D.scaleY, -.5 * transform3D.scaleZ, .5 * transform3D.scaleX, .5 * transform3D.scaleY, .5 * transform3D.scaleZ);
 			_boundsInvalid = false;
 		}
 
-		override protected function updateTransform():void
+		protected function onTransformUpdated(event:Transform3DEvent):void
 		{
-			super.updateTransform();
-			_transform.prependScale(_width, _height, Math.max(_width, _height));
+			transform3D.transform.prependScale(_width, _height, Math.max(_width, _height));
 		}
 
 		override arcane function collidesBefore(shortestCollisionDistance:Number, findClosest:Boolean):Boolean
@@ -148,8 +150,8 @@ package me.feng3d.entities
 			comps[0].x = scenePosition.x;
 			comps[0].y = scenePosition.y;
 			comps[0].z = scenePosition.z;
-			scale.x = _width * _scaleX;
-			scale.y = _height * _scaleY;
+			scale.x = _width * transform3D.scaleX;
+			scale.y = _height * transform3D.scaleY;
 			_spriteMatrix.recompose(comps);
 			return _spriteMatrix;
 		}

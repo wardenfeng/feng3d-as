@@ -155,8 +155,8 @@ package
 
 			//setup the scene
 			_loader = new ObjectContainer3D();
-			_loader.scale(300);
-			_loader.z = -200;
+			_loader.transform3D.scale(300);
+			_loader.transform3D.z = -200;
 			_view.scene.addChild(_loader);
 
 			//parse hellknight mesh

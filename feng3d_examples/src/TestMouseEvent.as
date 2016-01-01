@@ -43,10 +43,10 @@ package
 			_view = new View3D();
 			addChild(_view);
 
-			_view.camera.z = 200;
-			_view.camera.y = 200;
-			_view.camera.x = 200;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = 200;
+			_view.camera.transform3D.y = 200;
+			_view.camera.transform3D.x = 200;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			var objParser:ObjParser1 = new ObjParser1(resourceDic[archMageObjData], 25, true, true);
 			var terrainGeometry:Geometry = new Geometry();
@@ -85,7 +85,7 @@ package
 
 		protected function onEnterFrame(event:Event):void
 		{
-			head.rotationY = 0;
+			head.transform3D.rotationY = 0;
 			_view.render();
 		}
 

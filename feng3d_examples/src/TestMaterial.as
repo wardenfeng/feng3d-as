@@ -39,9 +39,9 @@ package
 			Debug.agalDebug = true;
 
 			//setup the camera
-			_view.camera.z = -600;
-			_view.camera.y = 500;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -600;
+			_view.camera.transform3D.y = 500;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//setup the scene
 //			mesh = new Mesh(new PlaneGeometry(700, 700), MaterialUtils.createTextureMaterial("img/photo.jpg"));
@@ -62,7 +62,7 @@ package
 		 */
 		private function onEnterFrame(e:Event):void
 		{
-			mesh.rotationY += 1;
+			mesh.transform3D.rotationY += 1;
 
 			_view.render();
 		}

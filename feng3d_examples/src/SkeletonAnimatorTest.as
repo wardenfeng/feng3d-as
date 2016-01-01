@@ -78,10 +78,10 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = 100;
-			_view.camera.y = 0;
-			_view.camera.x = 100;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = 100;
+			_view.camera.transform3D.y = 0;
+			_view.camera.transform3D.x = 100;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			initObjects();
 
@@ -140,7 +140,7 @@ package
 			{
 				mesh = event.asset as Mesh;
 				initializeHeadModel(mesh);
-				mesh.scale(2);
+				mesh.transform3D.scale(2);
 			}
 		}
 

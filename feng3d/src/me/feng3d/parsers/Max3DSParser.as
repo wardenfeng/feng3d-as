@@ -619,7 +619,7 @@ package me.feng3d.parsers
 
 				// Build mesh and return it
 				mesh = new Mesh(geom, mat);
-				mesh.transform = new Matrix3D(obj.transform);
+				mesh.transform3D.transform = new Matrix3D(obj.transform);
 				return mesh;
 			}
 

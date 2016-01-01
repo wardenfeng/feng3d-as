@@ -264,7 +264,7 @@ package
 		{
 			plane = new Mesh(new PlaneGeometry(1000, 1000), planeMaterial);
 			plane.geometry.scaleUV(2, 2);
-			plane.y = -20;
+			plane.transform3D.y = -20;
 
 			scene.addChild(plane);
 
@@ -277,9 +277,9 @@ package
 
 				//position the mesh
 				var degree:Number = i / NUM_FIRES * Math.PI * 2;
-				particleMesh.x = Math.sin(degree) * 400;
-				particleMesh.z = Math.cos(degree) * 400;
-				particleMesh.y = 5;
+				particleMesh.transform3D.x = Math.sin(degree) * 400;
+				particleMesh.transform3D.z = Math.cos(degree) * 400;
+				particleMesh.transform3D.y = 5;
 
 				//create a fire object and add it to the fire object vector
 				fireObjects.push(new FireVO(particleMesh, animator));
@@ -349,7 +349,7 @@ package
 			light.color = 0xFF3301;
 			light.diffuse = 0;
 			light.specular = 0;
-			light.position = fireObject.mesh.position;
+			light.transform3D.position = fireObject.mesh.transform3D.position;
 
 			//add the lightsource to the fire object
 			fireObject.light = light;

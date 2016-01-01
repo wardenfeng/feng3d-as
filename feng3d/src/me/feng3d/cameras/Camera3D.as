@@ -43,7 +43,7 @@ package me.feng3d.cameras
 			for (var i:int = 0; i < 6; ++i)
 				_frustumPlanes[i] = new Plane3D();
 
-			z = -1000;
+			transform3D.z = -1000;
 		}
 
 		/**

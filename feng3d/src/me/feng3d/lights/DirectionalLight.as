@@ -47,11 +47,11 @@ package me.feng3d.lights
 			//lookAt(new Vector3D(x + _direction.x, y + _direction.y, z + _direction.z));
 			if (!_tmpLookAt)
 				_tmpLookAt = new Vector3D();
-			_tmpLookAt.x = x + _direction.x;
-			_tmpLookAt.y = y + _direction.y;
-			_tmpLookAt.z = z + _direction.z;
+			_tmpLookAt.x = transform3D.x + _direction.x;
+			_tmpLookAt.y = transform3D.y + _direction.y;
+			_tmpLookAt.z = transform3D.z + _direction.z;
 
-			lookAt(_tmpLookAt);
+			transform3D.lookAt(_tmpLookAt);
 		}
 
 		/**

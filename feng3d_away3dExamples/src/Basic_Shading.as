@@ -191,29 +191,29 @@ package
 		{
 			plane = new Mesh(new PlaneGeometry(1000, 1000), planeMaterial);
 			plane.geometry.scaleUV(2, 2);
-			plane.y = -20;
+			plane.transform3D.y = -20;
 
 			scene.addChild(plane);
 
 			sphere = new Mesh(new SphereGeometry(150, 40, 20), sphereMaterial);
-			sphere.x = 300;
-			sphere.y = 160;
-			sphere.z = 300;
+			sphere.transform3D.x = 300;
+			sphere.transform3D.y = 160;
+			sphere.transform3D.z = 300;
 
 			scene.addChild(sphere);
 
 			cube = new Mesh(new CubeGeometry(200, 200, 200, 1, 1, 1, false), cubeMaterial);
-			cube.x = 300;
-			cube.y = 160;
-			cube.z = -250;
+			cube.transform3D.x = 300;
+			cube.transform3D.y = 160;
+			cube.transform3D.z = -250;
 
 			scene.addChild(cube);
 
 			torus = new Mesh(new TorusGeometry(150, 60, 40, 20), torusMaterial);
 			torus.geometry.scaleUV(10, 5);
-			torus.x = -250;
-			torus.y = 160;
-			torus.z = -250;
+			torus.transform3D.x = -250;
+			torus.transform3D.y = 160;
+			torus.transform3D.z = -250;
 
 			scene.addChild(torus);
 		}

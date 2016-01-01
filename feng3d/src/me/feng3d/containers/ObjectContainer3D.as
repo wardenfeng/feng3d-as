@@ -107,12 +107,12 @@ package me.feng3d.containers
 		/**
 		 * 使变换矩阵失效，子对象变化矩阵也将失效
 		 */
-		override public function invalidateTransform():void
+		public function invalidateTransform():void
 		{
 			var len:uint = _children.length;
 			for (var i:int = 0; i < len; i++)
 			{
-				_children[i].invalidateTransform();
+				_children[i].transform3D.invalidateTransform();
 			}
 			super.invalidateTransform();
 		}
@@ -203,7 +203,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.minX + child.x;
+				m = child.minX + child.transform3D.x;
 				if (m < min)
 					min = m;
 			}
@@ -224,7 +224,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.minY + child.y;
+				m = child.minY + child.transform3D.y;
 				if (m < min)
 					min = m;
 			}
@@ -245,7 +245,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.minZ + child.z;
+				m = child.minZ + child.transform3D.z;
 				if (m < min)
 					min = m;
 			}
@@ -267,7 +267,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.maxX + child.x;
+				m = child.maxX + child.transform3D.x;
 				if (m > max)
 					max = m;
 			}
@@ -288,7 +288,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.maxY + child.y;
+				m = child.maxY + child.transform3D.y;
 				if (m > max)
 					max = m;
 			}
@@ -309,7 +309,7 @@ package me.feng3d.containers
 			while (i < len)
 			{
 				var child:ObjectContainer3D = _children[i++];
-				m = child.maxZ + child.z;
+				m = child.maxZ + child.transform3D.z;
 				if (m > max)
 					max = m;
 			}

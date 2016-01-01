@@ -91,8 +91,8 @@ package
 		{
 			//俯视图
 			var cameraTop:Camera3D = new Camera3D();
-			cameraTop.y = 200;
-			cameraTop.lookAt(new Vector3D(), new Vector3D(0, 0, 1));
+			cameraTop.transform3D.y = 200;
+			cameraTop.transform3D.lookAt(new Vector3D(), new Vector3D(0, 0, 1));
 
 			var viewTop:View3D = new View3D(scene3D, cameraTop);
 			addChild(viewTop);
@@ -102,8 +102,8 @@ package
 
 			//前视图
 			var cameraFront:Camera3D = new Camera3D();
-			cameraFront.z = 200;
-			cameraFront.lookAt(new Vector3D(), new Vector3D(0, 1, 0));
+			cameraFront.transform3D.z = 200;
+			cameraFront.transform3D.lookAt(new Vector3D(), new Vector3D(0, 1, 0));
 
 			var viewFront:View3D = new View3D(scene3D, cameraFront);
 			addChild(viewFront);
@@ -114,10 +114,10 @@ package
 		protected function onEnterFrame(event:Event):void
 		{
 			angle++;
-			camera.z = len * Math.cos(angle / 180 * Math.PI);
-			camera.x = len * Math.sin(angle / 180 * Math.PI);
+			camera.transform3D.z = len * Math.cos(angle / 180 * Math.PI);
+			camera.transform3D.x = len * Math.sin(angle / 180 * Math.PI);
 
-			camera.lookAt(new Vector3D());
+			camera.transform3D.lookAt(new Vector3D());
 
 			view.render();
 		}

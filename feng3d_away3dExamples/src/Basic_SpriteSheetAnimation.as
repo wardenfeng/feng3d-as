@@ -91,9 +91,9 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -1500;
-			_view.camera.y = 200;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -1500;
+			_view.camera.transform3D.y = 200;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//setup the meshes and their SpriteSheetAnimator
 			prepareSingleMap();
@@ -129,7 +129,7 @@ package
 
 			// construct the receiver geometry, in this case a plane;
 			var mesh:Mesh = new Mesh(new PlaneGeometry(700, 700, 1, 1, false), material);
-			mesh.x = -400;
+			mesh.transform3D.x = -400;
 			//asign the animator
 			mesh.animator = spriteSheetAnimator;
 			// because our very simple map has only 4 images in itself, playing it the same speed as the swf would be way too fast.
@@ -172,7 +172,7 @@ package
 
 			// construct the reciever geometry, in this case a plane;
 			var mesh:Mesh = new Mesh(new PlaneGeometry(700, 700, 1, 1, false), material);
-			mesh.x = 400;
+			mesh.transform3D.x = 400;
 			//asign the animator
 			mesh.animator = spriteSheetAnimator;
 			//the frame rate at which the animation should be played

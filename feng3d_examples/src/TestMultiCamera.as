@@ -42,16 +42,16 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -300;
-			_view.camera.y = 100;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -300;
+			_view.camera.transform3D.y = 100;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			camera1 = _view.camera;
 
 			camera2 = new Camera3D();
-			camera2.y = 300;
-			camera2.z = 100;
-			camera2.lookAt(new Vector3D());
+			camera2.transform3D.y = 300;
+			camera2.transform3D.z = 100;
+			camera2.transform3D.lookAt(new Vector3D());
 
 			view1 = new View3D(_view.scene, camera2);
 			addChild(view1);
@@ -68,12 +68,12 @@ package
 
 		protected function onMouseWheel(event:MouseEvent):void
 		{
-			_view.camera.z += event.delta;
+			_view.camera.transform3D.z += event.delta;
 		}
 
 		protected function onEnterFrame(event:Event):void
 		{
-			container3D.rotationY++;
+			container3D.transform3D.rotationY++;
 			_view.render();
 		}
 	}

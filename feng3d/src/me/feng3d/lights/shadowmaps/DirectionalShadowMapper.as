@@ -124,13 +124,13 @@ package me.feng3d.lights.shadowmaps
 			var i:uint;
 
 			dir = DirectionalLight(_light).sceneDirection;
-			_overallDepthCamera.transform = _light.sceneTransform;
-			x = int((viewCamera.x - dir.x * _lightOffset) / _snap) * _snap;
-			y = int((viewCamera.y - dir.y * _lightOffset) / _snap) * _snap;
-			z = int((viewCamera.z - dir.z * _lightOffset) / _snap) * _snap;
-			_overallDepthCamera.x = x;
-			_overallDepthCamera.y = y;
-			_overallDepthCamera.z = z;
+			_overallDepthCamera.transform3D.transform = _light.sceneTransform;
+			x = int((viewCamera.transform3D.x - dir.x * _lightOffset) / _snap) * _snap;
+			y = int((viewCamera.transform3D.y - dir.y * _lightOffset) / _snap) * _snap;
+			z = int((viewCamera.transform3D.z - dir.z * _lightOffset) / _snap) * _snap;
+			_overallDepthCamera.transform3D.x = x;
+			_overallDepthCamera.transform3D.y = y;
+			_overallDepthCamera.transform3D.z = z;
 
 			_matrix.copyFrom(_overallDepthCamera.inverseSceneTransform);
 			_matrix.prepend(viewCamera.sceneTransform);

@@ -29,9 +29,9 @@ package model3d
 				mesh.material = MaterialUtils.createTextureMaterial(rootPath + imgList[i % imgList.length]);
 				mesh.material.bothSides = true;
 				mesh.geometry = geometry;
-				mesh.rotationY += 360 / num * i;
-				mesh.x = Math.sin(2 * Math.PI / num * i) * width / 2;
-				mesh.z = Math.cos(2 * Math.PI / num * i) * width / 2;
+				mesh.transform3D.rotationY += 360 / num * i;
+				mesh.transform3D.x = Math.sin(2 * Math.PI / num * i) * width / 2;
+				mesh.transform3D.z = Math.cos(2 * Math.PI / num * i) * width / 2;
 				addChild(mesh);
 			}
 		}

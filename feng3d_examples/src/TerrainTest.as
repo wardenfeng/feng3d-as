@@ -94,7 +94,7 @@
 			camera.lens.near = 0.01;
 			camera.lens.far = 4000;
 
-			camera.y = 300;
+			camera.transform3D.y = 300;
 
 			addChild(view);
 		}
@@ -150,7 +150,7 @@
 
 		protected function onMouseMove(event:MouseEvent):void
 		{
-			view.camera.rotationX = (2 * event.stageY / stage.stageHeight - 1) * 90;
+			view.camera.transform3D.rotationX = (2 * event.stageY / stage.stageHeight - 1) * 90;
 		}
 
 		/**
@@ -162,30 +162,30 @@
 
 			if (keyDic[Keyboard.W])
 			{
-				view.camera.x += view.camera.forwardVector.x * positionStep;
-				view.camera.z += view.camera.forwardVector.z * positionStep;
+				view.camera.transform3D.x += view.camera.transform3D.forwardVector.x * positionStep;
+				view.camera.transform3D.z += view.camera.transform3D.forwardVector.z * positionStep;
 			}
 			if (keyDic[Keyboard.S])
 			{
-				view.camera.x -= view.camera.forwardVector.x * positionStep;
-				view.camera.z -= view.camera.forwardVector.z * positionStep;
+				view.camera.transform3D.x -= view.camera.transform3D.forwardVector.x * positionStep;
+				view.camera.transform3D.z -= view.camera.transform3D.forwardVector.z * positionStep;
 			}
 			if (keyDic[Keyboard.A])
 			{
-				view.camera.rotationY--;
+				view.camera.transform3D.rotationY--;
 			}
 			if (keyDic[Keyboard.D])
 			{
-				view.camera.rotationY++;
+				view.camera.transform3D.rotationY++;
 			}
 
 			//set the camera height based on the terrain (with smoothing)
-			camera.y += 0.2 * (terrain.getHeightAt(camera.x, camera.z) + 50 - camera.y);
+			camera.transform3D.y += 0.2 * (terrain.getHeightAt(camera.transform3D.x, camera.transform3D.z) + 50 - camera.transform3D.y);
 
-			topCamera.x = view.camera.x;
-			topCamera.y = view.camera.y + 500;
-			topCamera.z = view.camera.z;
-			topCamera.lookAt(new Vector3D(topCamera.x, 0, topCamera.z), new Vector3D(0, 0, 1));
+			topCamera.transform3D.x = view.camera.transform3D.x;
+			topCamera.transform3D.y = view.camera.transform3D.y + 500;
+			topCamera.transform3D.z = view.camera.transform3D.z;
+			topCamera.transform3D.lookAt(new Vector3D(topCamera.transform3D.x, 0, topCamera.transform3D.z), new Vector3D(0, 0, 1));
 
 			view.render();
 		}
@@ -197,9 +197,9 @@
 			obj3d.name = "cameraMesh";
 			obj3d.geometry = cameraGeometry;
 			obj3d.material = new ColorMaterial(0x00ff00);
-			obj3d.scale(5);
+			obj3d.transform3D.scale(5);
 			var trident:Trident = new Trident();
-			trident.y = -2;
+			trident.transform3D.y = -2;
 			obj3d.addChild(trident);
 			view.camera.addChild(obj3d);
 

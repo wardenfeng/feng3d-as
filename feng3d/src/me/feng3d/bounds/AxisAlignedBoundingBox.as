@@ -8,6 +8,7 @@ package me.feng3d.bounds
 	import me.feng3d.mathlib.Ray3D;
 	import me.feng3d.primitives.WireframeCube;
 	import me.feng3d.primitives.WireframePrimitiveBase;
+	import me.feng3d.core.base.data.Transform3D;
 
 	/**
 	 * 轴对其包围盒
@@ -70,12 +71,13 @@ package me.feng3d.bounds
 		 */
 		override protected function updateBoundingRenderable():void
 		{
-			_boundingRenderable.scaleX = Math.max(_halfExtentsX * 2, 0.001);
-			_boundingRenderable.scaleY = Math.max(_halfExtentsY * 2, 0.001);
-			_boundingRenderable.scaleZ = Math.max(_halfExtentsZ * 2, 0.001);
-			_boundingRenderable.x = _centerX;
-			_boundingRenderable.y = _centerY;
-			_boundingRenderable.z = _centerZ;
+			var transform3D:Transform3D = _boundingRenderable.transform3D;
+			transform3D.scaleX = Math.max(_halfExtentsX * 2, 0.001);
+			transform3D.scaleY = Math.max(_halfExtentsY * 2, 0.001);
+			transform3D.scaleZ = Math.max(_halfExtentsZ * 2, 0.001);
+			transform3D.x = _centerX;
+			transform3D.y = _centerY;
+			transform3D.z = _centerZ;
 		}
 
 		/**

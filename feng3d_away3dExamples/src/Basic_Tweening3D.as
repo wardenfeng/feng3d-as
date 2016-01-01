@@ -91,13 +91,13 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -600;
-			_view.camera.y = 500;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -600;
+			_view.camera.transform3D.y = 500;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//setup the scene
 			_cube = new Mesh(new CubeGeometry(100, 100, 100, 1, 1, 1, false), new TextureMaterial(Cast.bitmapTexture(resourceDic[TrinketDiffuse])));
-			_cube.y = 50;
+			_cube.transform3D.y = 50;
 			_view.scene.addChild(_cube);
 
 			_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffuse])));
@@ -131,7 +131,7 @@ package
 		private function _onMouseUp(ev:MouseEvent3D):void
 		{
 			var scenePosition:Vector3D = ev.collider.scenePosition;
-			Tweener.addTween(_cube, {time: 0.5, x: scenePosition.x, z: scenePosition.z, _bezier: {x: _cube.x, z: scenePosition.z}});
+			Tweener.addTween(_cube, {time: 0.5, x: scenePosition.x, z: scenePosition.z, _bezier: {x: _cube.transform3D.x, z: scenePosition.z}});
 		}
 
 		/**

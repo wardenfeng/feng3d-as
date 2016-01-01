@@ -271,7 +271,7 @@ package
 		private function initLights():void
 		{
 			light = new PointLight();
-			light.x = 10000;
+			light.transform3D.x = 10000;
 			light.ambient = 1;
 			light.diffuse = 2;
 
@@ -384,7 +384,7 @@ package
 			scene.addChild(orbitContainer);
 
 			sun = new Sprite3D(sunMaterial, 3000, 3000);
-			sun.x = 10000;
+			sun.transform3D.x = 10000;
 			orbitContainer.addChild(sun);
 
 			earth = new Mesh(new SphereGeometry(200, 200, 100), groundMaterial);
@@ -392,10 +392,10 @@ package
 			clouds = new Mesh(new SphereGeometry(202, 200, 100), cloudMaterial);
 
 			atmosphere = new Mesh(new SphereGeometry(210, 200, 100), atmosphereMaterial);
-			atmosphere.scaleX = -1;
+			atmosphere.transform3D.scaleX = -1;
 
 			tiltContainer = new ObjectContainer3D();
-			tiltContainer.rotationX = -23;
+			tiltContainer.transform3D.rotationX = -23;
 			tiltContainer.addChild(earth);
 			tiltContainer.addChild(clouds);
 			tiltContainer.addChild(atmosphere);
@@ -429,9 +429,9 @@ package
 		 */
 		private function onEnterFrame(e:Event):void
 		{
-			earth.rotationY += 0.2;
-			clouds.rotationY += 0.21;
-			orbitContainer.rotationY += 0.02;
+			earth.transform3D.rotationY += 0.2;
+			clouds.transform3D.rotationY += 0.21;
+			orbitContainer.transform3D.rotationY += 0.02;
 
 			if (stage.mouseLock)
 			{

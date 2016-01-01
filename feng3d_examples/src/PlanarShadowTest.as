@@ -106,12 +106,12 @@
 			camera = view.camera;
 
 			camera.lens.far = 5000;
-			camera.z = -500;
-			camera.y = 360;
+			camera.transform3D.z = -500;
+			camera.transform3D.y = 360;
 
 			//setup controller to be used on the camera
 			placeHolder = new ObjectContainer3D();
-			placeHolder.y = 50;
+			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
 			view.addSourceURL("srcview/index.html");
@@ -188,8 +188,8 @@
 
 			mesh = new Mesh(sphereGeometry, bodyMaterial);
 			mesh.castsShadows = true;
-			mesh.y = 50;
-			mesh.z = 200;
+			mesh.transform3D.y = 50;
+			mesh.transform3D.z = 200;
 
 			scene.addChild(mesh);
 
@@ -218,15 +218,15 @@
 
 			//update character animation
 			if (mesh)
-				mesh.rotationY += 1;
+				mesh.transform3D.rotationY += 1;
 
 			count += 0.01;
 
-			mesh.x = Math.sin(count) * 100;
-			mesh.y = groundY + 50;
-			mesh.z = Math.cos(count * 0.7) * 100;
+			mesh.transform3D.x = Math.sin(count) * 100;
+			mesh.transform3D.y = groundY + 50;
+			mesh.transform3D.z = Math.cos(count * 0.7) * 100;
 
-			ground.y = groundY;
+			ground.transform3D.y = groundY;
 			PlanarShadowPass.groundY = groundY + 0.1;
 
 			view.render();

@@ -1,4 +1,4 @@
-package
+transform3D.package
 {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -48,11 +48,11 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -600;
-			_view.camera.y = 0;
+			_view.camera.transform3D.z = -600;
+			_view.camera.transform3D.y = 0;
 			_view.camera.lens.far = 10000;
 			_view.camera.lens.near = 0.01;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//setup the cube texture
 			var cubeTexture:BitmapCubeTexture = new BitmapCubeTexture( //
@@ -75,9 +75,9 @@ package
 		 */
 		private function _onEnterFrame(e:Event):void
 		{
-			_view.camera.position = new Vector3D();
-			_view.camera.rotationY += 0.5 * (stage.mouseX - stage.stageWidth / 2) / 800;
-			_view.camera.moveBackward(600);
+			_view.camera.transform3D.position = new Vector3D();
+			_view.camera.transform3D.rotationY += 0.5 * (stage.mouseX - stage.stageWidth / 2) / 800;
+			_view.camera.transform3D.moveBackward(600);
 
 			_view.render();
 		}

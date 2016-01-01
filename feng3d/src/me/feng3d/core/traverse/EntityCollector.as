@@ -83,7 +83,7 @@ package me.feng3d.core.traverse
 			if (_camera)
 			{
 				_entryPoint = _camera.scenePosition;
-				_cameraForward = Matrix3DUtils.getForward(_camera.transform, _cameraForward);
+				_cameraForward = Matrix3DUtils.getForward(_camera.transform3D.transform, _cameraForward);
 			}
 			_cullPlanes = _customCullPlanes ? _customCullPlanes : (_camera ? _camera.frustumPlanes : null);
 			_numCullPlanes = _cullPlanes ? _cullPlanes.length : 0;
@@ -113,7 +113,7 @@ package me.feng3d.core.traverse
 		{
 			_camera = value;
 			_entryPoint = _camera.scenePosition;
-			_cameraForward = Matrix3DUtils.getForward(_camera.transform, _cameraForward);
+			_cameraForward = Matrix3DUtils.getForward(_camera.transform3D.transform, _cameraForward);
 			_cullPlanes = _camera.frustumPlanes;
 		}
 

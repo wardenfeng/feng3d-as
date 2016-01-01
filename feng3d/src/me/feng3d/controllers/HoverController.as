@@ -295,7 +295,7 @@ package me.feng3d.controllers
 					}
 					else
 					{ //one parent
-						Matrix3DUtils.getTranslation(_lookAtObject.transform, _pos);
+						Matrix3DUtils.getTranslation(_lookAtObject.transform3D.transform, _pos);
 					}
 				}
 				else if (_lookAtObject.scene)
@@ -306,7 +306,7 @@ package me.feng3d.controllers
 				}
 				else
 				{
-					Matrix3DUtils.getTranslation(_lookAtObject.transform, _pos);
+					Matrix3DUtils.getTranslation(_lookAtObject.transform3D.transform, _pos);
 				}
 			}
 			else
@@ -316,9 +316,9 @@ package me.feng3d.controllers
 				_pos.z = _origin.z;
 			}
 
-			_targetObject.x = _pos.x + _distance * Math.sin(_currentPanAngle * MathConsts.DEGREES_TO_RADIANS) * Math.cos(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS);
-			_targetObject.z = _pos.z + _distance * Math.cos(_currentPanAngle * MathConsts.DEGREES_TO_RADIANS) * Math.cos(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS);
-			_targetObject.y = _pos.y + _distance * Math.sin(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS) * _yFactor;
+			_targetObject.transform3D.x = _pos.x + _distance * Math.sin(_currentPanAngle * MathConsts.DEGREES_TO_RADIANS) * Math.cos(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS);
+			_targetObject.transform3D.z = _pos.z + _distance * Math.cos(_currentPanAngle * MathConsts.DEGREES_TO_RADIANS) * Math.cos(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS);
+			_targetObject.transform3D.y = _pos.y + _distance * Math.sin(_currentTiltAngle * MathConsts.DEGREES_TO_RADIANS) * _yFactor;
 			super.update();
 		}
 	}

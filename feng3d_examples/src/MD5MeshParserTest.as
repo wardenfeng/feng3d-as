@@ -47,10 +47,10 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = 150;
-			_view.camera.y = 150;
-			_view.camera.x = 150;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = 150;
+			_view.camera.transform3D.y = 150;
+			_view.camera.transform3D.x = 150;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//添加坐标系
 			_view.scene.addChild(new Trident());
@@ -102,7 +102,7 @@ package
 		private function _onEnterFrame(e:Event):void
 		{
 			if (head)
-				head.rotationY++;
+				head.transform3D.rotationY++;
 
 			_view.render();
 		}

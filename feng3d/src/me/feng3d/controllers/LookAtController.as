@@ -114,7 +114,7 @@ package me.feng3d.controllers
 			{
 				if (_lookAtPosition)
 				{
-					_targetObject.lookAt(_lookAtPosition, _upAxis);
+					_targetObject.transform3D.lookAt(_lookAtPosition, _upAxis);
 				}
 				else if (_lookAtObject)
 				{
@@ -130,7 +130,7 @@ package me.feng3d.controllers
 						}
 						else
 						{ //one parent
-							Matrix3DUtils.getTranslation(_lookAtObject.transform, _pos);
+							Matrix3DUtils.getTranslation(_lookAtObject.transform3D.transform, _pos);
 						}
 					}
 					else if (_lookAtObject.scene)
@@ -141,9 +141,9 @@ package me.feng3d.controllers
 					}
 					else
 					{
-						Matrix3DUtils.getTranslation(_lookAtObject.transform, _pos);
+						Matrix3DUtils.getTranslation(_lookAtObject.transform3D.transform, _pos);
 					}
-					_targetObject.lookAt(_pos, _upAxis);
+					_targetObject.transform3D.lookAt(_pos, _upAxis);
 				}
 			}
 		}

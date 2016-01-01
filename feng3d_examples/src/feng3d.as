@@ -55,10 +55,10 @@ package
 			_view = new View3D();
 			addChild(_view);
 
-			_view.camera.y = 300;
-			_view.camera.x = 200;
-			_view.camera.z = -200;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.y = 300;
+			_view.camera.transform3D.x = 200;
+			_view.camera.transform3D.z = -200;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			var objParser:ObjParser1 = new ObjParser1(resourceDic[terrainObjData], 1, true, true);
 			var terrainGeometry:Geometry = objParser.getGeometry();
@@ -81,7 +81,7 @@ package
 			obj3d.name = "obj3d";
 			obj3d..material = new TextureMaterial(Cast.bitmapTexture(resourceDic[myTextureBitmap]));
 			obj3d.geometry = terrainGeometry1;
-			obj3d.scaleX = obj3d.scaleY = obj3d.scaleZ = 100;
+			obj3d.transform3D.scaleX = obj3d.transform3D.scaleY = obj3d.transform3D.scaleZ = 100;
 
 			_view.scene.addChild(obj3d);
 
@@ -93,9 +93,9 @@ package
 			// move or rotate more each frame
 			t += 2.0;
 
-			terrain.x = Math.cos(t / 300) * 1000;
-			terrain.y = -200;
-			terrain.z = Math.cos(t / 200) * 1000;
+			terrain.transform3D.x = Math.cos(t / 300) * 1000;
+			terrain.transform3D.y = -200;
+			terrain.transform3D.z = Math.cos(t / 200) * 1000;
 
 			var viewmatrix:Matrix3D = new Matrix3D();
 			// create a matrix that defines the camera location
@@ -103,9 +103,9 @@ package
 			// move the camera back a little so we can see the mesh
 			viewmatrix.appendTranslation(0, 0, 3);
 
-			obj3d.rotationX = t * 0.6;
-			obj3d.rotationY = t * 0.7;
-			obj3d.rotationZ = t * 1.0;
+			obj3d.transform3D.rotationX = t * 0.6;
+			obj3d.transform3D.rotationY = t * 0.7;
+			obj3d.transform3D.rotationZ = t * 1.0;
 
 			_view.render();
 		}

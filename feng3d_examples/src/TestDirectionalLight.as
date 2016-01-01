@@ -165,7 +165,7 @@ package
 		{
 			plane = new Mesh(new PlaneGeometry(1000, 1000, 1, 1), planeMaterial);
 			plane.geometry.scaleUV(2, 2);
-			plane.y = -20;
+			plane.transform3D.y = -20;
 
 			scene.addChild(plane);
 		}

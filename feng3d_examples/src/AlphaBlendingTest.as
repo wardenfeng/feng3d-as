@@ -63,10 +63,10 @@ package
 			camera = view.camera;
 
 			camera.lens.far = 5000;
-			camera.z = -200;
-			camera.y = 160;
+			camera.transform3D.z = -200;
+			camera.transform3D.y = 160;
 
-			camera.lookAt(new Vector3D());
+			camera.transform3D.lookAt(new Vector3D());
 
 			addChild(view);
 		}

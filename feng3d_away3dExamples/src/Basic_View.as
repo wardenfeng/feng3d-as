@@ -82,9 +82,9 @@ package
 			addChild(_view);
 
 			//setup the camera
-			_view.camera.z = -600;
-			_view.camera.y = 500;
-			_view.camera.lookAt(new Vector3D());
+			_view.camera.transform3D.z = -600;
+			_view.camera.transform3D.y = 500;
+			_view.camera.transform3D.lookAt(new Vector3D());
 
 			//setup the scene
 			_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffusePath])));
@@ -101,7 +101,7 @@ package
 		 */
 		private function _onEnterFrame(e:Event):void
 		{
-			_plane.rotationY += 1;
+			_plane.transform3D.rotationY += 1;
 
 			_view.render();
 		}

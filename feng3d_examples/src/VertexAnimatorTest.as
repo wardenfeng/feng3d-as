@@ -66,10 +66,10 @@ package
 			view.name = "mainView3D";
 			addChild(view);
 
-			view.camera.y = 100;
-			view.camera.x = 200;
-			view.camera.z = 200;
-			view.camera.lookAt(new Vector3D());
+			view.camera.transform3D.y = 100;
+			view.camera.transform3D.x = 200;
+			view.camera.transform3D.z = 200;
+			view.camera.transform3D.lookAt(new Vector3D());
 
 			world = new ObjectContainer3D();
 			world.name = "world";
@@ -211,13 +211,13 @@ package
 				VertexAnimator(mesh.animator).play("walk", null, 0);
 			}
 			mesh.name = element.name;
-			mesh.x = element.x;
-			mesh.y = element.y;
-			mesh.z = element.z;
-			mesh.scale(element.scale);
-			mesh.rotationX = element.rotationX;
-			mesh.rotationY = element.rotationY;
-			mesh.rotationZ = element.rotationZ;
+			mesh.transform3D.x = element.x;
+			mesh.transform3D.y = element.y;
+			mesh.transform3D.z = element.z;
+			mesh.transform3D.scale(element.scale);
+			mesh.transform3D.rotationX = element.rotationX;
+			mesh.transform3D.rotationY = element.rotationY;
+			mesh.transform3D.rotationZ = element.rotationZ;
 			world.addChild(mesh);
 		}
 

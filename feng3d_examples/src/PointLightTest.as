@@ -118,7 +118,7 @@ package
 		private function initLights():void
 		{
 			mainLight = new PointLight();
-			mainLight.y = -10;
+			mainLight.transform3D.y = -10;
 			mainLight.color = 0xffff00;
 			mainLight.diffuse = 1;
 			mainLight.specular = 1;
@@ -138,7 +138,7 @@ package
 		{
 			plane = new Mesh(new PlaneGeometry(1000, 1000), planeMaterial);
 			plane.geometry.scaleUV(2, 2);
-			plane.y = -20;
+			plane.transform3D.y = -20;
 
 			scene.addChild(plane);
 		}
@@ -166,8 +166,8 @@ package
 				cameraController.tiltAngle = 0.3 * (stage.mouseY - lastMouseY) + lastTiltAngle;
 			}
 
-			mainLight.x = Math.sin(getTimer() / 1000) * 400;
-			mainLight.z = Math.cos(getTimer() / 1000) * 400;
+			mainLight.transform3D.x = Math.sin(getTimer() / 1000) * 400;
+			mainLight.transform3D.z = Math.cos(getTimer() / 1000) * 400;
 
 			view.render();
 		}
