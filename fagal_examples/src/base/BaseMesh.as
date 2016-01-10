@@ -19,7 +19,7 @@ package base
 		public function BaseMesh(geometry:BaseGeometry = null, material:BaseMaterial = null)
 		{
 			_geometry = geometry || new BaseGeometry();
-			context3dCache.addChildBufferOwner(_geometry);
+			context3dCache.addChildBufferOwner(_geometry.context3DBufferOwner);
 
 			_material = material || new BaseMaterial();
 			context3dCache.addChildBufferOwner(_material);
