@@ -308,9 +308,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = true;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = true;
-//					break;
 			}
 		}
 
@@ -329,9 +326,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = false;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = false;
-//					break;
 			}
 		}
 
