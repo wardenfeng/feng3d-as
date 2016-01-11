@@ -1,5 +1,6 @@
 package me.feng3d.entities
 {
+	import me.feng.arcaneCommon;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.core.base.Geometry;
@@ -15,6 +16,7 @@ package me.feng3d.entities
 	import me.feng3d.utils.DefaultMaterialManager;
 
 	use namespace arcane;
+	use namespace arcaneCommon;
 
 	/**
 	 * 材质发生变化时抛出
@@ -45,6 +47,7 @@ package me.feng3d.entities
 		public function Mesh(geometry:Geometry = null, material:MaterialBase = null)
 		{
 			super();
+			_namedAsset._assetType = AssetType.MESH;
 			_subMeshes = new Vector.<SubMesh>();
 
 			this.geometry = geometry || new Geometry();
@@ -265,14 +268,6 @@ package me.feng3d.entities
 		public function set castsShadows(value:Boolean):void
 		{
 			_castsShadows = value;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public override function get assetType():String
-		{
-			return AssetType.MESH;
 		}
 
 		/**

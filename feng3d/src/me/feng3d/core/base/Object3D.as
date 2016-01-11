@@ -3,8 +3,8 @@ package me.feng3d.core.base
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
@@ -28,7 +28,7 @@ package me.feng3d.core.base
 	 *
 	 * @author feng
 	 */
-	public class Object3D extends NamedAsset
+	public class Object3D extends Component
 	{
 		public var transform3D:Transform3D;
 

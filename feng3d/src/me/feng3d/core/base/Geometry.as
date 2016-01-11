@@ -3,14 +3,15 @@ package me.feng3d.core.base
 	import flash.geom.Matrix3D;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.components.subgeometry.SubGeometryTransformation;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.events.GeometryEvent;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 
 	use namespace arcane;
 
@@ -18,8 +19,9 @@ package me.feng3d.core.base
 	 * 几何体
 	 * @author feng 2014-3-17
 	 */
-	public class Geometry extends NamedAsset implements IAsset
+	public class Geometry extends Component implements IAsset
 	{
+		private var _namedAsset:NamedAsset;
 		private var _subGeometries:Vector.<SubGeometry>;
 
 		public function get subGeometries():Vector.<SubGeometry>
@@ -29,6 +31,7 @@ package me.feng3d.core.base
 
 		public function Geometry()
 		{
+			_namedAsset = new NamedAsset(this,AssetType.GEOMETRY);
 			_subGeometries = new Vector.<SubGeometry>();
 		}
 
@@ -129,11 +132,6 @@ package me.feng3d.core.base
 			}
 		}
 
-		public function get assetType():String
-		{
-			return AssetType.GEOMETRY;
-		}
-
 		public function dispose():void
 		{
 			var numSubGeoms:uint = _subGeometries.length;
@@ -144,6 +142,11 @@ package me.feng3d.core.base
 				removeSubGeometry(subGeom);
 				subGeom.dispose();
 			}
+		}
+		
+		public function get namedAsset():NamedAsset
+		{
+			return _namedAsset;
 		}
 	}
 }

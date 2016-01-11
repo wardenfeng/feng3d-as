@@ -1,30 +1,37 @@
-package me.feng.core
+package me.feng3d.library.assets
 {
 	import flash.utils.Dictionary;
-
-	import me.feng.component.Component;
+	
+	import me.feng.arcaneCommon;
 	import me.feng.utils.ClassUtils;
 
+	use namespace arcaneCommon;
+	
 	/**
 	 * 拥有名字的对象
 	 * @author feng 2014-5-7
 	 */
-	public class NamedAsset extends Component
+	public class NamedAsset
 	{
 		private static const nameDic:Dictionary = new Dictionary();
 
+		private var _asset:IAsset;
+		arcaneCommon var _assetType:String;
+		private var _name:String;
 		/**
 		 * 创建一个拥有名字的对象
 		 */
-		public function NamedAsset()
+		public function NamedAsset(asset:IAsset,assetType:String)
 		{
 			super();
+			_asset = asset;
+			_assetType = assetType;
 		}
 
 		/**
 		 * 名称
 		 */
-		override public function get name():String
+		public function get name():String
 		{
 			if (!_name)
 			{
@@ -35,12 +42,20 @@ package me.feng.core
 			return _name;
 		}
 
-		override public function set name(value:String):void
+		public function set name(value:String):void
 		{
 //			if (_name)
 //				throw new Error(getQualifiedClassName(this) + " -- 对象已经有名称，无法更改");
 			_name = value;
 		}
 
+		/**
+		 * @inheritDoc
+		 */
+		public function get assetType():String
+		{
+			return _assetType;
+		}
+		
 	}
 }

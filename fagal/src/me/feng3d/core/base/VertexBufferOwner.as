@@ -1,8 +1,8 @@
 package me.feng3d.core.base
 {
 	import flash.utils.Dictionary;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng.debug.assert;
 	import me.feng3d.core.buffer.context3d.VABuffer;
 	import me.feng3d.fagalRE.FagalIdCenter;
@@ -11,7 +11,7 @@ package me.feng3d.core.base
 	 * 顶点数据拥有者
 	 * @author feng 2015-1-14
 	 */
-	public class VertexBufferOwner extends NamedAsset
+	public class VertexBufferOwner extends Component
 	{
 		public var context3DBufferOwner:Context3DBufferOwner;
 

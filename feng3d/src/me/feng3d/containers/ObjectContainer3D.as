@@ -6,6 +6,7 @@ package me.feng3d.containers
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 
 	use namespace arcane;
 
@@ -15,6 +16,7 @@ package me.feng3d.containers
 	 */
 	public class ObjectContainer3D extends InteractiveObject3D implements IAsset
 	{
+		protected var _namedAsset:NamedAsset;
 		/** 容器内对象列表 */
 		protected var _children:Vector.<Object3D> = new Vector.<Object3D>();
 
@@ -26,6 +28,7 @@ package me.feng3d.containers
 		public function ObjectContainer3D()
 		{
 			super();
+			_namedAsset = new NamedAsset(this,AssetType.CONTAINER);
 		}
 
 		/**
@@ -325,13 +328,10 @@ package me.feng3d.containers
 			if (parent)
 				parent.removeChild(this);
 		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
+		
+		public function get namedAsset():NamedAsset
 		{
-			return AssetType.CONTAINER;
+			return _namedAsset;
 		}
 	}
 }

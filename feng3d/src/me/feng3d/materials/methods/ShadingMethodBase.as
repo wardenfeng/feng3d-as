@@ -1,6 +1,6 @@
 package me.feng3d.materials.methods
 {
-	import me.feng.core.NamedAsset;
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
@@ -16,7 +16,7 @@ package me.feng3d.materials.methods
 	 * 渲染函数基类
 	 * @author feng 2014-7-1
 	 */
-	public class ShadingMethodBase extends NamedAsset
+	public class ShadingMethodBase extends Component
 	{
 		public var context3DBufferOwner:Context3DBufferOwner;
 

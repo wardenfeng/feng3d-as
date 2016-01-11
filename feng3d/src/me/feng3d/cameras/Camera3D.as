@@ -2,7 +2,8 @@ package me.feng3d.cameras
 {
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-
+	
+	import me.feng.arcaneCommon;
 	import me.feng3d.bounds.BoundingVolumeBase;
 	import me.feng3d.bounds.NullBounds;
 	import me.feng3d.cameras.lenses.LensBase;
@@ -16,6 +17,8 @@ package me.feng3d.cameras
 	import me.feng3d.mathlib.Matrix3DUtils;
 	import me.feng3d.mathlib.Plane3D;
 
+	use namespace arcaneCommon;
+	
 	/**
 	 * 摄像机
 	 * @author feng 2014-3-17
@@ -34,6 +37,8 @@ package me.feng3d.cameras
 		 */
 		public function Camera3D(lens:LensBase = null)
 		{
+			super();
+			_namedAsset._assetType = AssetType.CAMERA;
 			_lens = lens || new PerspectiveLens();
 			_lens.addEventListener(LensEvent.MATRIX_CHANGED, onLensMatrixChanged);
 
@@ -44,14 +49,6 @@ package me.feng3d.cameras
 				_frustumPlanes[i] = new Plane3D();
 
 			transform3D.z = -1000;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public override function get assetType():String
-		{
-			return AssetType.CAMERA;
 		}
 
 		/**
