@@ -44,7 +44,7 @@ package me.feng3d.events
 			super(type);
 			
 			_asset = asset;
-			_prevName = prevName || (_asset? _asset.name : null);
+			_prevName = prevName || (_asset? _asset.namedAsset.name : null);
 		}
 		
 		public function get asset():IAsset
