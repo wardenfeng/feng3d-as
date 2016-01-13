@@ -440,7 +440,8 @@ package
 		 */
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.ANIMATION_NODE)
+			var assetType:String = event.asset.namedAsset.assetType;
+			if (assetType == AssetType.ANIMATION_NODE)
 			{
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
@@ -461,7 +462,7 @@ package
 				if (animationName == IDLE_NAME)
 					stop();
 			}
-			else if (event.asset.assetType == AssetType.ANIMATION_SET)
+			else if (assetType == AssetType.ANIMATION_SET)
 			{
 				animationSet = event.asset as SkeletonAnimationSet;
 				animator = new SkeletonAnimator(animationSet, skeleton, true);
@@ -476,11 +477,11 @@ package
 
 				mesh.animator = animator;
 			}
-			else if (event.asset.assetType == AssetType.SKELETON)
+			else if (assetType == AssetType.SKELETON)
 			{
 				skeleton = event.asset as Skeleton;
 			}
-			else if (event.asset.assetType == AssetType.MESH)
+			else if (assetType == AssetType.MESH)
 			{
 				//grab mesh object and assign our material object
 				mesh = event.asset as Mesh;
