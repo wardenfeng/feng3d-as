@@ -59,7 +59,6 @@ package me.feng3d.core.base.data
 
 		private var _eulers:Vector3D = new Vector3D();
 
-		private var _flipY:Matrix3D = new Matrix3D();
 		private var _listenToPositionChanged:Boolean;
 		private var _listenToRotationChanged:Boolean;
 		private var _listenToScaleChanged:Boolean;
@@ -92,8 +91,6 @@ package me.feng3d.core.base.data
 			_transformComponents[2] = _sca;
 
 			_transform.identity();
-
-			_flipY.appendScale(1, -1, 1);
 		}
 
 		/**
