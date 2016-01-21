@@ -1,4 +1,4 @@
-transform3D.package
+package
 {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;

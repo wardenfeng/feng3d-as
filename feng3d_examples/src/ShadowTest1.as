@@ -214,7 +214,7 @@
 
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.ANIMATION_NODE)
+			if (event.asset.namedAsset.assetType == AssetType.ANIMATION_NODE)
 			{
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;

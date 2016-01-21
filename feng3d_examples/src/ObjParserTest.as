@@ -74,7 +74,7 @@ package
 
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.MESH)
+			if (event.asset.namedAsset.assetType == AssetType.MESH)
 			{
 				initializeHeadModel(event.asset as Mesh);
 			}

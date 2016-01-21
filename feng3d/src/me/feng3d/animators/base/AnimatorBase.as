@@ -5,7 +5,7 @@ package me.feng3d.animators.base
 	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-	
+
 	import me.feng.component.Component;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.animators.IAnimationSet;
@@ -79,7 +79,7 @@ package me.feng3d.animators.base
 		 */
 		public function AnimatorBase(animationSet:IAnimationSet)
 		{
-			_namedAsset = new NamedAsset(this,AssetType.ANIMATOR);
+			_namedAsset = new NamedAsset(this, AssetType.ANIMATOR);
 			context3DBufferOwner = new Context3DBufferOwner();
 			_animationSet = animationSet;
 			initBuffers();
@@ -353,7 +353,7 @@ package me.feng3d.animators.base
 			{
 				len = _owners.length;
 				for (var i:uint = 0; i < len; ++i)
-					_owners[i].translateLocal(delta, dist);
+					_owners[i].transform3D.translateLocal(delta, dist);
 			}
 		}
 
@@ -374,7 +374,7 @@ package me.feng3d.animators.base
 		{
 			throw new AbstractMethodError();
 		}
-		
+
 		public function get namedAsset():NamedAsset
 		{
 			return _namedAsset;
