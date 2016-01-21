@@ -2,13 +2,14 @@ package me.feng3d.materials
 {
 	import flash.display.BlendMode;
 	import flash.events.Event;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.core.base.IMaterialOwner;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 	import me.feng3d.materials.lightpickers.LightPickerBase;
 	import me.feng3d.passes.DepthMapPass;
 	import me.feng3d.passes.MaterialPassBase;
@@ -20,8 +21,9 @@ package me.feng3d.materials
 	 * 材质基类
 	 * @author feng 2014-4-15
 	 */
-	public class MaterialBase extends NamedAsset implements IAsset
+	public class MaterialBase extends Component implements IAsset
 	{
+		protected var _namedAsset:NamedAsset;
 		/**
 		 * 唯一编号
 		 */
@@ -58,6 +60,7 @@ package me.feng3d.materials
 		 */
 		public function MaterialBase()
 		{
+			_namedAsset = new NamedAsset(this,AssetType.MATERIAL);
 			_owners = new Vector.<IMaterialOwner>();
 			_passes = new Vector.<MaterialPassBase>();
 			_depthPass = new DepthMapPass();
@@ -249,14 +252,6 @@ package me.feng3d.materials
 		}
 
 		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
-		{
-			return AssetType.MATERIAL;
-		}
-
-		/**
 		 * 灯光采集器
 		 */
 		public function get lightPicker():LightPickerBase
@@ -356,6 +351,11 @@ package me.feng3d.materials
 
 			_depthPass.dispose();
 			_depthPass.removeEventListener(Event.CHANGE, onPassChange);
+		}
+		
+		public function get namedAsset():NamedAsset
+		{
+			return _namedAsset;
 		}
 	}
 }

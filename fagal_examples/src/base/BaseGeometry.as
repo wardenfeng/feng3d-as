@@ -16,11 +16,12 @@ package base
 		public function BaseGeometry()
 		{
 			super();
+			initBuffers();
 		}
 
-		override protected function initBuffers():void
+		protected function initBuffers():void
 		{
-			mapContext3DBuffer(_.index, updateIndexBuffer);
+			context3DBufferOwner.mapContext3DBuffer(_.index, updateIndexBuffer);
 
 			mapVABuffer(_.position_va_3, 3);
 			mapVABuffer(_.color_va_3, 3);

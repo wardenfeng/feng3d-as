@@ -5,6 +5,7 @@ package me.feng3d.materials.methods
 	import me.feng3d.fagal.params.ShadowShaderParams;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.shadowmaps.ShadowMapperBase;
 
@@ -18,6 +19,8 @@ package me.feng3d.materials.methods
 	{
 		public static const METHOD_TYPE:String = "ShadowMapMethod";
 
+		protected var _namedAsset:NamedAsset;
+		
 		protected var _castingLight:LightBase;
 		protected var _shadowMapper:ShadowMapperBase;
 
@@ -33,6 +36,7 @@ package me.feng3d.materials.methods
 			methodType = METHOD_TYPE;
 			typeUnique = true;
 			super();
+			_namedAsset = new NamedAsset(this,AssetType.SHADOW_MAP_METHOD);
 			_castingLight = castingLight;
 			castingLight.castsShadows = true;
 			_shadowMapper = castingLight.shadowMapper;
@@ -44,14 +48,6 @@ package me.feng3d.materials.methods
 		public function get castingLight():LightBase
 		{
 			return _castingLight;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
-		{
-			return AssetType.SHADOW_MAP_METHOD;
 		}
 
 		/**
@@ -89,6 +85,11 @@ package me.feng3d.materials.methods
 			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
 			shadowShaderParams.usingShadowMapMethod += 1;
 			shadowShaderParams.needsShadowRegister++;
+		}
+		
+		public function get namedAsset():NamedAsset
+		{
+			return _namedAsset;
 		}
 	}
 }

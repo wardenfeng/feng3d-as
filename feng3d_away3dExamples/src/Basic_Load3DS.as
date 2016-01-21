@@ -206,13 +206,13 @@ package
 		 */
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.MESH)
+			if (event.asset.namedAsset.assetType == AssetType.MESH)
 			{
 				var mesh:Mesh = event.asset as Mesh;
 				mesh.castsShadows = true;
 				_loader.addChild(mesh);
 			}
-			else if (event.asset.assetType == AssetType.MATERIAL)
+			else if (event.asset.namedAsset.assetType == AssetType.MATERIAL)
 			{
 				var material:TextureMaterial = event.asset as TextureMaterial;
 				material.texture = Cast.bitmapTexture(resourceDic[AntTexture]);

@@ -1,8 +1,8 @@
 package me.feng3d.animators.base
 {
 	import flash.utils.Dictionary;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng.error.AbstractClassError;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
@@ -13,6 +13,7 @@ package me.feng3d.animators.base
 	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 	import me.feng3d.passes.MaterialPassBase;
 
 	use namespace arcane;
@@ -21,8 +22,9 @@ package me.feng3d.animators.base
 	 * 动画集合基类
 	 * @author feng 2014-5-20
 	 */
-	public class AnimationSetBase extends NamedAsset implements IAsset
+	public class AnimationSetBase extends Component implements IAsset
 	{
+		private var _namedAsset:NamedAsset;
 		public var context3DBufferOwner:Context3DBufferOwner;
 
 		private var _usesCPU:Boolean;
@@ -39,6 +41,7 @@ package me.feng3d.animators.base
 		public function AnimationSetBase()
 		{
 			super();
+			_namedAsset = new NamedAsset(this,AssetType.ANIMATION_SET);
 			AbstractClassError.check(this);
 			context3DBufferOwner = new Context3DBufferOwner();
 			initBuffers();
@@ -138,13 +141,11 @@ package me.feng3d.animators.base
 		{
 			throw new AbstractMethodError();
 		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
+		
+		public function get namedAsset():NamedAsset
 		{
-			return AssetType.ANIMATION_SET;
+			return _namedAsset;
 		}
+		
 	}
 }

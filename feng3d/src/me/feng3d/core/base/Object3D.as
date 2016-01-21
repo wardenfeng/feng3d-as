@@ -3,8 +3,8 @@ package me.feng3d.core.base
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.containers.ObjectContainer3D;
 	import me.feng3d.containers.Scene3D;
@@ -28,7 +28,7 @@ package me.feng3d.core.base
 	 *
 	 * @author feng
 	 */
-	public class Object3D extends NamedAsset
+	public class Object3D extends Component
 	{
 		public var transform3D:Transform3D;
 
@@ -308,9 +308,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = true;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = true;
-//					break;
 			}
 		}
 
@@ -329,9 +326,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = false;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = false;
-//					break;
 			}
 		}
 

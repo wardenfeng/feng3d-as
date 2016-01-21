@@ -5,8 +5,8 @@ package me.feng3d.passes
 	import flash.display3D.Context3DCompareMode;
 	import flash.display3D.Context3DTriangleFace;
 	import flash.events.Event;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng.error.AbstractClassError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.IAnimationSet;
@@ -37,7 +37,7 @@ package me.feng3d.passes
 	 * <p>该类实现了生成与管理渲染程序功能</p>
 	 * @author feng 2014-4-15
 	 */
-	public class MaterialPassBase extends NamedAsset
+	public class MaterialPassBase extends Component
 	{
 		public var context3DBufferOwner:Context3DBufferOwner;
 
