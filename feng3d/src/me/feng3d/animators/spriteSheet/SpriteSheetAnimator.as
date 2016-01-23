@@ -5,10 +5,10 @@ package me.feng3d.animators.spriteSheet
 
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
-	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.materials.MaterialBase;
@@ -145,7 +145,7 @@ package me.feng3d.animators.spriteSheet
 			if (!material || !material is TextureMaterial)
 				return;
 
-			var subMesh:SubMesh = renderable as SubMesh;
+			var subMesh:SubMesh = (renderable as MeshRenderable).subMesh;
 			if (!subMesh)
 				return;
 
