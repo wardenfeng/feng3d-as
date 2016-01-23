@@ -3,7 +3,7 @@ package me.feng3d.core.base
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-	
+
 	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.containers.ObjectContainer3D;
@@ -148,7 +148,14 @@ package me.feng3d.core.base
 		 */
 		protected function onTransformChanged(event:Transform3DEvent):void
 		{
+			notifyTransformChange();
+
 			notifySceneTransformChange();
+		}
+
+		protected function notifyTransformChange():void
+		{
+
 		}
 
 		/**
@@ -188,14 +195,14 @@ package me.feng3d.core.base
 			return _parent;
 		}
 
-		public function set parent(value:ObjectContainer3D):void
+		arcane function setParent(value:ObjectContainer3D):void
 		{
 			if (_parent != null)
 				_parent.removeChild(this);
 
 			_parent = value;
 
-			transform3D.invalidateTransform();
+			_scenePositionDirty = true;
 		}
 
 		/**
