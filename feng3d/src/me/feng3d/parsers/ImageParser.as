@@ -1,5 +1,4 @@
 package me.feng3d.parsers
-
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -8,7 +7,6 @@ package me.feng3d.parsers
 
 	import me.feng3d.arcane;
 	import me.feng3d.textures.BitmapTexture;
-	import me.feng3d.textures.Texture2DBase;
 
 	use namespace arcane;
 
@@ -92,7 +90,7 @@ package me.feng3d.parsers
 		 */
 		protected override function proceedParsing():Boolean
 		{
-			var asset:Texture2DBase;
+			var asset:*;
 			if (_data is Bitmap)
 			{
 				asset = new BitmapTexture(Bitmap(_data).bitmapData);

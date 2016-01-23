@@ -12,7 +12,6 @@ package me.feng3d.parsers
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.library.assets.AssetType;
-	import me.feng3d.library.assets.IAsset;
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.ColorMultiPassMaterial;
 	import me.feng3d.materials.MaterialBase;
@@ -21,6 +20,7 @@ package me.feng3d.parsers
 	import me.feng3d.materials.TextureMultiPassMaterial;
 	import me.feng3d.parsers.utils.ParserUtil;
 	import me.feng3d.textures.Texture2DBase;
+	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.DefaultMaterialManager;
 	import me.feng3d.utils.GeomUtil;
 
@@ -94,10 +94,10 @@ package me.feng3d.parsers
 		{
 			if (resourceDependency.assets.length == 1)
 			{
-				var asset:IAsset;
+				var asset:*;
 
 				asset = resourceDependency.assets[0];
-				if (asset.assetType == AssetType.TEXTURE)
+				if (asset is TextureProxyBase)
 				{
 					var tex:TextureVO;
 
