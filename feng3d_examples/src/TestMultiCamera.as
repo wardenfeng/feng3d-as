@@ -75,6 +75,8 @@ package
 		{
 			container3D.transform3D.rotationY++;
 			_view.render();
+
+			view1.render();
 		}
 	}
 }
