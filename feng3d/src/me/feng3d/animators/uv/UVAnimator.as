@@ -4,10 +4,10 @@ package me.feng3d.animators.uv
 
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
-	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.transitions.IAnimationTransition;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.base.renderable.MeshRenderable;
 	import me.feng3d.core.base.submesh.SubMesh;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.materials.TextureMaterial;
@@ -135,7 +135,7 @@ package me.feng3d.animators.uv
 		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var material:TextureMaterial = renderable.material as TextureMaterial;
-			var subMesh:SubMesh = renderable as SubMesh;
+			var subMesh:SubMesh = (renderable as MeshRenderable).subMesh;
 
 			if (!material || !subMesh)
 				return;
