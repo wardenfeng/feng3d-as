@@ -275,7 +275,7 @@ package
 		 */
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.MESH)
+			if (event.asset.namedAsset.assetType == AssetType.MESH)
 			{
 				headModel = event.asset as Mesh;
 				headModel.geometry.scale(100); //TODO scale cannot be performed on mesh when using sub-surface diffuse method
