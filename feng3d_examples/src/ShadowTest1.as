@@ -214,11 +214,11 @@
 
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.ANIMATION_NODE)
+			if (event.asset.namedAsset.assetType == AssetType.ANIMATION_NODE)
 			{
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
-				var name:String = event.asset.name;
+				var name:String = event.asset.namedAsset.name;
 				node.name = name;
 				animationSet.addAnimation(node);
 
@@ -237,7 +237,7 @@
 				if (name == IDLE_NAME)
 					stop();
 			}
-			else if (event.asset.assetType == AssetType.ANIMATION_SET)
+			else if (event.asset.namedAsset.assetType == AssetType.ANIMATION_SET)
 			{
 				animationSet = event.asset as SkeletonAnimationSet;
 				animator = new SkeletonAnimator(animationSet, skeleton, true);
@@ -248,11 +248,11 @@
 
 				mesh.animator = animator;
 			}
-			else if (event.asset.assetType == AssetType.SKELETON)
+			else if (event.asset.namedAsset.assetType == AssetType.SKELETON)
 			{
 				skeleton = event.asset as Skeleton;
 			}
-			else if (event.asset.assetType == AssetType.MESH)
+			else if (event.asset.namedAsset.assetType == AssetType.MESH)
 			{
 				mesh = event.asset as Mesh;
 				initializeHeadModel(mesh);
