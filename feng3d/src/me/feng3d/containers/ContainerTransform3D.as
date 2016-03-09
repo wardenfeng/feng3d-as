@@ -10,14 +10,14 @@ package me.feng3d.containers
 	 * 3d容器变换组件
 	 * @author feng 2016-3-9
 	 */
-	public class ObjectContainer3Dtransform3D extends Component
+	public class ContainerTransform3D extends Component
 	{
 		private var objectContainer3D:Container3D;
 
 		/**
 		 * 创建一个3d容器变换组件
 		 */
-		public function ObjectContainer3Dtransform3D()
+		public function ContainerTransform3D()
 		{
 			addEventListener(ComponentEvent.BE_ADDED_COMPONET, onBeAddedComponet);
 		}

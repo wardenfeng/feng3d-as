@@ -30,7 +30,7 @@ package me.feng3d.containers
 			super();
 			_namedAsset = new NamedAsset(this, AssetType.CONTAINER);
 
-			addComponent(new ObjectContainer3Dtransform3D());
+			addComponent(new ContainerTransform3D());
 		}
 
 		/**
