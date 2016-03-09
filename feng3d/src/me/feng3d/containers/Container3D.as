@@ -14,7 +14,7 @@ package me.feng3d.containers
 	 * 3d对象容器
 	 * @author feng 2014-3-21
 	 */
-	public class ObjectContainer3D extends InteractiveObject3D implements IAsset
+	public class Container3D extends InteractiveObject3D implements IAsset
 	{
 		protected var _namedAsset:NamedAsset;
 		/** 容器内对象列表 */
@@ -25,7 +25,7 @@ package me.feng3d.containers
 		/** 是否给根容器 */
 		public var _isRoot:Boolean = false;
 
-		public function ObjectContainer3D()
+		public function Container3D()
 		{
 			super();
 			_namedAsset = new NamedAsset(this, AssetType.CONTAINER);
@@ -194,7 +194,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minX + child.transform3D.x;
 				if (m < min)
 					min = m;
@@ -215,7 +215,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minY + child.transform3D.y;
 				if (m < min)
 					min = m;
@@ -236,7 +236,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minZ + child.transform3D.z;
 				if (m < min)
 					min = m;
@@ -258,7 +258,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxX + child.transform3D.x;
 				if (m > max)
 					max = m;
@@ -279,7 +279,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxY + child.transform3D.y;
 				if (m > max)
 					max = m;
@@ -300,7 +300,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxZ + child.transform3D.z;
 				if (m > max)
 					max = m;

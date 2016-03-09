@@ -6,7 +6,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
 
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.test.TestBase;
 
@@ -21,7 +21,7 @@ package
 	{
 		private var _view:View3D;
 
-		public var container3D:ObjectContainer3D;
+		public var container3D:Container3D;
 
 		public function TestCamera()
 		{

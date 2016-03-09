@@ -6,7 +6,7 @@ package
 	import flash.geom.Vector3D;
 
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Geometry;
@@ -85,7 +85,7 @@ package
 
 		private function initObj():void
 		{
-			var photoBox:ObjectContainer3D = new PhotoBox(rootPath, 40, 4);
+			var photoBox:Container3D = new PhotoBox(rootPath, 40, 4);
 			scene3D.addChild(photoBox);
 		}
 

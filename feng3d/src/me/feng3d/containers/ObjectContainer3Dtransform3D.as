@@ -12,7 +12,7 @@ package me.feng3d.containers
 	 */
 	public class ObjectContainer3Dtransform3D extends Component
 	{
-		private var objectContainer3D:ObjectContainer3D;
+		private var objectContainer3D:Container3D;
 
 		/**
 		 * 创建一个3d容器变换组件
@@ -29,7 +29,7 @@ package me.feng3d.containers
 		protected function onBeAddedComponet(event:ComponentEvent):void
 		{
 			var data:AddedComponentEventVO = event.data;
-			objectContainer3D = data.container as ObjectContainer3D;
+			objectContainer3D = data.container as Container3D;
 			objectContainer3D.transform3D.addEventListener(Transform3DEvent.TRANSFORM_CHANGED, onContainer3DTranformChange);
 		}
 

@@ -7,7 +7,7 @@ package
 	import flash.geom.Vector3D;
 
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.test.TestBase;
 
@@ -23,7 +23,7 @@ package
 		private var _view:View3D;
 		private var view1:View3D;
 
-		public var container3D:ObjectContainer3D;
+		public var container3D:Container3D;
 
 		public var camera1:Camera3D;
 		public var camera2:Camera3D;

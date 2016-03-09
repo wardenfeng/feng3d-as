@@ -6,7 +6,7 @@ package me.feng3d.core.base
 
 	import me.feng.component.Component;
 	import me.feng3d.arcane;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.controllers.ControllerBase;
 	import me.feng3d.core.base.data.Transform3D;
@@ -35,7 +35,7 @@ package me.feng3d.core.base
 		/** @private */
 		arcane var _controller:ControllerBase;
 
-		protected var _parent:ObjectContainer3D;
+		protected var _parent:Container3D;
 
 		protected var _sceneTransform:Matrix3D = new Matrix3D();
 		protected var _sceneTransformDirty:Boolean = true;
@@ -200,12 +200,12 @@ package me.feng3d.core.base
 		/**
 		 * 父容器
 		 */
-		public function get parent():ObjectContainer3D
+		public function get parent():Container3D
 		{
 			return _parent;
 		}
 
-		public function set parent(value:ObjectContainer3D):void
+		public function set parent(value:Container3D):void
 		{
 			if (_parent != null)
 				_parent.removeChild(this);

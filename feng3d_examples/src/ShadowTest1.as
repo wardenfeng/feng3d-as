@@ -12,7 +12,7 @@
 	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
@@ -75,7 +75,7 @@
 		private var bodyMaterial:TextureMaterial;
 
 		//scene objects
-		private var placeHolder:ObjectContainer3D;
+		private var placeHolder:Container3D;
 		private var mesh:Mesh;
 		private var ground:Mesh;
 
@@ -142,7 +142,7 @@
 			camera.transform3D.y = 160;
 
 			//setup controller to be used on the camera
-			placeHolder = new ObjectContainer3D();
+			placeHolder = new Container3D();
 			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
