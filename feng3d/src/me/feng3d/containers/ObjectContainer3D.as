@@ -28,7 +28,9 @@ package me.feng3d.containers
 		public function ObjectContainer3D()
 		{
 			super();
-			_namedAsset = new NamedAsset(this,AssetType.CONTAINER);
+			_namedAsset = new NamedAsset(this, AssetType.CONTAINER);
+
+			addComponent(new ObjectContainer3Dtransform3D());
 		}
 
 		/**
@@ -105,19 +107,6 @@ package me.feng3d.containers
 			{
 				_children[i].scene = scene;
 			}
-		}
-
-		/**
-		 * 使变换矩阵失效，子对象变化矩阵也将失效
-		 */
-		public function invalidateTransform():void
-		{
-			var len:uint = _children.length;
-			for (var i:int = 0; i < len; i++)
-			{
-				_children[i].transform3D.invalidateTransform();
-			}
-			super.invalidateTransform();
 		}
 
 		/**
@@ -328,7 +317,7 @@ package me.feng3d.containers
 			if (parent)
 				parent.removeChild(this);
 		}
-		
+
 		public function get namedAsset():NamedAsset
 		{
 			return _namedAsset;
