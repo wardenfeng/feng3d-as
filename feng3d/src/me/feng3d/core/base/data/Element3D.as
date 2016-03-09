@@ -2,7 +2,7 @@ package me.feng3d.core.base.data
 {
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-	
+
 	import me.feng.component.Component;
 	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.MathConsts;
