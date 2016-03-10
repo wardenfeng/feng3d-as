@@ -1,8 +1,5 @@
 package me.feng.objectView
 {
-	import com.bit101.components.HBox;
-	import com.bit101.components.Label;
-	import com.bit101.components.Text;
 	import com.bit101.components.VBox;
 
 	import flash.display.DisplayObject;
@@ -20,12 +17,9 @@ package me.feng.objectView
 	public class ObjectView
 	{
 		/**
-		 * 自定义类型对象界面类定义字典（key:自定义类型,value:界面类定义）
+		 * 自定义对象界面类定义字典（key:自定义类型,value:界面类定义）
 		 */
-		public static var customTypeObjectViewClassDic:Dictionary = new Dictionary();
-
-		/**类对应Json结构的字典 */
-		private static var classToJsonDic:Dictionary = new Dictionary();
+		public static var customObjectViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 获取对象界面
@@ -33,7 +27,7 @@ package me.feng.objectView
 		 */
 		public static function getObjectView(object:Object):DisplayObject
 		{
-			var objectView:DisplayObject = getObjectViewByCustomType(object);
+			var objectView:DisplayObject = getCustomObjectView(object);
 			if (objectView != null)
 				return objectView;
 
@@ -69,9 +63,8 @@ package me.feng.objectView
 
 		/**
 		 * 获取对象属性界面
-		 * @param param0
-		 * @return
-		 *
+		 * @param objectAttributeInfo		对象属性信息
+		 * @return							对象属性界面
 		 */
 		private static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
 		{
@@ -85,10 +78,10 @@ package me.feng.objectView
 		 * @param object		用于生成界面的对象
 		 * @return				对象界面
 		 */
-		private static function getObjectViewByCustomType(object:Object):DisplayObject
+		private static function getCustomObjectView(object:Object):DisplayObject
 		{
 			var className:String = getQualifiedClassName(object);
-			var viewClass:Class = customTypeObjectViewClassDic[className];
+			var viewClass:Class = customObjectViewClassDic[className];
 
 			if (viewClass == null)
 				return null;
@@ -98,9 +91,14 @@ package me.feng.objectView
 			return view;
 		}
 
+		/**
+		 * 获取基础类型界面
+		 * @param object	基础类型对象
+		 * @return			对象界面
+		 */
 		private static function getBaseTypeView(object:Object):DisplayObject
 		{
-			var objectView:DisplayObject = getObjectViewByCustomType(object);
+			var objectView:DisplayObject = getCustomObjectView(object);
 			if (objectView != null)
 				return objectView;
 
