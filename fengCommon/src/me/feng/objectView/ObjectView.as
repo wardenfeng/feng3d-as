@@ -59,10 +59,25 @@ package me.feng.objectView
 				return objectView;
 			}
 
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeInfo.getObjectAttributeInfos(object);
+			var vBox:VBox = new VBox;
+			for (var i:int = 0; i < objectAttributeInfos.length; i++)
+			{
+				var displayObject:DisplayObject = getObjectAttributeView(objectAttributeInfos[i]);
+				vBox.addChild(displayObject);
+			}
+			return vBox;
+		}
 
-			var textField:TextField = new TextField();
-			textField.text = object.toString();
-			return textField;
+		/**
+		 * 获取对象属性界面
+		 * @param param0
+		 * @return
+		 *
+		 */
+		private static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
+		{
+			return null;
 		}
 
 		/**
