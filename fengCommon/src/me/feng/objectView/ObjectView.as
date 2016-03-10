@@ -35,8 +35,6 @@ package me.feng.objectView
 		 */
 		public static function getObjectView(object:Object):DisplayObject
 		{
-			assert(object != null);
-
 			var objectView:DisplayObject = getObjectViewByCustomType(object);
 			if (objectView != null)
 				return objectView;
@@ -74,8 +72,6 @@ package me.feng.objectView
 		 */
 		private static function getObjectViewByCustomType(object:Object):DisplayObject
 		{
-			assert(object != null);
-
 			var className:String = getQualifiedClassName(object);
 			var viewClass:Class = customTypeObjectViewClassDic[className];
 
@@ -94,7 +90,7 @@ package me.feng.objectView
 				return objectView;
 
 			var textField:TextField = new TextField();
-			textField.text = object.toString();
+			textField.text = String(object);
 			return textField;
 		}
 

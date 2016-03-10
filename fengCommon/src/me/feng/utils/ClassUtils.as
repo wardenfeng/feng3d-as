@@ -29,9 +29,15 @@ package me.feng.utils
 
 			var cla:Class = obj as Class;
 
+			var className:String = getQualifiedClassName(obj);
+			if (className == "null")
+			{
+				return null;
+			}
+
 			if (cla == null)
 			{
-				cla = getDefinitionByName(getQualifiedClassName(obj)) as Class;
+				cla = getDefinitionByName(className) as Class;
 			}
 
 			return cla;
