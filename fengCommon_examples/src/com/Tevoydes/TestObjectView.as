@@ -1,12 +1,11 @@
 package com.Tevoydes
 {
 
-	import com.Tevoydes.objectView.ObjectView;
-	import com.bit101.components.Window;
-
 	import flash.display.DisplayObject;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+
+	import me.feng.objectView.ObjectView;
 
 	/**
 	 * ObjectView的测试范例
@@ -34,7 +33,7 @@ package com.Tevoydes
 			obj.d = false;
 			data.object = obj;
 
-			var displayObject:DisplayObject = ObjectView.getView(obj);
+			var displayObject:DisplayObject = ObjectView.getObjectView(obj);
 			addChild(displayObject);
 		}
 	}
