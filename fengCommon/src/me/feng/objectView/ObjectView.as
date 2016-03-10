@@ -62,23 +62,6 @@ package me.feng.objectView
 			}
 
 
-			var cls:* = object;
-			if (!(cls as Class))
-				cls = getDefinitionByName(getQualifiedClassName(cls));
-			var describeInfo:Object = describeTypeInstance(cls);
-			var variables:Array = describeInfo.traits.variables;
-			for (var i:int = 0; variables != null && i < variables.length; i++)
-			{
-				var variable:Object = variables[i];
-				variable.name;
-				switch (variable.type)
-				{
-
-				}
-			}
-
-
-
 			var textField:TextField = new TextField();
 			textField.text = object.toString();
 			return textField;

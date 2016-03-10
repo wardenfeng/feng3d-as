@@ -4,7 +4,9 @@ package com.Tevoydes
 	import flash.display.DisplayObject;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.utils.getQualifiedClassName;
 
+	import me.feng.objectView.ObjectAttributeInfo;
 	import me.feng.objectView.ObjectView;
 
 	/**
@@ -35,6 +37,12 @@ package com.Tevoydes
 
 			var displayObject:DisplayObject = ObjectView.getObjectView(obj);
 			addChild(displayObject);
+
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeInfo.getObjectAttributeInfos(obj);
+			trace(JSON.stringify(objectAttributeInfos));
+
+			var className:String = getQualifiedClassName(null);
+			trace(className);
 		}
 	}
 }

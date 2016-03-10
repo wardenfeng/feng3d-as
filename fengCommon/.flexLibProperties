@@ -25,6 +25,7 @@
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
     <classEntry path="me.feng.objectView.ObjectView"/>
+    <classEntry path="me.feng.objectView.ObjectAttributeInfo"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
