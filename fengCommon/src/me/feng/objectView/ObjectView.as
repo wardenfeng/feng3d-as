@@ -1,10 +1,14 @@
 package me.feng.objectView
 {
 	import com.Tevoydes.objectView.ObjectAttributeGroup;
+	import com.bit101.components.HBox;
+	import com.bit101.components.Label;
+	import com.bit101.components.Text;
 	import com.bit101.components.VBox;
 
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
@@ -77,7 +81,24 @@ package me.feng.objectView
 		 */
 		private static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
 		{
-			return null;
+
+			var hBox:HBox = new HBox;
+			hBox.width = 200;
+			var label:Label = new Label;
+			label.text = objectAttributeInfo.name;
+			//			label.height = 50;
+			label.width = 100;
+			label.autoSize = false;
+			hBox.addChildAt(label, hBox.numChildren);
+
+			var text:Text = new Text;
+			var value:Object = objectAttributeInfo.owner[objectAttributeInfo.name];
+			text.text = String(value);
+			text.height = 20;
+			text.width = 100;
+			hBox.addChildAt(text, hBox.numChildren);
+
+			return hBox;
 		}
 
 		/**
