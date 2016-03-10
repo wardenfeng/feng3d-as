@@ -34,18 +34,19 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="avmplus/DescribeTypeTest.as"/>
-    <application path="me/feng/task/TaskModuleTest.as"/>
     <application path="me/feng/events/EventBubblesTest.as"/>
-    <application path="me/feng/events/EventBubblesTest2.as"/>
-    <application path="me/feng/events/IFEventDispatcherTest.as"/>
     <application path="me/feng/events/CustomEventContentAssistTest.as"/>
-    <application path="me/feng/task/TaskQueueTest.as"/>
-    <application path="me/feng/events/FEventDispatcherTest.as"/>
-    <application path="me/feng/utils/TryConnectURLDemo.as"/>
+    <application path="com/Tevoydes/TestObjectView.as"/>
+    <application path="avmplus/DescribeTypeTest.as"/>
     <application path="FengCommonExamples.as"/>
-    <application path="me/feng/error/AbstractClassErrorTest.as"/>
+    <application path="me/feng/events/FEventDispatcherTest.as"/>
     <application path="me/feng/task/TaskListTest.as"/>
+    <application path="me/feng/utils/TryConnectURLDemo.as"/>
+    <application path="me/feng/events/EventBubblesTest2.as"/>
+    <application path="me/feng/error/AbstractClassErrorTest.as"/>
+    <application path="me/feng/task/TaskModuleTest.as"/>
+    <application path="me/feng/task/TaskQueueTest.as"/>
+    <application path="me/feng/events/IFEventDispatcherTest.as"/>
   </applications>
   <modules/>
   <workers/>

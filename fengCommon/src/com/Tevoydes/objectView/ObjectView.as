@@ -1,13 +1,9 @@
 package com.Tevoydes.objectView
 {
 	import com.bit101.components.VBox;
-	import com.bit101.components.Window;
 
 	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
-	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
 
@@ -15,81 +11,34 @@ package com.Tevoydes.objectView
 	 * 模型界面类
 	 * @author Tevoydes 2015-10-23
 	 */
-	public class ObjectView extends Window
+	public class ObjectView
 	{
-		/**界面是否在显示状态*/
-		private var isShow:Boolean;
-		/**界面是否被创造*/
-		private var isCreate:Boolean;
-		/**模型组数组 */
-		private var objectAttrGroupVec:Vector.<ObjectAttributeGroup>;
-		/**待显示信息的模型*/
-		private var object:Object;
 		/**类对应Json结构的字典 */
-		private var classToJsonDic:Dictionary;
-		/**上层对象*/
-		private var mom:DisplayObjectContainer;
-
-		/**
-		 *构建时初始化
-		 *
-		 */
-		public function ObjectView(_mom:DisplayObjectContainer)
-		{
-			title = "ObjectView";
-			hasCloseButton = true;
-			hasMinimizeButton = true;
-			isShow = false;
-			isCreate = false;
-			mom = _mom;
-			classToJsonDic = new Dictionary;
-		}
-
-		/**
-		 *注册新的结构
-		 *
-		 */
-		public function register():void
-		{
-
-		}
+		private static var classToJsonDic:Dictionary = new Dictionary();
 
 		/**
 		 *显示界面
 		 * @param _obj
 		 *
 		 */
-		public function showObjectView(_obj:Object):void
+		public static function getView(object:Object):VBox
 		{
-			object = _obj;
+			var container:VBox = new VBox();
 
-			if (!isCreate)
-			{
-				isCreate = true;
-				createView();
-			}
-			openOrCloseView();
-		}
+//			ObjectAttributeUnit.clearDic();
+			addDataToView(object, container);
 
-		/**
-		 *创建界面
-		 *
-		 */
-		private function createView():void
-		{
-			//MyCC.initFlashConsole(mom, "11111");
-			this.x = 200;
-			this.y = 200;
-			mom.addChild(this);
+			return container;
 		}
 
 		/**
 		 *创建结构
 		 *
 		 */
-		private function createStruct():void
+		private static function createStruct(object:Object):Vector.<ObjectAttributeGroup>
 		{
-			objectAttrGroupVec = new Vector.<ObjectAttributeGroup>;
+			/**模型组数组 */
+			var objectAttrGroupVec:Vector.<ObjectAttributeGroup> = new Vector.<ObjectAttributeGroup>;
 			for (var str:String in object)
 			{
 				var tempGroup:ObjectAttributeGroup = new ObjectAttributeGroup;
@@ -99,22 +48,19 @@ package com.Tevoydes.objectView
 
 			//var str:String = getQualifiedClassName(object);
 
-
+			return objectAttrGroupVec;
 		}
 
 		/**
 		 *添加数据到界面
 		 *
 		 */
-		public function addDataToView():void
+		public static function addDataToView(object:Object, container:DisplayObjectContainer):void
 		{
 
 			var str:String = getQualifiedClassName(object);
-			if (classToJsonDic[str] == null)
-			{
-				createStruct();
-
-			}
+			/**模型组数组 */
+			var objectAttrGroupVec:Vector.<ObjectAttributeGroup> = createStruct(object);
 
 			var vBox:VBox = new VBox;
 			for (var i:int = 0; i < objectAttrGroupVec.length; i++)
@@ -124,44 +70,8 @@ package com.Tevoydes.objectView
 			}
 			vBox.x = 0;
 			vBox.y = 20;
-			this.content.addChildAt(vBox, this.content.numChildren);
-			this.draw();
-			this.width = 300;
-			this.height = 500;
-
-
-
+			container.addChild(vBox);
 		}
 
-		/**
-		 *打开/关闭界面
-		 *
-		 */
-		public function openOrCloseView():void
-		{
-			if (isShow)
-			{
-				isShow = false;
-				if (this.parent != null)
-				{
-					this.parent.removeChild(this);
-				}
-				return;
-			}
-			ObjectAttributeUnit.clearDic();
-			isShow = true;
-			addDataToView();
-
-		}
-
-		/**
-		 *关闭时的事件
-		 * @param event
-		 *
-		 */
-		override protected function onClose(event:MouseEvent):void
-		{
-			dispatchEvent(new Event(Event.CLOSE));
-		}
 	}
 }
