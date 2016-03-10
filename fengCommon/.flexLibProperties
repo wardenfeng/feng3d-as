@@ -26,6 +26,8 @@
     <classEntry path="me.feng.utils.ArrayUtils"/>
     <classEntry path="me.feng.objectView.ObjectView"/>
     <classEntry path="me.feng.objectView.ObjectAttributeInfo"/>
+    <classEntry path="me.feng.objectView.DefaultObjectAttributeView"/>
+    <classEntry path="me.feng.objectView.IObjectAttributeView"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

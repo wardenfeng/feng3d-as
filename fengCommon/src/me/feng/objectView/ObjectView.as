@@ -75,23 +75,9 @@ package me.feng.objectView
 		 */
 		private static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
 		{
-			var hBox:HBox = new HBox;
-			hBox.width = 200;
-			var label:Label = new Label;
-			label.text = objectAttributeInfo.name;
-			//			label.height = 50;
-			label.width = 100;
-			label.autoSize = false;
-			hBox.addChildAt(label, hBox.numChildren);
-
-			var text:Text = new Text;
-			var value:Object = objectAttributeInfo.owner[objectAttributeInfo.name];
-			text.text = String(value);
-			text.height = 20;
-			text.width = 100;
-			hBox.addChildAt(text, hBox.numChildren);
-
-			return hBox;
+			var objectAttributeView:DefaultObjectAttributeView = new DefaultObjectAttributeView();
+			objectAttributeView.objectAttributeInfo = objectAttributeInfo;
+			return objectAttributeView;
 		}
 
 		/**
