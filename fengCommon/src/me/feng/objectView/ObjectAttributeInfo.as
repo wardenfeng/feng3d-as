@@ -25,10 +25,6 @@ package me.feng.objectView
 		 */
 		public var owner:Object;
 
-		public function ObjectAttributeInfo()
-		{
-		}
-
 		/**
 		 * 获取对象属性信息
 		 * @param object		指定对象

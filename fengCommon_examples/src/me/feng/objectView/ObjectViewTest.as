@@ -19,6 +19,7 @@ package me.feng.objectView
 			obj.b = "bnm,";
 			obj.c = 1;
 			obj.d = false;
+			obj.obj = {a: 1};
 
 			var displayObject:DisplayObject = ObjectView.getObjectView(obj);
 			addChild(displayObject);
