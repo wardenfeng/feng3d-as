@@ -1,33 +1,18 @@
 package me.feng.objectView
 {
-	import com.bit101.components.HBox;
-	import com.bit101.components.Label;
-	import com.bit101.components.Text;
-
-	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
+	import flash.text.TextField;
 
 	/**
 	 * 默认对象属性界面
 	 * @author feng 2016-3-10
 	 */
-	public class DefaultObjectAttributeView extends HBox implements IObjectAttributeView
+	public class DefaultObjectAttributeView extends Sprite implements IObjectAttributeView
 	{
 		private var _objectAttributeInfo:ObjectAttributeInfo;
 		private var isInit:Boolean;
-		private var label:Label;
-		private var text:Text;
-
-		/**
-		 * 创建默认对象属性界面
-		 * @param parent
-		 * @param xpos
-		 * @param ypos
-		 *
-		 */
-		public function DefaultObjectAttributeView(parent:DisplayObjectContainer = null, xpos:Number = 0, ypos:Number = 0)
-		{
-			super(parent, xpos, ypos);
-		}
+		private var label:TextField;
+		private var text:TextField;
 
 		/**
 		 * 初始化
@@ -38,17 +23,20 @@ package me.feng.objectView
 				return;
 			isInit = true;
 
-			width = 200;
-			label = new Label;
+			label = new TextField();
 			//			label.height = 50;
 			label.width = 100;
-			label.autoSize = false;
+			label.height = 20;
 			addChild(label);
 
-			text = new Text;
+			text = new TextField();
+			text.border = true;
+			text.x = 100;
 			text.height = 20;
 			text.width = 100;
 			addChild(text);
+			graphics.beginFill(0x999999);
+			graphics.drawRect(0, 0, 200, 24);
 		}
 
 		/**
@@ -63,7 +51,7 @@ package me.feng.objectView
 		{
 			init();
 
-			label.text = value.name;
+			label.text = value.name + ":";
 
 			var attributeValue:Object = value.owner[value.name];
 			text.text = String(attributeValue);
