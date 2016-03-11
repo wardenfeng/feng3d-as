@@ -1,7 +1,8 @@
 package me.feng.objectView
 {
-	import flash.display.DisplayObject;
-	import flash.utils.getQualifiedClassName;
+	import com.bit101.components.HBox;
+
+	import flash.display.DisplayObjectContainer;
 
 	//
 	//
@@ -10,29 +11,51 @@ package me.feng.objectView
 	[SWF(width = "800", height = "600")]
 	public class ObjectViewTest extends TestBase
 	{
-
 		public function init():void
 		{
-			var obj:Object = new Object;
-			obj = new Object;
-			obj.aaaaaaaaaaaaaaaaa = "asfddddddddddddddddddddddddddddddddd";
-			obj.b = "bnm,";
-			obj.c = 1;
-			obj.d = false;
-			obj.obj = {a: 1};
+			var box:DisplayObjectContainer = new HBox();
 
-//			obj = [1, 2, 3, 4, "abc"];
+			var a:ObjectA = new ObjectA();
+			a.da = 2;
+			a.db = "```";
+			box.addChild(ObjectView.getObjectView(a));
 
-//			obj = {};
+			ObjectView.setCustomObjectAttributeViewClass(Object, "custom", CustomAttrView);
+			box.addChild(ObjectView.getObjectView( //
+				{aaaaaaaaaaaaaaaaa: "asfddddddddddddddddddddddddddddddddd", b: "bnm,", c: 1, d: false, custom: "", obj: {a: 1}} //
+				));
 
-			var displayObject:DisplayObject = ObjectView.getObjectView(obj);
-			addChild(displayObject);
+			ObjectView.setCustomObjectViewClass(int, customObjectView);
+			box.addChild(ObjectView.getObjectView(5));
 
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeInfo.getObjectAttributeInfos(obj);
-			trace(JSON.stringify(objectAttributeInfos));
-
-			var className:String = getQualifiedClassName(null);
-			trace(className);
+			addChild(box);
 		}
+	}
+}
+import flash.display.Shape;
+
+import me.feng.objectView.IObjectAttributeView;
+import me.feng.objectView.IObjectView;
+import me.feng.objectView.ObjectAttributeInfo;
+
+class CustomAttrView extends Shape implements IObjectAttributeView
+{
+	public function set objectAttributeInfo(value:ObjectAttributeInfo):void
+	{
+		graphics.clear();
+		graphics.beginFill(0xff0000);
+		graphics.drawCircle(50, 50, 50);
+		graphics.endFill();
+	}
+}
+
+class customObjectView extends Shape implements IObjectView
+{
+	public function set data(value:Object):void
+	{
+		graphics.clear();
+		graphics.beginFill(0xffff00);
+		graphics.drawRect(0, 0, 100, 40);
+		graphics.endFill();
 	}
 }

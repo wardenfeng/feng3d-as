@@ -35,7 +35,7 @@ package me.feng.objectView
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = new Vector.<ObjectAttributeInfo>();
 
 			var variableAttributeInfos:Vector.<ObjectAttributeInfo> = getObjectVariableAttributeInfos(object);
-			objectAttributeInfos = objectAttributeInfos.concat(objectAttributeInfos);
+			objectAttributeInfos = objectAttributeInfos.concat(variableAttributeInfos);
 
 			var dynamicAttributeInfos:Vector.<ObjectAttributeInfo> = getObjectDynamicAttributeInfos(object);
 			objectAttributeInfos = objectAttributeInfos.concat(dynamicAttributeInfos);

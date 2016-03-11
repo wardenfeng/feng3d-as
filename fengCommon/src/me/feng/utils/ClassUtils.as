@@ -13,7 +13,7 @@ package me.feng.utils
 		/**
 		 * 基础类型列表
 		 */
-		public static const BASETYPES:Array = [int, Boolean, Number, uint, String, null];
+		public static const BASETYPES:Array = ["int", "Boolean", "Number", "uint", "String", "null"];
 
 		/**
 		 * 获取类定义
@@ -210,11 +210,7 @@ package me.feng.utils
 		 */
 		public static function isBaseType(obj:Object):Boolean
 		{
-			if (obj is String)
-			{
-				return true;
-			}
-			var type:Class = getClass(obj);
+			var type:String = getQualifiedClassName(obj);
 			var index:int = BASETYPES.indexOf(type);
 			return index != -1;
 		}
