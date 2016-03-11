@@ -14,9 +14,24 @@ package me.feng.objectView
 	public class ObjectView
 	{
 		/**
-		 * 自定义对象界面类定义字典（key:自定义类型,value:界面类定义）
+		 * 默认基础类型对象界面类定义
 		 */
-		public static var customObjectViewClassDic:Dictionary = new Dictionary();
+		public static var DefaultBaseObjectViewClass:Class = DefaultBaseObjectView;
+
+		/**
+		 * 默认对象界面类定义
+		 */
+		public static var DefaultObjectViewClass:Class = DefaultObjectView;
+
+		/**
+		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
+		 */
+		private static var customObjectViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * 自定义对象属性界面类定义字典（key:类名称+属性名,value:属性界面类定义）
+		 */
+		private static var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 获取对象界面
@@ -24,27 +39,10 @@ package me.feng.objectView
 		 */
 		public static function getObjectView(object:Object):DisplayObject
 		{
-			var objectView:DisplayObject = getCustomObjectView(object);
-			if (objectView != null)
-				return objectView;
-
-			var isBaseType:Boolean = ClassUtils.isBaseType(object);
-			objectView = isBaseType ? getBaseTypeView(object) : getDefaultObjectView(object);
-
-			return objectView;
-		}
-
-		/**
-		 * 获取默认对象界面
-		 * @param object	用于生成界面的对象
-		 * @return			对象界面
-		 *
-		 */
-		private static function getDefaultObjectView(object:Object):DisplayObject
-		{
-			var defaultObjectView:DefaultObjectView = new DefaultObjectView();
-			defaultObjectView.data = object;
-			return defaultObjectView;
+			var viewClass:Class = getObjectViewClass(object);
+			var view:DisplayObject = new viewClass();
+			IObjectView(view).data = object;
+			return view;
 		}
 
 		/**
@@ -52,41 +50,110 @@ package me.feng.objectView
 		 * @param objectAttributeInfo		对象属性信息
 		 * @return							对象属性界面
 		 */
-		internal static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
+		public static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
 		{
-			var objectAttributeView:DefaultObjectAttributeView = new DefaultObjectAttributeView();
-			objectAttributeView.objectAttributeInfo = objectAttributeInfo;
-			return objectAttributeView;
-		}
-
-		/**
-		 * 获取自定义对象界面
-		 * @param object		用于生成界面的对象
-		 * @return				对象界面
-		 */
-		private static function getCustomObjectView(object:Object):DisplayObject
-		{
-			var className:String = getQualifiedClassName(object);
-			var viewClass:Class = customObjectViewClassDic[className];
-
-			if (viewClass == null)
-				return null;
-
+			var viewClass:Class = getObjectAttributeViewClass(objectAttributeInfo);
 			var view:DisplayObject = new viewClass();
-			IObjectView(view).data = object;
+			IObjectAttributeView(view).objectAttributeInfo = objectAttributeInfo;
 			return view;
 		}
 
 		/**
-		 * 获取基础类型界面
-		 * @param object	基础类型对象
-		 * @return			对象界面
+		 * 设置自定义对象界面类定义
+		 * @param object				指定对象类型
+		 * @param viewClass				自定义对象界面类定义
 		 */
-		private static function getBaseTypeView(object:Object):DisplayObject
+		public static function setCustomObjectViewClass(object:Object, viewClass:Class):void
 		{
-			var defaultBaseTypeObjectView:DefaultBaseObjectView = new DefaultBaseObjectView();
-			defaultBaseTypeObjectView.data = object;
-			return defaultBaseTypeObjectView;
+			var className:String = getQualifiedClassName(object);
+			customObjectViewClassDic[className] = viewClass;
+		}
+
+		/**
+		 * 设置自定义对象属性界面类定义
+		 * @param owner					属性拥有者
+		 * @param attributeName			属性名称		 *
+		 * @param viewClass				自定义对象属性界面类定义
+		 */
+		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
+		{
+			var key:String = getClassAttributeID(owner, attributeName);
+			customObjectAttributeViewClassDic[key] = viewClass;
+		}
+
+		/**
+		 * 获取对象界面类定义
+		 * @param object		用于生成界面的对象
+		 * @return				对象界面类定义
+		 */
+		private static function getObjectViewClass(object:Object):Class
+		{
+			//获取自定义类型界面类定义
+			var viewClass:Class = getCustomObjectViewClass(object);
+			if (viewClass != null)
+				return viewClass;
+
+			//返回基础类型界面类定义
+			var isBaseType:Boolean = ClassUtils.isBaseType(object);
+			if (isBaseType)
+				return DefaultBaseObjectViewClass;
+
+			//返回默认类型界面类定义
+			return DefaultObjectViewClass;
+		}
+
+		/**
+		 * 获取自定义对象界面类
+		 * @param object		用于生成界面的对象
+		 * @return 				自定义对象界面类定义
+		 */
+		private static function getCustomObjectViewClass(object:Object):Class
+		{
+			var className:String = getQualifiedClassName(object);
+			var viewClass:Class = customObjectViewClassDic[className];
+			return viewClass;
+		}
+
+		/**
+		 * 获取对象属性界面类定义
+		 * @param objectAttributeInfo		对象属性信息
+		 * @return							对象属性界面类定义
+		 */
+		private static function getObjectAttributeViewClass(objectAttributeInfo:ObjectAttributeInfo):Class
+		{
+			//获取自定义对象属性界面类定义
+			var viewClass:Class = getCustomObjectAttributeViewClass(objectAttributeInfo.owner, objectAttributeInfo.name);
+			if (viewClass != null)
+				return viewClass;
+
+			//返回默认对象属性界面类定义
+			return DefaultObjectAttributeView;
+		}
+
+		/**
+		 * 获取自定义对象属性界面类定义
+		 * @param owner					属性拥有者
+		 * @param attributeName			属性名称
+		 * @return						自定义对象属性界面类定义
+		 */
+		private static function getCustomObjectAttributeViewClass(owner:Object, attributeName:String):Class
+		{
+			var key:String = getClassAttributeID(owner, attributeName);
+			var viewClass:Class = customObjectAttributeViewClassDic[key];
+			return viewClass;
+		}
+
+		/**
+		 * 获取类属性ID
+		 * @param owner					属性拥有者
+		 * @param attributeName			属性名称
+		 * @return						类属性ID
+		 */
+		private static function getClassAttributeID(owner:Object, attributeName:String):String
+		{
+			var className:String = getQualifiedClassName(owner);
+			var key:String = className + "-" + attributeName;
+			return key;
 		}
 	}
 }

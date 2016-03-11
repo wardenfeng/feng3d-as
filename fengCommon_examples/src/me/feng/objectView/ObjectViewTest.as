@@ -21,6 +21,10 @@ package me.feng.objectView
 			obj.d = false;
 			obj.obj = {a: 1};
 
+//			obj = [1, 2, 3, 4, "abc"];
+
+//			obj = {};
+
 			var displayObject:DisplayObject = ObjectView.getObjectView(obj);
 			addChild(displayObject);
 
