@@ -89,9 +89,9 @@ package me.feng3d.parsers
 			var type_name:String;
 
 			if (name != null)
-				asset.name = name;
+				asset.namedAsset.name = name;
 
-			switch (asset.assetType)
+			switch (asset.namedAsset.assetType)
 			{
 				case AssetType.LIGHT_PICKER:
 					type_name = 'lightPicker';
@@ -183,8 +183,8 @@ package me.feng3d.parsers
 			}
 
 			//默认资源名为类型名
-			if (!asset.name)
-				asset.name = type_name;
+			if (!asset.namedAsset.name)
+				asset.namedAsset.name = type_name;
 
 			dispatchEvent(new AssetEvent(AssetEvent.ASSET_COMPLETE, asset));
 			dispatchEvent(new AssetEvent(type_event, asset));

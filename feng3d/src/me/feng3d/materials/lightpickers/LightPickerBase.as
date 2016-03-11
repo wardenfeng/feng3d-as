@@ -1,9 +1,10 @@
 package me.feng3d.materials.lightpickers
 {
-	import me.feng.core.NamedAsset;
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 	import me.feng3d.lights.DirectionalLight;
 	import me.feng3d.lights.LightBase;
 	import me.feng3d.lights.PointLight;
@@ -14,8 +15,10 @@ package me.feng3d.materials.lightpickers
 	 * 灯光采集器
 	 * @author feng 2014-9-11
 	 */
-	public class LightPickerBase extends NamedAsset implements IAsset
+	public class LightPickerBase extends Component implements IAsset
 	{
+		protected var _namedAsset:NamedAsset;
+		
 		protected var _numPointLights:uint;
 		protected var _numDirectionalLights:uint;
 
@@ -26,6 +29,7 @@ package me.feng3d.materials.lightpickers
 		public function LightPickerBase()
 		{
 			super();
+			_namedAsset = new NamedAsset(this,AssetType.CONTAINER);
 		}
 
 		public function get assetType():String
@@ -71,6 +75,11 @@ package me.feng3d.materials.lightpickers
 		public function get allPickedLights():Vector.<LightBase>
 		{
 			return _allPickedLights;
+		}
+		
+		public function get namedAsset():NamedAsset
+		{
+			return _namedAsset;
 		}
 	}
 }

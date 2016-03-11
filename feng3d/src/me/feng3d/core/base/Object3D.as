@@ -4,9 +4,9 @@ package me.feng3d.core.base
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng.core.NamedAsset;
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.controllers.ControllerBase;
 	import me.feng3d.core.base.data.Transform3D;
@@ -28,14 +28,14 @@ package me.feng3d.core.base
 	 *
 	 * @author feng
 	 */
-	public class Object3D extends NamedAsset
+	public class Object3D extends Component
 	{
-		public var transform3D:Transform3D;
+		private var _transform3D:Transform3D;
 
 		/** @private */
 		arcane var _controller:ControllerBase;
 
-		protected var _parent:ObjectContainer3D;
+		protected var _parent:Container3D;
 
 		protected var _sceneTransform:Matrix3D = new Matrix3D();
 		protected var _sceneTransformDirty:Boolean = true;
@@ -66,6 +66,23 @@ package me.feng3d.core.base
 		{
 			super();
 			transform3D = new Transform3D();
+		}
+
+		public function get transform3D():Transform3D
+		{
+			return _transform3D;
+		}
+
+		public function set transform3D(value:Transform3D):void
+		{
+			if (transform3D != null)
+			{
+				transform3D.removeEventListener(Transform3DEvent.TRANSFORM_CHANGED, onTransformChanged);
+				transform3D.removeEventListener(Transform3DEvent.POSITION_CHANGED, onPositionChanged);
+			}
+
+			_transform3D = value;
+
 			transform3D.addEventListener(Transform3DEvent.TRANSFORM_CHANGED, onTransformChanged);
 			transform3D.addEventListener(Transform3DEvent.POSITION_CHANGED, onPositionChanged);
 		}
@@ -183,12 +200,12 @@ package me.feng3d.core.base
 		/**
 		 * 父容器
 		 */
-		public function get parent():ObjectContainer3D
+		public function get parent():Container3D
 		{
 			return _parent;
 		}
 
-		public function set parent(value:ObjectContainer3D):void
+		public function set parent(value:Container3D):void
 		{
 			if (_parent != null)
 				_parent.removeChild(this);
@@ -308,9 +325,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = true;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = true;
-//					break;
 			}
 		}
 
@@ -329,9 +343,6 @@ package me.feng3d.core.base
 				case Transform3DEvent.SCENETRANSFORM_CHANGED:
 					_listenToSceneTransformChanged = false;
 					break;
-//				case Object3DEvent.SCENE_CHANGED:
-//					_listenToSceneChanged = false;
-//					break;
 			}
 		}
 

@@ -18,7 +18,7 @@ package
 	import me.feng3d.animators.vertex.VertexAnimationSet;
 	import me.feng3d.animators.vertex.VertexAnimator;
 	import me.feng3d.animators.vertex.VertexClipNode;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.materials.TextureMaterial;
@@ -35,7 +35,7 @@ package
 		public var view:View3D;
 
 		/** 世界 */
-		private var world:ObjectContainer3D;
+		private var world:Container3D;
 
 		/** 几何体字典 */
 		private var geometryDic:Dictionary = new Dictionary();
@@ -71,7 +71,7 @@ package
 			view.camera.transform3D.z = 200;
 			view.camera.transform3D.lookAt(new Vector3D());
 
-			world = new ObjectContainer3D();
+			world = new Container3D();
 			world.name = "world";
 			view.scene.addChild(world);
 

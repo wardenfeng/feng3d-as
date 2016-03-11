@@ -1,7 +1,8 @@
 package me.feng3d.lights
 {
 	import flash.geom.Matrix3D;
-
+	
+	import me.feng.arcaneCommon;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.renderable.IRenderable;
@@ -11,6 +12,7 @@ package me.feng3d.lights
 	import me.feng3d.lights.shadowmaps.ShadowMapperBase;
 
 	use namespace arcane;
+	use namespace arcaneCommon;
 
 	/**
 	 * 灯光基类
@@ -48,6 +50,8 @@ package me.feng3d.lights
 		public function LightBase()
 		{
 			super();
+			
+			_namedAsset._assetType = AssetType.LIGHT;
 		}
 
 		public function get castsShadows():Boolean
@@ -161,14 +165,6 @@ package me.feng3d.lights
 				value = 0;
 			_specular = value;
 			updateSpecular();
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		override public function get assetType():String
-		{
-			return AssetType.LIGHT;
 		}
 
 		/**

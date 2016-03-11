@@ -1,5 +1,6 @@
 package me.feng3d.entities
 {
+	import me.feng.arcaneCommon;
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.core.partition.node.EntityNode;
@@ -9,6 +10,7 @@ package me.feng3d.entities
 	import me.feng3d.textures.CubeTextureBase;
 
 	use namespace arcane;
+	use namespace arcaneCommon;
 
 	/**
 	 * 天空盒类用于渲染的场景中的天空。
@@ -27,6 +29,7 @@ package me.feng3d.entities
 		public function SkyBox(cubeMap:CubeTextureBase)
 		{
 			super();
+			_namedAsset._assetType = AssetType.SKYBOX;
 			material = new SkyBoxMaterial(cubeMap);
 
 			subGeometry = new SubGeometry();
@@ -85,14 +88,6 @@ package me.feng3d.entities
 		override public function get castsShadows():Boolean
 		{
 			return false;
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public override function get assetType():String
-		{
-			return AssetType.SKYBOX;
 		}
 	}
 }

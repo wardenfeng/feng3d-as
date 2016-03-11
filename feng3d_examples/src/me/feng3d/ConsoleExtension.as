@@ -5,7 +5,7 @@ package me.feng3d
 	
 	import flash.net.FileReference;
 	
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.core.base.Object3D;
 	import me.feng3d.core.buffer.Context3DCache;
 	import me.feng3d.debug.Context3DBufferDebug;
@@ -44,10 +44,10 @@ package me.feng3d
 		{
 //			console.mapch(console.panels.mainPanel.reportChannel, console.cl.scope as ObjectContainer3D, int(param));
 
-			map(console.cl.scope as ObjectContainer3D, int(param), console.panels.mainPanel.reportChannel);
+			map(console.cl.scope as Container3D, int(param), console.panels.mainPanel.reportChannel);
 		}
 
-		public function map(base:ObjectContainer3D, maxstep:uint = 0, ch:String = null):void
+		public function map(base:Container3D, maxstep:uint = 0, ch:String = null):void
 		{
 			if (!base)
 			{
@@ -66,9 +66,9 @@ package me.feng3d
 				var mcDO:Object3D = list[index];
 				index++;
 				// add children to list
-				if (mcDO is ObjectContainer3D)
+				if (mcDO is Container3D)
 				{
-					var mc:ObjectContainer3D = mcDO as ObjectContainer3D;
+					var mc:Container3D = mcDO as Container3D;
 					var numC:int = mc.numChildren;
 					for (var i:int = 0; i < numC; i++)
 					{
@@ -79,7 +79,7 @@ package me.feng3d
 				// figure out the depth and print it out.
 				if (lastmcDO)
 				{
-					if (lastmcDO is ObjectContainer3D && (lastmcDO as ObjectContainer3D).contains(mcDO))
+					if (lastmcDO is Container3D && (lastmcDO as Container3D).contains(mcDO))
 					{
 						steps++;
 					}
@@ -88,13 +88,13 @@ package me.feng3d
 						while (lastmcDO)
 						{
 							lastmcDO = lastmcDO.parent;
-							if (lastmcDO is ObjectContainer3D)
+							if (lastmcDO is Container3D)
 							{
 								if (steps > 0)
 								{
 									steps--;
 								}
-								if ((lastmcDO as ObjectContainer3D).contains(mcDO))
+								if ((lastmcDO as Container3D).contains(mcDO))
 								{
 									steps++;
 									break;
@@ -115,7 +115,7 @@ package me.feng3d
 					var n:String = mcDO.name;
 					if (ind)
 						n = "<a href='event:cl_" + ind + "'>" + n + "</a>";
-					if (mcDO is ObjectContainer3D)
+					if (mcDO is Container3D)
 					{
 						n = "<b>" + n + "</b>";
 					}
@@ -124,7 +124,7 @@ package me.feng3d
 						n = "<i>" + n + "</i>";
 					}
 					str += n + " " + console.refs.makeRefTyped(mcDO);
-					report(str, mcDO is ObjectContainer3D ? 5 : 2, true, ch);
+					report(str, mcDO is Container3D ? 5 : 2, true, ch);
 				}
 				else if (!wasHiding)
 				{

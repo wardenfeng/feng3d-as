@@ -131,7 +131,7 @@ package
 		private function _onMouseUp(ev:MouseEvent3D):void
 		{
 			var scenePosition:Vector3D = ev.collider.scenePosition;
-			Tweener.addTween(_cube, {time: 0.5, x: scenePosition.x, z: scenePosition.z, _bezier: {x: _cube.transform3D.x, z: scenePosition.z}});
+			Tweener.addTween(_cube.transform3D, {time: 0.5, x: scenePosition.x, z: scenePosition.z, _bezier: {x: _cube.transform3D.x, z: scenePosition.z}});
 		}
 
 		/**

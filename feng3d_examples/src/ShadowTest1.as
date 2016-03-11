@@ -12,7 +12,7 @@
 	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
@@ -75,7 +75,7 @@
 		private var bodyMaterial:TextureMaterial;
 
 		//scene objects
-		private var placeHolder:ObjectContainer3D;
+		private var placeHolder:Container3D;
 		private var mesh:Mesh;
 		private var ground:Mesh;
 
@@ -142,7 +142,7 @@
 			camera.transform3D.y = 160;
 
 			//setup controller to be used on the camera
-			placeHolder = new ObjectContainer3D();
+			placeHolder = new Container3D();
 			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
@@ -214,11 +214,11 @@
 
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.ANIMATION_NODE)
+			if (event.asset.namedAsset.assetType == AssetType.ANIMATION_NODE)
 			{
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
-				var name:String = event.asset.name;
+				var name:String = event.asset.namedAsset.name;
 				node.name = name;
 				animationSet.addAnimation(node);
 
@@ -237,7 +237,7 @@
 				if (name == IDLE_NAME)
 					stop();
 			}
-			else if (event.asset.assetType == AssetType.ANIMATION_SET)
+			else if (event.asset.namedAsset.assetType == AssetType.ANIMATION_SET)
 			{
 				animationSet = event.asset as SkeletonAnimationSet;
 				animator = new SkeletonAnimator(animationSet, skeleton, true);
@@ -248,11 +248,11 @@
 
 				mesh.animator = animator;
 			}
-			else if (event.asset.assetType == AssetType.SKELETON)
+			else if (event.asset.namedAsset.assetType == AssetType.SKELETON)
 			{
 				skeleton = event.asset as Skeleton;
 			}
-			else if (event.asset.assetType == AssetType.MESH)
+			else if (event.asset.namedAsset.assetType == AssetType.MESH)
 			{
 				mesh = event.asset as Mesh;
 				initializeHeadModel(mesh);

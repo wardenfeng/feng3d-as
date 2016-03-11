@@ -143,6 +143,7 @@
 		}
 
 		private var keyDic:Dictionary = new Dictionary();
+		private var topRightView:View3D;
 
 		protected function onKeyDown(event:KeyboardEvent):void
 		{
@@ -194,6 +195,7 @@
 			topCamera.transform3D.lookAt(new Vector3D(topCamera.transform3D.x, 0, topCamera.transform3D.z), new Vector3D(0, 0, 1));
 
 			view.render();
+			topRightView.render();
 		}
 
 		/** 设置摄像机网格 */
@@ -237,7 +239,7 @@
 			topCamera = new Camera3D();
 			topCamera.name = "topCamera";
 
-			var topRightView:View3D = new View3D(view.scene, topCamera);
+			topRightView = new View3D(view.scene, topCamera);
 			topRightView.name = "smallView3D";
 			addChild(topRightView);
 			topRightView.width = topRightView.height = 100;

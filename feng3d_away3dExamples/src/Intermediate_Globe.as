@@ -62,7 +62,7 @@ package
 
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
@@ -157,8 +157,8 @@ package
 		private var earth:Mesh;
 		private var clouds:Mesh;
 		private var atmosphere:Mesh;
-		private var tiltContainer:ObjectContainer3D;
-		private var orbitContainer:ObjectContainer3D;
+		private var tiltContainer:Container3D;
+		private var orbitContainer:Container3D;
 		private var skyBox:SkyBox;
 
 		//light objects
@@ -379,7 +379,7 @@ package
 		 */
 		private function initObjects():void
 		{
-			orbitContainer = new ObjectContainer3D();
+			orbitContainer = new Container3D();
 			orbitContainer.addChild(light);
 			scene.addChild(orbitContainer);
 
@@ -394,7 +394,7 @@ package
 			atmosphere = new Mesh(new SphereGeometry(210, 200, 100), atmosphereMaterial);
 			atmosphere.transform3D.scaleX = -1;
 
-			tiltContainer = new ObjectContainer3D();
+			tiltContainer = new Container3D();
 			tiltContainer.transform3D.rotationX = -23;
 			tiltContainer.addChild(earth);
 			tiltContainer.addChild(clouds);

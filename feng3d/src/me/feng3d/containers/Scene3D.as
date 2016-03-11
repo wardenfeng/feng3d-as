@@ -15,7 +15,7 @@ package me.feng3d.containers
 	 * 3d场景
 	 * @author feng 2014-3-17
 	 */
-	public class Scene3D extends ObjectContainer3D
+	public class Scene3D extends Container3D
 	{
 		private var _partitions:Vector.<Partition3D>;
 
@@ -88,7 +88,7 @@ package me.feng3d.containers
 
 			var object3D:Object3D;
 			var entity:Entity;
-			var container3D:ObjectContainer3D;
+			var container3D:Container3D;
 			//遍历堆栈中需要检测鼠标碰撞的实体
 			while (mouseCollisionStack.length > 0)
 			{
@@ -96,7 +96,7 @@ package me.feng3d.containers
 				if (!object3D.visible)
 					continue;
 				entity = object3D as Entity;
-				container3D = object3D as ObjectContainer3D;
+				container3D = object3D as Container3D;
 				//收集需要检测鼠标碰撞的实体到检测列表
 				if (entity && entity.mouseEnabled)
 				{

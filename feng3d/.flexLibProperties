@@ -147,6 +147,7 @@
     <classEntry path="me.feng3d.fagal.context3dDataIds.ParticleContext3DBufferID"/>
     <classEntry path="me.feng3d.utils.VectorUtils"/>
     <classEntry path="me.feng3d.utils.SubGeomUtil"/>
+    <classEntry path="me.feng3d.core.base.subgeometry.SubGeometryAutoBase"/>
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticlesTime"/>
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticlesInit"/>
     <classEntry path="me.feng3d.fagal.vertex.particle.V_ParticleVelocity"/>
@@ -186,7 +187,7 @@
     <classEntry path="me.feng3d.primitives.WireframeSphere"/>
     <classEntry path="me.feng3d.core.partition.node.PointLightNode"/>
     <classEntry path="me.feng3d.utils.ColliderUtils"/>
-    <classEntry path="me.feng3d.core.base.renderable.RenderableBase"/>
+    <classEntry path="me.feng3d.core.base.renderable.MeshRenderable"/>
     <classEntry path="me.feng3d.materials.methods.SimpleShadowMapMethodBase"/>
     <classEntry path="me.feng3d.materials.methods.NearShadowMapMethod"/>
     <classEntry path="me.feng3d.events.LightEvent"/>
@@ -201,6 +202,10 @@
     <classEntry path="me.feng3d.materials.methods.EffectMethodBase"/>
     <classEntry path="me.feng3d.materials.methods.FogMethod"/>
     <classEntry path="me.feng3d.debug.AwayStats"/>
+    <classEntry path="me.feng3d.core.base.renderable.Renderable"/>
+    <classEntry path="me.feng3d.entities.SegmentUtils"/>
+    <classEntry path="me.feng3d.entities.SegmentGeometry"/>
+    <classEntry path="me.feng3d.containers.ContainerTransform3D"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

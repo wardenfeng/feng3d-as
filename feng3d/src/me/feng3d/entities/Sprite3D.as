@@ -79,7 +79,7 @@ package me.feng3d.entities
 			if (_width == value)
 				return;
 			_width = value;
-			invalidateTransform();
+			transform3D.invalidateTransform();
 		}
 
 		public function get height():Number
@@ -92,7 +92,7 @@ package me.feng3d.entities
 			if (_height == value)
 				return;
 			_height = value;
-			invalidateTransform();
+			transform3D.invalidateTransform();
 		}
 
 		override public function get castsShadows():Boolean

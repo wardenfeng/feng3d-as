@@ -3,7 +3,7 @@ package me.feng3d.controllers
 	import flash.geom.Vector3D;
 
 	import me.feng3d.arcane;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.mathlib.MathConsts;
 	import me.feng3d.mathlib.Matrix3DUtils;
@@ -46,7 +46,7 @@ package me.feng3d.controllers
 		 * @param yFactor
 		 * @param wrapPanAngle 是否把角度约束在0到360度
 		 */
-		public function HoverController(targetObject:Entity = null, lookAtObject:ObjectContainer3D = null, panAngle:Number = 0, tiltAngle:Number = 90, distance:Number = 1000, minTiltAngle:Number = -90, maxTiltAngle:Number = 90, minPanAngle:Number = NaN, maxPanAngle:Number = NaN, yFactor:Number = 2, wrapPanAngle:Boolean = false)
+		public function HoverController(targetObject:Entity = null, lookAtObject:Container3D = null, panAngle:Number = 0, tiltAngle:Number = 90, distance:Number = 1000, minTiltAngle:Number = -90, maxTiltAngle:Number = 90, minPanAngle:Number = NaN, maxPanAngle:Number = NaN, yFactor:Number = 2, wrapPanAngle:Boolean = false)
 		{
 			super(targetObject, lookAtObject);
 

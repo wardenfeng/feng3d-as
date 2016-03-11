@@ -5,8 +5,8 @@ package me.feng3d.animators.base
 	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.animators.IAnimationSet;
 	import me.feng3d.animators.base.node.AnimationNodeBase;
@@ -20,6 +20,7 @@ package me.feng3d.animators.base
 	import me.feng3d.fagalRE.FagalIdCenter;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 
 	/**
 	 * 当开始播放动画时触发
@@ -43,8 +44,9 @@ package me.feng3d.animators.base
 	 * 动画基类
 	 * @author feng 2014-5-27
 	 */
-	public class AnimatorBase extends NamedAsset implements IAsset
+	public class AnimatorBase extends Component implements IAsset
 	{
+		private var _namedAsset:NamedAsset;
 		public var context3DBufferOwner:Context3DBufferOwner;
 
 		/** 动画驱动器 */
@@ -77,9 +79,9 @@ package me.feng3d.animators.base
 		 */
 		public function AnimatorBase(animationSet:IAnimationSet)
 		{
-			_animationSet = animationSet;
-
+			_namedAsset = new NamedAsset(this,AssetType.ANIMATOR);
 			context3DBufferOwner = new Context3DBufferOwner();
+			_animationSet = animationSet;
 			initBuffers();
 		}
 
@@ -372,13 +374,10 @@ package me.feng3d.animators.base
 		{
 			throw new AbstractMethodError();
 		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
+		
+		public function get namedAsset():NamedAsset
 		{
-			return AssetType.ANIMATOR;
+			return _namedAsset;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package me.feng3d.core.base.renderable
 {
-	import me.feng.core.NamedAsset;
+	import me.feng.component.Component;
 	import me.feng.error.AbstractMethodError;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
@@ -15,7 +15,7 @@ package me.feng3d.core.base.renderable
 	 * 可渲染对象基类
 	 * @author feng 2015-5-27
 	 */
-	public class Renderable extends NamedAsset implements IRenderable
+	public class Renderable extends Component implements IRenderable
 	{
 		protected var _context3dCache:Context3DCache;
 

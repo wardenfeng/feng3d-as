@@ -3,7 +3,7 @@ package me.feng3d.core.base.data
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng.core.NamedAsset;
+	import me.feng.component.Component;
 	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.MathConsts;
 	import me.feng3d.mathlib.Matrix3DUtils;
@@ -43,7 +43,7 @@ package me.feng3d.core.base.data
 	 * </ul>
 	 * @author feng 2014-3-31
 	 */
-	public class Element3D extends NamedAsset
+	public class Element3D extends Component
 	{
 		private var _smallestNumber:Number = 0.0000000000000000000001;
 		protected var _transformDirty:Boolean = true;
@@ -59,7 +59,6 @@ package me.feng3d.core.base.data
 
 		private var _eulers:Vector3D = new Vector3D();
 
-		private var _flipY:Matrix3D = new Matrix3D();
 		private var _listenToPositionChanged:Boolean;
 		private var _listenToRotationChanged:Boolean;
 		private var _listenToScaleChanged:Boolean;
@@ -92,8 +91,6 @@ package me.feng3d.core.base.data
 			_transformComponents[2] = _sca;
 
 			_transform.identity();
-
-			_flipY.appendScale(1, -1, 1);
 		}
 
 		/**

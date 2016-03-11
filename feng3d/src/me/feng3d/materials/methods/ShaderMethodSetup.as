@@ -1,8 +1,8 @@
 package me.feng3d.materials.methods
 {
 	import flash.utils.Dictionary;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.Context3DBufferOwner;
@@ -17,7 +17,7 @@ package me.feng3d.materials.methods
 	 * 渲染函数设置
 	 * @author feng 2014-7-1
 	 */
-	public class ShaderMethodSetup extends NamedAsset
+	public class ShaderMethodSetup extends Component
 	{
 		public var context3DBufferOwner:Context3DBufferOwner;
 

@@ -1,8 +1,8 @@
 package me.feng3d.core.base.submesh
 {
 	import flash.events.Event;
-
-	import me.feng.core.NamedAsset;
+	
+	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.animators.base.AnimatorBase;
 	import me.feng3d.animators.base.data.AnimationSubGeometry;
@@ -19,7 +19,7 @@ package me.feng3d.core.base.submesh
 	/**
 	 * 子网格，可渲染对象
 	 */
-	public class SubMesh extends NamedAsset
+	public class SubMesh extends Component
 	{
 		public var renderableBase:MeshRenderable;
 

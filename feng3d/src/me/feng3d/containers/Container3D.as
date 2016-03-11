@@ -6,6 +6,7 @@ package me.feng3d.containers
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.library.assets.AssetType;
 	import me.feng3d.library.assets.IAsset;
+	import me.feng3d.library.assets.NamedAsset;
 
 	use namespace arcane;
 
@@ -13,8 +14,9 @@ package me.feng3d.containers
 	 * 3d对象容器
 	 * @author feng 2014-3-21
 	 */
-	public class ObjectContainer3D extends InteractiveObject3D implements IAsset
+	public class Container3D extends InteractiveObject3D implements IAsset
 	{
+		protected var _namedAsset:NamedAsset;
 		/** 容器内对象列表 */
 		protected var _children:Vector.<Object3D> = new Vector.<Object3D>();
 
@@ -23,9 +25,12 @@ package me.feng3d.containers
 		/** 是否给根容器 */
 		public var _isRoot:Boolean = false;
 
-		public function ObjectContainer3D()
+		public function Container3D()
 		{
 			super();
+			_namedAsset = new NamedAsset(this, AssetType.CONTAINER);
+
+			addComponent(new ContainerTransform3D());
 		}
 
 		/**
@@ -102,19 +107,6 @@ package me.feng3d.containers
 			{
 				_children[i].scene = scene;
 			}
-		}
-
-		/**
-		 * 使变换矩阵失效，子对象变化矩阵也将失效
-		 */
-		public function invalidateTransform():void
-		{
-			var len:uint = _children.length;
-			for (var i:int = 0; i < len; i++)
-			{
-				_children[i].transform3D.invalidateTransform();
-			}
-			super.invalidateTransform();
 		}
 
 		/**
@@ -202,7 +194,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minX + child.transform3D.x;
 				if (m < min)
 					min = m;
@@ -223,7 +215,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minY + child.transform3D.y;
 				if (m < min)
 					min = m;
@@ -244,7 +236,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.minZ + child.transform3D.z;
 				if (m < min)
 					min = m;
@@ -266,7 +258,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxX + child.transform3D.x;
 				if (m > max)
 					max = m;
@@ -287,7 +279,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxY + child.transform3D.y;
 				if (m > max)
 					max = m;
@@ -308,7 +300,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:ObjectContainer3D = _children[i++];
+				var child:Container3D = _children[i++];
 				m = child.maxZ + child.transform3D.z;
 				if (m > max)
 					max = m;
@@ -326,12 +318,9 @@ package me.feng3d.containers
 				parent.removeChild(this);
 		}
 
-		/**
-		 * @inheritDoc
-		 */
-		public function get assetType():String
+		public function get namedAsset():NamedAsset
 		{
-			return AssetType.CONTAINER;
+			return _namedAsset;
 		}
 	}
 }

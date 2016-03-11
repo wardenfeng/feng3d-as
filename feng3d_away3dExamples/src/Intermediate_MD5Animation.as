@@ -62,7 +62,7 @@ package
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.transitions.CrossfadeTransition;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
@@ -196,7 +196,7 @@ package
 
 		//scene objects
 		private var text:TextField;
-		private var placeHolder:ObjectContainer3D;
+		private var placeHolder:Container3D;
 		private var mesh:Mesh;
 		private var ground:Mesh;
 		private var skyBox:SkyBox;
@@ -258,7 +258,7 @@ package
 			camera.transform3D.y = 360;
 
 			//setup controller to be used on the camera
-			placeHolder = new ObjectContainer3D();
+			placeHolder = new Container3D();
 			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
@@ -470,7 +470,8 @@ package
 		 */
 		private function onAssetComplete(event:AssetEvent):void
 		{
-			if (event.asset.assetType == AssetType.ANIMATION_NODE)
+			var assetType:String = event.asset.namedAsset.assetType;
+			if (assetType == AssetType.ANIMATION_NODE)
 			{
 
 				var node:SkeletonClipNode = event.asset as SkeletonClipNode;
@@ -491,7 +492,7 @@ package
 				if (animationName == IDLE_NAME)
 					stop();
 			}
-			else if (event.asset.assetType == AssetType.ANIMATION_SET)
+			else if (assetType == AssetType.ANIMATION_SET)
 			{
 				animationSet = event.asset as SkeletonAnimationSet;
 				animator = new SkeletonAnimator(animationSet, skeleton, true);
@@ -506,11 +507,11 @@ package
 
 				mesh.animator = animator;
 			}
-			else if (event.asset.assetType == AssetType.SKELETON)
+			else if (assetType == AssetType.SKELETON)
 			{
 				skeleton = event.asset as Skeleton;
 			}
-			else if (event.asset.assetType == AssetType.MESH)
+			else if (assetType == AssetType.MESH)
 			{
 				//grab mesh object and assign our material object
 				mesh = event.asset as Mesh;

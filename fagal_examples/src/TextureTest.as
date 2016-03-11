@@ -13,10 +13,7 @@ package
 	import flash.geom.Vector3D;
 	import flash.utils.getTimer;
 	
-	import base.BaseGeometry;
 	import base.BaseMesh;
-	
-	import colorTerrain.ColorTerrainMaterial;
 	
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.Cast;
