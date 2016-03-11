@@ -351,7 +351,7 @@ package me.feng3d.animators.base
 			{
 				len = _owners.length;
 				for (var i:uint = 0; i < len; ++i)
-					_owners[i].translateLocal(delta, dist);
+					_owners[i].transform3D.translateLocal(delta, dist);
 			}
 		}
 
