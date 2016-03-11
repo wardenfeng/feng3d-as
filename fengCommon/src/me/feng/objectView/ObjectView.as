@@ -1,9 +1,6 @@
 package me.feng.objectView
 {
-	import com.bit101.components.VBox;
-
 	import flash.display.DisplayObject;
-	import flash.text.TextField;
 	import flash.utils.Dictionary;
 
 	import avmplus.getQualifiedClassName;
@@ -31,7 +28,9 @@ package me.feng.objectView
 			if (objectView != null)
 				return objectView;
 
-			objectView = getDefaultObjectView(object);
+			var isBaseType:Boolean = ClassUtils.isBaseType(object);
+			objectView = isBaseType ? getBaseTypeView(object) : getDefaultObjectView(object);
+
 			return objectView;
 		}
 
@@ -41,24 +40,11 @@ package me.feng.objectView
 		 * @return			对象界面
 		 *
 		 */
-		public static function getDefaultObjectView(object:Object):DisplayObject
+		private static function getDefaultObjectView(object:Object):DisplayObject
 		{
-			var objectView:DisplayObject;
-			var isBaseType:Boolean = ClassUtils.isBaseType(object);
-			if (isBaseType)
-			{
-				objectView = getBaseTypeView(object);
-				return objectView;
-			}
-
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeInfo.getObjectAttributeInfos(object);
-			var vBox:VBox = new VBox;
-			for (var i:int = 0; i < objectAttributeInfos.length; i++)
-			{
-				var displayObject:DisplayObject = getObjectAttributeView(objectAttributeInfos[i]);
-				vBox.addChild(displayObject);
-			}
-			return vBox;
+			var defaultObjectView:DefaultObjectView = new DefaultObjectView();
+			defaultObjectView.data = object;
+			return defaultObjectView;
 		}
 
 		/**
@@ -66,7 +52,7 @@ package me.feng.objectView
 		 * @param objectAttributeInfo		对象属性信息
 		 * @return							对象属性界面
 		 */
-		private static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
+		internal static function getObjectAttributeView(objectAttributeInfo:ObjectAttributeInfo):DisplayObject
 		{
 			var objectAttributeView:DefaultObjectAttributeView = new DefaultObjectAttributeView();
 			objectAttributeView.objectAttributeInfo = objectAttributeInfo;
@@ -87,7 +73,7 @@ package me.feng.objectView
 				return null;
 
 			var view:DisplayObject = new viewClass();
-			//			view.data = object;
+			IObjectView(view).data = object;
 			return view;
 		}
 
@@ -98,13 +84,9 @@ package me.feng.objectView
 		 */
 		private static function getBaseTypeView(object:Object):DisplayObject
 		{
-			var objectView:DisplayObject = getCustomObjectView(object);
-			if (objectView != null)
-				return objectView;
-
-			var textField:TextField = new TextField();
-			textField.text = String(object);
-			return textField;
+			var defaultBaseTypeObjectView:DefaultBaseObjectView = new DefaultBaseObjectView();
+			defaultBaseTypeObjectView.data = object;
+			return defaultBaseTypeObjectView;
 		}
 	}
 }
