@@ -61,7 +61,7 @@ package me.feng.objectView
 		/**
 		 * 设置自定义对象界面类定义
 		 * @param object				指定对象类型
-		 * @param viewClass				自定义对象界面类定义
+		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
 		 */
 		public static function setCustomObjectViewClass(object:Object, viewClass:Class):void
 		{
@@ -72,8 +72,8 @@ package me.feng.objectView
 		/**
 		 * 设置自定义对象属性界面类定义
 		 * @param owner					属性拥有者
-		 * @param attributeName			属性名称		 *
-		 * @param viewClass				自定义对象属性界面类定义
+		 * @param attributeName			属性名称
+		 * @param viewClass				自定义对象属性界面类定义（该类必须是实现IObjectAttributeView接口并且是DisplayObject的子类）
 		 */
 		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
 		{
