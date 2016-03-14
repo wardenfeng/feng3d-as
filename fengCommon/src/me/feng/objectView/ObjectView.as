@@ -34,6 +34,11 @@ package me.feng.objectView
 		private static var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
+		 * 指定属性类型界面类定义字典
+		 */		
+		private static var attributeViewClassByType:Dictionary = new Dictionary();
+
+		/**
 		 * 获取对象界面
 		 * @param object	用于生成界面的对象
 		 */
@@ -82,6 +87,17 @@ package me.feng.objectView
 		}
 
 		/**
+		 * 设置所有特定类型属性的界面类定义
+		 * @param attributeClass			特定属性类型
+		 * @param viewClass					界面属性类
+		 */
+		public static function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
+		{
+			var attributeClassName:String = getQualifiedClassName(attributeClass);
+			attributeViewClassByType[attributeClassName] = viewClass;
+		}
+
+		/**
 		 * 获取对象界面类定义
 		 * @param object		用于生成界面的对象
 		 * @return				对象界面类定义
@@ -123,6 +139,10 @@ package me.feng.objectView
 		{
 			//获取自定义对象属性界面类定义
 			var viewClass:Class = getCustomObjectAttributeViewClass(objectAttributeInfo.owner, objectAttributeInfo.name);
+			if (viewClass != null)
+				return viewClass;
+
+			viewClass = attributeViewClassByType[objectAttributeInfo.type];
 			if (viewClass != null)
 				return viewClass;
 
