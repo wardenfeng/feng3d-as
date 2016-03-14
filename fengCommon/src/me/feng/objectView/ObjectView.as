@@ -149,7 +149,7 @@ package me.feng.objectView
 		 * @param attributeName			属性名称
 		 * @return						类属性ID
 		 */
-		private static function getClassAttributeID(owner:Object, attributeName:String):String
+		public static function getClassAttributeID(owner:Object, attributeName:String):String
 		{
 			var className:String = getQualifiedClassName(owner);
 			var key:String = className + "-" + attributeName;
@@ -157,3 +157,5 @@ package me.feng.objectView
 		}
 	}
 }
+
+
