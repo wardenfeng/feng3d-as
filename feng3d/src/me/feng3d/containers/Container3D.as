@@ -28,7 +28,6 @@ package me.feng3d.containers
 		public function Container3D()
 		{
 			super();
-
 			_namedAsset = new NamedAsset(this, AssetType.CONTAINER);
 
 			addComponent(new ContainerTransform3D());
@@ -108,11 +107,6 @@ package me.feng3d.containers
 			{
 				_children[i].scene = scene;
 			}
-		}
-
-		override protected function notifyTransformChange():void
-		{
-			transform3D.invalidateTransform();
 		}
 
 		/**

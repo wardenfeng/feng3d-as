@@ -165,14 +165,7 @@ package me.feng3d.core.base
 		 */
 		protected function onTransformChanged(event:Transform3DEvent):void
 		{
-			notifyTransformChange();
-
 			notifySceneTransformChange();
-		}
-
-		protected function notifyTransformChange():void
-		{
-
 		}
 
 		/**
@@ -219,7 +212,7 @@ package me.feng3d.core.base
 
 			_parent = value;
 
-			_scenePositionDirty = true;
+			transform3D.invalidateTransform();
 		}
 
 		/**
