@@ -4,7 +4,7 @@ package me.feng3d.core.manager
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.pick.PickingCollisionVO;
 	import me.feng3d.core.pick.RaycastPicker;
@@ -145,7 +145,7 @@ package me.feng3d.core.manager
 		private function dispatchAllEvent(mouseEvent3DList:Vector.<MouseEvent3D>):void
 		{
 			var mouseEvent3D:MouseEvent3D;
-			var dispatcher:ObjectContainer3D;
+			var dispatcher:Container3D;
 			while (mouseEvent3DList.length > 0)
 			{
 				mouseEvent3D = mouseEvent3DList.pop();

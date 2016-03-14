@@ -9,7 +9,7 @@ package me.feng3d.entities
 	import me.feng3d.bounds.AxisAlignedBoundingBox;
 	import me.feng3d.bounds.BoundingVolumeBase;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.core.partition.Partition3D;
 	import me.feng3d.core.partition.node.EntityNode;
@@ -24,7 +24,7 @@ package me.feng3d.entities
 	 * Entity为所有场景绘制对象提供一个基类，表示存在场景中。可以被entityCollector收集。
 	 * @author feng 2014-3-24
 	 */
-	public class Entity extends ObjectContainer3D
+	public class Entity extends Container3D
 	{
 		private var _showBounds:Boolean;
 		private var _partitionNode:EntityNode;

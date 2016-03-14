@@ -51,7 +51,7 @@ package
 
 	import br.com.stimuli.loading.BulkLoader;
 
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.HoverController;
 	import me.feng3d.debug.AwayStats;
@@ -100,7 +100,7 @@ package
 		private var _groundMaterial:TextureMaterial;
 
 		//scene objects
-		private var _loader:ObjectContainer3D;
+		private var _loader:Container3D;
 		private var _ground:Mesh;
 
 		//navigation variables
@@ -154,7 +154,7 @@ package
 			_view.scene.addChild(_ground);
 
 			//setup the scene
-			_loader = new ObjectContainer3D();
+			_loader = new Container3D();
 			_loader.transform3D.scale(300);
 			_loader.transform3D.z = -200;
 			_view.scene.addChild(_loader);

@@ -205,6 +205,7 @@
     <classEntry path="me.feng3d.core.base.renderable.Renderable"/>
     <classEntry path="me.feng3d.entities.SegmentUtils"/>
     <classEntry path="me.feng3d.entities.SegmentGeometry"/>
+    <classEntry path="me.feng3d.containers.ContainerTransform3D"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -3,7 +3,7 @@ package me.feng3d.events
 	import flash.events.Event;
 
 	import me.feng.events.FEvent;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.core.pick.PickingCollisionVO;
 
 	/**
@@ -56,7 +56,7 @@ package me.feng3d.events
 		/**
 		 * 鼠标事件对象
 		 */
-		public var object:ObjectContainer3D;
+		public var object:Container3D;
 
 		/**
 		 * 相交数据

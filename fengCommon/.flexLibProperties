@@ -24,6 +24,13 @@
     <classEntry path="me.feng.events.task.TaskModuleEventRegisterData"/>
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
+    <classEntry path="me.feng.objectView.ObjectView"/>
+    <classEntry path="me.feng.objectView.ObjectAttributeInfo"/>
+    <classEntry path="me.feng.objectView.DefaultObjectAttributeView"/>
+    <classEntry path="me.feng.objectView.IObjectAttributeView"/>
+    <classEntry path="me.feng.objectView.IObjectView"/>
+    <classEntry path="me.feng.objectView.DefaultBaseObjectView"/>
+    <classEntry path="me.feng.objectView.DefaultObjectView"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

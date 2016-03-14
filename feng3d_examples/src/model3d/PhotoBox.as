@@ -1,6 +1,6 @@
 package model3d
 {
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.primitives.PlaneGeometry;
 	import me.feng3d.utils.MaterialUtils;
@@ -9,7 +9,7 @@ package model3d
 	 * 相片盒子
 	 * @author feng 2014-4-14
 	 */
-	public class PhotoBox extends ObjectContainer3D
+	public class PhotoBox extends Container3D
 	{
 		public static const PHOTO:String = "assets/photo.jpg";
 		public static const PHOTO1:String = "assets/photo1.jpg";

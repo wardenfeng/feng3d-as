@@ -135,8 +135,7 @@ package me.feng3d.animators.uv
 		override public function setRenderState(renderable:IRenderable, camera:Camera3D):void
 		{
 			var material:TextureMaterial = renderable.material as TextureMaterial;
-			var subMesh:SubMesh = (renderable as MeshRenderable).subMesh;
-
+			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
 			if (!material || !subMesh)
 				return;
 

@@ -6,7 +6,7 @@ package
 	import flash.geom.Vector3D;
 
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Geometry;
@@ -33,6 +33,8 @@ package
 
 		private var cameraObjData:String = "art/camera.obj";
 		private var view:View3D;
+		private var viewTop:View3D;
+		private var viewFront:View3D;
 
 		public function TestMultiCamera1()
 		{
@@ -83,7 +85,7 @@ package
 
 		private function initObj():void
 		{
-			var photoBox:ObjectContainer3D = new PhotoBox(rootPath, 40, 4);
+			var photoBox:Container3D = new PhotoBox(rootPath, 40, 4);
 			scene3D.addChild(photoBox);
 		}
 
@@ -94,7 +96,7 @@ package
 			cameraTop.transform3D.y = 200;
 			cameraTop.transform3D.lookAt(new Vector3D(), new Vector3D(0, 0, 1));
 
-			var viewTop:View3D = new View3D(scene3D, cameraTop);
+			viewTop = new View3D(scene3D, cameraTop);
 			addChild(viewTop);
 			viewTop.width = viewTop.height = 100;
 			viewTop.x = stage.stageWidth - viewTop.width;
@@ -105,7 +107,7 @@ package
 			cameraFront.transform3D.z = 200;
 			cameraFront.transform3D.lookAt(new Vector3D(), new Vector3D(0, 1, 0));
 
-			var viewFront:View3D = new View3D(scene3D, cameraFront);
+			viewFront = new View3D(scene3D, cameraFront);
 			addChild(viewFront);
 			viewFront.width = viewFront.height = 100;
 			viewFront.backgroundColor = 0x666666;
@@ -120,6 +122,8 @@ package
 			camera.transform3D.lookAt(new Vector3D());
 
 			view.render();
+			viewFront.render();
+			viewTop.render();
 		}
 	}
 }

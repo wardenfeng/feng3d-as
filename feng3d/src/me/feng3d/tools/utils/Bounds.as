@@ -5,7 +5,7 @@ package me.feng3d.tools.utils
 	import flash.utils.Dictionary;
 
 	import me.feng3d.arcane;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.lights.LightBase;
@@ -43,7 +43,7 @@ package me.feng3d.tools.utils
 		 * @param container        ObjectContainer3D. The ObjectContainer3D to get the bounds from.
 		 * Use the getters of this class to retrieve the results
 		 */
-		public static function getObjectContainerBounds(container:ObjectContainer3D, worldBased:Boolean = true):void
+		public static function getObjectContainerBounds(container:Container3D, worldBased:Boolean = true):void
 		{
 			reset();
 			parseObjectContainerBounds(container);
@@ -203,14 +203,14 @@ package me.feng3d.tools.utils
 			_defaultPosition.z = 0.0;
 		}
 
-		private static function parseObjectContainerBounds(obj:ObjectContainer3D, parentTransform:Matrix3D = null):void
+		private static function parseObjectContainerBounds(obj:Container3D, parentTransform:Matrix3D = null):void
 		{
 			if (!obj.visible)
 				return;
 
 			var containerBounds:Vector.<Number> = _containers[obj] ||= Vector.<Number>([Infinity, Infinity, Infinity, -Infinity, -Infinity, -Infinity]);
 
-			var child:ObjectContainer3D;
+			var child:Container3D;
 			var isEntity:Entity = obj as Entity;
 			var containerTransform:Matrix3D = new Matrix3D();
 
@@ -231,7 +231,7 @@ package me.feng3d.tools.utils
 
 			for (var i:uint = 0; i < obj.numChildren; ++i)
 			{
-				child = obj.getChildAt(i) as ObjectContainer3D;
+				child = obj.getChildAt(i) as Container3D;
 				parseObjectContainerBounds(child, containerTransform);
 			}
 
@@ -264,7 +264,7 @@ package me.feng3d.tools.utils
 			return value == Number.POSITIVE_INFINITY || value == Number.NEGATIVE_INFINITY;
 		}
 
-		private static function parseObjectBounds(oC:ObjectContainer3D, parentTransform:Matrix3D = null, resetBounds:Boolean = false):void
+		private static function parseObjectBounds(oC:Container3D, parentTransform:Matrix3D = null, resetBounds:Boolean = false):void
 		{
 			if (oC is LightBase)
 				return;

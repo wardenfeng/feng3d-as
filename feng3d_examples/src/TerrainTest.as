@@ -20,6 +20,7 @@
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.TextureMaterial;
 	import me.feng3d.materials.methods.TerrainDiffuseMethod;
+	import me.feng3d.primitives.WireframeGeometry;
 	import me.feng3d.test.TestBase;
 	import me.feng3d.utils.Cast;
 
@@ -119,8 +120,13 @@
 		private function initObjects():void
 		{
 			//create mountain like terrain
-			terrain = new Elevation(terrainMaterial, Cast.bitmapData(resourceDic[HeightMap]), 5000, 1300, 5000, 250, 250);
+			terrain = new Elevation(terrainMaterial, Cast.bitmapData(resourceDic[HeightMap]), 5000, 1300, 5000, 30, 30);
 			scene.addChild(terrain);
+
+			//将需要以线框查看的模型顶点索引以及顶点数据传入即可
+			var _wireframeTriangle:WireframeGeometry = new WireframeGeometry();
+			_wireframeTriangle.setDrawGeometry(terrain.geometry);
+			scene.addChild(_wireframeTriangle);
 		}
 
 		/**

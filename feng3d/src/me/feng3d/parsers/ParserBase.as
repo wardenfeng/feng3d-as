@@ -178,7 +178,7 @@ package me.feng3d.parsers
 					type_event = AssetEvent.SHADOWMAPMETHOD_COMPLETE;
 					break;
 				default:
-					throw new Error('Unhandled asset type ' + asset.assetType + '. Report as bug!');
+					throw new Error('Unhandled asset type ' + asset.namedAsset.assetType + '. Report as bug!');
 					break;
 			}
 

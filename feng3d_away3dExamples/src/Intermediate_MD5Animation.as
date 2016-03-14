@@ -53,16 +53,16 @@ package
 	import flash.text.TextFormat;
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
-
+	
 	import br.com.stimuli.loading.BulkLoader;
-
+	
 	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
 	import me.feng3d.animators.skeleton.SkeletonAnimator;
 	import me.feng3d.animators.skeleton.SkeletonClipNode;
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.transitions.CrossfadeTransition;
 	import me.feng3d.cameras.Camera3D;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.controllers.LookAtController;
@@ -84,6 +84,7 @@ package
 	import me.feng3d.parsers.MD5AnimParser;
 	import me.feng3d.parsers.MD5MeshParser;
 	import me.feng3d.primitives.PlaneGeometry;
+	import me.feng3d.primitives.SphereGeometry;
 	import me.feng3d.test.TestBase;
 	import me.feng3d.textures.BitmapCubeTexture;
 	import me.feng3d.utils.Cast;
@@ -195,7 +196,7 @@ package
 
 		//scene objects
 		private var text:TextField;
-		private var placeHolder:ObjectContainer3D;
+		private var placeHolder:Container3D;
 		private var mesh:Mesh;
 		private var ground:Mesh;
 		private var skyBox:SkyBox;
@@ -208,6 +209,9 @@ package
 		{
 			resourceList = [ //
 				SignatureSwf, FloorDiffuse, FloorNormals, FloorSpecular, BodyDiffuse, BodyNormals, BodySpecular, //
+				
+				BeachBallDiffuse, BeachBallSpecular,//
+				
 				EnvPosX, EnvPosY, EnvPosZ, EnvNegX, EnvNegY, EnvNegZ, //
 				RedLight, BlueLight, //
 				{url: HellKnight_Mesh, type: BulkLoader.TYPE_BINARY}, //
@@ -250,11 +254,11 @@ package
 			camera = view.camera;
 
 			camera.lens.far = 5000;
-			camera.transform3D.z = -200;
-			camera.transform3D.y = 160;
+			camera.transform3D.z = -500;
+			camera.transform3D.y = 360;
 
 			//setup controller to be used on the camera
-			placeHolder = new ObjectContainer3D();
+			placeHolder = new Container3D();
 			placeHolder.transform3D.y = 50;
 			cameraController = new LookAtController(camera, placeHolder);
 
@@ -303,14 +307,14 @@ package
 			redLight.transform3D.y = 200;
 			redLight.transform3D.z = -1400;
 			redLight.color = 0xff1111;
-			scene.addChild(redLight);
+//			scene.addChild(redLight);
 
 			blueLight = new PointLight();
 			blueLight.transform3D.x = 1000;
 			blueLight.transform3D.y = 200;
 			blueLight.transform3D.z = 1400;
 			blueLight.color = 0x1111ff;
-			scene.addChild(blueLight);
+//			scene.addChild(blueLight);
 
 			whiteLight = new DirectionalLight(-50, -20, 10);
 			whiteLight.color = 0xffffee;
@@ -320,7 +324,8 @@ package
 			whiteLight.shadowMapper = new NearDirectionalShadowMapper(.2);
 			scene.addChild(whiteLight);
 
-			lightPicker = new StaticLightPicker([redLight, blueLight, whiteLight]);
+//			lightPicker = new StaticLightPicker([redLight, blueLight, whiteLight]);
+			lightPicker = new StaticLightPicker([whiteLight]);
 
 
 			//create a global shadow method
@@ -349,13 +354,13 @@ package
 			//ground material
 			groundMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[FloorDiffuse]));
 			groundMaterial.smooth = true;
-			groundMaterial.repeat = true;
+			groundMaterial.repeat = false;
 			groundMaterial.mipmap = true;
 			groundMaterial.lightPicker = lightPicker;
 			groundMaterial.normalMap = Cast.bitmapTexture(resourceDic[FloorNormals]);
 			groundMaterial.specularMap = Cast.bitmapTexture(resourceDic[FloorSpecular]);
 			groundMaterial.shadowMethod = shadowMapMethod;
-			groundMaterial.addMethod(fogMethod);
+//			groundMaterial.addMethod(fogMethod);
 
 			//body material
 			bodyMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[BodyDiffuse]));
@@ -363,24 +368,44 @@ package
 			bodyMaterial.specular = 1.5;
 			bodyMaterial.specularMap = Cast.bitmapTexture(resourceDic[BodySpecular]);
 			bodyMaterial.normalMap = Cast.bitmapTexture(resourceDic[BodyNormals]);
-			bodyMaterial.addMethod(fogMethod);
+//			bodyMaterial.addMethod(fogMethod);
 			bodyMaterial.lightPicker = lightPicker;
 			bodyMaterial.shadowMethod = shadowMapMethod;
+			
+			sphereMaterial = new TextureMaterial(Cast.bitmapTexture(resourceDic[BeachBallDiffuse]));
+			sphereMaterial.specularMap = Cast.bitmapTexture(resourceDic[BeachBallSpecular]);
+			sphereMaterial.lightPicker = lightPicker;
+//			sphereMaterial.shadowMethod = shadowMapMethod;
 		}
-
+		private var sphere:Mesh;
+		private var sphereMaterial:TextureMaterial;
+		//sphere textures
+		public static var BeachBallDiffuse:String = "embeds/beachball_diffuse.jpg";
+		public static var BeachBallSpecular:String = "embeds/beachball_specular.jpg";
 		/**
 		 * Initialise the scene objects
 		 */
 		private function initObjects():void
 		{
 			//create light billboards
-			redLight.addChild(new Sprite3D(redLightMaterial, 200, 200));
-			blueLight.addChild(new Sprite3D(blueLightMaterial, 200, 200));
+//			redLight.addChild(new Sprite3D(redLightMaterial, 200, 200));
+//			blueLight.addChild(new Sprite3D(blueLightMaterial, 200, 200));
 
+			var r:int = 1000;
+			
+			sphere = new Mesh(new PlaneGeometry(r, r, 1, 1), sphereMaterial);
+			sphere.transform3D.x = 0;
+			sphere.transform3D.y = -30;
+			sphere.transform3D.z = 0;
+			
+			scene.addChild(sphere);
+			
 			initMesh();
 
 			//create a snowy ground plane
-			ground = new Mesh(new PlaneGeometry(50000, 50000, 1, 1), groundMaterial);
+			ground = new Mesh(new SphereGeometry(r, 40, 20), groundMaterial);
+			ground.transform3D.y = -r;
+//			ground = new Mesh(new PlaneGeometry(50000, 50000, 1, 1), groundMaterial);
 			ground.geometry.scaleUV(200, 200);
 			ground.castsShadows = false;
 			scene.addChild(ground);
@@ -432,6 +457,11 @@ package
 			blueLight.transform3D.y = 250 - Math.sin(count * .65) * 200;
 			blueLight.transform3D.z = -Math.cos(count * 0.9) * 1500;
 
+			whiteLight.direction.x = 50 * Math.sin(count);
+			whiteLight.direction.z = 50 * Math.cos(count);
+			
+			whiteLight.direction = whiteLight.direction;
+			
 			view.render();
 		}
 

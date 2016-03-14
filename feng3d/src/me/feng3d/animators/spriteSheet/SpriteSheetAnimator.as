@@ -145,7 +145,7 @@ package me.feng3d.animators.spriteSheet
 			if (!material || !material is TextureMaterial)
 				return;
 
-			var subMesh:SubMesh = (renderable as MeshRenderable).subMesh;
+			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
 			if (!subMesh)
 				return;
 

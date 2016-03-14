@@ -7,11 +7,12 @@ package me.feng3d.parsers
 	import flash.utils.Endian;
 
 	import me.feng3d.arcane;
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 	import me.feng3d.entities.Mesh;
 	import me.feng3d.library.assets.AssetType;
+	import me.feng3d.library.assets.IAsset;
 	import me.feng3d.materials.ColorMaterial;
 	import me.feng3d.materials.ColorMultiPassMaterial;
 	import me.feng3d.materials.MaterialBase;
@@ -20,7 +21,6 @@ package me.feng3d.parsers
 	import me.feng3d.materials.TextureMultiPassMaterial;
 	import me.feng3d.parsers.utils.ParserUtil;
 	import me.feng3d.textures.Texture2DBase;
-	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.DefaultMaterialManager;
 	import me.feng3d.utils.GeomUtil;
 
@@ -94,10 +94,10 @@ package me.feng3d.parsers
 		{
 			if (resourceDependency.assets.length == 1)
 			{
-				var asset:*;
+				var asset:IAsset;
 
 				asset = resourceDependency.assets[0];
-				if (asset is TextureProxyBase)
+				if (asset.namedAsset.assetType == AssetType.TEXTURE)
 				{
 					var tex:TextureVO;
 
@@ -255,7 +255,7 @@ package me.feng3d.parsers
 				// Finalize any remaining objects before ending.
 				for (name in _unfinalized_objects)
 				{
-					var obj:ObjectContainer3D;
+					var obj:Container3D;
 					obj = constructObject(_unfinalized_objects[name]);
 					if (obj)
 						finalizeAsset(obj, name);
@@ -459,7 +459,7 @@ package me.feng3d.parsers
 		private function parseObjectAnimation(end:Number):void
 		{
 			var vo:ObjectVO;
-			var obj:ObjectContainer3D;
+			var obj:Container3D;
 			var pivot:Vector3D;
 			var name:String;
 			var hier:int;
@@ -510,7 +510,7 @@ package me.feng3d.parsers
 			}
 		}
 
-		private function constructObject(obj:ObjectVO, pivot:Vector3D = null):ObjectContainer3D
+		private function constructObject(obj:ObjectVO, pivot:Vector3D = null):Container3D
 		{
 			if (obj.type == AssetType.MESH)
 			{

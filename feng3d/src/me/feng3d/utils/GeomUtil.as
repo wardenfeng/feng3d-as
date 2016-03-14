@@ -5,6 +5,7 @@ package me.feng3d.utils
 	import me.feng.debug.assert;
 	import me.feng3d.arcane;
 	import me.feng3d.components.subgeometry.AutoDeriveVertexNormals;
+	import me.feng3d.components.subgeometry.AutoDeriveVertexTangents;
 	import me.feng3d.components.subgeometry.SkinnedSubGeometry;
 	import me.feng3d.core.base.subgeometry.SubGeometry;
 
@@ -188,6 +189,7 @@ package me.feng3d.utils
 			sub.updateIndexData(indices);
 			sub.fromVectors(verts, uvs);
 			sub.getOrCreateComponentByClass(AutoDeriveVertexNormals);
+			sub.getOrCreateComponentByClass(AutoDeriveVertexTangents);
 
 			return sub;
 		}

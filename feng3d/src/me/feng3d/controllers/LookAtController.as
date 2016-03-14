@@ -2,7 +2,7 @@ package me.feng3d.controllers
 {
 	import flash.geom.Vector3D;
 
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.entities.Entity;
 	import me.feng3d.events.Transform3DEvent;
 	import me.feng3d.mathlib.Matrix3DUtils;
@@ -14,7 +14,7 @@ package me.feng3d.controllers
 	public class LookAtController extends ControllerBase
 	{
 		protected var _lookAtPosition:Vector3D;
-		protected var _lookAtObject:ObjectContainer3D;
+		protected var _lookAtObject:Container3D;
 
 		protected var _upAxis:Vector3D = Vector3D.Y_AXIS;
 		private var _pos:Vector3D = new Vector3D();
@@ -24,7 +24,7 @@ package me.feng3d.controllers
 		 * @param targetObject 控制对象
 		 * @param lookAtObject 被注视对象
 		 */
-		public function LookAtController(targetObject:Entity = null, lookAtObject:ObjectContainer3D = null)
+		public function LookAtController(targetObject:Entity = null, lookAtObject:Container3D = null)
 		{
 			super(targetObject);
 
@@ -73,12 +73,12 @@ package me.feng3d.controllers
 		/**
 		 * 被注视目标
 		 */
-		public function get lookAtObject():ObjectContainer3D
+		public function get lookAtObject():Container3D
 		{
 			return _lookAtObject;
 		}
 
-		public function set lookAtObject(val:ObjectContainer3D):void
+		public function set lookAtObject(val:Container3D):void
 		{
 			if (_lookAtPosition)
 				_lookAtPosition = null;
