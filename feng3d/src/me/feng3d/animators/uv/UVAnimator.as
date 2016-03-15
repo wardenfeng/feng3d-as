@@ -136,7 +136,6 @@ package me.feng3d.animators.uv
 		{
 			var material:TextureMaterial = renderable.material as TextureMaterial;
 			var subMesh:SubMesh = MeshRenderable(renderable).subMesh;
-
 			if (!material || !subMesh)
 				return;
 

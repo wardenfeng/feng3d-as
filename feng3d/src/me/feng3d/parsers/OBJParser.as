@@ -1,7 +1,7 @@
 package me.feng3d.parsers
 {
 	import flash.net.URLRequest;
-	
+
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.Geometry;
 	import me.feng3d.core.base.data.UV;
@@ -135,7 +135,7 @@ package me.feng3d.parsers
 
 				asset = resourceDependency.assets[0];
 
-				if (asset.assetType == AssetType.TEXTURE)
+				if (asset.namedAsset.assetType == AssetType.TEXTURE)
 				{
 					var lm:LoadedMaterial = new LoadedMaterial();
 					lm.materialID = resourceDependency.id;

@@ -97,7 +97,7 @@ package me.feng3d.parsers
 				var asset:IAsset;
 
 				asset = resourceDependency.assets[0];
-				if (asset.assetType == AssetType.TEXTURE)
+				if (asset.namedAsset.assetType == AssetType.TEXTURE)
 				{
 					var tex:TextureVO;
 
