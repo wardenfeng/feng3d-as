@@ -124,9 +124,9 @@
 			scene.addChild(terrain);
 
 			//将需要以线框查看的模型顶点索引以及顶点数据传入即可
-			var _wireframeTriangle:WireframeGeometry = new WireframeGeometry();
-			_wireframeTriangle.setDrawGeometry(terrain.geometry);
-			scene.addChild(_wireframeTriangle);
+//			var _wireframeTriangle:WireframeGeometry = new WireframeGeometry();
+//			_wireframeTriangle.setDrawGeometry(terrain.geometry);
+//			scene.addChild(_wireframeTriangle);
 		}
 
 		/**
