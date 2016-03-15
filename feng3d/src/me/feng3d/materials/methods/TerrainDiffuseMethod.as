@@ -92,7 +92,7 @@ package me.feng3d.materials.methods
 			super.activate(shaderParams);
 
 			//通用渲染参数
-			var terrainShaderParams:TerrainShaderParams = shaderParams.getComponentByClass(TerrainShaderParams);
+			var terrainShaderParams:TerrainShaderParams = shaderParams.getOrCreateComponentByClass(TerrainShaderParams);
 
 			terrainShaderParams.splatNum = _numSplattingLayers;
 
