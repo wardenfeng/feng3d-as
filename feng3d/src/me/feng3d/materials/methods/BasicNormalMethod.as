@@ -81,7 +81,7 @@ package me.feng3d.materials.methods
 
 		override arcane function activate(shaderParams:ShaderParams):void
 		{
-			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
+			var lightShaderParams:LightShaderParams = shaderParams.getOrCreateComponentByClass(LightShaderParams);
 
 			lightShaderParams.hasNormalTexture = _texture != null;
 			shaderParams.addSampleFlags(_.normalTexture_fs, _texture);

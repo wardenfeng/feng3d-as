@@ -197,7 +197,7 @@ package me.feng3d.animators.skeleton
 					subGeomAnimState.dirty = false;
 				}
 				//更新动画数据到几何体
-				var skinnedGeom:SkinnedSubGeometry = subGeometry.getComponentByClass(SkinnedSubGeometry);
+				var skinnedGeom:SkinnedSubGeometry = subGeometry.getOrCreateComponentByClass(SkinnedSubGeometry);
 				skinnedGeom.updateAnimatedData(subGeomAnimState.animatedVertexData);
 			}
 		}
@@ -328,7 +328,7 @@ package me.feng3d.animators.skeleton
 		 */
 		private function morphGeometry(state:SubGeomAnimationState, subGeom:SubGeometry):void
 		{
-			var skinnedGeom:SkinnedSubGeometry = subGeom.getComponentByClass(SkinnedSubGeometry);
+			var skinnedGeom:SkinnedSubGeometry = subGeom.getOrCreateComponentByClass(SkinnedSubGeometry);
 
 			//几何体顶点数据
 			var vertexData:Vector.<Number> = subGeom.vertexPositionData;
@@ -550,3 +550,5 @@ class SubGeomAnimationState
 		animatedVertexData = subGeom.vertexPositionData.concat();
 	}
 }
+
+

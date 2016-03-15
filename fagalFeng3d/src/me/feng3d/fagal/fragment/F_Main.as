@@ -36,11 +36,11 @@ package me.feng3d.fagal.fragment
 		override public function runFunc():void
 		{
 			shaderParams.preRunParams();
-			var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
-			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
-			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
-			var fogShaderParams:FogShaderParams = shaderParams.getComponentByClass(FogShaderParams);
-			var envShaderParams:EnvShaderParams = shaderParams.getComponentByClass(EnvShaderParams);
+			var commonShaderParams:CommonShaderParams = shaderParams.getOrCreateComponentByClass(CommonShaderParams);
+			var lightShaderParams:LightShaderParams = shaderParams.getOrCreateComponentByClass(LightShaderParams);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getOrCreateComponentByClass(ShadowShaderParams);
+			var fogShaderParams:FogShaderParams = shaderParams.getOrCreateComponentByClass(FogShaderParams);
+			var envShaderParams:EnvShaderParams = shaderParams.getOrCreateComponentByClass(EnvShaderParams);
 
 			//计算法线
 			if (lightShaderParams.needsNormals > 0)

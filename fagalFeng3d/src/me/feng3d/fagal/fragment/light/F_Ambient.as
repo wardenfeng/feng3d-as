@@ -15,7 +15,7 @@ package me.feng3d.fagal.fragment.light
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
+		var commonShaderParams:CommonShaderParams = shaderParams.getOrCreateComponentByClass(CommonShaderParams);
 
 		if (commonShaderParams.useAmbientTexture > 0)
 		{
@@ -32,3 +32,5 @@ package me.feng3d.fagal.fragment.light
 
 	}
 }
+
+

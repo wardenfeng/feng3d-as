@@ -116,7 +116,7 @@ package me.feng3d.materials.methods
 		{
 			super.activate(shaderParams);
 
-			var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
+			var shadowShaderParams:ShadowShaderParams = shaderParams.getOrCreateComponentByClass(ShadowShaderParams);
 			shadowShaderParams.needsProjection++;
 			shadowShaderParams.useNearShadowMap++;
 		}

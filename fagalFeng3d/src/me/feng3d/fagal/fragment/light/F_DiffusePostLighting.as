@@ -15,9 +15,9 @@ package me.feng3d.fagal.fragment.light
 	public function F_DiffusePostLighting():void
 	{
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var commonShaderParams:CommonShaderParams = shaderParams.getComponentByClass(CommonShaderParams);
-		var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
-		var shadowShaderParams:ShadowShaderParams = shaderParams.getComponentByClass(ShadowShaderParams);
+		var commonShaderParams:CommonShaderParams = shaderParams.getOrCreateComponentByClass(CommonShaderParams);
+		var lightShaderParams:LightShaderParams = shaderParams.getOrCreateComponentByClass(LightShaderParams);
+		var shadowShaderParams:ShadowShaderParams = shaderParams.getOrCreateComponentByClass(ShadowShaderParams);
 
 
 		var _:* = FagalRE.instance.space;
@@ -67,3 +67,5 @@ package me.feng3d.fagal.fragment.light
 
 	}
 }
+
+

@@ -3,6 +3,7 @@ package me.feng3d.fagal.params
 	import flash.utils.Dictionary;
 
 	import me.feng.component.Component;
+	import me.feng.component.event.ComponentEvent;
 	import me.feng3d.textures.TextureProxyBase;
 	import me.feng3d.utils.TextureUtils;
 
@@ -41,13 +42,21 @@ package me.feng3d.fagal.params
 		public function ShaderParams()
 		{
 			super();
-			addComponent(new CommonShaderParams());
-			addComponent(new AnimationShaderParams());
-			addComponent(new LightShaderParams());
-			addComponent(new ParticleShaderParams());
-			addComponent(new ShadowShaderParams());
-			addComponent(new FogShaderParams());
-			addComponent(new EnvShaderParams());
+			addEventListener(ComponentEvent.ADDED_COMPONET,onAddedComponet);
+		}
+
+		protected function onAddedComponet(event:ComponentEvent):void
+		{
+			var shaderParam:Object = event.data.child;
+
+			if (shaderParam.hasOwnProperty("init"))
+			{
+				shaderParam["init"]();
+			}
+			if (shaderParam.hasOwnProperty("preRun"))
+			{
+				shaderParam["preRun"]();
+			}
 		}
 
 		/**

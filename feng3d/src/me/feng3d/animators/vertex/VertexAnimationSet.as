@@ -41,7 +41,7 @@ package me.feng3d.animators.vertex
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getOrCreateComponentByClass(AnimationShaderParams);
 			if (usesCPU)
 				animationShaderParams.animationType = AnimationType.VERTEX_CPU;
 			else

@@ -172,7 +172,7 @@ package me.feng3d.animators.particle.node
 		 */
 		override arcane function processAnimationSetting(shaderParams:ShaderParams):void
 		{
-			var particleShaderParams:ParticleShaderParams = shaderParams.getComponentByClass(ParticleShaderParams);
+			var particleShaderParams:ParticleShaderParams = shaderParams.getOrCreateComponentByClass(ParticleShaderParams);
 
 			particleShaderParams.changeColor++;
 			particleShaderParams[name] = true;

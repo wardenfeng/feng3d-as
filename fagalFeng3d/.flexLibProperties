@@ -18,6 +18,14 @@
     <classEntry path="me.feng3d.fagal.fragment.light.F_Blinn_Phong"/>
     <classEntry path="me.feng3d.fagal.fragment.light.SpecularModelType"/>
     <classEntry path="me.feng3d.fagal.fragment.light.F_AlphaPremultiplied"/>
+    <classEntry path="me.feng3d.fagal.params.CommonShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.LightShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.TerrainShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.ParticleShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.EnvShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.FogShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.AnimationShaderParams"/>
+    <classEntry path="me.feng3d.fagal.params.ShadowShaderParams"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

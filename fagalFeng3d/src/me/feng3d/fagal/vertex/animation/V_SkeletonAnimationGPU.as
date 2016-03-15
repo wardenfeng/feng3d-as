@@ -14,7 +14,7 @@ package me.feng3d.fagal.vertex.animation
 		var _:* = FagalRE.instance.space;
 
 		var shaderParams:ShaderParams = FagalRE.instance.context3DCache.shaderParams;
-		var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
+		var animationShaderParams:AnimationShaderParams = shaderParams.getOrCreateComponentByClass(AnimationShaderParams);
 
 		//
 		var vt1:Register = _.getFreeTemp();
@@ -41,3 +41,5 @@ package me.feng3d.fagal.vertex.animation
 	}
 
 }
+
+

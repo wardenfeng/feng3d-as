@@ -115,7 +115,7 @@ package me.feng3d.passes
 		{
 			if (_lightPicker)
 			{
-				var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
+				var lightShaderParams:LightShaderParams = shaderParams.getOrCreateComponentByClass(LightShaderParams);
 				lightShaderParams.numPointLights = _lightPicker.numPointLights;
 				lightShaderParams.numDirectionalLights = _lightPicker.numDirectionalLights;
 			}

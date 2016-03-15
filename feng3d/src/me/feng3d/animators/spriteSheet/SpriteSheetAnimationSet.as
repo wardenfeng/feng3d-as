@@ -24,7 +24,7 @@ package me.feng3d.animators.spriteSheet
 		 */
 		override public function activate(shaderParams:ShaderParams, pass:MaterialPassBase):void
 		{
-			var animationShaderParams:AnimationShaderParams = shaderParams.getComponentByClass(AnimationShaderParams);
+			var animationShaderParams:AnimationShaderParams = shaderParams.getOrCreateComponentByClass(AnimationShaderParams);
 			animationShaderParams.useSpriteSheetAnimation++;
 		}
 	}

@@ -100,7 +100,7 @@ package me.feng3d.materials.methods
 			shaderParams.addSampleFlags(_.terrainTextures_fs_array, splats[0], Context3DWrapMode.REPEAT);
 			shaderParams.addSampleFlags(_.blendingtexture_fs, blendingTexture);
 
-			var lightShaderParams:LightShaderParams = shaderParams.getComponentByClass(LightShaderParams);
+			var lightShaderParams:LightShaderParams = shaderParams.getOrCreateComponentByClass(LightShaderParams);
 			lightShaderParams.diffuseMethod = F_TerrainDiffusePostLighting;
 		}
 	}
