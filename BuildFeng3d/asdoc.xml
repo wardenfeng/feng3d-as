@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="asdoc"
+		 default="doc"
+		 basedir=".">
+	<property file="build.properties" />
+	<taskdef resource="flexTasks.tasks"
+			 classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+	<target name="doc">
+		<asdoc output="${ASDOC_OUTPUT}"
+			   lenient="true"
+			   failonerror="true">
+			<!-- asDoc Infomation -->
+			<window-title>feng3d参考文档</window-title>
+			<main-title>feng3d	http://www.feng3d.me/</main-title>
+			<footer>feng3d API 版权所有feng</footer>
+
+			<doc-sources path-element="${WORK_SPACE}/Fagal/src"/>
+			<doc-sources path-element="${WORK_SPACE}/FagalFeng3d/src"/>
+			<doc-sources path-element="${WORK_SPACE}/feng3d/src"/>
+			<doc-sources path-element="${WORK_SPACE}/fengCommon/src"/>
+			<compiler.external-library-path dir="${WORK_SPACE}/fengCommon/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="false"/>
+			<examples-path>${WORK_SPACE}/fengCommonExamples/src</examples-path>
+		</asdoc>
+	</target>
+	<target name="clean">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${ASDOC_OUTPUT}"
+					 includes="**/*"/>
+		</delete>
+	</target>
+</project>

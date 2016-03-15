@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="export_SWC_comment"
+		 default="main"
+		 basedir=".">
+
+	<property file="build.properties"/>
+	<taskdef resource="flexTasks.tasks"
+			 classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+	<target name="main"
+			depends="clean,docswc_project1,docswc_project2,docswc_project3,docswc_project4"
+			description="Clean build of ExampleFatSWC.swc">
+	</target>
+
+	<target name="clean">
+		<delete dir="${basedir}/docbin">
+		</delete>
+	</target>
+
+	<target name="docswc_project1"
+			depends="clean"
+			description="Updates SWC with ASDoc XML">
+
+		<echo message="Compiling ASDoc for ${PROJECT_NAME1}.swc"/>
+
+		<copyfile dest="${basedir}/docbin/${PROJECT_NAME1}.swc"
+				  src="${WORK_SPACE}/${PROJECT_NAME1}/bin/${PROJECT_NAME1}.swc"
+				  forceoverwrite="true"/>
+
+		<!-- Call asdoc to generate dita xml files -->
+		<asdoc output="${basedir}/tempDoc"
+			   lenient="true"
+			   failonerror="true"
+			   keep-xml="true"
+			   skip-xsl="true"
+			   fork="true">
+			<compiler.source-path path-element="${WORK_SPACE}/${PROJECT_NAME1}/src"/>
+			<doc-sources path-element="${WORK_SPACE}/${PROJECT_NAME1}/src"/>
+
+			<compiler.external-library-path dir="${basedir}/docbin"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.external-library-path dir="${WORK_SPACE}/fengCommon/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="true"/>
+		</asdoc>
+
+		<!-- updates ExampleFatSWC.swc with asdoc xml -->
+		<zip destfile="${basedir}/docbin/${PROJECT_NAME1}.swc"
+			 update="true">
+			<zipfileset dir="${basedir}/tempDoc/tempdita"
+						prefix="docs">
+				<include name="*.*"/>
+				<exclude name="ASDoc_Config.xml"/>
+				<exclude name="overviews.xml"/>
+			</zipfileset>
+		</zip>
+
+		<delete dir="${basedir}/tempDoc"
+				failonerror="false"
+				includeEmptyDirs="true"/>
+	</target>
+
+	<!-- ***********************************  ************************************ -->
+
+	<target name="docswc_project2"
+			depends="docswc_project1"
+			description="Updates SWC with ASDoc XML">
+
+		<echo message="Compiling ASDoc for ${PROJECT_NAME2}.swc"/>
+
+		<copyfile dest="${basedir}/docbin/${PROJECT_NAME2}.swc"
+				  src="${WORK_SPACE}/${PROJECT_NAME2}/bin/${PROJECT_NAME2}.swc"
+				  forceoverwrite="true"/>
+
+		<!-- Call asdoc to generate dita xml files -->
+		<asdoc output="${basedir}/tempDoc"
+			   lenient="true"
+			   failonerror="true"
+			   keep-xml="true"
+			   skip-xsl="true"
+			   fork="true">
+			<compiler.source-path path-element="${WORK_SPACE}/${PROJECT_NAME2}/src"/>
+			<doc-sources path-element="${WORK_SPACE}/${PROJECT_NAME2}/src"/>
+
+			<compiler.external-library-path dir="${basedir}/docbin"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.external-library-path dir="${WORK_SPACE}/fengCommon/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="true"/>
+			<compiler.define name="CONFIG::check"
+							 value="true"/>
+		</asdoc>
+
+		<!-- updates ExampleFatSWC.swc with asdoc xml -->
+		<zip destfile="${basedir}/docbin/${PROJECT_NAME2}.swc"
+			 update="true">
+			<zipfileset dir="${basedir}/tempDoc/tempdita"
+						prefix="docs">
+				<include name="*.*"/>
+				<exclude name="ASDoc_Config.xml"/>
+				<exclude name="overviews.xml"/>
+			</zipfileset>
+		</zip>
+
+		<delete dir="${basedir}/tempDoc"
+				failonerror="false"
+				includeEmptyDirs="true"/>
+	</target>
+
+	<!-- ***********************************  ************************************ -->
+
+	<target name="docswc_project3"
+			depends="docswc_project2"
+			description="Updates SWC with ASDoc XML">
+
+		<echo message="Compiling ASDoc for ${PROJECT_NAME3}.swc"/>
+
+		<copyfile dest="${basedir}/docbin/${PROJECT_NAME3}.swc"
+				  src="${WORK_SPACE}/${PROJECT_NAME3}/bin/${PROJECT_NAME3}.swc"
+				  forceoverwrite="true"/>
+
+		<!-- Call asdoc to generate dita xml files -->
+		<asdoc output="${basedir}/tempDoc"
+			   lenient="true"
+			   failonerror="true"
+			   keep-xml="true"
+			   skip-xsl="true"
+			   fork="true">
+			<compiler.source-path path-element="${WORK_SPACE}/${PROJECT_NAME3}/src"/>
+			<doc-sources path-element="${WORK_SPACE}/${PROJECT_NAME3}/src"/>
+
+			<compiler.external-library-path dir="${basedir}/docbin"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.external-library-path dir="${WORK_SPACE}/fengCommon/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="true"/>
+		</asdoc>
+
+		<!-- updates ExampleFatSWC.swc with asdoc xml -->
+		<zip destfile="${basedir}/docbin/${PROJECT_NAME3}.swc"
+			 update="true">
+			<zipfileset dir="${basedir}/tempDoc/tempdita"
+						prefix="docs">
+				<include name="*.*"/>
+				<exclude name="ASDoc_Config.xml"/>
+				<exclude name="overviews.xml"/>
+			</zipfileset>
+		</zip>
+
+		<delete dir="${basedir}/tempDoc"
+				failonerror="false"
+				includeEmptyDirs="true"/>
+	</target>
+
+	<!-- ***********************************  ************************************ -->
+
+	<target name="docswc_project4"
+			depends="docswc_project3"
+			description="Updates SWC with ASDoc XML">
+
+		<echo message="Compiling ASDoc for ${PROJECT_NAME4}.swc"/>
+
+		<copyfile dest="${basedir}/docbin/${PROJECT_NAME4}.swc"
+				  src="${WORK_SPACE}/${PROJECT_NAME4}/bin/${PROJECT_NAME4}.swc"
+				  forceoverwrite="true"/>
+
+		<!-- Call asdoc to generate dita xml files -->
+		<asdoc output="${basedir}/tempDoc"
+			   lenient="true"
+			   failonerror="true"
+			   keep-xml="true"
+			   skip-xsl="true"
+			   fork="true">
+			<compiler.source-path path-element="${WORK_SPACE}/${PROJECT_NAME4}/src"/>
+			<doc-sources path-element="${WORK_SPACE}/${PROJECT_NAME4}/src"/>
+
+			<compiler.external-library-path dir="${basedir}/docbin"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.external-library-path dir="${WORK_SPACE}/fengCommon/libs"
+											append="true">
+				<include name="*.swc"/>
+			</compiler.external-library-path>
+			<compiler.define name="CONFIG::debug"
+							 value="true"/>
+		</asdoc>
+
+		<!-- updates ExampleFatSWC.swc with asdoc xml -->
+		<zip destfile="${basedir}/docbin/${PROJECT_NAME4}.swc"
+			 update="true">
+			<zipfileset dir="${basedir}/tempDoc/tempdita"
+						prefix="docs">
+				<include name="*.*"/>
+				<exclude name="ASDoc_Config.xml"/>
+				<exclude name="overviews.xml"/>
+			</zipfileset>
+		</zip>
+
+		<delete dir="${basedir}/tempDoc"
+				failonerror="false"
+				includeEmptyDirs="true"/>
+	</target>
+
+</project>
+
+
