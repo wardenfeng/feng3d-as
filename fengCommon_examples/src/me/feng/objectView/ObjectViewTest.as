@@ -15,7 +15,10 @@ package me.feng.objectView
 		{
 			var box:DisplayObjectContainer = new HBox();
 
+			ObjectView.setAttributeViewClassByType(Boolean, BooleanAttrView);
+
 			var a:ObjectA = new ObjectA();
+			a.boo = true;
 			a.da = 2;
 			a.db = "```";
 			box.addChild(ObjectView.getObjectView(a));
@@ -32,7 +35,12 @@ package me.feng.objectView
 		}
 	}
 }
+import com.bit101.components.CheckBox;
+
 import flash.display.Shape;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.text.TextField;
 
 import me.feng.objectView.IObjectAttributeView;
 import me.feng.objectView.IObjectView;
@@ -59,3 +67,44 @@ class customObjectView extends Shape implements IObjectView
 		graphics.endFill();
 	}
 }
+
+class BooleanAttrView extends Sprite implements IObjectAttributeView
+{
+	private var data:ObjectAttributeInfo;
+	private var label:TextField;
+	private var checkBox:CheckBox;
+
+	public function BooleanAttrView()
+	{
+		label = new TextField();
+		//			label.height = 50;
+		label.width = 100;
+		label.height = 20;
+		addChild(label);
+
+		checkBox = new CheckBox();
+		checkBox.x = 100;
+		checkBox.y = 5;
+		checkBox.addEventListener(Event.CHANGE, onChange);
+		addChild(checkBox);
+
+		graphics.beginFill(0x999999);
+		graphics.drawRect(0, 0, 200, 24);
+	}
+
+	protected function onChange(event:Event):void
+	{
+		data.owner[data.name] = checkBox.selected;
+	}
+
+	public function set objectAttributeInfo(value:ObjectAttributeInfo):void
+	{
+		data = value;
+
+		label.text = data.name;
+		checkBox.selected = data.owner[data.name];
+	}
+
+}
+
+
