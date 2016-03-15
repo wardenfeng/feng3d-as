@@ -47,7 +47,6 @@ package me.feng3d.fagal.params
 			addComponent(new ParticleShaderParams());
 			addComponent(new ShadowShaderParams());
 			addComponent(new FogShaderParams());
-			addComponent(new WarcraftShaderParams());
 			addComponent(new EnvShaderParams());
 		}
 
