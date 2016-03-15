@@ -185,7 +185,7 @@ package me.feng3d.containers
 		/**
 		 * The minimum extremum of the object along the X-axis.
 		 */
-		public function get minX():Number
+		override public function get minX():Number
 		{
 			var i:uint;
 			var len:uint = _children.length;
@@ -194,7 +194,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.minX + child.transform3D.x;
 				if (m < min)
 					min = m;
@@ -206,7 +206,7 @@ package me.feng3d.containers
 		/**
 		 * The minimum extremum of the object along the Y-axis.
 		 */
-		public function get minY():Number
+		override public function get minY():Number
 		{
 			var i:uint;
 			var len:uint = _children.length;
@@ -215,7 +215,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.minY + child.transform3D.y;
 				if (m < min)
 					min = m;
@@ -227,7 +227,7 @@ package me.feng3d.containers
 		/**
 		 * The minimum extremum of the object along the Z-axis.
 		 */
-		public function get minZ():Number
+		override public function get minZ():Number
 		{
 			var i:uint;
 			var len:uint = _children.length;
@@ -236,7 +236,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.minZ + child.transform3D.z;
 				if (m < min)
 					min = m;
@@ -248,7 +248,7 @@ package me.feng3d.containers
 		/**
 		 * The maximum extremum of the object along the X-axis.
 		 */
-		public function get maxX():Number
+		override public function get maxX():Number
 		{
 			// todo: this isn't right, doesn't take into account transforms
 			var i:uint;
@@ -258,7 +258,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.maxX + child.transform3D.x;
 				if (m > max)
 					max = m;
@@ -270,7 +270,7 @@ package me.feng3d.containers
 		/**
 		 * The maximum extremum of the object along the Y-axis.
 		 */
-		public function get maxY():Number
+		override public function get maxY():Number
 		{
 			var i:uint;
 			var len:uint = _children.length;
@@ -279,7 +279,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.maxY + child.transform3D.y;
 				if (m > max)
 					max = m;
@@ -291,7 +291,7 @@ package me.feng3d.containers
 		/**
 		 * The maximum extremum of the object along the Z-axis.
 		 */
-		public function get maxZ():Number
+		override public function get maxZ():Number
 		{
 			var i:uint;
 			var len:uint = _children.length;
@@ -300,7 +300,7 @@ package me.feng3d.containers
 
 			while (i < len)
 			{
-				var child:Container3D = _children[i++];
+				var child:Object3D = _children[i++];
 				m = child.maxZ + child.transform3D.z;
 				if (m > max)
 					max = m;

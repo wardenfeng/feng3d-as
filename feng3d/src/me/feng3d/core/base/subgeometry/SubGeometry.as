@@ -1,5 +1,7 @@
 package me.feng3d.core.base.subgeometry
 {
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
@@ -133,6 +135,92 @@ package me.feng3d.core.base.subgeometry
 			updateVertexPositionData(vertices);
 
 			updateUVData(uvs);
+		}
+
+		/**
+		 * 应用变换矩阵
+		 * @param transform 变换矩阵
+		 */
+		public function applyTransformation(transform:Matrix3D):void
+		{
+			var vertices:Vector.<Number> = vertexPositionData;
+			var normals:Vector.<Number> = vertexNormalData;
+			var tangents:Vector.<Number> = vertexTangentData;
+
+			var posStride:int = vertexPositionStride;
+			var normalStride:int = vertexNormalStride;
+			var tangentStride:int = vertexTangentStride;
+
+			var len:uint = vertices.length / posStride;
+			var i:uint, i1:uint, i2:uint;
+			var vector:Vector3D = new Vector3D();
+
+			var bakeNormals:Boolean = normals != null;
+			var bakeTangents:Boolean = tangents != null;
+			var invTranspose:Matrix3D;
+
+			if (bakeNormals || bakeTangents)
+			{
+				invTranspose = transform.clone();
+				invTranspose.invert();
+				invTranspose.transpose();
+			}
+
+			var vi0:int = 0;
+			var ni0:int = 0;
+			var ti0:int = 0;
+
+			for (i = 0; i < len; ++i)
+			{
+				i1 = vi0 + 1;
+				i2 = vi0 + 2;
+
+				// bake position
+				vector.x = vertices[vi0];
+				vector.y = vertices[i1];
+				vector.z = vertices[i2];
+				vector = transform.transformVector(vector);
+				vertices[vi0] = vector.x;
+				vertices[i1] = vector.y;
+				vertices[i2] = vector.z;
+				vi0 += posStride;
+
+				// bake normal
+				if (bakeNormals)
+				{
+					i1 = ni0 + 1;
+					i2 = ni0 + 2;
+					vector.x = normals[ni0];
+					vector.y = normals[i1];
+					vector.z = normals[i2];
+					vector = invTranspose.deltaTransformVector(vector);
+					vector.normalize();
+					normals[ni0] = vector.x;
+					normals[i1] = vector.y;
+					normals[i2] = vector.z;
+					ni0 += normalStride;
+				}
+
+				// bake tangent
+				if (bakeTangents)
+				{
+					i1 = ti0 + 1;
+					i2 = ti0 + 2;
+					vector.x = tangents[ti0];
+					vector.y = tangents[i1];
+					vector.z = tangents[i2];
+					vector = invTranspose.deltaTransformVector(vector);
+					vector.normalize();
+					tangents[ti0] = vector.x;
+					tangents[i1] = vector.y;
+					tangents[i2] = vector.z;
+					ti0 += tangentStride;
+				}
+			}
+
+			context3DBufferOwner.markBufferDirty(_.position_va_3);
+			context3DBufferOwner.markBufferDirty(_.normal_va_3);
+			context3DBufferOwner.markBufferDirty(_.tangent_va_3);
 		}
 
 		/**

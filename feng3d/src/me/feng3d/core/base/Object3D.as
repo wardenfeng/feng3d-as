@@ -396,6 +396,54 @@ package me.feng3d.core.base
 		}
 
 		/**
+		 * The minimum extremum of the object along the X-axis.
+		 */
+		public function get minX():Number
+		{
+			return 0;
+		}
+
+		/**
+		 * The minimum extremum of the object along the Y-axis.
+		 */
+		public function get minY():Number
+		{
+			return 0;
+		}
+
+		/**
+		 * The minimum extremum of the object along the Z-axis.
+		 */
+		public function get minZ():Number
+		{
+			return 0;
+		}
+
+		/**
+		 * The maximum extremum of the object along the X-axis.
+		 */
+		public function get maxX():Number
+		{
+			return 0;
+		}
+
+		/**
+		 * The maximum extremum of the object along the Y-axis.
+		 */
+		public function get maxY():Number
+		{
+			return 0;
+		}
+
+		/**
+		 * The maximum extremum of the object along the Z-axis.
+		 */
+		public function get maxZ():Number
+		{
+			return 0;
+		}
+
+		/**
 		 * Cleans up any resources used by the current object.
 		 */
 		public function dispose():void

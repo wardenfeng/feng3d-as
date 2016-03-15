@@ -3,7 +3,7 @@ package me.feng3d.core.base
 	import flash.geom.Matrix3D;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-	
+
 	import me.feng.component.Component;
 	import me.feng3d.arcane;
 	import me.feng3d.components.subgeometry.SubGeometryTransformation;
@@ -31,7 +31,7 @@ package me.feng3d.core.base
 
 		public function Geometry()
 		{
-			_namedAsset = new NamedAsset(this,AssetType.GEOMETRY);
+			_namedAsset = new NamedAsset(this, AssetType.GEOMETRY);
 			_subGeometries = new Vector.<SubGeometry>();
 		}
 
@@ -143,7 +143,7 @@ package me.feng3d.core.base
 				subGeom.dispose();
 			}
 		}
-		
+
 		public function get namedAsset():NamedAsset
 		{
 			return _namedAsset;
