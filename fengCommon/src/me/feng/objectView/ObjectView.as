@@ -41,7 +41,7 @@ package me.feng.objectView
 
 		/**
 		 * 指定属性类型界面类定义字典
-		 */		
+		 */
 		private static var attributeViewClassByType:Dictionary = new Dictionary();
 
 		/**

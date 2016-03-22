@@ -2,14 +2,11 @@ package me.feng.objectView.view
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import me.feng.objectView.IObjectView;
-	import me.feng.objectView.ObjectAttributeInfo;
-	import me.feng.objectView.ObjectView;
 
-	import me.feng.objectView.data.ObjectAttributeInfo;
 	import me.feng.objectView.ObjectView;
-	import me.feng.objectView.utils.ObjectAttributeUtils;
 	import me.feng.objectView.base.IObjectView;
+	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.utils.ObjectAttributeUtils;
 
 
 	/**
@@ -19,6 +16,9 @@ package me.feng.objectView.view
 	public class DefaultObjectView extends Sprite implements IObjectView
 	{
 
+		/**
+		 * @inheritDoc
+		 */
 		public function set data(value:Object):void
 		{
 			var h:Number = 0;

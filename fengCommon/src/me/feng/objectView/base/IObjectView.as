@@ -7,6 +7,9 @@ package me.feng.objectView.base
 	 */
 	public interface IObjectView
 	{
+		/**
+		 * 对象界面数据
+		 */
 		function set data(value:Object):void;
 	}
 }
