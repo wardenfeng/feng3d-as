@@ -9,6 +9,11 @@ package me.feng.objectView.block
 	public class ObjectAttributeBlock
 	{
 		/**
+		 * 块全局名称
+		 */
+		public var blockGlobalName:String;
+
+		/**
 		 * 块名称
 		 */
 		public var blockName:String;
@@ -17,6 +22,7 @@ package me.feng.objectView.block
 		 * 属性信息列表
 		 */
 		public var itemList:Vector.<ObjectAttributeInfo>;
+
 
 		/**
 		 * 构建一个对象属性块

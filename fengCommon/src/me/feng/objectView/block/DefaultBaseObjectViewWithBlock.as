@@ -20,10 +20,12 @@ package me.feng.objectView.block
 		public function set data(value:Object):void
 		{
 			var h:Number = 0;
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeUtils.getObjectAttributeInfos(value);
-			for (var i:int = 0; i < objectAttributeInfos.length; i++)
+
+			var objectAttributeBlocks:Vector.<ObjectAttributeBlock> = ObjectAttributeBlockUtils.getObjectAttributeBlocks(value);
+
+			for (var i:int = 0; i < objectAttributeBlocks.length; i++)
 			{
-				var displayObject:DisplayObject = ObjectView.getObjectAttributeView(objectAttributeInfos[i]);
+				var displayObject:DisplayObject = ObjectAttributeBlockUtils.getObjectAttributeBlockView(objectAttributeBlocks[i]);
 				displayObject.y = h;
 				addChild(displayObject);
 				h += displayObject.height + 2;

@@ -1,5 +1,6 @@
 package me.feng.objectView.block
 {
+	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
 
 	import avmplus.getQualifiedClassName;
@@ -113,6 +114,7 @@ package me.feng.objectView.block
 			if (objectAttributeBlock == null)
 			{
 				objectAttributeBlock = objectAttributeBlockDic[blockGlobalName] = new ObjectAttributeBlock();
+				objectAttributeBlock.blockGlobalName = blockGlobalName;
 
 				var blockName:String = blockGlobalName.split("-")[1];
 
@@ -124,5 +126,50 @@ package me.feng.objectView.block
 
 			return objectAttributeBlockDic[blockGlobalName];
 		}
+
+		/**
+		 * 获取对象属性块界面
+		 * @param objectAttributeBlock		对象属性块信息
+		 * @return							对象属性块界面
+		 */
+		public static function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
+		{
+			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock);
+			var view:DisplayObject = new viewClass();
+			IObjectAttributeBlockView(view).objectAttributeBlock = objectAttributeBlock;
+			return view;
+		}
+
+		/**
+		 * 获取对象属性块界面类定义
+		 * @param objectAttributeBlock		对象属性快信息
+		 * @return							对象属性块界面类定义
+		 */
+		private static function getObjectAttributeBlockViewClass(objectAttributeBlock:ObjectAttributeBlock):Class
+		{
+			//获取自定义对象属性界面类定义
+			var viewClass:Class = getCustomObjectAttributeBlockViewClass(objectAttributeBlock.blockGlobalName);
+			if (viewClass != null)
+				return viewClass;
+
+			//返回默认对象属性界面类定义
+			return DefaultObjectAttributeBlockView;
+		}
+
+		/**
+		 * 获取自定义对象属性块界面类定义
+		 * @param blockGlobalName			属性块全局名称
+		 * @return							自定义对象属性块界面类定义
+		 */
+		private static function getCustomObjectAttributeBlockViewClass(blockGlobalName:String):Class
+		{
+			var viewClass:Class = customObjectAttributeViewClassDic[blockGlobalName];
+			return viewClass;
+		}
+
+		/**
+		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
+		 */
+		private static var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 	}
 }
