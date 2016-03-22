@@ -1,10 +1,12 @@
-package me.feng.objectView
+package me.feng.objectView.view
 {
 	import flash.display.Sprite;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.utils.getDefinitionByName;
+	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.IObjectAttributeView;
 
 	/**
 	 * 默认对象属性界面

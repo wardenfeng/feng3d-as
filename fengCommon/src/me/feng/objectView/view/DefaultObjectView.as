@@ -1,7 +1,12 @@
-package me.feng.objectView
+package me.feng.objectView.view
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+
+	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.ObjectView;
+	import me.feng.objectView.utils.ObjectAttributeUtils;
+	import me.feng.objectView.base.IObjectView;
 
 
 	/**
@@ -14,7 +19,7 @@ package me.feng.objectView
 		public function set data(value:Object):void
 		{
 			var h:Number = 0;
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeInfo.getObjectAttributeInfos(value);
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeUtils.getObjectAttributeInfos(value);
 			for (var i:int = 0; i < objectAttributeInfos.length; i++)
 			{
 				var displayObject:DisplayObject = ObjectView.getObjectAttributeView(objectAttributeInfos[i]);

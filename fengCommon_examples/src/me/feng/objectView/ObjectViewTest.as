@@ -45,9 +45,9 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.text.TextField;
 
-import me.feng.objectView.IObjectAttributeView;
-import me.feng.objectView.IObjectView;
-import me.feng.objectView.ObjectAttributeInfo;
+import me.feng.objectView.base.IObjectAttributeView;
+import me.feng.objectView.base.IObjectView;
+import me.feng.objectView.data.ObjectAttributeInfo;
 
 class CustomAttrView extends Shape implements IObjectAttributeView
 {

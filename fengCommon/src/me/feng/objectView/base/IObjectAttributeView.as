@@ -1,8 +1,9 @@
-package me.feng.objectView
+package me.feng.objectView.base
 {
+	import me.feng.objectView.data.ObjectAttributeInfo;
 
 	/**
-	 * 对象属性界面
+	 * 对象属性界面接口
 	 * @author feng 2016-3-10
 	 */
 	public interface IObjectAttributeView
