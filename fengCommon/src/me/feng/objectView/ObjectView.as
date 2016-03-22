@@ -6,6 +6,9 @@ package me.feng.objectView
 	import avmplus.getQualifiedClassName;
 
 	import me.feng.utils.ClassUtils;
+	import me.feng.objectView.view.DefaultBaseObjectView;
+	import me.feng.objectView.view.DefaultObjectAttributeView;
+	import me.feng.objectView.view.DefaultObjectView;
 
 	/**
 	 * 对象界面

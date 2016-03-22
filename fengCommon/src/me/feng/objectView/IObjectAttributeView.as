@@ -2,7 +2,7 @@ package me.feng.objectView
 {
 
 	/**
-	 * 对象属性界面
+	 * 对象属性界面接口
 	 * @author feng 2016-3-10
 	 */
 	public interface IObjectAttributeView

@@ -1,7 +1,10 @@
-package me.feng.objectView
+package me.feng.objectView.view
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import me.feng.objectView.IObjectView;
+	import me.feng.objectView.ObjectAttributeInfo;
+	import me.feng.objectView.ObjectView;
 
 
 	/**
