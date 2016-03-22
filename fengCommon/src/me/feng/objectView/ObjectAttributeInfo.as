@@ -50,7 +50,7 @@ package me.feng.objectView
 		 * @param object				指定对象
 		 * @param attributeName			属性名称
 		 * @return						实例属性信息
-		 */		
+		 */
 		public static function getObjectAttributeInfo(object:Object, attributeName:String):ObjectAttributeInfo
 		{
 			if (!object.hasOwnProperty(attributeName))
@@ -138,12 +138,12 @@ package me.feng.objectView
 
 		/**
 		 * 实例所有固定实例属性字典 （key:实例类名,value:实例所有固定实例属性）
-		 */		
+		 */
 		private static var objectFixedAttributeInfoListDic:Dictionary = new Dictionary();
 
 		/**
-		 * 实例固定实例属性字典 （key:实例类名,value:实例固定实例属性）
-		 */		
+		 * 实例固定实例属性字典 （key:固定实例属性ID,value:实例固定实例属性）
+		 */
 		private static var objectFixedAttributeInfoDic:Dictionary = new Dictionary();
 	}
 }

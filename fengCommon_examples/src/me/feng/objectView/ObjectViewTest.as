@@ -2,6 +2,7 @@ package me.feng.objectView
 {
 	import com.bit101.components.HBox;
 
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 
 	//
@@ -24,9 +25,11 @@ package me.feng.objectView
 			box.addChild(ObjectView.getObjectView(a));
 
 			ObjectView.setCustomObjectAttributeViewClass(Object, "custom", CustomAttrView);
-			box.addChild(ObjectView.getObjectView( //
+			var objView:DisplayObject = ObjectView.getObjectView( //
 				{aaaaaaaaaaaaaaaaa: "asfddddddddddddddddddddddddddddddddd", b: "bnm,", c: 1, d: false, custom: "", obj: {a: 1}} //
-				));
+				);
+			objView.metaData = {a: 1};
+			box.addChild(objView);
 
 			ObjectView.setCustomObjectViewClass(int, customObjectView);
 			box.addChild(ObjectView.getObjectView(5));
