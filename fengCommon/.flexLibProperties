@@ -25,16 +25,16 @@
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
     <classEntry path="me.feng.objectView.ObjectView"/>
-    <classEntry path="me.feng.objectView.data.ObjectAttributeInfo"/>
-    <classEntry path="me.feng.objectView.view.DefaultObjectAttributeView"/>
+    <classEntry path="me.feng.objectView.base.data.ObjectAttributeInfo"/>
+    <classEntry path="me.feng.objectView.base.view.DefaultObjectAttributeView"/>
     <classEntry path="me.feng.objectView.base.IObjectAttributeView"/>
     <classEntry path="me.feng.objectView.base.IObjectView"/>
-    <classEntry path="me.feng.objectView.view.DefaultBaseObjectView"/>
-    <classEntry path="me.feng.objectView.view.DefaultObjectView"/>
-    <classEntry path="me.feng.objectView.utils.ObjectAttributeUtils"/>
-    <classEntry path="me.feng.objectView.data.ObjectAttributeBlock"/>
-    <classEntry path="me.feng.objectView.base.IObjectAttributeBlockView"/>
-    <classEntry path="me.feng.objectView.utils.ObjectAttributeBlockUtils"/>
+    <classEntry path="me.feng.objectView.base.view.DefaultBaseObjectView"/>
+    <classEntry path="me.feng.objectView.base.view.DefaultObjectView"/>
+    <classEntry path="me.feng.objectView.base.utils.ObjectAttributeUtils"/>
+    <classEntry path="me.feng.objectView.block.ObjectAttributeBlock"/>
+    <classEntry path="me.feng.objectView.block.IObjectAttributeBlockView"/>
+    <classEntry path="me.feng.objectView.block.ObjectAttributeBlockUtils"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

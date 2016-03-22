@@ -6,10 +6,10 @@ package me.feng.objectView
 	import avmplus.getQualifiedClassName;
 
 	import me.feng.utils.ClassUtils;
-	import me.feng.objectView.view.DefaultBaseObjectView;
-	import me.feng.objectView.view.DefaultObjectAttributeView;
-	import me.feng.objectView.view.DefaultObjectView;
-	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.view.DefaultBaseObjectView;
+	import me.feng.objectView.base.view.DefaultObjectAttributeView;
+	import me.feng.objectView.base.view.DefaultObjectView;
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.IObjectView;
 

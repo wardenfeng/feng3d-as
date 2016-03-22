@@ -1,6 +1,6 @@
 package me.feng.objectView.base
 {
-	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
 
 	/**
 	 * 对象属性界面接口

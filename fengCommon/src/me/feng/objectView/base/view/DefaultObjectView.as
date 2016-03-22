@@ -1,12 +1,12 @@
-package me.feng.objectView.view
+package me.feng.objectView.base.view
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.IObjectView;
-	import me.feng.objectView.data.ObjectAttributeInfo;
-	import me.feng.objectView.utils.ObjectAttributeUtils;
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 
 
 	/**

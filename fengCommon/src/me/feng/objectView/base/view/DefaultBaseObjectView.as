@@ -1,4 +1,4 @@
-package me.feng.objectView.view
+package me.feng.objectView.base.view
 {
 	import flash.text.TextField;
 	import me.feng.objectView.base.IObjectView;

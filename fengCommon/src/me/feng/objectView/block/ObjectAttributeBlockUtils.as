@@ -1,12 +1,12 @@
-package me.feng.objectView.utils
+package me.feng.objectView.block
 {
 	import flash.utils.Dictionary;
 
 	import avmplus.getQualifiedClassName;
 
 	import me.feng.objectView.ObjectView;
-	import me.feng.objectView.data.ObjectAttributeBlock;
-	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 
 	/**
 	 * 对象属性块工具

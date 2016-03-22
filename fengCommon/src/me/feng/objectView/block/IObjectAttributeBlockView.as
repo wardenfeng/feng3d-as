@@ -1,6 +1,5 @@
-package me.feng.objectView.base
+package me.feng.objectView.block
 {
-	import me.feng.objectView.data.ObjectAttributeBlock;
 
 	/**
 	 * 对象属性块界面接口

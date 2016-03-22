@@ -1,4 +1,4 @@
-package me.feng.objectView.data
+package me.feng.objectView.base.data
 {
 
 	/**

@@ -1,5 +1,6 @@
-package me.feng.objectView.data
+package me.feng.objectView.block
 {
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
 
 	/**
 	 * 对象属性块
