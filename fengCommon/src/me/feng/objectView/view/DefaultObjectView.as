@@ -16,6 +16,9 @@ package me.feng.objectView.view
 	public class DefaultObjectView extends Sprite implements IObjectView
 	{
 
+		/**
+		 * @inheritDoc
+		 */
 		public function set data(value:Object):void
 		{
 			var h:Number = 0;
