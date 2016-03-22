@@ -19,15 +19,19 @@ package me.feng.objectView.block
 		 */
 		public function set objectAttributeBlock(value:ObjectAttributeBlock):void
 		{
-			var blockTitle:TextField = new TextField();
-			//			label.height = 50;
-			blockTitle.width = 100;
-			blockTitle.height = 20;
-			blockTitle.textColor = 0xff0000;
-			blockTitle.text = value.blockName;
-			addChild(blockTitle);
+			var h:Number = 0;
+			if (value.blockName != null && value.blockName.length > 0)
+			{
+				var blockTitle:TextField = new TextField();
+				//			label.height = 50;
+				blockTitle.width = 100;
+				blockTitle.height = 20;
+				blockTitle.textColor = 0xff0000;
+				blockTitle.text = value.blockName;
+				addChild(blockTitle);
+				h = blockTitle.x + blockTitle.height + 2;
+			}
 
-			var h:Number = blockTitle.x + blockTitle.height;
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = value.itemList;
 			for (var i:int = 0; i < objectAttributeInfos.length; i++)
 			{

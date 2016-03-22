@@ -5,13 +5,13 @@ package me.feng.objectView
 
 	import avmplus.getQualifiedClassName;
 
-	import me.feng.utils.ClassUtils;
-	import me.feng.objectView.base.view.DefaultBaseObjectView;
-	import me.feng.objectView.base.view.DefaultObjectAttributeView;
-	import me.feng.objectView.base.view.DefaultObjectView;
-	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.IObjectView;
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.view.DefaultBaseObjectView;
+	import me.feng.objectView.base.view.DefaultObjectAttributeView;
+	import me.feng.objectView.block.DefaultObjectViewWithBlock;
+	import me.feng.utils.ClassUtils;
 
 	/**
 	 * 对象界面
@@ -27,7 +27,8 @@ package me.feng.objectView
 		/**
 		 * 默认对象界面类定义
 		 */
-		public static var DefaultObjectViewClass:Class = DefaultObjectView;
+//		public static var DefaultObjectViewClass:Class = DefaultObjectView;
+		public static var DefaultObjectViewClass:Class = DefaultObjectViewWithBlock;
 
 		/**
 		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
