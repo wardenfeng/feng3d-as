@@ -10,7 +10,7 @@ package me.feng.objectView
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.view.DefaultBaseObjectView;
 	import me.feng.objectView.base.view.DefaultObjectAttributeView;
-	import me.feng.objectView.block.DefaultObjectViewWithBlock;
+	import me.feng.objectView.block.view.DefaultObjectViewWithBlock;
 	import me.feng.utils.ClassUtils;
 
 	/**

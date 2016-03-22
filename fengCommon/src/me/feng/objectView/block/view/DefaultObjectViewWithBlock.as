@@ -1,4 +1,4 @@
-package me.feng.objectView.block
+package me.feng.objectView.block.view
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -7,6 +7,8 @@ package me.feng.objectView.block
 	import me.feng.objectView.base.IObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
+	import me.feng.objectView.block.data.ObjectAttributeBlock;
+	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
 
 	/**
 	 * 默认使用块的对象界面

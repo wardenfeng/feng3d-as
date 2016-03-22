@@ -1,4 +1,4 @@
-package me.feng.objectView.block
+package me.feng.objectView.block.data
 {
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 

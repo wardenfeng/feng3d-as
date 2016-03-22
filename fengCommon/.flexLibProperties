@@ -32,11 +32,11 @@
     <classEntry path="me.feng.objectView.base.view.DefaultBaseObjectView"/>
     <classEntry path="me.feng.objectView.base.view.DefaultObjectView"/>
     <classEntry path="me.feng.objectView.base.utils.ObjectAttributeUtils"/>
-    <classEntry path="me.feng.objectView.block.ObjectAttributeBlock"/>
+    <classEntry path="me.feng.objectView.block.data.ObjectAttributeBlock"/>
     <classEntry path="me.feng.objectView.block.IObjectAttributeBlockView"/>
-    <classEntry path="me.feng.objectView.block.ObjectAttributeBlockUtils"/>
-    <classEntry path="me.feng.objectView.block.DefaultObjectViewWithBlock"/>
-    <classEntry path="me.feng.objectView.block.DefaultObjectAttributeBlockView"/>
+    <classEntry path="me.feng.objectView.block.utils.ObjectAttributeBlockUtils"/>
+    <classEntry path="me.feng.objectView.block.view.DefaultObjectViewWithBlock"/>
+    <classEntry path="me.feng.objectView.block.view.DefaultObjectAttributeBlockView"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
