@@ -25,12 +25,13 @@
     <classEntry path="me.feng.debug.assert"/>
     <classEntry path="me.feng.utils.ArrayUtils"/>
     <classEntry path="me.feng.objectView.ObjectView"/>
-    <classEntry path="me.feng.objectView.ObjectAttributeInfo"/>
+    <classEntry path="me.feng.objectView.data.ObjectAttributeInfo"/>
     <classEntry path="me.feng.objectView.view.DefaultObjectAttributeView"/>
-    <classEntry path="me.feng.objectView.IObjectAttributeView"/>
-    <classEntry path="me.feng.objectView.IObjectView"/>
+    <classEntry path="me.feng.objectView.base.IObjectAttributeView"/>
+    <classEntry path="me.feng.objectView.base.IObjectView"/>
     <classEntry path="me.feng.objectView.view.DefaultBaseObjectView"/>
     <classEntry path="me.feng.objectView.view.DefaultObjectView"/>
+    <classEntry path="me.feng.objectView.utils.ObjectAttributeUtils"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

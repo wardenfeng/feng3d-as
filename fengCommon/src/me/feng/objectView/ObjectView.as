@@ -9,6 +9,9 @@ package me.feng.objectView
 	import me.feng.objectView.view.DefaultBaseObjectView;
 	import me.feng.objectView.view.DefaultObjectAttributeView;
 	import me.feng.objectView.view.DefaultObjectView;
+	import me.feng.objectView.data.ObjectAttributeInfo;
+	import me.feng.objectView.base.IObjectAttributeView;
+	import me.feng.objectView.base.IObjectView;
 
 	/**
 	 * 对象界面
@@ -38,7 +41,7 @@ package me.feng.objectView
 
 		/**
 		 * 指定属性类型界面类定义字典
-		 */		
+		 */
 		private static var attributeViewClassByType:Dictionary = new Dictionary();
 
 		/**
