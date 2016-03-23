@@ -4,6 +4,7 @@ package me.feng.objectView
 
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 	import me.feng.objectView.base.utils.ObjectViewUtils;
+	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
 
 
 	/**
@@ -30,8 +31,7 @@ package me.feng.objectView
 		 */
 		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
 		{
-			var key:String = ObjectView.getClassAttributeID(owner, attributeName);
-			objectAttributeUtils.customObjectAttributeViewClassDic[key] = viewClass;
+			objectAttributeUtils.setCustomObjectAttributeViewClass(owner, attributeName, viewClass);
 		}
 
 		/**
@@ -41,8 +41,18 @@ package me.feng.objectView
 		 */
 		public static function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
 		{
-			var attributeClassName:String = getQualifiedClassName(attributeClass);
-			objectAttributeUtils.attributeViewClassByTypeDic[attributeClassName] = viewClass;
+			objectAttributeUtils.setAttributeViewClassByType(attributeClass, viewClass);
+		}
+
+		/**
+		 * 设置对象属性所在的属性块名称
+		 * @param owner				属性拥有者
+		 * @param attrName			属性名称
+		 * @param blockName			所在属性块名称
+		 */
+		public static function setObjectAttributeBlockName(owner:Object, attrName:String, blockName:String):void
+		{
+			objectAttributeBlockUtils.setObjectAttributeBlockName(owner, attrName, blockName);
 		}
 
 		private static function get objectViewUtils():ObjectViewUtils
@@ -53,6 +63,11 @@ package me.feng.objectView
 		private static function get objectAttributeUtils():ObjectAttributeUtils
 		{
 			return ObjectView.objectAttributeUtils;
+		}
+
+		private static function get objectAttributeBlockUtils():ObjectAttributeBlockUtils
+		{
+			return ObjectView.objectAttributeBlockUtils;
 		}
 	}
 }

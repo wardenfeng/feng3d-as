@@ -18,9 +18,15 @@ package me.feng.objectView.block.utils
 	public class ObjectAttributeBlockUtils
 	{
 		/**
+		 * 属性块默认界面
+		 */
+		private var objectAttributeBlockView:Class = DefaultObjectAttributeBlockView;
+
+		/**
 		 * 对象属性块字典		（key:对象属性块全局名称,value:对象属性块）
 		 */
 		private const objectAttributeBlockDic:Dictionary = new Dictionary();
+
 		/**
 		 * 对象属性块名称字典		（key:类属性ID,value:对象属性块名称）
 		 */
@@ -30,6 +36,31 @@ package me.feng.objectView.block.utils
 		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
 		 */
 		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * 获取对象属性块界面
+		 * @param objectAttributeBlock		对象属性块信息
+		 * @return							对象属性块界面
+		 */
+		public function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
+		{
+			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock);
+			var view:DisplayObject = new viewClass();
+			IObjectAttributeBlockView(view).objectAttributeBlock = objectAttributeBlock;
+			return view;
+		}
+
+		/**
+		 * 设置对象属性所在的属性块名称
+		 * @param owner				属性拥有者
+		 * @param attrName			属性名称
+		 * @param blockName			所在属性块名称
+		 */
+		public function setObjectAttributeBlockName(owner:Object, attrName:String, blockName:String):void
+		{
+			var key:String = ObjectView.getClassAttributeID(owner, attrName);
+			objectAttributeBlockNameDic[key] = blockName;
+		}
 
 		/**
 		 * 获取对象属性块列表
@@ -135,19 +166,6 @@ package me.feng.objectView.block.utils
 		}
 
 		/**
-		 * 获取对象属性块界面
-		 * @param objectAttributeBlock		对象属性块信息
-		 * @return							对象属性块界面
-		 */
-		public function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
-		{
-			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock);
-			var view:DisplayObject = new viewClass();
-			IObjectAttributeBlockView(view).objectAttributeBlock = objectAttributeBlock;
-			return view;
-		}
-
-		/**
 		 * 获取对象属性块界面类定义
 		 * @param objectAttributeBlock		对象属性快信息
 		 * @return							对象属性块界面类定义
@@ -160,7 +178,7 @@ package me.feng.objectView.block.utils
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return DefaultObjectAttributeBlockView;
+			return objectAttributeBlockView;
 		}
 
 		/**

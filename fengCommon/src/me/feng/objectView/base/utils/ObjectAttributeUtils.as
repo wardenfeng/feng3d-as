@@ -26,12 +26,12 @@ package me.feng.objectView.base.utils
 		/**
 		 * 自定义对象属性界面类定义字典（key:类名称+属性名,value:属性界面类定义）
 		 */
-		public var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
+		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
 		 */
-		public var attributeViewClassByTypeDic:Dictionary = new Dictionary();
+		private var attributeViewClassByTypeDic:Dictionary = new Dictionary();
 
 		/**
 		 * 实例所有固定实例属性字典 （key:实例类名,value:实例所有固定实例属性）
@@ -54,6 +54,29 @@ package me.feng.objectView.base.utils
 			var view:DisplayObject = new viewClass();
 			IObjectAttributeView(view).objectAttributeInfo = objectAttributeInfo;
 			return view;
+		}
+
+		/**
+		 * 设置自定义对象属性界面类定义
+		 * @param owner					属性拥有者
+		 * @param attributeName			属性名称
+		 * @param viewClass				自定义对象属性界面类定义（该类必须是实现IObjectAttributeView接口并且是DisplayObject的子类）
+		 */
+		public function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
+		{
+			var key:String = ObjectView.getClassAttributeID(owner, attributeName);
+			customObjectAttributeViewClassDic[key] = viewClass;
+		}
+
+		/**
+		 * 设置所有特定类型属性的界面类定义
+		 * @param attributeClass			特定属性类型
+		 * @param viewClass					属性界面类
+		 */
+		public function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
+		{
+			var attributeClassName:String = getQualifiedClassName(attributeClass);
+			attributeViewClassByTypeDic[attributeClassName] = viewClass;
 		}
 
 		/**

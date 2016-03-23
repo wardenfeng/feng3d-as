@@ -27,7 +27,17 @@ package me.feng.objectView
 
 		private function initBlockConfig():void
 		{
-
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "x", "坐标");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "y", "坐标");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "z", "坐标");
+//
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "rx", "旋转");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "ry", "旋转");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "rz", "旋转");
+//
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "sx", "缩放");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "sy", "缩放");
+			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "sz", "缩放");
 		}
 	}
 }

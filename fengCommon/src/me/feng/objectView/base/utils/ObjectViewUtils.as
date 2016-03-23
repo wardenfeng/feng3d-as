@@ -33,6 +33,17 @@ package me.feng.objectView.base.utils
 		public var customObjectViewClassDic:Dictionary = new Dictionary();
 
 		/**
+		 * 设置自定义对象界面类定义
+		 * @param object				指定对象类型
+		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
+		 */
+		public function setCustomObjectViewClass(object:Object, viewClass:Class):void
+		{
+			var className:String = getQualifiedClassName(object);
+			customObjectViewClassDic[className] = viewClass;
+		}
+
+		/**
 		 * 获取对象界面
 		 * @param object	用于生成界面的对象
 		 */
@@ -75,17 +86,6 @@ package me.feng.objectView.base.utils
 			var className:String = getQualifiedClassName(object);
 			var viewClass:Class = customObjectViewClassDic[className];
 			return viewClass;
-		}
-
-		/**
-		 * 设置自定义对象界面类定义
-		 * @param object				指定对象类型
-		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
-		 */
-		public function setCustomObjectViewClass(object:Object, viewClass:Class):void
-		{
-			var className:String = getQualifiedClassName(object);
-			customObjectViewClassDic[className] = viewClass;
 		}
 	}
 }

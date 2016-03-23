@@ -44,7 +44,12 @@ package me.feng.objectView.block.view
 			}
 			graphics.clear();
 			graphics.beginFill(0x666666);
-			graphics.drawRect(0, 0, 200, h);
+			graphics.lineStyle(null, 0x00ff00);
+			graphics.moveTo(0, 0);
+			graphics.lineTo(200, 0);
+			graphics.lineTo(200, h);
+			graphics.lineTo(0, h);
+			graphics.lineTo(0, 0);
 			graphics.endFill();
 		}
 	}
