@@ -13,6 +13,8 @@ package me.feng.objectView
 	{
 		public function init():void
 		{
+			initBlockConfig()
+
 			var box:DisplayObjectContainer = new HBox();
 
 			var a:ObjectA = new ObjectA();
@@ -20,6 +22,12 @@ package me.feng.objectView
 			a.da = 2;
 			a.db = "```";
 			box.addChild(ObjectView.getObjectView(a));
+			addChild(box);
+		}
+
+		private function initBlockConfig():void
+		{
+
 		}
 	}
 }

@@ -31,17 +31,17 @@ package me.feng.objectView.base.utils
 		/**
 		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
 		 */
-		public var attributeViewClassByType:Dictionary = new Dictionary();
+		public var attributeViewClassByTypeDic:Dictionary = new Dictionary();
 
 		/**
 		 * 实例所有固定实例属性字典 （key:实例类名,value:实例所有固定实例属性）
 		 */
-		private static var objectFixedAttributeInfoListDic:Dictionary = new Dictionary();
+		private var objectFixedAttributeInfoListDic:Dictionary = new Dictionary();
 
 		/**
 		 * 实例固定实例属性字典 （key:固定实例属性ID,value:实例固定实例属性）
 		 */
-		private static var objectFixedAttributeInfoDic:Dictionary = new Dictionary();
+		private var objectFixedAttributeInfoDic:Dictionary = new Dictionary();
 
 		/**
 		 * 获取对象属性界面
@@ -68,7 +68,7 @@ package me.feng.objectView.base.utils
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = attributeViewClassByType[objectAttributeInfo.type];
+			viewClass = attributeViewClassByTypeDic[objectAttributeInfo.type];
 			if (viewClass != null)
 				return viewClass;
 
@@ -94,7 +94,7 @@ package me.feng.objectView.base.utils
 		 * @param object		指定对象
 		 * @return				属性信息
 		 */
-		public static function getObjectAttributeInfos(object:Object):Vector.<ObjectAttributeInfo>
+		public function getObjectAttributeInfos(object:Object):Vector.<ObjectAttributeInfo>
 		{
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = new Vector.<ObjectAttributeInfo>();
 
@@ -136,7 +136,7 @@ package me.feng.objectView.base.utils
 		 * @param object		指定对象
 		 * @return 				属性信息
 		 */
-		public static function getObjectDynamicAttributeInfosList(object:Object):Vector.<ObjectAttributeInfo>
+		public function getObjectDynamicAttributeInfosList(object:Object):Vector.<ObjectAttributeInfo>
 		{
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = new Vector.<ObjectAttributeInfo>();
 
@@ -155,7 +155,7 @@ package me.feng.objectView.base.utils
 		 * @param attributeName
 		 * @return
 		 */
-		public static function getObjectDynamicAttributeInfo(object:Object, attributeName:String):ObjectAttributeInfo
+		public function getObjectDynamicAttributeInfo(object:Object, attributeName:String):ObjectAttributeInfo
 		{
 			var objectAttributeInfo:ObjectAttributeInfo = new ObjectAttributeInfo();
 			objectAttributeInfo.name = attributeName;
@@ -169,7 +169,7 @@ package me.feng.objectView.base.utils
 		 * @param object		指定对象
 		 * @return 				属性信息
 		 */
-		public static function getObjectFixedAttributeInfoList(object:Object):Vector.<ObjectAttributeInfo>
+		public function getObjectFixedAttributeInfoList(object:Object):Vector.<ObjectAttributeInfo>
 		{
 			var className:String = getQualifiedClassName(object);
 

@@ -6,7 +6,6 @@ package me.feng.objectView.base.view
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.IObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
-	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 
 
 	/**
@@ -22,7 +21,7 @@ package me.feng.objectView.base.view
 		public function set data(value:Object):void
 		{
 			var h:Number = 0;
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeUtils.getObjectAttributeInfos(value);
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectView.getObjectAttributeInfos(value);
 			for (var i:int = 0; i < objectAttributeInfos.length; i++)
 			{
 				var displayObject:DisplayObject = ObjectView.getObjectAttributeView(objectAttributeInfos[i]);

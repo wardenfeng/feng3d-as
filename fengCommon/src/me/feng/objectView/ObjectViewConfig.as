@@ -42,7 +42,7 @@ package me.feng.objectView
 		public static function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
 		{
 			var attributeClassName:String = getQualifiedClassName(attributeClass);
-			objectAttributeUtils.attributeViewClassByType[attributeClassName] = viewClass;
+			objectAttributeUtils.attributeViewClassByTypeDic[attributeClassName] = viewClass;
 		}
 
 		private static function get objectViewUtils():ObjectViewUtils

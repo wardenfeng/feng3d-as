@@ -6,6 +6,7 @@ package me.feng.objectView
 	// @author feng 2016-3-11
 	//
 	public dynamic class ObjectA
+//	public class ObjectA
 	{
 		public var x:Number = 1;
 		public var y:Number = 2;

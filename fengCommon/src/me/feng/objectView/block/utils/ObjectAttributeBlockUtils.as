@@ -7,7 +7,6 @@ package me.feng.objectView.block.utils
 
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
-	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 	import me.feng.objectView.block.IObjectAttributeBlockView;
 	import me.feng.objectView.block.data.ObjectAttributeBlock;
 	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
@@ -21,20 +20,25 @@ package me.feng.objectView.block.utils
 		/**
 		 * 对象属性块字典		（key:对象属性块全局名称,value:对象属性块）
 		 */
-		private static const objectAttributeBlockDic:Dictionary = new Dictionary();
+		private const objectAttributeBlockDic:Dictionary = new Dictionary();
 		/**
 		 * 对象属性块名称字典		（key:类属性ID,value:对象属性块名称）
 		 */
-		private static const objectAttributeBlockNameDic:Dictionary = new Dictionary();
+		private const objectAttributeBlockNameDic:Dictionary = new Dictionary();
+
+		/**
+		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
+		 */
+		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 获取对象属性块列表
 		 * @param object		指定对象
 		 * @return
 		 */
-		public static function getObjectAttributeBlocks(object:Object):Vector.<ObjectAttributeBlock>
+		public function getObjectAttributeBlocks(object:Object):Vector.<ObjectAttributeBlock>
 		{
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectAttributeUtils.getObjectAttributeInfos(object);
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = ObjectView.getObjectAttributeInfos(object);
 
 			var objectAttributeBlocks:Vector.<ObjectAttributeBlock> = getObjectAttributeBlocksByObjectAttributeInfos(objectAttributeInfos);
 			return objectAttributeBlocks;
@@ -45,7 +49,7 @@ package me.feng.objectView.block.utils
 		 * @param objectAttributeInfos		对象属性信息列表
 		 * @return
 		 */
-		private static function getObjectAttributeBlocksByObjectAttributeInfos(objectAttributeInfos:Vector.<ObjectAttributeInfo>):Vector.<ObjectAttributeBlock>
+		private function getObjectAttributeBlocksByObjectAttributeInfos(objectAttributeInfos:Vector.<ObjectAttributeInfo>):Vector.<ObjectAttributeBlock>
 		{
 			var objectAttributeBlocks:Vector.<ObjectAttributeBlock> = new Vector.<ObjectAttributeBlock>();
 
@@ -66,7 +70,7 @@ package me.feng.objectView.block.utils
 			return objectAttributeBlocks;
 		}
 
-		private static function getObjectAttributeBlockByObjectAttributeInfo(objectAttributeInfo:ObjectAttributeInfo):ObjectAttributeBlock
+		private function getObjectAttributeBlockByObjectAttributeInfo(objectAttributeInfo:ObjectAttributeInfo):ObjectAttributeBlock
 		{
 			var blockGlobalName:String = getObjectAttributeBlockGlobalName(objectAttributeInfo.owner, objectAttributeInfo.name);
 
@@ -81,7 +85,7 @@ package me.feng.objectView.block.utils
 		 * @param attrName			属性名称
 		 * @return
 		 */
-		private static function getObjectAttributeBlockGlobalName(owner:Object, attrName:String):String
+		private function getObjectAttributeBlockGlobalName(owner:Object, attrName:String):String
 		{
 			var globalBlockName:String = getQualifiedClassName(owner);
 
@@ -99,7 +103,7 @@ package me.feng.objectView.block.utils
 		 * @param attrName			属性名称
 		 * @return
 		 */
-		private static function getObjectAttributeBlockName(owner:Object, attrName:String):String
+		private function getObjectAttributeBlockName(owner:Object, attrName:String):String
 		{
 			var key:String = ObjectView.getClassAttributeID(owner, attrName);
 			var blockName:String = objectAttributeBlockNameDic[key];
@@ -111,7 +115,7 @@ package me.feng.objectView.block.utils
 		 * @param blockGlobalName		对象属性块全局名称
 		 * @return
 		 */
-		private static function getBlockByBlockGlobalName(blockGlobalName:String):ObjectAttributeBlock
+		private function getBlockByBlockGlobalName(blockGlobalName:String):ObjectAttributeBlock
 		{
 			var objectAttributeBlock:ObjectAttributeBlock = objectAttributeBlockDic[blockGlobalName];
 			if (objectAttributeBlock == null)
@@ -135,7 +139,7 @@ package me.feng.objectView.block.utils
 		 * @param objectAttributeBlock		对象属性块信息
 		 * @return							对象属性块界面
 		 */
-		public static function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
+		public function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
 		{
 			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock);
 			var view:DisplayObject = new viewClass();
@@ -148,7 +152,7 @@ package me.feng.objectView.block.utils
 		 * @param objectAttributeBlock		对象属性快信息
 		 * @return							对象属性块界面类定义
 		 */
-		private static function getObjectAttributeBlockViewClass(objectAttributeBlock:ObjectAttributeBlock):Class
+		private function getObjectAttributeBlockViewClass(objectAttributeBlock:ObjectAttributeBlock):Class
 		{
 			//获取自定义对象属性界面类定义
 			var viewClass:Class = getCustomObjectAttributeBlockViewClass(objectAttributeBlock.blockGlobalName);
@@ -164,15 +168,10 @@ package me.feng.objectView.block.utils
 		 * @param blockGlobalName			属性块全局名称
 		 * @return							自定义对象属性块界面类定义
 		 */
-		private static function getCustomObjectAttributeBlockViewClass(blockGlobalName:String):Class
+		private function getCustomObjectAttributeBlockViewClass(blockGlobalName:String):Class
 		{
 			var viewClass:Class = customObjectAttributeViewClassDic[blockGlobalName];
 			return viewClass;
 		}
-
-		/**
-		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
-		 */
-		private static var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 	}
 }
