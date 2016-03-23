@@ -31,7 +31,7 @@ package me.feng.objectView.base.utils
 		/**
 		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
 		 */
-		private var attributeViewClassByTypeDic:Dictionary = new Dictionary();
+		private var attributeDefaultViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 实例所有固定实例属性字典 （key:实例类名,value:实例所有固定实例属性）
@@ -70,14 +70,21 @@ package me.feng.objectView.base.utils
 		}
 
 		/**
-		 * 设置所有特定类型属性的界面类定义
-		 * @param attributeClass			特定属性类型
-		 * @param viewClass					属性界面类
+		 * 设置特定类型的默认属性界面类定义
+		 * @param attributeClass			特定类型
+		 * @param viewClass					属性界面类定义
 		 */
-		public function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
+		public function setAttributeDefaultViewClass(attributeClass:Object, viewClass:Object):void
 		{
-			var attributeClassName:String = getQualifiedClassName(attributeClass);
-			attributeViewClassByTypeDic[attributeClassName] = viewClass;
+			var attributeCls:Class = ClassUtils.getClass(attributeClass);
+			if (attributeCls == null)
+			{
+				return;
+			}
+			var attributeClassName:String = getQualifiedClassName(attributeCls);
+
+			var cls:Class = ClassUtils.getClass(viewClass);
+			attributeDefaultViewClassDic[attributeClassName] = cls;
 		}
 
 		/**
@@ -92,7 +99,7 @@ package me.feng.objectView.base.utils
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = attributeViewClassByTypeDic[objectAttributeInfo.type];
+			viewClass = attributeDefaultViewClassDic[objectAttributeInfo.type];
 			if (viewClass != null)
 				return viewClass;
 

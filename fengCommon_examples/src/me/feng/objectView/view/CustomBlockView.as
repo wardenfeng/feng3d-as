@@ -2,25 +2,24 @@ package me.feng.objectView.view
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.text.TextField;
 
-	import me.feng.objectView.base.IObjectAttributeView;
-	import me.feng.objectView.base.data.ObjectAttributeInfo;
+	import me.feng.objectView.block.IObjectAttributeBlockView;
+	import me.feng.objectView.block.data.ObjectAttributeBlock;
 
 	/**
-	 * 自定义属性界面
+	 * 自定义块界面
 	 * @author feng 2016-3-23
 	 */
-	public class CustomAttrView extends Sprite implements IObjectAttributeView
+	public class CustomBlockView extends Sprite implements IObjectAttributeBlockView
 	{
-		public function set objectAttributeInfo(value:ObjectAttributeInfo):void
+		public function set objectAttributeBlock(value:ObjectAttributeBlock):void
 		{
 			var label:TextField
 			label = new TextField();
-			label.text = "自定义属性界面_" + JSON.stringify(value);
-			label.textColor = 0xffff00;
+			label.text = "自定义属性界面_(blockName:" + value.blockName + ")";
+			label.textColor = 0xff00ff;
 			label.width = 100;
 			label.wordWrap = true;
 

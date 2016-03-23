@@ -2,14 +2,13 @@ package me.feng.objectView
 {
 	import com.bit101.components.HBox;
 
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
 
 	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.data.ObjectA;
 	import me.feng.objectView.view.BooleanAttrView;
 	import me.feng.objectView.view.CustomAttrView;
+	import me.feng.objectView.view.CustomBlockView;
 
 	//
 	//
@@ -35,10 +34,6 @@ package me.feng.objectView
 
 		private function initBlockConfig1():void
 		{
-			ObjectViewConfig.setAttributeViewClassByType(Boolean, BooleanAttrView);
-
-			ObjectViewClassConfig;
-
 			var config:Object = { //
 					view: "", //
 //					view: Sprite, //
@@ -55,13 +50,27 @@ package me.feng.objectView
 						{name: "sx", block: "缩放"}, //
 						{name: "sy", block: "缩放"}, //
 						{name: "sz", block: "缩放"}, //
+						//
+						{name: "sz", block: "自定义块"}, //
+						{name: "sz", block: "自定义块"}, //
 
 						{name: "custom", block: "缩放", view: CustomAttrView}, //
 
 					], //
-					blockDefinitions: [] //
+					blockDefinitions: [ //
+					{name: "自定义块", view: CustomBlockView}, //
+					] //
 				};
 			ObjectViewConfig.setClassConfig(ObjectA, config);
+
+			var globalConfig:Object = { //
+					attributeDefaultViews: [ //
+//						{attributeType: "", viewType: BooleanAttrView}, //
+//					{attributeType: "String", viewType: BooleanAttrView}, //
+//					{attributeType: "String", viewType: ""}, //
+					{attributeType: "Boolean", viewType: BooleanAttrView}, //
+					]};
+			ObjectViewConfig.setGlobalConfig(globalConfig);
 		}
 
 		private function initBlockConfig():void

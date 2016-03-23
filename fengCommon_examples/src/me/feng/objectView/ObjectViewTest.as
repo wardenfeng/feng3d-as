@@ -21,7 +21,7 @@ package me.feng.objectView
 		{
 			var box:DisplayObjectContainer = new HBox();
 
-			ObjectViewConfig.setAttributeViewClassByType(Boolean, BooleanAttrView);
+			ObjectViewConfig.setAttributeDefaultViewClass(Boolean, BooleanAttrView);
 
 			var a:ObjectA = new ObjectA();
 			a.boo = true;

@@ -44,7 +44,7 @@ package me.feng.objectView.block.utils
 		 */
 		public function getObjectAttributeBlockView(objectAttributeBlock:ObjectAttributeBlock):DisplayObject
 		{
-			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock);
+			var viewClass:Class = getObjectAttributeBlockViewClass(objectAttributeBlock.owner, objectAttributeBlock.blockName);
 			var view:DisplayObject = new viewClass();
 			IObjectAttributeBlockView(view).objectAttributeBlock = objectAttributeBlock;
 			return view;
@@ -89,7 +89,7 @@ package me.feng.objectView.block.utils
 			var objectAttributeBlock:ObjectAttributeBlock;
 			for (var i:int = 0; i < objectAttributeInfos.length; i++)
 			{
-				objectAttributeBlock = getObjectAttributeBlockByObjectAttributeInfo(objectAttributeInfos[i]);
+				objectAttributeBlock = getBlockByAttrName(objectAttributeInfos[i].owner, objectAttributeInfos[i].name);
 				if (!Boolean(blockDic[objectAttributeBlock]))
 				{
 					blockDic[objectAttributeBlock] = true;
@@ -101,31 +101,38 @@ package me.feng.objectView.block.utils
 			return objectAttributeBlocks;
 		}
 
-		private function getObjectAttributeBlockByObjectAttributeInfo(objectAttributeInfo:ObjectAttributeInfo):ObjectAttributeBlock
-		{
-			var blockGlobalName:String = getObjectAttributeBlockGlobalName(objectAttributeInfo.owner, objectAttributeInfo.name);
-
-			var objectAttributeBlock:ObjectAttributeBlock = getBlockByBlockGlobalName(blockGlobalName);
-
-			return objectAttributeBlock;
-		}
-
 		/**
-		 * 获取对象属性块全局名称
+		 * 根据属性名获取对象属性块
 		 * @param owner				属性拥有者
 		 * @param attrName			属性名称
 		 * @return
 		 */
-		private function getObjectAttributeBlockGlobalName(owner:Object, attrName:String):String
+		private function getBlockByAttrName(owner:Object, attrName:String):ObjectAttributeBlock
 		{
-			var globalBlockName:String = getQualifiedClassName(owner);
-
 			var blockName:String = getObjectAttributeBlockName(owner, attrName);
-			if (blockName != null)
+			var objectAttributeBlock:ObjectAttributeBlock = getBlockByName(owner, blockName);
+			return objectAttributeBlock;
+		}
+
+		/**
+		 * 根据名称获取对象属性块
+		 * @param owner				块拥有者
+		 * @param blockName			块名称
+		 * @return
+		 */
+		private function getBlockByName(owner:Object, blockName:String):ObjectAttributeBlock
+		{
+			var blockGlobalName:String = getGlobalBlockName(owner, blockName);
+
+			var objectAttributeBlock:ObjectAttributeBlock = objectAttributeBlockDic[blockGlobalName];
+			if (objectAttributeBlock == null)
 			{
-				globalBlockName = globalBlockName + "-" + blockName;
+				objectAttributeBlock = objectAttributeBlockDic[blockGlobalName] = new ObjectAttributeBlock();
+				objectAttributeBlock.owner = owner;
+				objectAttributeBlock.blockName = blockName;
 			}
-			return globalBlockName;
+
+			return objectAttributeBlockDic[blockGlobalName];
 		}
 
 		/**
@@ -138,31 +145,13 @@ package me.feng.objectView.block.utils
 		{
 			var key:String = ObjectView.getClassAttributeID(owner, attrName);
 			var blockName:String = objectAttributeBlockNameDic[key];
-			return blockName;
-		}
 
-		/**
-		 * 根据全局名称获取对象属性块
-		 * @param blockGlobalName		对象属性块全局名称
-		 * @return
-		 */
-		private function getBlockByBlockGlobalName(blockGlobalName:String):ObjectAttributeBlock
-		{
-			var objectAttributeBlock:ObjectAttributeBlock = objectAttributeBlockDic[blockGlobalName];
-			if (objectAttributeBlock == null)
+			var globalBlockName:String = getQualifiedClassName(owner);
+			if (blockName != null)
 			{
-				objectAttributeBlock = objectAttributeBlockDic[blockGlobalName] = new ObjectAttributeBlock();
-				objectAttributeBlock.blockGlobalName = blockGlobalName;
-
-				var blockName:String = blockGlobalName.split("-")[1];
-
-				if (blockName != null)
-				{
-					objectAttributeBlock.blockName = blockName;
-				}
+				globalBlockName = globalBlockName + "-" + blockName;
 			}
-
-			return objectAttributeBlockDic[blockGlobalName];
+			return globalBlockName;
 		}
 
 		/**
@@ -170,10 +159,10 @@ package me.feng.objectView.block.utils
 		 * @param objectAttributeBlock		对象属性快信息
 		 * @return							对象属性块界面类定义
 		 */
-		private function getObjectAttributeBlockViewClass(objectAttributeBlock:ObjectAttributeBlock):Class
+		private function getObjectAttributeBlockViewClass(owner:Object, blockName:String):Class
 		{
 			//获取自定义对象属性界面类定义
-			var viewClass:Class = getCustomObjectAttributeBlockViewClass(objectAttributeBlock.blockGlobalName);
+			var viewClass:Class = getCustomObjectAttributeBlockViewClass(owner, blockName);
 			if (viewClass != null)
 				return viewClass;
 
@@ -186,10 +175,28 @@ package me.feng.objectView.block.utils
 		 * @param blockGlobalName			属性块全局名称
 		 * @return							自定义对象属性块界面类定义
 		 */
-		private function getCustomObjectAttributeBlockViewClass(blockGlobalName:String):Class
+		private function getCustomObjectAttributeBlockViewClass(owner:Object, blockName:String):Class
 		{
-			var viewClass:Class = customObjectAttributeViewClassDic[blockGlobalName];
+			var globalBlockName:String = getGlobalBlockName(owner, blockName);
+			var viewClass:Class = customObjectAttributeViewClassDic[globalBlockName];
 			return viewClass;
+		}
+
+		/**
+		 * 获取块全局名称
+		 * @param owner				块拥有者
+		 * @param blockName			块名称
+		 * @return
+		 */
+		private function getGlobalBlockName(owner:Object, blockName:String):String
+		{
+			var globalBlockName:String = getQualifiedClassName(owner);
+
+			if (blockName != null)
+			{
+				globalBlockName = globalBlockName + "-" + blockName;
+			}
+			return globalBlockName;
 		}
 	}
 }

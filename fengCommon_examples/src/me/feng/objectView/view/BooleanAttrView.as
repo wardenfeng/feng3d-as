@@ -10,7 +10,7 @@ package me.feng.objectView.view
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 
 	/**
-	 *
+	 * Boolean类型界面
 	 * @author feng 2016-3-23
 	 */
 	public class BooleanAttrView extends Sprite implements IObjectAttributeView

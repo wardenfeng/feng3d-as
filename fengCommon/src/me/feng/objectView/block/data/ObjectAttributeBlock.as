@@ -9,20 +9,19 @@ package me.feng.objectView.block.data
 	public class ObjectAttributeBlock
 	{
 		/**
-		 * 块全局名称
-		 */
-		public var blockGlobalName:String;
-
-		/**
 		 * 块名称
 		 */
 		public var blockName:String;
 
 		/**
+		 * 属性拥有者
+		 */
+		public var owner:Object;
+
+		/**
 		 * 属性信息列表
 		 */
 		public var itemList:Vector.<ObjectAttributeInfo>;
-
 
 		/**
 		 * 构建一个对象属性块

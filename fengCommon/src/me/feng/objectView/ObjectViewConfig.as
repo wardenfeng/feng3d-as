@@ -35,13 +35,13 @@ package me.feng.objectView
 		}
 
 		/**
-		 * 设置所有特定类型属性的界面类定义
-		 * @param attributeClass			特定属性类型
+		 * 设置特定类型的默认属性界面类定义
+		 * @param attributeClass			特定类型
 		 * @param viewClass					属性界面类
 		 */
-		public static function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
+		public static function setAttributeDefaultViewClass(attributeClass:Object, viewClass:Object):void
 		{
-			objectAttributeUtils.setAttributeViewClassByType(attributeClass, viewClass);
+			objectAttributeUtils.setAttributeDefaultViewClass(attributeClass, viewClass);
 		}
 
 		/**
@@ -66,24 +66,31 @@ package me.feng.objectView
 			{
 				setCustomObjectViewClass(cls, config.view);
 			}
-
+			var i:int = 0;
 			if (config.attributeDefinitions != null)
 			{
-				for (var i:int = 0; i < config.attributeDefinitions.length; i++)
+				for (i = 0; i < config.attributeDefinitions.length; i++)
 				{
 					setObjectAttributeBlockName(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
 					setCustomObjectAttributeViewClass(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
+				}
+			}
+			if (config.blockDefinitions != null)
+			{
+				for (i = 0; i < config.blockDefinitions.length; i++)
+				{
+					setCustomObjectAttributeViewClass(cls, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
 				}
 			}
 		}
 
 		public static function setGlobalConfig(config:Object):void
 		{
-			if (config.customObjectViews)
+			if (config.attributeDefaultViews != null)
 			{
-				for (var i:int = 0; i < config.customObjectViews.length; i++)
+				for (var i:int = 0; i < config.attributeDefaultViews.length; i++)
 				{
-
+					(config.attributeDefaultViews[i].attributeType, config.attributeDefaultViews[i].viewType);
 				}
 			}
 		}
