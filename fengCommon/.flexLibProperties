@@ -41,6 +41,7 @@
     <classEntry path="me.feng.objectView.configs.ObjectViewClassConfig"/>
     <classEntry path="me.feng.objectView.configs.ObjectViewAttributeDefinition"/>
     <classEntry path="me.feng.objectView.configs.ObjectViewBlockDefinition"/>
+    <classEntry path="me.feng.objectView.configs.ObjectViewConfigVO"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

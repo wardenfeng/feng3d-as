@@ -1,10 +1,9 @@
 package me.feng.objectView
 {
-	import avmplus.getQualifiedClassName;
-
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 	import me.feng.objectView.base.utils.ObjectViewUtils;
 	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
+	import me.feng.objectView.configs.ObjectViewConfigVO;
 
 
 	/**
@@ -13,6 +12,8 @@ package me.feng.objectView
 	 */
 	public class ObjectViewConfig
 	{
+		internal static const objectViewConfigVO:ObjectViewConfigVO = new ObjectViewConfigVO();
+
 		/**
 		 * 设置自定义对象界面类定义
 		 * @param object				指定对象类型

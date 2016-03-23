@@ -9,7 +9,7 @@ package me.feng.objectView.base.utils
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
-	import me.feng.objectView.base.view.DefaultObjectAttributeView;
+	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -19,9 +19,9 @@ package me.feng.objectView.base.utils
 	public class ObjectAttributeUtils
 	{
 		/**
-		 * 默认对象属性界面类定义
+		 * ObjectView总配置数据
 		 */
-		public var objectAttributeViewClass:Class = DefaultObjectAttributeView;
+		private var objectViewConfigVO:ObjectViewConfigVO;
 
 		/**
 		 * 自定义对象属性界面类定义字典（key:类名称+属性名,value:属性界面类定义）
@@ -32,6 +32,14 @@ package me.feng.objectView.base.utils
 		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
 		 */
 		private var attributeDefaultViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * 构建
+		 */
+		public function ObjectAttributeUtils(objectViewConfigVO:ObjectViewConfigVO)
+		{
+			this.objectViewConfigVO = objectViewConfigVO;
+		}
 
 		/**
 		 * 获取对象属性界面
@@ -94,7 +102,7 @@ package me.feng.objectView.base.utils
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return objectAttributeViewClass;
+			return objectViewConfigVO.objectAttributeViewClass;
 		}
 
 		/**

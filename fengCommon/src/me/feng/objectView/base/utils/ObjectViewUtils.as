@@ -6,8 +6,7 @@ package me.feng.objectView.base.utils
 	import avmplus.getQualifiedClassName;
 
 	import me.feng.objectView.base.IObjectView;
-	import me.feng.objectView.base.view.DefaultBaseObjectView;
-	import me.feng.objectView.block.view.DefaultObjectViewWithBlock;
+	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -17,20 +16,22 @@ package me.feng.objectView.base.utils
 	public class ObjectViewUtils
 	{
 		/**
-		 * 默认基础类型对象界面类定义
+		 * ObjectView总配置数据
 		 */
-		public var baseObjectViewClass:Class = DefaultBaseObjectView;
-
-		/**
-		 * 默认对象界面类定义
-		 */
-		//		public static var DefaultObjectViewClass:Class = DefaultObjectView;
-		public var objectViewClass:Class = DefaultObjectViewWithBlock;
+		private var objectViewConfigVO:ObjectViewConfigVO;
 
 		/**
 		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
 		 */
 		public var customObjectViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * 构建
+		 */
+		public function ObjectViewUtils(objectViewConfigVO:ObjectViewConfigVO)
+		{
+			this.objectViewConfigVO = objectViewConfigVO;
+		}
 
 		/**
 		 * 设置自定义对象界面类定义
@@ -72,10 +73,10 @@ package me.feng.objectView.base.utils
 			//返回基础类型界面类定义
 			var isBaseType:Boolean = ClassUtils.isBaseType(object);
 			if (isBaseType)
-				return baseObjectViewClass;
+				return objectViewConfigVO.baseObjectViewClass;
 
 			//返回默认类型界面类定义
-			return objectViewClass;
+			return objectViewConfigVO.objectViewClass;
 		}
 
 		/**

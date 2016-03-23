@@ -19,15 +19,15 @@ package me.feng.objectView
 		/**
 		 * 对象界面工具
 		 */
-		internal static var objectViewUtils:ObjectViewUtils = new ObjectViewUtils();
+		internal static var objectViewUtils:ObjectViewUtils = new ObjectViewUtils(ObjectViewConfig.objectViewConfigVO);
 		/**
 		 * 对象属性工具
 		 */
-		internal static var objectAttributeUtils:ObjectAttributeUtils = new ObjectAttributeUtils();
+		internal static var objectAttributeUtils:ObjectAttributeUtils = new ObjectAttributeUtils(ObjectViewConfig.objectViewConfigVO);
 		/**
 		 * 对象属性块工具
 		 */
-		internal static var objectAttributeBlockUtils:ObjectAttributeBlockUtils = new ObjectAttributeBlockUtils();
+		internal static var objectAttributeBlockUtils:ObjectAttributeBlockUtils = new ObjectAttributeBlockUtils(ObjectViewConfig.objectViewConfigVO);
 
 		/**
 		 * 获取对象界面

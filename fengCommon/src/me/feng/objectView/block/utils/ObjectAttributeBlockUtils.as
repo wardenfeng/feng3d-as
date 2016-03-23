@@ -9,7 +9,7 @@ package me.feng.objectView.block.utils
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.block.IObjectAttributeBlockView;
 	import me.feng.objectView.block.data.ObjectAttributeBlock;
-	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
+	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -19,9 +19,9 @@ package me.feng.objectView.block.utils
 	public class ObjectAttributeBlockUtils
 	{
 		/**
-		 * 属性块默认界面
+		 * ObjectView总配置数据
 		 */
-		private var objectAttributeBlockView:Class = DefaultObjectAttributeBlockView;
+		private var objectViewConfigVO:ObjectViewConfigVO;
 
 		/**
 		 * 对象属性块名称字典		（key:类属性ID,value:对象属性块名称）
@@ -32,6 +32,14 @@ package me.feng.objectView.block.utils
 		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
 		 */
 		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * 构建
+		 */
+		public function ObjectAttributeBlockUtils(objectViewConfigVO:ObjectViewConfigVO)
+		{
+			this.objectViewConfigVO = objectViewConfigVO;
+		}
 
 		/**
 		 * 获取对象属性块界面
@@ -140,7 +148,7 @@ package me.feng.objectView.block.utils
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return objectAttributeBlockView;
+			return objectViewConfigVO.objectAttributeBlockView;
 		}
 
 		/**
