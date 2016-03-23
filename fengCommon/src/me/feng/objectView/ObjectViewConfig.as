@@ -56,6 +56,17 @@ package me.feng.objectView
 		}
 
 		/**
+		 * 设置自定义对象属性块界面类定义
+		 * @param owner						块拥有者
+		 * @param blockName					块名称
+		 * @param blockView					自定义块界面
+		 */
+		public static function setCustomObjectAttributeBlockViewClass(owner:Object, blockName:String, blockView:Object):void
+		{
+			objectAttributeBlockUtils.setCustomObjectAttributeBlockViewClass(owner, blockName, blockView);
+		}
+
+		/**
 		 * 设置类配置
 		 * @param cls
 		 * @param config
@@ -79,7 +90,7 @@ package me.feng.objectView
 			{
 				for (i = 0; i < config.blockDefinitions.length; i++)
 				{
-					setCustomObjectAttributeViewClass(cls, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
+					setCustomObjectAttributeBlockViewClass(cls, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
 				}
 			}
 		}

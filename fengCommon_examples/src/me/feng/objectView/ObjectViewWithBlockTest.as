@@ -51,8 +51,8 @@ package me.feng.objectView
 						{name: "sy", block: "缩放"}, //
 						{name: "sz", block: "缩放"}, //
 						//
-						{name: "sz", block: "自定义块"}, //
-						{name: "sz", block: "自定义块"}, //
+						{name: "a", block: "自定义块"}, //
+						{name: "b", block: "自定义块"}, //
 
 						{name: "custom", block: "缩放", view: CustomAttrView}, //
 

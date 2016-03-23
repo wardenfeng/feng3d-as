@@ -41,7 +41,7 @@ package me.feng.objectView.base.utils
 		{
 			var className:String = getQualifiedClassName(object);
 
-			var cls:Class = ClassUtils.getClass(viewClass)
+			var cls:Class = ClassUtils.getClass(viewClass);
 			customObjectViewClassDic[className] = cls;
 		}
 

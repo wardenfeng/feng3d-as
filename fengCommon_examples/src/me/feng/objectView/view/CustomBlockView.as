@@ -18,7 +18,7 @@ package me.feng.objectView.view
 		{
 			var label:TextField
 			label = new TextField();
-			label.text = "自定义属性界面_(blockName:" + value.blockName + ")";
+			label.text = "自定义块界面_(blockName:" + value.blockName + ")";
 			label.textColor = 0xff00ff;
 			label.width = 100;
 			label.wordWrap = true;
