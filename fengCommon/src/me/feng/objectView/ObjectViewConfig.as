@@ -4,6 +4,7 @@ package me.feng.objectView
 	import me.feng.objectView.base.utils.ObjectViewUtils;
 	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
+	import me.feng.utils.ClassUtils;
 
 
 	/**
@@ -19,9 +20,9 @@ package me.feng.objectView
 		 * @param object				指定对象类型
 		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
 		 */
-		public static function setCustomObjectViewClass(object:Object, viewClass:Object):void
+		public static function setCustomObjectViewClass(objectClass:Class, viewClass:Class):void
 		{
-			objectViewUtils.setCustomObjectViewClass(object, viewClass);
+			objectViewUtils.setCustomObjectViewClass(objectClass, viewClass);
 		}
 
 		/**
@@ -72,26 +73,29 @@ package me.feng.objectView
 		 * @param cls
 		 * @param config
 		 */
-		public static function setClassConfig(cls:Object, config:Object):void
+		public static function setClassConfig(object:Object, config:Object):void
 		{
+			var objectClass:Class = ClassUtils.getClass(object);
+
+
 			if (config.view != null)
 			{
-				setCustomObjectViewClass(cls, config.view);
+				setCustomObjectViewClass(objectClass, ClassUtils.getClass(config.view));
 			}
 			var i:int = 0;
 			if (config.attributeDefinitions != null)
 			{
 				for (i = 0; i < config.attributeDefinitions.length; i++)
 				{
-					setObjectAttributeBlockName(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
-					setCustomObjectAttributeViewClass(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
+					setObjectAttributeBlockName(object, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
+					setCustomObjectAttributeViewClass(object, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
 				}
 			}
 			if (config.blockDefinitions != null)
 			{
 				for (i = 0; i < config.blockDefinitions.length; i++)
 				{
-					setCustomObjectAttributeBlockViewClass(cls, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
+					setCustomObjectAttributeBlockViewClass(object, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
 				}
 			}
 		}

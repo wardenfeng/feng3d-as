@@ -29,11 +29,6 @@ package me.feng.objectView.base.utils
 		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
-		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
-		 */
-		private var attributeDefaultViewClassDic:Dictionary = new Dictionary();
-
-		/**
 		 * 构建
 		 */
 		public function ObjectAttributeUtils(objectViewConfigVO:ObjectViewConfigVO)
@@ -82,7 +77,7 @@ package me.feng.objectView.base.utils
 			var attributeClassName:String = getQualifiedClassName(attributeCls);
 
 			var cls:Class = ClassUtils.getClass(viewClass);
-			attributeDefaultViewClassDic[attributeClassName] = cls;
+			objectViewConfigVO.attributeDefaultViewClassDic[attributeClassName] = cls;
 		}
 
 		/**
@@ -97,7 +92,7 @@ package me.feng.objectView.base.utils
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = attributeDefaultViewClassDic[objectAttributeInfo.type];
+			viewClass = objectViewConfigVO.attributeDefaultViewClassDic[objectAttributeInfo.type];
 			if (viewClass != null)
 				return viewClass;
 
@@ -176,8 +171,6 @@ package me.feng.objectView.base.utils
 		 */
 		public function getObjectFixedAttributeInfoList(object:Object):Vector.<ObjectAttributeInfo>
 		{
-			var className:String = getQualifiedClassName(object);
-
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = new Vector.<ObjectAttributeInfo>();
 
 			var cls:Class = ClassUtils.getClass(object);

@@ -1,11 +1,9 @@
 package me.feng.objectView.base.utils
 {
 	import flash.display.DisplayObject;
-	import flash.utils.Dictionary;
-
-	import avmplus.getQualifiedClassName;
 
 	import me.feng.objectView.base.IObjectView;
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
@@ -21,11 +19,6 @@ package me.feng.objectView.base.utils
 		private var objectViewConfigVO:ObjectViewConfigVO;
 
 		/**
-		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
-		 */
-		public var customObjectViewClassDic:Dictionary = new Dictionary();
-
-		/**
 		 * 构建
 		 */
 		public function ObjectViewUtils(objectViewConfigVO:ObjectViewConfigVO)
@@ -38,12 +31,10 @@ package me.feng.objectView.base.utils
 		 * @param object				指定对象类型
 		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
 		 */
-		public function setCustomObjectViewClass(object:Object, viewClass:Object):void
+		public function setCustomObjectViewClass(objectClass:Class, viewClass:Class):void
 		{
-			var className:String = getQualifiedClassName(object);
-
-			var cls:Class = ClassUtils.getClass(viewClass);
-			customObjectViewClassDic[className] = cls;
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
+			objectViewClassConfig.customObjectViewClass = viewClass;
 		}
 
 		/**
@@ -86,9 +77,14 @@ package me.feng.objectView.base.utils
 		 */
 		private function getCustomObjectViewClass(object:Object):Class
 		{
-			var className:String = getQualifiedClassName(object);
-			var viewClass:Class = customObjectViewClassDic[className];
-			return viewClass;
+			var objectClass:Class = ClassUtils.getClass(object);
+
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
+			if (objectViewClassConfig == null)
+			{
+				return null;
+			}
+			return objectViewClassConfig.customObjectViewClass;
 		}
 	}
 }

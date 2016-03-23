@@ -1,5 +1,9 @@
 package me.feng.objectView.configs
 {
+	import flash.utils.Dictionary;
+
+	import avmplus.getQualifiedClassName;
+
 	import me.feng.objectView.base.view.DefaultBaseObjectView;
 	import me.feng.objectView.base.view.DefaultObjectAttributeView;
 	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
@@ -31,5 +35,31 @@ package me.feng.objectView.configs
 		 * 属性块默认界面
 		 */
 		public var objectAttributeBlockView:Class = DefaultObjectAttributeBlockView;
+
+		/**
+		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
+		 */
+		public var attributeDefaultViewClassDic:Dictionary = new Dictionary();
+
+		/**
+		 * ObjectView类配置字典 （key：类名称，value：ObjectView类配置）
+		 */
+		private var classConfigDic:Dictionary = new Dictionary();
+
+		/**
+		 * 获取ObjectView类配置
+		 * @param objectClass			对象类定义
+		 * @return
+		 */
+		public function getClassConfig(objectClass:Class):ObjectViewClassConfig
+		{
+			var className:String = getQualifiedClassName(objectClass);
+
+			if (classConfigDic[className] == null)
+			{
+				classConfigDic[className] = new ObjectViewClassConfig();
+			}
+			return classConfigDic[className];
+		}
 	}
 }
