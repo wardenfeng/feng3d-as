@@ -8,9 +8,9 @@ package me.feng.objectView.block.utils
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
-	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
-	import me.feng.objectView.block.data.ObjectAttributeBlock;
 	import me.feng.objectView.block.IObjectAttributeBlockView;
+	import me.feng.objectView.block.data.ObjectAttributeBlock;
+	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
 
 	/**
 	 * 对象属性块工具
