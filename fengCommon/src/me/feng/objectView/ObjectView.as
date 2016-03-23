@@ -8,9 +8,7 @@ package me.feng.objectView
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.IObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
-	import me.feng.objectView.base.view.DefaultBaseObjectView;
 	import me.feng.objectView.base.view.DefaultObjectAttributeView;
-	import me.feng.objectView.block.view.DefaultObjectViewWithBlock;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -19,17 +17,6 @@ package me.feng.objectView
 	 */
 	public class ObjectView
 	{
-		/**
-		 * 默认基础类型对象界面类定义
-		 */
-		public static var DefaultBaseObjectViewClass:Class = DefaultBaseObjectView;
-
-		/**
-		 * 默认对象界面类定义
-		 */
-//		public static var DefaultObjectViewClass:Class = DefaultObjectView;
-		public static var DefaultObjectViewClass:Class = DefaultObjectViewWithBlock;
-
 		/**
 		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
 		 */
@@ -119,10 +106,10 @@ package me.feng.objectView
 			//返回基础类型界面类定义
 			var isBaseType:Boolean = ClassUtils.isBaseType(object);
 			if (isBaseType)
-				return DefaultBaseObjectViewClass;
+				return ObjectViewConfig.DefaultBaseObjectViewClass;
 
 			//返回默认类型界面类定义
-			return DefaultObjectViewClass;
+			return ObjectViewConfig.DefaultObjectViewClass;
 		}
 
 		/**
