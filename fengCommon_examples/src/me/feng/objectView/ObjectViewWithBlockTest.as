@@ -16,7 +16,7 @@ package me.feng.objectView
 		{
 			var box:DisplayObjectContainer = new HBox();
 
-			ObjectView.setAttributeViewClassByType(Boolean, BooleanAttrView);
+			ObjectViewConfig.setAttributeViewClassByType(Boolean, BooleanAttrView);
 
 			var a:ObjectA = new ObjectA();
 			a.boo = true;
@@ -24,14 +24,14 @@ package me.feng.objectView
 			a.db = "```";
 			box.addChild(ObjectView.getObjectView(a));
 
-			ObjectView.setCustomObjectAttributeViewClass(Object, "custom", CustomAttrView);
+			ObjectViewConfig.setCustomObjectAttributeViewClass(Object, "custom", CustomAttrView);
 			var objView:DisplayObject = ObjectView.getObjectView( //
 				{aaaaaaaaaaaaaaaaa: "asfddddddddddddddddddddddddddddddddd", b: "bnm,", c: 1, d: false, custom: "", obj: {a: 1}} //
 				);
 			objView.metaData = {a: 1};
 			box.addChild(objView);
 
-			ObjectView.setCustomObjectViewClass(int, customObjectView);
+			ObjectViewConfig.setCustomObjectViewClass(int, customObjectView);
 			box.addChild(ObjectView.getObjectView(5));
 
 			addChild(box);
