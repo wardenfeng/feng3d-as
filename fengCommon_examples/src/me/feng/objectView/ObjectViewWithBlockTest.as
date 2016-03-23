@@ -3,12 +3,13 @@ package me.feng.objectView
 	import com.bit101.components.HBox;
 
 	import flash.display.DisplayObjectContainer;
+	import flash.utils.getTimer;
 
-	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.data.ObjectA;
 	import me.feng.objectView.view.BooleanAttrView;
 	import me.feng.objectView.view.CustomAttrView;
 	import me.feng.objectView.view.CustomBlockView;
+	import me.feng.objectView.view.CustomObjectView;
 
 	//
 	//
@@ -20,7 +21,6 @@ package me.feng.objectView
 		public function init():void
 		{
 //			initBlockConfig()
-			initBlockConfig1()
 
 			var box:DisplayObjectContainer = new HBox();
 
@@ -28,8 +28,38 @@ package me.feng.objectView
 			a.boo = true;
 			a.da = 2;
 			a.db = "```";
+
+			var t:int = getTimer();
+
+			initBlockConfig1()
 			box.addChild(ObjectView.getObjectView(a));
 			addChild(box);
+
+			trace(getTimer() - t);
+			t = getTimer();
+
+			initBlockConfig2()
+			box.addChild(ObjectView.getObjectView(a));
+			addChild(box);
+			trace(getTimer() - t);
+			t = getTimer();
+
+			initBlockConfig1()
+			box.addChild(ObjectView.getObjectView(a));
+			addChild(box);
+			trace(getTimer() - t);
+			t = getTimer();
+		}
+
+		private function initBlockConfig2():void
+		{
+			var config1:Object = { //
+				//					view: "", //
+				//					view: Sprite, //
+					view: CustomObjectView //
+				};
+			ObjectViewConfig.setClassConfig(ObjectA, config1);
+//			ObjectViewConfig.setClassConfig(ObjectA, {view: ""});
 		}
 
 		private function initBlockConfig1():void

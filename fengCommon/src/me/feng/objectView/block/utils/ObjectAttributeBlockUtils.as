@@ -24,11 +24,6 @@ package me.feng.objectView.block.utils
 		private var objectAttributeBlockView:Class = DefaultObjectAttributeBlockView;
 
 		/**
-		 * 对象属性块字典		（key:对象属性块全局名称,value:对象属性块）
-		 */
-		private const objectAttributeBlockDic:Dictionary = new Dictionary();
-
-		/**
 		 * 对象属性块名称字典		（key:类属性ID,value:对象属性块名称）
 		 */
 		private const objectAttributeBlockNameDic:Dictionary = new Dictionary();
@@ -103,50 +98,20 @@ package me.feng.objectView.block.utils
 			var objectAttributeBlock:ObjectAttributeBlock;
 			for (var i:int = 0; i < objectAttributeInfos.length; i++)
 			{
-				objectAttributeBlock = getBlockByAttrName(objectAttributeInfos[i].owner, objectAttributeInfos[i].name);
-				if (!Boolean(blockDic[objectAttributeBlock]))
+				var blockName:String = getObjectAttributeBlockName(objectAttributeInfos[i].owner, objectAttributeInfos[i].name);
+				objectAttributeBlock = blockDic[blockName];
+
+				if (objectAttributeBlock == null)
 				{
-					blockDic[objectAttributeBlock] = true;
+					objectAttributeBlock = blockDic[blockName] = new ObjectAttributeBlock();
+					objectAttributeBlock.owner = objectAttributeInfos[i].owner;
+					objectAttributeBlock.blockName = blockName;
 					objectAttributeBlocks.push(objectAttributeBlock);
 				}
 				objectAttributeBlock.itemList.push(objectAttributeInfos[i]);
 			}
 
 			return objectAttributeBlocks;
-		}
-
-		/**
-		 * 根据属性名获取对象属性块
-		 * @param owner				属性拥有者
-		 * @param attrName			属性名称
-		 * @return
-		 */
-		private function getBlockByAttrName(owner:Object, attrName:String):ObjectAttributeBlock
-		{
-			var blockName:String = getObjectAttributeBlockName(owner, attrName);
-			var objectAttributeBlock:ObjectAttributeBlock = getBlockByName(owner, blockName);
-			return objectAttributeBlock;
-		}
-
-		/**
-		 * 根据名称获取对象属性块
-		 * @param owner				块拥有者
-		 * @param blockName			块名称
-		 * @return
-		 */
-		private function getBlockByName(owner:Object, blockName:String):ObjectAttributeBlock
-		{
-			var blockGlobalName:String = getGlobalBlockName(owner, blockName);
-
-			var objectAttributeBlock:ObjectAttributeBlock = objectAttributeBlockDic[blockGlobalName];
-			if (objectAttributeBlock == null)
-			{
-				objectAttributeBlock = objectAttributeBlockDic[blockGlobalName] = new ObjectAttributeBlock();
-				objectAttributeBlock.owner = owner;
-				objectAttributeBlock.blockName = blockName;
-			}
-
-			return objectAttributeBlockDic[blockGlobalName];
 		}
 
 		/**

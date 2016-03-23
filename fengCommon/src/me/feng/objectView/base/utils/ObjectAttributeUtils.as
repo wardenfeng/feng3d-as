@@ -34,16 +34,6 @@ package me.feng.objectView.base.utils
 		private var attributeDefaultViewClassDic:Dictionary = new Dictionary();
 
 		/**
-		 * 实例所有固定实例属性字典 （key:实例类名,value:实例所有固定实例属性）
-		 */
-		private var objectFixedAttributeInfoListDic:Dictionary = new Dictionary();
-
-		/**
-		 * 实例固定实例属性字典 （key:固定实例属性ID,value:实例固定实例属性）
-		 */
-		private var objectFixedAttributeInfoDic:Dictionary = new Dictionary();
-
-		/**
 		 * 获取对象属性界面
 		 * @param objectAttributeInfo		对象属性信息
 		 * @return							对象属性界面
@@ -139,30 +129,6 @@ package me.feng.objectView.base.utils
 		}
 
 		/**
-		 * 获取实例属性信息
-		 * @param object				指定对象
-		 * @param attributeName			属性名称
-		 * @return						实例属性信息
-		 */
-		public function getObjectAttributeInfo(object:Object, attributeName:String):ObjectAttributeInfo
-		{
-			if (!object.hasOwnProperty(attributeName))
-				return null;
-
-			var objectAttributeInfo:ObjectAttributeInfo = null;
-
-			//固定实例属性
-			var classAttributeID:String = ObjectView.getClassAttributeID(object, attributeName);
-			objectAttributeInfo = objectFixedAttributeInfoDic[classAttributeID];
-			if (objectAttributeInfo != null)
-				return objectAttributeInfo;
-
-			//动态属性
-			objectAttributeInfo = getObjectDynamicAttributeInfo(object, attributeName);
-			return objectAttributeInfo;
-		}
-
-		/**
 		 * 获取对象所有动态属性信息
 		 * @param object		指定对象
 		 * @return 				属性信息
@@ -204,10 +170,7 @@ package me.feng.objectView.base.utils
 		{
 			var className:String = getQualifiedClassName(object);
 
-			if (objectFixedAttributeInfoListDic[className] != null)
-				return objectFixedAttributeInfoListDic[className];
-
-			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = objectFixedAttributeInfoListDic[className] = new Vector.<ObjectAttributeInfo>();
+			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = new Vector.<ObjectAttributeInfo>();
 
 			var cls:Class = ClassUtils.getClass(object);
 			var describeInfo:Object = describeTypeInstance(cls);
@@ -221,9 +184,6 @@ package me.feng.objectView.base.utils
 				objectAttributeInfo.type = variable.type;
 				objectAttributeInfo.owner = object;
 				objectAttributeInfos.push(objectAttributeInfo);
-
-				var classAttributeID:String = ObjectView.getClassAttributeID(object, variable.name);
-				objectFixedAttributeInfoDic[classAttributeID] = objectAttributeInfo;
 			}
 
 			return objectAttributeInfos;
