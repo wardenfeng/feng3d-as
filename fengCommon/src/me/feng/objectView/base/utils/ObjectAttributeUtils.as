@@ -180,18 +180,18 @@ package me.feng.objectView.base.utils
 
 			var cls:Class = ClassUtils.getClass(object);
 			var describeInfo:Object = describeTypeInstance(cls);
-			var Fixeds:Array = describeInfo.traits.Fixeds;
-			for (var i:int = 0; Fixeds != null && i < Fixeds.length; i++)
+			var variables:Array = describeInfo.traits.variables;
+			for (var i:int = 0; variables != null && i < variables.length; i++)
 			{
-				var Fixed:Object = Fixeds[i];
+				var variable:Object = variables[i];
 
 				var objectAttributeInfo:ObjectAttributeInfo = new ObjectAttributeInfo();
-				objectAttributeInfo.name = Fixed.name;
-				objectAttributeInfo.type = Fixed.type;
+				objectAttributeInfo.name = variable.name;
+				objectAttributeInfo.type = variable.type;
 				objectAttributeInfo.owner = object;
 				objectAttributeInfos.push(objectAttributeInfo);
 
-				var classAttributeID:String = ObjectView.getClassAttributeID(object, Fixed.name);
+				var classAttributeID:String = ObjectView.getClassAttributeID(object, variable.name);
 				objectFixedAttributeInfoDic[classAttributeID] = objectAttributeInfo;
 			}
 
