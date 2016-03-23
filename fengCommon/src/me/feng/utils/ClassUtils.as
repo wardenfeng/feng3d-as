@@ -24,7 +24,14 @@ package me.feng.utils
 		{
 			if (obj is String)
 			{
-				return getDefinitionByName(obj) as Class;
+				try
+				{
+					return getDefinitionByName(obj) as Class;
+				}
+				catch (error:Error)
+				{
+					return null;
+				}
 			}
 
 			var cla:Class = obj as Class;

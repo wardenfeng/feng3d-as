@@ -18,7 +18,7 @@ package me.feng.objectView
 		 * @param object				指定对象类型
 		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
 		 */
-		public static function setCustomObjectViewClass(object:Object, viewClass:Class):void
+		public static function setCustomObjectViewClass(object:Object, viewClass:Object):void
 		{
 			objectViewUtils.setCustomObjectViewClass(object, viewClass);
 		}
@@ -29,7 +29,7 @@ package me.feng.objectView
 		 * @param attributeName			属性名称
 		 * @param viewClass				自定义对象属性界面类定义（该类必须是实现IObjectAttributeView接口并且是DisplayObject的子类）
 		 */
-		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
+		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Object):void
 		{
 			objectAttributeUtils.setCustomObjectAttributeViewClass(owner, attributeName, viewClass);
 		}
@@ -62,12 +62,28 @@ package me.feng.objectView
 		 */
 		public static function setClassConfig(cls:Object, config:Object):void
 		{
+			if (config.view != null)
+			{
+				setCustomObjectViewClass(cls, config.view);
+			}
+
 			if (config.attributeDefinitions != null)
 			{
 				for (var i:int = 0; i < config.attributeDefinitions.length; i++)
 				{
 					setObjectAttributeBlockName(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
 					setCustomObjectAttributeViewClass(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
+				}
+			}
+		}
+
+		public static function setGlobalConfig(config:Object):void
+		{
+			if (config.customObjectViews)
+			{
+				for (var i:int = 0; i < config.customObjectViews.length; i++)
+				{
+
 				}
 			}
 		}

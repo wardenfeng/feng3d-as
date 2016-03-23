@@ -8,7 +8,7 @@ package me.feng.objectView.view
 	 *
 	 * @author feng 2016-3-23
 	 */
-	public class customObjectView extends Shape implements IObjectView
+	public class CustomObjectView extends Shape implements IObjectView
 	{
 		public function set data(value:Object):void
 		{

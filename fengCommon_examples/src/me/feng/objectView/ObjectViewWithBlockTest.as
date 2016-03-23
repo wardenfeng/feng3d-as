@@ -2,8 +2,11 @@ package me.feng.objectView
 {
 	import com.bit101.components.HBox;
 
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.data.ObjectA;
 	import me.feng.objectView.view.BooleanAttrView;
 	import me.feng.objectView.view.CustomAttrView;
@@ -34,7 +37,12 @@ package me.feng.objectView
 		{
 			ObjectViewConfig.setAttributeViewClassByType(Boolean, BooleanAttrView);
 
+			ObjectViewClassConfig;
+
 			var config:Object = { //
+					view: "", //
+//					view: Sprite, //
+//					view: CustomObjectView, //
 					attributeDefinitions: [ //
 					{name: "x", block: "坐标"}, //
 						{name: "y", block: "坐标"}, //
@@ -48,7 +56,7 @@ package me.feng.objectView
 						{name: "sy", block: "缩放"}, //
 						{name: "sz", block: "缩放"}, //
 
-						{name: "custom", view: CustomAttrView}, //
+						{name: "custom", block: "缩放", view: CustomAttrView}, //
 
 					], //
 					blockDefinitions: [] //

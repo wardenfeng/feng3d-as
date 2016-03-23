@@ -8,7 +8,7 @@ package me.feng.objectView
 	import me.feng.objectView.data.ObjectA;
 	import me.feng.objectView.view.BooleanAttrView;
 	import me.feng.objectView.view.CustomAttrView;
-	import me.feng.objectView.view.customObjectView;
+	import me.feng.objectView.view.CustomObjectView;
 
 	//
 	//
@@ -36,7 +36,7 @@ package me.feng.objectView
 			objView.metaData = {a: 1};
 			box.addChild(objView);
 
-			ObjectViewConfig.setCustomObjectViewClass(int, customObjectView);
+			ObjectViewConfig.setCustomObjectViewClass(int, CustomObjectView);
 			box.addChild(ObjectView.getObjectView(5));
 
 			addChild(box);

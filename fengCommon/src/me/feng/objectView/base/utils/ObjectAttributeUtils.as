@@ -62,10 +62,11 @@ package me.feng.objectView.base.utils
 		 * @param attributeName			属性名称
 		 * @param viewClass				自定义对象属性界面类定义（该类必须是实现IObjectAttributeView接口并且是DisplayObject的子类）
 		 */
-		public function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
+		public function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Object):void
 		{
 			var key:String = ObjectView.getClassAttributeID(owner, attributeName);
-			customObjectAttributeViewClassDic[key] = viewClass;
+			var cls:Class = ClassUtils.getClass(viewClass);
+			customObjectAttributeViewClassDic[key] = cls;
 		}
 
 		/**

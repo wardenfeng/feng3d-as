@@ -38,6 +38,9 @@
     <classEntry path="me.feng.objectView.block.view.DefaultObjectViewWithBlock"/>
     <classEntry path="me.feng.objectView.block.view.DefaultObjectAttributeBlockView"/>
     <classEntry path="me.feng.objectView.base.utils.ObjectViewUtils"/>
+    <classEntry path="me.feng.objectView.configs.ObjectViewClassConfig"/>
+    <classEntry path="me.feng.objectView.configs.ObjectViewAttributeDefinition"/>
+    <classEntry path="me.feng.objectView.configs.ObjectViewBlockDefinition"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
