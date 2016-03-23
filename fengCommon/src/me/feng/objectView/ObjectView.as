@@ -1,14 +1,12 @@
 package me.feng.objectView
 {
 	import flash.display.DisplayObject;
-	import flash.utils.Dictionary;
 
 	import avmplus.getQualifiedClassName;
 
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.IObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
-	import me.feng.objectView.base.view.DefaultObjectAttributeView;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -17,21 +15,6 @@ package me.feng.objectView
 	 */
 	public class ObjectView
 	{
-		/**
-		 * 自定义对象界面类定义字典（key:自定义类名称,value:界面类定义）
-		 */
-		private static var customObjectViewClassDic:Dictionary = new Dictionary();
-
-		/**
-		 * 自定义对象属性界面类定义字典（key:类名称+属性名,value:属性界面类定义）
-		 */
-		private static var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
-
-		/**
-		 * 指定属性类型界面类定义字典
-		 */
-		private static var attributeViewClassByType:Dictionary = new Dictionary();
-
 		/**
 		 * 获取对象界面
 		 * @param object	用于生成界面的对象
@@ -65,7 +48,7 @@ package me.feng.objectView
 		public static function setCustomObjectViewClass(object:Object, viewClass:Class):void
 		{
 			var className:String = getQualifiedClassName(object);
-			customObjectViewClassDic[className] = viewClass;
+			ObjectViewConfig.customObjectViewClassDic[className] = viewClass;
 		}
 
 		/**
@@ -77,18 +60,18 @@ package me.feng.objectView
 		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Class):void
 		{
 			var key:String = getClassAttributeID(owner, attributeName);
-			customObjectAttributeViewClassDic[key] = viewClass;
+			ObjectViewConfig.customObjectAttributeViewClassDic[key] = viewClass;
 		}
 
 		/**
 		 * 设置所有特定类型属性的界面类定义
 		 * @param attributeClass			特定属性类型
-		 * @param viewClass					界面属性类
+		 * @param viewClass					属性界面类
 		 */
 		public static function setAttributeViewClassByType(attributeClass:Class, viewClass:Class):void
 		{
 			var attributeClassName:String = getQualifiedClassName(attributeClass);
-			attributeViewClassByType[attributeClassName] = viewClass;
+			ObjectViewConfig.attributeViewClassByType[attributeClassName] = viewClass;
 		}
 
 		/**
@@ -120,7 +103,7 @@ package me.feng.objectView
 		private static function getCustomObjectViewClass(object:Object):Class
 		{
 			var className:String = getQualifiedClassName(object);
-			var viewClass:Class = customObjectViewClassDic[className];
+			var viewClass:Class = ObjectViewConfig.customObjectViewClassDic[className];
 			return viewClass;
 		}
 
@@ -136,12 +119,12 @@ package me.feng.objectView
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = attributeViewClassByType[objectAttributeInfo.type];
+			viewClass = ObjectViewConfig.attributeViewClassByType[objectAttributeInfo.type];
 			if (viewClass != null)
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return DefaultObjectAttributeView;
+			return ObjectViewConfig.objectAttributeView;
 		}
 
 		/**
@@ -153,7 +136,7 @@ package me.feng.objectView
 		private static function getCustomObjectAttributeViewClass(owner:Object, attributeName:String):Class
 		{
 			var key:String = getClassAttributeID(owner, attributeName);
-			var viewClass:Class = customObjectAttributeViewClassDic[key];
+			var viewClass:Class = ObjectViewConfig.customObjectAttributeViewClassDic[key];
 			return viewClass;
 		}
 
@@ -171,5 +154,3 @@ package me.feng.objectView
 		}
 	}
 }
-
-
