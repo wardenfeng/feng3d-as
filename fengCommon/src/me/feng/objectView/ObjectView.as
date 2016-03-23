@@ -16,8 +16,17 @@ package me.feng.objectView
 	 */
 	public class ObjectView
 	{
+		/**
+		 * 对象界面工具
+		 */
 		internal static var objectViewUtils:ObjectViewUtils = new ObjectViewUtils();
+		/**
+		 * 对象属性工具
+		 */
 		internal static var objectAttributeUtils:ObjectAttributeUtils = new ObjectAttributeUtils();
+		/**
+		 * 对象属性块工具
+		 */
 		internal static var objectAttributeBlockUtils:ObjectAttributeBlockUtils = new ObjectAttributeBlockUtils();
 
 		/**

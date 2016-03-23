@@ -55,16 +55,42 @@ package me.feng.objectView
 			objectAttributeBlockUtils.setObjectAttributeBlockName(owner, attrName, blockName);
 		}
 
+		/**
+		 * 设置类配置
+		 * @param cls
+		 * @param config
+		 */
+		public static function setClassConfig(cls:Object, config:Object):void
+		{
+			if (config.attributeDefinitions != null)
+			{
+				for (var i:int = 0; i < config.attributeDefinitions.length; i++)
+				{
+					setObjectAttributeBlockName(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
+					setCustomObjectAttributeViewClass(cls, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
+				}
+			}
+		}
+
+		/**
+		 * 对象界面工具
+		 */
 		private static function get objectViewUtils():ObjectViewUtils
 		{
 			return ObjectView.objectViewUtils;
 		}
 
+		/**
+		 * 对象属性工具
+		 */
 		private static function get objectAttributeUtils():ObjectAttributeUtils
 		{
 			return ObjectView.objectAttributeUtils;
 		}
 
+		/**
+		 * 对象属性块工具
+		 */
 		private static function get objectAttributeBlockUtils():ObjectAttributeBlockUtils
 		{
 			return ObjectView.objectAttributeBlockUtils;

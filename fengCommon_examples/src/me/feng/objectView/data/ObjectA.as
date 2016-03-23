@@ -1,4 +1,4 @@
-package me.feng.objectView
+package me.feng.objectView.data
 {
 
 	//
@@ -21,7 +21,9 @@ package me.feng.objectView
 		public var sz:Number;
 
 		public var a:int = 1;
-		public var b:String = "...";
+		public var b:String;
 		public var c:Boolean = false;
+		public var custom:String;
+
 	}
 }
