@@ -27,17 +27,6 @@ package me.feng.objectView.base.utils
 		}
 
 		/**
-		 * 设置自定义对象界面类定义
-		 * @param object				指定对象类型
-		 * @param viewClass				自定义对象界面类定义（该类必须是实现IObjectView接口并且是DisplayObject的子类）
-		 */
-		public function setCustomObjectViewClass(objectClass:Class, viewClass:Class):void
-		{
-			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
-			objectViewClassConfig.customObjectViewClass = viewClass;
-		}
-
-		/**
 		 * 获取对象界面
 		 * @param object	用于生成界面的对象
 		 */
@@ -80,10 +69,6 @@ package me.feng.objectView.base.utils
 			var objectClass:Class = ClassUtils.getClass(object);
 
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
-			if (objectViewClassConfig == null)
-			{
-				return null;
-			}
 			return objectViewClassConfig.customObjectViewClass;
 		}
 	}

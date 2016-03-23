@@ -3,6 +3,7 @@ package me.feng.objectView
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 	import me.feng.objectView.base.utils.ObjectViewUtils;
 	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
@@ -13,6 +14,9 @@ package me.feng.objectView
 	 */
 	public class ObjectViewConfig
 	{
+		/**
+		 * ObjectView总配置数据
+		 */
 		internal static const objectViewConfigVO:ObjectViewConfigVO = new ObjectViewConfigVO();
 
 		/**
@@ -22,7 +26,8 @@ package me.feng.objectView
 		 */
 		public static function setCustomObjectViewClass(objectClass:Class, viewClass:Class):void
 		{
-			objectViewUtils.setCustomObjectViewClass(objectClass, viewClass);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
+			objectViewClassConfig.customObjectViewClass = viewClass;
 		}
 
 		/**
@@ -76,11 +81,11 @@ package me.feng.objectView
 		public static function setClassConfig(object:Object, config:Object):void
 		{
 			var objectClass:Class = ClassUtils.getClass(object);
-
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
 
 			if (config.view != null)
 			{
-				setCustomObjectViewClass(objectClass, ClassUtils.getClass(config.view));
+				objectViewClassConfig.customObjectViewClass = ClassUtils.getClass(config.view);
 			}
 			var i:int = 0;
 			if (config.attributeDefinitions != null)

@@ -13,5 +13,10 @@ package me.feng.objectView.configs
 		 * 自定义对象界面类定义
 		 */
 		public var customObjectViewClass:Class;
+
+		public function clear():void
+		{
+			customObjectViewClass = null;
+		}
 	}
 }
