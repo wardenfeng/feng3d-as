@@ -3,6 +3,7 @@ package me.feng.objectView.configs
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 
+	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.utils.ClassUtils;
 
 	/**
@@ -233,6 +234,28 @@ package me.feng.objectView.configs
 		public function getCustomBlockViewClass(blockName:String):Class
 		{
 			return blockDefinitionDic[blockName];
+		}
+
+		/**
+		 * 给属性排序
+		 * @param objectAttributeInfos
+		 */
+		public function sort(objectAttributeInfos:Vector.<ObjectAttributeInfo>):void
+		{
+			var arr:Array = [];
+			var dic:Dictionary = new Dictionary();
+			var attributeInfo:ObjectAttributeInfo;
+			for each (attributeInfo in objectAttributeInfos)
+			{
+				arr.push(attributeInfo.name);
+				dic[attributeInfo.name] = attributeInfo;
+			}
+			arr.sort();
+			objectAttributeInfos.length = 0;
+			for (var i:int = 0; i < arr.length; i++)
+			{
+				objectAttributeInfos.push(dic[arr[i]]);
+			}
 		}
 	}
 }

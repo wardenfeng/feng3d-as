@@ -1,14 +1,13 @@
 package me.feng.objectView
 {
 	import flash.display.DisplayObject;
-
-	import avmplus.getQualifiedClassName;
-
+	
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.base.utils.ObjectAttributeUtils;
 	import me.feng.objectView.base.utils.ObjectViewUtils;
 	import me.feng.objectView.block.data.ObjectAttributeBlock;
 	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 
 	/**
 	 * 对象界面
@@ -69,7 +68,19 @@ package me.feng.objectView
 		public static function getObjectAttributeInfos(object:Object):Vector.<ObjectAttributeInfo>
 		{
 			var objectAttributeInfos:Vector.<ObjectAttributeInfo> = objectAttributeUtils.getObjectAttributeInfos(object);
+			sortObjectAttributeInfos(objectAttributeInfos);
 			return objectAttributeInfos;
+		}
+
+		/**
+		 * 属性信息排序（该顺序会影响到显示顺序）
+		 * @param objectAttributeInfos
+		 */
+		private static function sortObjectAttributeInfos(objectAttributeInfos:Vector.<ObjectAttributeInfo>):void
+		{
+			var classConfig:ObjectViewClassConfig　=　ObjectViewConfig.objectViewConfigVO.getClassConfig(objectAttributeInfos[0].owner);
+			
+			classConfig.sort(objectAttributeInfos);
 		}
 
 		/**
