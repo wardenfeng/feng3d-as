@@ -53,10 +53,10 @@ package me.feng.objectView.base.utils
 			//返回基础类型界面类定义
 			var isBaseType:Boolean = ClassUtils.isBaseType(object);
 			if (isBaseType)
-				return objectViewConfigVO.baseObjectViewClass;
+				return objectViewConfigVO.defaultBaseObjectViewClass;
 
 			//返回默认类型界面类定义
-			return objectViewConfigVO.objectViewClass;
+			return objectViewConfigVO.defaultObjectViewClass;
 		}
 
 		/**

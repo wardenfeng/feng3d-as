@@ -104,7 +104,7 @@ package me.feng.objectView.configs
 		 * @param attributeName			属性名称
 		 * @param blockName				块名称
 		 */
-		public function setObjectAttributeBlockName(attributeName:String, blockName:String):void
+		public function setAttributeBlockName(attributeName:String, blockName:String):void
 		{
 			var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeName);
 			attributeDefinition.block = blockName;
@@ -115,7 +115,7 @@ package me.feng.objectView.configs
 		 * @param attrName			属性名称
 		 * @return
 		 */
-		public function getObjectAttributeBlockName(attributeName:String):String
+		public function getAttributeBlockName(attributeName:String):String
 		{
 			var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeName);
 			return attributeDefinition.block;
@@ -126,7 +126,7 @@ package me.feng.objectView.configs
 		 * @param blockName					块名称
 		 * @param blockView					自定义块界面
 		 */
-		public function setCustomObjectAttributeBlockViewClass(blockName:String, blockView:Object):void
+		public function setCustomBlockViewClass(blockName:String, blockView:Object):void
 		{
 			var viewClass:Class = ClassUtils.getClass(blockView);
 			blockDefinitionDic[blockName] = viewClass;
@@ -137,7 +137,7 @@ package me.feng.objectView.configs
 		 * @param blockName					块名称
 		 * @return
 		 */
-		public function getCustomObjectAttributeBlockViewClass(blockName:String):Class
+		public function getCustomBlockViewClass(blockName:String):Class
 		{
 			return blockDefinitionDic[blockName];
 		}

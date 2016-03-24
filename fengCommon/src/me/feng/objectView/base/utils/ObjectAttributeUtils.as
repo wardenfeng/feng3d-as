@@ -55,12 +55,12 @@ package me.feng.objectView.base.utils
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = objectViewConfigVO.getAttributeDefaultViewClass(objectAttributeInfo.type);
+			viewClass = objectViewConfigVO.getAttributeDefaultViewClassByType(objectAttributeInfo.type);
 			if (viewClass != null)
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return objectViewConfigVO.objectAttributeViewClass;
+			return objectViewConfigVO.defaultObjectAttributeViewClass;
 		}
 
 		/**

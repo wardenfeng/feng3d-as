@@ -94,7 +94,7 @@ package me.feng.objectView.block.utils
 		private function getObjectAttributeBlockName(owner:Object, attrName:String):String
 		{
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
-			var blockName:String = objectViewClassConfig.getObjectAttributeBlockName(attrName);
+			var blockName:String = objectViewClassConfig.getAttributeBlockName(attrName);
 			return blockName;
 		}
 
@@ -111,7 +111,7 @@ package me.feng.objectView.block.utils
 				return viewClass;
 
 			//返回默认对象属性界面类定义
-			return objectViewConfigVO.objectAttributeBlockView;
+			return objectViewConfigVO.defaultObjectAttributeBlockView;
 		}
 
 		/**
@@ -123,7 +123,7 @@ package me.feng.objectView.block.utils
 		private function getCustomObjectAttributeBlockViewClass(owner:Object, blockName:String):Class
 		{
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
-			var viewClass:Class = objectViewClassConfig.getCustomObjectAttributeBlockViewClass(blockName);
+			var viewClass:Class = objectViewClassConfig.getCustomBlockViewClass(blockName);
 			return viewClass;
 		}
 	}
