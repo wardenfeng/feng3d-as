@@ -66,9 +66,7 @@ package me.feng.objectView.base.utils
 		 */
 		private function getCustomObjectViewClass(object:Object):Class
 		{
-			var objectClass:Class = ClassUtils.getClass(object);
-
-			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(object);
 			return objectViewClassConfig.customObjectViewClass;
 		}
 	}

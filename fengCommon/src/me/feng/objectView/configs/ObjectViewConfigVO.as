@@ -8,6 +8,7 @@ package me.feng.objectView.configs
 	import me.feng.objectView.base.view.DefaultObjectAttributeView;
 	import me.feng.objectView.block.view.DefaultObjectAttributeBlockView;
 	import me.feng.objectView.block.view.DefaultObjectViewWithBlock;
+	import me.feng.utils.ClassUtils;
 
 	/**
 	 * ObjectView总配置数据
@@ -51,8 +52,13 @@ package me.feng.objectView.configs
 		 * @param objectClass			对象类定义
 		 * @return
 		 */
-		public function getClassConfig(objectClass:Class):ObjectViewClassConfig
+		public function getClassConfig(object:Object):ObjectViewClassConfig
 		{
+			var objectClass:Class = ClassUtils.getClass(object);
+			if (objectClass == null)
+			{
+				return null;
+			}
 			var className:String = getQualifiedClassName(objectClass);
 
 			if (classConfigDic[className] == null)

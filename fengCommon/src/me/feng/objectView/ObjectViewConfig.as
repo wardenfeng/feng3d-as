@@ -5,7 +5,6 @@ package me.feng.objectView
 	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
 	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
-	import me.feng.utils.ClassUtils;
 
 
 	/**
@@ -38,7 +37,8 @@ package me.feng.objectView
 		 */
 		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Object):void
 		{
-			objectAttributeUtils.setCustomObjectAttributeViewClass(owner, attributeName, viewClass);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			objectViewClassConfig.setAttributeDefinition(attributeName, viewClass);
 		}
 
 		/**
@@ -80,12 +80,12 @@ package me.feng.objectView
 		 */
 		public static function setClassConfig(object:Object, config:Object):void
 		{
-			var objectClass:Class = ClassUtils.getClass(object);
-			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(objectClass);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(object);
+			objectViewClassConfig.clear();
 
 			if (config.view != null)
 			{
-				objectViewClassConfig.customObjectViewClass = ClassUtils.getClass(config.view);
+				objectViewClassConfig.customObjectViewClass = config.view;
 			}
 			var i:int = 0;
 			if (config.attributeDefinitions != null)

@@ -1,14 +1,13 @@
 package me.feng.objectView.base.utils
 {
 	import flash.display.DisplayObject;
-	import flash.utils.Dictionary;
 
 	import avmplus.describeTypeInstance;
 	import avmplus.getQualifiedClassName;
 
-	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.IObjectAttributeView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
 	import me.feng.utils.ClassUtils;
 
@@ -22,11 +21,6 @@ package me.feng.objectView.base.utils
 		 * ObjectView总配置数据
 		 */
 		private var objectViewConfigVO:ObjectViewConfigVO;
-
-		/**
-		 * 自定义对象属性界面类定义字典（key:类名称+属性名,value:属性界面类定义）
-		 */
-		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 构建
@@ -47,19 +41,6 @@ package me.feng.objectView.base.utils
 			var view:DisplayObject = new viewClass();
 			IObjectAttributeView(view).objectAttributeInfo = objectAttributeInfo;
 			return view;
-		}
-
-		/**
-		 * 设置自定义对象属性界面类定义
-		 * @param owner					属性拥有者
-		 * @param attributeName			属性名称
-		 * @param viewClass				自定义对象属性界面类定义（该类必须是实现IObjectAttributeView接口并且是DisplayObject的子类）
-		 */
-		public function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Object):void
-		{
-			var key:String = ObjectView.getClassAttributeID(owner, attributeName);
-			var cls:Class = ClassUtils.getClass(viewClass);
-			customObjectAttributeViewClassDic[key] = cls;
 		}
 
 		/**
@@ -108,8 +89,8 @@ package me.feng.objectView.base.utils
 		 */
 		private function getCustomObjectAttributeViewClass(owner:Object, attributeName:String):Class
 		{
-			var key:String = ObjectView.getClassAttributeID(owner, attributeName);
-			var viewClass:Class = customObjectAttributeViewClassDic[key];
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			var viewClass:Class = objectViewClassConfig.getAttributeDefinition(attributeName);
 			return viewClass;
 		}
 
