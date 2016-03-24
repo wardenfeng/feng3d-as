@@ -11,6 +11,10 @@ package me.feng.objectView.configs
 	public class ObjectViewAttributeDefinition
 	{
 		/**
+		 * 属性名称
+		 */
+		public var name:String;
+		/**
 		 * 属性所在块名称
 		 */
 		public var block:String;
@@ -39,6 +43,8 @@ package me.feng.objectView.configs
 		public function getObject():Object
 		{
 			var object:Object = {};
+			object.name = name;
+
 			if (block != null && block.length > 0)
 				object.block = block;
 
@@ -53,6 +59,7 @@ package me.feng.objectView.configs
 		 */
 		public function setObject(object:Object):void
 		{
+			name = object.name;
 			block = object.block;
 			view = ClassUtils.getClass(object.view);
 		}
@@ -62,6 +69,7 @@ package me.feng.objectView.configs
 		 */
 		public function clear():void
 		{
+			name = "";
 			block = "";
 			view = null;
 		}

@@ -81,26 +81,7 @@ package me.feng.objectView
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(object);
 			objectViewClassConfig.clear();
 
-			if (config.view != null)
-			{
-				objectViewClassConfig.customObjectViewClass = config.view;
-			}
-			if (config.attributeDefinitions != null)
-			{
-				for (var attributeName:String in config.attributeDefinitions)
-				{
-					setObjectAttributeBlockName(object, attributeName, config.attributeDefinitions[attributeName].block);
-					setCustomObjectAttributeViewClass(object, attributeName, config.attributeDefinitions[attributeName].view);
-				}
-			}
-			if (config.blockDefinitions != null)
-			{
-				var i:int = 0;
-				for (i = 0; i < config.blockDefinitions.length; i++)
-				{
-					setCustomObjectAttributeBlockViewClass(object, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
-				}
-			}
+			objectViewClassConfig.setObject(config);
 		}
 
 		/**

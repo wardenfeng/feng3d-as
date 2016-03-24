@@ -193,6 +193,9 @@ package me.feng.objectView.configs
 			return data;
 		}
 
+		/**
+		 * 设置数据
+		 */
 		public function setObject(data:Object):void
 		{
 			defaultBaseObjectViewClass = data.defaultBaseObjectViewClass;

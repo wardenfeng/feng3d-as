@@ -14,7 +14,7 @@ package me.feng.objectView.configs
 		/**
 		 * 自定义对象属性定义字典（key:属性名,value:属性定义）
 		 */
-		private var attributeDefinitionDic:Object = {};
+		private var attributeDefinitionDic:Dictionary = new Dictionary();
 
 		/**
 		 * 自定义对象属性块界面类定义字典（key:属性块名称,value:自定义对象属性块界面类定义）
@@ -86,13 +86,13 @@ package me.feng.objectView.configs
 				object.view = viewClassName;
 			}
 
-			var attributeDefinitions:Object = object.attributeDefinitions = {};
+			var attributeDefinitions:Array = object.attributeDefinitions = [];
 			for (var attributeName:String in attributeDefinitionDic)
 			{
 				var attributeDefinition:ObjectViewAttributeDefinition = attributeDefinitionDic[attributeName];
 				if (attributeDefinition == null || attributeDefinition.isEmpty())
 					continue;
-				attributeDefinitions[attributeName] = attributeDefinition.getObject();
+				attributeDefinitions.push(attributeDefinition.getObject());
 			}
 
 			var blockDefinitions:Array = object.blockDefinitions = [];
@@ -116,18 +116,18 @@ package me.feng.objectView.configs
 
 			if (object.attributeDefinitions != null)
 			{
-				for (var attributeName:String in object.attributeDefinitions)
+				for each (var attributeDefinitionData:Object in object.attributeDefinitions)
 				{
-					var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeName);
-					attributeDefinition.setObject(object.attributeDefinitions[attributeName]);
+					var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeDefinitionData.name);
+					attributeDefinition.setObject(attributeDefinitionData);
 				}
 			}
 
 			if (object.blockDefinitions != null)
 			{
-				for (var blockName:String in object.blockDefinitions)
+				for each (var blockDefinition:Object in object.blockDefinitions)
 				{
-					blockDefinitionDic[blockName] = ClassUtils.getClass(object.blockDefinitions[blockName]);
+					blockDefinitionDic[blockDefinition.name] = ClassUtils.getClass(blockDefinition.view);
 				}
 			}
 		}
@@ -186,7 +186,8 @@ package me.feng.objectView.configs
 		{
 			if (attributeDefinitionDic[attributeName] == null)
 			{
-				attributeDefinitionDic[attributeName] = new ObjectViewAttributeDefinition();
+				var attributeDefinition:ObjectViewAttributeDefinition = attributeDefinitionDic[attributeName] = new ObjectViewAttributeDefinition();
+				attributeDefinition.name = attributeName;
 			}
 			return attributeDefinitionDic[attributeName];
 		}

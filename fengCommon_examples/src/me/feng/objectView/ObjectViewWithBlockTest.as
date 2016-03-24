@@ -86,23 +86,23 @@ package me.feng.objectView
 					view: "", //
 //					view: Sprite, //
 //					view: CustomObjectView, //
-					attributeDefinitions: { //
-						"x": {block: "坐标"}, //
-						"y": {block: "坐标"}, //
-						"z": {block: "坐标"}, //
+					attributeDefinitions: [ //
+					{name: "x", block: "坐标"}, //
+						{name: "y", block: "坐标"}, //
+						{name: "z", block: "坐标"}, //
 //						
-						"rx": {block: "旋转"}, //
-						"ry": {block: "旋转"}, //
-						"rz": {block: "旋转"}, //
+						{name: "rx", block: "旋转"}, //
+						{name: "ry", block: "旋转"}, //
+						{name: "rz", block: "旋转"}, //
 //						
-						"sx": {block: "缩放"}, //
-						"sy": {block: "缩放"}, //
-						"sz": {block: "缩放"}, //
+						{name: "sx", block: "缩放"}, //
+						{name: "sy", block: "缩放"}, //
+						{name: "sz", block: "缩放"}, //
 						//
-						"a": {block: "自定义块"}, //
-						"b": {block: "自定义块"}, //
-						"custom": {block: "缩放", view: CustomAttrView} //
-					}, //
+						{name: "a", block: "自定义块"}, //
+						{name: "b", block: "自定义块"}, //
+						{name: "custom", block: "缩放", view: CustomAttrView} //
+					], //
 					blockDefinitions: [ //
 					{name: "自定义块", view: CustomBlockView}, //
 					] //
@@ -133,7 +133,9 @@ package me.feng.objectView
 			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "sy", "缩放");
 			ObjectViewConfig.setObjectAttributeBlockName(ObjectA, "sz", "缩放");
 		}
+
 	}
+
 }
 
 
