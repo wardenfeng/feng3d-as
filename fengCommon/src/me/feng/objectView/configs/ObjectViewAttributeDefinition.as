@@ -14,14 +14,31 @@ package me.feng.objectView.configs
 		 * 属性名称
 		 */
 		public var name:String;
-		/**
-		 * 属性所在块名称
-		 */
-		public var block:String;
+		private var _block:String = "";
 		/**
 		 * 属性界面类定义
 		 */
 		public var view:Class;
+
+		/**
+		 * 属性所在块名称
+		 */
+		public function get block():String
+		{
+			return _block;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set block(value:String):void
+		{
+			_block = value;
+			if (_block == null)
+			{
+				_block = "";
+			}
+		}
 
 		/**
 		 * 是否空数据

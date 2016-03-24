@@ -18,6 +18,11 @@ package me.feng.objectView.configs
 		private var attributeDefinitionDic:Dictionary = new Dictionary();
 
 		/**
+		 * 属性列表（排序结果）
+		 */
+		private var attributeSortArr:Array;
+
+		/**
 		 * 自定义对象属性块界面类定义字典（key:属性块名称,value:自定义对象属性块界面类定义）
 		 */
 		private var blockDefinitionDic:Dictionary = new Dictionary();
@@ -88,8 +93,10 @@ package me.feng.objectView.configs
 			}
 
 			var attributeDefinitions:Array = object.attributeDefinitions = [];
-			for (var attributeName:String in attributeDefinitionDic)
+
+			for (var i:int = 0; i < attributeSortArr.length; i++)
 			{
+				var attributeName:String = attributeSortArr[i];
 				var attributeDefinition:ObjectViewAttributeDefinition = attributeDefinitionDic[attributeName];
 				if (attributeDefinition == null || attributeDefinition.isEmpty())
 					continue;
@@ -115,12 +122,14 @@ package me.feng.objectView.configs
 		{
 			customObjectViewClass = ClassUtils.getClass(object.view);
 
+			attributeSortArr = [];
 			if (object.attributeDefinitions != null)
 			{
 				for each (var attributeDefinitionData:Object in object.attributeDefinitions)
 				{
 					var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeDefinitionData.name);
 					attributeDefinition.setObject(attributeDefinitionData);
+					attributeSortArr.push(attributeDefinition.name);
 				}
 			}
 
@@ -251,10 +260,38 @@ package me.feng.objectView.configs
 				dic[attributeInfo.name] = attributeInfo;
 			}
 			arr.sort();
+
+			sortArr(attributeSortArr, arr);
+			attributeSortArr = arr.concat();
+
 			objectAttributeInfos.length = 0;
 			for (var i:int = 0; i < arr.length; i++)
 			{
 				objectAttributeInfos.push(dic[arr[i]]);
+			}
+		}
+
+		/**
+		 * 根据老数组中的位置排序新数组（尽可能保留老数组中的顺序）
+		 * @param oldArr			老数组
+		 * @param newArr			新数组
+		 */
+		private function sortArr(oldArr:Array, newArr:Array):void
+		{
+			if (oldArr == null)
+				return;
+
+			var i:int;
+			//删除无效属性
+			for (i = oldArr.length - 1; i >= 0; i--)
+			{
+				var index:int = newArr.indexOf(oldArr[i]);
+				if (index != -1)
+				{
+					//把元素移到数组头部
+					newArr.splice(index, 1);
+					newArr.unshift(oldArr[i]);
+				}
 			}
 		}
 	}

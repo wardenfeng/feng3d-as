@@ -51,7 +51,9 @@ package me.feng.objectView
 			t = getTimer();
 
 			var fullConfig:Object = ObjectViewConfig.getFullConfig();
-			trace(JSON.stringify(fullConfig));
+			var fullConfigStr:String = JSON.stringify(fullConfig);
+			trace(fullConfigStr);
+			var fullConfig1:Object = JSON.parse(fullConfigStr);
 
 			ObjectViewConfig.clearFullConfig();
 
@@ -60,7 +62,7 @@ package me.feng.objectView
 			trace(getTimer() - t);
 			t = getTimer();
 
-			ObjectViewConfig.setFullConfig(fullConfig);
+			ObjectViewConfig.setFullConfig(fullConfig1);
 
 			initBlockConfig1()
 			box.addChild(ObjectView.getObjectView(a));
@@ -87,7 +89,11 @@ package me.feng.objectView
 //					view: Sprite, //
 //					view: CustomObjectView, //
 					attributeDefinitions: [ //
-					{name: "x", block: "坐标"}, //
+					{name: "c", block: ""}, //
+						{name: "a", block: "自定义块"}, //
+						{name: "b", block: "自定义块"}, //
+						//
+						{name: "x", block: "坐标"}, //
 						{name: "y", block: "坐标"}, //
 						{name: "z", block: "坐标"}, //
 //						
@@ -99,8 +105,6 @@ package me.feng.objectView
 						{name: "sy", block: "缩放"}, //
 						{name: "sz", block: "缩放"}, //
 						//
-						{name: "a", block: "自定义块"}, //
-						{name: "b", block: "自定义块"}, //
 						{name: "custom", block: "缩放", view: CustomAttrView} //
 					], //
 					blockDefinitions: [ //
