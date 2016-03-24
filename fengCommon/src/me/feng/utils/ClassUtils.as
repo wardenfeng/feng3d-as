@@ -37,7 +37,7 @@ package me.feng.utils
 			var cla:Class = obj as Class;
 
 			var className:String = getQualifiedClassName(obj);
-			if (className == "null")
+			if (className == "null" || className == "void")
 			{
 				return null;
 			}

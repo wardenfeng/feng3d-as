@@ -1,6 +1,7 @@
 package me.feng.objectView.configs
 {
 	import flash.utils.Dictionary;
+	import flash.utils.getQualifiedClassName;
 
 	import me.feng.utils.ClassUtils;
 
@@ -13,12 +14,13 @@ package me.feng.objectView.configs
 		/**
 		 * 自定义对象属性定义字典（key:属性名,value:属性定义）
 		 */
-		private const attributeDefinitionDic:Dictionary = new Dictionary();
+		private var attributeDefinitionDic:Object = {};
 
 		/**
 		 * 自定义对象属性块界面类定义字典（key:属性块名称,value:自定义对象属性块界面类定义）
 		 */
-		private const blockDefinitionDic:Dictionary = new Dictionary();
+		private var blockDefinitionDic:Dictionary = new Dictionary();
+
 		private var _customObjectViewClass:Class;
 
 		/**
@@ -37,6 +39,33 @@ package me.feng.objectView.configs
 			_customObjectViewClass = ClassUtils.getClass(value);
 		}
 
+		/**
+		 * 数据是否为空
+		 */
+		public function isEmpty():Boolean
+		{
+			if (customObjectViewClass != null)
+				return false;
+
+			var value:Object;
+			for each (value in attributeDefinitionDic)
+			{
+				if (value != null)
+					return false;
+			}
+
+			for each (value in blockDefinitionDic)
+			{
+				if (value != null)
+					return false;
+			}
+
+			return true;
+		}
+
+		/**
+		 * 清理数据
+		 */
 		public function clear():void
 		{
 			customObjectViewClass = null;
@@ -46,10 +75,68 @@ package me.feng.objectView.configs
 		}
 
 		/**
+		 * 转化为对象
+		 */
+		public function getObject():Object
+		{
+			var object:Object = {};
+			var viewClassName:String = getQualifiedClassName(customObjectViewClass);
+			if (viewClassName != null)
+			{
+				object.view = viewClassName;
+			}
+
+			var attributeDefinitions:Object = object.attributeDefinitions = {};
+			for (var attributeName:String in attributeDefinitionDic)
+			{
+				var attributeDefinition:ObjectViewAttributeDefinition = attributeDefinitionDic[attributeName];
+				if (attributeDefinition == null || attributeDefinition.isEmpty())
+					continue;
+				attributeDefinitions[attributeName] = attributeDefinition.getObject();
+			}
+
+			var blockDefinitions:Array = object.blockDefinitions = [];
+			for (var blockName:String in blockDefinitionDic)
+			{
+				if (blockDefinitionDic[blockName] != null)
+				{
+					blockDefinitions.push({name: blockName, view: getQualifiedClassName(blockDefinitionDic[blockName])});
+				}
+			}
+
+			return object;
+		}
+
+		/**
+		 * 设置数据
+		 */
+		public function setObject(object:Object):void
+		{
+			customObjectViewClass = ClassUtils.getClass(object.view);
+
+			if (object.attributeDefinitions != null)
+			{
+				for (var attributeName:String in object.attributeDefinitions)
+				{
+					var attributeDefinition:ObjectViewAttributeDefinition = getAttributeDefinition(attributeName);
+					attributeDefinition.setObject(object.attributeDefinitions[attributeName]);
+				}
+			}
+
+			if (object.blockDefinitions != null)
+			{
+				for (var blockName:String in object.blockDefinitions)
+				{
+					blockDefinitionDic[blockName] = ClassUtils.getClass(object.blockDefinitions[blockName]);
+				}
+			}
+		}
+
+		/**
 		 * 清除字典
 		 * @param dic
 		 */
-		private function clearDic(dic:Dictionary):void
+		private function clearDic(dic:Object):void
 		{
 			var keys:Array = [];
 			for (var key:* in dic)
@@ -58,6 +145,11 @@ package me.feng.objectView.configs
 			}
 			for (var i:int = 0; i < keys.length; i++)
 			{
+				var obj:Object = dic[keys[i]];
+				if (obj != null && obj.hasOwnProperty("clear") && (obj["clear"] is Function))
+				{
+					obj["clear"]();
+				}
 				delete dic[keys[i]];
 			}
 		}

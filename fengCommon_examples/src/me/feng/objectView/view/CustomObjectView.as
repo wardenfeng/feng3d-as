@@ -4,6 +4,7 @@ package me.feng.objectView.view
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.text.TextField;
+	import flash.utils.getQualifiedClassName;
 
 	import me.feng.objectView.base.IObjectView;
 
@@ -17,7 +18,7 @@ package me.feng.objectView.view
 		{
 			var label:TextField
 			label = new TextField();
-			label.text = "自定义属性界面_" + JSON.stringify(value);
+			label.text = "自定义对象界面_" + getQualifiedClassName(value);
 			label.textColor = 0xff00ff;
 			label.width = 100;
 			label.wordWrap = true;

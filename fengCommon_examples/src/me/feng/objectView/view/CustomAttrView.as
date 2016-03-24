@@ -2,7 +2,6 @@ package me.feng.objectView.view
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.text.TextField;
 
@@ -19,7 +18,7 @@ package me.feng.objectView.view
 		{
 			var label:TextField
 			label = new TextField();
-			label.text = "自定义属性界面_" + JSON.stringify(value);
+			label.text = "自定义属性界面_" + value.name;
 			label.textColor = 0xffff00;
 			label.width = 100;
 			label.wordWrap = true;

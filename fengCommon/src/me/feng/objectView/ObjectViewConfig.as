@@ -1,8 +1,5 @@
 package me.feng.objectView
 {
-	import me.feng.objectView.base.utils.ObjectAttributeUtils;
-	import me.feng.objectView.base.utils.ObjectViewUtils;
-	import me.feng.objectView.block.utils.ObjectAttributeBlockUtils;
 	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
 
@@ -88,17 +85,17 @@ package me.feng.objectView
 			{
 				objectViewClassConfig.customObjectViewClass = config.view;
 			}
-			var i:int = 0;
 			if (config.attributeDefinitions != null)
 			{
-				for (i = 0; i < config.attributeDefinitions.length; i++)
+				for (var attributeName:String in config.attributeDefinitions)
 				{
-					setObjectAttributeBlockName(object, config.attributeDefinitions[i].name, config.attributeDefinitions[i].block);
-					setCustomObjectAttributeViewClass(object, config.attributeDefinitions[i].name, config.attributeDefinitions[i].view);
+					setObjectAttributeBlockName(object, attributeName, config.attributeDefinitions[attributeName].block);
+					setCustomObjectAttributeViewClass(object, attributeName, config.attributeDefinitions[attributeName].view);
 				}
 			}
 			if (config.blockDefinitions != null)
 			{
+				var i:int = 0;
 				for (i = 0; i < config.blockDefinitions.length; i++)
 				{
 					setCustomObjectAttributeBlockViewClass(object, config.blockDefinitions[i].name, config.blockDefinitions[i].view);
@@ -106,39 +103,25 @@ package me.feng.objectView
 			}
 		}
 
-		public static function setGlobalConfig(config:Object):void
+		/**
+		 * 设置完整配置
+		 */
+		public static function setFullConfig(config:Object):void
 		{
-			if (config.attributeDefaultViews != null)
-			{
-				for (var i:int = 0; i < config.attributeDefaultViews.length; i++)
-				{
-					(config.attributeDefaultViews[i].attributeType, config.attributeDefaultViews[i].viewType);
-				}
-			}
+			objectViewConfigVO.setObject(config);
 		}
 
 		/**
-		 * 对象界面工具
+		 *	获取完整配置
 		 */
-		private static function get objectViewUtils():ObjectViewUtils
+		public static function getFullConfig():Object
 		{
-			return ObjectView.objectViewUtils;
+			return objectViewConfigVO.getObject();
 		}
 
-		/**
-		 * 对象属性工具
-		 */
-		private static function get objectAttributeUtils():ObjectAttributeUtils
+		public static function clearFullConfig():void
 		{
-			return ObjectView.objectAttributeUtils;
-		}
-
-		/**
-		 * 对象属性块工具
-		 */
-		private static function get objectAttributeBlockUtils():ObjectAttributeBlockUtils
-		{
-			return ObjectView.objectAttributeBlockUtils;
+			objectViewConfigVO.clear();
 		}
 	}
 }

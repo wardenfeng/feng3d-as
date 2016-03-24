@@ -49,6 +49,24 @@ package me.feng.objectView
 			addChild(box);
 			trace(getTimer() - t);
 			t = getTimer();
+
+			var fullConfig:Object = ObjectViewConfig.getFullConfig();
+			trace(JSON.stringify(fullConfig));
+
+			ObjectViewConfig.clearFullConfig();
+
+			box.addChild(ObjectView.getObjectView(a));
+			addChild(box);
+			trace(getTimer() - t);
+			t = getTimer();
+
+			ObjectViewConfig.setFullConfig(fullConfig);
+
+			initBlockConfig1()
+			box.addChild(ObjectView.getObjectView(a));
+			addChild(box);
+			trace(getTimer() - t);
+			t = getTimer();
 		}
 
 		private function initBlockConfig2():void
@@ -68,25 +86,23 @@ package me.feng.objectView
 					view: "", //
 //					view: Sprite, //
 //					view: CustomObjectView, //
-					attributeDefinitions: [ //
-					{name: "x", block: "坐标"}, //
-						{name: "y", block: "坐标"}, //
-						{name: "z", block: "坐标"}, //
+					attributeDefinitions: { //
+						"x": {block: "坐标"}, //
+						"y": {block: "坐标"}, //
+						"z": {block: "坐标"}, //
 //						
-						{name: "rx", block: "旋转"}, //
-						{name: "ry", block: "旋转"}, //
-						{name: "rz", block: "旋转"}, //
+						"rx": {block: "旋转"}, //
+						"ry": {block: "旋转"}, //
+						"rz": {block: "旋转"}, //
 //						
-						{name: "sx", block: "缩放"}, //
-						{name: "sy", block: "缩放"}, //
-						{name: "sz", block: "缩放"}, //
+						"sx": {block: "缩放"}, //
+						"sy": {block: "缩放"}, //
+						"sz": {block: "缩放"}, //
 						//
-						{name: "a", block: "自定义块"}, //
-						{name: "b", block: "自定义块"}, //
-
-						{name: "custom", block: "缩放", view: CustomAttrView}, //
-
-					], //
+						"a": {block: "自定义块"}, //
+						"b": {block: "自定义块"}, //
+						"custom": {block: "缩放", view: CustomAttrView} //
+					}, //
 					blockDefinitions: [ //
 					{name: "自定义块", view: CustomBlockView}, //
 					] //
@@ -100,7 +116,7 @@ package me.feng.objectView
 //					{attributeType: "String", viewType: ""}, //
 					{attributeType: "Boolean", viewType: BooleanAttrView}, //
 					]};
-			ObjectViewConfig.setGlobalConfig(globalConfig);
+			ObjectViewConfig.setFullConfig(globalConfig);
 		}
 
 		private function initBlockConfig():void
