@@ -6,7 +6,6 @@ package me.feng.objectView
 	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
 
-
 	/**
 	 * ObjectView配置
 	 * @author feng 2016-3-23
@@ -38,7 +37,7 @@ package me.feng.objectView
 		public static function setCustomObjectAttributeViewClass(owner:Object, attributeName:String, viewClass:Object):void
 		{
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
-			objectViewClassConfig.setAttributeDefinition(attributeName, viewClass);
+			objectViewClassConfig.setAttributeDefinitionViewClass(attributeName, viewClass);
 		}
 
 		/**
@@ -48,7 +47,7 @@ package me.feng.objectView
 		 */
 		public static function setAttributeDefaultViewClass(attributeClass:Object, viewClass:Object):void
 		{
-			objectAttributeUtils.setAttributeDefaultViewClass(attributeClass, viewClass);
+			objectViewConfigVO.setAttributeDefaultViewClass(attributeClass, viewClass);
 		}
 
 		/**
@@ -59,7 +58,8 @@ package me.feng.objectView
 		 */
 		public static function setObjectAttributeBlockName(owner:Object, attrName:String, blockName:String):void
 		{
-			objectAttributeBlockUtils.setObjectAttributeBlockName(owner, attrName, blockName);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			objectViewClassConfig.setObjectAttributeBlockName(attrName, blockName);
 		}
 
 		/**
@@ -70,7 +70,8 @@ package me.feng.objectView
 		 */
 		public static function setCustomObjectAttributeBlockViewClass(owner:Object, blockName:String, blockView:Object):void
 		{
-			objectAttributeBlockUtils.setCustomObjectAttributeBlockViewClass(owner, blockName, blockView);
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			objectViewClassConfig.setCustomObjectAttributeBlockViewClass(blockName, blockView);
 		}
 
 		/**

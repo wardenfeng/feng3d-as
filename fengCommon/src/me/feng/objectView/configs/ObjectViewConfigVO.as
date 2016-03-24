@@ -40,7 +40,7 @@ package me.feng.objectView.configs
 		/**
 		 * 指定属性类型界面类定义字典（key:属性类名称,value:属性界面类定义）
 		 */
-		public var attributeDefaultViewClassDic:Dictionary = new Dictionary();
+		private var attributeDefaultViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * ObjectView类配置字典 （key：类名称，value：ObjectView类配置）
@@ -66,6 +66,34 @@ package me.feng.objectView.configs
 				classConfigDic[className] = new ObjectViewClassConfig();
 			}
 			return classConfigDic[className];
+		}
+
+		/**
+		 * 获取特定类型的默认属性界面类定义
+		 * @param type				类型
+		 * @return
+		 */
+		public function getAttributeDefaultViewClass(type:String):Class
+		{
+			return attributeDefaultViewClassDic[type];
+		}
+
+		/**
+		 * 设置特定类型的默认属性界面类定义
+		 * @param attributeClass			特定类型
+		 * @param viewClass					属性界面类定义
+		 */
+		public function setAttributeDefaultViewClass(attributeClass:Object, viewClass:Object):void
+		{
+			var attributeCls:Class = ClassUtils.getClass(attributeClass);
+			if (attributeCls == null)
+			{
+				return;
+			}
+			var attributeClassName:String = getQualifiedClassName(attributeCls);
+
+			var cls:Class = ClassUtils.getClass(viewClass);
+			attributeDefaultViewClassDic[attributeClassName] = cls;
 		}
 	}
 }

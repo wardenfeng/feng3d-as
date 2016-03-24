@@ -3,14 +3,12 @@ package me.feng.objectView.block.utils
 	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
 
-	import avmplus.getQualifiedClassName;
-
 	import me.feng.objectView.ObjectView;
 	import me.feng.objectView.base.data.ObjectAttributeInfo;
 	import me.feng.objectView.block.IObjectAttributeBlockView;
 	import me.feng.objectView.block.data.ObjectAttributeBlock;
+	import me.feng.objectView.configs.ObjectViewClassConfig;
 	import me.feng.objectView.configs.ObjectViewConfigVO;
-	import me.feng.utils.ClassUtils;
 
 	/**
 	 * 对象属性块工具
@@ -22,16 +20,6 @@ package me.feng.objectView.block.utils
 		 * ObjectView总配置数据
 		 */
 		private var objectViewConfigVO:ObjectViewConfigVO;
-
-		/**
-		 * 对象属性块名称字典		（key:类属性ID,value:对象属性块名称）
-		 */
-		private const objectAttributeBlockNameDic:Dictionary = new Dictionary();
-
-		/**
-		 * 自定义对象属性块界面类定义字典（key:属性块全局名称,value:自定义对象属性块界面类定义）
-		 */
-		private var customObjectAttributeViewClassDic:Dictionary = new Dictionary();
 
 		/**
 		 * 构建
@@ -65,31 +53,6 @@ package me.feng.objectView.block.utils
 
 			var objectAttributeBlocks:Vector.<ObjectAttributeBlock> = getObjectAttributeBlocksByObjectAttributeInfos(objectAttributeInfos);
 			return objectAttributeBlocks;
-		}
-
-		/**
-		 * 设置对象属性所在的属性块名称
-		 * @param owner				属性拥有者
-		 * @param attrName			属性名称
-		 * @param blockName			所在属性块名称
-		 */
-		public function setObjectAttributeBlockName(owner:Object, attrName:String, blockName:String):void
-		{
-			var key:String = ObjectView.getClassAttributeID(owner, attrName);
-			objectAttributeBlockNameDic[key] = blockName;
-		}
-
-		/**
-		 * 设置自定义对象属性块界面类定义
-		 * @param owner						块拥有者
-		 * @param blockName					块名称
-		 * @param blockView					自定义块界面
-		 */
-		public function setCustomObjectAttributeBlockViewClass(owner:Object, blockName:String, blockView:Object):void
-		{
-			var globalBlockName:String = getGlobalBlockName(owner, blockName);
-			var viewClass:Class = ClassUtils.getClass(blockView);
-			customObjectAttributeViewClassDic[globalBlockName] = viewClass;
 		}
 
 		/**
@@ -130,8 +93,8 @@ package me.feng.objectView.block.utils
 		 */
 		private function getObjectAttributeBlockName(owner:Object, attrName:String):String
 		{
-			var key:String = ObjectView.getClassAttributeID(owner, attrName);
-			var blockName:String = objectAttributeBlockNameDic[key];
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			var blockName:String = objectViewClassConfig.getObjectAttributeBlockName(attrName);
 			return blockName;
 		}
 
@@ -159,26 +122,9 @@ package me.feng.objectView.block.utils
 		 */
 		private function getCustomObjectAttributeBlockViewClass(owner:Object, blockName:String):Class
 		{
-			var globalBlockName:String = getGlobalBlockName(owner, blockName);
-			var viewClass:Class = customObjectAttributeViewClassDic[globalBlockName];
+			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
+			var viewClass:Class = objectViewClassConfig.getCustomObjectAttributeBlockViewClass(blockName);
 			return viewClass;
-		}
-
-		/**
-		 * 获取块全局名称
-		 * @param owner				块拥有者
-		 * @param blockName			块名称
-		 * @return
-		 */
-		private function getGlobalBlockName(owner:Object, blockName:String):String
-		{
-			var globalBlockName:String = getQualifiedClassName(owner);
-
-			if (blockName != null)
-			{
-				globalBlockName = globalBlockName + "-" + blockName;
-			}
-			return globalBlockName;
 		}
 	}
 }

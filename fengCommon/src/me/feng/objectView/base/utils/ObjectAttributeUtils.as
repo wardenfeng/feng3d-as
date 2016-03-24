@@ -44,24 +44,6 @@ package me.feng.objectView.base.utils
 		}
 
 		/**
-		 * 设置特定类型的默认属性界面类定义
-		 * @param attributeClass			特定类型
-		 * @param viewClass					属性界面类定义
-		 */
-		public function setAttributeDefaultViewClass(attributeClass:Object, viewClass:Object):void
-		{
-			var attributeCls:Class = ClassUtils.getClass(attributeClass);
-			if (attributeCls == null)
-			{
-				return;
-			}
-			var attributeClassName:String = getQualifiedClassName(attributeCls);
-
-			var cls:Class = ClassUtils.getClass(viewClass);
-			objectViewConfigVO.attributeDefaultViewClassDic[attributeClassName] = cls;
-		}
-
-		/**
 		 * 获取对象属性界面类定义
 		 * @param objectAttributeInfo		对象属性信息
 		 * @return							对象属性界面类定义
@@ -73,7 +55,7 @@ package me.feng.objectView.base.utils
 			if (viewClass != null)
 				return viewClass;
 
-			viewClass = objectViewConfigVO.attributeDefaultViewClassDic[objectAttributeInfo.type];
+			viewClass = objectViewConfigVO.getAttributeDefaultViewClass(objectAttributeInfo.type);
 			if (viewClass != null)
 				return viewClass;
 
@@ -90,7 +72,7 @@ package me.feng.objectView.base.utils
 		private function getCustomObjectAttributeViewClass(owner:Object, attributeName:String):Class
 		{
 			var objectViewClassConfig:ObjectViewClassConfig = objectViewConfigVO.getClassConfig(owner);
-			var viewClass:Class = objectViewClassConfig.getAttributeDefinition(attributeName);
+			var viewClass:Class = objectViewClassConfig.getAttributeDefinitionViewClass(attributeName);
 			return viewClass;
 		}
 
