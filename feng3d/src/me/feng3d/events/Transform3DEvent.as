@@ -46,7 +46,7 @@ package me.feng3d.events
 		 */
 		public function Transform3DEvent(type:String, element3D:Element3D, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
-			super(type, data, bubbles, cancelable);
+			super(type, element3D, bubbles, cancelable);
 		}
 
 		/**
