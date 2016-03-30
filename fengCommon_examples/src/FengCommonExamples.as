@@ -19,7 +19,6 @@ package
 	import me.feng.events.EventBubblesTest2;
 	import me.feng.events.FEventDispatcherTest;
 	import me.feng.events.IFEventDispatcherTest;
-	import me.feng.objectView.ObjectViewTest;
 	import me.feng.task.TaskListTest;
 	import me.feng.task.TaskModuleTest;
 	import me.feng.task.TaskQueueTest;
@@ -43,7 +42,6 @@ package
 			FEventDispatcherTest, //
 			IFEventDispatcherTest, //
 			DescribeTypeTest, //
-			ObjectViewTest, //
 			];
 		private var testInstanceList:Array = [];
 		private var index:int = 0;
