@@ -8,12 +8,50 @@ package
 	{
 		public function MatrixTest()
 		{
-			testFunc(testAppendRotationX);
-			testFunc(testAppendRotationY);
-			testFunc(testAppendRotationZ);
-			testFunc(testAppendRotationXY);
-			testFunc(testAppendRotationXYZ);
+//			testFunc(testAppendRotationX);
+//			testFunc(testAppendRotationY);
+//			testFunc(testAppendRotationZ);
+//			testFunc(testAppendRotationXY);
+//			testFunc(testAppendRotationXYZ);
+			testFunc(testMakeMatrix3D);
+
 			trace("ok");
+		}
+
+		private function testMakeMatrix3D():void
+		{
+			var x:Number = 10000000 * Math.random();
+			var y:Number = 10000000 * Math.random();
+			var z:Number = 10000000 * Math.random();
+//
+			var rx:Number = 360 * Math.random();
+			var ry:Number = 360 * Math.random();
+			var rz:Number = 360 * Math.random();
+			//
+			var sx:Number = 100 * Math.random() + 0.001;
+			var sy:Number = 100 * Math.random() + 0.001;
+			var sz:Number = 100 * Math.random() + 0.001;
+//			var sx:Number = 1;
+//			var sy:Number = 1;
+//			var sz:Number = 1;
+			//
+			var matrix3D:Matrix3D = new Matrix3D();
+			matrix3D.appendScale(sx, sy, sz);
+			matrix3D.appendRotation(rx, Vector3D.X_AXIS);
+			matrix3D.appendRotation(ry, Vector3D.Y_AXIS);
+			matrix3D.appendRotation(rz, Vector3D.Z_AXIS);
+			matrix3D.appendTranslation(x, y, z);
+
+//			matrix3D.recompose(Vector.<Vector3D>([ //
+//				new Vector3D(x, y, z), //
+//				new Vector3D(rx / 180 * Math.PI, ry / 180 * Math.PI, rz / 180 * Math.PI), //
+//				new Vector3D(sx, sy, sz), //
+//				]))
+			//
+			var matrix3D1:Matrix3D = Matrix3DUtils.makeMatrix3D1(x, y, z, rx, ry, rz, sx, sy, sz);
+
+			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
+
 		}
 
 		private function testAppendRotationXYZ():void

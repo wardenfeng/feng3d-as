@@ -5,6 +5,31 @@ package
 	public class Matrix3DUtils
 	{
 
+		public static function makeMatrix3D(x:Number, y:Number, z:Number, rx:Number, ry:Number, rz:Number, sx:Number = 1, sy:Number = 1, sz:Number = 1):Matrix3D
+		{
+			var matrix3D:Matrix3D = new Matrix3D(Vector.<Number>([ //
+				cos(ry) * cos(rz) * sx, cos(ry) * sin(rz) * sy, -sin(ry) * sz, 0, //
+				sin(rx) * sin(ry) * cos(rz) * sx - cos(rx) * sin(rz) * sx, sin(rx) * sin(ry) * sin(rz) * sy + cos(rx) * cos(rz) * sy, sin(rx) * cos(ry) * sz, 0, //
+				cos(rx) * sin(ry) * cos(rz) * sx + sin(rx) * sin(rz) * sx, cos(rx) * sin(ry) * sin(rz) * sy - sin(rx) * cos(rz) * sy, cos(rx) * cos(ry) * sz, 0, //
+				x, y, z, 1, //
+				//
+				]));
+
+			return matrix3D;
+		}
+
+		public static function makeMatrix3D1(x:Number, y:Number, z:Number, rx:Number, ry:Number, rz:Number, sx:Number = 1, sy:Number = 1, sz:Number = 1):Matrix3D
+		{
+			var matrix3D:Matrix3D = new Matrix3D(Vector.<Number>([ //
+				cos(ry) * cos(rz) * sx, cos(ry) * sin(rz) * sx, -sin(ry) * sx, 0, //
+				sin(rx) * sin(ry) * cos(rz) * sy - cos(rx) * sin(rz) * sy, sin(rx) * sin(ry) * sin(rz) * sy + cos(rx) * cos(rz) * sy, sin(rx) * cos(ry) * sy, 0, //
+				cos(rx) * sin(ry) * cos(rz) * sz + sin(rx) * sin(rz) * sz, cos(rx) * sin(ry) * sin(rz) * sz - sin(rx) * cos(rz) * sz, cos(rx) * cos(ry) * sz, 0, //
+				x, y, z, 1, //
+				//
+				]));
+
+			return matrix3D;
+		}
 
 		public static function appendRotationXYZ(rx:Number, ry:Number, rz:Number):Matrix3D
 		{
