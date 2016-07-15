@@ -4,6 +4,23 @@ package
 
 	public class Matrix3DUtils
 	{
+
+
+
+		public static function appendRotationXY(rx:Number, ry:Number):Matrix3D
+		{
+			var matrix3D:Matrix3D = new Matrix3D(Vector.<Number>([ //
+				cos(ry), 0, -sin(ry), 0, //
+				sin(rx) * sin(ry), cos(rx), sin(rx) * cos(ry), 0, //
+				cos(rx) * sin(ry), -sin(rx), cos(rx) * cos(ry), 0, //
+				0, 0, 0, 1, //
+				//
+				]));
+
+			return matrix3D;
+		}
+
+
 		public static function appendRotationX(rx:Number):Matrix3D
 		{
 			var matrix3D:Matrix3D = new Matrix3D(Vector.<Number>([ //

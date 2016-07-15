@@ -8,27 +8,61 @@ package
 	{
 		public function MatrixTest()
 		{
+			testFunc(testAppendRotationX);
+			testFunc(testAppendRotationY);
+			testFunc(testAppendRotationZ);
+			testFunc(testAppendRotationXY);
+			trace("ok");
+		}
+
+		private function testAppendRotationXY():void
+		{
+			var rx:Number = 360 * Math.random();
+			var ry:Number = 360 * Math.random();
+			//
 			var matrix3D:Matrix3D = new Matrix3D();
-			var rx:Number = 30;
-
 			matrix3D.appendRotation(rx, Vector3D.X_AXIS);
-//			matrix3D.appendRotation(rx, Vector3D.Y_AXIS);
-//			matrix3D.appendRotation(rx, Vector3D.Z_AXIS);
+			matrix3D.appendRotation(ry, Vector3D.Y_AXIS);
+			//
+			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationXY(rx, ry);
 
-			traceMatrix3D(matrix3D);
-			trace("-----------------------");
-			traceMatrix3D(Matrix3DUtils.appendRotationX(rx));
+			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
+		}
 
-			testAppendRotationX();
+		private function testFunc(testFunction:Function, times:int = 10000):void
+		{
+			for (var i:int = 0; i < times; i++)
+			{
+				testFunction();
+			}
+			trace(testFunction, "ok");
+		}
+
+		private function testAppendRotationZ():void
+		{
+			var degrees:Number = 360 * Math.random();
+			var matrix3D:Matrix3D = new Matrix3D();
+			matrix3D.appendRotation(degrees, Vector3D.Z_AXIS);
+			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationZ(degrees);
+
+			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
+		}
+
+		private function testAppendRotationY():void
+		{
+			var degrees:Number = 360 * Math.random();
+			var matrix3D:Matrix3D = new Matrix3D();
+			matrix3D.appendRotation(degrees, Vector3D.Y_AXIS);
+			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationY(degrees);
+			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
 		}
 
 		private function testAppendRotationX():void
 		{
-			var rx:Number = 360 * Math.random();
-
+			var degrees:Number = 360 * Math.random();
 			var matrix3D:Matrix3D = new Matrix3D();
-			matrix3D.appendRotation(rx, Vector3D.X_AXIS);
-			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationX(rx);
+			matrix3D.appendRotation(degrees, Vector3D.X_AXIS);
+			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationX(degrees);
 
 			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
 		}
