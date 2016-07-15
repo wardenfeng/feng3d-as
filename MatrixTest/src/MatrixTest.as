@@ -12,7 +12,24 @@ package
 			testFunc(testAppendRotationY);
 			testFunc(testAppendRotationZ);
 			testFunc(testAppendRotationXY);
+			testFunc(testAppendRotationXYZ);
 			trace("ok");
+		}
+
+		private function testAppendRotationXYZ():void
+		{
+			var rx:Number = 360 * Math.random();
+			var ry:Number = 360 * Math.random();
+			var rz:Number = 360 * Math.random();
+			//
+			var matrix3D:Matrix3D = new Matrix3D();
+			matrix3D.appendRotation(rx, Vector3D.X_AXIS);
+			matrix3D.appendRotation(ry, Vector3D.Y_AXIS);
+			matrix3D.appendRotation(rz, Vector3D.Z_AXIS);
+			//
+			var matrix3D1:Matrix3D = Matrix3DUtils.appendRotationXYZ(rx, ry, rz);
+
+			assert(Matrix3DUtils.compare(matrix3D, matrix3D1));
 		}
 
 		private function testAppendRotationXY():void

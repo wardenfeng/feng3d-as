@@ -6,6 +6,18 @@ package
 	{
 
 
+		public static function appendRotationXYZ(rx:Number, ry:Number, rz:Number):Matrix3D
+		{
+			var matrix3D:Matrix3D = new Matrix3D(Vector.<Number>([ //
+				cos(ry) * cos(rz), cos(ry) * sin(rz), -sin(ry), 0, //
+				sin(rx) * sin(ry) * cos(rz) - cos(rx) * sin(rz), sin(rx) * sin(ry) * sin(rz) + cos(rx) * cos(rz), sin(rx) * cos(ry), 0, //
+				cos(rx) * sin(ry) * cos(rz) + sin(rx) * sin(rz), cos(rx) * sin(ry) * sin(rz) - sin(rx) * cos(rz), cos(rx) * cos(ry), 0, //
+				0, 0, 0, 1, //
+				//
+				]));
+
+			return matrix3D;
+		}
 
 		public static function appendRotationXY(rx:Number, ry:Number):Matrix3D
 		{
